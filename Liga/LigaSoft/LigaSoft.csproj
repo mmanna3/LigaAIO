@@ -239,6 +239,10 @@
     <Compile Include="Migrations\202004081538057_PruebaAppVeyor.Designer.cs">
       <DependentUpon>202004081538057_PruebaAppVeyor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004100233317_EliminaEnumAnioGeneradaEnMigracionAnteriorPorqueDeEsoSeEncargaEFToLookup.cs" />
+    <Compile Include="Migrations\202004100233317_EliminaEnumAnioGeneradaEnMigracionAnteriorPorqueDeEsoSeEncargaEFToLookup.Designer.cs">
+      <DependentUpon>202004100233317_EliminaEnumAnioGeneradaEnMigracionAnteriorPorqueDeEsoSeEncargaEFToLookup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Dominio\Sancion.cs" />
     <Compile Include="Models\TextValueItem.cs" />
     <Compile Include="Models\ViewModels\ConceptoInsumoAgregarStockVM.cs" />
@@ -1468,6 +1472,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004081538057_PruebaAppVeyor.resx">
       <DependentUpon>202004081538057_PruebaAppVeyor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004100233317_EliminaEnumAnioGeneradaEnMigracionAnteriorPorqueDeEsoSeEncargaEFToLookup.resx">
+      <DependentUpon>202004100233317_EliminaEnumAnioGeneradaEnMigracionAnteriorPorqueDeEsoSeEncargaEFToLookup.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
