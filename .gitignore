@@ -291,3 +291,7 @@ __pycache__/
 /Liga/LigaSoft/logs
 /Liga/LigaSoft/App_Data
 dist/
+
+# Tokens de API Google Drive
+*.TokenResponse-user
+*credentials.json
