@@ -809,6 +809,7 @@
     <Compile Include="Utilidades\Log.cs" />
     <Compile Include="Utilidades\Roles.cs" />
     <Compile Include="Utilidades\VMMUtility.cs" />
+    <Compile Include="Utilidades\YKNExHandler.cs" />
     <Compile Include="Utilidades\ZipUtility.cs" />
     <Compile Include="ViewModelMappers\GoleadoresWebPublicaBuilder.cs" />
     <Compile Include="ViewModelMappers\SancionVMM.cs" />

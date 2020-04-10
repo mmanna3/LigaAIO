@@ -140,7 +140,7 @@ namespace LigaSoft.Utilidades
 			}
 			catch (Exception ex)
 			{
-				throw new Exception("Error comprimiendo imágenes.\n" + ex.Message);
+				YKNExHandler.LoguearYLanzarExcepcion(ex, "Error comprimiendo imágenes");
 			}
 
 			return backupPath;
@@ -148,16 +148,29 @@ namespace LigaSoft.Utilidades
 
 		private static void EliminarArchivos(string folderPath, string fileSearchPattern)
 		{
-			Log.Info("INICIO DE METODO: EliminarArchivos");
-			Log.Info($"folderPath: {folderPath}");
-			Log.Info($"fileSearchPattern: {fileSearchPattern}");
+			Log.Info($"Se van a eliminar todos los archivos de '{folderPath}' con extensión: '{fileSearchPattern}'.");
 			var filePaths = Directory.GetFiles(folderPath, fileSearchPattern);
-			Log.Info($"Cantidad de Archivos encontrados en la carpeta: {filePaths.Length}");
+			Log.Info($"Cantidad de archivos con extensión '{fileSearchPattern}' encontrados en la carpeta: '{filePaths.Length}'.");
 			foreach (var filePath in filePaths)
 			{
-				Log.Info($"Se intenta eliminar el archivo: {filePath}");
+				Log.Info($"Se intenta eliminar el archivo: '{filePath}'.");
 				if (File.Exists(filePath))
-					File.Delete(filePath);
+				{
+					try
+					{
+						File.Delete(filePath);
+						Log.Info("Se eliminó correctamente.");
+					}
+					catch (Exception ex)
+					{
+						YKNExHandler.LoguearYLanzarExcepcion(ex, "Error al intentar eliminar el archivo.");
+					}
+				}
+				else
+				{
+					Log.Info("El archivo no existía.");
+				}
+					
 			}
 		}
 
@@ -165,7 +178,7 @@ namespace LigaSoft.Utilidades
 		{
 			var bdBackupPathSinComprimir = PathDelUltimoBackupBD();
 			if (bdBackupPathSinComprimir == null)
-				throw new Exception("No hay backups de base de datos.");
+				YKNExHandler.LoguearYLanzarExcepcion(new Exception(), "No hay backups de base de datos");
 
 			var backupBdComprimidoPath = HostingEnvironment.MapPath($"~/App_Data/BaseDeDatos-{DateTime.Now.ToString(FormatoFechaBackup)}.zip");
 
@@ -179,8 +192,8 @@ namespace LigaSoft.Utilidades
 				}
 			}
 			catch (Exception ex)
-			{				
-				throw new Exception("Error comprimiendo base de datos.\n" + ex.Message);
+			{
+				YKNExHandler.LoguearYLanzarExcepcion(ex, "Error comprimiendo base de datos");
 			}
 
 			return backupBdComprimidoPath;
