@@ -1,7 +1,5 @@
 version: 1.0.{build}
 environment:
-  DefaultConnection-Web.config Connection String: 
-    secure: rseM20eZh0et+yqC++xeyPmLdQj8i/uFhWogVKy4+oC9yw2DvVp3N03FIG0dKzbWr4GWz5Srkkne6KvdUQhsxpEUuBzNPEaFIwTzhcpLb+sC+qSsWHwW7vfvCVvJdYbaMGJAMT0J8HxIwZMeG/cmwAsiHSYP6V0UFEtGhN0i5lI=
   my_secret:
     secure: gDcXlhhrm2A3ZnkjnmhxMLZBovXg0Kgsk23timRCRsc=
   salt_credentialsjson:
@@ -37,16 +35,20 @@ for:
       only:
         - master
     environment:
+      DefaultConnection-Web.config Connection String:
+        secure: rseM20eZh0et+yqC++xeyPmLdQj8i/uFhWogVKy4+oC9yw2DvVp3N03FIG0dKzbWDL7PocHCMSZOhXvUx/nqDQpitqW1yyWmWXofWnPFJlNW2d/lgokexRKvhesMXRQkXHJ9iWl5drfr8N+q5sB3Ch+a+GqNKH23kn7nBVA+zoI=
       deploy_server:
-        secure: aaa
+        secure: 17WII/5TNwwoQkAp6BZ5Gn9z4iObfqt7VleKl6tCWOqMR1hHkp+eQNgvtAa9PU4nJkf1Tc29ZuFkm9KpQ7l3OA==
       deploy_website:
-        secure: bbbb
+        secure: y5qjD0roTi22GhH9n7jlIw==
 
   -
     branches:
       only:
         - test
     environment:
+      DefaultConnection-Web.config Connection String: 
+        secure: rseM20eZh0et+yqC++xeyPmLdQj8i/uFhWogVKy4+oC9yw2DvVp3N03FIG0dKzbWr4GWz5Srkkne6KvdUQhsxpEUuBzNPEaFIwTzhcpLb+sC+qSsWHwW7vfvCVvJdYbaMGJAMT0J8HxIwZMeG/cmwAsiHSYP6V0UFEtGhN0i5lI=
       deploy_server:
         secure: 17WII/5TNwwoQkAp6BZ5Gn9z4iObfqt7VleKl6tCWOrZYBuqfL5LyCZL6jHFCts62/0JHvAPxIzFrHdiri2WsA==
       deploy_website:
