@@ -14,20 +14,12 @@ install:
 - ps: iex ((New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/appveyor/secure-file/master/install.ps1'))
 - cmd: appveyor-tools\secure-file -decrypt "Liga\LigaSoft\Utilidades\Backup\credentials.json.enc" -secret %my_secret% -salt %salt_credentialsjson%
 - cmd: appveyor-tools\secure-file -decrypt "Liga\LigaSoft\Utilidades\Backup\token.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-user.enc" -secret %my_secret% -salt %salt_googleapisauth%
-before_build:
 - ps: nuget restore Liga\LigaSoft.sln
 build:
   project: Liga/LigaSoft.sln
   publish_wap: true
   parallel: true
   verbosity: minimal
-deploy:
-- provider: WebDeploy
-  server: $(deploy_server)
-  website: $(deploy_website)
-  username: $(deploy_username)
-  password: $(deploy_password)
-  ntlm: false
 
 for:
   -
@@ -37,10 +29,17 @@ for:
     environment:
       DefaultConnection-Web.config Connection String:
         secure: rseM20eZh0et+yqC++xeyPmLdQj8i/uFhWogVKy4+oC9yw2DvVp3N03FIG0dKzbWDL7PocHCMSZOhXvUx/nqDQpitqW1yyWmWXofWnPFJlNW2d/lgokexRKvhesMXRQkXHJ9iWl5drfr8N+q5sB3Ch+a+GqNKH23kn7nBVA+zoI=
-      deploy_server:
+      deploy_server_prod:
         secure: 17WII/5TNwwoQkAp6BZ5Gn9z4iObfqt7VleKl6tCWOqMR1hHkp+eQNgvtAa9PU4nJkf1Tc29ZuFkm9KpQ7l3OA==
-      deploy_website:
+      deploy_website_prod:
         secure: y5qjD0roTi22GhH9n7jlIw==
+    deploy:
+      - provider: WebDeploy
+        server: $(deploy_server_prod)
+        website: $(deploy_website_prod)
+        username: $(deploy_username)
+        password: $(deploy_password)
+        ntlm: false
 
   -
     branches:
@@ -49,7 +48,14 @@ for:
     environment:
       DefaultConnection-Web.config Connection String: 
         secure: rseM20eZh0et+yqC++xeyPmLdQj8i/uFhWogVKy4+oC9yw2DvVp3N03FIG0dKzbWr4GWz5Srkkne6KvdUQhsxpEUuBzNPEaFIwTzhcpLb+sC+qSsWHwW7vfvCVvJdYbaMGJAMT0J8HxIwZMeG/cmwAsiHSYP6V0UFEtGhN0i5lI=
-      deploy_server:
+      deploy_server_test:
         secure: 17WII/5TNwwoQkAp6BZ5Gn9z4iObfqt7VleKl6tCWOrZYBuqfL5LyCZL6jHFCts62/0JHvAPxIzFrHdiri2WsA==
-      deploy_website:
+      deploy_website_test:
         secure: tRk9SILuLoHrXUKD2DPjYIRy2DXqtX4C2cRmWipUun4=
+    deploy:
+      - provider: WebDeploy
+        server: $(deploy_server_test)
+        website: $(deploy_website_test)
+        username: $(deploy_username)
+        password: $(deploy_password)
+        ntlm: false
