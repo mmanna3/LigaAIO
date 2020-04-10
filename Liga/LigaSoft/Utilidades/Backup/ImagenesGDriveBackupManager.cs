@@ -1,8 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-
-namespace LigaSoft.Utilidades.Backup
+﻿namespace LigaSoft.Utilidades.Backup
 {
 	public class ImagenesGDriveBackupManager : GDriveBackupManager
 	{

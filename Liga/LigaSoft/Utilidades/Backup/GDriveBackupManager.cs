@@ -12,7 +12,7 @@ namespace LigaSoft.Utilidades.Backup
 
 		protected abstract string NombreDelBackupZipeadoSinExtensionNiFecha();
 
-		public void GenerarYSubirAlDrive()
+		public virtual void GenerarYSubirAlDrive()
 		{
 			var nombreBackup = NombreDelBackupZipeadoSinExtensionNiFecha();
 			try

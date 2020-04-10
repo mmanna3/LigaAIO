@@ -1000,7 +1000,6 @@
     <Content Include="Scripts\nicEdit-latest.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Utilidades\Backup\token.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-user" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1133,7 +1132,6 @@
     <Content Include="Views\Publicidad\Edit.cshtml" />
     <Content Include="Views\Publicidad\Index.cshtml" />
     <Content Include="Views\Jugador\EditFotoDesdeArchivo.cshtml" />
-    <Content Include="Utilidades\Backup\credentials.json" />
     <Content Include="Views\Informe\PagoCuotasPorMes_Informe.cshtml" />
     <Content Include="Views\Sancion\Create.cshtml" />
     <Content Include="Views\Sancion\Index.cshtml" />
