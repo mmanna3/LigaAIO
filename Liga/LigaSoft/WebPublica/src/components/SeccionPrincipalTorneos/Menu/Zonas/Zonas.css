@@ -1,0 +1,4 @@
+.cajaZona {
+	composes: caja from './../../../../assets/styles/base.css';
+	composes: backgroundGradienteVerde from './../../../../assets/styles/colors.css';
+}

@@ -1,0 +1,45 @@
+﻿@using LigaSoft.ExtensionMethods
+@model LigaSoft.Models.ViewModels.SancionVM
+
+@section Titulo{
+	Editar sanción
+}
+
+@using (Html.YKN().Form())
+{
+	@Html.YKNNonTyped().ValidationSummary()
+	@Html.HiddenFor(x => x.ZonaId)
+
+	<div class="row">
+		<div class="col-sm-6">
+			@Html.YKN().DatePickerFor(x => x.Dia).DefaultValue(Model.Dia)
+		</div>
+		<div class="col-sm-6">
+			@(Html.YKN().AutocompleteFor(x => x.FechaId)
+				.Values(Model.FechasDeLaZona)
+				.DefaultValue(Model.FechaId)
+			)
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-6">
+			@(Html.YKN().AutocompleteFor(x => x.JornadaId)
+				.DefaultValue(Model.JornadaId)
+				.LoadValuesOnElementChange("FechaId", "/Sancion/JornadasDeLaFecha", "fechaId")
+			)
+		</div>
+		<div class="col-sm-6">
+			@Html.YKN().EditorFor(x => x.CantidadFechasQueAdeuda)
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-4">
+			@Html.YKN().AutocompleteFor(x => x.CategoriaId).Values(Model.CategoriasDelTorneo).DefaultValue(Model.CategoriaId)
+		</div>
+		<div class="col-sm-8">
+			@Html.YKN().TextAreaFor(x => x.Descripcion)
+		</div>
+	</div>
+
+	{ Html.YKN().FooterGuardarCancelar(); }
+}

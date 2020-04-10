@@ -1,0 +1,29 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.ViewModels
+@model MovimientoSalidaVM
+
+@section Titulo{
+	Detalles del egreso
+}
+
+@using (Html.YKN().Form())
+{
+	<div class="row">
+		<div class="col-sm-4">
+			@Html.YKN().DisplayFor(x => x.Fecha)
+		</div>
+		<div class="col-sm-4">
+			@Html.YKN().DisplayFor(x => x.Vigente)
+		</div>
+		<div class="col-sm-4">
+			@Html.YKN().DisplayFor(x => x.Total)
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			@Html.YKN().DisplayFor(x => x.Comentario)
+		</div>
+	</div>
+
+	Html.YKN().FooterVolver();
+}

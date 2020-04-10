@@ -1,0 +1,52 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.Attributes
+@model LigaSoft.Models.ViewModels.ParametroGlobalVM
+
+@section Titulo{
+	Configuración
+}
+
+@using (Html.YKN().Form())
+{
+	@Html.YKNNonTyped().ValidationSummary()
+
+	@Html.HiddenFor(x => x.Id)
+	
+	<div class="row">
+		<div class="col-sm-8">
+			@Html.YKN().EditorFor(x => x.ValorPorDefectoEnPesosDelConceptoFichaje)
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<div><label>Escudo por defecto</label></div>
+			<div><p>Aparecerá al crear un nuevo club o al eliminar un escudo</p></div>
+			<img src="@Model.EscudoActual" alt="Escudo por defecto">
+			<div style="padding-top: 1em;">@Html.YKN().BrowseFileFor(x => x.EscudoNuevo)</div>
+		</div>
+	</div>
+	<br/>
+	<div class="row">
+		<div class="col-sm-12">
+			<div><label>Backups</label></div>
+		</div>
+	</div>
+	<div class="row">		
+		<div class="col-sm-4">			
+			@(Html.YKN().Button("DescargarBackupBD")
+				  .Label("Descargar backup base de datos")
+				  .OnClickRedirect("DescargarBackupDb", "ParametroGlobal"))
+		</div>
+		<div class="col-sm-2">
+		</div>
+		<div class="col-sm-4">
+			@(Html.YKN().Button("DescargarBackupImagenes")
+				  .Label("Descargar backup de imágenes")
+				  .OnClickRedirect("DescargarBackupImagenes", "ParametroGlobal"))
+		</div>
+	</div>
+	<br/>
+	<br/>
+
+	{ Html.YKN().FooterGuardarCancelar(); }
+}

@@ -1,0 +1,61 @@
+@using LigaSoft.ExtensionMethods
+@model LigaSoft.Models.ViewModels.InformeMovimientosImpagosVM
+
+
+@section Titulo {
+	Informe de movimientos impagos
+}
+
+@section Subtitulo {
+	Se muestra la suma de todos los movimientos total o parcialmente impagos por los clubes al día de la fecha
+}
+
+<div class="row">
+	<div class="col-sm-4">
+
+		<div class="row">
+			<table class="table table-bordered">
+				<thead>
+				<tr>
+					<th scope="col">Concepto</th>
+					<th scope="col">Monto</th>
+				</tr>
+				</thead>
+				<tbody>
+
+				<tr>
+					<td>Insumos</td>
+					<td>@Model.Insumos</td>
+				</tr>
+				<tr>
+					<td>Fichajes</td>
+					<td>@Model.Fichajes</td>
+				</tr>
+				<tr>
+					<td>Libres</td>
+					<td>@Model.Libres</td>
+				</tr>
+				<tr>
+					<td>Cuotas</td>
+					<td>@Model.Cuotas</td>
+				</tr>
+				<tr>
+					<td style="font-weight: bold">Total</td>
+					<td style="font-weight: bold">@Model.Total</td>
+				</tr>
+
+				</tbody>
+			</table>
+		</div>
+		@Html.YKN().DisplayMultilineFor(x => x.ClubesDeudores)
+	</div>
+</div>
+
+<style>
+	/*Para que no salga la url del link en la impresión*/
+	a[href]:after {
+		content: initial;
+	}
+</style>
+
+@(Html.YKN().Button("Imprimir").OnClickImprimir())

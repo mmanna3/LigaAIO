@@ -1,0 +1,20 @@
+﻿@using LigaSoft.ExtensionMethods
+@model LigaSoft.Models.ViewModels.ConceptoInsumoVM
+
+@section Titulo{
+	Editar insumo
+}
+
+@using (Html.YKN().Form())
+{
+	<div class="row">
+		<div class="col-sm-6">
+			@Html.YKN().EditorFor(x => x.Descripcion)
+		</div>
+		<div class="col-sm-6">
+			@Html.YKN().EditorFor(x => x.Precio)
+		</div>
+	</div>
+
+	{Html.YKN().FooterGuardarCancelar();}
+}

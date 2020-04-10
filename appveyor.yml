@@ -1,0 +1,53 @@
+version: 1.0.{build}
+environment:
+  DefaultConnection-Web.config Connection String: 
+    secure: rseM20eZh0et+yqC++xeyPmLdQj8i/uFhWogVKy4+oC9yw2DvVp3N03FIG0dKzbWr4GWz5Srkkne6KvdUQhsxpEUuBzNPEaFIwTzhcpLb+sC+qSsWHwW7vfvCVvJdYbaMGJAMT0J8HxIwZMeG/cmwAsiHSYP6V0UFEtGhN0i5lI=
+  my_secret:
+    secure: gDcXlhhrm2A3ZnkjnmhxMLZBovXg0Kgsk23timRCRsc=
+  salt_credentialsjson:
+    secure: m/VO+Z9myUME+QyPU+lEh41O7C/s1HO297jbF+2VSh1vy43qbqjoardK5vwgg8RXpyXftAcFp5WqC4madpTcPQ==
+  salt_googleapisauth:
+    secure: q8SCqn3wbGCGTIwI3f1loXG/uWlbg78FaYmUqpg7xlYYMKy9tWmwME8PddfgmQQhK+XU/jX7HHBgZxI8U6yUWw==
+  deploy_username:
+    secure: TjWwAG8m4aq+7xzrsHJqrw==
+  deploy_password:
+    secure: SFAvHfsz398LTl83QbS5gw==
+install:
+- ps: iex ((New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/appveyor/secure-file/master/install.ps1'))
+- cmd: appveyor-tools\secure-file -decrypt "Liga\LigaSoft\Utilidades\Backup\credentials.json.enc" -secret %my_secret% -salt %salt_credentialsjson%
+- cmd: appveyor-tools\secure-file -decrypt "Liga\LigaSoft\Utilidades\Backup\token.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-user.enc" -secret %my_secret% -salt %salt_googleapisauth%
+before_build:
+- ps: nuget restore Liga\LigaSoft.sln
+build:
+  project: Liga/LigaSoft.sln
+  publish_wap: true
+  parallel: true
+  verbosity: minimal
+deploy:
+- provider: WebDeploy
+  server: $(deploy_server)
+  website: $(deploy_website)
+  username: $(deploy_username)
+  password: $(deploy_password)
+  ntlm: false
+
+for:
+  -
+    branches:
+      only:
+        - master
+    environment:
+      deploy_server:
+        secure: aaa
+      deploy_website:
+        secure: bbbb
+
+  -
+    branches:
+      only:
+        - test
+    environment:
+      deploy_server:
+        secure: 17WII/5TNwwoQkAp6BZ5Gn9z4iObfqt7VleKl6tCWOrZYBuqfL5LyCZL6jHFCts62/0JHvAPxIzFrHdiri2WsA==
+      deploy_website:
+        secure: tRk9SILuLoHrXUKD2DPjYIRy2DXqtX4C2cRmWipUun4=

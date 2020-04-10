@@ -1,0 +1,55 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.ViewModels
+
+@section Titulo {
+	Noticias
+}
+
+@section CabeceraGrilla {
+
+	@(Html.YKN().Button("Crear")
+		  .PullRight()
+		  .Label("Nueva noticia")
+		  .OnClickRedirect("Create", "Noticia"))	
+}
+
+@(Html.YKN<NoticiaVM>().Grid()
+			.WithColumns(column =>
+			{
+				column.AddTextColumn(x => x.Fecha).Width(100);
+				column.AddTextColumn(x => x.Visible).Width(60);
+				column.AddTextColumn(x => x.Titulo).Width(150);
+				column.AddTextColumn(x => x.Cuerpo);				
+			})
+			.Actions(action =>
+			{
+				action.RedirectWithRowId("Editar", "Noticia", "Edit");
+				action.JavaScriptWithRowId("Ocultar/Mostrar", "OcultarMostrar");
+				action.JavaScriptWithRowId("Eliminar", "Eliminar");
+			})
+			.DataSource("/Noticia/GetForGrid")
+)
+
+<script>
+	function OcultarMostrar(obj) {
+		$.ajax({
+			url: '/Noticia/OcultarMostrar',
+			type: "POST",
+			data: { id: obj.getAttribute('data-id') },
+			success: function() {
+				window.location.reload(false);
+			}
+		});
+	}
+
+	function Eliminar(obj) {
+		$.ajax({
+			url: '/Noticia/Eliminar',
+			type: "POST",
+			data: { id: obj.getAttribute('data-id') },
+			success: function() {
+				window.location.reload(false);
+			}
+		});
+	}
+</script>

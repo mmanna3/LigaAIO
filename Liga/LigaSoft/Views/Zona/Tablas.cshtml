@@ -1,0 +1,122 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.Enums
+@model LigaSoft.Models.ViewModels.TablasVM
+
+@section Titulo{
+	@Model.Titulo
+}
+
+@section Subtitulo
+{
+	@Model.SeVenLosGolesEnLaTabla()
+}
+
+@section CabeceraGrilla{
+	@(Html.YKN().Button("Imprimir")
+				  .PullLeft()
+				  .Color(BootstrapColorEnum.Success)
+				  .OnClickImprimir())
+
+	@(Html.YKN().Button("MostrarOcultarGolesEnLaTabla")
+				  .Label("Mostrar/Ocultar goles en la tabla")
+				  .PullLeft()
+				  .Color(BootstrapColorEnum.Primary)
+				  .OnClick("mostrarOcultarGolesEnLaTabla()"))
+}
+
+@Html.HiddenFor(x => x.ZonaId)
+
+<script>
+	function mostrarOcultarGolesEnLaTabla() {
+		$.ajax({
+			url: '/Zona/MostrarOcultarGolesEnLaTabla',
+			type: "POST",
+			data: { id: $('#ZonaId').val() },
+			success: function () {
+				window.location.reload(false);
+			}
+		});
+	}
+</script>
+
+@foreach (var tablaCategoria in Model.TablasPorCategoria)
+{
+	<div class="container pull-left">
+		<h3>@tablaCategoria.Categoria</h3>
+		<table class="table tabla-posiciones">
+			<thead>
+				<tr>
+					<th></th>
+					<th>J</th>
+					<th>G</th>
+					<th>E</th>
+					<th>P</th>
+					<th>Np</th>
+					<th>Gf</th>
+					<th>Gc</th>
+					<th>Df</th>
+					<th>Pts</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var renglon in tablaCategoria.Renglones)
+				{
+					<tr>
+						<td>@renglon.Equipo</td>
+						<td>@renglon.Pj</td>
+						<td>@renglon.Pg</td>
+						<td>@renglon.Pe</td>
+						<td>@renglon.Pp</td>
+						<td>@renglon.Np</td>
+						<td>@renglon.Gf</td>
+						<td>@renglon.Gc</td>
+						<td>@renglon.Df</td>
+						<td>@renglon.Pts</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+}
+
+<div class="container pull-left">
+	<h3>General</h3>
+	<table class="table tabla-posiciones">
+		<thead>
+			<tr>
+				<th></th>
+				<th>J</th>
+				<th>G</th>
+				<th>E</th>
+				<th>P</th>
+				<th>Np</th>
+				<th>Gf</th>
+				<th>Gc</th>
+				<th>Df</th>
+				<th>Pts</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var renglon in Model.TablaGeneral.Renglones)
+			{
+				<tr>
+					<td>@renglon.Equipo</td>
+					<td>@renglon.Pj</td>
+					<td>@renglon.Pg</td>
+					<td>@renglon.Pe</td>
+					<td>@renglon.Pp</td>
+					<td>@renglon.Np</td>
+					<td>@renglon.Gf</td>
+					<td>@renglon.Gc</td>
+					<td>@renglon.Df</td>
+					<td>@renglon.Pts</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>
+
+<div class="row">
+	@{ Html.YKN().FooterVolver(); }
+</div>
+

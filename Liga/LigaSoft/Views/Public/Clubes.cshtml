@@ -1,0 +1,33 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.Enums
+@model LigaSoft.Models.ViewModels.PublicIndexVM
+
+	
+	<h1 style="padding-bottom: 1em;">@Model.DatosDeEquipos.Titulo</h1>
+
+	<div class="container pull-left">
+		<table class="table tabla-posiciones">
+			<thead>
+				<tr>
+					<th></th>
+					<th>Equipo</th>
+					<th>Localidad</th>
+					<th>Dirección</th>
+					<th>Techo</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var renglon in Model.DatosDeEquipos.Renglones)
+				{
+					<tr>
+						<td class="escudo"><img width="30px" heigh="auto" src=@renglon.Escudo alt="Escudo" /></td>
+						<td>@renglon.Equipo</td>
+						<td>@renglon.Localidad</td>
+						<td>@renglon.Direccion</td>
+						<td>@renglon.Techo</td>	
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+

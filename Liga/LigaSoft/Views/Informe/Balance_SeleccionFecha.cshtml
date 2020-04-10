@@ -1,0 +1,37 @@
+﻿@using LigaSoft.ExtensionMethods
+@model LigaSoft.Models.ViewModels.RangoVM
+
+@section Titulo {
+	Balance
+}
+
+@section CabeceraGrilla {
+
+	<div class="row">
+		<div class="col-sm-2">
+			@Html.YKN().DatePickerFor(x => x.FechaInicio)
+		</div>
+		<div class="col-sm-2">
+			@Html.YKN().DatePickerFor(x => x.FechaFin)
+		</div>
+	</div>
+}
+<div class="row">
+	<div class="col-sm-4">
+		@(Html.YKN().Button("Consultar")
+			  .FullWidth()
+			  .Label("Consultar")
+			  .OnClick("Informe()"))
+	</div>
+</div>
+
+@Html.YKNNonTyped().ValidationSummary()
+
+<script>
+	function Informe() {
+		var fechaInicio = $('#FechaInicio').val();
+		var fechaFin= $('#FechaFin').val();
+
+		window.location.href = '@Url.Action("Balance_Informe", "Informe")?fechaInicio='+fechaInicio+'&fechaFin='+fechaFin;
+	}
+</script>

@@ -1,0 +1,20 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.ViewModels
+
+@section Titulo {
+	Publicidades
+}
+
+@(Html.YKN<PublicidadVM>().Grid()
+			.WithColumns(column =>
+			{
+				column.AddTextColumn(x => x.Titulo);
+				column.AddTextColumn(x => x.Url);
+				column.AddTextColumn(x => x.Posicion);				
+			})
+			.Actions(action =>
+			{
+				action.RedirectWithRowId("Editar", "Publicidad", "Edit");
+			})
+			.DataSource("/Publicidad/GetForGrid")
+)

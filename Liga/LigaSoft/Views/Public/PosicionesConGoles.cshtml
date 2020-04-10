@@ -1,0 +1,90 @@
+﻿@model LigaSoft.Models.ViewModels.PublicIndexVM
+
+
+	<h1>@Model.Tablas.Titulo</h1>
+
+	@foreach (var tablaCategoria in Model.Tablas.TablasPorCategoria)
+	{
+		<div class="container pull-left">
+			<h3>@tablaCategoria.Categoria</h3>
+			<table class="table tabla-posiciones">
+				<thead>
+					<tr>
+						<th>Pos</th>
+						<th>Esc</th>
+						<th>Equipo</th>
+						<th>J</th>
+						<th>G</th>
+						<th>E</th>
+						<th>P</th>
+						<th>Np</th>
+						<th>Gf</th>
+						<th>Gc</th>
+						<th>Df</th>
+						<th>Pts</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var renglon in tablaCategoria.Renglones)
+					{
+						<tr>
+							<td>@renglon.Posicion</td>
+							<td class="escudo"><img width="30px" heigh="auto" src=@renglon.Escudo alt="Escudo" /></td>
+							<td>@renglon.Equipo</td>
+							<td>@renglon.Pj</td>
+							<td>@renglon.Pg</td>
+							<td>@renglon.Pe</td>
+							<td>@renglon.Pp</td>
+							<td>@renglon.Np</td>
+							<td>@renglon.Gf</td>
+							<td>@renglon.Gc</td>
+							<td>@renglon.Df</td>
+							<td>@renglon.Pts</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+	}
+
+	<div class="container pull-left">
+		<h3>General</h3>
+		<table class="table tabla-posiciones">
+			<thead>
+				<tr>
+					<th>Pos</th>
+					<th>Esc</th>
+					<th>Equipo</th>
+					<th>J</th>
+					<th>G</th>
+					<th>E</th>
+					<th>P</th>
+					<th>Np</th>
+					<th>Gf</th>
+					<th>Gc</th>
+					<th>Df</th>
+					<th>Pts</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var renglon in Model.Tablas.TablaGeneral.Renglones)
+				{
+					<tr>
+						<td>@renglon.Posicion</td>
+						<td class="escudo"><img width="30px" heigh="auto" src=@renglon.Escudo alt="Escudo" /></td>
+						<td>@renglon.Equipo</td>
+						<td>@renglon.Pj</td>
+						<td>@renglon.Pg</td>
+						<td>@renglon.Pe</td>
+						<td>@renglon.Pp</td>
+						<td>@renglon.Np</td>
+						<td>@renglon.Gf</td>
+						<td>@renglon.Gc</td>
+						<td>@renglon.Df</td>
+						<td>@renglon.Pts</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+

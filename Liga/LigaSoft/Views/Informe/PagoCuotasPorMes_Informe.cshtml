@@ -1,0 +1,61 @@
+@using LigaSoft.ExtensionMethods
+@model LigaSoft.Models.ViewModels.InformePagoCuotasPorMesVM
+
+
+@section Titulo {
+	Informe de pagos de cuotas de clubes por mes
+}
+
+@section Subtitulo {
+	
+}
+
+<div class="row">
+	<div class="col-sm-12">
+
+		<div class="row">
+			<table class="table table-bordered">
+				<thead>
+				<tr>
+					<th>Club</th>
+					<th>Cuota</th>
+					<th>Abril</th>
+					<th>Mayo</th>
+					<th>Junio</th>
+					<th>Julio</th>
+					<th>Agosto</th>
+					<th>Septiembre</th>
+					<th>Octubre</th>
+					<th>Noviembre</th>
+				</tr>
+				</thead>
+				<tbody>
+				@foreach (var renglon in Model.Renglones)
+				{
+					<tr>
+						<td>@Html.Raw(renglon.ClubLink)</td>
+						<td>@renglon.ValorCuota</td>
+						<td>@renglon.PagoAbril</td>
+						<td>@renglon.PagoMayo</td>
+						<td>@renglon.PagoJunio</td>
+						<td>@renglon.PagoJulio</td>
+						<td>@renglon.PagoAgosto</td>
+						<td>@renglon.PagoSeptiembre</td>
+						<td>@renglon.PagoOctubre</td>
+						<td>@renglon.PagoNoviembre</td>
+					</tr>
+				}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<style>
+	/*Para que no salga la url del link en la impresión*/	
+	a[href]:after {
+		content: initial;
+	}
+</style>
+
+@(Html.YKN().Button("Imprimir").OnClickImprimir())

@@ -1,0 +1,33 @@
+.rowWithMarginTop2em {
+	composes: row from './../../assets/styles/bootstrap.min.css';
+	margin-top: 2em;
+}
+
+.banner {
+	width: 100%;
+	height: 6em;	
+	filter: drop-shadow(2px 4px 6px black);
+	cursor: pointer;
+}
+
+.texto {
+	font-family: 'Roboto';
+	font-weight: 900;
+	position: absolute;
+	top: 50%;
+	left: 5%;
+	transform: translate(0, -52%);
+	font-size: 30px;
+	color: #ddd;
+	text-transform: uppercase;
+}
+
+@media (min-width: 576px) {
+	.banner {
+		height: 10em;
+	}
+
+	.texto {
+		font-size: 50px;
+	}
+}

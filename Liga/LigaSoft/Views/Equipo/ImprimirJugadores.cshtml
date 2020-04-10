@@ -1,0 +1,42 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.ViewModels
+@model ImprimirJugadoresVM
+
+@section Titulo {
+	Imprimir Carnets de Jugadores del Equipo <span class="titulo-detacado">@Model.Equipo</span>
+}
+
+@section CabeceraGrilla {
+
+	@(Html.YKN().Button("ImprimirSeleccionados")
+				.Label("Imprimir carnets de los jugadores seleccionados")
+				.PullLeft()
+				.OnClick("ImprimirSeleccionados()")
+	)
+}
+
+@(Html.YKN<JugadorBaseVM>().Grid()
+			.Checkbox()
+			.PageLimit(100)
+			.WithColumns(column =>
+			{
+				column.AddTextColumn(x => x.DNI);
+				column.AddTextColumn(x => x.Nombre);
+				column.AddTextColumn(x => x.Apellido);
+				column.AddTextColumn(x => x.FechaNacimiento);
+			})
+			.DataSource($"/Jugador/GetByEquipoId/?equipoId={Model.EquipoId}")
+)
+
+<script>
+	function ImprimirSeleccionados() {
+		var a = document.createElement('a');
+		a.href += "PrntCarnet:/@Model.EquipoId/";
+
+		grid.getSelections().forEach(function(jugIdSeleccionado) {
+			a.href += jugIdSeleccionado + ",";
+		});
+		a.href = a.href.slice(0, -1);	//Le borro la última coma
+		a.click();
+	}
+</script>

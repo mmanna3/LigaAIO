@@ -1,0 +1,25 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.Enums
+@model LigaSoft.Models.ViewModels.ZonaVM
+
+@section Titulo{
+	Crear zona en @Model.Torneo
+}
+
+@using (Html.YKN().Form())
+{
+	<div class="row">
+		
+		<div class="col-sm-6">
+			@Html.YKN().EditorFor(x => x.Nombre)
+		</div>
+		<div class="col-sm-6">
+			@(Html.YKN().ComboFor(x => x.Tipo).Values(Model.TiposDisponibles))
+		</div>
+
+		@Html.HiddenFor(x => x.TorneoId)
+	</div>
+
+	{Html.YKN().FooterGuardarCancelar();}
+}
+

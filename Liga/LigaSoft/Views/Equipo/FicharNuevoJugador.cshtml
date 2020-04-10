@@ -1,0 +1,108 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.Enums
+@model LigaSoft.Models.ViewModels.FicharNuevoJugadorVM
+
+@section Titulo{
+	Fichar Jugador en <span class="titulo-detacado">@Model.Equipo</span>
+}
+
+@Scripts.Render("~/jpgcamerajs")
+
+
+@using (Html.YKN().Form())
+{
+	@Html.YKNNonTyped().ValidationSummary()
+	@Html.HiddenFor(x => x.EquipoId)
+	@Html.HiddenFor(x => x.HayQueImprimirCarnetDelUltimoJugadorFichado)
+
+	<div class="row">
+		<div class="col-sm-6">
+			@Html.YKN().EditorFor(x => x.DNI).TabIndex(1)
+			@Html.YKN().EditorFor(x => x.Nombre).TabIndex(2)
+			@Html.YKN().EditorFor(x => x.Apellido).TabIndex(3)
+			@Html.YKN().DatePickerFor(x => x.FechaNacimiento)
+		</div>
+		<div class="col-sm-6">
+			@Html.YKN().WebCamFor(x => x.Foto)
+		</div>
+	</div>
+
+	<br>
+	<div class='row'>
+		<div class="col-sm-12">
+			@(Html.YKN().CheckBoxFor(x => x.ElCarnetEstaPago)
+				.Label(Model.LabelGenerarMovimientoFichaje)
+				  .ChequeadoPorDefecto())					
+		</div>
+	</div>
+
+
+	<div class='row form-footer'>
+		<div class='col-sm-offset-3 col-sm-3'>
+			@(Html.YKN().Button("Imprimir")
+				.FullWidth()
+				.Color(BootstrapColorEnum.Primary)
+				.OnClick("OnImprimirClick()"))
+		</div>
+		<div class='col-sm-3'>
+			@(Html.YKN().BotonCancelar()
+				.OnClickRedirect("Index", "Jugador"))
+		</div>
+		<div class='col-sm-3'>
+			@Html.YKN().BotonGuardar()
+		</div>
+	</div>
+}
+
+<script>
+	$(function () {
+
+		ImprimirJugadorFichadoAnteriormente();
+
+		$(document).keyup(function (event) {
+			if (event.keyCode === 13) {
+				$("#elForm").submit();
+			}
+		});
+	});
+
+	function ImprimirJugadorFichadoAnteriormente() {
+		if (@((Model.IdDelJugadorFichadoAnteriormenteParaImprimir != null).ToJavaScript())){
+			var a = document.createElement('a');
+			a.href += "PrntCarnet:/@Model.EquipoId/@Model.IdDelJugadorFichadoAnteriormenteParaImprimir";
+			a.click();
+		}
+	}
+
+	function OnImprimirClick() {
+		$("#HayQueImprimirCarnetDelUltimoJugadorFichado").val(true);
+		$("#elForm").submit();
+	}
+
+</script>
+
+<style>
+	.form-group input[type="checkbox"] {
+		display: none;
+	}
+
+		.form-group input[type="checkbox"] + .btn-group > label span {
+			width: 20px;
+		}
+
+			.form-group input[type="checkbox"] + .btn-group > label span:first-child {
+				display: none;
+			}
+
+			.form-group input[type="checkbox"] + .btn-group > label span:last-child {
+				display: inline-block;
+			}
+
+		.form-group input[type="checkbox"]:checked + .btn-group > label span:first-child {
+			display: inline-block;
+		}
+
+		.form-group input[type="checkbox"]:checked + .btn-group > label span:last-child {
+			display: none;
+		}
+</style>

@@ -1,0 +1,27 @@
+﻿@using LigaSoft.ExtensionMethods
+@model LigaSoft.Models.ViewModels.MovimientoEntradaSinClubVM
+
+@section Titulo{
+	Nuevo ingreso
+}
+
+@using (Html.YKN().Form())
+{
+	@Html.YKNNonTyped().ValidationSummary()
+
+	<div class="row">
+		<div class="col-sm-6">
+			@Html.YKN().DatePickerFor(x => x.Fecha).DefaultEsHoy()
+		</div>
+		<div class="col-sm-6">
+			@Html.YKN().EditorFor(x => x.Total)
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-8">
+			@Html.YKN().TextAreaFor(x => x.Comentario)
+		</div>
+	</div>
+
+	{ Html.YKN().FooterGuardarCancelar(); }
+}

@@ -1,0 +1,25 @@
+@value gradiente-rojo: linear-gradient(90deg, rgba(194,13,18,1) 0%, rgba(233,48,53,1) 60%);
+@value gradiente-azul: linear-gradient(90deg, rgba(11,15,163,1) 0%, rgba(64,66,149,1) 60%);
+@value gradiente-verde: linear-gradient(90deg, rgba(0,94,50,1) 0%, rgba(1,170,89,1) 60%);
+
+@value verde-edefi: rgba(1,170,89,1); /*#01aa59*/
+@value rojo-edefi: rgba(233,48,53,1); /*#e93035*/
+@value azul-edefi: rgba(64,66,149,1); /*#404295*/
+
+@value blanco-grisaceo: #eee;
+@value blanco: #fff;
+@value gris-oscuro: #101010;
+@value gris: #080808;
+@value azul: #0218ab;
+
+.backgroundGradienteRojo {
+	background: gradiente-rojo;
+}
+
+.backgroundGradienteAzul {
+	background: gradiente-azul;
+}
+
+.backgroundGradienteVerde {
+	background: gradiente-verde;
+}

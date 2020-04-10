@@ -1,0 +1,87 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.Enums
+@model LigaSoft.Models.ViewModels.ResumenDeJornadasVM
+
+@section Titulo{
+	@Model.Titulo
+}
+
+@section CabeceraGrilla{
+	@(Html.YKN().Button("Volver")
+		  .Color(BootstrapColorEnum.Danger)
+		  .PullLeft()
+		  .Label("Volver")
+		  .OnClickRedirect("ParentWithChild", new { parent = "Torneo", parentId = Model.TorneoId, controller = "Zona", action = "Index" }))
+	
+	@(Html.YKN().Button("Imprimir")
+						  .PullLeft()
+						  .Color(BootstrapColorEnum.Success)
+						  .OnClickImprimir())
+}
+
+@using (Html.YKN().Form(FormSizeEnum.None))
+{
+	@Html.HiddenFor(x => x.TorneoId)
+	@Html.HiddenFor(x => x.ZonaId)
+
+	foreach (var jornadasPorFecha in Model.JornadasPorFecha)
+	{
+		<div class="container pull-left">
+			<h3>Fecha @jornadasPorFecha.FechaNumero</h3>
+			<h5>Publicada: <strong>@jornadasPorFecha.Publicada</strong></h5>
+			<table class="table tabla-posiciones">
+				<thead>
+					<tr>
+						<th></th> @*Checkbox Verificar resultado*@
+						<th></th> @*Jornada Id*@
+						<th>Equipo</th>
+						@foreach (var categoria in Model.Categorias)
+						{
+							<th>@categoria.Nombre</th>
+						}
+						<th>T.P.</th>
+						<th>P.J.</th>
+						<th>V</th>
+					</tr>
+				</thead>
+				<tbody>
+					@for (var i = 0; i < jornadasPorFecha.Renglones.Count; i++)
+					{
+						var renglon = jornadasPorFecha.Renglones[i];
+						var rowColor = "white";
+						IHtmlString verificarResultadoCheckBox = null;
+
+						if (i % 2 == 0) //Es local
+						{
+							rowColor = "gainsboro";
+							
+							if (renglon.PartidoVerificado.Equals("X"))
+							{
+								verificarResultadoCheckBox = Html.Raw($"<input type='checkbox' name='JornadasVerificadasId' value='{renglon.JornadaId}'>");	
+							}						
+						}
+
+						<tr style="background-color: @rowColor">
+							<td>@verificarResultadoCheckBox</td>
+							<td>@renglon.JornadaNumero</td>
+							<td>@renglon.Equipo</td>
+
+							@foreach (var resultado in renglon.ResultadosPorCategorias)
+							{
+								<td>@resultado.Goles</td>
+							}
+							<td>@renglon.PuntosTotales</td>
+							<td>@renglon.PartidosJugados</td>
+							<td>@renglon.PartidoVerificado</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+	}
+	<div class="row">
+		@{ Html.YKN().FooterGuardarCancelar("Verificar resultados"); }
+	</div>
+}
+
+

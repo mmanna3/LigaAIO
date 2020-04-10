@@ -1,0 +1,41 @@
+﻿@using LigaSoft.ExtensionMethods
+@model LigaSoft.Models.ViewModels.PagoVM
+
+@section Titulo{
+	Nuevo pago
+}
+
+@section Subtitulo{
+	<span class="titulo-detacado">Total: </span>@Model.TotalDelMovimiento - <span class="titulo-detacado">Saldo deudor: </span> @Model.SaldoDeudor
+}
+
+@using (Html.YKN().Form())
+{
+	@Html.YKNNonTyped().ValidationSummary()
+
+	<div class="row">
+		<div class="col-sm-6">
+			@Html.YKN().DatePickerFor(x => x.Fecha).DefaultEsHoy()
+		</div>
+		<div class="col-sm-6">
+			@Html.YKN().EditorFor(x => x.Importe)
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-8">
+			@Html.YKN().TextAreaFor(x => x.Comentario)
+		</div>
+	</div>
+
+	@Html.HiddenFor(x => x.MovimientoEntradaConClubId)
+
+	<div class='row form-footer'>
+		<div class='col-sm-offset-6 col-sm-3'>
+			@(Html.YKN().BotonCancelar()
+				  .OnClickRedirect("Index", "MovimientoEntradaConClub", new Dictionary<string, string> { { "parentId", Model.ClubId.ToString() } }))
+		</div>
+		<div class='col-sm-3'>
+			@Html.YKN().BotonGuardar()
+		</div>
+	</div>
+}

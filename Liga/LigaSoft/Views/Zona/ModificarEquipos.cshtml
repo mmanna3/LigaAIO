@@ -1,0 +1,88 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.Enums
+@model LigaSoft.Models.ViewModels.ModificarEquiposVM
+
+@section titulo{
+	Zona <span class="titulo-detacado">@Model.Zona</span> - @Model.Torneo
+}
+
+@Scripts.Render("~/knockoutjs")
+
+@using (Html.YKN().Form(FormSizeEnum.Big))
+{
+	@Html.HiddenFor(x => x.ZonaId)
+	@Html.HiddenFor(x => x.TorneoId)
+	<select multiple="multiple" id="EquiposDelTorneoSinZonaResult" name="EquiposDelTorneoSinZonaResult" data-bind="options: equiposSinZona, visible: false"></select>
+
+	<div class="row">
+		<div class="col-sm-6">
+			<div class="row">
+				@(Html.YKN().AutocompleteFor(x => x.EquipoAAgregarALaZona)
+										.Values(Model.EquiposDelTorneoSinZonaInicial))
+			</div>
+			<div class="row">
+				<button class="btn btn-primary" data-bind="click: addItem">Agregar</button>
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<div>Equipos de la zona <strong>@Model.Zona</strong></div>
+			<select multiple="multiple" id="EquiposDeLaZonaResult" name="EquiposDeLaZonaResult" class="form-control seleccionar-equipos" data-bind="options:equiposDeLaZona, selectedOptions:selectedItems, optionsText: 'Text', optionsValue: 'Value'"></select>
+			<div class="row">
+				<button class="btn btn-primary" data-bind="click: removeSelected, enable: selectedItems().length > 0">Quitar de la zona</button>
+			</div>
+		</div>
+	</div>
+
+	{ Html.YKN().FooterGuardarCancelar(); }
+}
+
+@section scripts{
+	<script>
+		var ListaEquiposZonaModel = function () {
+			var self = this;
+
+			this.itemToAdd = ko.observable("");
+			this.equiposSinZona = ko.observableArray();
+			this.equiposDeLaZona = ko.observableArray(@Html.Raw(Model.EquiposDeLaZonaJson));
+			this.selectedItems = ko.observableArray();
+
+			this.addItem = function () {
+				var existeElEquipoEnLaZona = ko.utils.arrayFirst(this.equiposDeLaZona(),
+					function (item) {
+						return item.Value === $("#EquipoAAgregarALaZona").val();
+					});
+
+				if (!existeElEquipoEnLaZona)
+					this.equiposDeLaZona.push({ Disabled: false, Group: null, Selected: false, Text: $("#EquipoAAgregarALaZona").select2('data')[0].text, Value: $("#EquipoAAgregarALaZona").select2('data')[0].id });
+			};
+
+			this.removeSelected = function () {
+				var cantElementosAEliminar = this.selectedItems().length - 1;
+				for (var x = cantElementosAEliminar; x >= 0; x--) {
+					this.equiposDeLaZona.remove(function(item) {
+						if (item.Value === self.selectedItems()[x]) {
+							self.equiposSinZona.push(self.selectedItems()[x]);
+							return true;
+						}
+						return false;
+					});
+
+				}
+			};
+
+			this.existeElementoEnObservableArray = function(observableArray, element) {
+				return ko.utils.arrayFirst(observableArray,
+					function (item) {
+						return item.Value === element;
+					});
+			}
+		};
+
+		ko.applyBindings(new ListaEquiposZonaModel());
+
+		$('#elForm').on('submit', function (e) {
+			$("#EquiposDeLaZonaResult option").prop("selected", "selected");
+			$("#EquiposDelTorneoSinZonaResult option").prop("selected", "selected");
+		});
+	</script>
+}

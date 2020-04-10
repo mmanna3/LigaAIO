@@ -1,0 +1,46 @@
+﻿@using LigaSoft.ExtensionMethods
+@model LigaSoft.Models.ViewModels.ClubVM
+
+@section Titulo{
+	Detalles del club
+}
+
+@using (Html.YKN().Form())
+{
+
+	<div class="row">
+		<div class="col-sm-3">
+			<img src="@Model.Escudo" alt="escudo">
+		</div>
+		<div class="col-sm-9">
+			@Html.YKN().DisplayFor(x => x.Nombre)
+		</div>
+	</div>
+	<br/>
+	<div class="row">
+		<div class="col-sm-6">
+			@Html.YKN().DisplayFor(x => x.Direccion)
+		</div>
+		<div class="col-sm-6">
+			@Html.YKN().DisplayFor(x => x.Localidad)
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-6">
+			@Html.YKN().DisplayFor(x => x.Cuota)
+		</div>
+		<div class="col-sm-6">
+			@Html.YKN().DisplayFor(x => x.Techo)
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-12">
+			@Html.YKN().DisplayMultilineFor(x => x.Equipos)
+		</div>
+	</div>
+
+	{Html.YKN().FooterVolver();}
+}
+

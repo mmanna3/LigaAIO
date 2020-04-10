@@ -1,0 +1,92 @@
+﻿<nav class="navbar navbar-inverse sidebar" role="navigation">
+	<div class="container-fluid">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			@*<a class="navbar-brand" href="#">Brand</a>*@
+		</div>
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+	            @if (User.IsInRole(LigaSoft.Utilidades.Roles.Administrador))
+	            {
+		            <li class="dropdown">
+			            <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown">Torneos<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity fas fa-trophy"></span></a>
+			            <ul class="dropdown-menu forAnimate" role="menu">
+				            <li><a href="@Url.Action("Index","Torneo")">Torneos</a></li>
+				            <li><a href="@Url.Action("Index","TorneoTipo")">Tipos</a></li>
+				            @*<li class="divider"></li> NO BORRES ESTO, POR SI NECESITÁS SEPARADOR ALGUNA VEZ
+						<li><a href="#">One more separated link</a></li>*@
+			            </ul>
+		            </li>
+	            }
+                <li class="dropdown">
+                    <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown">Clubes<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity fas fa-volleyball-ball"></span></a>
+	                <ul class="dropdown-menu forAnimate" role="menu">
+						@if (User.IsInRole(LigaSoft.Utilidades.Roles.Administrador))
+						{
+							<li><a href="@Url.Action("Index", "Club")">Clubes</a></li>
+						}
+		                <li><a href="@Url.Action("Index", "Equipo")">Equipos</a></li>
+	                </ul>
+                </li>
+                <li><a tabindex="-1" href="@Url.Action("Index","Jugador")">Jugadores<span style="font-size:16px;" class="pull-right hidden-xs showopacity fas fa-user"></span></a></li>
+				@if (User.IsInRole(LigaSoft.Utilidades.Roles.Administrador))
+				{
+					<li class="dropdown">
+						<a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown">Finanzas<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity fas fa-briefcase"></span></a>
+						<ul class="dropdown-menu forAnimate" role="menu">
+							<li><a href="@Url.Action("Index","ConceptoInsumo")">Insumos</a></li>
+							<li><a href="@Url.Action("Index","MovimientoEntradaSinClub")">Ingresos</a></li>
+							<li><a href="@Url.Action("Index","MovimientoSalida")">Egresos</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown">Informes<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity fas fa-file"></span></a>
+						<ul class="dropdown-menu forAnimate" role="menu">
+							<li><a href="@Url.Action("Balance_SeleccionFecha","Informe")">Balance</a></li>
+							<li><a href="@Url.Action("MovimientosImpagos_Informe","Informe")">Movimientos impagos</a></li>
+							<li><a href="@Url.Action("PagoCuotasPorMes_Informe","Informe")">Pago mensual de cuotas</a></li>									            
+						</ul>
+					</li>
+					<li><a tabindex="-1" href="@Url.Action("Index","Noticia")">Noticias<span style="font-size:16px;" class="pull-right hidden-xs showopacity fas fa-newspaper"></span></a></li>
+					<li><a tabindex="-1" href="@Url.Action("Index","Publicidad")">Publicidades<span style="font-size:16px;" class="pull-right hidden-xs showopacity fas fa-newspaper"></span></a></li>
+					<li><a tabindex="-1" href="@Url.Action("Edit","ParametroGlobal", new {Id = 1})">Configuración<span style="font-size:16px;" class="pull-right hidden-xs showopacity fas fa-cog"></span></a></li>	            
+				}
+            </ul>
+		</div>
+	</div>
+</nav>
+
+<script>
+	function htmlbodyHeightUpdate(){
+		var height3 = $( window ).height();
+		var height1 = $('.nav').height()+50;
+		height2 = $('.main').height();
+		if(height2 > height3){
+			$('html').height(Math.max(height1,height3,height2)+10);
+			$('body').height(Math.max(height1,height3,height2)+10);
+		}
+		else
+		{
+			$('html').height(Math.max(height1,height3,height2));
+			$('body').height(Math.max(height1,height3,height2));
+		}
+		
+	}
+	$(document).ready(function () {
+		htmlbodyHeightUpdate();
+		$( window ).resize(function() {
+			htmlbodyHeightUpdate();
+		});
+		$( window ).scroll(function() {
+			height2 = $('.main').height();
+			htmlbodyHeightUpdate();
+		});
+	});
+</script>

@@ -1,0 +1,22 @@
+﻿@using LigaSoft.ExtensionMethods
+@model LigaSoft.Models.ViewModels.MovimientoEntradaSinClubVM
+
+@section Titulo{
+	Auditoría del movimiento
+}
+
+@using (Html.YKN().Form())
+{	
+	<div class="row">
+		<div class="col-sm-12">
+			@Html.YKN().DisplayFor(x => x.Alta)
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			@Html.YKN().DisplayFor(x => x.Anulacion)
+		</div>
+	</div>
+
+	{ Html.YKN().FooterVolver(); }
+}

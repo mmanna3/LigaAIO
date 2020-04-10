@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+	@Styles.Render("~/gijgocss")
+	@Scripts.Render("~/bundles/jquery")
+	@Scripts.Render("~/gijgojs")
+
+</head>
+<body>
+	
+@Html.Partial("_TopBar")
+
+<div class="main">	
+	<h2 class="titulo">@RenderSection("Titulo", required: true)</h2>
+	<div class="row cabecera-grilla">@RenderSection("CabeceraGrilla", required: false)</div>
+	@RenderBody()
+</div>	
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

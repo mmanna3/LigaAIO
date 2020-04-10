@@ -1,0 +1,51 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.Enums
+@using LigaSoft.Models.ViewModels
+
+@section Titulo {
+	Clubes
+}
+
+@section CabeceraGrilla {
+
+	@(Html.YKN().Button("Crear")
+		  .PullRight()
+		  .Label("Nuevo club")
+		  .OnClickRedirect("Create", "Club"))
+
+	@(Html.YKN<ClubVM>().Buscador(x => x.Nombre))		
+}
+
+@(Html.YKN<ClubVM>().Grid()
+			.WithColumns(column =>
+			{
+				column.AddTextColumn(x => x.Nombre);
+				column.AddTextColumn(x => x.Localidad);
+				column.AddTextColumn(x => x.Direccion);
+				//column.AddTextColumn(x => x.Techo).Width(120);
+			})
+			.Actions(action =>
+			{
+				action.RedirectWithRowId("Detalles", "Club", "Details");
+				action.RedirectWithRowId("Editar", "Club", "Edit");
+				action.RedirectWithRowId("Cargar escudo", "Club", "CargarEscudo");
+				action.JavaScriptWithRowId("Eliminar escudo", "EliminarEscudo");
+				action.RedirectWithRowId("Crear equipo", "Club", "CrearEquipo");
+				action.RedirectWithRowId("Delegados", "Club", "IndexDelegados");
+				action.RedirectWithRowIdAsParent("Finanzas", "Club", "MovimientoEntradaConClub", "Index");
+			})
+			.DataSource("/Club/GetForGrid")
+	  )
+
+<script>
+	function EliminarEscudo(obj) {
+		$.ajax({
+			url: '/Club/EliminarEscudo',
+			type: "POST",
+			data: { id: obj.getAttribute('data-id') },
+			success: function () {
+				window.location.reload(false);
+			}
+		});
+	}
+</script>

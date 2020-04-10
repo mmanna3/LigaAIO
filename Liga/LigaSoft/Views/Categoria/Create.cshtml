@@ -1,0 +1,22 @@
+﻿@using LigaSoft.ExtensionMethods
+@model LigaSoft.Models.ViewModels.CategoriaVM
+
+@section Titulo{
+	Crear categoría en @Model.Torneo
+}
+
+@using (Html.YKN().Form())
+{
+	<div class="row">
+		<div class="col-sm-6">
+			@Html.YKN().EditorFor(x => x.Nombre)
+		</div>
+		<div class="col-sm-6">
+			@Html.YKN().EditorFor(x => x.Orden)
+		</div>		
+		@Html.HiddenFor(x => x.TorneoId)
+	</div>
+
+	{Html.YKN().FooterGuardarCancelar();}
+}
+

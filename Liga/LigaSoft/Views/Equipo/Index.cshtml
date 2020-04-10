@@ -1,0 +1,32 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.ViewModels
+
+@section Titulo {
+	Equipos
+}
+
+@section CabeceraGrilla {
+
+	@(Html.YKN<EquipoVM>().Buscador(x => x.Nombre))
+}
+
+@(Html.YKN<EquipoVM>().Grid()
+		.WithColumns(column =>
+		{
+			column.AddTextColumn(x => x.Id).Title("Código");
+			column.AddTextColumn(x => x.Nombre);
+			column.AddTextColumn(x => x.Club);
+			column.AddTextColumn(x => x.Torneo);
+			column.AddTextColumn(x => x.Zona);
+		})
+		.Actions(action =>
+		{
+			action.RedirectWithRowId("Detalles", "Equipo", "Details");
+			action.RedirectWithRowId("Editar", "Equipo", "Edit");
+			action.RedirectWithRowId("Fichar nuevo jugador", "Equipo", "FicharNuevoJugador");
+			action.RedirectWithRowId("Importar jugadores", "Equipo", "ImportarJugadores");
+			action.RedirectWithRowId("Imprimir carnets", "Equipo", "ImprimirJugadores");
+			action.RedirectWithRowId("Pases", "Equipo", "Pases");
+		})
+		.DataSource("/Equipo/GetForGrid")
+)

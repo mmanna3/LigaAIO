@@ -1,0 +1,30 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Utilidades
+@model LigaSoft.Models.ViewModels.JugadorBaseVM
+
+@section Titulo{
+	Detalles del Jugador
+}
+
+@using (Html.YKN().Form())
+{
+	<div class="row">
+		<div class="col-sm-6">
+			<img src="@Model.Foto" alt="foto">
+		</div>
+		<div class="col-sm-6">
+			@Html.YKN().DisplayFor(x => x.DNI)
+			@Html.YKN().DisplayFor(x => x.Nombre)
+			@Html.YKN().DisplayFor(x => x.Apellido)
+			@Html.YKN().DisplayFor(x => x.FechaNacimiento)
+			@*@Html.YKN().DisplayFor(x => x.CarnetImpreso)*@
+		</div>
+	</div>	
+	<div class="row">
+		<div class="col-sm-12">
+			@Html.YKN().DisplayMultilineFor(x => x.Equipos)
+		</div>
+	</div>
+
+	{ Html.YKN().FooterVolver();}
+}

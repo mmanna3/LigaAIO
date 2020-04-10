@@ -1,0 +1,37 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.Enums
+@using LigaSoft.Models.ViewModels
+@model TorneoVM
+
+@section Titulo {
+	Categorías de <span class="titulo-detacado">@Model.Descripcion()</span>
+}
+
+@section CabeceraGrilla {	
+	
+	@(Html.YKN().Button("Volver")
+		  .Color(BootstrapColorEnum.Danger)
+		  .PullLeft()
+		  .Label("Volver")
+		  .OnClickRedirect("Index", "Torneo"))
+
+	
+	@(Html.YKN().Button("Crear")
+				.PullRight()
+				.Label("Nueva categoría")
+				.OnClickRedirect("ParentWithChild", new { parent = "Torneo", parentId = Model.Id, controller = "Categoria", action = "Create" })
+	)
+}
+
+@(Html.YKN<CategoriaVM>().Grid()
+			.WithColumns(column =>
+			{
+				column.AddTextColumn(x => x.Nombre);
+				column.AddTextColumn(x => x.Orden);
+			})			
+			.Actions(action =>
+			{
+				action.RedirectParentWithChildWithRowId("Editar", new { parent = "Torneo", parentId = Model.Id, controller = "Categoria", action = "Edit" });
+			})
+			.DataSource($"/Categoria/GetForGrid/?parentId={Model.Id}&sortBy=Orden&direction=asc")
+)

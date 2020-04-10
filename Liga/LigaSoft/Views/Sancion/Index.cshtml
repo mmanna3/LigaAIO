@@ -1,0 +1,80 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.Enums
+@using LigaSoft.Models.ViewModels
+@model ZonaVM
+
+@section Titulo {
+	Sanciones
+}
+
+@section CabeceraGrilla {
+
+	@(Html.YKN().Button("Volver")
+				  .Color(BootstrapColorEnum.Danger)
+				  .PullLeft()
+				  .Label("Volver")
+					.OnClickRedirect("ParentWithChild", new { parent = "Torneo", parentId = Model.TorneoId, controller = "Zona", action = "Index" }))
+
+	@(Html.YKN().Button("Crear")
+				  .PullRight()
+				  .Label("Nueva sanción")
+				  .OnClickRedirect("ParentWithChild", new { parent = "Zona", parentId = Model.Id, controller = "Sancion", action = "Create" })
+	)
+}
+
+@(Html.YKN<SancionVM>().Grid()
+				.WithColumns(column =>
+				{
+					column.AddTextColumn(x => x.Dia).Width(100);
+					column.AddTextColumn(x => x.Fecha).Width(60);
+					column.AddTextColumn(x => x.Local);
+					column.AddTextColumn(x => x.Visitante);
+					column.AddTextColumn(x => x.Categoria).Width(100);
+					column.AddTextColumn(x => x.Descripcion);
+					column.AddTextColumn(x => x.CantidadFechasQueAdeuda).Width(100);
+					column.AddTextColumn(x => x.Visible).Width(100);
+				})
+				.Actions(action =>
+				{
+					action.JavaScriptWithRowId("Eliminar", "Eliminar");
+					action.JavaScriptWithRowId("Mostrar/Ocultar", "MostrarOcultar");
+					action.JavaScriptWithRowId("Restar fecha adeudada", "RestarFechaAdeudada");
+					action.RedirectWithRowId("Editar", "Sancion", "Edit");
+				})
+				.DataSource($"/Zona/{Model.Id}/Sancion/GetForGrid/")
+)
+
+<script>
+	function Eliminar(obj) {
+		$.ajax({
+			url: '/Sancion/Eliminar',
+			type: "POST",
+			data: { id: obj.getAttribute('data-id') },
+			success: function () {
+				window.location.reload(false);
+			}
+		});
+	}
+
+	function MostrarOcultar(obj) {
+		$.ajax({
+			url: '/Sancion/MostrarOcultar',
+			type: "POST",
+			data: { id: obj.getAttribute('data-id') },
+			success: function () {
+				window.location.reload(false);
+			}
+		});
+	}
+
+	function RestarFechaAdeudada(obj) {
+		$.ajax({
+			url: '/Sancion/RestarFechaAdeudada',
+			type: "POST",
+			data: { id: obj.getAttribute('data-id') },
+			success: function () {
+				window.location.reload(false);
+			}
+		});
+	}
+</script>

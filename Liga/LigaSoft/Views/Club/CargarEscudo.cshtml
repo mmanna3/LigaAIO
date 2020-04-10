@@ -1,0 +1,18 @@
+﻿@using LigaSoft.ExtensionMethods
+@model LigaSoft.Models.ViewModels.CargarEscudoVM
+
+@section Titulo{
+	@Model.Titulo
+}
+
+@Html.YKNNonTyped().ValidationSummary()
+
+@using (Html.YKN().Form())
+{
+	@Html.YKN().BrowseFileFor(x => x.Escudo)
+
+	@Html.HiddenFor(x => x.ClubId)
+
+	{ Html.YKN().FooterGuardarCancelar(); }
+}
+

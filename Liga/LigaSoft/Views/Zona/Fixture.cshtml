@@ -1,0 +1,92 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.Enums
+@model LigaSoft.Models.ViewModels.FixtureVM
+
+@section Titulo{
+	@Model.Titulo
+}
+
+@section Subtitulo
+{
+	@Model.Publicado()
+}
+
+@section CabeceraGrilla{
+	@(Html.YKN().Button("Imprimir")
+				.PullLeft()
+				.Color(BootstrapColorEnum.Success)
+				.OnClickImprimir())
+
+	@(Html.YKN().Button("PublicarQuitar")
+		.Label("Publicar/Quitar")
+		.PullLeft()
+		.Color(BootstrapColorEnum.Primary)
+		.OnClick("publicarQuitarFixture()"))
+}
+
+
+<script>
+	function publicarQuitarFixture() {
+		$.ajax({
+			url: '/Zona/PublicarQuitarFixture',
+			type: "POST",
+			data: { id: $('#ZonaId').val() },
+			success: function () {
+				window.location.reload(false);
+			}
+		});
+	}
+</script>
+
+
+@Html.HiddenFor(x => x.ZonaId)
+
+
+@foreach (var fecha in Model.Fechas)
+{
+	<div class="container pull-left">
+		<h3>@fecha.Titulo</h3>
+		<table class="table tabla-posiciones">
+			<thead>
+				<tr>
+					<th>
+						@fecha.Titulo
+					</th>
+					<th>
+					</th>
+					<th>
+						@fecha.DiaDeLaFecha
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var renglon in fecha.LocalVisitante)
+				{
+					<tr>
+						<td>
+							@renglon.Local
+						</td>
+						<td>
+							vs.
+						</td>
+						<td>
+							@renglon.Visitante
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+}
+
+	<div class='row form-footer'>
+		<div class='col-sm-offset-9 col-sm-3'>
+			@(Html.YKN().Button("Volver")
+					  .Color(BootstrapColorEnum.Danger)
+					  .FullWidth()
+					  .Label("Volver")
+					  .OnClickRedirect("ParentWithChild", new { parent = "Torneo", parentId = Model.TorneoId, controller = "Zona", action = "Index", id = Model.ZonaId })
+			)
+		</div>
+	</div>
+

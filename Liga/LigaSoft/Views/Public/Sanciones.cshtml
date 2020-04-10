@@ -1,0 +1,34 @@
+﻿@model LigaSoft.Models.ViewModels.PublicIndexVM
+	
+	<h1 style="padding-bottom: 1em;">@Model.Sanciones.Titulo</h1>
+
+	<div class="container pull-left">
+		<table class="table tabla-posiciones">
+			<thead>
+				<tr>
+					<td style="padding-right: 5em;">Día</td>
+					<td>Fecha</td>
+					<td>Categoría</td>
+					<td>Local</td>
+					<td>Visitante</td>
+					<td>Sanción</td>
+					<td>Fechas adeudadas</td>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var renglon in Model.Sanciones.Renglones)
+				{
+					<tr>
+						<td>@renglon.Dia</td>
+						<td>@renglon.Fecha</td>
+						<td>@renglon.Categoria</td>
+						<td>@renglon.Local</td>	
+						<td>@renglon.Visitante</td>	
+						<td>@renglon.Sancion</td>	
+						<td>@renglon.FechasQueAdeuda</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+

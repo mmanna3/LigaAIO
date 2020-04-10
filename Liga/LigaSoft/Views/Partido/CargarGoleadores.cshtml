@@ -1,0 +1,151 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.Enums
+@model LigaSoft.Models.ViewModels.CargarGoleadoresVM
+
+@section Titulo{
+	@Model.Titulo
+}
+
+@Scripts.Render("~/knockoutjs")
+
+@Html.YKNNonTyped().ValidationSummary()
+
+@using (Html.YKN().Form(FormSizeEnum.Big))
+{
+	@(Html.HiddenFor(x => x.PartidoId))
+
+
+
+	<h3>Goleadores de @Model.EquipoLocalNombre</h3>
+
+	<table>
+		<tbody data-bind="foreach: goleadoresLocal">
+		<tr>
+			<td>
+				<select class="form-control" data-bind="attr: { name: goleadorName}, options: $root.jugadoresDelLocal, optionsText: 'Descripcion', optionsValue: 'Id'"></select>								
+			</td>
+			<td>
+				<input class="form-control" type="number" data-bind="value: cantidadDeGoles, attr: { name: cantidadDeGolesName}"/>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+	<button class="btn btn-primary" data-bind="click: agregarGoleadorLocal">Agregar</button>
+	<button class="btn btn-danger" data-bind="click: quitarUltimoGoleadorLocal">Quitar último</button>
+
+	<h3>Goleadores de @Model.EquipoVisitanteNombre</h3>
+
+	<table>
+		<tbody data-bind="foreach: goleadoresVisitante">
+			<tr>
+				<td>
+					<select class="form-control" data-bind="attr: { name: goleadorName}, options: $root.jugadoresDelVisitante, optionsValue: 'Id', optionsText: 'Descripcion'"></select>
+				</td>
+				<td>
+					<input class="form-control" type="number" data-bind="value: cantidadDeGoles, attr: { name: cantidadDeGolesName}" />
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<button class="btn btn-primary" data-bind="click: agregarGoleadorVisitante">Agregar</button>
+	<button class="btn btn-danger" data-bind="click: quitarUltimoGoleadorVisitante">Quitar último</button>
+
+
+	<script>
+		$(document).ready(function(){			
+
+				function Goleador(index, localOVisitante) {
+					var self = this;
+					self.cantidadDeGoles = ko.observable(1);
+					self.cantidadDeGolesName = 'CantidadDeGolesGoleador' + localOVisitante +'[' + index + ']';
+					self.goleadorName = 'GoleadoresDel' + localOVisitante + '[' + index + ']';
+				}
+
+				function GoleadorLocal(index) {
+					Goleador(index, "Local");
+				}
+
+				function GoleadorVisitante(index) {
+					Goleador(index, "Visitante");
+				}
+
+				function GoleadoresViewModel() {
+					var self = this;
+
+					self.jugadoresDelLocal = ko.observableArray(@Html.Raw(Model.TodosLosJugadoresDelLocal));
+					self.jugadoresDelVisitante = @Html.Raw(Model.TodosLosJugadoresDelVisitante);
+					self.indexLocal = 0;
+					self.indexVisitante = 0;
+
+					self.goleadoresLocal = ko.observableArray();
+					self.goleadoresVisitante = ko.observableArray();
+
+					self.agregarGoleadorLocal = function () {
+						self.goleadoresLocal.push(new GoleadorLocal(self.indexLocal));
+						return self.indexLocal++;
+					}
+
+					self.agregarGoleadorVisitante = function () {
+						self.goleadoresVisitante.push(new GoleadorVisitante(self.indexVisitante));
+						return self.indexVisitante++;
+					}
+
+					self.quitarUltimoGoleadorLocal = function () {
+						self.goleadoresLocal.pop();
+						if (self.indexLocal > 0)
+							self.indexLocal--;
+					}
+
+					self.quitarUltimoGoleadorVisitante = function () {
+						self.goleadoresVisitante.pop();
+						if (self.indexVisitante > 0)
+							self.indexVisitante--;
+					}			
+				}
+
+				var vm = new GoleadoresViewModel();
+				ko.applyBindings(vm);
+
+
+				function CargarLosDeLaBase() {
+					@for (var i = 0; i < Model.GoleadoresDelLocal.Length; i++)
+					{
+						<text>
+							var indexLocal = vm.agregarGoleadorLocal();
+							$('select[name="GoleadoresDelLocal[' + indexLocal + ']"').val(@Model.GoleadoresDelLocal[i]);
+							$('input[name="CantidadDeGolesGoleadorLocal[' + indexLocal + ']"').val(@Model.CantidadDeGolesGoleadorLocal[i]);
+						</text>
+					}
+
+					@for (var i = 0; i < Model.GoleadoresDelVisitante.Length; i++)
+					{
+						<text>
+							var indexVisitante = vm.agregarGoleadorVisitante();
+							$('select[name="GoleadoresDelVisitante[' + indexVisitante + ']"').val(@Model.GoleadoresDelVisitante[i]);
+							$('input[name="CantidadDeGolesGoleadorVisitante[' + indexVisitante + ']"').val(@Model.CantidadDeGolesGoleadorVisitante[i]);
+						</text>
+					}
+				}
+
+				CargarLosDeLaBase();
+		});
+	</script>
+
+	<div class='row form-footer'>
+		<div class='col-sm-offset-6 col-sm-3'>
+			@(Html.YKN().Button("Volver")
+						  .Color(BootstrapColorEnum.Danger)
+						  .FullWidth()
+						  .Label("Volver")
+						  .OnClickRedirect("ParentWithChild", new { parent = "Jornada", parentId = Model.JornadaId, controller = "Partido", action = "Details", id = Model.PartidoId.ToString() })
+			)
+		</div>
+		<div class='col-sm-3'>
+			@(Html.YKN().Button("Guardar")
+						  .Color(BootstrapColorEnum.Success)
+						  .FullWidth()
+						  .Submit()
+			)
+		</div>
+	</div>
+}

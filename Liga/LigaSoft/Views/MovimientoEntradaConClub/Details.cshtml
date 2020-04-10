@@ -1,0 +1,99 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.Enums
+@using LigaSoft.Models.ViewModels
+@model MovimientoEntradaConClubVM
+
+@section Titulo{
+	<span class="titulo-detacado">@Model.Club</span>: Detalles del movimiento
+}
+
+@using (Html.YKN().Form())
+{
+	<div class="row">
+		<div class="col-sm-3">
+			@Html.YKN().DisplayFor(x => x.Fecha)
+		</div>
+		<div class="col-sm-3">
+			@Html.YKN().DisplayFor(x => x.Vigente)
+		</div>
+		<div class="col-sm-6">
+			@Html.YKN().DisplayFor(x => x.Comentario)
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-3">
+			@Html.YKN().DisplayFor(x => x.Cantidad)
+		</div>
+		<div class="col-sm-3">
+			@Html.YKN().DisplayFor(x => x.Concepto)
+		</div>
+		<div class="col-sm-3">
+			@Html.YKN().DisplayFor(x => x.PrecioUnitario)
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-3 fila-totales" style="border-right: none;">
+			@Html.YKN().DisplayFor(x => x.Total)
+		</div>
+		<div class="col-sm-3 fila-totales" style="border-left: none; border-right: none;">
+			@Html.YKN().DisplayFor(x => x.Pagado)
+		</div>
+		<div class="col-sm-3 fila-totales" style="border-left: none;">
+			@Html.YKN().DisplayFor(x => x.Deuda)
+		</div>
+	</div>
+}
+
+<div class="row" style="padding-bottom: 2em; padding-top: 2em;">
+
+	@(Html.YKN().Button("Volver")
+				  .PullLeft()
+				  .Color(BootstrapColorEnum.Danger)
+				  .Label("Volver")
+				  .OnClickRedirect("Index", "MovimientoEntradaConClub", new Dictionary<string, string> { { "parentId", Model.ClubId.ToString() } }))
+
+	@if (Model.Vigente == "Sí")
+	{
+		@(Html.YKN().Button("Crear")
+					  .PullLeft()
+					  .Label("Nuevo pago")
+					  .OnClickRedirect("Create", "Pago", new Dictionary<string, string> { { "parentId", Model.Id.ToString() } }))
+	}
+</div>
+
+<h3>Pagos</h3>
+@(Html.YKN<PagoVM>().Grid()
+		  .WithColumns(column =>
+		  {
+			  column.AddTextColumn(x => x.Fecha);
+			  column.AddTextColumn(x => x.Importe);
+			  column.AddTextColumn(x => x.Vigente);
+		  })
+		  .Actions(action =>
+		  {
+			  action.RedirectWithRowId("Detalle", "Pago", "Details");
+			  action.RedirectWithRowId("Auditoría", "Pago", "Auditoria");
+			  action.JavaScriptWithRowId("Anular", "Anular");
+		  })
+		  .DataSource($"/Pago/GetForGrid/?parentId={Model.Id}")
+)
+
+<script>
+	function Anular(obj) {
+		$.ajax({
+			url: '/Pago/Anular',
+			type: "POST",
+			data: { id: obj.getAttribute('data-id') },
+			success: function () {
+				window.location.reload(false);
+			}
+		});
+	}
+</script>
+
+<style>
+	.fila-totales {
+		border: 1px solid grey;
+		background-color: #eee;
+	}
+</style>

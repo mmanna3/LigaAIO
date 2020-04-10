@@ -1,0 +1,9 @@
+.marginTop1em {
+	margin-top: 1em;
+}
+
+@media (min-width: 576px) {
+	.marginTop1em {
+		margin-top: 0;
+	}
+}

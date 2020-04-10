@@ -1,0 +1,45 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.Enums
+@using LigaSoft.Models.ViewModels
+
+@section Titulo {
+	Ingresos
+}
+
+@section CabeceraGrilla {
+
+	@(Html.YKN().Button("Crear")
+		  .PullRight()
+		  .Label("Nuevo ingreso")
+		  .OnClickRedirect("Create", "MovimientoEntradaSinClub"))	
+}
+
+@(Html.YKN<MovimientoEntradaSinClubVM>().Grid()
+			.WithColumns(column =>
+			{
+				column.AddTextColumn(x => x.Fecha);
+				column.AddTextColumn(x => x.Total);
+				column.AddTextColumn(x => x.Comentario);
+				column.AddTextColumn(x => x.Vigente);
+			})
+			.Actions(action =>
+			{
+				action.RedirectWithRowId("Detalles", "MovimientoEntradaSinClub", "Details");
+				action.RedirectWithRowId("Auditoría", "MovimientoEntradaSinClub", "Auditoria");
+				action.JavaScriptWithRowId("Anular", "Anular");
+			})
+			.DataSource("/MovimientoEntradaSinClub/GetForGrid")
+)
+
+<script>
+	function Anular(obj) {
+		$.ajax({
+			url: '/MovimientoEntradaSinClub/Anular',
+			type: "POST",
+			data: { id: obj.getAttribute('data-id') },
+			success: function() {
+				window.location.reload(false);
+			}
+		});
+	}
+</script>

@@ -1,0 +1,1527 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\packages\LibSassHost.Native.win-x86.1.2.7\build\LibSassHost.Native.win-x86.props" Condition="Exists('..\packages\LibSassHost.Native.win-x86.1.2.7\build\LibSassHost.Native.win-x86.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{785857AF-B272-4871-A541-420A7BF1D88F}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LigaSoft</RootNamespace>
+    <AssemblyName>LigaSoft</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>2.6</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DotNetZip, Version=1.10.1.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetZip.1.10.1\lib\net20\DotNetZip.dll</HintPath>
+    </Reference>
+    <Reference Include="EfEnumToLookup, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1fde139e1e56f7c4, processorArchitecture=MSIL">
+      <HintPath>..\packages\ef-enum-to-lookup.1.9.0\lib\net45\EfEnumToLookup.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis, Version=1.40.2.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.1.40.2\lib\net45\Google.Apis.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Auth, Version=1.40.2.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Auth.1.40.2\lib\net45\Google.Apis.Auth.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Auth.PlatformServices, Version=1.40.2.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Auth.1.40.2\lib\net45\Google.Apis.Auth.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Core, Version=1.40.2.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Core.1.40.2\lib\net45\Google.Apis.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Drive.v3, Version=1.40.2.1649, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Drive.v3.1.40.2.1649\lib\net45\Google.Apis.Drive.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.PlatformServices, Version=1.40.2.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.1.40.2\lib\net45\Google.Apis.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Quartz, Version=3.0.7.0, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Quartz.3.0.7\lib\net452\Quartz.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Linq.Dynamic, Version=1.0.6132.35681, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.Dynamic.1.0.7\lib\net40\System.Linq.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.0.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\PublicoController.cs" />
+    <Compile Include="Controllers\SancionController.cs" />
+    <Compile Include="Migrations\201908120158589_SeAgregaSancion.cs" />
+    <Compile Include="Migrations\201908120158589_SeAgregaSancion.Designer.cs">
+      <DependentUpon>201908120158589_SeAgregaSancion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908140425207_SeEliminaVisibleDeSancion.cs" />
+    <Compile Include="Migrations\201908140425207_SeEliminaVisibleDeSancion.Designer.cs">
+      <DependentUpon>201908140425207_SeEliminaVisibleDeSancion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908140440128_SancionesHabilitadasEnTorneo.cs" />
+    <Compile Include="Migrations\201908140440128_SancionesHabilitadasEnTorneo.Designer.cs">
+      <DependentUpon>201908140440128_SancionesHabilitadasEnTorneo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908160130395_SeAgregaFechaASancion.cs" />
+    <Compile Include="Migrations\201908160130395_SeAgregaFechaASancion.Designer.cs">
+      <DependentUpon>201908160130395_SeAgregaFechaASancion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908160136079_RenameSancionFechaADia.cs" />
+    <Compile Include="Migrations\201908160136079_RenameSancionFechaADia.Designer.cs">
+      <DependentUpon>201908160136079_RenameSancionFechaADia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908221404192_CantFechasAdeudadasEnSanciones.cs" />
+    <Compile Include="Migrations\201908221404192_CantFechasAdeudadasEnSanciones.Designer.cs">
+      <DependentUpon>201908221404192_CantFechasAdeudadasEnSanciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909011734026_SancionVisibleONo.cs" />
+    <Compile Include="Migrations\201909011734026_SancionVisibleONo.Designer.cs">
+      <DependentUpon>201909011734026_SancionVisibleONo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910170439133_IndiceEnPartidoPorJornadaYCategoria.cs" />
+    <Compile Include="Migrations\201910170439133_IndiceEnPartidoPorJornadaYCategoria.Designer.cs">
+      <DependentUpon>201910170439133_IndiceEnPartidoPorJornadaYCategoria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912310600171_AgregarUsarioSoloPuedeFichar.cs" />
+    <Compile Include="Migrations\201912310600171_AgregarUsarioSoloPuedeFichar.Designer.cs">
+      <DependentUpon>201912310600171_AgregarUsarioSoloPuedeFichar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912312105585_SeAgregaStockAConceptosInsumo.cs" />
+    <Compile Include="Migrations\201912312105585_SeAgregaStockAConceptosInsumo.Designer.cs">
+      <DependentUpon>201912312105585_SeAgregaStockAConceptosInsumo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004081538057_PruebaAppVeyor.cs" />
+    <Compile Include="Migrations\202004081538057_PruebaAppVeyor.Designer.cs">
+      <DependentUpon>202004081538057_PruebaAppVeyor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Dominio\Sancion.cs" />
+    <Compile Include="Models\TextValueItem.cs" />
+    <Compile Include="Models\ViewModels\ConceptoInsumoAgregarStockVM.cs" />
+    <Compile Include="Models\ViewModels\SancionesWebPublicaVM.cs" />
+    <Compile Include="Models\ViewModels\InformePagoCuotasPorMesVM.cs" />
+    <Compile Include="Models\ViewModels\SancionVM.cs" />
+    <Compile Include="UIHelpers\Autocomplete_Old_Cambiar_PorNuevoAutocompleteFor.cs" />
+    <Compile Include="Utilidades\Backup\YKNGoogleDriveService.cs" />
+    <Compile Include="Utilidades\Backup\GoogleDriveBackupManager.cs" />
+    <Compile Include="Builders\TablaBuilderPadre.cs" />
+    <Compile Include="Builders\TablaDashboardBuilder.cs" />
+    <Compile Include="Builders\TablaAnualWebPublicaBuilder.cs" />
+    <Compile Include="Builders\TablaWebPublicaBuilder.cs" />
+    <Compile Include="Builders\ZonaHelper.cs" />
+    <Compile Include="Controllers\BackupController.cs" />
+    <Compile Include="Controllers\PublicidadController.cs" />
+    <Compile Include="Migrations\201905272112330_JugadorEquipoFueMigrado.cs" />
+    <Compile Include="Migrations\201905272112330_JugadorEquipoFueMigrado.Designer.cs">
+      <DependentUpon>201905272112330_JugadorEquipoFueMigrado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905310037058_EliminoFotoClubDeBaseParaPonerlaEnFileSystem.cs" />
+    <Compile Include="Migrations\201905310037058_EliminoFotoClubDeBaseParaPonerlaEnFileSystem.Designer.cs">
+      <DependentUpon>201905310037058_EliminoFotoClubDeBaseParaPonerlaEnFileSystem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905310109216_DNIMaximoNueveDigitos.cs" />
+    <Compile Include="Migrations\201905310109216_DNIMaximoNueveDigitos.Designer.cs">
+      <DependentUpon>201905310109216_DNIMaximoNueveDigitos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905310120003_OptimizacionTablaJugadorMaxLengthProperties.cs" />
+    <Compile Include="Migrations\201905310120003_OptimizacionTablaJugadorMaxLengthProperties.Designer.cs">
+      <DependentUpon>201905310120003_OptimizacionTablaJugadorMaxLengthProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906092312341_Publicidad.cs" />
+    <Compile Include="Migrations\201906092312341_Publicidad.Designer.cs">
+      <DependentUpon>201906092312341_Publicidad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906092318380_UrlEnPublicidadNoEsRequerido.cs" />
+    <Compile Include="Migrations\201906092318380_UrlEnPublicidadNoEsRequerido.Designer.cs">
+      <DependentUpon>201906092318380_UrlEnPublicidadNoEsRequerido.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906100311441_SeAgregaPosicionAPublicidad.cs" />
+    <Compile Include="Migrations\201906100311441_SeAgregaPosicionAPublicidad.Designer.cs">
+      <DependentUpon>201906100311441_SeAgregaPosicionAPublicidad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906100321219_SeedPublicidadesDefault.cs" />
+    <Compile Include="Migrations\201906100321219_SeedPublicidadesDefault.Designer.cs">
+      <DependentUpon>201906100321219_SeedPublicidadesDefault.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Dominio\Publicidad.cs" />
+    <Compile Include="Models\Enums\PublicidadPosicion.cs" />
+    <Compile Include="Models\ViewModels\DescargarBackupResultadoVM.cs" />
+    <Compile Include="Models\Otros\JugadorMigracion.cs" />
+    <Compile Include="Controllers\ParametroGlobalController.cs" />
+    <Compile Include="Controllers\PartidoController.cs" />
+    <Compile Include="Controllers\NoticiaController.cs" />
+    <Compile Include="Controllers\MovimientoEntradaSinClubController.cs" />
+    <Compile Include="Controllers\InformeController.cs" />
+    <Compile Include="Controllers\MovimientoSalidaController.cs" />
+    <Compile Include="Controllers\PagoController.cs" />
+    <Compile Include="Controllers\MovimientoEntradaConClubController.cs" />
+    <Compile Include="Controllers\ConceptoInsumoController.cs" />
+    <Compile Include="Controllers\JornadaController.cs" />
+    <Compile Include="Controllers\FechaController.cs" />
+    <Compile Include="Controllers\CommonControllerWithParent.cs" />
+    <Compile Include="Controllers\JugadorController.cs" />
+    <Compile Include="Controllers\EquipoController.cs" />
+    <Compile Include="Controllers\CommonController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ClubController.cs" />
+    <Compile Include="Controllers\CategoriaController.cs" />
+    <Compile Include="Controllers\PublicController.cs" />
+    <Compile Include="Builders\ResumenDeJornadasBuilder.cs" />
+    <Compile Include="Controllers\ZonaController.cs" />
+    <Compile Include="Controllers\TorneoController.cs" />
+    <Compile Include="Controllers\TorneoTipoController.cs" />
+    <Compile Include="ExtensionMethods\StringExtension.cs" />
+    <Compile Include="ExtensionMethods\QueryableExtension.cs" />
+    <Compile Include="ExtensionMethods\BoolExtension.cs" />
+    <Compile Include="ExtensionMethods\EnumExtension.cs" />
+    <Compile Include="Migrations\201802270301432_MigracionInicial.cs" />
+    <Compile Include="Migrations\201802270301432_MigracionInicial.Designer.cs">
+      <DependentUpon>201802270301432_MigracionInicial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802270343277_SeedUsers.cs" />
+    <Compile Include="Migrations\201802270343277_SeedUsers.Designer.cs">
+      <DependentUpon>201802270343277_SeedUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802270346587_SeedTorneoTipos.cs" />
+    <Compile Include="Migrations\201802270346587_SeedTorneoTipos.Designer.cs">
+      <DependentUpon>201802270346587_SeedTorneoTipos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802270451343_TorneoActivoEnVezDeActiva.cs" />
+    <Compile Include="Migrations\201802270451343_TorneoActivoEnVezDeActiva.Designer.cs">
+      <DependentUpon>201802270451343_TorneoActivoEnVezDeActiva.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802270452454_AnioEnumMapeadoConEFEnumLookUp.cs" />
+    <Compile Include="Migrations\201802270452454_AnioEnumMapeadoConEFEnumLookUp.Designer.cs">
+      <DependentUpon>201802270452454_AnioEnumMapeadoConEFEnumLookUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802280224216_ZonasYCategorias.cs" />
+    <Compile Include="Migrations\201802280224216_ZonasYCategorias.Designer.cs">
+      <DependentUpon>201802280224216_ZonasYCategorias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802280322556_FlasheEnLaAnterior.cs" />
+    <Compile Include="Migrations\201802280322556_FlasheEnLaAnterior.Designer.cs">
+      <DependentUpon>201802280322556_FlasheEnLaAnterior.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803020134294_LoQueSeImprimeEnElCarnet.cs" />
+    <Compile Include="Migrations\201803020134294_LoQueSeImprimeEnElCarnet.Designer.cs">
+      <DependentUpon>201803020134294_LoQueSeImprimeEnElCarnet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803020135450_SeedTorneoTiposCorrectamente.cs" />
+    <Compile Include="Migrations\201803020135450_SeedTorneoTiposCorrectamente.Designer.cs">
+      <DependentUpon>201803020135450_SeedTorneoTiposCorrectamente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803020457286_LasZonasTienenEquipos.cs" />
+    <Compile Include="Migrations\201803020457286_LasZonasTienenEquipos.Designer.cs">
+      <DependentUpon>201803020457286_LasZonasTienenEquipos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803060103117_FechayLocalVisitante.cs" />
+    <Compile Include="Migrations\201803060103117_FechayLocalVisitante.Designer.cs">
+      <DependentUpon>201803060103117_FechayLocalVisitante.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803060119157_QuitarConvencionDeBorradoEnCascada.cs" />
+    <Compile Include="Migrations\201803060119157_QuitarConvencionDeBorradoEnCascada.Designer.cs">
+      <DependentUpon>201803060119157_QuitarConvencionDeBorradoEnCascada.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803070022288_UsuarioEliasYMatias.cs" />
+    <Compile Include="Migrations\201803070022288_UsuarioEliasYMatias.Designer.cs">
+      <DependentUpon>201803070022288_UsuarioEliasYMatias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803070317475_EquipoLibreDeLaFecha.cs" />
+    <Compile Include="Migrations\201803070317475_EquipoLibreDeLaFecha.Designer.cs">
+      <DependentUpon>201803070317475_EquipoLibreDeLaFecha.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803080024261_EliminoLaGiladaDeLocalVisitanteYLaCambioPorJornada.cs" />
+    <Compile Include="Migrations\201803080024261_EliminoLaGiladaDeLocalVisitanteYLaCambioPorJornada.Designer.cs">
+      <DependentUpon>201803080024261_EliminoLaGiladaDeLocalVisitanteYLaCambioPorJornada.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803080031105_Partido.cs" />
+    <Compile Include="Migrations\201803080031105_Partido.Designer.cs">
+      <DependentUpon>201803080031105_Partido.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803080348437_GolesEsStringParaElNoPresento.cs" />
+    <Compile Include="Migrations\201803080348437_GolesEsStringParaElNoPresento.Designer.cs">
+      <DependentUpon>201803080348437_GolesEsStringParaElNoPresento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803080428314_ResultadoPartidoRequired.cs" />
+    <Compile Include="Migrations\201803080428314_ResultadoPartidoRequired.Designer.cs">
+      <DependentUpon>201803080428314_ResultadoPartidoRequired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804112323258_NombresDeLosEquiposSePuedenRepetir.cs" />
+    <Compile Include="Migrations\201804112323258_NombresDeLosEquiposSePuedenRepetir.Designer.cs">
+      <DependentUpon>201804112323258_NombresDeLosEquiposSePuedenRepetir.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804152109427_OrdenDeCategorias.cs" />
+    <Compile Include="Migrations\201804152109427_OrdenDeCategorias.Designer.cs">
+      <DependentUpon>201804152109427_OrdenDeCategorias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804180124195_Delegados.cs" />
+    <Compile Include="Migrations\201804180124195_Delegados.Designer.cs">
+      <DependentUpon>201804180124195_Delegados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804180138002_PasarDelegadosDeTablaClubATablaDelegado.cs" />
+    <Compile Include="Migrations\201804180138002_PasarDelegadosDeTablaClubATablaDelegado.Designer.cs">
+      <DependentUpon>201804180138002_PasarDelegadosDeTablaClubATablaDelegado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804180406069_regexDelegadoTelefono.cs" />
+    <Compile Include="Migrations\201804180406069_regexDelegadoTelefono.Designer.cs">
+      <DependentUpon>201804180406069_regexDelegadoTelefono.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804182139332_NombreDelDelegadoSeRenombraADescripcion.cs" />
+    <Compile Include="Migrations\201804182139332_NombreDelDelegadoSeRenombraADescripcion.Designer.cs">
+      <DependentUpon>201804182139332_NombreDelDelegadoSeRenombraADescripcion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804182341386_PasarDelegadosDeTablaClubATablaDelegadoConNombreCambiado.cs" />
+    <Compile Include="Migrations\201804182341386_PasarDelegadosDeTablaClubATablaDelegadoConNombreCambiado.Designer.cs">
+      <DependentUpon>201804182341386_PasarDelegadosDeTablaClubATablaDelegadoConNombreCambiado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804182343167_LaDefinitivaDeLosDelegados.cs" />
+    <Compile Include="Migrations\201804182343167_LaDefinitivaDeLosDelegados.Designer.cs">
+      <DependentUpon>201804182343167_LaDefinitivaDeLosDelegados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804190239150_DelegadoEnEquipo.cs" />
+    <Compile Include="Migrations\201804190239150_DelegadoEnEquipo.Designer.cs">
+      <DependentUpon>201804190239150_DelegadoEnEquipo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804190304198_DelegadoEnEquipoModificacion.cs" />
+    <Compile Include="Migrations\201804190304198_DelegadoEnEquipoModificacion.Designer.cs">
+      <DependentUpon>201804190304198_DelegadoEnEquipoModificacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804190312469_CopiarDelegadosDelClubAlEquipo.cs" />
+    <Compile Include="Migrations\201804190312469_CopiarDelegadosDelClubAlEquipo.Designer.cs">
+      <DependentUpon>201804190312469_CopiarDelegadosDelClubAlEquipo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804190348342_BorroDelegadosDeClubes.cs" />
+    <Compile Include="Migrations\201804190348342_BorroDelegadosDeClubes.Designer.cs">
+      <DependentUpon>201804190348342_BorroDelegadosDeClubes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805070323306_TechoNullable.cs" />
+    <Compile Include="Migrations\201805070323306_TechoNullable.Designer.cs">
+      <DependentUpon>201805070323306_TechoNullable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805070505195_FechaPublicada.cs" />
+    <Compile Include="Migrations\201805070505195_FechaPublicada.Designer.cs">
+      <DependentUpon>201805070505195_FechaPublicada.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806050332266_Finanzas.cs" />
+    <Compile Include="Migrations\201806050332266_Finanzas.Designer.cs">
+      <DependentUpon>201806050332266_Finanzas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806120227267_SeedConceptosCuotaFichajeLibre.cs" />
+    <Compile Include="Migrations\201806120227267_SeedConceptosCuotaFichajeLibre.Designer.cs">
+      <DependentUpon>201806120227267_SeedConceptosCuotaFichajeLibre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806130436445_ValorDeLaCuota.cs" />
+    <Compile Include="Migrations\201806130436445_ValorDeLaCuota.Designer.cs">
+      <DependentUpon>201806130436445_ValorDeLaCuota.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806170104235_AgregarUsuarioAMovimiento.cs" />
+    <Compile Include="Migrations\201806170104235_AgregarUsuarioAMovimiento.Designer.cs">
+      <DependentUpon>201806170104235_AgregarUsuarioAMovimiento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806170156308_MovimientoVigente.cs" />
+    <Compile Include="Migrations\201806170156308_MovimientoVigente.Designer.cs">
+      <DependentUpon>201806170156308_MovimientoVigente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806170230352_UsuarioAltaYUsuarioAnulacion.cs" />
+    <Compile Include="Migrations\201806170230352_UsuarioAltaYUsuarioAnulacion.Designer.cs">
+      <DependentUpon>201806170230352_UsuarioAltaYUsuarioAnulacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806170242017_FechaAnulacionNullable.cs" />
+    <Compile Include="Migrations\201806170242017_FechaAnulacionNullable.Designer.cs">
+      <DependentUpon>201806170242017_FechaAnulacionNullable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806180035348_PagosAuditoria.cs" />
+    <Compile Include="Migrations\201806180035348_PagosAuditoria.Designer.cs">
+      <DependentUpon>201806180035348_PagosAuditoria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806190155291_MovimientoSalidaSinProveedor.cs" />
+    <Compile Include="Migrations\201806190155291_MovimientoSalidaSinProveedor.Designer.cs">
+      <DependentUpon>201806190155291_MovimientoSalidaSinProveedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807040520285_LocalYVisitanteSonNullablesEnLasJornadasParaReiniciarFechas.cs" />
+    <Compile Include="Migrations\201807040520285_LocalYVisitanteSonNullablesEnLasJornadasParaReiniciarFechas.Designer.cs">
+      <DependentUpon>201807040520285_LocalYVisitanteSonNullablesEnLasJornadasParaReiniciarFechas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807091856426_MesEnLasCuotas.cs" />
+    <Compile Include="Migrations\201807091856426_MesEnLasCuotas.Designer.cs">
+      <DependentUpon>201807091856426_MesEnLasCuotas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807160641399_MovimientoEntradaConClub.cs" />
+    <Compile Include="Migrations\201807160641399_MovimientoEntradaConClub.Designer.cs">
+      <DependentUpon>201807160641399_MovimientoEntradaConClub.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807160711250_MovimientoEntradaSinClub.cs" />
+    <Compile Include="Migrations\201807160711250_MovimientoEntradaSinClub.Designer.cs">
+      <DependentUpon>201807160711250_MovimientoEntradaSinClub.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807182149273_TorneoDuracion.cs" />
+    <Compile Include="Migrations\201807182149273_TorneoDuracion.Designer.cs">
+      <DependentUpon>201807182149273_TorneoDuracion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807182155110_SeedDuracionAperturaClausura.cs" />
+    <Compile Include="Migrations\201807182155110_SeedDuracionAperturaClausura.Designer.cs">
+      <DependentUpon>201807182155110_SeedDuracionAperturaClausura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807182219239_RenombrarDuracionAFormato.cs" />
+    <Compile Include="Migrations\201807182219239_RenombrarDuracionAFormato.Designer.cs">
+      <DependentUpon>201807182219239_RenombrarDuracionAFormato.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807182244594_SeedTorneoFormato.cs" />
+    <Compile Include="Migrations\201807182244594_SeedTorneoFormato.Designer.cs">
+      <DependentUpon>201807182244594_SeedTorneoFormato.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807182248312_CorregirErrorPorEFLookup.cs" />
+    <Compile Include="Migrations\201807182248312_CorregirErrorPorEFLookup.Designer.cs">
+      <DependentUpon>201807182248312_CorregirErrorPorEFLookup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807190220462_ZonaTipo.cs" />
+    <Compile Include="Migrations\201807190220462_ZonaTipo.Designer.cs">
+      <DependentUpon>201807190220462_ZonaTipo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807190221211_ZonaTipoEFLookup.cs" />
+    <Compile Include="Migrations\201807190221211_ZonaTipoEFLookup.Designer.cs">
+      <DependentUpon>201807190221211_ZonaTipoEFLookup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807190244505_ZonaTipoEFLookup1.cs" />
+    <Compile Include="Migrations\201807190244505_ZonaTipoEFLookup1.Designer.cs">
+      <DependentUpon>201807190244505_ZonaTipoEFLookup1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807191700278_CadaEquipoPuedeJugarVariosTorneosRelampago.cs" />
+    <Compile Include="Migrations\201807191700278_CadaEquipoPuedeJugarVariosTorneosRelampago.Designer.cs">
+      <DependentUpon>201807191700278_CadaEquipoPuedeJugarVariosTorneosRelampago.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808080015350_ElNombreDeLaZonaPuedeRepetirse.cs" />
+    <Compile Include="Migrations\201808080015350_ElNombreDeLaZonaPuedeRepetirse.Designer.cs">
+      <DependentUpon>201808080015350_ElNombreDeLaZonaPuedeRepetirse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808080413368_EquiposLibresEInterzonalesEnJornadas.cs" />
+    <Compile Include="Migrations\201808080413368_EquiposLibresEInterzonalesEnJornadas.Designer.cs">
+      <DependentUpon>201808080413368_EquiposLibresEInterzonalesEnJornadas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808112025212_scriptParaNuevaImplementacionDeEquiposLibres.cs" />
+    <Compile Include="Migrations\201808112025212_scriptParaNuevaImplementacionDeEquiposLibres.Designer.cs">
+      <DependentUpon>201808112025212_scriptParaNuevaImplementacionDeEquiposLibres.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808190421453_ElTorneoDeUnEquipoEsNullable.cs" />
+    <Compile Include="Migrations\201808190421453_ElTorneoDeUnEquipoEsNullable.Designer.cs">
+      <DependentUpon>201808190421453_ElTorneoDeUnEquipoEsNullable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808190436059_FixtureDeLaZonaPublicadoBool.cs" />
+    <Compile Include="Migrations\201808190436059_FixtureDeLaZonaPublicadoBool.Designer.cs">
+      <DependentUpon>201808190436059_FixtureDeLaZonaPublicadoBool.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808190436539_TodosLosFixturePublicadosPorDefecto.cs" />
+    <Compile Include="Migrations\201808190436539_TodosLosFixturePublicadosPorDefecto.Designer.cs">
+      <DependentUpon>201808190436539_TodosLosFixturePublicadosPorDefecto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901090115446_FechaFichajeEnJugadorEquipo.cs" />
+    <Compile Include="Migrations\201901090115446_FechaFichajeEnJugadorEquipo.Designer.cs">
+      <DependentUpon>201901090115446_FechaFichajeEnJugadorEquipo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901090120034_SeedFechaFichajePrimeroEnero2018.cs" />
+    <Compile Include="Migrations\201901090120034_SeedFechaFichajePrimeroEnero2018.Designer.cs">
+      <DependentUpon>201901090120034_SeedFechaFichajePrimeroEnero2018.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901100112308_SeAgreganLasNoticiasALaWebPublica.cs" />
+    <Compile Include="Migrations\201901100112308_SeAgreganLasNoticiasALaWebPublica.Designer.cs">
+      <DependentUpon>201901100112308_SeAgreganLasNoticiasALaWebPublica.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901100344461_SeAgregaLaOpcionDeElegirSiSeVenONoLosGolesAFavorSegunLaZona.cs" />
+    <Compile Include="Migrations\201901100344461_SeAgregaLaOpcionDeElegirSiSeVenONoLosGolesAFavorSegunLaZona.Designer.cs">
+      <DependentUpon>201901100344461_SeAgregaLaOpcionDeElegirSiSeVenONoLosGolesAFavorSegunLaZona.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901122343262_SeAgregaResultadoVerificadoEnPartido.cs" />
+    <Compile Include="Migrations\201901122343262_SeAgregaResultadoVerificadoEnPartido.Designer.cs">
+      <DependentUpon>201901122343262_SeAgregaResultadoVerificadoEnPartido.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901122345290_SeedTodosLosPartidosVerificados.cs" />
+    <Compile Include="Migrations\201901122345290_SeedTodosLosPartidosVerificados.Designer.cs">
+      <DependentUpon>201901122345290_SeedTodosLosPartidosVerificados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901131408287_ResultadosVerificadosANivelJornadaEnVezDeANivelPartido.cs" />
+    <Compile Include="Migrations\201901131408287_ResultadosVerificadosANivelJornadaEnVezDeANivelPartido.Designer.cs">
+      <DependentUpon>201901131408287_ResultadosVerificadosANivelJornadaEnVezDeANivelPartido.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901131422228_SeedTodosLosPartidosVerificadosEnTrue.cs" />
+    <Compile Include="Migrations\201901131422228_SeedTodosLosPartidosVerificadosEnTrue.Designer.cs">
+      <DependentUpon>201901131422228_SeedTodosLosPartidosVerificadosEnTrue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901140303247_SeAgregaElEscudoEnLosClubs.cs" />
+    <Compile Include="Migrations\201901140303247_SeAgregaElEscudoEnLosClubs.Designer.cs">
+      <DependentUpon>201901140303247_SeAgregaElEscudoEnLosClubs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901140332541_SeedEscudoArgentinaParaTodosLosClubes.cs" />
+    <Compile Include="Migrations\201901140332541_SeedEscudoArgentinaParaTodosLosClubes.Designer.cs">
+      <DependentUpon>201901140332541_SeedEscudoArgentinaParaTodosLosClubes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901150058445_SeedEscudoEdefiParaTodosLosClubes.cs" />
+    <Compile Include="Migrations\201901150058445_SeedEscudoEdefiParaTodosLosClubes.Designer.cs">
+      <DependentUpon>201901150058445_SeedEscudoEdefiParaTodosLosClubes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901150146575_SeAgregaEntidadGoleador.cs" />
+    <Compile Include="Migrations\201901150146575_SeAgregaEntidadGoleador.Designer.cs">
+      <DependentUpon>201901150146575_SeAgregaEntidadGoleador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902010100170_SeCambiaNombreDePropertyTorneoDeActivoAPublicoOculto.cs" />
+    <Compile Include="Migrations\201902010100170_SeCambiaNombreDePropertyTorneoDeActivoAPublicoOculto.Designer.cs">
+      <DependentUpon>201902010100170_SeCambiaNombreDePropertyTorneoDeActivoAPublicoOculto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902142107468_ElCuerpoDeLaNoticiaTieneExtension4000Caracteres.cs" />
+    <Compile Include="Migrations\201902142107468_ElCuerpoDeLaNoticiaTieneExtension4000Caracteres.Designer.cs">
+      <DependentUpon>201902142107468_ElCuerpoDeLaNoticiaTieneExtension4000Caracteres.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902171810509_SeCreanParametrizacionesGlobales.cs" />
+    <Compile Include="Migrations\201902171810509_SeCreanParametrizacionesGlobales.Designer.cs">
+      <DependentUpon>201902171810509_SeCreanParametrizacionesGlobales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902171928102_ClaveIntAParametrizacionGlobal.cs" />
+    <Compile Include="Migrations\201902171928102_ClaveIntAParametrizacionGlobal.Designer.cs">
+      <DependentUpon>201902171928102_ClaveIntAParametrizacionGlobal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902171944510_SeAgregaParametroValorPorDefectoDelConceptoFichaje.cs" />
+    <Compile Include="Migrations\201902171944510_SeAgregaParametroValorPorDefectoDelConceptoFichaje.Designer.cs">
+      <DependentUpon>201902171944510_SeAgregaParametroValorPorDefectoDelConceptoFichaje.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902172001198_DescripcionEnParametrizacionGlobal.cs" />
+    <Compile Include="Migrations\201902172001198_DescripcionEnParametrizacionGlobal.Designer.cs">
+      <DependentUpon>201902172001198_DescripcionEnParametrizacionGlobal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902172006234_AgregarDescripcionAConceptoDeFichajePorDefecto.cs" />
+    <Compile Include="Migrations\201902172006234_AgregarDescripcionAConceptoDeFichajePorDefecto.Designer.cs">
+      <DependentUpon>201902172006234_AgregarDescripcionAConceptoDeFichajePorDefecto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902172159099_RenameParametroGlobal.cs" />
+    <Compile Include="Migrations\201902172159099_RenameParametroGlobal.Designer.cs">
+      <DependentUpon>201902172159099_RenameParametroGlobal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903080420049_ParametrosGlobalesEsUnaSolaFilaDeLaBDAhora.cs" />
+    <Compile Include="Migrations\201903080420049_ParametrosGlobalesEsUnaSolaFilaDeLaBDAhora.Designer.cs">
+      <DependentUpon>201903080420049_ParametrosGlobalesEsUnaSolaFilaDeLaBDAhora.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903080439058_RenameParametroGlobalEscudoEnBase64.cs" />
+    <Compile Include="Migrations\201903080439058_RenameParametroGlobalEscudoEnBase64.Designer.cs">
+      <DependentUpon>201903080439058_RenameParametroGlobalEscudoEnBase64.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903080440323_SeedParametrosGlobales.cs" />
+    <Compile Include="Migrations\201903080440323_SeedParametrosGlobales.Designer.cs">
+      <DependentUpon>201903080440323_SeedParametrosGlobales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904162304578_EquipoEnGoleador.cs" />
+    <Compile Include="Migrations\201904162304578_EquipoEnGoleador.Designer.cs">
+      <DependentUpon>201904162304578_EquipoEnGoleador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904242223366_MigracionDePruebaParaAzure.cs" />
+    <Compile Include="Migrations\201904242223366_MigracionDePruebaParaAzure.Designer.cs">
+      <DependentUpon>201904242223366_MigracionDePruebaParaAzure.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905082136478_SeedConceptos.cs" />
+    <Compile Include="Migrations\201905082136478_SeedConceptos.Designer.cs">
+      <DependentUpon>201905082136478_SeedConceptos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905150212566_PruebaASPHostPortal.cs" />
+    <Compile Include="Migrations\201905150212566_PruebaASPHostPortal.Designer.cs">
+      <DependentUpon>201905150212566_PruebaASPHostPortal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905150351260_PruebaASPHostPortal-2.cs" />
+    <Compile Include="Migrations\201905150351260_PruebaASPHostPortal-2.Designer.cs">
+      <DependentUpon>201905150351260_PruebaASPHostPortal-2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905250925581_EliminoFotoDeJugadorDeLaBaseParaPasarlaAlDisco.cs" />
+    <Compile Include="Migrations\201905250925581_EliminoFotoDeJugadorDeLaBaseParaPasarlaAlDisco.Designer.cs">
+      <DependentUpon>201905250925581_EliminoFotoDeJugadorDeLaBaseParaPasarlaAlDisco.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905262136185_JugadorFueMigrado.cs" />
+    <Compile Include="Migrations\201905262136185_JugadorFueMigrado.Designer.cs">
+      <DependentUpon>201905262136185_JugadorFueMigrado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Attributes\GPRPattern\ExportModelStateToTempData.cs" />
+    <Compile Include="Models\Attributes\GPRPattern\ImportModelStateFromTempData.cs" />
+    <Compile Include="Models\Attributes\GPRPattern\ModelStateTempDataTransfer.cs" />
+    <Compile Include="Models\Attributes\YKNNumericStringAttribute.cs" />
+    <Compile Include="Models\Attributes\YKNRequiredAttribute.cs" />
+    <Compile Include="Models\Dominio\Finanzas\MovimientoEntradaConClubCuota.cs" />
+    <Compile Include="Models\Dominio\Finanzas\MovimientoEntradaSinClub.cs" />
+    <Compile Include="Models\Dominio\Finanzas\MovimientoSalida.cs" />
+    <Compile Include="Models\Dominio\Finanzas\Pago.cs" />
+    <Compile Include="Models\Dominio\Finanzas\MovimientoEntradaConClub.cs" />
+    <Compile Include="Models\Dominio\Finanzas\Movimiento.cs" />
+    <Compile Include="Models\Dominio\Finanzas\ConceptoLibre.cs" />
+    <Compile Include="Models\Dominio\Finanzas\ConceptoCuota.cs" />
+    <Compile Include="Models\Dominio\Finanzas\ConceptoFichaje.cs" />
+    <Compile Include="Models\Dominio\Finanzas\ConceptoInsumo.cs" />
+    <Compile Include="Models\Dominio\Finanzas\Concepto.cs" />
+    <Compile Include="Models\Dominio\Delegado.cs" />
+    <Compile Include="Models\Dominio\Noticia.cs" />
+    <Compile Include="Models\Dominio\Goleador.cs" />
+    <Compile Include="Models\Dominio\ParametroGlobal.cs" />
+    <Compile Include="Models\Dominio\ZonaRelampagoEquipo.cs" />
+    <Compile Include="Models\Dominio\Partido.cs" />
+    <Compile Include="Models\Dominio\Jornada.cs" />
+    <Compile Include="Models\Dominio\Fecha.cs" />
+    <Compile Include="Models\Dominio\Categoria.cs" />
+    <Compile Include="Models\Dominio\Zona.cs" />
+    <Compile Include="Models\Dominio\JugadorEquipo.cs" />
+    <Compile Include="Models\ViewModels\EditFotoJugadorDesdeArchivoVM.cs" />
+    <Compile Include="Models\ViewModels\PublicidadesVM.cs" />
+    <Compile Include="Models\ViewModels\PublicidadVM.cs" />
+    <Compile Include="Scheduler\JobScheduler.cs" />
+    <Compile Include="Scheduler\SubirBackupAlDriveJob.cs" />
+    <Compile Include="Utilidades\LocalPathConsts.cs" />
+    <Compile Include="Models\Enums\ZonaTipo.cs" />
+    <Compile Include="Models\Enums\TorneoFormato.cs" />
+    <Compile Include="Models\Enums\Mes.cs" />
+    <Compile Include="Models\Enums\AnioEnum.cs" />
+    <Compile Include="Models\Enums\Techo.cs" />
+    <Compile Include="Models\Enums\PartidoResultado.cs" />
+    <Compile Include="Models\Enums\FormSizeEnum.cs" />
+    <Compile Include="Models\Enums\BootstrapColorEnum.cs" />
+    <Compile Include="Models\Attributes\YKNRangeAttribute.cs" />
+    <Compile Include="Models\Attributes\YKNDateTimeAttribute.cs" />
+    <Compile Include="Models\Attributes\YKNStringLengthAttribute.cs" />
+    <Compile Include="Models\Interfaces\IClassConIdDescripcioncs.cs" />
+    <Compile Include="Models\Otros\GijgoGridOptions.cs" />
+    <Compile Include="Models\ViewModels\CargarEscudoVM.cs" />
+    <Compile Include="Models\ViewModels\ConceptoInsumoVM.cs" />
+    <Compile Include="Models\ViewModels\GoleadoresVM.cs" />
+    <Compile Include="Models\ViewModels\InformeMovimientosImpagosVM.cs" />
+    <Compile Include="Models\ViewModels\CambiarPasswordVM.cs" />
+    <Compile Include="Models\ViewModels\ParametroGlobalVM.cs" />
+    <Compile Include="Models\ViewModels\PartidosPostergadosOSuspendidosVM.cs" />
+    <Compile Include="Models\ViewModels\InformeVM.cs" />
+    <Compile Include="Models\ViewModels\NoticiaVM.cs" />
+    <Compile Include="Models\ViewModels\CargarGoleadoresVM.cs" />
+    <Compile Include="Models\ViewModels\RangoVM.cs" />
+    <Compile Include="Models\ViewModels\MovimientoEntradaSinClubVM.cs" />
+    <Compile Include="Models\ViewModels\MovimientoSalidaVM.cs" />
+    <Compile Include="Models\ViewModels\PagoVM.cs" />
+    <Compile Include="Models\ViewModels\MovimientoVM.cs" />
+    <Compile Include="Models\ViewModels\MovimientoEntradaConClubVM.cs" />
+    <Compile Include="Models\ViewModels\PublicIndexVM.cs" />
+    <Compile Include="Models\ViewModels\EditarFechaVM.cs" />
+    <Compile Include="Models\ViewModels\FechaDetailsVM.cs" />
+    <Compile Include="Models\ViewModels\FicharEnOtroEquipo.cs" />
+    <Compile Include="Models\ViewModels\DatosDeEquiposVM.cs" />
+    <Compile Include="Models\ViewModels\DelegadoVM.cs" />
+    <Compile Include="Models\ViewModels\ImprimirJugadoresVM.cs" />
+    <Compile Include="Models\ViewModels\TablaCategoriaRenglonVM.cs" />
+    <Compile Include="Models\ViewModels\FixtureVM.cs" />
+    <Compile Include="Models\ViewModels\ResumenDeJornadasVM.cs" />
+    <Compile Include="Models\ViewModels\TablasVM .cs" />
+    <Compile Include="Models\ViewModels\TablaCategoriaVM.cs" />
+    <Compile Include="Models\ViewModels\PartidoVM.cs" />
+    <Compile Include="Models\ViewModels\JornadaVM.cs" />
+    <Compile Include="Models\ViewModels\LocalVisitanteVM.cs" />
+    <Compile Include="Models\ViewModels\AnioWebPublicaVM.cs" />
+    <Compile Include="Models\ViewModels\TorneoWebPublicaVM.cs" />
+    <Compile Include="Models\ViewModels\MovimientoEntradaConClubCuotaVM.cs" />
+    <Compile Include="Models\ViewModels\VersusVM.cs" />
+    <Compile Include="Models\ViewModels\FechaVM.cs" />
+    <Compile Include="Models\ViewModels\PasesVM.cs" />
+    <Compile Include="Models\ViewModels\ModificarEquiposVM.cs" />
+    <Compile Include="Models\ViewModels\CategoriaVM.cs" />
+    <Compile Include="Models\ViewModels\EquipoVM.cs" />
+    <Compile Include="Models\ViewModels\EliminarJugadorDeUnEquipoVM.cs" />
+    <Compile Include="Models\ViewModels\JugadorBaseVM.cs" />
+    <Compile Include="Models\ViewModels\ResultadoImportacionJugadores.cs" />
+    <Compile Include="Models\ViewModels\ImportarJugadoresVM.cs" />
+    <Compile Include="Models\ViewModels\JugadorImportadoVM.cs" />
+    <Compile Include="Models\ViewModels\JugadorCarnetVM.cs" />
+    <Compile Include="Models\ViewModels\FicharJugadorExistenteVM.cs" />
+    <Compile Include="Models\ViewModels\FicharNuevoJugadorVM.cs" />
+    <Compile Include="Models\ViewModels\ViewModelConId.cs" />
+    <Compile Include="Models\ViewModels\ZonaVM.cs" />
+    <Compile Include="UIHelpers\AutoComplete.cs" />
+    <Compile Include="UIHelpers\AutoCompleteFor.cs" />
+    <Compile Include="UIHelpers\BrowseFileFor.cs" />
+    <Compile Include="UIHelpers\CheckBoxFor.cs" />
+    <Compile Include="UIHelpers\DropdownButton.cs" />
+    <Compile Include="UIHelpers\DatePickerFor.cs" />
+    <Compile Include="UIHelpers\EditorFor.cs" />
+    <Compile Include="UIHelpers\UploadFileFor.cs" />
+    <Compile Include="UIHelpers\DisplayMultilineFor.cs" />
+    <Compile Include="UIHelpers\TextAreaFor.cs" />
+    <Compile Include="UIHelpers\WebCamFor.cs" />
+    <Compile Include="UIHelpers\Grid\GridColumnButton.cs" />
+    <Compile Include="UIHelpers\Grid\GridComboAction.cs" />
+    <Compile Include="UIHelpers\Grid\GridComboActionFactory.cs" />
+    <Compile Include="UIHelpers\Grid\GridColumnIcon.cs" />
+    <Compile Include="UIHelpers\Grid\GridColumnText.cs" />
+    <Compile Include="UIHelpers\SiNoFor.cs" />
+    <Compile Include="UIHelpers\ValidationSummary.cs" />
+    <Compile Include="UIHelpers\Button.cs" />
+    <Compile Include="UIHelpers\ComboFor.cs" />
+    <Compile Include="UIHelpers\Grid\GridBuilder.cs" />
+    <Compile Include="UIHelpers\Grid\GridColumnFactory.cs" />
+    <Compile Include="UIHelpers\Form.cs" />
+    <Compile Include="UIHelpers\WidgetFactories\INonTypedWidgetFactory.cs" />
+    <Compile Include="UIHelpers\WidgetFactories\YKNNonTypedWidgetFactory.cs" />
+    <Compile Include="Utilidades\IODiskUtility.cs" />
+    <Compile Include="Utilidades\ImagenUtility.cs" />
+    <Compile Include="Utilidades\Log.cs" />
+    <Compile Include="Utilidades\Roles.cs" />
+    <Compile Include="Utilidades\VMMUtility.cs" />
+    <Compile Include="Utilidades\ZipUtility.cs" />
+    <Compile Include="ViewModelMappers\GoleadoresWebPublicaBuilder.cs" />
+    <Compile Include="ViewModelMappers\SancionVMM.cs" />
+    <Compile Include="ViewModelMappers\PublicidadVMM.cs" />
+    <Compile Include="ViewModelMappers\ParametroGlobalVMM.cs" />
+    <Compile Include="ViewModelMappers\NoticiaVMM.cs" />
+    <Compile Include="ViewModelMappers\MovimientoEntradaSinClubVMM.cs" />
+    <Compile Include="ViewModelMappers\MovimientoSalidaVMM.cs" />
+    <Compile Include="ViewModelMappers\PagoVMM.cs" />
+    <Compile Include="ViewModelMappers\MovimientoEntradaConClubVMM.cs" />
+    <Compile Include="ViewModelMappers\FechaVMM.cs" />
+    <Compile Include="ViewModelMappers\PartidoVMM.cs" />
+    <Compile Include="ViewModelMappers\JugadorVMM.cs" />
+    <Compile Include="ViewModelMappers\EquipoVMM.cs" />
+    <Compile Include="ViewModelMappers\ClubVMM.cs" />
+    <Compile Include="ViewModelMappers\CommonVMM.cs" />
+    <Compile Include="ViewModelMappers\CategoriaVMM.cs" />
+    <Compile Include="ViewModelMappers\JornadaVMM.cs" />
+    <Compile Include="ViewModelMappers\ConceptoInsumoVMM.cs" />
+    <Compile Include="ViewModelMappers\InformeVMM.cs" />
+    <Compile Include="ViewModelMappers\WebPublicaVMM.cs" />
+    <Compile Include="ViewModelMappers\ZonaVMM.cs" />
+    <Compile Include="ViewModelMappers\TorneoVMM.cs" />
+    <Compile Include="ViewModelMappers\TorneoTipoVMM.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="ExtensionMethods\HtmlHelperExtension.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Dominio\Club.cs" />
+    <Compile Include="Models\Dominio\Equipo.cs" />
+    <Compile Include="Models\Dominio\Jugador.cs" />
+    <Compile Include="Models\Dominio\Torneo.cs" />
+    <Compile Include="Models\Dominio\TorneoTipo.cs" />
+    <Compile Include="Models\Enums\ConceptoTipoEnum.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="UIHelpers\DisplayFor.cs" />
+    <Compile Include="UIHelpers\BuscadorFor.cs" />
+    <Compile Include="UIHelpers\UIBuilder.cs" />
+    <Compile Include="UIHelpers\WidgetFactories\ITypedWidgetFactory.cs" />
+    <Compile Include="UIHelpers\WidgetFactories\YKNTypedWidgetFactory.cs" />
+    <Compile Include="Models\ViewModels\ClubVM.cs" />
+    <Compile Include="Models\ViewModels\TorneoVM.cs" />
+    <Compile Include="Models\ViewModels\TorneoTipoVM.cs" />
+    <Compile Include="Models\ViewModels\IdDescripcionVM.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\back-arrow.svg" />
+    <Content Include="Content\bootstrap-toggle.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\EscudoAFA.png" />
+    <Content Include="Content\fb-logo.png" />
+    <Content Include="Content\gijgo\combined\gijgo.css" />
+    <Content Include="Content\gijgo\combined\gijgo.min.css" />
+    <Content Include="Content\gijgo\fonts\gijgo-material.svg" />
+    <Content Include="Content\gijgo\modular\checkbox.css" />
+    <Content Include="Content\gijgo\modular\checkbox.min.css" />
+    <Content Include="Content\gijgo\modular\core.css" />
+    <Content Include="Content\gijgo\modular\core.min.css" />
+    <Content Include="Content\gijgo\modular\datepicker.css" />
+    <Content Include="Content\gijgo\modular\datepicker.min.css" />
+    <Content Include="Content\gijgo\modular\dialog.css" />
+    <Content Include="Content\gijgo\modular\dialog.min.css" />
+    <Content Include="Content\gijgo\modular\dropdown.css" />
+    <Content Include="Content\gijgo\modular\dropdown.min.css" />
+    <Content Include="Content\gijgo\modular\editor.css" />
+    <Content Include="Content\gijgo\modular\editor.min.css" />
+    <Content Include="Content\gijgo\modular\grid.css" />
+    <Content Include="Content\gijgo\modular\grid.min.css" />
+    <Content Include="Content\gijgo\modular\timepicker.css" />
+    <Content Include="Content\gijgo\modular\timepicker.min.css" />
+    <Content Include="Content\gijgo\modular\tree.css" />
+    <Content Include="Content\gijgo\modular\tree.min.css" />
+    <Content Include="Content\logo.svg" />
+    <Content Include="Content\logo.png" />
+    <Content Include="Content\logoConSponsor.png" />
+    <Content Include="Content\publico\img\fondo.gif" />
+    <Content Include="Content\publico\img\fondo.jpg" />
+    <Content Include="Content\publico\img\index-background.png" />
+    <Content Include="Content\publico\img\jugador-fondo-gris.jpg" />
+    <Content Include="Content\publico\img\torneo-background.png" />
+    <Content Include="Content\public_layout.css" />
+    <Content Include="Content\select2\select2-bootstrap.min.css" />
+    <Content Include="Imagenes\banner.jpg" />
+    <Content Include="Imagenes\Carousel\1.jpg" />
+    <Content Include="Imagenes\Carousel\2.jpg" />
+    <Content Include="Imagenes\Carousel\3.jpg" />
+    <Content Include="Imagenes\noticias-banner.jpg" />
+    <Content Include="Imagenes\publicidad-derecha.jpg" />
+    <Content Include="Imagenes\publicidad-izquierda.jpg" />
+    <Content Include="Parameters.xml" />
+    <Content Include="WebPublica\config\webpack.config.dev.js" />
+    <Content Include="WebPublica\config\webpack.config.prod.js" />
+    <Content Include="WebPublica\src\**" />
+    <Content Include="Scripts\r.js" />
+    <Content Include="Imagenes\torneos-banner.jpg" />
+    <Content Include="Scripts\require.js" />
+    <Content Include="Scripts\select2.full.js" />
+    <Content Include="Content\select2\select2.min.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\layout.css" />
+    <Content Include="Scripts\bootstrap-toggle.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\gijgo\fonts\gijgo-material.woff" />
+    <Content Include="Content\gijgo\fonts\gijgo-material.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\PublishProfiles\ASPHostPortal_Produccion.pubxml" />
+    <None Include="Properties\PublishProfiles\Edefi - Azure.pubxml" />
+    <None Include="Properties\PublishProfiles\edefi - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\Integracion.site FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\Integracion.site.pubxml" />
+    <Content Include="WebPublica\.babelrc" />
+    <Content Include="WebPublica\package-lock.json" />
+    <Content Include="WebPublica\package.json" />
+    <Content Include="WebPublica\.vscode\settings.json" />
+    <None Include="Properties\PublishProfiles\IntegracionContinuaPublishProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\Publish de prueba para FTP.pubxml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\bootstrap3-typeahead.min.js" />
+    <Content Include="Scripts\fontAwesome.js" />
+    <Content Include="Scripts\gijgo\combined\gijgo.js" />
+    <Content Include="Scripts\gijgo\combined\gijgo.min.js" />
+    <Content Include="Scripts\gijgo\combined\messages\messages.bg-bg.js" />
+    <Content Include="Scripts\gijgo\combined\messages\messages.bg-bg.min.js" />
+    <Content Include="Scripts\gijgo\combined\messages\messages.de-de.js" />
+    <Content Include="Scripts\gijgo\combined\messages\messages.de-de.min.js" />
+    <Content Include="Scripts\gijgo\combined\messages\messages.fr-fr.js" />
+    <Content Include="Scripts\gijgo\combined\messages\messages.fr-fr.min.js" />
+    <Content Include="Scripts\gijgo\combined\messages\messages.pt-br.js" />
+    <Content Include="Scripts\gijgo\combined\messages\messages.pt-br.min.js" />
+    <Content Include="Scripts\gijgo\combined\messages\messages.ru-ru.js" />
+    <Content Include="Scripts\gijgo\combined\messages\messages.ru-ru.min.js" />
+    <Content Include="Scripts\gijgo\modular\checkbox.js" />
+    <Content Include="Scripts\gijgo\modular\checkbox.min.js" />
+    <Content Include="Scripts\gijgo\modular\core.js" />
+    <Content Include="Scripts\gijgo\modular\core.min.js" />
+    <Content Include="Scripts\gijgo\modular\datepicker.js" />
+    <Content Include="Scripts\gijgo\modular\datepicker.min.js" />
+    <Content Include="Scripts\gijgo\modular\dialog.js" />
+    <Content Include="Scripts\gijgo\modular\dialog.min.js" />
+    <Content Include="Scripts\gijgo\modular\draggable.js" />
+    <Content Include="Scripts\gijgo\modular\draggable.min.js" />
+    <Content Include="Scripts\gijgo\modular\dropdown.js" />
+    <Content Include="Scripts\gijgo\modular\dropdown.min.js" />
+    <Content Include="Scripts\gijgo\modular\droppable.js" />
+    <Content Include="Scripts\gijgo\modular\droppable.min.js" />
+    <Content Include="Scripts\gijgo\modular\editor.js" />
+    <Content Include="Scripts\gijgo\modular\editor.min.js" />
+    <Content Include="Scripts\gijgo\modular\grid.js" />
+    <Content Include="Scripts\gijgo\modular\grid.min.js" />
+    <Content Include="Scripts\gijgo\modular\timepicker.js" />
+    <Content Include="Scripts\gijgo\modular\timepicker.min.js" />
+    <Content Include="Scripts\gijgo\modular\tree.js" />
+    <Content Include="Scripts\gijgo\modular\tree.min.js" />
+    <Content Include="Scripts\jpeg_camera\canvas-to-blob.min.js" />
+    <Content Include="Scripts\jpeg_camera\jpeg_camera_no_flash.min.js" />
+    <None Include="Scripts\jquery-1.12.4.intellisense.js" />
+    <Content Include="Scripts\jquery-1.12.4.js" />
+    <Content Include="Scripts\jquery-1.12.4.min.js" />
+    <Content Include="Scripts\jquery-1.12.4.min.map" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\knockout\knockout-min.js" />
+    <Content Include="Scripts\knockout\knockout.validation.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\nicEdit-latest.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Utilidades\Backup\token.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-user" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\TorneoTipo\Create.cshtml" />
+    <Content Include="Views\TorneoTipo\Index.cshtml" />
+    <Content Include="Views\Shared\_SideBar.cshtml" />
+    <Content Include="Views\Shared\_TopBar.cshtml" />
+    <Content Include="Views\Zona\Create.cshtml" />
+    <Content Include="Views\Torneo\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutSinPanelLateral.cshtml" />
+    <Content Include="Views\Club\Create.cshtml" />
+    <Content Include="Views\Club\Index.cshtml" />
+    <Content Include="Views\Club\Edit.cshtml" />
+    <Content Include="Views\Club\Details.cshtml" />
+    <Content Include="Views\Club\CrearEquipo.cshtml" />
+    <Content Include="Views\Equipo\Index.cshtml" />
+    <Content Include="Views\Equipo\FicharNuevoJugador.cshtml" />
+    <Content Include="Views\Jugador\Index.cshtml" />
+    <Content Include="Views\Equipo\Edit.cshtml" />
+    <Content Include="Views\Jugador\Edit.cshtml" />
+    <Content Include="Views\Jugador\EditFotoWebCam.cshtml" />
+    <Content Include="Views\Equipo\Details.cshtml" />
+    <Content Include="Views\Equipo\ImportarJugadores.cshtml" />
+    <Content Include="Views\Equipo\ResultadoImportacion.cshtml" />
+    <Content Include="Views\Jugador\Details.cshtml" />
+    <Content Include="Views\Jugador\EliminarJugadorDeUnEquipo.cshtml" />
+    <Content Include="Views\Torneo\Create.cshtml" />
+    <Content Include="Views\Zona\Index.cshtml" />
+    <Content Include="Views\Zona\ModificarEquipos.cshtml" />
+    <Content Include="Views\Zona\Edit.cshtml" />
+    <Content Include="Views\Categoria\Create.cshtml" />
+    <Content Include="Views\Categoria\Index.cshtml" />
+    <Content Include="Views\Equipo\ImprimirJugadores.cshtml" />
+    <Content Include="Views\Fecha\Create.cshtml" />
+    <Content Include="Views\Fecha\Index.cshtml" />
+    <Content Include="Views\Categoria\Edit.cshtml" />
+    <Content Include="Views\Fecha\Edit.cshtml" />
+    <Content Include="Views\Fecha\Details.cshtml" />
+    <Content Include="Views\Jornada\CargarPartidos.cshtml" />
+    <Content Include="Views\Jornada\Index.cshtml" />
+    <Content Include="Views\Jornada\Details.cshtml" />
+    <Content Include="Views\Zona\Tablas.cshtml" />
+    <Content Include="Views\Equipo\Pases.cshtml" />
+    <Content Include="Views\Jugador\FicharEnOtroEquipo.cshtml" />
+    <Content Include="Views\Zona\Fixture.cshtml" />
+    <Content Include="Views\Zona\DatosDeEquipos.cshtml" />
+    <Content Include="Views\Club\IndexDelegados.cshtml" />
+    <Content Include="Views\Club\CrearDelegado.cshtml" />
+    <Content Include="Views\Club\EditarDelegado.cshtml" />
+    <Content Include="Views\Zona\ResumenDeJornadas.cshtml" />
+    <Content Include="Views\Public\_TopBar.cshtml" />
+    <Content Include="Views\Public\Index.cshtml" />
+    <Content Include="Views\Public\_ViewStart.cshtml" />
+    <Content Include="Views\Public\Clubes.cshtml" />
+    <Content Include="Views\Public\PosicionesConGoles.cshtml" />
+    <Content Include="Views\Public\Jornadas.cshtml" />
+    <Content Include="Views\Public\Fixture.cshtml" />
+    <Content Include="Views\ConceptoInsumo\Create.cshtml" />
+    <Content Include="Views\ConceptoInsumo\Index.cshtml" />
+    <Content Include="Views\ConceptoInsumo\Edit.cshtml" />
+    <Content Include="Views\MovimientoEntradaConClub\CreateMovimientoInsumo.cshtml" />
+    <Content Include="Views\MovimientoEntradaConClub\Index.cshtml" />
+    <Content Include="Views\MovimientoEntradaConClub\CreateMovimientoLibre.cshtml" />
+    <Content Include="Views\MovimientoEntradaConClub\CreateMovimientoFichaje.cshtml" />
+    <Content Include="Views\MovimientoEntradaConClub\CreateMovimientoCuota.cshtml" />
+    <Content Include="Views\MovimientoEntradaConClub\Details.cshtml" />
+    <Content Include="Views\MovimientoEntradaConClub\Auditoria.cshtml" />
+    <Content Include="Views\Pago\Auditoria.cshtml" />
+    <Content Include="Views\Pago\Create.cshtml" />
+    <Content Include="Views\Pago\Details.cshtml" />
+    <Content Include="Views\MovimientoSalida\Auditoria.cshtml" />
+    <Content Include="Views\MovimientoSalida\Details.cshtml" />
+    <Content Include="Views\MovimientoSalida\Create.cshtml" />
+    <Content Include="Views\MovimientoSalida\Index.cshtml" />
+    <Content Include="Views\MovimientoEntradaSinClub\Auditoria.cshtml" />
+    <Content Include="Views\MovimientoEntradaSinClub\Create.cshtml" />
+    <Content Include="Views\MovimientoEntradaSinClub\Details.cshtml" />
+    <Content Include="Views\MovimientoEntradaSinClub\Index.cshtml" />
+    <Content Include="Views\Informe\Balance_SeleccionFecha.cshtml" />
+    <Content Include="Views\Informe\Balance_Informe.cshtml" />
+    <Content Include="Views\Torneo\Finalizar.cshtml" />
+    <Content Include="Views\Noticia\Index.cshtml" />
+    <Content Include="Views\Noticia\Create.cshtml" />
+    <Content Include="Views\Public\PosicionesSinGoles.cshtml" />
+    <Content Include="Views\Jornada\VerificarResultados.cshtml" />
+    <Content Include="Views\Zona\PartidosPostergadosOSuspendidos.cshtml" />
+    <Content Include="Views\Club\CargarEscudo.cshtml" />
+    <Content Include="Views\Partido\CargarGoleadores.cshtml" />
+    <Content Include="Views\Partido\Details.cshtml" />
+    <Content Include="Views\Noticia\Edit.cshtml" />
+    <Content Include="Views\ParametroGlobal\Edit.cshtml" />
+    <Content Include="Views\Informe\MovimientosImpagos_Informe.cshtml" />
+    <Content Include="Views\Public\_PublicLayout.cshtml" />
+    <Content Include="Views\Public\_PublicSideBar.cshtml" />
+    <Content Include="Views\Public\Goleadores.cshtml" />
+    <Content Include="Views\Account\CambiarPassword.cshtml" />
+    <Content Include="Views\ParametroGlobal\DescargarBackupResultado.cshtml" />
+    <Content Include="Views\Publicidad\Edit.cshtml" />
+    <Content Include="Views\Publicidad\Index.cshtml" />
+    <Content Include="Views\Jugador\EditFotoDesdeArchivo.cshtml" />
+    <Content Include="Utilidades\Backup\credentials.json" />
+    <Content Include="Views\Informe\PagoCuotasPorMes_Informe.cshtml" />
+    <Content Include="Views\Sancion\Create.cshtml" />
+    <Content Include="Views\Sancion\Index.cshtml" />
+    <Content Include="Views\Public\Sanciones.cshtml" />
+    <Content Include="Views\Sancion\Edit.cshtml" />
+    <Content Include="Views\ConceptoInsumo\AgregarStock.cshtml" />
+    <Content Include="WebPublica\.gitignore" />
+    <Content Include="WebPublica\run-build-prod.bat" />
+    <Content Include="Utilidades\Backup\credentials.json.enc" />
+    <Content Include="Utilidades\Backup\token.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-user.enc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201802270301432_MigracionInicial.resx">
+      <DependentUpon>201802270301432_MigracionInicial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802270343277_SeedUsers.resx">
+      <DependentUpon>201802270343277_SeedUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802270346587_SeedTorneoTipos.resx">
+      <DependentUpon>201802270346587_SeedTorneoTipos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802270451343_TorneoActivoEnVezDeActiva.resx">
+      <DependentUpon>201802270451343_TorneoActivoEnVezDeActiva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802270452454_AnioEnumMapeadoConEFEnumLookUp.resx">
+      <DependentUpon>201802270452454_AnioEnumMapeadoConEFEnumLookUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802280224216_ZonasYCategorias.resx">
+      <DependentUpon>201802280224216_ZonasYCategorias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802280322556_FlasheEnLaAnterior.resx">
+      <DependentUpon>201802280322556_FlasheEnLaAnterior.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803020134294_LoQueSeImprimeEnElCarnet.resx">
+      <DependentUpon>201803020134294_LoQueSeImprimeEnElCarnet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803020135450_SeedTorneoTiposCorrectamente.resx">
+      <DependentUpon>201803020135450_SeedTorneoTiposCorrectamente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803020457286_LasZonasTienenEquipos.resx">
+      <DependentUpon>201803020457286_LasZonasTienenEquipos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803060103117_FechayLocalVisitante.resx">
+      <DependentUpon>201803060103117_FechayLocalVisitante.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803060119157_QuitarConvencionDeBorradoEnCascada.resx">
+      <DependentUpon>201803060119157_QuitarConvencionDeBorradoEnCascada.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803070022288_UsuarioEliasYMatias.resx">
+      <DependentUpon>201803070022288_UsuarioEliasYMatias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803070317475_EquipoLibreDeLaFecha.resx">
+      <DependentUpon>201803070317475_EquipoLibreDeLaFecha.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803080024261_EliminoLaGiladaDeLocalVisitanteYLaCambioPorJornada.resx">
+      <DependentUpon>201803080024261_EliminoLaGiladaDeLocalVisitanteYLaCambioPorJornada.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803080031105_Partido.resx">
+      <DependentUpon>201803080031105_Partido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803080348437_GolesEsStringParaElNoPresento.resx">
+      <DependentUpon>201803080348437_GolesEsStringParaElNoPresento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803080428314_ResultadoPartidoRequired.resx">
+      <DependentUpon>201803080428314_ResultadoPartidoRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804112323258_NombresDeLosEquiposSePuedenRepetir.resx">
+      <DependentUpon>201804112323258_NombresDeLosEquiposSePuedenRepetir.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804152109427_OrdenDeCategorias.resx">
+      <DependentUpon>201804152109427_OrdenDeCategorias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804180124195_Delegados.resx">
+      <DependentUpon>201804180124195_Delegados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804180138002_PasarDelegadosDeTablaClubATablaDelegado.resx">
+      <DependentUpon>201804180138002_PasarDelegadosDeTablaClubATablaDelegado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804180406069_regexDelegadoTelefono.resx">
+      <DependentUpon>201804180406069_regexDelegadoTelefono.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804182139332_NombreDelDelegadoSeRenombraADescripcion.resx">
+      <DependentUpon>201804182139332_NombreDelDelegadoSeRenombraADescripcion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804182341386_PasarDelegadosDeTablaClubATablaDelegadoConNombreCambiado.resx">
+      <DependentUpon>201804182341386_PasarDelegadosDeTablaClubATablaDelegadoConNombreCambiado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804182343167_LaDefinitivaDeLosDelegados.resx">
+      <DependentUpon>201804182343167_LaDefinitivaDeLosDelegados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804190239150_DelegadoEnEquipo.resx">
+      <DependentUpon>201804190239150_DelegadoEnEquipo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804190304198_DelegadoEnEquipoModificacion.resx">
+      <DependentUpon>201804190304198_DelegadoEnEquipoModificacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804190312469_CopiarDelegadosDelClubAlEquipo.resx">
+      <DependentUpon>201804190312469_CopiarDelegadosDelClubAlEquipo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804190348342_BorroDelegadosDeClubes.resx">
+      <DependentUpon>201804190348342_BorroDelegadosDeClubes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805070323306_TechoNullable.resx">
+      <DependentUpon>201805070323306_TechoNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805070505195_FechaPublicada.resx">
+      <DependentUpon>201805070505195_FechaPublicada.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806050332266_Finanzas.resx">
+      <DependentUpon>201806050332266_Finanzas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806120227267_SeedConceptosCuotaFichajeLibre.resx">
+      <DependentUpon>201806120227267_SeedConceptosCuotaFichajeLibre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806130436445_ValorDeLaCuota.resx">
+      <DependentUpon>201806130436445_ValorDeLaCuota.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806170104235_AgregarUsuarioAMovimiento.resx">
+      <DependentUpon>201806170104235_AgregarUsuarioAMovimiento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806170156308_MovimientoVigente.resx">
+      <DependentUpon>201806170156308_MovimientoVigente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806170230352_UsuarioAltaYUsuarioAnulacion.resx">
+      <DependentUpon>201806170230352_UsuarioAltaYUsuarioAnulacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806170242017_FechaAnulacionNullable.resx">
+      <DependentUpon>201806170242017_FechaAnulacionNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806180035348_PagosAuditoria.resx">
+      <DependentUpon>201806180035348_PagosAuditoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806190155291_MovimientoSalidaSinProveedor.resx">
+      <DependentUpon>201806190155291_MovimientoSalidaSinProveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807040520285_LocalYVisitanteSonNullablesEnLasJornadasParaReiniciarFechas.resx">
+      <DependentUpon>201807040520285_LocalYVisitanteSonNullablesEnLasJornadasParaReiniciarFechas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807091856426_MesEnLasCuotas.resx">
+      <DependentUpon>201807091856426_MesEnLasCuotas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807160641399_MovimientoEntradaConClub.resx">
+      <DependentUpon>201807160641399_MovimientoEntradaConClub.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807160711250_MovimientoEntradaSinClub.resx">
+      <DependentUpon>201807160711250_MovimientoEntradaSinClub.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807182149273_TorneoDuracion.resx">
+      <DependentUpon>201807182149273_TorneoDuracion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807182155110_SeedDuracionAperturaClausura.resx">
+      <DependentUpon>201807182155110_SeedDuracionAperturaClausura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807182219239_RenombrarDuracionAFormato.resx">
+      <DependentUpon>201807182219239_RenombrarDuracionAFormato.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807182244594_SeedTorneoFormato.resx">
+      <DependentUpon>201807182244594_SeedTorneoFormato.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807182248312_CorregirErrorPorEFLookup.resx">
+      <DependentUpon>201807182248312_CorregirErrorPorEFLookup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807190220462_ZonaTipo.resx">
+      <DependentUpon>201807190220462_ZonaTipo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807190221211_ZonaTipoEFLookup.resx">
+      <DependentUpon>201807190221211_ZonaTipoEFLookup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807190244505_ZonaTipoEFLookup1.resx">
+      <DependentUpon>201807190244505_ZonaTipoEFLookup1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807191700278_CadaEquipoPuedeJugarVariosTorneosRelampago.resx">
+      <DependentUpon>201807191700278_CadaEquipoPuedeJugarVariosTorneosRelampago.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808080015350_ElNombreDeLaZonaPuedeRepetirse.resx">
+      <DependentUpon>201808080015350_ElNombreDeLaZonaPuedeRepetirse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808080413368_EquiposLibresEInterzonalesEnJornadas.resx">
+      <DependentUpon>201808080413368_EquiposLibresEInterzonalesEnJornadas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808112025212_scriptParaNuevaImplementacionDeEquiposLibres.resx">
+      <DependentUpon>201808112025212_scriptParaNuevaImplementacionDeEquiposLibres.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808190421453_ElTorneoDeUnEquipoEsNullable.resx">
+      <DependentUpon>201808190421453_ElTorneoDeUnEquipoEsNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808190436059_FixtureDeLaZonaPublicadoBool.resx">
+      <DependentUpon>201808190436059_FixtureDeLaZonaPublicadoBool.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808190436539_TodosLosFixturePublicadosPorDefecto.resx">
+      <DependentUpon>201808190436539_TodosLosFixturePublicadosPorDefecto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901090115446_FechaFichajeEnJugadorEquipo.resx">
+      <DependentUpon>201901090115446_FechaFichajeEnJugadorEquipo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901090120034_SeedFechaFichajePrimeroEnero2018.resx">
+      <DependentUpon>201901090120034_SeedFechaFichajePrimeroEnero2018.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901100112308_SeAgreganLasNoticiasALaWebPublica.resx">
+      <DependentUpon>201901100112308_SeAgreganLasNoticiasALaWebPublica.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901100344461_SeAgregaLaOpcionDeElegirSiSeVenONoLosGolesAFavorSegunLaZona.resx">
+      <DependentUpon>201901100344461_SeAgregaLaOpcionDeElegirSiSeVenONoLosGolesAFavorSegunLaZona.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901122343262_SeAgregaResultadoVerificadoEnPartido.resx">
+      <DependentUpon>201901122343262_SeAgregaResultadoVerificadoEnPartido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901122345290_SeedTodosLosPartidosVerificados.resx">
+      <DependentUpon>201901122345290_SeedTodosLosPartidosVerificados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901131408287_ResultadosVerificadosANivelJornadaEnVezDeANivelPartido.resx">
+      <DependentUpon>201901131408287_ResultadosVerificadosANivelJornadaEnVezDeANivelPartido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901131422228_SeedTodosLosPartidosVerificadosEnTrue.resx">
+      <DependentUpon>201901131422228_SeedTodosLosPartidosVerificadosEnTrue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901140303247_SeAgregaElEscudoEnLosClubs.resx">
+      <DependentUpon>201901140303247_SeAgregaElEscudoEnLosClubs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901140332541_SeedEscudoArgentinaParaTodosLosClubes.resx">
+      <DependentUpon>201901140332541_SeedEscudoArgentinaParaTodosLosClubes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901150058445_SeedEscudoEdefiParaTodosLosClubes.resx">
+      <DependentUpon>201901150058445_SeedEscudoEdefiParaTodosLosClubes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901150146575_SeAgregaEntidadGoleador.resx">
+      <DependentUpon>201901150146575_SeAgregaEntidadGoleador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902010100170_SeCambiaNombreDePropertyTorneoDeActivoAPublicoOculto.resx">
+      <DependentUpon>201902010100170_SeCambiaNombreDePropertyTorneoDeActivoAPublicoOculto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902142107468_ElCuerpoDeLaNoticiaTieneExtension4000Caracteres.resx">
+      <DependentUpon>201902142107468_ElCuerpoDeLaNoticiaTieneExtension4000Caracteres.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902171810509_SeCreanParametrizacionesGlobales.resx">
+      <DependentUpon>201902171810509_SeCreanParametrizacionesGlobales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902171928102_ClaveIntAParametrizacionGlobal.resx">
+      <DependentUpon>201902171928102_ClaveIntAParametrizacionGlobal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902171944510_SeAgregaParametroValorPorDefectoDelConceptoFichaje.resx">
+      <DependentUpon>201902171944510_SeAgregaParametroValorPorDefectoDelConceptoFichaje.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902172001198_DescripcionEnParametrizacionGlobal.resx">
+      <DependentUpon>201902172001198_DescripcionEnParametrizacionGlobal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902172006234_AgregarDescripcionAConceptoDeFichajePorDefecto.resx">
+      <DependentUpon>201902172006234_AgregarDescripcionAConceptoDeFichajePorDefecto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902172159099_RenameParametroGlobal.resx">
+      <DependentUpon>201902172159099_RenameParametroGlobal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903080420049_ParametrosGlobalesEsUnaSolaFilaDeLaBDAhora.resx">
+      <DependentUpon>201903080420049_ParametrosGlobalesEsUnaSolaFilaDeLaBDAhora.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903080439058_RenameParametroGlobalEscudoEnBase64.resx">
+      <DependentUpon>201903080439058_RenameParametroGlobalEscudoEnBase64.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903080440323_SeedParametrosGlobales.resx">
+      <DependentUpon>201903080440323_SeedParametrosGlobales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904162304578_EquipoEnGoleador.resx">
+      <DependentUpon>201904162304578_EquipoEnGoleador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904242223366_MigracionDePruebaParaAzure.resx">
+      <DependentUpon>201904242223366_MigracionDePruebaParaAzure.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905082136478_SeedConceptos.resx">
+      <DependentUpon>201905082136478_SeedConceptos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905150212566_PruebaASPHostPortal.resx">
+      <DependentUpon>201905150212566_PruebaASPHostPortal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905150351260_PruebaASPHostPortal-2.resx">
+      <DependentUpon>201905150351260_PruebaASPHostPortal-2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905250925581_EliminoFotoDeJugadorDeLaBaseParaPasarlaAlDisco.resx">
+      <DependentUpon>201905250925581_EliminoFotoDeJugadorDeLaBaseParaPasarlaAlDisco.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905262136185_JugadorFueMigrado.resx">
+      <DependentUpon>201905262136185_JugadorFueMigrado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905272112330_JugadorEquipoFueMigrado.resx">
+      <DependentUpon>201905272112330_JugadorEquipoFueMigrado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905310037058_EliminoFotoClubDeBaseParaPonerlaEnFileSystem.resx">
+      <DependentUpon>201905310037058_EliminoFotoClubDeBaseParaPonerlaEnFileSystem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905310109216_DNIMaximoNueveDigitos.resx">
+      <DependentUpon>201905310109216_DNIMaximoNueveDigitos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905310120003_OptimizacionTablaJugadorMaxLengthProperties.resx">
+      <DependentUpon>201905310120003_OptimizacionTablaJugadorMaxLengthProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906092312341_Publicidad.resx">
+      <DependentUpon>201906092312341_Publicidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906092318380_UrlEnPublicidadNoEsRequerido.resx">
+      <DependentUpon>201906092318380_UrlEnPublicidadNoEsRequerido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906100311441_SeAgregaPosicionAPublicidad.resx">
+      <DependentUpon>201906100311441_SeAgregaPosicionAPublicidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906100321219_SeedPublicidadesDefault.resx">
+      <DependentUpon>201906100321219_SeedPublicidadesDefault.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908120158589_SeAgregaSancion.resx">
+      <DependentUpon>201908120158589_SeAgregaSancion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908140425207_SeEliminaVisibleDeSancion.resx">
+      <DependentUpon>201908140425207_SeEliminaVisibleDeSancion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908140440128_SancionesHabilitadasEnTorneo.resx">
+      <DependentUpon>201908140440128_SancionesHabilitadasEnTorneo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908160130395_SeAgregaFechaASancion.resx">
+      <DependentUpon>201908160130395_SeAgregaFechaASancion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908160136079_RenameSancionFechaADia.resx">
+      <DependentUpon>201908160136079_RenameSancionFechaADia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908221404192_CantFechasAdeudadasEnSanciones.resx">
+      <DependentUpon>201908221404192_CantFechasAdeudadasEnSanciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909011734026_SancionVisibleONo.resx">
+      <DependentUpon>201909011734026_SancionVisibleONo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910170439133_IndiceEnPartidoPorJornadaYCategoria.resx">
+      <DependentUpon>201910170439133_IndiceEnPartidoPorJornadaYCategoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912310600171_AgregarUsarioSoloPuedeFichar.resx">
+      <DependentUpon>201912310600171_AgregarUsarioSoloPuedeFichar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912312105585_SeAgregaStockAConceptosInsumo.resx">
+      <DependentUpon>201912312105585_SeAgregaStockAConceptosInsumo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004081538057_PruebaAppVeyor.resx">
+      <DependentUpon>202004081538057_PruebaAppVeyor.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>58657</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:58657/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup>
+    <PreBuildEvent>if $(ConfigurationName) == ASPHostPortal_Produccion call $(ProjectDir)WebPublica\run-build-prod.bat
+    </PreBuildEvent>
+  </PropertyGroup>
+  <Target Name="ContentsBeforeBuild" AfterTargets="BeforeBuild">
+    <ItemGroup>
+      <Content Include="WebPublica\dist\**" />
+    </ItemGroup>
+  </Target>
+  <Import Project="..\packages\Microsoft.VisualStudio.SlowCheetah.3.2.26\build\Microsoft.VisualStudio.SlowCheetah.targets" Condition="Exists('..\packages\Microsoft.VisualStudio.SlowCheetah.3.2.26\build\Microsoft.VisualStudio.SlowCheetah.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.VisualStudio.SlowCheetah.3.2.26\build\Microsoft.VisualStudio.SlowCheetah.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.VisualStudio.SlowCheetah.3.2.26\build\Microsoft.VisualStudio.SlowCheetah.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

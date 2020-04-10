@@ -1,0 +1,35 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.Enums
+@using LigaSoft.Models.ViewModels
+@model ClubVM
+
+@section Titulo {
+	Delegados de @Model.Nombre
+}
+
+@section CabeceraGrilla {
+
+	@(Html.YKN().Button("Volver")
+		.Color(BootstrapColorEnum.Danger)
+		.PullLeft()
+		.Label("Volver")
+		.OnClickRedirect("Index", "Club"))
+	
+	@(Html.YKN().Button("Crear")
+		.PullRight()
+		.Label("Nuevo delegado")
+		.OnClickRedirect("CrearDelegado", "Club", new Dictionary<string, string> { { "id", Model.Id.ToString() } }))
+}
+
+@(Html.YKN<DelegadoVM>().Grid()
+			.WithColumns(column =>
+			{
+				column.AddTextColumn(x => x.Descripcion);
+				column.AddTextColumn(x => x.Telefono);
+			})
+			.Actions(action =>
+			{
+				action.RedirectWithRowId("Editar", "Club", "EditarDelegado");
+			})
+			.DataSource($"/Club/DelegadosGrid/?clubId={Model.Id}")
+)

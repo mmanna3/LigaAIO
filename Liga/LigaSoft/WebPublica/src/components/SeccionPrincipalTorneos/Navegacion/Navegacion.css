@@ -1,0 +1,81 @@
+@value backgroundGradienteRojo, backgroundGradienteVerde, backgroundGradienteAzul from './../../../assets/styles/colors.css';
+@value col-6, col-12, col-md-4, col-md-12 from './../../../assets/styles/bootstrap.min.css';
+
+.cajaNavegacion {
+	height: 3em;
+	margin-top: 1em;
+	filter: drop-shadow(2px 4px 6px black);
+	cursor: pointer;
+}
+
+.texto {
+	font-weight: 600;
+	position: absolute;
+	top: 50%;
+	left: 7%;
+	right: 2%;
+	transform: translate(0, -52%);
+	font-size: 15px;
+	color: #ddd;
+	text-transform: capitalize;
+}
+
+.textoOpcion {
+	composes: texto;
+}
+
+.textoOpcionCentrado {
+	composes: textoOpcion;
+	left: 42%;
+}
+
+.cajaNavegacionRoja {
+	composes: cajaNavegacion;
+	composes: backgroundGradienteRojo;
+}
+
+.cajaNavegacionVerde {
+	composes: cajaNavegacion;
+	composes: backgroundGradienteVerde;
+}
+
+.cajaNavegacionAzul {
+	composes: cajaNavegacion;
+	composes: backgroundGradienteAzul;
+}
+
+.widthTorneoYZonaConFase {
+	composes: col-6 col-md-4;
+}
+
+.widthTorneoYZonaSinFase {
+	composes: col-6;
+}
+
+.widthOpcionConFase {
+	composes: col-6 col-md-12;
+}
+
+.widthOpcionSinFase {
+	composes: col-12;
+}
+
+.widthFase {
+	composes: col-6 col-md-4;
+}
+
+@media (min-width: 576px) {
+	.cajaNavegacion {
+		height: 4em;
+		margin-top: 0;
+		margin-bottom: 1em;
+	}
+
+	.texto {
+		font-size: 18px;
+	}
+
+	.textoOpcion {
+		left: 45%;
+	}
+}

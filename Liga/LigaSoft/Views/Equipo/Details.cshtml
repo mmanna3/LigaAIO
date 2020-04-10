@@ -1,0 +1,63 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.Enums
+@model LigaSoft.Models.ViewModels.EquipoVM
+
+@section Titulo{
+	Detalles del equipo
+}
+
+@using (Html.YKN().Form())
+{
+	<div class="row">
+		<div class="col-xs-6">
+			@Html.YKN().DisplayFor(x => x.Id)
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-6">
+			@Html.YKN().DisplayFor(x => x.Nombre)
+		</div>
+		<div class="col-xs-6">
+			@Html.YKN().DisplayFor(x => x.Club)
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-6">
+			@Html.YKN().DisplayFor(x => x.Delegado1)
+		</div>
+		<div class="col-xs-6">
+			@Html.YKN().DisplayFor(x => x.Delegado2)
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-6">
+			@Html.YKN().DisplayFor(x => x.Torneo)
+		</div>
+		<div class="col-xs-6">
+			@Html.YKN().DisplayFor(x => x.PrecioDeLaCuota)
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-6">
+			@Html.YKN().DisplayFor(x => x.CantidadFichados)
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			@Html.YKN().DisplayMultilineFor(x => x.Jugadores)
+		</div>
+	</div>
+
+	<div class="row form-footer">
+		<div class="col-sm-3">
+			@Html.YKN().BotonCancelar()
+		</div>
+		<div class="col-xs-3">
+			@(Html.YKN().Button("Imprimir")
+				  .Color(BootstrapColorEnum.Success)
+				  .FullWidth()
+				  .OnClickImprimir())
+		</div>
+	</div>
+}
+

@@ -1,0 +1,76 @@
+﻿@model LigaSoft.Models.ViewModels.PublicIndexVM
+
+<div class="row">
+	<div class="col-md-3 col-xs-1">
+	</div>
+	<div class="col-md-3 col-xs-5">
+		<a href="@Model.Publicidades.IzquierdaSuperiorUrl">
+			<img class="publicidad" src="@Model.Publicidades.IzquierdaSuperiorPath" alt="EDEFI" />
+		</a>				
+	</div>
+	<div class="col-md-3 col-xs-5">
+		<a href="@Model.Publicidades.DerechaSuperiorUrl">
+			<img class="publicidad" src="@Model.Publicidades.DerechaSuperiorPath" alt="EDEFI" />
+		</a>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3 col-xs-1">
+	</div>
+	<div class="col-md-3 col-xs-5">
+		<a href="@Model.Publicidades.IzquierdaInferiorUrl">
+			<img class="publicidad" src="@Model.Publicidades.IzquierdaInferiorPath" alt="EDEFI" />
+		</a>
+	</div>
+	<div class="col-md-3 col-xs-5">
+		<a href="@Model.Publicidades.DerechaInferiorUrl">
+			<img class="publicidad" src="@Model.Publicidades.DerechaInferiorPath" alt="EDEFI" />
+		</a>
+	</div>
+</div>
+
+
+<img class="center" src="../../Content/logo.png" alt="EDEFI" />
+<div style="padding-top: 2em;" class="row">
+	<div class="col-sm-offset-2 col-sm-8">
+		@foreach (var noticia in Model.Noticias)
+		{
+			<div><h3>@noticia.Titulo</h3><h5>@noticia.Fecha</h5></div>
+			<p class="cuerpo-noticia">@Html.Raw(noticia.Cuerpo)</p>
+			<hr />
+		}
+	</div>
+</div>
+
+<style>
+	.publicidad {
+		width: 250px;
+		padding-top: 2em;
+	}
+
+	@@media (max-width: 768px) {
+		.publicidad {
+			width: 150px;
+		}
+	}
+
+	.center {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		width: 200px;
+		padding-top: 5em;
+	}
+
+	.cuerpo-noticia a {
+		color: #4161e1 !important;
+		background-color: white;
+		text-decoration: underline;
+		font-weight: bold;
+	}
+
+	.cuerpo-noticia a:hover {
+		background-color: #4161e1 !important;
+		color: white !important;
+	}
+</style>

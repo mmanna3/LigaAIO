@@ -1,0 +1,30 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.ViewModels
+
+@section Titulo {
+	Jugadores
+}
+
+@section CabeceraGrilla {
+	@(Html.YKN<FicharNuevoJugadorVM>().Buscador(x => x.DNI))
+}
+
+@(Html.YKN<FicharNuevoJugadorVM>().Grid()
+		.WithColumns(column =>
+		{
+			column.AddTextColumn(x => x.DNI);
+			column.AddTextColumn(x => x.Nombre);
+			column.AddTextColumn(x => x.Apellido);
+			column.AddTextColumn(x => x.FechaNacimiento);
+})
+		.Actions(action =>
+		{
+			action.RedirectWithRowId("Detalles", "Jugador", "Details");
+			action.RedirectWithRowId("Editar", "Jugador", "Edit");
+			action.RedirectWithRowId("Cambiar foto (WebCam)", "Jugador", "EditFotoWebCam");
+			action.RedirectWithRowId("Cambiar foto (PC)", "Jugador", "EditFotoDesdeArchivo");
+			action.RedirectWithRowId("Fichar en otro equipo", "Jugador", "FicharEnOtroEquipo");
+			action.RedirectWithRowId("Eliminar de un equipo", "Jugador", "EliminarJugadorDeUnEquipo");
+		})
+		.DataSource("/Jugador/GetForGrid")
+)

@@ -1,0 +1,49 @@
+﻿@using LigaSoft.ExtensionMethods
+@model LigaSoft.Models.ViewModels.JornadaVM
+
+@section Titulo{
+	@Model.Titulo
+}
+
+@section Subtitulo{
+	@Model.Subtitulo
+}
+
+
+@using (Html.YKN().Form())
+{
+	@(Html.HiddenFor(x => x.FechaId))
+	for (int i = 0; i < Model.Partidos.Count; i++)
+	{
+		<div class="row">
+			<div class="col-sm-2">
+				@(Html.YKN().DisplayFor(x => x.Partidos[i].Categoria))
+			</div>
+			<div class="col-sm-2">
+				@(Html.YKN().DisplayFor(x => x.Partidos[i].GolesLocal))
+			</div>
+			<div class="col-sm-1">
+				VS
+			</div>
+			<div class="col-sm-2">
+				@(Html.YKN().DisplayFor(x => x.Partidos[i].GolesVisitante))
+			</div>
+		</div>
+		@(Html.HiddenFor(x => x.Partidos[i].Id))
+	}
+
+	if (!Model.ResultadosVerificadosBool)
+	{
+		<div class="col-sm-6">
+			@(Html.YKN().SiNoFor(x => x.ResultadosVerificadosBool))
+		</div>
+	}
+	else
+	{
+		<div class="col-sm-6">
+			@(Html.HiddenFor(x => x.ResultadosVerificadosBool))
+		</div>
+	}
+
+	{ Html.YKN().FooterGuardarCancelar(); }
+}

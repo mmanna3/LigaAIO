@@ -1,0 +1,19 @@
+﻿@using LigaSoft.ExtensionMethods
+@model LigaSoft.Models.ViewModels.ImportarJugadoresVM
+
+@section Titulo {
+	Importar jugadores
+}
+
+@using (Html.YKN().Form())
+{
+
+	@Html.HiddenFor(x => x.EquipoEnElQueLoEstoyFichandoId)
+
+	@Html.YKN().UploadFile(x => x.JugadoresZip).AcceptedExtension(".zip")
+
+	{
+		Html.YKN().FooterGuardarCancelar("Importar");
+	}
+}
+

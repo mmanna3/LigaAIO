@@ -1,0 +1,35 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.Enums
+@model LigaSoft.Models.ViewModels.ClubVM
+
+@section Titulo{
+	Editar club
+}
+
+@Html.YKNNonTyped().ValidationSummary()
+
+@using (Html.YKN().Form())
+{
+	@Html.HiddenFor(x => x.Id)
+
+	<div class="row">
+		<div class="col-sm-6">
+			@Html.YKN().EditorFor(x => x.Nombre)
+		</div>
+		<div class="col-sm-6">
+			@(Html.YKN().ComboFor(x => x.Techo).Values<Techo>())
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-6">
+			@Html.YKN().EditorFor(x => x.Direccion)
+		</div>
+		<div class="col-sm-6">
+			@Html.YKN().EditorFor(x => x.Localidad)
+		</div>
+	</div>
+
+	{ Html.YKN().FooterGuardarCancelar(); }
+}
+

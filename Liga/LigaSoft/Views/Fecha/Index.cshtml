@@ -1,0 +1,53 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.Enums
+@using LigaSoft.Models.ViewModels
+@model ZonaVM
+
+@section Titulo {
+	Fechas de la zona <span class="titulo-detacado">@Model.Nombre</span>
+}
+
+@section CabeceraGrilla {	
+	
+	@(Html.YKN().Button("Volver")
+		  .Color(BootstrapColorEnum.Danger)
+		  .PullLeft()
+		  .Label("Volver")
+		  .OnClickRedirect("ParentWithChild", new { parent = "Torneo", parentId = Model.TorneoId, controller = "Zona", action = "Index" })
+	)
+	
+	@(Html.YKN().Button("Crear")
+				.PullRight()
+				.Label("Nueva fecha")
+				.OnClickRedirect("ParentWithChild", new { parent = "Zona", parentId = Model.Id, controller = "Fecha", action = "Create" })
+	)
+}
+
+<script>
+	function PublicarQuitar(obj) {
+		$.ajax({
+			url: '/Fecha/PublicarQuitar',
+			type: "POST",
+			data: { id: obj.getAttribute('data-id') },
+			success: function () {
+				window.location.reload(false);
+			}
+		});
+	}
+</script>
+
+@(Html.YKN<FechaVM>().Grid()
+			.WithColumns(column =>
+			{
+				column.AddTextColumn(x => x.Numero);
+				column.AddTextColumn(x => x.DiaDeLaFecha);
+			})
+			.Actions(action =>
+			{
+				action.RedirectParentWithChildWithRowId("Detalles", new {parent = "Torneo", parentId = Model.Id, controller = "Fecha", action = "Details"});
+				action.RedirectParentWithChildWithRowId("Editar", new { parent = "Torneo", parentId = Model.Id, controller = "Fecha", action = "Edit" });
+				action.JavaScriptWithRowId("Publicar/Quitar", "PublicarQuitar");
+				action.RedirectWithRowIdAsParent("Jornadas", "Fecha", "Jornada", "Index");
+			})
+			.DataSource($"/Zona/{Model.Id}/Fecha/GetForGrid/")
+)

@@ -1,0 +1,4 @@
+.cajaFase {
+	composes: caja from './../../../../assets/styles/base.css';
+	composes: backgroundGradienteAzul from './../../../../assets/styles/colors.css';
+}

@@ -1,0 +1,252 @@
+﻿@using LigaSoft.Models.Enums
+@using LigaSoft.Models.ViewModels
+@using ZonaTipo = LigaSoft.Models.Enums.ZonaTipo
+@model PublicIndexVM
+
+<!-- Menu -->
+<div class="side-menu">
+
+	<nav class="navbar navbar-default" role="navigation">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<div class="brand-wrapper">
+				<!-- Hamburger -->
+				<button type="button" class="navbar-toggle">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<!-- Brand -->
+				<div class="brand-name-wrapper">
+					<a class="navbar-brand" href="/">
+						EDEFI
+					</a>
+					@*<span><a class="navbar-brand pull-right" tabindex="-1" href="http://www.facebook.com/ligaedefi">
+						<img width="18px;" heigh="auto" src="../../Content/fb-logo.png" alt="Facebook"/>
+					</a></span>*@
+				</div>				
+			</div>
+		</div>
+		<!-- Main Menu -->
+		<div class="side-menu-container">
+			<ul class="nav navbar-nav aniosPantallaChica" style="float: none !important;" id="anios">
+				<!-- Dropdown-->
+				@foreach (var anio in Model.Anios)
+				{
+					<li class="panel panel-default" id="dropdown">
+						<a data-toggle="collapse" href="#A@(anio.Anio)" id="Anio@(anio.Anio)Link">
+							<span style="color:green" class="fas fa-trophy"></span> @anio.Anio <span class="caret"></span>
+						</a>
+						<!-- Dropdown level 1 -->
+						<div id="A@(anio.Anio)" class="panel-collapse collapse">
+							<div class="panel-body">
+								<ul class="nav navbar-nav">									
+									@foreach (var torneo in anio.Torneos)
+									{
+										@SeccionTorneo(torneo)
+									}									
+								</ul>
+							</div>
+						</div>
+					</li>
+				}
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	</nav>
+
+</div>
+
+@helper SeccionTorneo(TorneoWebPublicaVM torneo)
+{
+	<li class="panel panel-default" id="dropdown">
+		<a data-toggle="collapse" href="#T@(torneo.Id)" id="Torneo@(torneo.Id)Link">
+			<span style="color:#4286f4" class="fas fa-trophy"></span> @torneo.TipoDesc <span class="caret"></span>
+		</a>
+		<!-- Dropdown level 1 -->
+		<div id="T@(torneo.Id)" class="panel-collapse collapse">
+			<div class="panel-body">
+				<ul class="nav navbar-nav">
+									
+					@if (torneo.Fomato.Equals(TorneoFormato.AperturaClausura))
+					{
+						@SeccionApertura(torneo)	
+						@SeccionClausura(torneo)
+						@SeccionAnual(torneo)
+					}
+					else if (torneo.Fomato.Equals(TorneoFormato.Relampago))
+					{
+						foreach (var zona in torneo.Zonas)
+						{
+							@SeccionZona(zona)
+						}
+					}
+				</ul>
+			</div>
+		</div>
+	</li>
+}
+
+
+@helper SeccionZona(ZonaVM zona)
+	{
+		<li class="panel panel-default" id="dropdown">
+			<a data-toggle="collapse" href="#Z@(zona.Id)" id="Zona@(zona.Id)Link">
+				<span style="color:#f4f142" class="fas fa-trophy"></span>Zona @zona.Nombre<span class="caret"></span>
+			</a>
+			<div id="Z@(zona.Id)" class="panel-collapse collapse">
+				<div class="panel-body">
+					<ul class="nav navbar-nav">
+						<li>
+							<a href="@Url.Action("Posiciones", "Public", new {id = zona.Id})">Posiciones</a>
+						</li>
+						<li>
+							<a href="@Url.Action("Jornadas", "Public", new {id = zona.Id})">Jornadas</a>
+						</li>
+						<li>
+							<a href="@Url.Action("Fixture", "Public", new {id = zona.Id})">Fixture</a>
+						</li>
+						<li>
+							<a href="@Url.Action("Clubes", "Public", new {id = zona.Id})">Clubes</a>
+						</li>
+						@if (zona.SancionesVisibles)
+						{
+							<li>
+								<a href="@Url.Action("Sanciones", "Public", new {id = zona.Id})">Sanciones</a>
+							</li>	
+						}
+						@*<li>
+							<a href="@Url.Action("Goleadores", "Public", new {id = zona.Id})">Goleadores</a>
+						</li>*@
+					</ul>
+				</div>
+			</div>
+		</li>
+}
+
+@helper SeccionZonaAnual(ZonaVM zona)
+{
+	<li class="panel panel-default" id="dropdown">
+		<a data-toggle="collapse" href="#Z@(zona.Id)Anual" id="Zona@(zona.Id)AnualLink">
+			<span style="color:#f4f142" class="fas fa-trophy"></span>Zona @zona.Nombre<span class="caret"></span>
+		</a>
+		<div id="Z@(zona.Id)Anual" class="panel-collapse collapse">
+			<div class="panel-body">
+				<ul class="nav navbar-nav">
+					<li>
+						<a href="@Url.Action("PosicionesAnual", "Public", new {idZonaApertura = zona.Id})">Posiciones</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</li>
+}
+
+@helper SeccionApertura(TorneoWebPublicaVM torneo)
+	{
+		<li class="panel panel-default" id="dropdown">
+			<a data-toggle="collapse" href="#Apertura@(torneo.Id)" id="Apertura@(torneo.Id)Link">
+				<span style="color:red" class="fas fa-trophy"></span> Apertura <span class="caret"></span>
+			</a>
+
+			<div id="Apertura@(torneo.Id)" class="panel-collapse collapse">
+				<div class="panel-body">
+					<ul class="nav navbar-nav">
+
+
+						@foreach (var zona in torneo.Zonas.Where(x => x.Tipo.Equals(ZonaTipo.Apertura)))
+						{
+							@SeccionZona(zona)
+						}
+					</ul>
+				</div>
+			</div>
+		</li>
+}
+
+@helper SeccionClausura(TorneoWebPublicaVM torneo)
+	{
+		<li class="panel panel-default" id="dropdown">
+			<a data-toggle="collapse" href="#Clausura@(torneo.Id)">
+				<span style="color:red" class="fas fa-trophy"></span> Clausura <span class="caret"></span>
+			</a>
+
+			<div id="Clausura@(torneo.Id)" class="panel-collapse collapse">
+				<div class="panel-body">
+					<ul class="nav navbar-nav">
+
+
+						@foreach (var zona in torneo.Zonas.Where(x => x.Tipo.Equals(ZonaTipo.Clausura)))
+						{
+							@SeccionZona(zona)
+						}
+
+					</ul>
+				</div>
+			</div>
+		</li>
+}
+
+@helper SeccionAnual(TorneoWebPublicaVM torneo)
+{
+	<li class="panel panel-default" id="dropdown">
+		<a data-toggle="collapse" href="#Anual@(torneo.Id)">
+			<span style="color:red" class="fas fa-trophy"></span> Anual <span class="caret"></span>
+		</a>
+		
+		<div id="Anual@(torneo.Id)" class="panel-collapse collapse">
+			<div class="panel-body">
+				<ul class="nav navbar-nav">					
+					@foreach (var zona in torneo.Zonas.Where(x => x.Tipo.Equals(ZonaTipo.Anual)))
+					{
+						@SeccionZonaAnual(zona)
+					}
+				</ul>
+			</div>
+		</div>
+	</li>
+}
+
+
+<script>
+	$(function () {
+		$("#@(Model.AnioSeleccionadoId)").click();
+		$("#@(Model.TorneoSeleccionadoId)").click();
+		$("#@(Model.AperturaClausuraSeleccionadoId)").click();
+		$("#@(Model.ZonaSeleccionadaId)").click();
+
+		$('.navbar-toggle').click(function () {
+			$('.navbar-nav').toggleClass('slide-in');			
+			$('.side-body').toggleClass('body-slide-in');			
+		});
+	});
+
+</script>
+
+<style>	
+	/*Todo esto es para que la barra sea scrolleable. Seguro se puede hacer mejor, pero ya fue.*/
+	@@media (max-width: 768px) {
+		.aniosPantallaChica {
+			overflow-y: scroll !important;
+			-webkit-overflow-scrolling: touch !important;
+			max-height: 1200px !important;
+			top: 0;
+			bottom: 0;
+		}
+	}
+
+	@@media (min-width: 769px) {
+		.barraLateralPantallaGrande {
+			position: fixed;
+			width: 250px;
+			overflow-y: scroll;
+			top: 0;
+			bottom: 0;
+		}
+
+		.contenidoPantallaGrande {
+			position: relative;
+			margin-left: 250px;
+		}	
+	}	
+</style>

@@ -1,0 +1,39 @@
+﻿@using LigaSoft.ExtensionMethods
+@model LigaSoft.Models.ViewModels.EquipoVM
+
+@section Titulo{
+	Crear Equipo
+}
+
+@using (Html.YKN().Form())
+{
+	@Html.HiddenFor(x => x.ClubId)
+
+	@Html.Hidden("Id", "0")
+
+	<div class="row">
+		<div class="col-sm-6">
+			@Html.YKN().EditorFor(x => x.Nombre)
+		</div>
+		<div class="col-sm-6">
+			@Html.YKN().ComboFor(x => x.TorneoId).Values(Model.TorneosParaCombo)
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-6">
+			@Html.YKN().ComboFor(x => x.Delegado1Id).Values(Model.Delegados)
+		</div>
+		<div class="col-sm-6">
+			@Html.YKN().ComboFor(x => x.Delegado2Id).Values(Model.Delegados)
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-6">
+			@Html.YKN().EditorFor(x => x.PrecioDeLaCuota)
+		</div>
+	</div>
+
+	{ Html.YKN().FooterGuardarCancelar(); }
+}
+

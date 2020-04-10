@@ -1,0 +1,47 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.Enums
+
+@model LigaSoft.Models.ViewModels.EditFotoJugadorDesdeArchivoVM
+
+@section Titulo{
+	Editar foto
+}
+
+@Scripts.Render("~/jpgcamerajs")
+
+@using (Html.YKN().Form())
+{
+	@Html.YKNNonTyped().ValidationSummary()
+	<div class="row">
+		<div class="col-sm-6">
+			@(Html.YKN().UploadFile(x => x.Foto)
+						.AcceptedExtension(".jpg")
+						.Label("Elegir foto del jugador"))
+		</div>
+		<div class="col-sm-6">
+			@Html.HiddenFor(x => x.DNI)
+			@Html.YKN().DisplayFor(x => x.DNI)
+			@Html.YKN().DisplayFor(x => x.Nombre)
+			@Html.YKN().DisplayFor(x => x.Apellido)
+			@Html.YKN().DisplayFor(x => x.FechaNacimiento)
+			@Html.HiddenFor(x => x.Id)
+		</div>
+	</div>
+
+	<div class='row form-footer'>
+		<div class='col-sm-offset-6 col-sm-3'>
+			@(Html.YKN().Button("Volver")
+				  .Color(BootstrapColorEnum.Danger)
+				  .FullWidth()
+				  .Label("Volver")
+				  .OnClickRedirect("Index", "Jugador"))
+		</div>
+		<div class='col-sm-3'>
+			@(Html.YKN().Button("Guardar")
+				  .Color(BootstrapColorEnum.Success)
+				  .FullWidth()
+				  .Submit()
+				  )
+		</div>
+	</div>
+}

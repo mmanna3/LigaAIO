@@ -1,0 +1,31 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.ViewModels
+
+@section Titulo {
+	Insumos
+}
+
+@section CabeceraGrilla {
+
+	@(Html.YKN().Button("Crear")
+		  .PullRight()
+		  .Label("Nuevo insumo")
+		  .OnClickRedirect("Create", "ConceptoInsumo"))
+
+	@(Html.YKN<ConceptoInsumoVM>().Buscador(x => x.Descripcion))
+}
+
+@(Html.YKN<ConceptoInsumoVM>().Grid()
+		.WithColumns(column =>
+		{
+			column.AddTextColumn(x => x.Descripcion);
+			column.AddTextColumn(x => x.Precio);
+			column.AddTextColumn(x => x.Stock);
+		})
+		.Actions(action =>
+		{
+			action.RedirectWithRowId("Editar", "ConceptoInsumo", "Edit");
+			action.RedirectWithRowId("Agregar stock", "ConceptoInsumo", "AgregarStock");
+		})
+		.DataSource("/ConceptoInsumo/GetForGrid")
+	  )

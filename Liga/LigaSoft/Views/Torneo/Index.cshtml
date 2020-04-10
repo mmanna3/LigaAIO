@@ -1,0 +1,60 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.ViewModels
+
+@section Titulo {
+	Torneos
+}
+
+@section CabeceraGrilla {
+
+	@(Html.YKN().Button("Crear")
+		  .PullRight()
+		  .Label("Nuevo Torneo")
+		  .OnClickRedirect("Create", "Torneo"))	
+}
+
+@(Html.YKN<TorneoVM>().Grid()
+		.WithColumns(column =>
+		{
+			column.AddTextColumn(x => x.Anio);
+			column.AddTextColumn(x => x.TipoDesc);
+			column.AddTextColumn(x => x.Formato);
+			column.AddTextColumn(x => x.Zonas);
+			column.AddTextColumn(x => x.Categorias);
+			column.AddTextColumn(x => x.VisibleEnWebPublica).Width(120);
+			column.AddTextColumn(x => x.SancionesHabilitadas).Width(120);
+		})
+		  .Actions(action =>
+		  {			  
+			  action.JavaScriptWithRowId("Publicar/Ocultar torneo", "PublicarOcultarTorneo");
+			  action.RedirectWithRowId("Finalizar torneo", "Torneo", "Finalizar");
+			  action.RedirectWithRowIdAsParent("Zonas", "Torneo", "Zona", "Index");
+			  action.RedirectWithRowIdAsParent("Categorías", "Torneo", "Categoria", "Index");
+			  action.JavaScriptWithRowId("Publicar/Ocultar sanciones", "PublicarOcultarSanciones");
+		  })
+		.DataSource("/Torneo/GetForGrid")
+	  )
+
+<script>
+	function PublicarOcultarTorneo(obj) {
+		$.ajax({
+			url: '/Torneo/PublicarOcultarTorneo',
+			type: "POST",
+			data: { id: obj.getAttribute('data-id') },
+			success: function () {
+				window.location.reload(false);
+			}
+		});
+	}
+
+	function PublicarOcultarSanciones(obj) {
+		$.ajax({
+			url: '/Torneo/PublicarOcultarSanciones',
+			type: "POST",
+			data: { id: obj.getAttribute('data-id') },
+			success: function () {
+				window.location.reload(false);
+			}
+		});
+	}
+</script>

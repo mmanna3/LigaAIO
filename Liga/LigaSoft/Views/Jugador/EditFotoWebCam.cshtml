@@ -1,0 +1,28 @@
+﻿@using LigaSoft.ExtensionMethods
+
+@model LigaSoft.Models.ViewModels.JugadorBaseVM
+
+@section Titulo{
+	Editar foto
+}
+
+@Scripts.Render("~/jpgcamerajs")
+
+
+@using (Html.YKN().Form())
+{
+	<div class="row">
+		<div class="col-sm-6">
+			@Html.YKN().WebCamFor(x => x.Foto)
+		</div>
+		<div class="col-sm-6">
+			@Html.HiddenFor(x => x.DNI)
+			@Html.YKN().DisplayFor(x => x.DNI)
+			@Html.YKN().DisplayFor(x => x.Nombre)
+			@Html.YKN().DisplayFor(x => x.Apellido)
+			@Html.YKN().DisplayFor(x => x.FechaNacimiento)
+		</div>
+	</div>
+
+	{ Html.YKN().FooterGuardarCancelar(); }
+}

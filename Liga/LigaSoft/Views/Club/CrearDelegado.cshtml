@@ -1,0 +1,23 @@
+﻿@using LigaSoft.ExtensionMethods
+@model LigaSoft.Models.ViewModels.DelegadoVM
+
+@section Titulo{
+	Crear delegado de @Model.Club
+}
+
+@using (Html.YKN().Form())
+{
+	<div class="row">
+		<div class="col-sm-6">
+			@Html.YKN().EditorFor(x => x.Descripcion)
+		</div>
+		<div class="col-sm-6">
+			@Html.YKN().EditorFor(x => x.Telefono)
+		</div>
+	</div>
+
+	@Html.HiddenFor(x => x.ClubId)
+
+	{Html.YKN().FooterGuardarCancelar();}
+}
+

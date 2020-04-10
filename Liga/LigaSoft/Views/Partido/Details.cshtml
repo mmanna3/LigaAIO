@@ -1,0 +1,55 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.Enums
+@using Microsoft.Ajax.Utilities
+@model LigaSoft.Models.ViewModels.PartidoVM
+
+@section Titulo{
+	Detalles del Partido
+}
+
+@using (Html.YKN().Form())
+{
+	<div class="row">
+		<div class="col-sm-4">
+			@Html.YKN().DisplayFor(x => x.Local)
+		</div>
+		<div class="col-sm-4">
+			@Html.YKN().DisplayFor(x => x.Visitante)
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-4">
+			@Html.YKN().DisplayFor(x => x.GolesLocal)
+		</div>
+		<div class="col-sm-4">
+			@Html.YKN().DisplayFor(x => x.GolesVisitante)
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-3">
+			@Html.YKN().DisplayFor(x => x.Categoria)
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			@Html.YKN().DisplayMultilineFor(x => x.Goleadores)
+		</div>
+	</div>
+
+	@(Html.YKN().Button("CargarGoleadores")
+		.Color(BootstrapColorEnum.Primary)
+		.PullLeft()
+		.Label("Cargar goleadores")
+		.OnClickRedirect("ParentWithChild", new { parent = "Jornada", parentId = Model.JornadaId, controller = "Partido", action = "CargarGoleadores", id = Model.Id.ToString() }))
+
+	<div class='row form-footer'>
+		<div class='col-sm-offset-9 col-sm-3'>
+			@(Html.YKN().Button("Volver")
+				  .Color(BootstrapColorEnum.Danger)
+				  .FullWidth()
+				  .Label("Volver")
+				  .OnClickRedirect("Details", "Jornada", new Dictionary<string, string>{{"Id", Model.JornadaId.ToString()}})
+				  )
+		</div>
+	</div>
+}

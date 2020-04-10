@@ -1,0 +1,58 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.Enums
+@model LigaSoft.Models.ViewModels.DatosDeEquiposVM
+
+@section Titulo{
+	@Model.Titulo
+}
+
+@section CabeceraGrilla{
+	@(Html.YKN().Button("Imprimir")
+		  .PullLeft()
+					.Color(BootstrapColorEnum.Success)
+					.OnClickImprimir())
+}
+
+	<div class="container pull-left">
+		<table class="table tabla-posiciones">
+			<thead>
+				<tr>
+					<th>Equipo</th>
+					<th>Localidad</th>
+					<th>Dirección</th>
+					<th>Techo</th>
+					<th>Delegado 1</th>
+					<th>Teléfono 1</th>
+					<th>Delegado 2</th>
+					<th>Teléfono 2</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var renglon in Model.Renglones)
+				{
+					<tr>
+						<td>@renglon.Equipo</td>
+						<td>@renglon.Localidad</td>
+						<td>@renglon.Direccion</td>
+						<td>@renglon.Techo</td>
+						<td>@renglon.Delegado1</td>
+						<td>@renglon.Telefono1</td>
+						<td>@renglon.Delegado2</td>
+						<td>@renglon.Telefono2</td>					
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+
+<div class='row form-footer'>
+	<div class='col-sm-offset-9 col-sm-3'>
+		@(Html.YKN().Button("Volver")
+			  .Color(BootstrapColorEnum.Danger)
+			  .FullWidth()
+			  .Label("Volver")
+			  .OnClickRedirect("ParentWithChild", new { parent = "Torneo", parentId = Model.TorneoId, controller = "Zona", action = "Index", id = Model.ZonaId })
+			  )
+	</div>
+</div>
+

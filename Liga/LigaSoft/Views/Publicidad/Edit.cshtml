@@ -1,0 +1,29 @@
+﻿@using LigaSoft.ExtensionMethods
+@model LigaSoft.Models.ViewModels.PublicidadVM
+
+@section Titulo{
+	Editar publicidad
+}
+
+@Html.YKNNonTyped().ValidationSummary()
+
+@using (Html.YKN().Form())
+{
+	@Html.HiddenFor(x => x.Id)
+
+	<div class="row">
+		<div class="col-sm-6">
+			@Html.YKN().EditorFor(x => x.Titulo)
+		</div>
+		<div class="col-sm-6">
+			@Html.YKN().EditorFor(x => x.Url)
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			@Html.YKN().BrowseFileFor(x => x.ImagenNueva)
+		</div>
+	</div>	
+
+	{ Html.YKN().FooterGuardarCancelar(); }
+}

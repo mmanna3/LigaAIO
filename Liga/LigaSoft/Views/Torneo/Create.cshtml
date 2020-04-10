@@ -1,0 +1,23 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.Enums
+@model LigaSoft.Models.ViewModels.TorneoVM
+
+@section Titulo{
+	Crear torneo
+}
+
+@using (Html.YKN().Form())
+{
+	<div class="row">
+		<div class="col-sm-6">
+			@Html.YKN().ComboFor(x => x.TipoId).Values(Model.Tipos)
+		</div>
+		<div class="col-sm-6">
+			@(Html.YKN().ComboFor(x => x.Anio)
+						.Values<Anio>())
+		</div>
+	</div>
+
+	{Html.YKN().FooterGuardarCancelar();}
+}
+

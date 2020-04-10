@@ -1,0 +1,24 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.ViewModels
+@model EliminarJugadorDeUnEquipoVM
+
+@section Titulo{
+	Eliminar jugador de un equipo
+}
+
+@using (Html.YKN().Form())
+{
+	@Html.HiddenFor(x => x.JugadorId)
+
+	<div class="row">
+		<div class="col-sm-12">
+			@(Html.YKN().Autocomplete_Old_Cambiar_PorNuevoAutocompleteFor(x => x.EquipoId)
+				  .Label("Ingresar el nombre del equipo")
+				  .Url("Jugador", "EliminarJugadorDeUnEquipoAutocomplete")
+				  .AddParam("jugadorId", Model.JugadorId.ToString())
+			)
+		</div>
+	</div>
+
+	{ Html.YKN().FooterGuardarCancelar(); }
+}

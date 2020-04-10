@@ -1,0 +1,60 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.Enums
+@model LigaSoft.Models.ViewModels.MovimientoEntradaConClubVM
+
+@section Titulo{
+	<span class="titulo-detacado">@Model.Club</span>: Crear movimiento libre
+}
+
+@using (Html.YKN().Form("Create", "MovimientoEntradaConClub"))
+{
+	@Html.YKNNonTyped().ValidationSummary()
+
+	<div class="row">
+		<div class="col-sm-6">
+			@Html.YKN().DatePickerFor(x => x.Fecha).DefaultEsHoy()
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-4">
+			@(Html.YKN().EditorFor(x => x.Cantidad)
+								  .OnChange("OnCantidadChange()"))
+		</div>
+		<div class="col-sm-4">
+			@(Html.YKN().EditorFor(x => x.PrecioUnitario)
+						  .OnChange("OnPrecioUnitarioChange()"))
+		</div>
+		<div class="col-sm-4">
+			@(Html.YKN().EditorFor(x => x.Total)
+								  .Disabled())
+		</div>
+	</div>
+	<div>
+		<div class="col-sm-8">
+			@Html.YKN().TextAreaFor(x => x.Comentario)
+		</div>
+	</div>
+
+	@Html.HiddenFor(x => x.ClubId)
+	@Html.HiddenFor(x => x.ConceptoId, new { Value = (int)ConceptoTipoEnum.Libre })
+	@Html.HiddenFor(x => x.Tipo)
+
+	{ Html.YKN().FooterGuardarCancelar(); }
+}
+
+<script>
+	function OnCantidadChange() {
+		CalcularTotal();
+	}
+
+	function OnPrecioUnitarioChange() {
+		CalcularTotal();
+	}
+
+	function CalcularTotal() {
+		var cantidad = $('#Cantidad').val();
+		var precioUnitario = $('#PrecioUnitario').val();
+		var total = cantidad * precioUnitario;
+		$('#Total').val(total);
+	}
+</script>

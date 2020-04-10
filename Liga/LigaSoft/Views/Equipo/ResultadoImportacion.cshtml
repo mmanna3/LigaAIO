@@ -1,0 +1,12 @@
+﻿@using LigaSoft.ExtensionMethods
+@model LigaSoft.Models.ViewModels.ResultadoImportacionJugadores
+
+@section Titulo {
+	Resultado de importación en el equipo @Model.Equipo
+}
+
+@Html.YKN().DisplayMultilineFor(x => x.Resultado)
+
+@{
+	Html.YKN().FooterVolver();
+}

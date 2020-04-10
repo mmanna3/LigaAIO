@@ -1,0 +1,25 @@
+﻿@using LigaSoft.ExtensionMethods
+@model LigaSoft.Models.ViewModels.JugadorBaseVM
+
+@section Titulo{
+	Editar Jugador
+}
+
+@using (Html.YKN().Form())
+{
+	<div class="row">
+		<div class="col-sm-6">
+			<img src="@Model.Foto" alt="foto">
+		</div>
+		<div class="col-sm-6"> 
+			@Html.YKN().EditorFor(x => x.DNI)
+			@Html.YKN().EditorFor(x => x.Nombre)
+			@Html.YKN().EditorFor(x => x.Apellido)
+			@Html.YKN().DatePickerFor(x => x.FechaNacimiento)
+			@Html.HiddenFor(x => x.Foto)
+			@*@Html.YKN().DisplayFor(x => x.CarnetImpreso)*@
+		</div>
+	</div>	
+
+	{ Html.YKN().FooterGuardarCancelar(); }
+}

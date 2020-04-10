@@ -1,0 +1,19 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.Enums
+@model LigaSoft.Models.ViewModels.TorneoVM
+
+@section Titulo{
+	Finalizar torneo
+}
+
+<div class="panel panel-danger">
+	<div class="panel-heading">¡Atención! Al hacer click en FINALIZAR TORNEO, todos los equipos del torneo quedarán libres y el torneo quedará inactivo. De todas formas, las fechas cargadas no se modificarán.</div>
+</div>	
+
+@using (Html.YKN().Form("FinalizarPost", "Torneo"))
+{
+	@Html.HiddenFor(x => x.Id)
+
+	{Html.YKN().FooterGuardarCancelar("Finalizar torneo");}
+}
+

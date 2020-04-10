@@ -1,0 +1,29 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.Enums
+@model LigaSoft.Models.ViewModels.TorneoTipoVM
+
+@section Titulo{
+	Crear tipo de torneo
+}
+
+@using (Html.YKN().Form())
+{
+	<div class="row">
+		<div class="col-sm-6">
+			@Html.YKN().EditorFor(x => x.Descripcion)
+		</div>
+		<div class="col-sm-6">
+			@Html.YKN().EditorFor(x => x.ValidezDelCarnetEnAnios)
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-6">
+			@Html.YKN().EditorFor(x => x.LoQueSeImprimeEnElCarnet)
+		</div>
+		<div class="col-sm-6">
+			@(Html.YKN().ComboFor(x => x.Formato).Values<TorneoFormato>())
+		</div>
+	</div>
+
+	{Html.YKN().FooterGuardarCancelar();}
+}

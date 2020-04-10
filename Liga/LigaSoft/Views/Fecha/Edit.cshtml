@@ -1,0 +1,86 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.Enums
+@model LigaSoft.Models.ViewModels.EditarFechaVM
+
+@section Titulo{
+	@Model.Titulo
+}
+
+@using (Html.YKN().Form())
+{
+	@Html.HiddenFor(x => x.Id)
+	@Html.HiddenFor(x => x.ZonaId)
+	@Html.HiddenFor(x => x.CantidadDeJornadas)
+
+	@Html.YKNNonTyped().ValidationSummary()
+
+	<div class="panel panel-danger">
+		<div class="panel-heading">¡Atención! Al hacer click en GUARDAR, la fecha se reiniciará y se borrarán todos los resultados cargados.</div>
+	</div>	
+
+	<div class="row">
+		<div class="col-sm-6">
+			@Html.YKN().DatePickerFor(x => x.DiaDeLaFecha)
+		</div>		
+		<div class="col-sm-6" style="padding-top: 25px;">		
+			@(Html.YKN().Button("ReiniciarFecha")
+				  .Color(BootstrapColorEnum.Danger)
+				  .Label("Reiniciar fecha (se borrarán todas las jornadas y partidos)")
+				  .OnClick("reiniciarFecha()")
+			)
+		</div>
+	</div>
+
+	<div class="row" style="padding-bottom: 20px;">
+		@Html.YKN().DisplayFor(x => x.EquiposDeLaZona)
+	</div>
+
+	<div class="row">
+		<div class="col-sm-5" style="padding-bottom: 20px; font-weight: bold;">
+			LOCAL
+		</div>
+		<div class="col-sm-1">
+		</div>
+		<div class="col-sm-5" style="padding-bottom: 20px; font-weight: bold;">
+			VISITANTE
+		</div>
+	</div>
+
+	for (int i = 0; i < Model.CantidadDeJornadas; i++)
+	{
+		<div class="row">
+			<div class="col-sm-5" style="padding-bottom: 10px;">
+				@(Html.YKN().Autocomplete($"L{i}")
+								.JsonSource(Model.EquiposDeLaZonaJson)
+								.Default(Model.LocalesDefault.ElementAt(i))
+								.HiddenId($"Locales[{i}]")
+				)
+			</div>
+			<div class="col-sm-1" style="padding-top: 6px;">
+				VS
+			</div>
+			<div class="col-sm-5">
+				@(Html.YKN().Autocomplete($"V{i}")
+								.JsonSource(Model.EquiposDeLaZonaJson)
+								.Default(Model.VisitantesDefault.ElementAt(i))
+								.HiddenId($"Visitantes[{i}]")
+				)
+			</div>
+		</div>
+	}
+
+	{ Html.YKN().FooterGuardarCancelar(); }
+}
+
+<script>
+	function reiniciarFecha() {
+		$.ajax({
+			url: '/Fecha/Reiniciar',
+			type: "POST",
+			data: { id: $('#Id').val() },
+			success: function () {
+				window.location.reload(false);
+			}
+		});
+	}
+</script>

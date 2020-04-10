@@ -1,0 +1,27 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.ViewModels
+
+@section Titulo {
+	Tipos de torneos
+}
+
+@section CabeceraGrilla {
+
+	@(Html.YKN().Button("Crear")
+		  .PullRight()
+		  .Label("Nuevo tipo de torneo")
+		  .OnClickRedirect("Create", "TorneoTipo"))
+
+	@(Html.YKN<TorneoTipoVM>().Buscador(x => x.Descripcion))	
+}
+
+@(Html.YKN<TorneoTipoVM>().Grid()
+		.WithColumns(column =>
+		{
+			column.AddTextColumn(x => x.Descripcion);
+			column.AddTextColumn(x => x.LoQueSeImprimeEnElCarnet);
+			column.AddTextColumn(x => x.ValidezDelCarnetEnAnios);
+			column.AddTextColumn(x => x.FormatoDesc);
+		})
+		.DataSource("/TorneoTipo/GetForGrid")
+	  )

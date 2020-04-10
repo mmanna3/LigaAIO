@@ -1,0 +1,52 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.Enums
+@model LigaSoft.Models.ViewModels.PublicIndexVM
+
+
+<h1>@Model.Jornadas.Titulo</h1>
+
+	@foreach (var jornadasPorFecha in Model.Jornadas.JornadasPorFecha)
+	{
+		if (jornadasPorFecha.PublicadaBool)	//NO TE OLVIDES
+		{
+			<div class="container pull-left">
+				<h3>Fecha @jornadasPorFecha.FechaNumero</h3>
+				<table class="table tabla-posiciones">
+					<thead>
+					<tr>
+						<th></th>
+						<th>Equipo</th>
+						@foreach (var categoria in Model.Jornadas.Categorias)
+						{
+							<th>@categoria.Nombre</th>
+						}
+						<th>T.P.</th>
+						<th>P.J.</th>
+						<th>V</th>
+					</tr>
+					</thead>
+					<tbody>
+					@for (var i = 0; i < jornadasPorFecha.Renglones.Count; i++)
+					{
+						var renglon = jornadasPorFecha.Renglones[i];
+						var rowColor = i % 2 == 0 ? "gainsboro" : "white";
+
+						<tr style="background-color: @rowColor">
+							<td>@renglon.JornadaNumero</td>
+							<td>@renglon.Equipo</td>
+
+							@foreach (var resultado in renglon.ResultadosPorCategorias)
+							{
+								<td>@resultado.Goles</td>
+							}
+							<td>@renglon.PuntosTotales</td>
+							<td>@renglon.PartidosJugados</td>
+							<td>@renglon.PartidoVerificado</td>
+						</tr>
+					}
+					</tbody>
+				</table>			
+			</div>		
+		}
+	}
+

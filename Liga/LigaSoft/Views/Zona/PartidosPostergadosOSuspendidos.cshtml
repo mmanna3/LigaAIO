@@ -1,0 +1,45 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.Enums
+@model LigaSoft.Models.ViewModels.PartidosPostergadosOSuspendidosVM
+
+@section Titulo{
+	@Model.Titulo
+}
+
+@section CabeceraGrilla{
+	@(Html.YKN().Button("Imprimir")
+		  .PullLeft()
+					.Color(BootstrapColorEnum.Success)
+					.OnClickImprimir())
+}
+
+	<div class="container pull-left">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Fecha</th>
+					<th>Categoría</th>
+					<th>Local</th>
+					<th>Visitante</th>
+					<th>Estado</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var renglon in Model.Renglones)
+				{
+					<tr>
+						<td>@renglon.Fecha</td>
+						<td>@renglon.Categoria</td>
+						<td>@renglon.Local</td>
+						<td>@renglon.Visitante</td>
+						<td>@renglon.PostergadoOSuspendido</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+
+<div class="row">
+	@{ Html.YKN().FooterVolver(); }
+</div>
+

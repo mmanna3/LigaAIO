@@ -1,0 +1,34 @@
+﻿@model LigaSoft.Models.ViewModels.PublicIndexVM
+
+	
+	<h1 style="padding-bottom: 1em;">@Model.Goleadores.Titulo</h1>
+
+@foreach (var goleadoresCategoriaVM in Model.Goleadores.GoleadoresPorCategoria)
+{
+	<div class="container pull-left">
+		<h3>@goleadoresCategoriaVM.Titulo</h3>
+		<table class="table tabla-posiciones">
+			<thead>
+			<tr>
+				<th>Jugador</th>
+				<th>Equipo</th>
+				<th>Goles</th>
+			</tr>
+			</thead>
+			<tbody>
+			@foreach (var renglon in goleadoresCategoriaVM.Renglones)
+			{
+				<tr>
+					<td>@renglon.Jugador</td>
+					<td>@renglon.Equipo</td>
+					<td>@renglon.Goles</td>
+				</tr>
+			}
+			</tbody>
+		</table>
+	</div>
+}
+
+
+
+

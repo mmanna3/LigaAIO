@@ -1,0 +1,27 @@
+﻿@using LigaSoft.ExtensionMethods
+@model LigaSoft.Models.ViewModels.FechaDetailsVM
+
+@section Titulo{
+	@Model.Titulo
+}
+
+@using (Html.YKN().Form())
+{
+	<div class="row">
+		<div class="col-sm-6">
+			@Html.YKN().DisplayFor(x => x.DiaDeLaFecha)
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-6">
+			@Html.YKN().DisplayFor(x => x.Publicada)
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			@Html.YKN().DisplayMultilineFor(x => x.Jornadas)
+		</div>
+	</div>
+
+	{ Html.YKN().FooterVolver(); }
+}

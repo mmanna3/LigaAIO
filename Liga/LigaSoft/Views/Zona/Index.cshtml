@@ -1,0 +1,44 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.Enums
+@using LigaSoft.Models.ViewModels
+@model TorneoVM
+
+@section Titulo {
+	Zonas de <span class="titulo-detacado">@Model.Descripcion()</span>
+}
+
+@section CabeceraGrilla {
+
+	@(Html.YKN().Button("Volver")
+		  .Color(BootstrapColorEnum.Danger)
+		  .PullLeft()
+		  .Label("Volver")
+		  .OnClickRedirect("Index", "Torneo"))
+
+	@(Html.YKN().Button("Crear")
+				.PullRight()
+				.Label("Nueva zona")
+				.OnClickRedirect("ParentWithChild", new { parent = "Torneo", parentId = Model.Id, controller = "Zona", action = "Create" })
+	)
+}
+
+@(Html.YKN<ZonaVM>().Grid()
+			.WithColumns(column =>
+			{
+				column.AddTextColumn(x => x.Nombre);
+				column.AddTextColumn(x => x.TipoDesc);
+			})
+			.Actions(action =>
+			{
+				action.RedirectParentWithChildWithRowId("Equipos", new { parent = "Torneo", parentId = Model.Id, controller = "Zona", action = "ModificarEquipos"});
+				action.RedirectParentWithChildWithRowId("Editar", new { parent = "Torneo", parentId = Model.Id, controller = "Zona", action = "Edit" });
+				action.RedirectWithRowIdAsParent("Fechas", "Zona", "Fecha", "Index");
+				action.RedirectParentWithChildWithRowId("Tablas", new { parent = "Torneo", parentId = Model.Id, controller = "Zona", action = "Tablas" });
+				action.RedirectParentWithChildWithRowId("Fixture", new { parent = "Torneo", parentId = Model.Id, controller = "Zona", action = "Fixture" });
+				action.RedirectParentWithChildWithRowId("Resumen de jornadas", new { parent = "Torneo", parentId = Model.Id, controller = "Zona", action = "ResumenDeJornadas" });
+				action.RedirectParentWithChildWithRowId("Datos de equipos", new { parent = "Torneo", parentId = Model.Id, controller = "Zona", action = "DatosDeEquipos" });
+				action.RedirectParentWithChildWithRowId("Partidos postergados/suspendidos", new { parent = "Torneo", parentId = Model.Id, controller = "Zona", action = "PartidosPostergadosOSuspendidos" });
+				action.RedirectWithRowIdAsParent("Sanciones", "Zona", "Sancion", "Index");
+			})
+			.DataSource($"/Torneo/{Model.Id}/Zona/GetForGrid/")
+)

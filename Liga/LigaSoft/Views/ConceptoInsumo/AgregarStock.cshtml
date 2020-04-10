@@ -1,0 +1,28 @@
+﻿@using LigaSoft.ExtensionMethods
+@model LigaSoft.Models.ViewModels.ConceptoInsumoAgregarStockVM
+
+@section Titulo{
+	Agregar stock
+}
+
+@using (Html.YKN().Form())
+{
+	<div class="row">
+		<div class="col-sm-6">
+			@Html.YKN().DisplayFor(x => x.Descripcion)
+		</div>
+		<div class="col-sm-6">
+			@Html.YKN().DisplayFor(x => x.Precio)
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-6">
+			@Html.YKN().DisplayFor(x => x.Stock).Label("Stock actual")
+		</div>
+		<div class="col-sm-6">
+			@Html.YKN().EditorFor(x => x.StockASumar).Label("Stock a sumar")
+		</div>
+	</div>
+
+	{ Html.YKN().FooterGuardarCancelar(); }
+}
