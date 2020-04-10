@@ -65,7 +65,7 @@ namespace LigaSoft.Utilidades.Backup
 			var file = request.ResponseBody;
 
 			if (file.Id == null)
-				throw new Exception("Error al subir el archivo");
+				throw new Exception("Google Drive: Error al intentar subir el archivo");
 		}
 
 		public void DeleteFile(string fileId)
@@ -73,12 +73,11 @@ namespace LigaSoft.Utilidades.Backup
 			try
 			{
 				var request = _driveService.Files.Delete(fileId);
-				request.Execute(); //Los logs de este método no sirven. Necesito darme cuenta si pudo eliminar o no.
-				Log.Info($"Archivo de Drive eliminado con éxito. Id del archivo: {fileId}");
+				request.Execute();				
 			}
 			catch (Exception e)
 			{
-				Log.Error("Error al intentar eliminar archivo de Drive: " + e.Message);
+				throw new Exception("Google Drive: Error al intentar eliminar archivo", e);
 			}
 		}
 
@@ -94,7 +93,7 @@ namespace LigaSoft.Utilidades.Backup
 			}
 			catch (Exception e)
 			{
-				throw new Exception("Error al intentar listar archivos: ", e);
+				throw new Exception("Google Drive: Error al intentar listar archivos", e);
 			}
 		}
 	}

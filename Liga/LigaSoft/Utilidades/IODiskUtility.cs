@@ -135,7 +135,9 @@ namespace LigaSoft.Utilidades
 				using (var zip = new ZipFile())
 				{
 					zip.AddDirectory(imagenesPath);
+					Log.Info($"Se comprimió correctamente la carpeta '{imagenesPath}'.");
 					zip.Save(backupPath);
+					Log.Info($"Se guardó la carpeta comprimida en '{backupPath}'.");
 				}
 			}
 			catch (Exception ex)
