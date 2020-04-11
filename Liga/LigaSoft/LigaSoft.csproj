@@ -193,6 +193,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AdministracionDelegadosController.cs" />
     <Compile Include="Controllers\UsuarioDelegadoController.cs" />
     <Compile Include="Controllers\PublicoController.cs" />
     <Compile Include="Controllers\SancionController.cs" />
@@ -251,6 +252,10 @@
     <Compile Include="Migrations\202004111819396_ArreglaErrorDeTipeoEnCreacionDeTablaDeUsuarioSinConfirmar.cs" />
     <Compile Include="Migrations\202004111819396_ArreglaErrorDeTipeoEnCreacionDeTablaDeUsuarioSinConfirmar.Designer.cs">
       <DependentUpon>202004111819396_ArreglaErrorDeTipeoEnCreacionDeTablaDeUsuarioSinConfirmar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004112115122_CreacionDeRolDelegado.cs" />
+    <Compile Include="Migrations\202004112115122_CreacionDeRolDelegado.Designer.cs">
+      <DependentUpon>202004112115122_CreacionDeRolDelegado.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Dominio\UsuarioDelegadoSinConfirmar.cs" />
     <Compile Include="Models\Dominio\Sancion.cs" />
@@ -1498,6 +1503,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004111819396_ArreglaErrorDeTipeoEnCreacionDeTablaDeUsuarioSinConfirmar.resx">
       <DependentUpon>202004111819396_ArreglaErrorDeTipeoEnCreacionDeTablaDeUsuarioSinConfirmar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004112115122_CreacionDeRolDelegado.resx">
+      <DependentUpon>202004112115122_CreacionDeRolDelegado.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
