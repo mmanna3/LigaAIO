@@ -29,6 +29,11 @@ namespace LigaSoft.Controllers
 				return View(vm);
 			}
 
+			var model = new UsuarioDelegadoSinConfirmar();
+			VMM.MapForCreate(vm, model);
+		    Context.UsuariosDelegadosSinConfirmar.Add(model);
+		    Context.SaveChanges();
+
 		    return View("RegistroExitoso");
 	    }
 

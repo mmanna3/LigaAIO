@@ -12,7 +12,9 @@ namespace LigaSoft.ViewModelMappers
 
 		public override void MapForCreateAndEdit(UsuarioDelegadoSinConfirmarVM vm, UsuarioDelegadoSinConfirmar model)
 		{
-			throw new System.NotImplementedException();
+			model.Email = vm.Email;
+			model.Password = vm.Password;
+			model.ClubId = vm.ClubId;
 		}
 
 		public override UsuarioDelegadoSinConfirmarVM MapForEditAndDetails(UsuarioDelegadoSinConfirmar model)
