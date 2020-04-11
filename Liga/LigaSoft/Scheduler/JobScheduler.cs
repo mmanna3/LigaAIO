@@ -33,8 +33,7 @@ namespace LigaSoft.Scheduler
 						.RepeatForever())
 					.Build();
 
-				await scheduler.ScheduleJob(job, trigger);
-				Log.Info($"El backup se programó para: '{startTime.ToString(IODiskUtility.FormatoFechaBackup)}' (Buenos Aires: '{startTimeBuenosAires.ToString(IODiskUtility.FormatoFechaBackup)}')");
+				await scheduler.ScheduleJob(job, trigger);				
 			}
 			catch (SchedulerException se)
 			{
@@ -44,12 +43,28 @@ namespace LigaSoft.Scheduler
 
 		private static DateTimeOffset GetStartTime()
 		{
-			var dateTime = DateTimeOffset.Now;
+			DateTime fechaHoraComienzaBackupBsAs;
+			var fechaHoraActualEnBsAs = AhoraEnBuenosAires();
 
-			while (dateTime.Hour != 4)
-				dateTime = dateTime.AddHours(1);
+			if (fechaHoraActualEnBsAs.Hour > 4) //Si son más de las 4 de la mañana, agendarlo para mañana.
+			{
+				fechaHoraActualEnBsAs = fechaHoraActualEnBsAs.AddDays(1);
+				fechaHoraComienzaBackupBsAs = new DateTime(fechaHoraActualEnBsAs.Year, fechaHoraActualEnBsAs.Month, fechaHoraActualEnBsAs.Day, 4, 0, 0);
+			}				
+			else
+				fechaHoraComienzaBackupBsAs = new DateTime(fechaHoraActualEnBsAs.Year, fechaHoraActualEnBsAs.Month, fechaHoraActualEnBsAs.Day, 4, 0, 0);
 
-			return dateTime;
+
+			var result = new DateTimeOffset(fechaHoraComienzaBackupBsAs).ToLocalTime();
+
+			Log.Info($"Hora de comienzo de backup: - Buenos Aires: '{fechaHoraComienzaBackupBsAs.ToString(IODiskUtility.FormatoFechaBackup)}' - Servidor: '{result.ToString(IODiskUtility.FormatoFechaBackup)}' ");
+
+			return result;
+		}
+
+		private static DateTimeOffset AhoraEnBuenosAires()
+		{
+			return DateTimeOffset.UtcNow.ToOffset(new TimeSpan(-3, 0, 0));
 		}
 	}
 }
