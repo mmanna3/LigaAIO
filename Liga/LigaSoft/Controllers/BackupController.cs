@@ -9,9 +9,15 @@ namespace LigaSoft.Controllers
     {
 	    public JsonResult Generar()
 	    {
+		    Log.Info("------------------------------------------------");
+
 			new ImagenesGDriveBackupManager().GenerarYSubirAlDrive();
 
 		    new BaseDeDatosGDriveBackupManager().GenerarYSubirAlDrive();
+
+		    IODiskUtility.EliminarTodosLosArchivosDeAppData();
+
+		    Log.Info("------------------------------------------------");
 
 			return Json("", JsonRequestBehavior.AllowGet);
 		}

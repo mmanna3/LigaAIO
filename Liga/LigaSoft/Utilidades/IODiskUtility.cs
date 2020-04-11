@@ -125,8 +125,6 @@ namespace LigaSoft.Utilidades
 		// ReSharper disable AssignNullToNotNullAttribute
 		public static string ComprimirImagenesYPonerZipEnAppData()
 		{
-			EliminarArchivos(HostingEnvironment.MapPath("~/App_Data/"), "*.zip");
-
 			var imagenesPath = HostingEnvironment.MapPath($"~/{LocalPathConsts.Imagenes}");
 			var backupPath = HostingEnvironment.MapPath($"~/App_Data/Imagenes-{DateTime.Now.ToString(FormatoFechaBackup)}.zip");			
 
@@ -194,7 +192,6 @@ namespace LigaSoft.Utilidades
 					Log.Info($"Se comprimió correctamente el archivo '{bdBackupPathSinComprimir}'.");
 					zip.Save(backupBdComprimidoPath);
 					Log.Info($"Se guardó el archivo comprimido en '{backupBdComprimidoPath}'.");
-					EliminarArchivos(HostingEnvironment.MapPath("~/App_Data/"), "*.bak");
 				}
 			}
 			catch (Exception ex)
@@ -232,6 +229,11 @@ namespace LigaSoft.Utilidades
 
 			if (File.Exists(pathAnterior))
 				File.Move(pathAnterior, pathNuevo);
+		}
+
+		public static void EliminarTodosLosArchivosDeAppData()
+		{
+			EliminarArchivos(HostingEnvironment.MapPath("~/App_Data/"), "*.*");
 		}
 	}
 }

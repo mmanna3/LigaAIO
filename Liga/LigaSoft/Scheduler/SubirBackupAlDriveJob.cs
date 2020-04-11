@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using LigaSoft.Utilidades;
 using LigaSoft.Utilidades.Backup;
 using Quartz;
@@ -10,13 +11,22 @@ namespace LigaSoft.Scheduler
 		#pragma warning disable 1998
 		public async Task Execute(IJobExecutionContext context)
 		{
+			Log.Info("------------------------------------------------");
 			Log.Info("QUARTZ: Comienza el job SubirBackupAlDrive");
 
-			new ImagenesGDriveBackupManager().GenerarYSubirAlDrive();
-
-			new BaseDeDatosGDriveBackupManager().GenerarYSubirAlDrive();
+			try
+			{
+				new ImagenesGDriveBackupManager().GenerarYSubirAlDrive();
+				new BaseDeDatosGDriveBackupManager().GenerarYSubirAlDrive();
+				IODiskUtility.EliminarTodosLosArchivosDeAppData();
+			}
+			catch (Exception e)
+			{
+				YKNExHandler.LoguearYLanzarExcepcion(e, "Error en el job SubirBackupAlDrive");
+			}
 
 			Log.Info("QUARTZ: Finaliza el job SubirBackupAlDrive");
+			Log.Info("------------------------------------------------");
 		}
 	}
 }

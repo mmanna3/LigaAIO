@@ -1142,6 +1142,8 @@
     <Content Include="WebPublica\run-build-prod.bat" />
     <Content Include="Utilidades\Backup\credentials.json.enc" />
     <Content Include="Utilidades\Backup\token.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-user.enc" />
+    <Content Include="Utilidades\Backup\credentials.json" />
+    <Content Include="Utilidades\Backup\token.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-user" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

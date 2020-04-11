@@ -57,6 +57,7 @@ namespace LigaSoft.Utilidades.Backup
 				try
 				{
 					YKNDriveService.DeleteFile(files.First().Id);
+					Log.Info($"Se eliminó el backup de nombre '{files.First().Name}'.");
 				}
 				catch (Exception e)
 				{
