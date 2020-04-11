@@ -9,9 +9,9 @@ namespace LigaSoft.Controllers
     {
 	    public JsonResult Generar()
 	    {
-			GoogleDriveBackupManager.GenerarBackupBaseDeDatos();
+			new ImagenesGDriveBackupManager().GenerarYSubirAlDrive();
 
-			GoogleDriveBackupManager.GenerarBackupImagenes();		    
+		    new BaseDeDatosGDriveBackupManager().GenerarYSubirAlDrive();
 
 			return Json("", JsonRequestBehavior.AllowGet);
 		}

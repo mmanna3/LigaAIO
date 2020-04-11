@@ -181,6 +181,8 @@ namespace LigaSoft.Utilidades
 			var bdBackupPathSinComprimir = PathDelUltimoBackupBD();
 			if (bdBackupPathSinComprimir == null)
 				YKNExHandler.LoguearYLanzarExcepcion(new Exception(), "No hay backups de base de datos");
+			else
+				Log.Info($"El backup sin comprimir de la base está en: {bdBackupPathSinComprimir}.");
 
 			var backupBdComprimidoPath = HostingEnvironment.MapPath($"~/App_Data/BaseDeDatos-{DateTime.Now.ToString(FormatoFechaBackup)}.zip");
 
@@ -189,7 +191,9 @@ namespace LigaSoft.Utilidades
 				using (var zip = new ZipFile())
 				{
 					zip.AddFile(bdBackupPathSinComprimir);
+					Log.Info($"Se comprimió correctamente el archivo '{bdBackupPathSinComprimir}'.");
 					zip.Save(backupBdComprimidoPath);
+					Log.Info($"Se guardó el archivo comprimido en '{backupBdComprimidoPath}'.");
 					EliminarArchivos(HostingEnvironment.MapPath("~/App_Data/"), "*.bak");
 				}
 			}

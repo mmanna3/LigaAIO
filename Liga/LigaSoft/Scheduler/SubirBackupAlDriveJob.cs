@@ -14,7 +14,7 @@ namespace LigaSoft.Scheduler
 
 			new ImagenesGDriveBackupManager().GenerarYSubirAlDrive();
 
-			GoogleDriveBackupManager.GenerarBackupBaseDeDatos();
+			new BaseDeDatosGDriveBackupManager().GenerarYSubirAlDrive();
 
 			Log.Info("QUARTZ: Finaliza el job SubirBackupAlDrive");
 		}
