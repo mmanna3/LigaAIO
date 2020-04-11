@@ -52,7 +52,7 @@ namespace LigaSoft.Scheduler
 				fechaHoraComienzaBackupBsAs = new DateTime(fechaHoraActualEnBsAs.Year, fechaHoraActualEnBsAs.Month, fechaHoraActualEnBsAs.Day, 6, 0, 0);
 
 
-			var result = new DateTimeOffset(fechaHoraComienzaBackupBsAs).ToUniversalTime();
+			var result = new DateTimeOffset(fechaHoraComienzaBackupBsAs, new TimeSpan(-3, 0, 0));
 
 			Log.Info($"Hora de comienzo de backup: - Buenos Aires: '{fechaHoraComienzaBackupBsAs.ToString(IODiskUtility.FormatoFechaBackup)}' - UTC: '{result.ToString(IODiskUtility.FormatoFechaBackup)}' ");
 
