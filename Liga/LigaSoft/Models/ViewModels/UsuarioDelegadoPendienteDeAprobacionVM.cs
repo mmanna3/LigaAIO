@@ -29,5 +29,13 @@ namespace LigaSoft.Models.ViewModels
 		public int ClubId { get; set; }
 
 		public string Club { get; set; }
+
+		[YKNRequired, Display(Name = "Nombre")]
+		[StringLength(50, ErrorMessage = "El nombre debe tener al menos 3 caracteres.", MinimumLength = 3)]
+		public string Nombre { get; set; }
+
+		[YKNRequired, Display(Name = "Apellido")]
+		[StringLength(50, ErrorMessage = "El nombre debe tener al menos 3 caracteres.", MinimumLength = 3)]
+		public string Apellido { get; set; }
 	}
 }

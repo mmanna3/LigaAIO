@@ -8,6 +8,8 @@
 @(Html.YKN<UsuarioDelegadoPendienteDeAprobacionVM>().Grid()
 			.WithColumns(column =>
 			{
+				column.AddTextColumn(x => x.Nombre);
+				column.AddTextColumn(x => x.Apellido);
 				column.AddTextColumn(x => x.Email);
 				column.AddTextColumn(x => x.Club);
 			})

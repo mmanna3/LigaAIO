@@ -25,6 +25,15 @@
 				@Html.YKN().ComboFor(x => x.ClubId).Values(Model.ClubsParaCombo)
 			</div>
 		</div>
+		
+		<div class="row">
+			<div class="col-sm-6">
+				@Html.YKN().EditorFor(x => x.Nombre)
+			</div>
+			<div class="col-sm-6">
+				@Html.YKN().EditorFor(x => x.Apellido)
+			</div>
+		</div>
 
 		<div class="row">
 			<div class="col-sm-6">

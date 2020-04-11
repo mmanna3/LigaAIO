@@ -8,12 +8,20 @@ namespace LigaSoft.Models.Dominio
 		public int Id { get; set; }
 
 		[Column(TypeName = "VARCHAR")]
-		[MaxLength(100)]
+		[MaxLength(50)]
 		public string Email { get; set; }
 
 		[Column(TypeName = "VARCHAR")]
-		[MaxLength(100)]
+		[MaxLength(50)]
 		public string Password { get; set; }
+
+		[Column(TypeName = "VARCHAR")]
+		[MaxLength(50)]
+		public string Nombre { get; set; }
+
+		[Column(TypeName = "VARCHAR")]
+		[MaxLength(50)]
+		public string Apellido { get; set; }
 
 		[Required]
 		public int ClubId { get; set; }

@@ -16,6 +16,8 @@ namespace LigaSoft.ViewModelMappers
 			model.Email = vm.Email;
 			model.Password = vm.Password;
 			model.ClubId = vm.ClubId;
+			model.Nombre = vm.Nombre;
+			model.Apellido = vm.Apellido;
 		}
 
 		public override UsuarioDelegadoPendienteDeAprobacionVM MapForEditAndDetails(UsuarioDelegadoPendienteDeAprobacion model)
@@ -24,7 +26,9 @@ namespace LigaSoft.ViewModelMappers
 			{
 				Email = model.Email,
 				ClubId = model.ClubId,
-				Club = Context.Clubs.Single(x => x.Id == model.ClubId).Nombre
+				Club = Context.Clubs.Single(x => x.Id == model.ClubId).Nombre,
+				Apellido = model.Apellido,
+				Nombre = model.Nombre
 			};
 		}
 	}

@@ -261,6 +261,10 @@
     <Compile Include="Migrations\202004112221133_RenombraTablaAUsuarioDelegadoPendienteDeAprobacion.Designer.cs">
       <DependentUpon>202004112221133_RenombraTablaAUsuarioDelegadoPendienteDeAprobacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004112345036_AgregaNombreYApellidoAUsuarioDelegado.cs" />
+    <Compile Include="Migrations\202004112345036_AgregaNombreYApellidoAUsuarioDelegado.Designer.cs">
+      <DependentUpon>202004112345036_AgregaNombreYApellidoAUsuarioDelegado.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Dominio\UsuarioDelegadoPendienteDeAprobacion.cs" />
     <Compile Include="Models\Dominio\Sancion.cs" />
     <Compile Include="Models\TextValueItem.cs" />
@@ -1514,6 +1518,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004112221133_RenombraTablaAUsuarioDelegadoPendienteDeAprobacion.resx">
       <DependentUpon>202004112221133_RenombraTablaAUsuarioDelegadoPendienteDeAprobacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004112345036_AgregaNombreYApellidoAUsuarioDelegado.resx">
+      <DependentUpon>202004112345036_AgregaNombreYApellidoAUsuarioDelegado.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
