@@ -46,13 +46,13 @@ namespace LigaSoft.Scheduler
 			DateTime fechaHoraComienzaBackupBsAs;
 			var fechaHoraActualEnBsAs = AhoraEnBuenosAires();
 
-			if (fechaHoraActualEnBsAs.Hour > 4) //Si son más de las 4 de la mañana, agendarlo para mañana.
+			if (fechaHoraActualEnBsAs.Hour > 6) //Si son más de las 6 de la mañana, agendarlo para mañana.
 			{
 				fechaHoraActualEnBsAs = fechaHoraActualEnBsAs.AddDays(1);
-				fechaHoraComienzaBackupBsAs = new DateTime(fechaHoraActualEnBsAs.Year, fechaHoraActualEnBsAs.Month, fechaHoraActualEnBsAs.Day, 4, 0, 0);
+				fechaHoraComienzaBackupBsAs = new DateTime(fechaHoraActualEnBsAs.Year, fechaHoraActualEnBsAs.Month, fechaHoraActualEnBsAs.Day, 6, 0, 0);
 			}				
 			else
-				fechaHoraComienzaBackupBsAs = new DateTime(fechaHoraActualEnBsAs.Year, fechaHoraActualEnBsAs.Month, fechaHoraActualEnBsAs.Day, 4, 0, 0);
+				fechaHoraComienzaBackupBsAs = new DateTime(fechaHoraActualEnBsAs.Year, fechaHoraActualEnBsAs.Month, fechaHoraActualEnBsAs.Day, 6, 0, 0);
 
 
 			var result = new DateTimeOffset(fechaHoraComienzaBackupBsAs).ToLocalTime();
