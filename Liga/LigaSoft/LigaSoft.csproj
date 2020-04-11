@@ -193,6 +193,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\UsuarioDelegadoController.cs" />
     <Compile Include="Controllers\PublicoController.cs" />
     <Compile Include="Controllers\SancionController.cs" />
     <Compile Include="Migrations\201908120158589_SeAgregaSancion.cs" />
@@ -243,12 +244,18 @@
     <Compile Include="Migrations\202004100233317_EliminaEnumAnioGeneradaEnMigracionAnteriorPorqueDeEsoSeEncargaEFToLookup.Designer.cs">
       <DependentUpon>202004100233317_EliminaEnumAnioGeneradaEnMigracionAnteriorPorqueDeEsoSeEncargaEFToLookup.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004111534422_CreacionDeUsusarioDelegadoSinConfirmar.cs" />
+    <Compile Include="Migrations\202004111534422_CreacionDeUsusarioDelegadoSinConfirmar.Designer.cs">
+      <DependentUpon>202004111534422_CreacionDeUsusarioDelegadoSinConfirmar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Dominio\UsusarioDelegadoSinConfirmar.cs" />
     <Compile Include="Models\Dominio\Sancion.cs" />
     <Compile Include="Models\TextValueItem.cs" />
     <Compile Include="Models\ViewModels\ConceptoInsumoAgregarStockVM.cs" />
     <Compile Include="Models\ViewModels\SancionesWebPublicaVM.cs" />
     <Compile Include="Models\ViewModels\InformePagoCuotasPorMesVM.cs" />
     <Compile Include="Models\ViewModels\SancionVM.cs" />
+    <Compile Include="Models\ViewModels\UsuarioDelegadoSinConfirmarVM.cs" />
     <Compile Include="UIHelpers\Autocomplete_Old_Cambiar_PorNuevoAutocompleteFor.cs" />
     <Compile Include="Utilidades\Backup\GDriveBackupManager.cs" />
     <Compile Include="Utilidades\Backup\BaseDeDatosGDriveBackupManager.cs" />
@@ -1144,6 +1151,7 @@
     <Content Include="Utilidades\Backup\token.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-user.enc" />
     <Content Include="Utilidades\Backup\credentials.json" />
     <Content Include="Utilidades\Backup\token.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-user" />
+    <Content Include="Views\UsuarioDelegado\Registrar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1478,6 +1486,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004100233317_EliminaEnumAnioGeneradaEnMigracionAnteriorPorqueDeEsoSeEncargaEFToLookup.resx">
       <DependentUpon>202004100233317_EliminaEnumAnioGeneradaEnMigracionAnteriorPorqueDeEsoSeEncargaEFToLookup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004111534422_CreacionDeUsusarioDelegadoSinConfirmar.resx">
+      <DependentUpon>202004111534422_CreacionDeUsusarioDelegadoSinConfirmar.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

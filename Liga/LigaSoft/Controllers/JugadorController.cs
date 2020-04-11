@@ -21,7 +21,7 @@ using Newtonsoft.Json;
 
 namespace LigaSoft.Controllers
 {
-	[Authorize(Roles = Roles.Todos)]
+	[Authorize(Roles = Roles.CualquierEmpleadoDeLaLiga)]
 	public class JugadorController : CommonController<Jugador, JugadorBaseVM, JugadorVMM>
     {
 	    [HttpPost, ExportModelStateToTempData]

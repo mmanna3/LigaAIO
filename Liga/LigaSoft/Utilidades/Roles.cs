@@ -4,6 +4,7 @@
 	{
 		public const string Administrador = "Administrador";
 		public const string SoloPuedeFichar = "SoloPuedeFichar";
-		public const string Todos = "SoloPuedeFichar, Administrador";
+		public const string CualquierEmpleadoDeLaLiga = "SoloPuedeFichar, Administrador";
+		public const string Delegado = "Delegado";
 	}
 }

@@ -1,0 +1,48 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.Enums
+@model LigaSoft.Models.ViewModels.UsuarioDelegadoSinConfirmarVM
+
+@{
+	Layout = "~/Views/Shared/_LayoutSinPanelLateral.cshtml";
+}
+
+@section Titulo{
+	Registro de nuevo delegado
+}
+@using (Html.YKN().Form())
+{
+	<section>
+		<h4>Ingrese sus datos para operar.</h4>
+		<hr />
+		
+		@Html.YKNNonTyped().ValidationSummary()
+
+		<div class="row">
+			<div class="col-sm-6">
+				@Html.YKN().EditorFor(x => x.Email)
+			</div>
+			<div class="col-sm-6">
+				@Html.YKN().ComboFor(x => x.ClubId).Values(Model.ClubsParaCombo)
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-6">
+				@Html.YKN().EditorFor(x => x.Password)
+			</div>
+			<div class="col-sm-6">
+				@Html.YKN().EditorFor(x => x.ConfirmPassword)
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-6">
+				@(Html.YKN().Button("Registrar")
+					  .Color(BootstrapColorEnum.Primary)
+					  .Submit()
+					  )
+			</div>
+		</div>
+	</section>	
+}
+
