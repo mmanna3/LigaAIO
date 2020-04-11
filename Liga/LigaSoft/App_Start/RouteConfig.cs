@@ -9,12 +9,6 @@ namespace LigaSoft
 		{
 			routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-			//routes.MapRoute(
-			//	"Public",
-			//	"Index",
-			//	new { controller = "Public", action = "Index" }
-			//);
-
 			routes.MapRoute(
 				name: "Delegados",
 				url: "delegados",
