@@ -257,14 +257,18 @@
     <Compile Include="Migrations\202004112115122_CreacionDeRolDelegado.Designer.cs">
       <DependentUpon>202004112115122_CreacionDeRolDelegado.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Dominio\UsuarioDelegadoSinConfirmar.cs" />
+    <Compile Include="Migrations\202004112221133_RenombraTablaAUsuarioDelegadoPendienteDeAprobacion.cs" />
+    <Compile Include="Migrations\202004112221133_RenombraTablaAUsuarioDelegadoPendienteDeAprobacion.Designer.cs">
+      <DependentUpon>202004112221133_RenombraTablaAUsuarioDelegadoPendienteDeAprobacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Dominio\UsuarioDelegadoPendienteDeAprobacion.cs" />
     <Compile Include="Models\Dominio\Sancion.cs" />
     <Compile Include="Models\TextValueItem.cs" />
     <Compile Include="Models\ViewModels\ConceptoInsumoAgregarStockVM.cs" />
     <Compile Include="Models\ViewModels\SancionesWebPublicaVM.cs" />
     <Compile Include="Models\ViewModels\InformePagoCuotasPorMesVM.cs" />
     <Compile Include="Models\ViewModels\SancionVM.cs" />
-    <Compile Include="Models\ViewModels\UsuarioDelegadoSinConfirmarVM.cs" />
+    <Compile Include="Models\ViewModels\UsuarioDelegadoPendienteDeAprobacionVM.cs" />
     <Compile Include="UIHelpers\Autocomplete_Old_Cambiar_PorNuevoAutocompleteFor.cs" />
     <Compile Include="Utilidades\Backup\GDriveBackupManager.cs" />
     <Compile Include="Utilidades\Backup\BaseDeDatosGDriveBackupManager.cs" />
@@ -829,7 +833,7 @@
     <Compile Include="Utilidades\VMMUtility.cs" />
     <Compile Include="Utilidades\YKNExHandler.cs" />
     <Compile Include="Utilidades\ZipUtility.cs" />
-    <Compile Include="ViewModelMappers\UsuarioDelegadoSinConfirmarVMM.cs" />
+    <Compile Include="ViewModelMappers\UsuarioDelegadoPendienteDeAprobacionVMM.cs" />
     <Compile Include="ViewModelMappers\GoleadoresWebPublicaBuilder.cs" />
     <Compile Include="ViewModelMappers\SancionVMM.cs" />
     <Compile Include="ViewModelMappers\PublicidadVMM.cs" />
@@ -1163,6 +1167,7 @@
     <Content Include="Utilidades\Backup\token.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-user" />
     <Content Include="Views\UsuarioDelegado\Registrar.cshtml" />
     <Content Include="Views\UsuarioDelegado\RegistroExitoso.cshtml" />
+    <Content Include="Views\AdministracionDelegados\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1506,6 +1511,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004112115122_CreacionDeRolDelegado.resx">
       <DependentUpon>202004112115122_CreacionDeRolDelegado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004112221133_RenombraTablaAUsuarioDelegadoPendienteDeAprobacion.resx">
+      <DependentUpon>202004112221133_RenombraTablaAUsuarioDelegadoPendienteDeAprobacion.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

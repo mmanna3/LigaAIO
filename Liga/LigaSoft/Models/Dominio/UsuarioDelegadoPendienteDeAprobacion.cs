@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LigaSoft.Models.Dominio
 {
-	public class UsuarioDelegadoSinConfirmar
+	public class UsuarioDelegadoPendienteDeAprobacion
 	{	
 		public int Id { get; set; }
 

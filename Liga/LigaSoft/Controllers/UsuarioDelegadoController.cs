@@ -10,18 +10,18 @@ using LigaSoft.Utilidades;
 namespace LigaSoft.Controllers
 {
 	[Authorize(Roles = Roles.Delegado)]
-	public class UsuarioDelegadoController : CommonController<UsuarioDelegadoSinConfirmar, UsuarioDelegadoSinConfirmarVM, UsuarioDelegadoSinConfirmarVMM>
+	public class UsuarioDelegadoController : CommonController<UsuarioDelegadoPendienteDeAprobacion, UsuarioDelegadoPendienteDeAprobacionVM, UsuarioDelegadoPendienteDeAprobacionVMM>
     {
 		[AllowAnonymous]
 		public ActionResult Registrar()
 	    {
-		    var vm = new UsuarioDelegadoSinConfirmarVM {ClubsParaCombo = ClubsParaCombo()};
+		    var vm = new UsuarioDelegadoPendienteDeAprobacionVM {ClubsParaCombo = ClubsParaCombo()};
 		    return View(vm);
 		}
 
 	    [AllowAnonymous]
 		[HttpPost]
-		public ActionResult Registrar(UsuarioDelegadoSinConfirmarVM vm)
+		public ActionResult Registrar(UsuarioDelegadoPendienteDeAprobacionVM vm)
 	    {
 		    if (!ModelState.IsValid || EmailYaEstaEnUso(vm.Email))
 		    {
@@ -29,7 +29,7 @@ namespace LigaSoft.Controllers
 				return View(vm);
 			}
 
-			var model = new UsuarioDelegadoSinConfirmar();
+			var model = new UsuarioDelegadoPendienteDeAprobacion();
 			VMM.MapForCreate(vm, model);
 		    Context.UsuariosDelegadosSinConfirmar.Add(model);
 		    Context.SaveChanges();

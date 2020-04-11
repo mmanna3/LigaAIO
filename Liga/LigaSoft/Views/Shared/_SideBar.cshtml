@@ -12,30 +12,39 @@
 		</div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-	            @if (User.IsInRole(LigaSoft.Utilidades.Roles.Administrador))
-	            {
-		            <li class="dropdown">
-			            <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown">Torneos<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity fas fa-trophy"></span></a>
-			            <ul class="dropdown-menu forAnimate" role="menu">
-				            <li><a href="@Url.Action("Index","Torneo")">Torneos</a></li>
-				            <li><a href="@Url.Action("Index","TorneoTipo")">Tipos</a></li>
-				            @*<li class="divider"></li> NO BORRES ESTO, POR SI NECESITÁS SEPARADOR ALGUNA VEZ
-						<li><a href="#">One more separated link</a></li>*@
-			            </ul>
-		            </li>
-	            }
-                <li class="dropdown">
-                    <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown">Clubes<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity fas fa-volleyball-ball"></span></a>
-	                <ul class="dropdown-menu forAnimate" role="menu">
-						@if (User.IsInRole(LigaSoft.Utilidades.Roles.Administrador))
-						{
-							<li><a href="@Url.Action("Index", "Club")">Clubes</a></li>
-						}
-		                <li><a href="@Url.Action("Index", "Equipo")">Equipos</a></li>
-	                </ul>
-                </li>
-                <li><a tabindex="-1" href="@Url.Action("Index","Jugador")">Jugadores<span style="font-size:16px;" class="pull-right hidden-xs showopacity fas fa-user"></span></a></li>
+			<ul class="nav navbar-nav">
+				@if (User.IsInRole(LigaSoft.Utilidades.Roles.Administrador))
+				{
+					<li class="dropdown">
+						<a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown">Torneos<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity fas fa-trophy"></span></a>
+						<ul class="dropdown-menu forAnimate" role="menu">
+							<li><a href="@Url.Action("Index","Torneo")">Torneos</a></li>
+							<li><a href="@Url.Action("Index","TorneoTipo")">Tipos</a></li>
+							@*<li class="divider"></li> NO BORRES ESTO, POR SI NECESITÁS SEPARADOR ALGUNA VEZ
+					<li><a href="#">One more separated link</a></li>*@
+						</ul>
+					</li>
+				}
+				@if (User.IsInRole(LigaSoft.Utilidades.Roles.Administrador) || User.IsInRole(LigaSoft.Utilidades.Roles.SoloPuedeFichar))
+				{
+					<li class="dropdown">
+						<a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown">Clubes<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity fas fa-volleyball-ball"></span></a>
+						<ul class="dropdown-menu forAnimate" role="menu">
+							@if (User.IsInRole(LigaSoft.Utilidades.Roles.Administrador))
+							{
+								<li><a href="@Url.Action("Index", "Club")">Clubes</a></li>
+							}
+							@if (User.IsInRole(LigaSoft.Utilidades.Roles.Administrador) || User.IsInRole(LigaSoft.Utilidades.Roles.SoloPuedeFichar))
+							{
+								<li><a href="@Url.Action("Index", "Equipo")">Equipos</a></li>
+							}
+						</ul>
+					</li>
+				}
+				@if (User.IsInRole(LigaSoft.Utilidades.Roles.Administrador) || User.IsInRole(LigaSoft.Utilidades.Roles.SoloPuedeFichar))
+				{
+					<li><a tabindex="-1" href="@Url.Action("Index","Jugador")">Jugadores<span style="font-size:16px;" class="pull-right hidden-xs showopacity fas fa-user"></span></a></li>
+				}
 				@if (User.IsInRole(LigaSoft.Utilidades.Roles.Administrador))
 				{
 					<li class="dropdown">
@@ -51,14 +60,15 @@
 						<ul class="dropdown-menu forAnimate" role="menu">
 							<li><a href="@Url.Action("Balance_SeleccionFecha","Informe")">Balance</a></li>
 							<li><a href="@Url.Action("MovimientosImpagos_Informe","Informe")">Movimientos impagos</a></li>
-							<li><a href="@Url.Action("PagoCuotasPorMes_Informe","Informe")">Pago mensual de cuotas</a></li>									            
+							<li><a href="@Url.Action("PagoCuotasPorMes_Informe","Informe")">Pago mensual de cuotas</a></li>
 						</ul>
 					</li>
 					<li><a tabindex="-1" href="@Url.Action("Index","Noticia")">Noticias<span style="font-size:16px;" class="pull-right hidden-xs showopacity fas fa-newspaper"></span></a></li>
 					<li><a tabindex="-1" href="@Url.Action("Index","Publicidad")">Publicidades<span style="font-size:16px;" class="pull-right hidden-xs showopacity fas fa-newspaper"></span></a></li>
-					<li><a tabindex="-1" href="@Url.Action("Edit","ParametroGlobal", new {Id = 1})">Configuración<span style="font-size:16px;" class="pull-right hidden-xs showopacity fas fa-cog"></span></a></li>	            
+					<li><a tabindex="-1" href="@Url.Action("Index","AdministracionDelegados")">Delegados<span style="font-size:16px;" class="pull-right hidden-xs showopacity fas fa-users"></span></a></li>
+					<li><a tabindex="-1" href="@Url.Action("Edit","ParametroGlobal", new {Id = 1})">Configuración<span style="font-size:16px;" class="pull-right hidden-xs showopacity fas fa-cog"></span></a></li>
 				}
-            </ul>
+			</ul>
 		</div>
 	</div>
 </nav>
