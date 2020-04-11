@@ -15,9 +15,6 @@ namespace LigaSoft.Scheduler
 		{
 			try
 			{
-				var startTime = GetStartTime();
-				var startTimeBuenosAires = startTime.ToUniversalTime().ToOffset(new TimeSpan(-3, 0, 0));
-
 				var scheduler = await StdSchedulerFactory.GetDefaultScheduler();
 				await scheduler.Start();
 
@@ -55,9 +52,9 @@ namespace LigaSoft.Scheduler
 				fechaHoraComienzaBackupBsAs = new DateTime(fechaHoraActualEnBsAs.Year, fechaHoraActualEnBsAs.Month, fechaHoraActualEnBsAs.Day, 6, 0, 0);
 
 
-			var result = new DateTimeOffset(fechaHoraComienzaBackupBsAs).ToLocalTime();
+			var result = new DateTimeOffset(fechaHoraComienzaBackupBsAs).ToUniversalTime();
 
-			Log.Info($"Hora de comienzo de backup: - Buenos Aires: '{fechaHoraComienzaBackupBsAs.ToString(IODiskUtility.FormatoFechaBackup)}' - Servidor: '{result.ToString(IODiskUtility.FormatoFechaBackup)}' ");
+			Log.Info($"Hora de comienzo de backup: - Buenos Aires: '{fechaHoraComienzaBackupBsAs.ToString(IODiskUtility.FormatoFechaBackup)}' - UTC: '{result.ToString(IODiskUtility.FormatoFechaBackup)}' ");
 
 			return result;
 		}
