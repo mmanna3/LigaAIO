@@ -248,7 +248,11 @@
     <Compile Include="Migrations\202004111534422_CreacionDeUsusarioDelegadoSinConfirmar.Designer.cs">
       <DependentUpon>202004111534422_CreacionDeUsusarioDelegadoSinConfirmar.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Dominio\UsusarioDelegadoSinConfirmar.cs" />
+    <Compile Include="Migrations\202004111819396_ArreglaErrorDeTipeoEnCreacionDeTablaDeUsuarioSinConfirmar.cs" />
+    <Compile Include="Migrations\202004111819396_ArreglaErrorDeTipeoEnCreacionDeTablaDeUsuarioSinConfirmar.Designer.cs">
+      <DependentUpon>202004111819396_ArreglaErrorDeTipeoEnCreacionDeTablaDeUsuarioSinConfirmar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Dominio\UsuarioDelegadoSinConfirmar.cs" />
     <Compile Include="Models\Dominio\Sancion.cs" />
     <Compile Include="Models\TextValueItem.cs" />
     <Compile Include="Models\ViewModels\ConceptoInsumoAgregarStockVM.cs" />
@@ -820,6 +824,7 @@
     <Compile Include="Utilidades\VMMUtility.cs" />
     <Compile Include="Utilidades\YKNExHandler.cs" />
     <Compile Include="Utilidades\ZipUtility.cs" />
+    <Compile Include="ViewModelMappers\UsuarioDelegadoSinConfirmarVMM.cs" />
     <Compile Include="ViewModelMappers\GoleadoresWebPublicaBuilder.cs" />
     <Compile Include="ViewModelMappers\SancionVMM.cs" />
     <Compile Include="ViewModelMappers\PublicidadVMM.cs" />
@@ -1490,6 +1495,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004111534422_CreacionDeUsusarioDelegadoSinConfirmar.resx">
       <DependentUpon>202004111534422_CreacionDeUsusarioDelegadoSinConfirmar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004111819396_ArreglaErrorDeTipeoEnCreacionDeTablaDeUsuarioSinConfirmar.resx">
+      <DependentUpon>202004111819396_ArreglaErrorDeTipeoEnCreacionDeTablaDeUsuarioSinConfirmar.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

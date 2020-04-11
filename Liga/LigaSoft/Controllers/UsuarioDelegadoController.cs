@@ -10,8 +10,7 @@ using LigaSoft.Utilidades;
 namespace LigaSoft.Controllers
 {
 	[Authorize(Roles = Roles.Delegado)]
-	[Route("Delegados")] //VER QUÉ ONDA
-	public class UsuarioDelegadoController : CommonController<Categoria, CategoriaVM, CategoriaVMM>
+	public class UsuarioDelegadoController : CommonController<UsuarioDelegadoSinConfirmar, UsuarioDelegadoSinConfirmarVM, UsuarioDelegadoSinConfirmarVMM>
     {
 		[AllowAnonymous]
 		public ActionResult Registrar()
