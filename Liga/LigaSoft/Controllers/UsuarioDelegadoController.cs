@@ -28,10 +28,10 @@ namespace LigaSoft.Controllers
 		    {
 			    vm.ClubsParaCombo = ClubsParaCombo();
 				return View(vm);
-			}				
+			}
 
-			return Json("Usuario registrado", JsonRequestBehavior.AllowGet);
-		}
+		    return View("RegistroExitoso");
+	    }
 
 		public List<SelectListItem> ClubsParaCombo()
 	    {

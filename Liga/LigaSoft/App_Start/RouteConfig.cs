@@ -16,6 +16,12 @@ namespace LigaSoft
 			//);
 
 			routes.MapRoute(
+				name: "Delegados",
+				url: "delegados",
+				defaults: new { controller = "UsuarioDelegado", action = "Registrar" }
+			);
+
+			routes.MapRoute(
 				name: "Default",
 				url: "{controller}/{action}/{id}",
 				defaults: new { controller = "Public", action = "AppInit", id = UrlParameter.Optional }

@@ -1152,6 +1152,7 @@
     <Content Include="Utilidades\Backup\credentials.json" />
     <Content Include="Utilidades\Backup\token.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-user" />
     <Content Include="Views\UsuarioDelegado\Registrar.cshtml" />
+    <Content Include="Views\UsuarioDelegado\RegistroExitoso.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
