@@ -7,6 +7,7 @@ namespace LigaSoft.Scheduler
 {
 	public class SubirBackupAlDriveJob : IJob
 	{
+		#pragma warning disable 1998
 		public async Task Execute(IJobExecutionContext context)
 		{
 			Log.Info("QUARTZ: Comienza el job SubirBackupAlDrive");

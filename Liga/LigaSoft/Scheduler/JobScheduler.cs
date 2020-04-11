@@ -15,16 +15,16 @@ namespace LigaSoft.Scheduler
 		{
 			try
 			{
-				var scheduler = await StdSchedulerFactory.GetDefaultScheduler();
+				var startTime = GetStartTime();
+				var startTimeBuenosAires = startTime.ToUniversalTime().ToOffset(new TimeSpan(-3, 0, 0));
 
-				// and start it off
+				var scheduler = await StdSchedulerFactory.GetDefaultScheduler();
 				await scheduler.Start();
 
 				var job = JobBuilder.Create<SubirBackupAlDriveJob>()
 					.WithIdentity("subirBackupAlDrive", "group1")
 					.Build();
 
-				// Trigger the job to run now, and then repeat every 120 seconds
 				var trigger = TriggerBuilder.Create()
 					.WithIdentity("trigger1", "group1")
 					.StartAt(GetStartTime())
@@ -33,14 +33,8 @@ namespace LigaSoft.Scheduler
 						.RepeatForever())
 					.Build();
 
-				// Tell quartz to schedule the job using our trigger
 				await scheduler.ScheduleJob(job, trigger);
-
-				// some sleep to show what's happening
-				//await Task.Delay(TimeSpan.FromSeconds(60));
-
-				// and last shut down the scheduler when you are ready to close your program
-				//await scheduler.Shutdown();
+				Log.Info($"El backup se programó para: '{startTime.ToString(IODiskUtility.FormatoFechaBackup)}' (Buenos Aires: '{startTimeBuenosAires.ToString(IODiskUtility.FormatoFechaBackup)}')");
 			}
 			catch (SchedulerException se)
 			{
@@ -54,8 +48,6 @@ namespace LigaSoft.Scheduler
 
 			while (dateTime.Hour != 4)
 				dateTime = dateTime.AddHours(1);
-
-			Log.Info($"El backup se programó para: {dateTime.ToString(IODiskUtility.FormatoFechaBackup)}");
 
 			return dateTime;
 		}
