@@ -293,5 +293,5 @@ __pycache__/
 dist/
 
 # Tokens de API Google Drive
-*.TokenResponse-user
-*credentials.json
+/Liga/LigaSoft/Utilidades/Backup/token.json/Google.Apis.Auth.OAuth2.Responses.TokenResponse-user
+/Liga/LigaSoft/Utilidades/Backup/credentials.json

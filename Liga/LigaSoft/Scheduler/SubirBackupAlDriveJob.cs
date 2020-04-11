@@ -11,7 +11,7 @@ namespace LigaSoft.Scheduler
 		{
 			Log.Info("QUARTZ: Comienza el job SubirBackupAlDrive");
 
-			GoogleDriveBackupManager.GenerarBackupImagenes();
+			new ImagenesGDriveBackupManager().GenerarYSubirAlDrive();
 
 			GoogleDriveBackupManager.GenerarBackupBaseDeDatos();
 
