@@ -2,7 +2,7 @@
 @using LigaSoft.Models.ViewModels
 
 @section Titulo {
-	Administración de delegados
+	Delegados aprobados
 }
 
 @(Html.YKN<UsuarioDelegadoVM>().Grid()
@@ -13,12 +13,7 @@
 				column.AddTextColumn(x => x.Email);
 				column.AddTextColumn(x => x.Club);
 			})
-			.Actions(action =>
-			{
-				action.JavaScriptWithRowId("Aprobar", "Aprobar");
-				action.JavaScriptWithRowId("Rechazar", "Rechazar");
-			})
-			.DataSource("/UsuarioDelegado/GetForGrid")
+			.DataSource("/UsuarioDelegado/GetForGrid?trueField=Aprobado")
 )
 
 <script>

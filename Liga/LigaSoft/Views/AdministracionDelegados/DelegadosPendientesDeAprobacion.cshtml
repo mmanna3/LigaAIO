@@ -1,0 +1,46 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.ViewModels
+
+@section Titulo {
+	Delegados pendientes de aprobación
+}
+
+@(Html.YKN<UsuarioDelegadoVM>().Grid()
+			.WithColumns(column =>
+			{
+				column.AddTextColumn(x => x.Nombre);
+				column.AddTextColumn(x => x.Apellido);
+				column.AddTextColumn(x => x.Email);
+				column.AddTextColumn(x => x.Club);
+			})
+			.Actions(action =>
+			{
+				action.JavaScriptWithRowId("Aprobar", "Aprobar");
+				action.JavaScriptWithRowId("Rechazar", "Rechazar");
+			})
+			.DataSource("/UsuarioDelegado/GetForGrid?falseField=Aprobado")
+)
+
+<script>
+	function Aprobar(obj) {
+		$.ajax({
+			url: '/AdministracionDelegados/Aprobar',
+			type: "POST",
+			data: { id: obj.getAttribute('data-id') },
+			success: function() {
+				window.location.reload(false);
+			}
+		});
+	}
+
+	function Rechazar(obj) {
+		$.ajax({
+			url: '/AdministracionDelegados/Rechazar',
+			type: "POST",
+			data: { id: obj.getAttribute('data-id') },
+			success: function() {
+				window.location.reload(false);
+			}
+		});
+	}
+</script>

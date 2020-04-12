@@ -29,5 +29,7 @@ namespace LigaSoft.Models.Dominio
 
 		public string AspNetUserId { get; set; }
 		public virtual ApplicationUser AspNetUser { get; set; }
+
+		public bool Aprobado { get; set; }
 	}
 }

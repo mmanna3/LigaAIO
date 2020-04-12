@@ -1,14 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Dynamic;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using LigaSoft.Models;
-using LigaSoft.Models.Dominio;
-using LigaSoft.Models.Otros;
 using LigaSoft.Utilidades;
-using LigaSoft.ViewModelMappers;
 using Microsoft.AspNet.Identity.Owin;
 
 namespace LigaSoft.Controllers
@@ -44,7 +39,12 @@ namespace LigaSoft.Controllers
 		    base.Dispose(disposing);
 	    }
 
-	    public ActionResult Index()
+	    public ActionResult DelegadosPendientesDeAprobacion()
+	    {
+		    return View();
+	    }
+
+	    public ActionResult DelegadosAprobados()
 	    {
 		    return View();
 	    }
@@ -60,6 +60,7 @@ namespace LigaSoft.Controllers
 			{
 				await UserManager.AddToRoleAsync(user.Id, Roles.Delegado);
 				usuarioDelegado.AspNetUserId = user.Id;
+				usuarioDelegado.Aprobado = true;
 				_context.SaveChanges();
 			}
 
