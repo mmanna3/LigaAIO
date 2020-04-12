@@ -9,7 +9,7 @@ using LigaSoft.Utilidades;
 
 namespace LigaSoft.Controllers
 {
-	[Authorize(Roles = Roles.Delegado)]
+	[Authorize(Roles = Roles.AdmininstradorYDelegado)]
 	public class UsuarioDelegadoController : CommonController<UsuarioDelegado, UsuarioDelegadoVM, UsuarioDelegadoVMM>
     {
 		[AllowAnonymous]
@@ -51,7 +51,6 @@ namespace LigaSoft.Controllers
 		    }
 		    return false;
 	    }
-
 
 	    public List<SelectListItem> ClubsParaCombo()
 	    {

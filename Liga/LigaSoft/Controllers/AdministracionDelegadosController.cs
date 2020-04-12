@@ -18,12 +18,10 @@ namespace LigaSoft.Controllers
     {
 	    private ApplicationUserManager _userManager;
 	    private readonly ApplicationDbContext _context;
-	    private readonly UsuarioDelegadoVMM _usuarioDelegadoVMM;
 
 		public AdministracionDelegadosController()
 		{			
 			_context = new ApplicationDbContext();
-			_usuarioDelegadoVMM = new UsuarioDelegadoVMM(_context);
 		}
 
 		public ApplicationUserManager UserManager
@@ -49,37 +47,6 @@ namespace LigaSoft.Controllers
 	    public ActionResult Index()
 	    {
 		    return View();
-	    }
-
-	    public virtual JsonResult GetDelegadosPendientesDeAprobacionForGrid(int? page, int? limit, string sortBy, string direction, string searchField, string searchValue)
-	    {
-		    var options = new GijgoGridOptions(page, limit, sortBy, direction, searchField, searchValue);
-
-		    var query = _context.UsuariosDelegadosPendientesDeAprobacion.AsQueryable();
-
-		    List<UsuarioDelegado> models;
-
-		    if (!string.IsNullOrWhiteSpace(options.SearchValue))
-			    query = query.Where($"{options.SearchField}.Contains(@0)", options.SearchValue);
-
-		    if (!string.IsNullOrEmpty(options.SortBy) && !string.IsNullOrEmpty(options.Direction))
-			    query = query.OrderBy(options.Direction.Trim().ToLower() == "asc" ? options.SortBy : $"{options.SortBy} descending");
-		    else
-			    query = query.OrderBy("Id descending");
-
-		    var total = query.Count();
-		    if (options.Page.HasValue && options.Limit.HasValue)
-		    {
-			    var start = (options.Page.Value - 1) * options.Limit.Value;
-			    models = query.Skip(start).Take(options.Limit.Value).ToList();
-		    }
-		    else
-			    models = query.ToList();
-
-		    var records = _usuarioDelegadoVMM.MapForGrid(models);
-		    
-
-		    return Json(new { records, total }, JsonRequestBehavior.AllowGet);
 	    }
 
 		public async Task<ActionResult> Aprobar(int id)
