@@ -13,7 +13,7 @@
 				column.AddTextColumn(x => x.Email);
 				column.AddTextColumn(x => x.Club);
 			})
-			.DataSource("/UsuarioDelegado/GetForGrid?trueField=Aprobado")
+			.DataSource("/UsuarioDelegado/GetForGrid?filterField=Aprobado&filterValue=true")
 )
 
 <script>

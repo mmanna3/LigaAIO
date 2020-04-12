@@ -97,15 +97,18 @@ namespace LigaSoft.Controllers
 			return View(vm);
 		}
 
-		public virtual JsonResult GetForGrid(int? page, int? limit, string sortBy, string direction, string searchField, string searchValue)
-	    {
+		public virtual JsonResult GetForGrid(int? page, int? limit, string sortBy, string direction, string searchField, string searchValue, string filterField, string filterValue, string filterOperator = "==")
+		{
 		    var options = new GijgoGridOptions(page, limit, sortBy, direction, searchField, searchValue);
 
 		    var query = Context.Set<TModel>().AsQueryable();
 
 			List<TModel> models;
 
-		    if (!string.IsNullOrWhiteSpace(options.SearchValue))
+			if (!string.IsNullOrEmpty(filterField))
+				query = Context.Set<TModel>().Where($"{filterField} {filterOperator} {filterValue}").AsQueryable();
+
+			if (!string.IsNullOrWhiteSpace(options.SearchValue))
 			    query = query.Where($"{options.SearchField}.Contains(@0)", options.SearchValue);
 
 		    if (!string.IsNullOrEmpty(options.SortBy) && !string.IsNullOrEmpty(options.Direction))
