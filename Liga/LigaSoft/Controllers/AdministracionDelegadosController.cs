@@ -66,5 +66,14 @@ namespace LigaSoft.Controllers
 
 			return Json(new { success = true }, JsonRequestBehavior.AllowGet);
 		}
+
+		public ActionResult Rechazar(int id)
+		{
+			var usuarioDelegado = _context.UsuariosDelegadosPendientesDeAprobacion.Single(x => x.Id == id);
+			_context.UsuariosDelegadosPendientesDeAprobacion.Remove(usuarioDelegado);
+			_context.SaveChanges();
+
+			return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+		}
 	}
 }
