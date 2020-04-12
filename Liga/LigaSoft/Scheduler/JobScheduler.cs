@@ -23,7 +23,7 @@ namespace LigaSoft.Scheduler
 					.WithIdentity("trigger1", "group1")
 					.WithDailyTimeIntervalSchedule(s => s
 						.WithIntervalInHours(24)
-						.StartingDailyAt(TimeOfDay.HourAndMinuteOfDay(18, 0)) //15 En Buenos Aires
+						.StartingDailyAt(TimeOfDay.HourAndMinuteOfDay(20, 0)) //Qué hora es en Buenos Aires?
 						.InTimeZone(TimeZoneInfo.Utc))
 					.Build();
 
