@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using LigaSoft.Utilidades;
 using Quartz;
 using Quartz.Impl;
@@ -13,6 +10,9 @@ namespace LigaSoft.Scheduler
 	{
 		public static async Task Start()
 		{
+			Log.Info($@"Hora actual:	- Buenos Aires: '{AhoraEnBuenosAires().ToString(IODiskUtility.FormatoFechaBackup)}' 
+										- UTC: '{DateTimeOffset.UtcNow.ToString(IODiskUtility.FormatoFechaBackup)}' 
+										- Servidor: '{DateTimeOffset.UtcNow.ToLocalTime().ToString(IODiskUtility.FormatoFechaBackup)}'");
 			try
 			{
 				var scheduler = await StdSchedulerFactory.GetDefaultScheduler();
