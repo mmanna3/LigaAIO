@@ -20,10 +20,11 @@ namespace LigaSoft
 			bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
 						"~/Scripts/modernizr-*"));
 
-			bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+			bundles.Add(new ScriptBundle("~/bundles/corejs").Include(
 						"~/Scripts/select2.full.js",                //Para combos de selección
 						"~/Scripts/bootstrap.js",					
-						"~/Scripts/bootstrap3-typeahead.min.js",	//Para autocomplete
+						"~/Scripts/bootstrap3-typeahead.min.js",    //Para autocomplete
+						"~/Scripts/jquery.blockUI.js",
 						"~/Scripts/respond.js"));
 
 			bundles.Add(new StyleBundle("~/Content/css").Include(
