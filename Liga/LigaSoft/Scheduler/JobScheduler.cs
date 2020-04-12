@@ -23,16 +23,13 @@ namespace LigaSoft.Scheduler
 					.WithIdentity("trigger1", "group1")
 					.WithDailyTimeIntervalSchedule(s => s
 						.WithIntervalInHours(24)
-						.StartingDailyAt(TimeOfDay.HourAndMinuteOfDay(21, 30))
+						.StartingDailyAt(TimeOfDay.HourAndMinuteOfDay(8, 0))
 						.InTimeZone(TimeZoneInfo.Utc))
 					.Build();
 
 				var horaProximoBackup = await scheduler.ScheduleJob(job, trigger);
-				Log.Info($@"Se programó el próximo backup para:
-								-UTC: {horaProximoBackup:dd/MM/yyyy HH:mm}
-								-Servidor: {horaProximoBackup.ToLocalTime():dd/MM/yyyy HH:mm}
-								-Bs. As.: {horaProximoBackup.ToOffset(new TimeSpan(-3, 0, 0)):dd/MM/yyyy HH:mm}
-						");
+
+				Log.Info($"Hora próximo backup: (UTC) {horaProximoBackup:dd/MM/yyyy HH:mm}.");
 			}
 			catch (SchedulerException se)
 			{
