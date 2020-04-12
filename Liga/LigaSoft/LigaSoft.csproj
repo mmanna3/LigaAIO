@@ -265,14 +265,22 @@
     <Compile Include="Migrations\202004112345036_AgregaNombreYApellidoAUsuarioDelegado.Designer.cs">
       <DependentUpon>202004112345036_AgregaNombreYApellidoAUsuarioDelegado.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Dominio\UsuarioDelegadoPendienteDeAprobacion.cs" />
+    <Compile Include="Migrations\202004120005101_AgregaAspNetUserIdAUsuarioDelegado.cs" />
+    <Compile Include="Migrations\202004120005101_AgregaAspNetUserIdAUsuarioDelegado.Designer.cs">
+      <DependentUpon>202004120005101_AgregaAspNetUserIdAUsuarioDelegado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004120022373_RecreacionDeRolDelegadoPorErrorEnScript.cs" />
+    <Compile Include="Migrations\202004120022373_RecreacionDeRolDelegadoPorErrorEnScript.Designer.cs">
+      <DependentUpon>202004120022373_RecreacionDeRolDelegadoPorErrorEnScript.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Dominio\UsuarioDelegado.cs" />
     <Compile Include="Models\Dominio\Sancion.cs" />
     <Compile Include="Models\TextValueItem.cs" />
     <Compile Include="Models\ViewModels\ConceptoInsumoAgregarStockVM.cs" />
     <Compile Include="Models\ViewModels\SancionesWebPublicaVM.cs" />
     <Compile Include="Models\ViewModels\InformePagoCuotasPorMesVM.cs" />
     <Compile Include="Models\ViewModels\SancionVM.cs" />
-    <Compile Include="Models\ViewModels\UsuarioDelegadoPendienteDeAprobacionVM.cs" />
+    <Compile Include="Models\ViewModels\UsuarioDelegadoVM.cs" />
     <Compile Include="UIHelpers\Autocomplete_Old_Cambiar_PorNuevoAutocompleteFor.cs" />
     <Compile Include="Utilidades\Backup\GDriveBackupManager.cs" />
     <Compile Include="Utilidades\Backup\BaseDeDatosGDriveBackupManager.cs" />
@@ -837,7 +845,7 @@
     <Compile Include="Utilidades\VMMUtility.cs" />
     <Compile Include="Utilidades\YKNExHandler.cs" />
     <Compile Include="Utilidades\ZipUtility.cs" />
-    <Compile Include="ViewModelMappers\UsuarioDelegadoPendienteDeAprobacionVMM.cs" />
+    <Compile Include="ViewModelMappers\UsuarioDelegadoVMM.cs" />
     <Compile Include="ViewModelMappers\GoleadoresWebPublicaBuilder.cs" />
     <Compile Include="ViewModelMappers\SancionVMM.cs" />
     <Compile Include="ViewModelMappers\PublicidadVMM.cs" />
@@ -1521,6 +1529,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004112345036_AgregaNombreYApellidoAUsuarioDelegado.resx">
       <DependentUpon>202004112345036_AgregaNombreYApellidoAUsuarioDelegado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004120005101_AgregaAspNetUserIdAUsuarioDelegado.resx">
+      <DependentUpon>202004120005101_AgregaAspNetUserIdAUsuarioDelegado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004120022373_RecreacionDeRolDelegadoPorErrorEnScript.resx">
+      <DependentUpon>202004120022373_RecreacionDeRolDelegadoPorErrorEnScript.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

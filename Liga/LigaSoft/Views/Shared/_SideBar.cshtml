@@ -65,7 +65,12 @@
 					</li>
 					<li><a tabindex="-1" href="@Url.Action("Index","Noticia")">Noticias<span style="font-size:16px;" class="pull-right hidden-xs showopacity fas fa-newspaper"></span></a></li>
 					<li><a tabindex="-1" href="@Url.Action("Index","Publicidad")">Publicidades<span style="font-size:16px;" class="pull-right hidden-xs showopacity fas fa-newspaper"></span></a></li>
-					<li><a tabindex="-1" href="@Url.Action("Index","AdministracionDelegados")">Delegados<span style="font-size:16px;" class="pull-right hidden-xs showopacity fas fa-users"></span></a></li>
+					<li class="dropdown">
+						<a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown">Delegados<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity fas fa-users"></span></a>
+						<ul class="dropdown-menu forAnimate" role="menu">
+							<li><a href="@Url.Action("Index","AdministracionDelegados")">Pendientes de aprobación</a></li>
+						</ul>
+					</li>					
 					<li><a tabindex="-1" href="@Url.Action("Edit","ParametroGlobal", new {Id = 1})">Configuración<span style="font-size:16px;" class="pull-right hidden-xs showopacity fas fa-cog"></span></a></li>
 				}
 			</ul>

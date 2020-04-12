@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using LigaSoft.Models;
@@ -17,12 +18,12 @@ namespace LigaSoft.Controllers
     {
 	    private ApplicationUserManager _userManager;
 	    private readonly ApplicationDbContext _context;
-	    private readonly UsuarioDelegadoPendienteDeAprobacionVMM _usuarioDelegadoPendienteDeAprobacionVMM;
+	    private readonly UsuarioDelegadoVMM _usuarioDelegadoVMM;
 
 		public AdministracionDelegadosController()
 		{			
 			_context = new ApplicationDbContext();
-			_usuarioDelegadoPendienteDeAprobacionVMM = new UsuarioDelegadoPendienteDeAprobacionVMM(_context);
+			_usuarioDelegadoVMM = new UsuarioDelegadoVMM(_context);
 		}
 
 		public ApplicationUserManager UserManager
@@ -54,9 +55,9 @@ namespace LigaSoft.Controllers
 	    {
 		    var options = new GijgoGridOptions(page, limit, sortBy, direction, searchField, searchValue);
 
-		    var query = _context.UsuariosDelegadosSinConfirmar.AsQueryable();
+		    var query = _context.UsuariosDelegadosPendientesDeAprobacion.AsQueryable();
 
-		    List<UsuarioDelegadoPendienteDeAprobacion> models;
+		    List<UsuarioDelegado> models;
 
 		    if (!string.IsNullOrWhiteSpace(options.SearchValue))
 			    query = query.Where($"{options.SearchField}.Contains(@0)", options.SearchValue);
@@ -75,25 +76,27 @@ namespace LigaSoft.Controllers
 		    else
 			    models = query.ToList();
 
-		    var records = _usuarioDelegadoPendienteDeAprobacionVMM.MapForGrid(models);
+		    var records = _usuarioDelegadoVMM.MapForGrid(models);
 		    
 
 		    return Json(new { records, total }, JsonRequestBehavior.AllowGet);
 	    }
 
-		// public async Task<ActionResult> AprobarUsuario()
-		// {
-		//  if (ModelState.IsValid)
-		//  {
-		//   var user = new ApplicationUser { UserName = "usuaria", Email = "usuaria@usuario.com" };
-		//   var result = await UserManager.CreateAsync(user, "password");
-		//   if (result.Succeeded)
-		//   {
-		//	await UserManager.AddToRoleAsync(user.Id, Roles.Delegado);
-		//}
-		//  }
+		public async Task<ActionResult> Aprobar(int id)
+		{
+			var usuarioDelegado = _context.UsuariosDelegadosPendientesDeAprobacion.Single(x => x.Id == id);
 
-		//  return Json("", JsonRequestBehavior.AllowGet);
-		// }
+			var user = new ApplicationUser { UserName = usuarioDelegado.Email, Email = usuarioDelegado.Email };
+			var result = await UserManager.CreateAsync(user, usuarioDelegado.Password);
+
+			if (result.Succeeded)
+			{
+				await UserManager.AddToRoleAsync(user.Id, Roles.Delegado);
+				usuarioDelegado.AspNetUserId = user.Id;
+				_context.SaveChanges();
+			}
+
+			return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+		}
 	}
 }

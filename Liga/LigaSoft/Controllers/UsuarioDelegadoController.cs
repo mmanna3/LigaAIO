@@ -10,18 +10,18 @@ using LigaSoft.Utilidades;
 namespace LigaSoft.Controllers
 {
 	[Authorize(Roles = Roles.Delegado)]
-	public class UsuarioDelegadoController : CommonController<UsuarioDelegadoPendienteDeAprobacion, UsuarioDelegadoPendienteDeAprobacionVM, UsuarioDelegadoPendienteDeAprobacionVMM>
+	public class UsuarioDelegadoController : CommonController<UsuarioDelegado, UsuarioDelegadoVM, UsuarioDelegadoVMM>
     {
 		[AllowAnonymous]
 		public ActionResult Registrar()
 	    {
-		    var vm = new UsuarioDelegadoPendienteDeAprobacionVM {ClubsParaCombo = ClubsParaCombo()};
+		    var vm = new UsuarioDelegadoVM {ClubsParaCombo = ClubsParaCombo()};
 		    return View(vm);
 		}
 
 	    [AllowAnonymous]
 		[HttpPost]
-		public ActionResult Registrar(UsuarioDelegadoPendienteDeAprobacionVM vm)
+		public ActionResult Registrar(UsuarioDelegadoVM vm)
 	    {
 		    if (!ModelState.IsValid || EmailYaEstaEnUso(vm.Email))
 		    {
@@ -29,9 +29,9 @@ namespace LigaSoft.Controllers
 				return View(vm);
 			}
 
-			var model = new UsuarioDelegadoPendienteDeAprobacion();
+			var model = new UsuarioDelegado();
 			VMM.MapForCreate(vm, model);
-		    Context.UsuariosDelegadosSinConfirmar.Add(model);
+		    Context.UsuariosDelegadosPendientesDeAprobacion.Add(model);
 		    Context.SaveChanges();
 
 		    return View("RegistroExitoso");
@@ -39,7 +39,7 @@ namespace LigaSoft.Controllers
 
 	    private bool EmailYaEstaEnUso(string email)
 	    {
-		    if (Context.UsuariosDelegadosSinConfirmar.Any(x => x.Email == email))
+		    if (Context.UsuariosDelegadosPendientesDeAprobacion.Any(x => x.Email == email))
 		    {
 			    ModelState.AddModelError("", "Debe esperar que la organización de la liga habilite su usuario.");
 			    return true;

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LigaSoft.Models.Dominio
 {
-	public class UsuarioDelegadoPendienteDeAprobacion
+	public class UsuarioDelegado
 	{	
 		public int Id { get; set; }
 
@@ -26,5 +26,8 @@ namespace LigaSoft.Models.Dominio
 		[Required]
 		public int ClubId { get; set; }
 		public virtual Club Club { get; set; }
+
+		public string AspNetUserId { get; set; }
+		public virtual ApplicationUser AspNetUser { get; set; }
 	}
 }

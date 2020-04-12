@@ -5,7 +5,7 @@ using LigaSoft.Models.Attributes;
 
 namespace LigaSoft.Models.ViewModels
 {
-	public class UsuarioDelegadoPendienteDeAprobacionVM : ViewModelConId
+	public class UsuarioDelegadoVM : ViewModelConId
 	{
 		[YKNRequired]
 		[Display(Name = "Email")]
