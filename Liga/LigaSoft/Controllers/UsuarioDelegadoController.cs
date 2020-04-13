@@ -54,7 +54,7 @@ namespace LigaSoft.Controllers
 
 	    public List<SelectListItem> ClubsParaCombo()
 	    {
-		    return Context.Clubs.ToComboValues();
+		    return Context.Clubs.OrderBy(x => x.Nombre).ToComboValues();
 	    }
 	}
 }
