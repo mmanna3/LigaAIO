@@ -19,6 +19,11 @@ namespace LigaSoft.Controllers
 		    return View(vm);
 		}
 
+	    public ActionResult Fichar()
+	    {
+		    return Json("", JsonRequestBehavior.AllowGet);
+		}
+
 	    [AllowAnonymous]
 		[HttpPost]
 		public ActionResult Registrar(UsuarioDelegadoVM vm)
