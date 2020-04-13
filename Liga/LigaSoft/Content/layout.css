@@ -167,6 +167,7 @@ section {
 
 .top-bar li {
 	float: right;
+	border-left: solid 1px #fff;
 }
 
 .top-bar li a {
@@ -174,7 +175,11 @@ section {
 	color: white;
 	text-align: center;
 	padding: 14px 16px;
-	text-decoration: none;
+	text-decoration: none;	
+}
+
+.top-bar li:first-child {
+	border-left: none;
 }
 
 .top-bar li a:hover {

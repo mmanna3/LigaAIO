@@ -12,7 +12,7 @@
 @using (Html.YKN().Form())
 {
 	<section>
-		<h4>Ingrese sus datos para operar.</h4>
+		<h4>Si aún no estás registrado, ingresá tus datos.</h4>
 		<hr />
 		
 		@Html.YKNNonTyped().ValidationSummary()
@@ -44,10 +44,11 @@
 			</div>
 		</div>
 
-		<div class="row">
-			<div class="col-sm-6">
-				@(Html.YKN().Button("Registrar")
+		<div class="row" style="padding-top: 2em;">
+			<div class="col-sm-12">
+				@(Html.YKN().Button("Registrarme")
 					  .Color(BootstrapColorEnum.Primary)
+					  .FullWidth()
 					  .Submit()
 					  )
 			</div>

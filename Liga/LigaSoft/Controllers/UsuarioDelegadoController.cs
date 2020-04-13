@@ -13,7 +13,7 @@ namespace LigaSoft.Controllers
 	public class UsuarioDelegadoController : CommonController<UsuarioDelegado, UsuarioDelegadoVM, UsuarioDelegadoVMM>
     {
 		[AllowAnonymous]
-		public ActionResult Registrar()
+		public ActionResult Registro()
 	    {
 		    var vm = new UsuarioDelegadoVM {ClubsParaCombo = ClubsParaCombo()};
 		    return View(vm);

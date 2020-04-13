@@ -1181,7 +1181,7 @@
     <Content Include="Utilidades\Backup\token.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-user.enc" />
     <Content Include="Utilidades\Backup\credentials.json" />
     <Content Include="Utilidades\Backup\token.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-user" />
-    <Content Include="Views\UsuarioDelegado\Registrar.cshtml" />
+    <Content Include="Views\UsuarioDelegado\Registro.cshtml" />
     <Content Include="Views\UsuarioDelegado\RegistroExitoso.cshtml" />
     <Content Include="Views\AdministracionDelegados\DelegadosPendientesDeAprobacion.cshtml" />
     <Content Include="Views\AdministracionDelegados\DelegadosAprobados.cshtml" />
