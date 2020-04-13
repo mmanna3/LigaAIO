@@ -437,12 +437,18 @@ namespace LigaSoft.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Login", "Account");
+	        return RedirectToAction("MostrarPantallaDeCierreSesion");
         }
 
-        //
-        // GET: /Account/ExternalLoginFailure
-        [AllowAnonymous]
+	    [AllowAnonymous]
+		public ActionResult MostrarPantallaDeCierreSesion()
+	    {
+		    return View("CerrarSesionExito");
+	    }
+
+		//
+		// GET: /Account/ExternalLoginFailure
+		[AllowAnonymous]
         public ActionResult ExternalLoginFailure()
         {
             return View();

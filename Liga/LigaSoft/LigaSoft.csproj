@@ -1185,6 +1185,7 @@
     <Content Include="Views\UsuarioDelegado\RegistroExitoso.cshtml" />
     <Content Include="Views\AdministracionDelegados\DelegadosPendientesDeAprobacion.cshtml" />
     <Content Include="Views\AdministracionDelegados\DelegadosAprobados.cshtml" />
+    <Content Include="Views\Account\CerrarSesionExito.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
