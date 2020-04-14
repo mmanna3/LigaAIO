@@ -16,7 +16,7 @@
 				@if (User.IsInRole(LigaSoft.Utilidades.Roles.Administrador))
 				{
 					<li class="dropdown">
-						<a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown">Torneos<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity fas fa-trophy"></span></a>
+						<a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown">Torneos<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs fas fa-trophy"></span></a>
 						<ul class="dropdown-menu forAnimate" role="menu">
 							<li><a href="@Url.Action("Index","Torneo")">Torneos</a></li>
 							<li><a href="@Url.Action("Index","TorneoTipo")">Tipos</a></li>
@@ -28,7 +28,7 @@
 				@if (User.IsInRole(LigaSoft.Utilidades.Roles.Administrador) || User.IsInRole(LigaSoft.Utilidades.Roles.SoloPuedeFichar))
 				{
 					<li class="dropdown">
-						<a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown">Clubes<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity fas fa-volleyball-ball"></span></a>
+						<a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown">Clubes<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs fas fa-volleyball-ball"></span></a>
 						<ul class="dropdown-menu forAnimate" role="menu">
 							@if (User.IsInRole(LigaSoft.Utilidades.Roles.Administrador))
 							{
@@ -43,12 +43,12 @@
 				}
 				@if (User.IsInRole(LigaSoft.Utilidades.Roles.Administrador) || User.IsInRole(LigaSoft.Utilidades.Roles.SoloPuedeFichar))
 				{
-					<li><a tabindex="-1" href="@Url.Action("Index","Jugador")">Jugadores<span style="font-size:16px;" class="pull-right hidden-xs showopacity fas fa-user"></span></a></li>
+					<li><a tabindex="-1" href="@Url.Action("Index","Jugador")">Jugadores<span style="font-size:16px;" class="pull-right hidden-xs fas fa-user"></span></a></li>
 				}
 				@if (User.IsInRole(LigaSoft.Utilidades.Roles.Administrador))
 				{
 					<li class="dropdown">
-						<a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown">Finanzas<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity fas fa-briefcase"></span></a>
+						<a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown">Finanzas<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs fas fa-briefcase"></span></a>
 						<ul class="dropdown-menu forAnimate" role="menu">
 							<li><a href="@Url.Action("Index","ConceptoInsumo")">Insumos</a></li>
 							<li><a href="@Url.Action("Index","MovimientoEntradaSinClub")">Ingresos</a></li>
@@ -56,23 +56,23 @@
 						</ul>
 					</li>
 					<li class="dropdown">
-						<a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown">Informes<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity fas fa-file"></span></a>
+						<a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown">Informes<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs fas fa-file"></span></a>
 						<ul class="dropdown-menu forAnimate" role="menu">
 							<li><a href="@Url.Action("Balance_SeleccionFecha","Informe")">Balance</a></li>
 							<li><a href="@Url.Action("MovimientosImpagos_Informe","Informe")">Movimientos impagos</a></li>
 							<li><a href="@Url.Action("PagoCuotasPorMes_Informe","Informe")">Pago mensual de cuotas</a></li>
 						</ul>
 					</li>
-					<li><a tabindex="-1" href="@Url.Action("Index","Noticia")">Noticias<span style="font-size:16px;" class="pull-right hidden-xs showopacity fas fa-newspaper"></span></a></li>
-					<li><a tabindex="-1" href="@Url.Action("Index","Publicidad")">Publicidades<span style="font-size:16px;" class="pull-right hidden-xs showopacity fas fa-newspaper"></span></a></li>
+					<li><a tabindex="-1" href="@Url.Action("Index","Noticia")">Noticias<span style="font-size:16px;" class="pull-right hidden-xs fas fa-newspaper"></span></a></li>
+					<li><a tabindex="-1" href="@Url.Action("Index","Publicidad")">Publicidades<span style="font-size:16px;" class="pull-right hidden-xs fas fa-newspaper"></span></a></li>
 					<li class="dropdown">
-						<a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown">Delegados<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity fas fa-users"></span></a>
+						<a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown">Delegados<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs fas fa-users"></span></a>
 						<ul class="dropdown-menu forAnimate" role="menu">
 							<li><a href="@Url.Action("DelegadosPendientesDeAprobacion","AdministracionDelegados")">Pendientes de aprobación</a></li>
 							<li><a href="@Url.Action("DelegadosAprobados","AdministracionDelegados")">Aprobados</a></li>
 						</ul>
 					</li>					
-					<li><a tabindex="-1" href="@Url.Action("Edit","ParametroGlobal", new {Id = 1})">Configuración<span style="font-size:16px;" class="pull-right hidden-xs showopacity fas fa-cog"></span></a></li>
+					<li><a tabindex="-1" href="@Url.Action("Edit","ParametroGlobal", new {Id = 1})">Configuración<span style="font-size:16px;" class="pull-right hidden-xs fas fa-cog"></span></a></li>
 				}
 			</ul>
 		</div>
