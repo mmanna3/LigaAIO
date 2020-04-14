@@ -23,7 +23,8 @@ namespace LigaSoft.Scheduler
 					.WithIdentity("trigger1", "group1")
 					.WithDailyTimeIntervalSchedule(s => s
 						.OnEveryDay()
-						.StartingDailyAt(TimeOfDay.HourAndMinuteOfDay(15, 40)))
+						.StartingDailyAt(TimeOfDay.HourAndMinuteOfDay(11, 40))
+						.InTimeZone(TimeZoneInfo.FindSystemTimeZoneById("Argentina Standard Time")))
 					.Build();
 
 				var horaProximoBackup = await scheduler.ScheduleJob(job, trigger);
