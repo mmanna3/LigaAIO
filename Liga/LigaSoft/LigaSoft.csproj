@@ -292,6 +292,7 @@
     <Compile Include="Models\ViewModels\InformePagoCuotasPorMesVM.cs" />
     <Compile Include="Models\ViewModels\SancionVM.cs" />
     <Compile Include="Models\ViewModels\UsuarioDelegadoVM.cs" />
+    <Compile Include="Models\ViewModels\SeleccionarEquipoVM.cs" />
     <Compile Include="UIHelpers\Autocomplete_Old_Cambiar_PorNuevoAutocompleteFor.cs" />
     <Compile Include="Utilidades\Backup\GDriveBackupManager.cs" />
     <Compile Include="Utilidades\Backup\BaseDeDatosGDriveBackupManager.cs" />
@@ -1194,6 +1195,7 @@
     <Content Include="Views\AdministracionDelegados\DelegadosPendientesDeAprobacion.cshtml" />
     <Content Include="Views\AdministracionDelegados\DelegadosAprobados.cshtml" />
     <Content Include="Views\Account\CerrarSesionExito.cshtml" />
+    <Content Include="Views\JugadorFichadoPorDelegado\SeleccionarEquipo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

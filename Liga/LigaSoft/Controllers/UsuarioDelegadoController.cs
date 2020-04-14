@@ -61,5 +61,10 @@ namespace LigaSoft.Controllers
 	    {
 		    return Context.Clubs.OrderBy(x => x.Nombre).ToComboValues();
 	    }
+
+	    public ActionResult SeleccionarEquipo()
+	    {
+		    return RedirectToAction("SeleccionarEquipo", "JugadorFichadoPorDelegado");
+	    }
 	}
 }

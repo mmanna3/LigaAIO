@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using LigaSoft.ExtensionMethods;
 using LigaSoft.Models.Dominio;
 using LigaSoft.Models.ViewModels;
 using LigaSoft.ViewModelMappers;
@@ -13,15 +12,29 @@ namespace LigaSoft.Controllers
 	public class JugadorFichadoPorDelegadoController : CommonController<JugadorFichadoPorDelegado, JugadorFichadoPorDelegadoVM, JugadorFichadoPorDelegadoVMM>
     {
 	    [Authorize(Roles = Roles.Delegado)]
-		public List<SelectListItem> EquiposParaCombo()
+		public List<SelectListItem> EquiposParaCombo(int clubId)
 	    {
-		    var id = ClubDeDelegadoLogueado();
-		    return Context.Clubs.Single(x => x.Id == id).Equipos.AsQueryable().OrderBy(x => x.Nombre).ToComboValues();			
+		    return Context.Clubs.Single(x => x.Id == clubId)
+				.Equipos.OrderBy(x => x.Nombre)
+			    .Select(x => new SelectListItem {Text = x.Nombre, Value = x.Id.ToString()})
+				.ToList();
 	    }
 
 	    private int ClubDeDelegadoLogueado()
 	    {
-		    throw new System.NotImplementedException();
+		    return 10;
+	    }
+
+	    [Authorize(Roles = Roles.Delegado)]
+		public ActionResult SeleccionarEquipo()
+	    {
+		    var clubId = ClubDeDelegadoLogueado();
+		    var vm = new SeleccionarEquipoVM
+		    {
+			    EquiposParaCombo = EquiposParaCombo(clubId)
+		    };
+
+		    return View(vm);
 	    }
     }
 }

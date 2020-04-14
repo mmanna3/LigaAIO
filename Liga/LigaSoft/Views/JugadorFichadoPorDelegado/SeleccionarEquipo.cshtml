@@ -1,0 +1,27 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.Enums
+@model LigaSoft.Models.ViewModels.SeleccionarEquipoVM
+
+@section Titulo{
+	Seleccionar equipo
+}
+
+@using (Html.YKN().Form())
+{
+	<div class="row">
+		<div class="col-sm-12">
+			@Html.YKN().ComboFor(x => x.EquipoId).Values(Model.EquiposParaCombo)
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-12">
+			@(Html.YKN().Button("Seleccionar")
+				  .Color(BootstrapColorEnum.Primary)
+				  .FullWidth()
+				  .Submit()
+				  )
+		</div>
+	</div>
+}
+
