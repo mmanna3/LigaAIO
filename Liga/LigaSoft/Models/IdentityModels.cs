@@ -58,6 +58,7 @@ namespace LigaSoft.Models
 	    public DbSet<Publicidad> Publicidades { get; set; }
 	    public DbSet<Sancion> Sanciones { get; set; }
 	    public DbSet<UsuarioDelegado> UsuariosDelegadosPendientesDeAprobacion { get; set; }
+	    public DbSet<JugadorFichadoPorDelegado> JugadoresFichadosPorDelegados { get; set; }
 
 		//Finanzas
 		public DbSet<Movimiento> Movimientos { get; set; }

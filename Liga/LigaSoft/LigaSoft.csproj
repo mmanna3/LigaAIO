@@ -194,6 +194,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AdministracionDelegadosController.cs" />
+    <Compile Include="Controllers\JugadorFichadoPorDelegadoController.cs" />
     <Compile Include="Controllers\UsuarioDelegadoController.cs" />
     <Compile Include="Controllers\PublicoController.cs" />
     <Compile Include="Controllers\SancionController.cs" />
@@ -277,10 +278,16 @@
     <Compile Include="Migrations\202004120128544_AgregaCampoAprobadoAUsuarioDelegado.Designer.cs">
       <DependentUpon>202004120128544_AgregaCampoAprobadoAUsuarioDelegado.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004140016109_AgregaJugadorFichadoPorDelegado.cs" />
+    <Compile Include="Migrations\202004140016109_AgregaJugadorFichadoPorDelegado.Designer.cs">
+      <DependentUpon>202004140016109_AgregaJugadorFichadoPorDelegado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Dominio\JugadorFichadoPorDelegado.cs" />
     <Compile Include="Models\Dominio\UsuarioDelegado.cs" />
     <Compile Include="Models\Dominio\Sancion.cs" />
     <Compile Include="Models\TextValueItem.cs" />
     <Compile Include="Models\ViewModels\ConceptoInsumoAgregarStockVM.cs" />
+    <Compile Include="Models\ViewModels\JugadorFichadoPorDelegadoVM.cs" />
     <Compile Include="Models\ViewModels\SancionesWebPublicaVM.cs" />
     <Compile Include="Models\ViewModels\InformePagoCuotasPorMesVM.cs" />
     <Compile Include="Models\ViewModels\SancionVM.cs" />
@@ -849,6 +856,7 @@
     <Compile Include="Utilidades\VMMUtility.cs" />
     <Compile Include="Utilidades\YKNExHandler.cs" />
     <Compile Include="Utilidades\ZipUtility.cs" />
+    <Compile Include="ViewModelMappers\JugadorFichadoPorDelegadoVMM.cs" />
     <Compile Include="ViewModelMappers\UsuarioDelegadoVMM.cs" />
     <Compile Include="ViewModelMappers\GoleadoresWebPublicaBuilder.cs" />
     <Compile Include="ViewModelMappers\SancionVMM.cs" />
@@ -1544,6 +1552,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004120128544_AgregaCampoAprobadoAUsuarioDelegado.resx">
       <DependentUpon>202004120128544_AgregaCampoAprobadoAUsuarioDelegado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004140016109_AgregaJugadorFichadoPorDelegado.resx">
+      <DependentUpon>202004140016109_AgregaJugadorFichadoPorDelegado.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
