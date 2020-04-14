@@ -22,9 +22,8 @@ namespace LigaSoft.Scheduler
 				var trigger = TriggerBuilder.Create()
 					.WithIdentity("trigger1", "group1")
 					.WithDailyTimeIntervalSchedule(s => s
-						.WithIntervalInHours(24)
-						.StartingDailyAt(TimeOfDay.HourAndMinuteOfDay(8, 0))
-						.InTimeZone(TimeZoneInfo.Utc))
+						.OnEveryDay()
+						.StartingDailyAt(TimeOfDay.HourAndMinuteOfDay(15, 40)))
 					.Build();
 
 				var horaProximoBackup = await scheduler.ScheduleJob(job, trigger);
