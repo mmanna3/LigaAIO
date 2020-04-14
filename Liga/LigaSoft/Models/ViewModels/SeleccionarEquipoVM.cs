@@ -8,9 +8,7 @@ namespace LigaSoft.Models.ViewModels
 	{
 		[YKNRequired]
 		public int EquipoId { get; set; }
-
-		public string Equipo { get; set; }
-
 		public List<SelectListItem> EquiposParaCombo { get; set; }
+		public string Club { get; set; }
 	}
 }

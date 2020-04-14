@@ -1,0 +1,34 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.ViewModels
+
+@section Titulo{
+	Jugadores fichados
+}
+
+@section Subtitulo{
+	Equipo: @ViewBag.Equipo
+}
+
+@(Html.YKN<JugadorFichadoPorDelegadoVM>().Grid()
+	.WithColumns(column =>
+	{
+		column.AddTextColumn(x => x.DNI);
+		column.AddTextColumn(x => x.Nombre);
+		column.AddTextColumn(x => x.Apellido);
+		column.AddTextColumn(x => x.FechaNacimiento);
+	})
+	.DataSource("/JugadorFichadoPorDelegado/GetForGrid")
+)
+
+<script>
+	function Eliminar(obj) {
+		$.ajax({
+			url: '/JugadorFichadoPorDelegado/Eliminar',
+			type: "POST",
+			data: { id: obj.getAttribute('data-id') },
+			success: function () {
+				window.location.reload(false);
+			}
+		});
+	}
+</script>

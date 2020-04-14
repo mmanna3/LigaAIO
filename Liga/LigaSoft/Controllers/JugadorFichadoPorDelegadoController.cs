@@ -8,33 +8,40 @@ using LigaSoft.Utilidades;
 
 namespace LigaSoft.Controllers
 {
-	[Authorize(Roles = Roles.AdmininstradorYDelegado)]
+	[Authorize(Roles = Roles.Delegado)]
 	public class JugadorFichadoPorDelegadoController : CommonController<JugadorFichadoPorDelegado, JugadorFichadoPorDelegadoVM, JugadorFichadoPorDelegadoVMM>
     {
 	    [Authorize(Roles = Roles.Delegado)]
-		public List<SelectListItem> EquiposParaCombo(int clubId)
+		public List<SelectListItem> EquiposParaCombo(Club club)
 	    {
-		    return Context.Clubs.Single(x => x.Id == clubId)
+		    return club
 				.Equipos.OrderBy(x => x.Nombre)
 			    .Select(x => new SelectListItem {Text = x.Nombre, Value = x.Id.ToString()})
 				.ToList();
 	    }
 
-	    private int ClubDeDelegadoLogueado()
+	    private Club ClubDeDelegadoLogueado()
 	    {
-		    return 10;
+		    return Context.Clubs.Single(x => x.Id == 10);
 	    }
 
-	    [Authorize(Roles = Roles.Delegado)]
 		public ActionResult SeleccionarEquipo()
 	    {
-		    var clubId = ClubDeDelegadoLogueado();
+		    var club = ClubDeDelegadoLogueado();
 		    var vm = new SeleccionarEquipoVM
 		    {
-			    EquiposParaCombo = EquiposParaCombo(clubId)
+				Club = club.Nombre,
+				EquiposParaCombo = EquiposParaCombo(club)
 		    };
 
 		    return View(vm);
 	    }
-    }
+
+		[HttpPost]
+	    public ActionResult SeleccionarEquipo(SeleccionarEquipoVM vm)
+		{
+			ViewBag.Equipo = Context.Equipos.Find(vm.EquipoId).Nombre;
+			return View("Index");
+	    }
+	}
 }
