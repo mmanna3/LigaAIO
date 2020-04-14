@@ -18,6 +18,7 @@ namespace LigaSoft.ViewModelMappers
 			model.Nombre = vm.Nombre;
 			model.FechaNacimiento = VMMUtility.ConvertToDateTime(vm.FechaNacimiento);
 			model.Apellido = vm.Apellido;
+			model.EquipoId = vm.EquipoId;
 		}
 
 		public override JugadorFichadoPorDelegadoVM MapForEditAndDetails(JugadorFichadoPorDelegado model)
@@ -28,7 +29,9 @@ namespace LigaSoft.ViewModelMappers
 				Nombre = model.Nombre,
 				Apellido = model.Apellido,
 				DNI = model.DNI,
-				FechaNacimiento = VMMUtility.ConvertToString(model.FechaNacimiento)
+				FechaNacimiento = VMMUtility.ConvertToString(model.FechaNacimiento),
+				Equipo = Context.Equipos.Find(model.EquipoId).Nombre,
+				EquipoId = model.EquipoId
 			};
 		}
 	}

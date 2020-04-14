@@ -11,7 +11,12 @@ namespace LigaSoft.Controllers
 	[Authorize(Roles = Roles.Delegado)]
 	public class JugadorFichadoPorDelegadoController : CommonController<JugadorFichadoPorDelegado, JugadorFichadoPorDelegadoVM, JugadorFichadoPorDelegadoVMM>
     {
-	    [Authorize(Roles = Roles.Delegado)]
+		public ActionResult GrillaJugadores(IdDescripcionVM vm)
+		{
+			return View("GrillaJugadores", vm);
+		}
+
+		[Authorize(Roles = Roles.Delegado)]
 		public List<SelectListItem> EquiposParaCombo(Club club)
 	    {
 		    return club
@@ -57,7 +62,7 @@ namespace LigaSoft.Controllers
 				Id = seleccionarEquipoVM.EquipoId
 			};			
 
-			return View("Index", vm);
+			return RedirectToAction("GrillaJugadores", vm);
 	    }
 	}
 }

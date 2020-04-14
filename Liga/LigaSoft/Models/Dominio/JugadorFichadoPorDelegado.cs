@@ -22,5 +22,9 @@ namespace LigaSoft.Models.Dominio
 		public string Apellido { get; set; }
 
 		public DateTime FechaNacimiento { get; set; }
+
+		[Required]
+		public int EquipoId { get; set; }
+		public virtual Equipo Equipo { get; set; }
 	}
 }

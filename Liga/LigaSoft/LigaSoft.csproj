@@ -282,6 +282,10 @@
     <Compile Include="Migrations\202004140016109_AgregaJugadorFichadoPorDelegado.Designer.cs">
       <DependentUpon>202004140016109_AgregaJugadorFichadoPorDelegado.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004140432387_AgregaEquipoAJugadorFichadoPorDelegado.cs" />
+    <Compile Include="Migrations\202004140432387_AgregaEquipoAJugadorFichadoPorDelegado.Designer.cs">
+      <DependentUpon>202004140432387_AgregaEquipoAJugadorFichadoPorDelegado.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Dominio\JugadorFichadoPorDelegado.cs" />
     <Compile Include="Models\Dominio\UsuarioDelegado.cs" />
     <Compile Include="Models\Dominio\Sancion.cs" />
@@ -1196,7 +1200,7 @@
     <Content Include="Views\AdministracionDelegados\DelegadosAprobados.cshtml" />
     <Content Include="Views\Account\CerrarSesionExito.cshtml" />
     <Content Include="Views\JugadorFichadoPorDelegado\SeleccionarEquipo.cshtml" />
-    <Content Include="Views\JugadorFichadoPorDelegado\Index.cshtml" />
+    <Content Include="Views\JugadorFichadoPorDelegado\GrillaJugadores.cshtml" />
     <Content Include="Views\JugadorFichadoPorDelegado\Fichar.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -1559,6 +1563,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004140016109_AgregaJugadorFichadoPorDelegado.resx">
       <DependentUpon>202004140016109_AgregaJugadorFichadoPorDelegado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004140432387_AgregaEquipoAJugadorFichadoPorDelegado.resx">
+      <DependentUpon>202004140432387_AgregaEquipoAJugadorFichadoPorDelegado.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
