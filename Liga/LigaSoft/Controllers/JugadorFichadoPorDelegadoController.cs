@@ -41,6 +41,7 @@ namespace LigaSoft.Controllers
 	    {
 		    var vm = new JugadorFichadoPorDelegadoVM
 		    {
+				Equipo = Context.Equipos.Find(equipoId).Nombre,
 				EquipoId = equipoId
 		    };
 
