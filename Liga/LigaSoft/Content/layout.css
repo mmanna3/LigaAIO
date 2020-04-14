@@ -28,11 +28,12 @@ nav.sidebar, .main {
 }
 
 .navbar-inverse .navbar-nav > li > a {
-	color: white;
+	color: #ccc;
 }
 
 .navbar-inverse .navbar-nav > li > a:hover {
-	color: white;
+	color: #eee;
+	background-color: black;
 }
 
 /* Add gap to nav and right windows.*/
@@ -179,12 +180,12 @@ section {
 
 .top-bar li {
 	float: right;
-	border-left: solid 1px #fff;
+	border-left: solid 1px #ddd;
 }
 
 .top-bar li a {
 	display: block;
-	color: white;
+	color: #ccc;
 	text-align: center;
 	padding: 14px 16px;
 	text-decoration: none;	
@@ -195,7 +196,12 @@ section {
 }
 
 .top-bar li a:hover {
-	background-color: #111;
+	color: #ddd;
+	background-color: black;
+}
+
+.navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
+	color: #ddd;
 }
 /*#endregion*/
 
