@@ -25,7 +25,9 @@ namespace LigaSoft.Scheduler
 					.WithDailyTimeIntervalSchedule(s => s
 						.OnEveryDay()
 						.StartingDailyAt(TimeOfDay.HourAndMinuteOfDay(5, 0))
-						.InTimeZone(timeZoneInfoBsAs))
+						.InTimeZone(timeZoneInfoBsAs)
+						.EndingDailyAfterCount(1)
+						)
 					.Build();
 
 				var horaProximoBackup = await scheduler.ScheduleJob(job, trigger);
