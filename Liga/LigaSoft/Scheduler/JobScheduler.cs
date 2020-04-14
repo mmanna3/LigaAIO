@@ -12,6 +12,7 @@ namespace LigaSoft.Scheduler
 		{
 			try
 			{
+				var timeZoneInfoBsAs = TimeZoneInfo.FindSystemTimeZoneById("Argentina Standard Time");
 				var scheduler = await StdSchedulerFactory.GetDefaultScheduler();
 				await scheduler.Start();
 
@@ -23,13 +24,13 @@ namespace LigaSoft.Scheduler
 					.WithIdentity("trigger1", "group1")
 					.WithDailyTimeIntervalSchedule(s => s
 						.OnEveryDay()
-						.StartingDailyAt(TimeOfDay.HourAndMinuteOfDay(11, 40))
-						.InTimeZone(TimeZoneInfo.FindSystemTimeZoneById("Argentina Standard Time")))
+						.StartingDailyAt(TimeOfDay.HourAndMinuteOfDay(5, 0))
+						.InTimeZone(timeZoneInfoBsAs))
 					.Build();
 
 				var horaProximoBackup = await scheduler.ScheduleJob(job, trigger);
 
-				Log.Info($"Hora próximo backup: (UTC) {horaProximoBackup:dd/MM/yyyy HH:mm}.");
+				Log.Info($"Hora próximo backup: {horaProximoBackup:dd/MM/yyyy HH:mm} (UTC). {TimeZoneInfo.ConvertTime(horaProximoBackup, timeZoneInfoBsAs):dd/MM/yyyy HH:mm} (Buenos Aires).");
 			}
 			catch (SchedulerException se)
 			{
