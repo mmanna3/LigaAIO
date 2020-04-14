@@ -54,15 +54,31 @@ namespace LigaSoft.Controllers
 	    }
 
 		[HttpPost]
+	    public ActionResult Fichar(JugadorFichadoPorDelegadoVM vm)
+		{
+			if (!ModelState.IsValid)
+				return Fichar(vm.EquipoId);
+
+			var model = new JugadorFichadoPorDelegado();
+			VMM.MapForCreateAndEdit(vm, model);
+			Context.JugadoresFichadosPorDelegados.Add(model);
+			Context.SaveChanges();
+
+			return RedirectToAction("GrillaJugadores", new IdDescripcionVM
+			{
+				Descripcion = Context.Equipos.Find(vm.EquipoId).Nombre,
+				Id = vm.EquipoId
+			});
+		}
+
+		[HttpPost]
 	    public ActionResult SeleccionarEquipo(SeleccionarEquipoVM seleccionarEquipoVM)
 		{
-			var vm = new IdDescripcionVM
+			return RedirectToAction("GrillaJugadores", new IdDescripcionVM
 			{
 				Descripcion = Context.Equipos.Find(seleccionarEquipoVM.EquipoId).Nombre,
 				Id = seleccionarEquipoVM.EquipoId
-			};			
-
-			return RedirectToAction("GrillaJugadores", vm);
+			});
 	    }
 	}
 }
