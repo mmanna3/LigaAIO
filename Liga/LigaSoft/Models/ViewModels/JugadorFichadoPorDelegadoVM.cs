@@ -18,5 +18,7 @@ namespace LigaSoft.Models.ViewModels
 		public string FechaNacimiento { get; set; }
 
 		public int EquipoId { get; set; }
+
+		public string Equipo { get; set; }
 	}
 }

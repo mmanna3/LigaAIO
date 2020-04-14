@@ -1197,6 +1197,7 @@
     <Content Include="Views\Account\CerrarSesionExito.cshtml" />
     <Content Include="Views\JugadorFichadoPorDelegado\SeleccionarEquipo.cshtml" />
     <Content Include="Views\JugadorFichadoPorDelegado\Index.cshtml" />
+    <Content Include="Views\JugadorFichadoPorDelegado\Fichar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

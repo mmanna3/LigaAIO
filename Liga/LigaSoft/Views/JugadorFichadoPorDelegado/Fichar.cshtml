@@ -1,0 +1,35 @@
+﻿@using LigaSoft.ExtensionMethods
+@model LigaSoft.Models.ViewModels.JugadorFichadoPorDelegadoVM
+
+@section Titulo {
+	Fichar Jugador
+}
+@section Subtitulo {
+	Equipo: @Model.Equipo
+}
+
+
+@using (Html.YKN().Form())
+{
+	@Html.YKNNonTyped().ValidationSummary()
+	@Html.HiddenFor(x => x.EquipoId)
+
+	<div class="row">
+		<div class="col-sm-6">
+			@Html.YKN().EditorFor(x => x.DNI).TabIndex(1)
+			@Html.YKN().EditorFor(x => x.Nombre).TabIndex(2)
+			@Html.YKN().EditorFor(x => x.Apellido).TabIndex(3)
+			@Html.YKN().DatePickerFor(x => x.FechaNacimiento)
+		</div>
+	</div>
+
+	<div class='row form-footer'>
+		<div class='col-sm-offset-6 col-sm-3'>
+			@*@(Html.YKN().BotonCancelar()
+				.OnClickRedirect("Index", "JugadorFichadoPorDelegado", new Dictionary<string, string> { { "Id", Model.EquipoId }, { "Descripcion", Model.Equipo } }))*@
+		</div>
+		<div class='col-sm-3'>
+			@Html.YKN().BotonGuardar()
+		</div>
+	</div>
+}

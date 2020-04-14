@@ -37,11 +37,26 @@ namespace LigaSoft.Controllers
 		    return View(vm);
 	    }
 
+	    public ActionResult Fichar(int equipoId)
+	    {
+		    var vm = new JugadorFichadoPorDelegadoVM
+		    {
+				EquipoId = equipoId
+		    };
+
+			return View(vm);
+	    }
+
 		[HttpPost]
-	    public ActionResult SeleccionarEquipo(SeleccionarEquipoVM vm)
+	    public ActionResult SeleccionarEquipo(SeleccionarEquipoVM seleccionarEquipoVM)
 		{
-			ViewBag.Equipo = Context.Equipos.Find(vm.EquipoId).Nombre;
-			return View("Index");
+			var vm = new IdDescripcionVM
+			{
+				Descripcion = Context.Equipos.Find(seleccionarEquipoVM.EquipoId).Nombre,
+				Id = seleccionarEquipoVM.EquipoId
+			};			
+
+			return View("Index", vm);
 	    }
 	}
 }
