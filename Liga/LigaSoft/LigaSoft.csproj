@@ -286,9 +286,18 @@
     <Compile Include="Migrations\202004140432387_AgregaEquipoAJugadorFichadoPorDelegado.Designer.cs">
       <DependentUpon>202004140432387_AgregaEquipoAJugadorFichadoPorDelegado.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004150118330_HaceRequeridosAlgunosAtributosDeJugadorFichadoPorDelegado.cs" />
+    <Compile Include="Migrations\202004150118330_HaceRequeridosAlgunosAtributosDeJugadorFichadoPorDelegado.Designer.cs">
+      <DependentUpon>202004150118330_HaceRequeridosAlgunosAtributosDeJugadorFichadoPorDelegado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004150120597_AgregaEstadoAJugadorFichadoPorDelegado.cs" />
+    <Compile Include="Migrations\202004150120597_AgregaEstadoAJugadorFichadoPorDelegado.Designer.cs">
+      <DependentUpon>202004150120597_AgregaEstadoAJugadorFichadoPorDelegado.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Dominio\JugadorFichadoPorDelegado.cs" />
     <Compile Include="Models\Dominio\UsuarioDelegado.cs" />
     <Compile Include="Models\Dominio\Sancion.cs" />
+    <Compile Include="Models\Enums\EstadoJugadorFichadoPorDelegado.cs" />
     <Compile Include="Models\TextValueItem.cs" />
     <Compile Include="Models\ViewModels\ConceptoInsumoAgregarStockVM.cs" />
     <Compile Include="Models\ViewModels\JugadorFichadoPorDelegadoVM.cs" />
@@ -1566,6 +1575,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004140432387_AgregaEquipoAJugadorFichadoPorDelegado.resx">
       <DependentUpon>202004140432387_AgregaEquipoAJugadorFichadoPorDelegado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004150118330_HaceRequeridosAlgunosAtributosDeJugadorFichadoPorDelegado.resx">
+      <DependentUpon>202004150118330_HaceRequeridosAlgunosAtributosDeJugadorFichadoPorDelegado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004150120597_AgregaEstadoAJugadorFichadoPorDelegado.resx">
+      <DependentUpon>202004150120597_AgregaEstadoAJugadorFichadoPorDelegado.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
