@@ -56,7 +56,7 @@ namespace LigaSoft.Controllers
 		[HttpPost]
 	    public ActionResult Fichar(JugadorFichadoPorDelegadoVM vm)
 		{
-			if (!ModelState.IsValid)
+			if (!ModelState.IsValid || JugadorYaEstaFichado(vm.DNI))
 				return Fichar(vm.EquipoId);
 
 			var model = new JugadorFichadoPorDelegado();
@@ -71,7 +71,14 @@ namespace LigaSoft.Controllers
 			});
 		}
 
-		[HttpPost]
+	    private bool JugadorYaEstaFichado(string dni)
+	    {
+		    var result = Context.Jugadores.Any(x => x.DNI == dni) || Context.JugadoresFichadosPorDelegados.Any(x => x.DNI == dni);
+			ModelState.AddModelError("", "El jugador ya se encuentra fichado.");
+		    return result;
+	    }
+
+	    [HttpPost]
 	    public ActionResult SeleccionarEquipo(SeleccionarEquipoVM seleccionarEquipoVM)
 		{
 			return RedirectToAction("GrillaJugadores", new IdDescripcionVM

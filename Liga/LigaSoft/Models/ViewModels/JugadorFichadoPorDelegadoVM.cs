@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using LigaSoft.Models.Attributes;
+using LigaSoft.Models.Enums;
 
 namespace LigaSoft.Models.ViewModels
 {
@@ -20,5 +21,7 @@ namespace LigaSoft.Models.ViewModels
 		public int EquipoId { get; set; }
 
 		public string Equipo { get; set; }
+
+		public EstadoJugadorFichadoPorDelegado Estado { get; set; }
 	}
 }
