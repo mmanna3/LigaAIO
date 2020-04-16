@@ -8,6 +8,7 @@
 
 
 
+
 @(Html.YKN<JugadorFichadoPorDelegadoVM>().Grid()
 	  .WithColumns(column =>
 	  {
@@ -21,7 +22,7 @@
 		  action.JavaScriptWithRowId("Aprobar", "Aprobar");
 		  action.JavaScriptWithRowId("Rechazar", "Rechazar");
 	  })
-	  .DataSource(string.Format("/JugadorFichadoPorDelegado/GetForGrid?filterField=Estado&filterValue=\"{0}\"", EstadoJugadorFichadoPorDelegado.PendienteDeAprobacion.ToString())))
+	  .DataSource($"/JugadorFichadoPorDelegado/GetForGrid?filterField=Estado&filterValue=\"{EstadoJugadorFichadoPorDelegado.PendienteDeAprobacion.ToString()}\""))
 
 <script>
 	//function Aprobar(obj) {
