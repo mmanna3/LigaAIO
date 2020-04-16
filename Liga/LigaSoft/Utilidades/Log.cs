@@ -46,7 +46,11 @@ namespace LigaSoft.Utilidades
 		/// <param name="message">The object message to log</param>  
 		public static void Info(string message)
 		{
-			Instance.MonitoringLogger.Info(message);
+			var timeZoneInfoBsAs = TimeZoneInfo.FindSystemTimeZoneById("Argentina Standard Time");
+			var horaBsAs = $"{TimeZoneInfo.ConvertTime(DateTime.Now, timeZoneInfoBsAs):dd/MM/yyyy HH:mm:ss.fff tt} (Arg)";
+			var mensajeConHoraBuenosAires = $"{horaBsAs} - {message}";
+
+			Instance.MonitoringLogger.Info(mensajeConHoraBuenosAires);
 		}
 
 
