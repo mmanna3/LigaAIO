@@ -1,0 +1,52 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.Enums
+@using LigaSoft.Models.ViewModels
+
+@section Titulo {
+	Jugadores pendientes de aprobación
+}
+
+
+
+@(Html.YKN<JugadorFichadoPorDelegadoVM>().Grid()
+	  .WithColumns(column =>
+	  {
+		  column.AddTextColumn(x => x.DNI);
+		  column.AddTextColumn(x => x.Nombre);
+		  column.AddTextColumn(x => x.Apellido);
+		  column.AddTextColumn(x => x.Equipo);
+	  })
+	  .Actions(action =>
+	  {
+		  action.JavaScriptWithRowId("Aprobar", "Aprobar");
+		  action.JavaScriptWithRowId("Rechazar", "Rechazar");
+	  })
+	  .DataSource(string.Format("/JugadorFichadoPorDelegado/GetForGrid?filterField=Estado&filterValue=\"{0}\"", EstadoJugadorFichadoPorDelegado.PendienteDeAprobacion.ToString())))
+
+<script>
+	//function Aprobar(obj) {
+	//	$.blockUI({ message: '<h4> El delegado está siendo aprobado...</h4>' }); 
+	//	$.ajax({
+	//		url: '/AdministracionDelegados/Aprobar',
+	//		type: "POST",
+	//		data: { id: obj.getAttribute('data-id') },
+	//		success: function() {
+	//			window.location.reload(false);
+	//		},
+	//		complete: function () {
+	//			$.unblockUI();
+	//		}
+	//	});
+	//}
+
+	//function Rechazar(obj) {
+	//	$.ajax({
+	//		url: '/AdministracionDelegados/Rechazar',
+	//		type: "POST",
+	//		data: { id: obj.getAttribute('data-id') },
+	//		success: function() {
+	//			window.location.reload(false);
+	//		}
+	//	});
+	//}
+</script>

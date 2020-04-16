@@ -8,7 +8,7 @@ using LigaSoft.Utilidades;
 
 namespace LigaSoft.Controllers
 {
-	[Authorize(Roles = Roles.Delegado)]
+	[Authorize(Roles = Roles.AdmininstradorYDelegado)]
 	public class JugadorFichadoPorDelegadoController : CommonController<JugadorFichadoPorDelegado, JugadorFichadoPorDelegadoVM, JugadorFichadoPorDelegadoVMM>
     {
 		public ActionResult GrillaJugadores(IdDescripcionVM vm)
