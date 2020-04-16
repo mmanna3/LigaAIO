@@ -2,8 +2,12 @@
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.WebPages;
 using LigaSoft.Models;
+using LigaSoft.Models.Attributes.GPRPattern;
+using LigaSoft.Models.ViewModels;
 using LigaSoft.Utilidades;
+using LigaSoft.ViewModelMappers;
 using Microsoft.AspNet.Identity.Owin;
 
 namespace LigaSoft.Controllers
@@ -12,10 +16,12 @@ namespace LigaSoft.Controllers
 	public class AdministracionJugadoresFichadosPorDelegadosController : Controller
     {
 	    private readonly ApplicationDbContext _context;
+	    private readonly JugadorFichadoPorDelegadoVMM _jugadorFichadoPorDelegadoVMM;
 
-		public AdministracionJugadoresFichadosPorDelegadosController()
+	    public AdministracionJugadoresFichadosPorDelegadosController()
 		{			
 			_context = new ApplicationDbContext();
+			_jugadorFichadoPorDelegadoVMM = new JugadorFichadoPorDelegadoVMM(_context);
 		}
 
 	    public ActionResult JugadoresPendientesDeAprobacion()
@@ -41,14 +47,30 @@ namespace LigaSoft.Controllers
 			return Json(new { success = true }, JsonRequestBehavior.AllowGet);
 		}
 
-		public ActionResult Rechazar(int id)
+		[ExportModelStateToTempData, HttpPost]
+		public ActionResult Rechazar(JugadorFichadoPorDelegadoVM vm)
 		{
-			//var jugador = _context.JugadoresFichadosPorDelegados.Single(x => x.Id == id);
-			//_context.JugadoresFichadosPorDelegados.Remove(jugador);
-			//comentario
+			if (vm.MotivoDeRechazo.IsEmpty())
+			{
+				ModelState.AddModelError("", "Al rechazar, el comentario es requerido");
+				return RedirectToAction("AprobarRechazar", new {id = vm.Id});
+			}
+
+			var jugador = _context.JugadoresFichadosPorDelegados.Single(x => x.Id == vm.Id);
+			//jugador.MotivoDeRechazo = vm.MotivoDeRechazo;
 			//_context.SaveChanges();
 
-			return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+			return RedirectToAction("JugadoresPendientesDeAprobacion");
 		}
+
+	    [ImportModelStateFromTempData]
+		public ActionResult AprobarRechazar(int id)
+	    {
+		    var model = _context.JugadoresFichadosPorDelegados.Find(id);
+		    var vm = _jugadorFichadoPorDelegadoVMM.MapForEditAndDetails(model);
+
+			return View(vm);
+	    }
+
 	}
 }

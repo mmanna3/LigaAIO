@@ -1217,6 +1217,7 @@
     <Content Include="Views\JugadorFichadoPorDelegado\GrillaJugadores.cshtml" />
     <Content Include="Views\JugadorFichadoPorDelegado\Fichar.cshtml" />
     <Content Include="Views\AdministracionJugadoresFichadosPorDelegados\JugadoresPendientesDeAprobacion.cshtml" />
+    <Content Include="Views\AdministracionJugadoresFichadosPorDelegados\AprobarRechazar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -23,5 +23,8 @@ namespace LigaSoft.Models.ViewModels
 		public string Equipo { get; set; }
 
 		public EstadoJugadorFichadoPorDelegado Estado { get; set; }
+
+		[YKNStringLength(Maximo = 150), Display(Name = "Motivo de rechazo")]
+		public string MotivoDeRechazo { get; set; }
 	}
 }

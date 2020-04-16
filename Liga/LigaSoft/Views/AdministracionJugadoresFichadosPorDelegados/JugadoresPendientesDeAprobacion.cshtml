@@ -6,9 +6,6 @@
 	Jugadores pendientes de aprobación
 }
 
-
-
-
 @(Html.YKN<JugadorFichadoPorDelegadoVM>().Grid()
 	  .WithColumns(column =>
 	  {
@@ -19,8 +16,7 @@
 	  })
 	  .Actions(action =>
 	  {
-		  action.JavaScriptWithRowId("Aprobar", "Aprobar");
-		  action.JavaScriptWithRowId("Rechazar", "Rechazar");
+		  action.RedirectWithRowId("Aprobar/Rechazar", "AdministracionJugadoresFichadosPorDelegados", "AprobarRechazar");
 	  })
 	  .DataSource($"/JugadorFichadoPorDelegado/GetForGrid?filterField=Estado&filterValue=\"{EstadoJugadorFichadoPorDelegado.PendienteDeAprobacion.ToString()}\""))
 

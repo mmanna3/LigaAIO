@@ -1,0 +1,59 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.Enums
+@model LigaSoft.Models.ViewModels.JugadorFichadoPorDelegadoVM
+@section Titulo{
+	Detalles del Jugador
+}
+@section Subtitulo {
+	Equipo: @Model.Equipo
+}
+
+@Html.YKNNonTyped().ValidationSummary()
+<div class="row">
+	@*<div class="col-sm-6">
+			<img src="@Model.Foto" alt="foto">
+		</div>*@
+	<div class="col-sm-6">
+		@Html.YKN().DisplayFor(x => x.DNI)
+		@Html.YKN().DisplayFor(x => x.Nombre)
+		@Html.YKN().DisplayFor(x => x.Apellido)
+		@Html.YKN().DisplayFor(x => x.FechaNacimiento)
+	</div>
+</div>
+
+<div class="row">
+	@using (Html.BeginForm("Rechazar", "AdministracionJugadoresFichadosPorDelegados", null, FormMethod.Post, new { @class = "form-horizontal col-sm-6", style = "border: solid 1px; padding: 1em;", role = "form" }))
+	{
+		@Html.HiddenFor(x => x.Id)
+		<div class="row">
+			<div class="col-sm-12">
+				@Html.YKN().TextAreaFor(x => x.MotivoDeRechazo)
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="form-group">
+					@(Html.YKN().Button("Rechazar")
+								  .Color(BootstrapColorEnum.Danger)
+								  .FullWidth()
+								  .Submit()
+					)
+				</div>
+			</div>
+		</div>
+	}
+
+	<div class="col-sm-6">
+		<div class="form-group">
+			@(Html.YKN().Button("Fichar")
+						  .Color(BootstrapColorEnum.Success)
+						  .FullWidth()
+						  .Submit()
+			)
+		</div>
+	</div>
+</div>
+
+@{
+	Html.YKN().FooterVolver();
+}
