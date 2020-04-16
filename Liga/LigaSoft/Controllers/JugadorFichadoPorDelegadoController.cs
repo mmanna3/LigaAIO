@@ -1,16 +1,26 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using LigaSoft.Models;
 using LigaSoft.Models.Dominio;
 using LigaSoft.Models.ViewModels;
 using LigaSoft.ViewModelMappers;
 using LigaSoft.Utilidades;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace LigaSoft.Controllers
 {
 	[Authorize(Roles = Roles.AdmininstradorYDelegado)]
 	public class JugadorFichadoPorDelegadoController : CommonController<JugadorFichadoPorDelegado, JugadorFichadoPorDelegadoVM, JugadorFichadoPorDelegadoVMM>
-    {
+	{
+		private readonly UserManager<ApplicationUser> _userManager;
+
+		public JugadorFichadoPorDelegadoController()
+		{
+			_userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(Context));
+		}
+
 		public ActionResult GrillaJugadores(IdDescripcionVM vm)
 		{
 			return View("GrillaJugadores", vm);
@@ -26,10 +36,12 @@ namespace LigaSoft.Controllers
 	    }
 
 	    private Club ClubDeDelegadoLogueado()
-	    {
-		    return Context.Clubs.Single(x => x.Id == 10);
+	    {		    
+		    var aspNetUser = _userManager.FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+		    return Context.UsuariosDelegados.Single(x => x.AspNetUserId == aspNetUser.Id).Club;
 	    }
 
+		[Authorize(Roles = Roles.Delegado)]
 		public ActionResult SeleccionarEquipo()
 	    {
 		    var club = ClubDeDelegadoLogueado();

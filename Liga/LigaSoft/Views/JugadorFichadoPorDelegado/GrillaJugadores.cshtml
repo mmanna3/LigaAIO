@@ -28,7 +28,7 @@
 			column.AddTextColumn(x => x.Apellido);
 			column.AddTextColumn(x => x.FechaNacimiento);
 		})
-		.DataSource("/JugadorFichadoPorDelegado/GetForGrid")
+		.DataSource($"/JugadorFichadoPorDelegado/GetForGrid?filterField=EquipoId&&filterValue={Model.Id}")
 )
 
 <script>

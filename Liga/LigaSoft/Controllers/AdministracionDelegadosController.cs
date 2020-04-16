@@ -51,7 +51,7 @@ namespace LigaSoft.Controllers
 
 		public async Task<ActionResult> Aprobar(int id)
 		{
-			var usuarioDelegado = _context.UsuariosDelegadosPendientesDeAprobacion.Single(x => x.Id == id);
+			var usuarioDelegado = _context.UsuariosDelegados.Single(x => x.Id == id);
 
 			var user = new ApplicationUser { UserName = usuarioDelegado.Email, Email = usuarioDelegado.Email };
 			var result = await UserManager.CreateAsync(user, usuarioDelegado.Password);
@@ -69,8 +69,8 @@ namespace LigaSoft.Controllers
 
 		public ActionResult Rechazar(int id)
 		{
-			var usuarioDelegado = _context.UsuariosDelegadosPendientesDeAprobacion.Single(x => x.Id == id);
-			_context.UsuariosDelegadosPendientesDeAprobacion.Remove(usuarioDelegado);
+			var usuarioDelegado = _context.UsuariosDelegados.Single(x => x.Id == id);
+			_context.UsuariosDelegados.Remove(usuarioDelegado);
 			_context.SaveChanges();
 
 			return Json(new { success = true }, JsonRequestBehavior.AllowGet);

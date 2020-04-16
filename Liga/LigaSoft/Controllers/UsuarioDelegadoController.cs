@@ -36,7 +36,7 @@ namespace LigaSoft.Controllers
 
 			var model = new UsuarioDelegado();
 			VMM.MapForCreate(vm, model);
-		    Context.UsuariosDelegadosPendientesDeAprobacion.Add(model);
+		    Context.UsuariosDelegados.Add(model);
 		    Context.SaveChanges();
 
 		    return View("RegistroExitoso");
@@ -44,7 +44,7 @@ namespace LigaSoft.Controllers
 
 	    private bool EmailYaEstaEnUso(string email)
 	    {
-		    if (Context.UsuariosDelegadosPendientesDeAprobacion.Any(x => x.Email == email))
+		    if (Context.UsuariosDelegados.Any(x => x.Email == email))
 		    {
 			    ModelState.AddModelError("", "Debe esperar que la organización de la liga habilite su usuario.");
 			    return true;
