@@ -10,7 +10,7 @@ using LigaSoft.Utilidades;
 namespace LigaSoft.Controllers
 {
 	[Authorize(Roles = Roles.Administrador)]
-	public class JornadaController : CommonControllerWithParent<Jornada, JornadaVM, JornadaVMM, Fecha, FechaVM, FechaVMM>
+	public class JornadaController : ABMControllerWithParent<Jornada, JornadaVM, JornadaVMM, Fecha, FechaVM, FechaVMM>
     {
 	    public JornadaController() : base("Fecha","FechaId")
 	    {

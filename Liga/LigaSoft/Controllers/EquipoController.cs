@@ -18,7 +18,7 @@ using Microsoft.AspNet.Identity;
 namespace LigaSoft.Controllers
 {
 	[Authorize(Roles = Roles.CualquierEmpleadoDeLaLiga)]
-	public class EquipoController : CommonController<Equipo, EquipoVM, EquipoVMM>
+	public class EquipoController : ABMController<Equipo, EquipoVM, EquipoVMM>
     {
 	    private readonly JugadorVMM _jugadorVMM;
 	    private readonly int _valorPorDefectoEnPesosDelConceptoFichaje; 

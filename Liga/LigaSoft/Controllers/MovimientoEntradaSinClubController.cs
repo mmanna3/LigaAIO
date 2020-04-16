@@ -7,7 +7,7 @@ using LigaSoft.Utilidades;
 namespace LigaSoft.Controllers
 {
 	[Authorize(Roles = Roles.Administrador)]
-	public class MovimientoEntradaSinClubController : CommonController<MovimientoEntradaSinClub, MovimientoEntradaSinClubVM, MovimientoEntradaSinClubVMM>
+	public class MovimientoEntradaSinClubController : ABMController<MovimientoEntradaSinClub, MovimientoEntradaSinClubVM, MovimientoEntradaSinClubVMM>
     {
 	    [HttpPost]
 	    public ActionResult Anular(int id)

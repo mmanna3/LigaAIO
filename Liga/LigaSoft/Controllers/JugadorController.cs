@@ -22,7 +22,7 @@ using Newtonsoft.Json;
 namespace LigaSoft.Controllers
 {
 	[Authorize(Roles = Roles.CualquierEmpleadoDeLaLiga)]
-	public class JugadorController : CommonController<Jugador, JugadorBaseVM, JugadorVMM>
+	public class JugadorController : ABMController<Jugador, JugadorBaseVM, JugadorVMM>
     {
 	    [HttpPost, ExportModelStateToTempData]
 	    public override ActionResult Edit(JugadorBaseVM vm)

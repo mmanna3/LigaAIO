@@ -8,7 +8,7 @@ using LigaSoft.ViewModelMappers;
 namespace LigaSoft.Controllers
 {
 	[Authorize(Roles = Roles.Administrador)]
-	public class NoticiaController : CommonController<Noticia, NoticiaVM, NoticiaVMM>
+	public class NoticiaController : ABMController<Noticia, NoticiaVM, NoticiaVMM>
 	{
 		[HttpPost]
 		public ActionResult OcultarMostrar(int id)

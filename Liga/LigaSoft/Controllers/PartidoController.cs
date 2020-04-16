@@ -10,7 +10,7 @@ using LigaSoft.Utilidades;
 namespace LigaSoft.Controllers
 {
 	[Authorize(Roles = Roles.Administrador)]
-	public class PartidoController : CommonControllerWithParent<Partido, PartidoVM, PartidoVMM, Jornada, JornadaVM, JornadaVMM>
+	public class PartidoController : ABMControllerWithParent<Partido, PartidoVM, PartidoVMM, Jornada, JornadaVM, JornadaVMM>
 	{
 
 		public PartidoController() : base("Jornada", "JornadaId")

@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic;
 using System.Web.Mvc;
-using EfEnumToLookup.LookupGenerator;
 using LigaSoft.Models;
-using LigaSoft.Models.Attributes;
 using LigaSoft.Models.Attributes.GPRPattern;
 using LigaSoft.Models.Otros;
 using LigaSoft.Models.ViewModels;
@@ -13,7 +11,7 @@ using LigaSoft.ViewModelMappers;
 
 namespace LigaSoft.Controllers
 {
-    public abstract class CommonControllerWithParent<TModel, TVM, TVMM, TParentModel, TParentVM, TParentVMM> : Controller 
+    public abstract class ABMControllerWithParent<TModel, TVM, TVMM, TParentModel, TParentVM, TParentVMM> : Controller 
 		where TModel : class, new()
 	    where TVM : ViewModelConId, new()
 		where TVMM : CommonVMM<TModel, TVM>
@@ -28,7 +26,7 @@ namespace LigaSoft.Controllers
 		private readonly string _controllerName;
 		private readonly string _parentControllerName;
 
-		protected CommonControllerWithParent(string parentControllerName, string parentIdName)
+		protected ABMControllerWithParent(string parentControllerName, string parentIdName)
 		{
 		    Context = new ApplicationDbContext();		    
 			VMM = (TVMM) Activator.CreateInstance(typeof(TVMM), Context);
@@ -176,6 +174,5 @@ namespace LigaSoft.Controllers
 
 		    return Json(new { records, total }, JsonRequestBehavior.AllowGet);
 	    }
-
 	}
 }

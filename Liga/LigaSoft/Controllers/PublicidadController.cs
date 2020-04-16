@@ -9,7 +9,7 @@ using LigaSoft.ViewModelMappers;
 namespace LigaSoft.Controllers
 {
 	[Authorize(Roles = Roles.Administrador)]
-	public class PublicidadController : CommonController<Publicidad, PublicidadVM, PublicidadVMM>
+	public class PublicidadController : ABMController<Publicidad, PublicidadVM, PublicidadVMM>
 	{
 		[HttpPost, ExportModelStateToTempData]
 		public override ActionResult Edit(PublicidadVM vm)

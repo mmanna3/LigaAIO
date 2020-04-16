@@ -7,7 +7,7 @@ using LigaSoft.Utilidades;
 namespace LigaSoft.Controllers
 {
 	[Authorize(Roles = Roles.Administrador)]
-	public class CategoriaController : CommonControllerWithParent<Categoria, CategoriaVM, CategoriaVMM, Torneo, TorneoVM, TorneoVMM>
+	public class CategoriaController : ABMControllerWithParent<Categoria, CategoriaVM, CategoriaVMM, Torneo, TorneoVM, TorneoVMM>
     {
 	    public CategoriaController() : base("Torneo","TorneoId")
 	    {

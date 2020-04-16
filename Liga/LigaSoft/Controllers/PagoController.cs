@@ -10,7 +10,7 @@ using LigaSoft.Utilidades;
 namespace LigaSoft.Controllers
 {
 	[Authorize(Roles = Roles.Administrador)]
-	public class PagoController : CommonControllerWithParent<Pago, PagoVM, PagoVMM, MovimientoEntradaConClub, MovimientoEntradaConClubVM, MovimientoEntradaConClubVMM>
+	public class PagoController : ABMControllerWithParent<Pago, PagoVM, PagoVMM, MovimientoEntradaConClub, MovimientoEntradaConClubVM, MovimientoEntradaConClubVMM>
     {
 	    public PagoController() : base("MovimientoEntradaConClub","MovimientoEntradaConClubId")
 	    {			

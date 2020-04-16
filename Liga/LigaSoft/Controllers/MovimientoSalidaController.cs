@@ -10,7 +10,7 @@ using LigaSoft.Utilidades;
 namespace LigaSoft.Controllers
 {
 	[Authorize(Roles = Roles.Administrador)]
-	public class MovimientoSalidaController : CommonController<MovimientoSalida, MovimientoSalidaVM, MovimientoSalidaVMM>
+	public class MovimientoSalidaController : ABMController<MovimientoSalida, MovimientoSalidaVM, MovimientoSalidaVMM>
     {
 	    [HttpPost]
 	    public ActionResult Anular(int id)

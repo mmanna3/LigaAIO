@@ -12,7 +12,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 namespace LigaSoft.Controllers
 {
 	[Authorize(Roles = Roles.AdmininstradorYDelegado)]
-	public class JugadorFichadoPorDelegadoController : CommonController<JugadorFichadoPorDelegado, JugadorFichadoPorDelegadoVM, JugadorFichadoPorDelegadoVMM>
+	public class JugadorFichadoPorDelegadoController : ABMController<JugadorFichadoPorDelegado, JugadorFichadoPorDelegadoVM, JugadorFichadoPorDelegadoVMM>
 	{
 		private readonly UserManager<ApplicationUser> _userManager;
 

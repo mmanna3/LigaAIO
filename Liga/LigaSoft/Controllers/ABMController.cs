@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic;
 using System.Web.Mvc;
-using EfEnumToLookup.LookupGenerator;
 using LigaSoft.Models;
-using LigaSoft.Models.Attributes;
 using LigaSoft.Models.Attributes.GPRPattern;
 using LigaSoft.Models.Otros;
 using LigaSoft.Models.ViewModels;
@@ -13,7 +11,7 @@ using LigaSoft.ViewModelMappers;
 
 namespace LigaSoft.Controllers
 {
-	public abstract class CommonController<TModel, TViewModel, TVMM> : Controller 
+	public abstract class ABMController<TModel, TViewModel, TVMM> : Controller 
 		where TModel : class, new() 
 		where TVMM : CommonVMM<TModel, TViewModel>
 	    where TViewModel : ViewModelConId, new()
@@ -21,7 +19,7 @@ namespace LigaSoft.Controllers
 	    protected readonly ApplicationDbContext Context;
 	    protected readonly TVMM VMM;
 
-		protected CommonController()
+		protected ABMController()
 		{
 		    Context = new ApplicationDbContext();		    
 			VMM = (TVMM) Activator.CreateInstance(typeof(TVMM), Context);
@@ -63,8 +61,6 @@ namespace LigaSoft.Controllers
 		    var vm = VMM.MapForEdit(model);
 
 		    AfterEditMapping(vm);
-
-		    //Context.SaveChanges(); qué hacía esta línea acá?????????????????
 
 			return View(vm);
 	    }

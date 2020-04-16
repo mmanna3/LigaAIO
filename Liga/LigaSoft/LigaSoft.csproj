@@ -374,10 +374,10 @@
     <Compile Include="Controllers\ConceptoInsumoController.cs" />
     <Compile Include="Controllers\JornadaController.cs" />
     <Compile Include="Controllers\FechaController.cs" />
-    <Compile Include="Controllers\CommonControllerWithParent.cs" />
+    <Compile Include="Controllers\ABMControllerWithParent.cs" />
     <Compile Include="Controllers\JugadorController.cs" />
     <Compile Include="Controllers\EquipoController.cs" />
-    <Compile Include="Controllers\CommonController.cs" />
+    <Compile Include="Controllers\ABMController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ClubController.cs" />

@@ -10,7 +10,7 @@ using LigaSoft.Utilidades;
 namespace LigaSoft.Controllers
 {
 	[Authorize(Roles = Roles.AdmininstradorYDelegado)]
-	public class UsuarioDelegadoController : CommonController<UsuarioDelegado, UsuarioDelegadoVM, UsuarioDelegadoVMM>
+	public class UsuarioDelegadoController : ABMController<UsuarioDelegado, UsuarioDelegadoVM, UsuarioDelegadoVMM>
     {
 		[AllowAnonymous]
 		public ActionResult Registro()

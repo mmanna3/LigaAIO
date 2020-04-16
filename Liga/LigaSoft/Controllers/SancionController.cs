@@ -11,7 +11,7 @@ using LigaSoft.Utilidades;
 namespace LigaSoft.Controllers
 {
 	[Authorize(Roles = Roles.Administrador)]
-	public class SancionController : CommonControllerWithParent<Sancion, SancionVM, SancionVMM, Zona, ZonaVM, ZonaVMM>
+	public class SancionController : ABMControllerWithParent<Sancion, SancionVM, SancionVMM, Zona, ZonaVM, ZonaVMM>
 	{
 		public SancionController() : base("Zona", "Jornada.Fecha.ZonaId")
 		{

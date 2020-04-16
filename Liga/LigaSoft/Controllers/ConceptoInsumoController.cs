@@ -8,7 +8,7 @@ using LigaSoft.Utilidades;
 namespace LigaSoft.Controllers
 {
 	[Authorize(Roles = Roles.Administrador)]
-	public class ConceptoInsumoController : CommonController<ConceptoInsumo, ConceptoInsumoVM, ConceptoInsumoVMM>
+	public class ConceptoInsumoController : ABMController<ConceptoInsumo, ConceptoInsumoVM, ConceptoInsumoVMM>
 	{
 		public int PrecioUnitario(int conceptoId)
 		{

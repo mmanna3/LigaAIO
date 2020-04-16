@@ -7,7 +7,7 @@ using LigaSoft.Utilidades;
 namespace LigaSoft.Controllers
 {
 	[Authorize(Roles = Roles.Administrador)]
-	public class TorneoTipoController : CommonController<TorneoTipo, TorneoTipoVM, TorneoTipoVMM>
+	public class TorneoTipoController : ABMController<TorneoTipo, TorneoTipoVM, TorneoTipoVMM>
     {
 	}
 }

@@ -14,7 +14,7 @@ using LigaSoft.Utilidades;
 namespace LigaSoft.Controllers
 {
 	[Authorize(Roles = Roles.Administrador)]
-	public class MovimientoEntradaConClubController : CommonControllerWithParent<MovimientoEntradaConClub, MovimientoEntradaConClubVM, MovimientoEntradaConClubVMM, Club, ClubVM, ClubVMM>
+	public class MovimientoEntradaConClubController : ABMControllerWithParent<MovimientoEntradaConClub, MovimientoEntradaConClubVM, MovimientoEntradaConClubVMM, Club, ClubVM, ClubVMM>
     {
 	    public MovimientoEntradaConClubController() : base("Club","ClubId")
 	    {			

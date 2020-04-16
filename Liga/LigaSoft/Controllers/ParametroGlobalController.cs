@@ -9,7 +9,7 @@ using LigaSoft.ViewModelMappers;
 namespace LigaSoft.Controllers
 {
 	[Authorize(Roles = Roles.Administrador)]
-	public class ParametroGlobalController : CommonController<ParametroGlobal, ParametroGlobalVM, ParametroGlobalVMM>
+	public class ParametroGlobalController : ABMController<ParametroGlobal, ParametroGlobalVM, ParametroGlobalVMM>
 	{
 		[HttpPost, ExportModelStateToTempData]
 		public override ActionResult Edit(ParametroGlobalVM vm)

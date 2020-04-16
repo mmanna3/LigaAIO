@@ -16,7 +16,7 @@ using LigaSoft.ViewModelMappers;
 namespace LigaSoft.Controllers
 {
 	[Authorize(Roles = Roles.Administrador)]
-	public class ClubController : CommonController<Club, ClubVM, ClubVMM>
+	public class ClubController : ABMController<Club, ClubVM, ClubVMM>
     {
 	    private readonly EquipoVMM _equipoVMM;
 

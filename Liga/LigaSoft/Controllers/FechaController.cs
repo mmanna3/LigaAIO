@@ -13,7 +13,7 @@ using LigaSoft.ViewModelMappers;
 namespace LigaSoft.Controllers
 {
 	[Authorize(Roles = Roles.Administrador)]
-	public class FechaController : CommonControllerWithParent<Fecha, FechaVM, FechaVMM, Zona, ZonaVM, ZonaVMM>
+	public class FechaController : ABMControllerWithParent<Fecha, FechaVM, FechaVMM, Zona, ZonaVM, ZonaVMM>
     {
 	    public FechaController() : base("Zona","ZonaId")
 	    {
