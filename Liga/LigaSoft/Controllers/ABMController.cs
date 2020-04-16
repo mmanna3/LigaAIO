@@ -93,30 +93,33 @@ namespace LigaSoft.Controllers
 			return View(vm);
 		}
 
-		public virtual JsonResult GetForGrid(int? page, int? limit, string sortBy, string direction, string searchField, string searchValue, string filterField, string filterValue, string filterOperator = "==")
+		public virtual JsonResult GetForGrid(GijgoGridOpciones options)
 		{
-		    var options = new GijgoGridOptions(page, limit, sortBy, direction, searchField, searchValue);
-
 		    var query = Context.Set<TModel>().AsQueryable();
 
 			List<TModel> models;
 
-			if (!string.IsNullOrEmpty(filterField))
-				query = Context.Set<TModel>().Where($"{filterField} {filterOperator} {filterValue}").AsQueryable();
+			if (!string.IsNullOrEmpty(options.filterField))
+			{
+				if (options.filterOperator == null)
+					options.filterOperator = "==";
 
-			if (!string.IsNullOrWhiteSpace(options.SearchValue))
-			    query = query.Where($"{options.SearchField}.Contains(@0)", options.SearchValue);
+				query = Context.Set<TModel>().Where($"{options.filterField} {options.filterOperator} {options.filterValue}").AsQueryable();
+			}				
 
-		    if (!string.IsNullOrEmpty(options.SortBy) && !string.IsNullOrEmpty(options.Direction))
-			    query = query.OrderBy(options.Direction.Trim().ToLower() == "asc" ? options.SortBy : $"{options.SortBy} descending");
+			if (!string.IsNullOrWhiteSpace(options.searchValue))
+			    query = query.Where($"{options.searchField}.Contains(@0)", options.searchValue);
+
+		    if (!string.IsNullOrEmpty(options.sortBy) && !string.IsNullOrEmpty(options.direction))
+			    query = query.OrderBy(options.direction.Trim().ToLower() == "asc" ? options.sortBy : $"{options.sortBy} descending");
 		    else
 			    query = query.OrderBy("Id descending");
 
 		    var total = query.Count();
-		    if (options.Page.HasValue && options.Limit.HasValue)
+		    if (options.page.HasValue && options.limit.HasValue)
 		    {
-			    var start = (options.Page.Value - 1) * options.Limit.Value;
-			    models = query.Skip(start).Take(options.Limit.Value).ToList();
+			    var start = (options.page.Value - 1) * options.limit.Value;
+			    models = query.Skip(start).Take(options.limit.Value).ToList();
 		    }
 		    else
 			    models = query.ToList();
@@ -125,5 +128,18 @@ namespace LigaSoft.Controllers
 
 		    return Json(new { records, total }, JsonRequestBehavior.AllowGet);
 	    }
+
+		public class GijgoGridOpciones
+		{
+			public int? page { get; set; }
+			public int? limit { get; set; }
+			public string sortBy { get; set; }
+			public string direction { get; set; }
+			public string searchField { get; set; }
+			public string searchValue { get; set; }
+			public string filterField { get; set; }
+			public string filterValue { get; set; }
+			public string filterOperator { get; set; }
+		}		
 	}
 }
