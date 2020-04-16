@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using System.Web.WebPages;
 using LigaSoft.Models;
 using LigaSoft.Models.Attributes.GPRPattern;
+using LigaSoft.Models.Enums;
 using LigaSoft.Models.ViewModels;
 using LigaSoft.Utilidades;
 using LigaSoft.ViewModelMappers;
@@ -57,8 +58,10 @@ namespace LigaSoft.Controllers
 			}
 
 			var jugador = _context.JugadoresFichadosPorDelegados.Single(x => x.Id == vm.Id);
-			//jugador.MotivoDeRechazo = vm.MotivoDeRechazo;
-			//_context.SaveChanges();
+			jugador.MotivoDeRechazo = vm.MotivoDeRechazo;
+			jugador.Estado = EstadoJugadorFichadoPorDelegado.Rechazado;
+
+			_context.SaveChanges();
 
 			return RedirectToAction("JugadoresPendientesDeAprobacion");
 		}

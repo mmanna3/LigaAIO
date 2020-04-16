@@ -32,5 +32,9 @@ namespace LigaSoft.Models.Dominio
 
 		[Required]
 		public EstadoJugadorFichadoPorDelegado Estado { get; set; }
+
+		[Column(TypeName = "VARCHAR")]
+		[MaxLength(150)]
+		public string MotivoDeRechazo { get; set; }
 	}
 }

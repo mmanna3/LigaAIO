@@ -299,6 +299,10 @@
     <Compile Include="Migrations\202004150120597_AgregaEstadoAJugadorFichadoPorDelegado.Designer.cs">
       <DependentUpon>202004150120597_AgregaEstadoAJugadorFichadoPorDelegado.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004160112307_AgregaMotivoDeRechazoAJugadorFichadoPorDelegado.cs" />
+    <Compile Include="Migrations\202004160112307_AgregaMotivoDeRechazoAJugadorFichadoPorDelegado.Designer.cs">
+      <DependentUpon>202004160112307_AgregaMotivoDeRechazoAJugadorFichadoPorDelegado.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Dominio\JugadorFichadoPorDelegado.cs" />
     <Compile Include="Models\Dominio\UsuarioDelegado.cs" />
     <Compile Include="Models\Dominio\Sancion.cs" />
@@ -1588,6 +1592,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004150120597_AgregaEstadoAJugadorFichadoPorDelegado.resx">
       <DependentUpon>202004150120597_AgregaEstadoAJugadorFichadoPorDelegado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004160112307_AgregaMotivoDeRechazoAJugadorFichadoPorDelegado.resx">
+      <DependentUpon>202004160112307_AgregaMotivoDeRechazoAJugadorFichadoPorDelegado.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
