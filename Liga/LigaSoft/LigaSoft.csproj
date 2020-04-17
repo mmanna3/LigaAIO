@@ -979,6 +979,7 @@
     <Content Include="Imagenes\publicidad-derecha.jpg" />
     <Content Include="Imagenes\publicidad-izquierda.jpg" />
     <Content Include="Parameters.xml" />
+    <Content Include="Scripts\jquery.blockUI.js" />
     <Content Include="WebPublica\config\webpack.config.dev.js" />
     <Content Include="WebPublica\config\webpack.config.prod.js" />
     <Content Include="WebPublica\src\**" />
