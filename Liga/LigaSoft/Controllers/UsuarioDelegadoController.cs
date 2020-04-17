@@ -26,7 +26,7 @@ namespace LigaSoft.Controllers
 
 	    [AllowAnonymous]
 		[HttpPost]
-		public ActionResult Registrar(UsuarioDelegadoVM vm)
+		public ActionResult Registro(UsuarioDelegadoVM vm)
 	    {
 		    if (!ModelState.IsValid || EmailYaEstaEnUso(vm.Email))
 		    {
