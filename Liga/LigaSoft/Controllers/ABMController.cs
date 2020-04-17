@@ -95,10 +95,18 @@ namespace LigaSoft.Controllers
 
 		public virtual JsonResult GetForGrid(GijgoGridOpciones options)
 		{
-		    var query = Context.Set<TModel>().AsQueryable();
+			var query = ApplyOptionsToQuery(Context.Set<TModel>().AsQueryable(), options, out int total);
 
-			List<TModel> models;
+			var queryModels = query.ToList();
 
+			var records = VMM.MapForGrid(queryModels);
+
+		    return Json(new { records, total }, JsonRequestBehavior.AllowGet);
+	    }
+
+		public IQueryable<T> ApplyOptionsToQuery<T>(IQueryable<T> query, GijgoGridOpciones options, out int total)
+			where T : class
+		{
 			if (options.filters != null)
 				foreach (var filter in options.filters)
 					query = query.Where($"{filter.field} {filter.@operator} {filter.value}").AsQueryable();
@@ -109,28 +117,24 @@ namespace LigaSoft.Controllers
 					options.filterOperator = "==";
 
 				query = query.Where($"{options.filterField} {options.filterOperator} {options.filterValue}").AsQueryable();
-			}				
+			}
 
 			if (!string.IsNullOrWhiteSpace(options.searchValue))
-			    query = query.Where($"{options.searchField}.Contains(@0)", options.searchValue);
+				query = query.Where($"{options.searchField}.Contains(@0)", options.searchValue);
 
-		    if (!string.IsNullOrEmpty(options.sortBy) && !string.IsNullOrEmpty(options.direction))
-			    query = query.OrderBy(options.direction.Trim().ToLower() == "asc" ? options.sortBy : $"{options.sortBy} desc");
-		    else
-			    query = query.OrderBy("Id desc");
+			if (!string.IsNullOrEmpty(options.sortBy) && !string.IsNullOrEmpty(options.direction))
+				query = query.OrderBy(options.direction.Trim().ToLower() == "asc" ? options.sortBy : $"{options.sortBy} desc");
+			else
+				query = query.OrderBy("Id desc");
 
-		    var total = query.Count();
-		    if (options.page.HasValue && options.limit.HasValue)
-		    {
-			    var start = (options.page.Value - 1) * options.limit.Value;
-			    models = query.Skip(start).Take(options.limit.Value).ToList();
-		    }
-		    else
-			    models = query.ToList();
+			total = query.Count();
+			if (options.page.HasValue && options.limit.HasValue)
+			{
+				var start = (options.page.Value - 1) * options.limit.Value;
+				return query.Skip(start).Take(options.limit.Value);
+			}
 
-		    var records = VMM.MapForGrid(models);
-
-		    return Json(new { records, total }, JsonRequestBehavior.AllowGet);
-	    }		
+			return query;
+		}
 	}
 }
