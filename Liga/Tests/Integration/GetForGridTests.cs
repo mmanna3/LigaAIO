@@ -33,24 +33,24 @@ namespace Tests.Integration
 			Assert.AreEqual(clubs.Count, _totalDeClubesEnLaBase);
 		}
 
-		//[Test]
-		//public void DevuelveTodosLosRegistrosOrdenadosAlfabeticamenteAscendente()
-		//{
-		//	var result = _ABMController.GetForGrid(1, _totalDeClubesEnLaBase, "Nombre", "asc", null, null, null, null, null);
-		//	var clubs = (List<ClubVM>)result.Data.GetReflectedProperty("records");
+		[Test]
+		public void DevuelveTodosLosRegistrosOrdenadosAlfabeticamenteAscendente()
+		{
+			var result = _ABMController.GetForGrid(new GijgoGridOpciones{sortBy = "Nombre", direction = "asc"});
+			var clubs = (List<ClubVM>)result.Data.GetReflectedProperty("records");
 
-		//	Assert.AreEqual(clubs.First().Nombre, _nombrePrimerClubSegunOrdenAlfabetico);
-		//	Assert.AreEqual(clubs.Last().Nombre, _nombreUltimoClubSegunOrdenAlfabetico);
-		//}
+			Assert.AreEqual(clubs.First().Nombre, _nombrePrimerClubSegunOrdenAlfabetico);
+			Assert.AreEqual(clubs.Last().Nombre, _nombreUltimoClubSegunOrdenAlfabetico);
+		}
 
-		//[Test]
-		//public void DevuelveTodosLosRegistrosOrdenadosAlfabeticamenteDescendente()
-		//{
-		//	var result = _ABMController.GetForGrid(1, _totalDeClubesEnLaBase, "Nombre", "desc", null, null, null, null, null);
-		//	var clubs = (List<ClubVM>)result.Data.GetReflectedProperty("records");
+		[Test]
+		public void DevuelveTodosLosRegistrosOrdenadosAlfabeticamenteDescendente()
+		{
+			var result = _ABMController.GetForGrid(new GijgoGridOpciones { sortBy = "Nombre", direction = "desc" });
+			var clubs = (List<ClubVM>)result.Data.GetReflectedProperty("records");
 
-		//	Assert.AreEqual(clubs.First().Nombre, _nombreUltimoClubSegunOrdenAlfabetico);
-		//	Assert.AreEqual(clubs.Last().Nombre, _nombrePrimerClubSegunOrdenAlfabetico);
-		//}
+			Assert.AreEqual(clubs.First().Nombre, _nombreUltimoClubSegunOrdenAlfabetico);
+			Assert.AreEqual(clubs.Last().Nombre, _nombrePrimerClubSegunOrdenAlfabetico);
+		}
 	}
 }
