@@ -72,7 +72,7 @@ namespace Tests.Integration
 		[Test]
 		public void FiltroPorCampoTipoInt()
 		{
-			var result = _clubController.GetForGrid(new GijgoGridOpciones { filters = new List<GijgoGridFilter>{new GijgoGridFilter("Id", 2)} });
+			var result = _clubController.GetForGrid(new GijgoGridOpciones { filters = new[] {new GijgoGridFilter("Id", 2)} });
 			var clubs = (List<ClubVM>)result.Data.GetReflectedProperty("records");
 			var nombres = clubs.Select(x => x.Nombre).ToList();
 
@@ -83,7 +83,7 @@ namespace Tests.Integration
 		[Test]
 		public void FiltroPorCampoTipoIntConOperador()
 		{
-			var result = _clubController.GetForGrid(new GijgoGridOpciones { filters = new List<GijgoGridFilter> { new GijgoGridFilter("Id", ">", 2) } });
+			var result = _clubController.GetForGrid(new GijgoGridOpciones { filters = new[] { new GijgoGridFilter("Id", ">", 2) } });
 			var clubs = (List<ClubVM>)result.Data.GetReflectedProperty("records");
 			Assert.AreEqual(5, clubs.Count);
 		}
@@ -91,7 +91,7 @@ namespace Tests.Integration
 		[Test]
 		public void FiltroPorCampoTipoString()
 		{
-			var result = _clubController.GetForGrid(new GijgoGridOpciones { filters = new List<GijgoGridFilter> { new GijgoGridFilter("Nombre", "River") } });
+			var result = _clubController.GetForGrid(new GijgoGridOpciones { filters = new[] { new GijgoGridFilter("Nombre", "River") } });
 			var clubs = (List<ClubVM>)result.Data.GetReflectedProperty("records");
 			var nombres = clubs.Select(x => x.Nombre).ToList();
 
@@ -102,7 +102,7 @@ namespace Tests.Integration
 		[Test]
 		public void FiltroPorCampoTipoBool()
 		{
-			var result = _clubController.GetForGrid(new GijgoGridOpciones { filters = new List<GijgoGridFilter> { new GijgoGridFilter("Techo", true) } });
+			var result = _clubController.GetForGrid(new GijgoGridOpciones { filters = new[] { new GijgoGridFilter("Techo", true) } });
 			var clubs = (List<ClubVM>)result.Data.GetReflectedProperty("records");
 			var nombres = clubs.Select(x => x.Nombre).ToList();
 
@@ -113,7 +113,7 @@ namespace Tests.Integration
 		[Test]
 		public void FiltroPorCampoTipoEnum()
 		{
-			var result = _torneoController.GetForGrid(new GijgoGridOpciones { filters = new List<GijgoGridFilter> { new GijgoGridFilter("Anio", Anio.A2020) } });
+			var result = _torneoController.GetForGrid(new GijgoGridOpciones { filters = new[] { new GijgoGridFilter("Anio", Anio.A2020) } });
 			var torneos = (List<TorneoVM>)result.Data.GetReflectedProperty("records");
 			Assert.AreEqual(1, torneos.Count);
 		}

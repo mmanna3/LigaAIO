@@ -2,6 +2,7 @@
 using System.Linq.Expressions;
 using System.Web.Mvc;
 using LigaSoft.Models.Enums;
+using LigaSoft.UIHelpers.Grid;
 
 namespace LigaSoft.UIHelpers.WidgetFactories
 {

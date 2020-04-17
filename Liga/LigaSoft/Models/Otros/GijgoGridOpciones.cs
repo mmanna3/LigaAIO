@@ -15,16 +15,15 @@ namespace LigaSoft.Models.Otros
 		public string filterField { get; set; }
 		public string filterValue { get; set; }
 		public string filterOperator { get; set; }
-		public IList<GijgoGridFilter> filters { get; set; }
-
-		public GijgoGridOpciones()
-		{
-			filters = new List<GijgoGridFilter>();
-		}
+		public GijgoGridFilter[] filters { get; set; }
 	}
 
 	public class GijgoGridFilter
 	{
+		public GijgoGridFilter()
+		{			
+		}
+
 		public GijgoGridFilter(string field, string @operator, int value)
 		{
 			this.field = field;

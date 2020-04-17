@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web.Mvc;
-using LigaSoft.UIHelpers.Grid;
+using LigaSoft.Models.Otros;
 
-namespace LigaSoft.UIHelpers
+namespace LigaSoft.UIHelpers.Grid
 {
 	public class GridBuilder<TModel> : UIBuilder
 	{		
 		private readonly List<GridColumnText<TModel>> _textColumns;
 		private readonly List<GridColumnIcon<TModel>> _iconColumns;
 		private readonly List<GridColumnButton<TModel>> _buttonColumns;
+		private IList<GijgoGridFilter> _dataFilters;
 		private readonly GridComboActionFactory _actions;
 
 		private int _pageLimit = 10;
@@ -25,6 +27,7 @@ namespace LigaSoft.UIHelpers
 			_textColumns = new List<GridColumnText<TModel>>();
 			_iconColumns = new List<GridColumnIcon<TModel>>();
 			_buttonColumns = new List<GridColumnButton<TModel>>();
+			_dataFilters = new List<GijgoGridFilter>();
 			_actions = new GridComboActionFactory();
 			_helper = helper;			
 		}
@@ -44,6 +47,20 @@ namespace LigaSoft.UIHelpers
 		public GridBuilder<TModel> DataSource(string dataSource)
 		{
 			_dataSource = dataSource;
+			return this;
+		}
+
+		public GridBuilder<TModel> DataFilter(string field, object value)
+		{
+			var filter = new GijgoGridFilter(field, value);
+			_dataFilters.Add(filter);
+			return this;
+		}
+
+		public GridBuilder<TModel> DataFilter(string field, string @operator, int value)
+		{
+			var filter = new GijgoGridFilter(field, @operator, value);
+			_dataFilters.Add(filter);
 			return this;
 		}
 
@@ -84,7 +101,7 @@ namespace LigaSoft.UIHelpers
 							grid = $('#{_name}').grid({{
 								uiLibrary: 'bootstrap',
 								primaryKey: '{_primaryKey}',
-								dataSource: '{_dataSource}',
+								dataSource: '{_dataSource}{FiltersToQueryParams()}',
 								locale: 'es-es',
 								{_checkbox}
 								columns: [{ColumnsJs()}],								
@@ -100,6 +117,22 @@ namespace LigaSoft.UIHelpers
 						{string.Join(" ", _buttonColumns.Select(x => x.JavaScriptToAppend()))}
 						{_actions.JavaScriptToAppend()}
 					</script>";
+		}
+
+		private string FiltersToQueryParams()
+		{
+			var result = "";
+			if (_dataFilters.Any())
+			{
+				for (var i = 0; i < _dataFilters.Count; i++)
+				{
+					result += $"&filters[{i}].field={_dataFilters[i].field}&filters[{i}].operator={_dataFilters[i].@operator}&filters[{i}].value={_dataFilters[i].value}";
+				}
+
+				var resultStrBuilder = new StringBuilder(result) {[0] = '?'};
+				return resultStrBuilder.ToString();
+			}
+			return result;
 		}
 
 		private string ColumnsJs()
