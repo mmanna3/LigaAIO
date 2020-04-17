@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using LigaSoft.Controllers;
 using LigaSoft.ExtensionMethods;
@@ -51,6 +52,18 @@ namespace Tests.Integration
 
 			Assert.AreEqual(clubs.First().Nombre, _nombreUltimoClubSegunOrdenAlfabetico);
 			Assert.AreEqual(clubs.Last().Nombre, _nombrePrimerClubSegunOrdenAlfabetico);
+		}
+
+		[Test]
+		public void DevuelveSoloRegistrosQueContenganCiertoTexto()
+		{
+			var result = _ABMController.GetForGrid(new GijgoGridOpciones { searchField = "Nombre", searchValue = "ac" });
+			var clubs = (List<ClubVM>)result.Data.GetReflectedProperty("records");
+			var nombres = clubs.Select(x => x.Nombre).ToList();
+
+			Assert.AreEqual(clubs.Count, 2);
+			Assert.Contains("Huracán", nombres);
+			Assert.Contains("Racing", nombres);
 		}
 	}
 }
