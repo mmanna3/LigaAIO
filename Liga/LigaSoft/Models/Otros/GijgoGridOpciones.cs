@@ -25,39 +25,22 @@ namespace LigaSoft.Models.Otros
 
 	public class GijgoGridFilter
 	{
-		public GijgoGridFilter(string field, string @operator, string value)
+		public GijgoGridFilter(string field, string @operator, int value)
 		{
 			this.field = field;
 			this.@operator = @operator;
-			this.value = value;
-		}
-
-		public GijgoGridFilter(string field, string value)
-		{
-			this.field = field;
-			this.@operator = "=";
-			this.value = $"\"{value}\"";
-		}
-
-		public GijgoGridFilter(string field, int value)
-		{
-			this.field = field;
-			this.@operator = "=";
 			this.value = value.ToString();
 		}
 
-		public GijgoGridFilter(string field, bool value)
+		public GijgoGridFilter(string field, object value)
 		{
 			this.field = field;
 			this.@operator = "=";
-			this.value = value.ToString();
-		}
 
-		public GijgoGridFilter(string field, Enum value)
-		{
-			this.field = field;
-			this.@operator = "=";
-			this.value = $"\"{value.ToString()}\"";
+			if (value is int || value is bool)
+				this.value = $"{value.ToString()}";
+			else
+				this.value = $"\"{value.ToString()}\"";
 		}
 
 		public string field { get; set; }

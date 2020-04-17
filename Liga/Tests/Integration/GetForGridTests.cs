@@ -29,7 +29,7 @@ namespace Tests.Integration
 	    }
 
 		[Test]
-		public void SinParametrizacionDevuelveTodosLosRegistros()
+		public void SinParametrizacion()
 		{
 			var result = _clubController.GetForGrid(new GijgoGridOpciones());
 			var clubs = (List<ClubVM>)result.Data.GetReflectedProperty("records");
@@ -38,7 +38,7 @@ namespace Tests.Integration
 		}
 
 		[Test]
-		public void DevuelveTodosLosRegistrosOrdenadosAlfabeticamenteAscendente()
+		public void OrdenAlfabeticoAscendente()
 		{
 			var result = _clubController.GetForGrid(new GijgoGridOpciones{sortBy = "Nombre", direction = "asc"});
 			var clubs = (List<ClubVM>)result.Data.GetReflectedProperty("records");
@@ -48,7 +48,7 @@ namespace Tests.Integration
 		}
 
 		[Test]
-		public void DevuelveTodosLosRegistrosOrdenadosAlfabeticamenteDescendente()
+		public void OrdenAlfabeticoDescendente()
 		{
 			var result = _clubController.GetForGrid(new GijgoGridOpciones { sortBy = "Nombre", direction = "desc" });
 			var clubs = (List<ClubVM>)result.Data.GetReflectedProperty("records");
@@ -58,7 +58,7 @@ namespace Tests.Integration
 		}
 
 		[Test]
-		public void DevuelveSoloRegistrosQueContenganCiertoTexto()
+		public void Search()
 		{
 			var result = _clubController.GetForGrid(new GijgoGridOpciones { searchField = "Nombre", searchValue = "ac" });
 			var clubs = (List<ClubVM>)result.Data.GetReflectedProperty("records");
@@ -70,7 +70,7 @@ namespace Tests.Integration
 		}
 
 		[Test]
-		public void DevuelveRegistroFiltadosPorCampoTipoInt()
+		public void FiltroPorCampoTipoInt()
 		{
 			var result = _clubController.GetForGrid(new GijgoGridOpciones { filters = new List<GijgoGridFilter>{new GijgoGridFilter("Id", 2)} });
 			var clubs = (List<ClubVM>)result.Data.GetReflectedProperty("records");
@@ -81,7 +81,15 @@ namespace Tests.Integration
 		}
 
 		[Test]
-		public void DevuelveRegistroFiltadosPorCampoTipoString()
+		public void FiltroPorCampoTipoIntConOperador()
+		{
+			var result = _clubController.GetForGrid(new GijgoGridOpciones { filters = new List<GijgoGridFilter> { new GijgoGridFilter("Id", ">", 2) } });
+			var clubs = (List<ClubVM>)result.Data.GetReflectedProperty("records");
+			Assert.AreEqual(5, clubs.Count);
+		}
+
+		[Test]
+		public void FiltroPorCampoTipoString()
 		{
 			var result = _clubController.GetForGrid(new GijgoGridOpciones { filters = new List<GijgoGridFilter> { new GijgoGridFilter("Nombre", "River") } });
 			var clubs = (List<ClubVM>)result.Data.GetReflectedProperty("records");
@@ -92,7 +100,7 @@ namespace Tests.Integration
 		}
 
 		[Test]
-		public void DevuelveRegistroFiltadosPorCampoTipoBool()
+		public void FiltroPorCampoTipoBool()
 		{
 			var result = _clubController.GetForGrid(new GijgoGridOpciones { filters = new List<GijgoGridFilter> { new GijgoGridFilter("Techo", true) } });
 			var clubs = (List<ClubVM>)result.Data.GetReflectedProperty("records");
@@ -103,7 +111,7 @@ namespace Tests.Integration
 		}
 
 		[Test]
-		public void DevuelveRegistroFiltadosPorCampoTipoEnum()
+		public void FiltroPorCampoTipoEnum()
 		{
 			var result = _torneoController.GetForGrid(new GijgoGridOpciones { filters = new List<GijgoGridFilter> { new GijgoGridFilter("Anio", Anio.A2020) } });
 			var torneos = (List<TorneoVM>)result.Data.GetReflectedProperty("records");
