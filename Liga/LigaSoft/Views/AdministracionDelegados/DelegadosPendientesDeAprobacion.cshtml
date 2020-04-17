@@ -18,7 +18,8 @@
 				action.JavaScriptWithRowId("Aprobar", "Aprobar");
 				action.JavaScriptWithRowId("Rechazar", "Rechazar");
 			})
-			.DataSource("/UsuarioDelegado/GetForGrid?filterField=Aprobado&filterValue=false")
+			.DataSource("/UsuarioDelegado/GetForGrid")
+			.DataFilter("Aprobado", false)
 )
 
 <script>

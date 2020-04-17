@@ -7,43 +7,44 @@
 }
 
 @(Html.YKN<JugadorFichadoPorDelegadoVM>().Grid()
-	  .WithColumns(column =>
-	  {
-		  column.AddTextColumn(x => x.DNI);
-		  column.AddTextColumn(x => x.Nombre);
-		  column.AddTextColumn(x => x.Apellido);
-		  column.AddTextColumn(x => x.Equipo);
-	  })
-	  .Actions(action =>
-	  {
-		  action.RedirectWithRowId("Aprobar/Rechazar", "AdministracionJugadoresFichadosPorDelegados", "AprobarRechazar");
-	  })
-	  .DataSource($"/JugadorFichadoPorDelegado/GetForGrid?filterField=Estado&filterValue=\"{EstadoJugadorFichadoPorDelegado.PendienteDeAprobacion.ToString()}\""))
+		  .WithColumns(column =>
+		  {
+			  column.AddTextColumn(x => x.DNI);
+			  column.AddTextColumn(x => x.Nombre);
+			  column.AddTextColumn(x => x.Apellido);
+			  column.AddTextColumn(x => x.Equipo);
+		  })
+		  .Actions(action =>
+		  {
+			  action.RedirectWithRowId("Aprobar/Rechazar", "AdministracionJugadoresFichadosPorDelegados", "AprobarRechazar");
+		  })
+		  .DataSource("/JugadorFichadoPorDelegado/GetForGrid")
+		  .DataFilter("Estado", EstadoJugadorFichadoPorDelegado.PendienteDeAprobacion))
 
 <script>
-	//function Aprobar(obj) {
-	//	$.blockUI({ message: '<h4> El delegado está siendo aprobado...</h4>' }); 
-	//	$.ajax({
-	//		url: '/AdministracionDelegados/Aprobar',
-	//		type: "POST",
-	//		data: { id: obj.getAttribute('data-id') },
-	//		success: function() {
-	//			window.location.reload(false);
-	//		},
-	//		complete: function () {
-	//			$.unblockUI();
-	//		}
-	//	});
-	//}
+		//function Aprobar(obj) {
+		//	$.blockUI({ message: '<h4> El delegado está siendo aprobado...</h4>' });
+		//	$.ajax({
+		//		url: '/AdministracionDelegados/Aprobar',
+		//		type: "POST",
+		//		data: { id: obj.getAttribute('data-id') },
+		//		success: function() {
+		//			window.location.reload(false);
+		//		},
+		//		complete: function () {
+		//			$.unblockUI();
+		//		}
+		//	});
+		//}
 
-	//function Rechazar(obj) {
-	//	$.ajax({
-	//		url: '/AdministracionDelegados/Rechazar',
-	//		type: "POST",
-	//		data: { id: obj.getAttribute('data-id') },
-	//		success: function() {
-	//			window.location.reload(false);
-	//		}
-	//	});
-	//}
+		//function Rechazar(obj) {
+		//	$.ajax({
+		//		url: '/AdministracionDelegados/Rechazar',
+		//		type: "POST",
+		//		data: { id: obj.getAttribute('data-id') },
+		//		success: function() {
+		//			window.location.reload(false);
+		//		}
+		//	});
+		//}
 </script>
