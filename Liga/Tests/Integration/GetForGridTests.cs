@@ -2,6 +2,7 @@
 using System.Linq;
 using LigaSoft.Controllers;
 using LigaSoft.ExtensionMethods;
+using LigaSoft.Models.Otros;
 using LigaSoft.Models.ViewModels;
 using NUnit.Framework;
 
@@ -23,14 +24,14 @@ namespace Tests.Integration
 		    _totalDeClubesEnLaBase = Context.Clubs.Count();
 	    }
 
-		//[Test]
-	 //   public void SinParametrizacionDevuelveTodosLosRegistros()
-		//{
-		//	var result = _ABMController.GetForGrid();
-		//	var clubs = (List<ClubVM>) result.Data.GetReflectedProperty("records");
+		[Test]
+		public void SinParametrizacionDevuelveTodosLosRegistros()
+		{
+			var result = _ABMController.GetForGrid(new GijgoGridOpciones());
+			var clubs = (List<ClubVM>)result.Data.GetReflectedProperty("records");
 
-		//	Assert.AreEqual(clubs.Count, _totalDeClubesEnLaBase);
-	 //   }
+			Assert.AreEqual(clubs.Count, _totalDeClubesEnLaBase);
+		}
 
 		//[Test]
 		//public void DevuelveTodosLosRegistrosOrdenadosAlfabeticamenteAscendente()

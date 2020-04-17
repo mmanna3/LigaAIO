@@ -308,6 +308,7 @@
     <Compile Include="Models\Dominio\UsuarioDelegado.cs" />
     <Compile Include="Models\Dominio\Sancion.cs" />
     <Compile Include="Models\Enums\EstadoJugadorFichadoPorDelegado.cs" />
+    <Compile Include="Models\Otros\GijgoGridOpciones.cs" />
     <Compile Include="Models\TextValueItem.cs" />
     <Compile Include="Models\ViewModels\ConceptoInsumoAgregarStockVM.cs" />
     <Compile Include="Models\ViewModels\JugadorFichadoPorDelegadoVM.cs" />

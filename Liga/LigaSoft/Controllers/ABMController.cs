@@ -111,9 +111,9 @@ namespace LigaSoft.Controllers
 			    query = query.Where($"{options.searchField}.Contains(@0)", options.searchValue);
 
 		    if (!string.IsNullOrEmpty(options.sortBy) && !string.IsNullOrEmpty(options.direction))
-			    query = query.OrderBy(options.direction.Trim().ToLower() == "asc" ? options.sortBy : $"{options.sortBy} descending");
+			    query = query.OrderBy(options.direction.Trim().ToLower() == "asc" ? options.sortBy : $"{options.sortBy} desc");
 		    else
-			    query = query.OrderBy("Id descending");
+			    query = query.OrderBy("Id desc");
 
 		    var total = query.Count();
 		    if (options.page.HasValue && options.limit.HasValue)
@@ -127,19 +127,6 @@ namespace LigaSoft.Controllers
 		    var records = VMM.MapForGrid(models);
 
 		    return Json(new { records, total }, JsonRequestBehavior.AllowGet);
-	    }
-
-		public class GijgoGridOpciones
-		{
-			public int? page { get; set; }
-			public int? limit { get; set; }
-			public string sortBy { get; set; }
-			public string direction { get; set; }
-			public string searchField { get; set; }
-			public string searchValue { get; set; }
-			public string filterField { get; set; }
-			public string filterValue { get; set; }
-			public string filterOperator { get; set; }
-		}		
+	    }		
 	}
 }
