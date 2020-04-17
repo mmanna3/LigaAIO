@@ -28,9 +28,16 @@ namespace Tests.Integration
 
 		protected override void Seed(ApplicationDbContext context)
 		{
-			var torneo = new Torneo
+			var torneo1 = new Torneo
 			{
 				Anio = Anio.A2019,
+				Tipo = context.TorneoTipos.Single(x => x.Descripcion == "Vespertino"),
+				Publico = true
+			};
+
+			var torneo2 = new Torneo
+			{
+				Anio = Anio.A2020,
 				Tipo = context.TorneoTipos.Single(x => x.Descripcion == "Vespertino"),
 				Publico = true
 			};
@@ -39,21 +46,21 @@ namespace Tests.Integration
 			{
 				Nombre = "Primera",
 				Orden = 1,
-				Torneo = torneo
+				Torneo = torneo1
 			};
 
 			var categoriaSegunda = new Categoria
 			{
 				Nombre = "Segunda",
 				Orden = 2,
-				Torneo = torneo
+				Torneo = torneo1
 			};
 
 			var zonaRelampago = new Zona
 			{
 				Tipo = ZonaTipo.Relampago,
 				Nombre = "Relámpago",
-				Torneo = torneo,
+				Torneo = torneo1,
 				FixturePublicado = true,
 				VerGolesEnTabla = true
 			};
@@ -62,7 +69,7 @@ namespace Tests.Integration
 			{
 				Tipo = ZonaTipo.Apertura,
 				Nombre = "A",
-				Torneo = torneo,
+				Torneo = torneo1,
 				FixturePublicado = true,
 				VerGolesEnTabla = true
 			};
@@ -71,7 +78,7 @@ namespace Tests.Integration
 			{
 				Tipo = ZonaTipo.Clausura,
 				Nombre = "A",
-				Torneo = torneo,
+				Torneo = torneo1,
 				FixturePublicado = true,
 				VerGolesEnTabla = true
 			};
@@ -80,21 +87,21 @@ namespace Tests.Integration
 			{
 				Tipo = ZonaTipo.Clausura,
 				Nombre = "B",
-				Torneo = torneo,
+				Torneo = torneo1,
 				FixturePublicado = true,
 				VerGolesEnTabla = true
 			};
 
-			var clubes = new List<Club> { new Club { Nombre = "Boca" }, new Club { Nombre = "River" }, new Club { Nombre = "Independiente" }, new Club { Nombre = "Racing" }, new Club { Nombre = "Velez" }, new Club { Nombre = "San Lorenzo" }, new Club { Nombre = "Huracán" } };
+			var clubes = new List<Club> { new Club { Nombre = "Boca", Techo = true }, new Club { Nombre = "River" }, new Club { Nombre = "Independiente" }, new Club { Nombre = "Racing" }, new Club { Nombre = "Velez" }, new Club { Nombre = "San Lorenzo" }, new Club { Nombre = "Huracán" } };
 			_equipos = new List<Equipo>
 			{
-				new Equipo { Nombre = "Boca", Club = clubes.Single(x => x.Nombre == "Boca"), Torneo = torneo, Zona = zonaClausuraA},
+				new Equipo { Nombre = "Boca", Club = clubes.Single(x => x.Nombre == "Boca"), Torneo = torneo1, Zona = zonaClausuraA},
 				new Equipo { Nombre = "River", Club = clubes.Single(x => x.Nombre == "River"), Torneo = null, Zona = null},
-				new Equipo { Nombre = "Independiente", Club = clubes.Single(x => x.Nombre == "Independiente"), Torneo = torneo, Zona = zonaClausuraB},
-				new Equipo { Nombre = "Racing", Club = clubes.Single(x => x.Nombre == "Racing"), Torneo = torneo, Zona = null},
-				new Equipo { Nombre = "San Lorenzo", Club = clubes.Single(x => x.Nombre == "San Lorenzo"), Torneo = torneo, Zona = zonaClausuraB},
-				new Equipo { Nombre = "Velez", Club = clubes.Single(x => x.Nombre == "Velez"), Torneo = torneo, Zona = zonaClausuraB},
-				new Equipo { Nombre = "Huracán", Club = clubes.Single(x => x.Nombre == "Huracán"), Torneo = torneo, Zona = zonaClausuraB}
+				new Equipo { Nombre = "Independiente", Club = clubes.Single(x => x.Nombre == "Independiente"), Torneo = torneo1, Zona = zonaClausuraB},
+				new Equipo { Nombre = "Racing", Club = clubes.Single(x => x.Nombre == "Racing"), Torneo = torneo1, Zona = null},
+				new Equipo { Nombre = "San Lorenzo", Club = clubes.Single(x => x.Nombre == "San Lorenzo"), Torneo = torneo1, Zona = zonaClausuraB},
+				new Equipo { Nombre = "Velez", Club = clubes.Single(x => x.Nombre == "Velez"), Torneo = torneo1, Zona = zonaClausuraB},
+				new Equipo { Nombre = "Huracán", Club = clubes.Single(x => x.Nombre == "Huracán"), Torneo = torneo1, Zona = zonaClausuraB}
 			};
 
 						
@@ -114,7 +121,8 @@ namespace Tests.Integration
 			var partidosCategoriaSegundaClausuraB = GenerarPartidosDeLaCategoriaSegundaZonaClausuraB(jornadasZonaClausuraB, categoriaSegunda);
 
 
-			context.Torneos.Add(torneo);
+			context.Torneos.Add(torneo1);
+			context.Torneos.Add(torneo2);
 
 			context.Categorias.Add(categoriaPrimera);
 			context.Categorias.Add(categoriaSegunda);

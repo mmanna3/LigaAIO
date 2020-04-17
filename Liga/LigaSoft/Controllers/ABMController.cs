@@ -99,12 +99,15 @@ namespace LigaSoft.Controllers
 
 			List<TModel> models;
 
+			foreach (var filter in options.filters)
+				query = query.Where($"{filter.field} {filter.@operator} {filter.value}").AsQueryable();
+
 			if (!string.IsNullOrEmpty(options.filterField))
 			{
 				if (options.filterOperator == null)
 					options.filterOperator = "==";
 
-				query = Context.Set<TModel>().Where($"{options.filterField} {options.filterOperator} {options.filterValue}").AsQueryable();
+				query = query.Where($"{options.filterField} {options.filterOperator} {options.filterValue}").AsQueryable();
 			}				
 
 			if (!string.IsNullOrWhiteSpace(options.searchValue))
