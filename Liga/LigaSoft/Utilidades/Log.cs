@@ -58,7 +58,7 @@ namespace LigaSoft.Utilidades
 
 			System.Globalization.CultureInfo.CurrentCulture.ClearCachedData();
 			//var universalTime = DateTime.UtcNow.ToLocalTime().ToUniversalTime();
-			var horaArg = TimeZoneInfo.ConvertTimeFromUtc(universalTime, timeZoneInfoArg);
+			//var horaArg = TimeZoneInfo.ConvertTimeFromUtc(universalTime, timeZoneInfoArg);
 
 			DateTime serverTime = DateTime.Now; // current Time
 			DateTime utcTime = serverTime.ToUniversalTime(); // convert it to Utc
