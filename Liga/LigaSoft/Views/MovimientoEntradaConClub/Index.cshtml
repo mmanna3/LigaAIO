@@ -28,60 +28,68 @@
 				)
 	</div>
 }
-
-<div class="col-sm-offset-12">
-	<div class="saldo">
-		Deuda Insumos: <span style="color: red;">@Model.ConceptoTotales.DeudaInsumos</span>
-		Deuda Cuotas: <span style="color: red;">@Model.ConceptoTotales.DeudaCuotas</span>
-		Deuda Fichajes: <span style="color: red;">@Model.ConceptoTotales.DeudaFichajes</span>
-		Deuda Libres: <span style="color: red;">@Model.ConceptoTotales.DeudaLibres</span>
-		DEUDA TOTAL: <span style="color: red;">@Model.ConceptoTotales.DeudaTotal</span>
-	</div>
+<div class="row">
+	<div class="col-sm-12">
+		<div class="saldo">
+			Deuda Insumos: <span style="color: red;">@Model.ConceptoTotales.DeudaInsumos</span>
+			Deuda Cuotas: <span style="color: red;">@Model.ConceptoTotales.DeudaCuotas</span>
+			Deuda Fichajes: <span style="color: red;">@Model.ConceptoTotales.DeudaFichajes</span>
+			Deuda Libres: <span style="color: red;">@Model.ConceptoTotales.DeudaLibres</span>
+			DEUDA TOTAL: <span style="color: red;">@Model.ConceptoTotales.DeudaTotal</span>
+		</div>
+	</div>	
 </div>
 
 
-@(Html.YKN<MovimientoEntradaConClubVM>().Grid()
-		.WithColumns(column =>
-		{
-			column.AddTextColumn(x => x.Fecha).Width(100);
-			column.AddTextColumn(x => x.Concepto);
-			column.AddTextColumn(x => x.Cantidad).Width(80);
-			column.AddTextColumn(x => x.PrecioUnitario).Width(120);
-			column.AddTextColumn(x => x.Total).Width(120);
-			column.AddTextColumn(x => x.Pagado).Width(120);
-			column.AddTextColumn(x => x.Deuda).Width(120);
-			column.AddTextColumn(x => x.Vigente).Width(80);
-		})
-		.Actions(action =>
-		{
-			action.RedirectWithRowId("Detalle y pagos", "MovimientoEntradaConClub", "Details");
-			action.RedirectWithRowId("Auditoría", "MovimientoEntradaConClub", "Auditoria");
-			action.JavaScriptWithRowId("Anular", "Anular");
-			action.JavaScriptWithRowId("Pagar monto adeudado", "PagarMontoAdeudado");
-		})
-	  .DataSource($"/MovimientoEntradaConClub/GetForGrid/?parentId={Model.Id}")
-	  .PageLimit(100)
-	  )
-
+<div class="row">
+	<div class="col-sm-12">
+	@(Html.YKN<MovimientoEntradaConClubVM>().Grid()
+		  .WithColumns(column =>
+		  {
+			  column.AddTextColumn(x => x.Fecha).Width(100);
+			  column.AddTextColumn(x => x.Concepto);
+			  column.AddTextColumn(x => x.Cantidad).Width(80);
+			  column.AddTextColumn(x => x.PrecioUnitario).Width(120);
+			  column.AddTextColumn(x => x.Total).Width(120);
+			  column.AddTextColumn(x => x.Pagado).Width(120);
+			  column.AddTextColumn(x => x.Deuda).Width(120);
+			  column.AddTextColumn(x => x.Vigente).Width(80);
+		  })
+		  .Actions(action =>
+		  {
+			  action.RedirectWithRowId("Detalle y pagos", "MovimientoEntradaConClub", "Details");
+			  action.RedirectWithRowId("Auditoría", "MovimientoEntradaConClub", "Auditoria");
+			  action.JavaScriptWithRowId("Anular", "Anular");
+			  action.JavaScriptWithRowId("Pagar monto adeudado", "PagarMontoAdeudado");
+		  })
+		  .DataSource($"/MovimientoEntradaConClub/GetForGrid/?parentId={Model.Id}")
+		  .PageLimit(100)
+	)
+	</div>
+</div>
 <script>
+	function reloadGridFiltering(field, operator, value) {
+		grid.reload({ "filters[0].field": field, "filters[0].value": value, "filters[0].operator": operator });
+	}
+
 	function onCuotasClick() {
-		grid.reload({ page: 1, filterField: "ConceptoId", filterValue: @((int)ConceptoTipoEnum.Cuota), filterOperator: "==" });
+		reloadGridFiltering("ConceptoId", "=", "@((int)ConceptoTipoEnum.Cuota)");
 	}
 
 	function onLibresClick() {
-		grid.reload({ page: 1, filterField: "ConceptoId", filterValue: @((int)ConceptoTipoEnum.Libre), filterOperator: "==" });
+		reloadGridFiltering("ConceptoId", "=", "@((int)ConceptoTipoEnum.Libre)");
 	}
 
 	function onFichajesClick() {
-		grid.reload({ page: 1, filterField: "ConceptoId", filterValue: @((int)ConceptoTipoEnum.Fichaje), filterOperator: "==" });
+		reloadGridFiltering("ConceptoId", "=", "@((int)ConceptoTipoEnum.Fichaje)");
 	}
 
 	function onInsumosClick() {
-		grid.reload({ page: 1, filterField: "ConceptoId", filterValue: "4", filterOperator: ">=" });
+		reloadGridFiltering("ConceptoId", ">=", "@((int)ConceptoTipoEnum.Insumo)");
 	}
 
 	function onTodosClick() {
-		grid.reload({ page: 1, filterField: ""});
+		reloadGridFiltering("true", "=", "true");
 	}
 
 	function Anular(obj) {

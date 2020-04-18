@@ -7,6 +7,7 @@ using LigaSoft.Models;
 using LigaSoft.Models.Attributes.GPRPattern;
 using LigaSoft.Models.Otros;
 using LigaSoft.Models.ViewModels;
+using LigaSoft.Utilidades;
 using LigaSoft.ViewModelMappers;
 
 namespace LigaSoft.Controllers
@@ -141,38 +142,15 @@ namespace LigaSoft.Controllers
 			return View(vm);
 		}
 
-		public virtual JsonResult GetForGrid(int? page, int? limit, string sortBy, string direction, string searchField, string searchValue, int parentId, string filterField, string filterValue, string filterOperator = "==")
+		public virtual JsonResult GetForGrid(GijgoGridOpciones options, int parentId)
 	    {
-		    var options = new GijgoGridOptions(page, limit, sortBy, direction, searchField, searchValue);
+		    var query = Context.Set<TModel>().Where($"{_parentIdName} == {parentId}").AsQueryable();
 
-		    IQueryable<TModel> query;
-			if (string.IsNullOrEmpty(filterField))
-				query = Context.Set<TModel>().Where($"{_parentIdName} == {parentId}").AsQueryable();
-			else
-				query = Context.Set<TModel>().Where($"{_parentIdName} == {parentId} and {filterField} {filterOperator} {filterValue}").AsQueryable();
+		    query = GijgoGridHelper.ApplyOptionsToQuery(query, options, out int total);
 
-			List<TModel> models;
+			var records = VMM.MapForGrid(query.ToList());
 
-		    if (!string.IsNullOrWhiteSpace(options.SearchValue))
-			    query = query.Where($"{options.SearchField}.Contains(@0)", options.SearchValue);
-
-		    if (!string.IsNullOrEmpty(options.SortBy) && !string.IsNullOrEmpty(options.Direction))
-			    query = query.OrderBy(options.Direction.Trim().ToLower() == "asc" ? options.SortBy : $"{options.SortBy} descending");
-		    else
-			    query = query.OrderBy("Id descending");
-
-		    var total = query.Count();
-		    if (options.Page.HasValue && options.Limit.HasValue)
-		    {
-			    var start = (options.Page.Value - 1) * options.Limit.Value;
-			    models = query.Skip(start).Take(options.Limit.Value).ToList();
-		    }
-		    else
-			    models = query.ToList();
-
-		    var records = VMM.MapForGrid(models);
-
-		    return Json(new { records, total }, JsonRequestBehavior.AllowGet);
-	    }
+			return Json(new { records, total }, JsonRequestBehavior.AllowGet);
+		}
 	}
 }

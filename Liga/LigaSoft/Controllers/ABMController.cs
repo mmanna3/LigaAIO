@@ -96,11 +96,11 @@ namespace LigaSoft.Controllers
 
 		public virtual JsonResult GetForGrid(GijgoGridOpciones options)
 		{
-			var query = GijgoGridHelper.ApplyOptionsToQuery(Context.Set<TModel>().AsQueryable(), options, out int total);
+			var query = Context.Set<TModel>().AsQueryable();
 
-			var queryModels = query.ToList();
+			query = GijgoGridHelper.ApplyOptionsToQuery(query, options, out int total);
 
-			var records = VMM.MapForGrid(queryModels);
+			var records = VMM.MapForGrid(query.ToList());
 
 		    return Json(new { records, total }, JsonRequestBehavior.AllowGet);
 	    }

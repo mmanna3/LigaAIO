@@ -21,7 +21,7 @@ namespace LigaSoft.Models.Otros
 	public class GijgoGridFilter
 	{
 		public GijgoGridFilter()
-		{			
+		{
 		}
 
 		public GijgoGridFilter(string field, string @operator, int value)
