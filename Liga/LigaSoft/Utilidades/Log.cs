@@ -46,19 +46,22 @@ namespace LigaSoft.Utilidades
 		/// <param name="message">The object message to log</param>  
 		public static void Info(string message)
 		{
-			System.Globalization.CultureInfo.CurrentCulture.ClearCachedData();
-			var horaUtc = DateTime.UtcNow.ToLocalTime().ToUniversalTime();
-			var horaArg = TimeZoneInfo.ConvertTimeFromUtc(horaUtc, TimeZoneInfo.FindSystemTimeZoneById("Argentina Standard Time"));
+			var timeZoneInfoArg = TimeZoneInfo.FindSystemTimeZoneById("Argentina Standard Time");
+			//var horaUtc = DateTime.UtcNow;			
 
-			//var currentTimeZone = TimeZone.CurrentTimeZone.StandardName;
-			//var currentTimeSpan = TimeZone.CurrentTimeZone.GetUtcOffset(DateTime.Now);
+			var currentTimeZone = TimeZone.CurrentTimeZone.StandardName;
+			var currentTimeSpan = TimeZone.CurrentTimeZone.GetUtcOffset(DateTime.Now);
 			//var currentTimeZoneNow = TimeZoneInfo.ConvertTimeFromUtc(horaUtc, TimeZoneInfo.FindSystemTimeZoneById(currentTimeZone));
 
-			var horaUtcYArg = $"{horaUtc:dd/MM/yyyy HH:mm:ss.fff tt} (UTC) - {horaArg:dd/MM/yyyy HH:mm:ss.fff tt} (Arg)";
-			var mensajeConHoraBuenosAires = $"{horaUtcYArg} - {message}";		
+			//var horaUtcYArg = $"{horaUtc:dd/MM/yyyy HH:mm:ss.fff tt} (UTC) - {horaArg:dd/MM/yyyy HH:mm:ss.fff tt} (Arg)";
+			//var mensajeConHoraBuenosAires = $"{horaUtcYArg} - {message}";
 
-			//var hora = $"{universalTime:dd/MM/yyyy HH:mm} (UniversalTimeNow) {DateTime.Now:dd/MM/yyyy HH:mm} (DateTimeNow) - {currentTimeSpan} (Offset con respecto a UTC) - {currentTimeZone} (Zona)";
-			//var mensajeConHoraBuenosAires = $"{hora} - {message}";
+			System.Globalization.CultureInfo.CurrentCulture.ClearCachedData();
+			var universalTime = DateTime.UtcNow.ToLocalTime().ToUniversalTime();
+			var horaArg = TimeZoneInfo.ConvertTimeFromUtc(universalTime, timeZoneInfoArg);
+
+			var hora = $"{universalTime:dd/MM/yyyy HH:mm} (UniversalTimeNow) {horaArg:dd/MM/yyyy HH:mm:ss.fff tt} (Arg)";
+			var mensajeConHoraBuenosAires = $"{hora} - {message}";
 
 			Instance.MonitoringLogger.Info(mensajeConHoraBuenosAires);
 		}
