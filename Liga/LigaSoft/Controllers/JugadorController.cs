@@ -155,7 +155,7 @@ namespace LigaSoft.Controllers
 			return JsonConvert.SerializeObject(vm);
 	    }
 
-		public JsonResult GetByEquipoId(GijgoGridOpciones options, int parentId)
+		public JsonResult GetByEquipoId(GijgoGridOptions options, int parentId)
 		{
 			var query = Context.JugadorEquipos
 								.Where($"EquipoId == {parentId}")

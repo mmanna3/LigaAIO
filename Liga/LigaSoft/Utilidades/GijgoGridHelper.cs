@@ -6,7 +6,7 @@ namespace LigaSoft.Utilidades
 {
 	public static class GijgoGridHelper
 	{
-		public static IQueryable<T> ApplyOptionsToQuery<T>(IQueryable<T> query, GijgoGridOpciones options, out int total)
+		public static IQueryable<T> ApplyOptionsToQuery<T>(IQueryable<T> query, GijgoGridOptions options, out int total)
 			where T : class
 		{
 			query = ApplyFilters(query, options);
@@ -18,7 +18,7 @@ namespace LigaSoft.Utilidades
 			return query;
 		}
 
-		private static IQueryable<T> ApplyPageAndLimit<T>(IQueryable<T> query, GijgoGridOpciones options)
+		private static IQueryable<T> ApplyPageAndLimit<T>(IQueryable<T> query, GijgoGridOptions options)
 			where T : class
 		{
 			if (options.page.HasValue && options.limit.HasValue)
@@ -30,7 +30,7 @@ namespace LigaSoft.Utilidades
 			return query;
 		}
 
-		private static IQueryable<T> ApplyFilters<T>(IQueryable<T> query, GijgoGridOpciones options) 
+		private static IQueryable<T> ApplyFilters<T>(IQueryable<T> query, GijgoGridOptions options) 
 			where T : class
 		{
 			if (options.filters != null)
@@ -40,7 +40,7 @@ namespace LigaSoft.Utilidades
 			return query;
 		}
 
-		private static IQueryable<T> ApplySort<T>(IQueryable<T> query, GijgoGridOpciones options) where T : class
+		private static IQueryable<T> ApplySort<T>(IQueryable<T> query, GijgoGridOptions options) where T : class
 		{
 			if (!string.IsNullOrEmpty(options.sortBy) && !string.IsNullOrEmpty(options.direction))
 				return query.OrderBy(options.direction.Trim().ToLower() == "asc" ? options.sortBy : $"{options.sortBy} desc");
@@ -48,7 +48,7 @@ namespace LigaSoft.Utilidades
 			return query.OrderBy("Id desc");
 		}
 
-		private static IQueryable<T> ApplySearch<T>(IQueryable<T> query, GijgoGridOpciones options) 
+		private static IQueryable<T> ApplySearch<T>(IQueryable<T> query, GijgoGridOptions options) 
 			where T : class
 		{
 			if (!string.IsNullOrWhiteSpace(options.searchValue))

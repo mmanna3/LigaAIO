@@ -31,7 +31,7 @@ namespace Tests.Integration
 		[Test]
 		public void SinParametrizacion()
 		{
-			var result = _clubController.GetForGrid(new GijgoGridOpciones());
+			var result = _clubController.GetForGrid(new GijgoGridOptions());
 			var clubs = (List<ClubVM>)result.Data.GetReflectedProperty("records");
 
 			Assert.AreEqual(clubs.Count, _totalDeClubesEnLaBase);
@@ -40,7 +40,7 @@ namespace Tests.Integration
 		[Test]
 		public void OrdenAlfabeticoAscendente()
 		{
-			var result = _clubController.GetForGrid(new GijgoGridOpciones{sortBy = "Nombre", direction = "asc"});
+			var result = _clubController.GetForGrid(new GijgoGridOptions{sortBy = "Nombre", direction = "asc"});
 			var clubs = (List<ClubVM>)result.Data.GetReflectedProperty("records");
 
 			Assert.AreEqual(clubs.First().Nombre, _nombrePrimerClubSegunOrdenAlfabetico);
@@ -50,7 +50,7 @@ namespace Tests.Integration
 		[Test]
 		public void OrdenAlfabeticoDescendente()
 		{
-			var result = _clubController.GetForGrid(new GijgoGridOpciones { sortBy = "Nombre", direction = "desc" });
+			var result = _clubController.GetForGrid(new GijgoGridOptions { sortBy = "Nombre", direction = "desc" });
 			var clubs = (List<ClubVM>)result.Data.GetReflectedProperty("records");
 
 			Assert.AreEqual(clubs.First().Nombre, _nombreUltimoClubSegunOrdenAlfabetico);
@@ -60,7 +60,7 @@ namespace Tests.Integration
 		[Test]
 		public void Search()
 		{
-			var result = _clubController.GetForGrid(new GijgoGridOpciones { searchField = "Nombre", searchValue = "ac" });
+			var result = _clubController.GetForGrid(new GijgoGridOptions { searchField = "Nombre", searchValue = "ac" });
 			var clubs = (List<ClubVM>)result.Data.GetReflectedProperty("records");
 			var nombres = clubs.Select(x => x.Nombre).ToList();
 
@@ -72,7 +72,7 @@ namespace Tests.Integration
 		[Test]
 		public void FiltroPorCampoTipoInt()
 		{
-			var result = _clubController.GetForGrid(new GijgoGridOpciones { filters = new[] {new GijgoGridFilter("Id", 2)} });
+			var result = _clubController.GetForGrid(new GijgoGridOptions { filters = new[] {new GijgoGridFilter("Id", 2)} });
 			var clubs = (List<ClubVM>)result.Data.GetReflectedProperty("records");
 			var nombres = clubs.Select(x => x.Nombre).ToList();
 
@@ -83,7 +83,7 @@ namespace Tests.Integration
 		[Test]
 		public void FiltroPorCampoTipoIntConOperador()
 		{
-			var result = _clubController.GetForGrid(new GijgoGridOpciones { filters = new[] { new GijgoGridFilter("Id", ">", 2) } });
+			var result = _clubController.GetForGrid(new GijgoGridOptions { filters = new[] { new GijgoGridFilter("Id", ">", 2) } });
 			var clubs = (List<ClubVM>)result.Data.GetReflectedProperty("records");
 			Assert.AreEqual(5, clubs.Count);
 		}
@@ -91,7 +91,7 @@ namespace Tests.Integration
 		[Test]
 		public void FiltroPorCampoTipoString()
 		{
-			var result = _clubController.GetForGrid(new GijgoGridOpciones { filters = new[] { new GijgoGridFilter("Nombre", "River") } });
+			var result = _clubController.GetForGrid(new GijgoGridOptions { filters = new[] { new GijgoGridFilter("Nombre", "River") } });
 			var clubs = (List<ClubVM>)result.Data.GetReflectedProperty("records");
 			var nombres = clubs.Select(x => x.Nombre).ToList();
 
@@ -102,7 +102,7 @@ namespace Tests.Integration
 		[Test]
 		public void FiltroPorCampoTipoBool()
 		{
-			var result = _clubController.GetForGrid(new GijgoGridOpciones { filters = new[] { new GijgoGridFilter("Techo", true) } });
+			var result = _clubController.GetForGrid(new GijgoGridOptions { filters = new[] { new GijgoGridFilter("Techo", true) } });
 			var clubs = (List<ClubVM>)result.Data.GetReflectedProperty("records");
 			var nombres = clubs.Select(x => x.Nombre).ToList();
 
@@ -113,7 +113,7 @@ namespace Tests.Integration
 		[Test]
 		public void FiltroPorCampoTipoEnum()
 		{
-			var result = _torneoController.GetForGrid(new GijgoGridOpciones { filters = new[] { new GijgoGridFilter("Anio", Anio.A2020) } });
+			var result = _torneoController.GetForGrid(new GijgoGridOptions { filters = new[] { new GijgoGridFilter("Anio", Anio.A2020) } });
 			var torneos = (List<TorneoVM>)result.Data.GetReflectedProperty("records");
 			Assert.AreEqual(1, torneos.Count);
 		}

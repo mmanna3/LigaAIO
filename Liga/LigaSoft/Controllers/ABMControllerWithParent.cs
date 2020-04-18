@@ -142,7 +142,7 @@ namespace LigaSoft.Controllers
 			return View(vm);
 		}
 
-		public virtual JsonResult GetForGrid(GijgoGridOpciones options, int parentId)
+		public virtual JsonResult GetForGrid(GijgoGridOptions options, int parentId)
 	    {
 		    var query = Context.Set<TModel>().Where($"{_parentIdName} == {parentId}").AsQueryable();
 

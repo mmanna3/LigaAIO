@@ -94,7 +94,7 @@ namespace LigaSoft.Controllers
 			return View(vm);
 		}
 
-		public virtual JsonResult GetForGrid(GijgoGridOpciones options)
+		public virtual JsonResult GetForGrid(GijgoGridOptions options)
 		{
 			var query = Context.Set<TModel>().AsQueryable();
 

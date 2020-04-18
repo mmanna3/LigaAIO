@@ -187,7 +187,7 @@ namespace LigaSoft.Controllers
 		    return RedirectToAction("IndexDelegados", new { id = vm.ClubId });
 	    }
 
-	    public JsonResult DelegadosGrid(GijgoGridOpciones options, int parentId)
+	    public JsonResult DelegadosGrid(GijgoGridOptions options, int parentId)
 		{
 		    var query = Context.Delegados
 			    .Where($"ClubId == {parentId}")

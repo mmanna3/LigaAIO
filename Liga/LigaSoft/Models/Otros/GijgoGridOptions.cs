@@ -1,7 +1,7 @@
 ﻿namespace LigaSoft.Models.Otros
 {
 	//Atributos en minúscula porque matchea parámetros de request hecho por gijgo.grid.js
-	public class GijgoGridOpciones
+	public class GijgoGridOptions
 	{
 		public int? page { get; set; }
 		public int? limit { get; set; }
