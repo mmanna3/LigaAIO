@@ -57,14 +57,16 @@ namespace LigaSoft.Utilidades
 			//var mensajeConHoraBuenosAires = $"{horaUtcYArg} - {message}";
 
 			System.Globalization.CultureInfo.CurrentCulture.ClearCachedData();
-			var universalTime = DateTime.UtcNow.ToLocalTime().ToUniversalTime();
+			//var universalTime = DateTime.UtcNow.ToLocalTime().ToUniversalTime();
 			var horaArg = TimeZoneInfo.ConvertTimeFromUtc(universalTime, timeZoneInfoArg);
 
 			DateTime serverTime = DateTime.Now; // current Time
 			DateTime utcTime = serverTime.ToUniversalTime(); // convert it to Utc
 
+			System.Globalization.CultureInfo.CurrentCulture.ClearCachedData();
+			var universalTime = DateTime.UtcNow.ToLocalTime().ToUniversalTime();
 
-			var hora = $"{serverTime:dd/MM/yyyy HH:mm} (Server Time) {utcTime:dd/MM/yyyy HH:mm} (UniversalTimeNow) {horaArg:dd/MM/yyyy HH:mm:ss.fff tt} (Arg)";
+			var hora = $"{universalTime:dd/MM/yyyy HH:mm} (Universal Time) {DateTime.UtcNow:dd/MM/yyyy HH:mm} (UtcNow) {DateTime.UtcNow.ToLocalTime():dd/MM/yyyy HH:mm} (UtcNow.ToLocalTime)";
 			var mensajeConHoraBuenosAires = $"{hora} - {message}";
 
 			Instance.MonitoringLogger.Info(mensajeConHoraBuenosAires);
