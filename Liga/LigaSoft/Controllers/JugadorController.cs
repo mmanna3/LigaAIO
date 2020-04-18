@@ -155,35 +155,16 @@ namespace LigaSoft.Controllers
 			return JsonConvert.SerializeObject(vm);
 	    }
 
-		public virtual JsonResult GetByEquipoId(int? page, int? limit, string sortBy, string direction, string searchField, string searchValue, int equipoId)
+		public JsonResult GetByEquipoId(GijgoGridOpciones options, int parentId)
 		{
-			var options = new GijgoGridOptions(page, limit, sortBy, direction, searchField, searchValue);
-
 			var query = Context.JugadorEquipos
-								.Where($"EquipoId == {equipoId}")
+								.Where($"EquipoId == {parentId}")
 								.Select(x => x.Jugador)
 								.AsQueryable();
 
-			List<Jugador> models;
+			query = GijgoGridHelper.ApplyOptionsToQuery(query, options, out int total);
 
-			if (!string.IsNullOrWhiteSpace(options.SearchValue))
-				query = query.Where($"{options.SearchField}.Contains(@0)", options.SearchValue);
-
-			if (!string.IsNullOrEmpty(options.SortBy) && !string.IsNullOrEmpty(options.Direction))
-				query = query.OrderBy(options.Direction.Trim().ToLower() == "asc" ? options.SortBy : $"{options.SortBy} descending");
-			else
-				query = query.OrderBy("Id descending");
-
-			var total = query.Count();
-			if (options.Page.HasValue && options.Limit.HasValue)
-			{
-				var start = (options.Page.Value - 1) * options.Limit.Value;
-				models = query.Skip(start).Take(options.Limit.Value).ToList();
-			}
-			else
-				models = query.ToList();
-
-			var records = VMM.MapForGrid(models);
+			var records = VMM.MapForGrid(query.ToList());
 
 			return Json(new { records, total }, JsonRequestBehavior.AllowGet);
 		}

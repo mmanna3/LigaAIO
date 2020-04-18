@@ -31,5 +31,6 @@
 			{
 				action.RedirectWithRowId("Editar", "Club", "EditarDelegado");
 			})
-			.DataSource($"/Club/DelegadosGrid/?clubId={Model.Id}")
+			.DataSource("/Club/DelegadosGrid")
+			.ParentId(Model.Id)
 )

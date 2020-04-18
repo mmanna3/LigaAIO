@@ -187,36 +187,17 @@ namespace LigaSoft.Controllers
 		    return RedirectToAction("IndexDelegados", new { id = vm.ClubId });
 	    }
 
-		public virtual JsonResult DelegadosGrid(int? page, int? limit, string sortBy, string direction, string searchField, string searchValue, int clubId)
-	    {
-		    var options = new GijgoGridOptions(page, limit, sortBy, direction, searchField, searchValue);
-
+	    public JsonResult DelegadosGrid(GijgoGridOpciones options, int parentId)
+		{
 		    var query = Context.Delegados
-			    .Where($"ClubId == {clubId}")
+			    .Where($"ClubId == {parentId}")
 			    .AsQueryable();
 
-		    List<Delegado> models;
+		    query = GijgoGridHelper.ApplyOptionsToQuery(query, options, out int total);
 
-		    if (!string.IsNullOrWhiteSpace(options.SearchValue))
-			    query = query.Where($"{options.SearchField}.Contains(@0)", options.SearchValue);
+			var records = VMM.MapForDelegadosGrid(query.ToList());
 
-		    if (!string.IsNullOrEmpty(options.SortBy) && !string.IsNullOrEmpty(options.Direction))
-			    query = query.OrderBy(options.Direction.Trim().ToLower() == "asc" ? options.SortBy : $"{options.SortBy} descending");
-		    else
-			    query = query.OrderBy("Id descending");
-
-		    var total = query.Count();
-		    if (options.Page.HasValue && options.Limit.HasValue)
-		    {
-			    var start = (options.Page.Value - 1) * options.Limit.Value;
-			    models = query.Skip(start).Take(options.Limit.Value).ToList();
-		    }
-		    else
-			    models = query.ToList();
-
-		    var records = VMM.MapForDelegadosGrid(models);
-
-		    return Json(new { records, total }, JsonRequestBehavior.AllowGet);
+			return Json(new { records, total }, JsonRequestBehavior.AllowGet);
 	    }
 	}
 }

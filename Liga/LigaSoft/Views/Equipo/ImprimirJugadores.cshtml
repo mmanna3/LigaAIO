@@ -25,7 +25,8 @@
 				column.AddTextColumn(x => x.Apellido);
 				column.AddTextColumn(x => x.FechaNacimiento);
 			})
-			.DataSource($"/Jugador/GetByEquipoId/?equipoId={Model.EquipoId}")
+			.DataSource("/Jugador/GetByEquipoId")
+			.ParentId(Model.EquipoId)
 )
 
 <script>

@@ -32,7 +32,8 @@
 					column.AddTextColumn(x => x.Apellido);
 					column.AddTextColumn(x => x.FechaNacimiento);
 				})
-				.DataSource($"/Jugador/GetByEquipoId/?equipoId={Model.EquipoOrigenId}")
+				.DataSource("/Jugador/GetByEquipoId")
+				.ParentId(Model.EquipoOrigenId)
 	)
 
 	{ Html.YKN().FooterGuardarCancelar("Efectuar pases"); }
