@@ -47,9 +47,8 @@ namespace LigaSoft.Utilidades
 		public static void Info(string message)
 		{
 			System.Globalization.CultureInfo.CurrentCulture.ClearCachedData();
-			var timeZoneInfoArg = TimeZoneInfo.FindSystemTimeZoneById("Argentina Standard Time");
 			var horaUtc = DateTime.UtcNow.ToLocalTime().ToUniversalTime();
-			var horaArg = TimeZoneInfo.ConvertTimeFromUtc(horaUtc, timeZoneInfoArg);
+			var horaArg = TimeZoneInfo.ConvertTimeFromUtc(horaUtc, TimeZoneInfo.FindSystemTimeZoneById("Argentina Standard Time"));
 
 			//var currentTimeZone = TimeZone.CurrentTimeZone.StandardName;
 			//var currentTimeSpan = TimeZone.CurrentTimeZone.GetUtcOffset(DateTime.Now);
