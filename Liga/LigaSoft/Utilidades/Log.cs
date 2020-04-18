@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using log4net;
+using Newtonsoft.Json;
+using RestSharp;
+using RestSharp.Authenticators;
 
 namespace LigaSoft.Utilidades
 {
@@ -46,8 +49,9 @@ namespace LigaSoft.Utilidades
 		/// <param name="message">The object message to log</param>  
 		public static void Info(string message)
 		{
-			var timeZoneInfoArg = TimeZoneInfo.FindSystemTimeZoneById("Argentina Standard Time");
-			//var horaUtc = DateTime.UtcNow;			
+			//var timeZoneInfoArg = TimeZoneInfo.FindSystemTimeZoneById("Argentina Standard Time");
+			var horaUtc = DateTime.UtcNow;
+			//var horaArg = TimeZoneInfo.ConvertTimeFromUtc(horaUtc, timeZoneInfoArg);
 
 			var currentTimeZone = TimeZone.CurrentTimeZone.StandardName;
 			var currentTimeSpan = TimeZone.CurrentTimeZone.GetUtcOffset(DateTime.Now);
@@ -57,16 +61,9 @@ namespace LigaSoft.Utilidades
 			//var mensajeConHoraBuenosAires = $"{horaUtcYArg} - {message}";
 
 			System.Globalization.CultureInfo.CurrentCulture.ClearCachedData();
-			//var universalTime = DateTime.UtcNow.ToLocalTime().ToUniversalTime();
-			//var horaArg = TimeZoneInfo.ConvertTimeFromUtc(universalTime, timeZoneInfoArg);
-
-			DateTime serverTime = DateTime.Now; // current Time
-			DateTime utcTime = serverTime.ToUniversalTime(); // convert it to Utc
-
-			System.Globalization.CultureInfo.CurrentCulture.ClearCachedData();
 			var universalTime = DateTime.UtcNow.ToLocalTime().ToUniversalTime();
 
-			var hora = $"{universalTime:dd/MM/yyyy HH:mm} (Universal Time) {DateTime.UtcNow:dd/MM/yyyy HH:mm} (UtcNow) {DateTime.UtcNow.ToLocalTime():dd/MM/yyyy HH:mm} (UtcNow.ToLocalTime)";
+			var hora = $"{universalTime:dd/MM/yyyy HH:mm} (UniversalTimeNow) {DateTime.Now:dd/MM/yyyy HH:mm:ss.fff tt} (DateTimeNow) - {currentTimeSpan} (Offset con respecto a UTC) - {currentTimeZone} (Zona)";
 			var mensajeConHoraBuenosAires = $"{hora} - {message}";
 
 			Instance.MonitoringLogger.Info(mensajeConHoraBuenosAires);
