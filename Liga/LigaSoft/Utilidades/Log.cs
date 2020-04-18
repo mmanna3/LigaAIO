@@ -58,8 +58,10 @@ namespace LigaSoft.Utilidades
 			//var mensajeConHoraBuenosAires = $"{horaUtcYArg} - {message}";
 
 			System.Globalization.CultureInfo.CurrentCulture.ClearCachedData();
-			var horaUtcYArg = $"{DateTime.Now:dd/MM/yyyy HH:mm:ss.fff tt} (Hora del servidor) - {currentTimeSpan} (Offset servidor con respecto a UTC) - {currentTimeZone} (Zona del servidor)";
-			var mensajeConHoraBuenosAires = $"{horaUtcYArg} - {message}";
+			var universalTime = DateTime.UtcNow.ToLocalTime().ToUniversalTime();
+
+			var hora = $"{universalTime:dd/MM/yyyy HH:mm} (UniversalTimeNow) {DateTime.Now:dd/MM/yyyy HH:mm} (DateTimeNow) - {currentTimeSpan} (Offset con respecto a UTC) - {currentTimeZone} (Zona)";
+			var mensajeConHoraBuenosAires = $"{hora} - {message}";
 
 			Instance.MonitoringLogger.Info(mensajeConHoraBuenosAires);
 		}
