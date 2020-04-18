@@ -24,7 +24,7 @@ namespace LigaSoft.Scheduler
 					.WithIdentity("trigger1", "group1")
 					.WithDailyTimeIntervalSchedule(s => s
 						.WithIntervalInHours(24)
-						.StartingDailyAt(TimeOfDay.HourAndMinuteOfDay(5, 0))
+						.StartingDailyAt(TimeOfDay.HourAndMinuteOfDay(5, 35))
 						.InTimeZone(timeZoneInfoArg)
 					)
 					.Build();
