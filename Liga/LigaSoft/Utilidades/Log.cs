@@ -60,7 +60,11 @@ namespace LigaSoft.Utilidades
 			var universalTime = DateTime.UtcNow.ToLocalTime().ToUniversalTime();
 			var horaArg = TimeZoneInfo.ConvertTimeFromUtc(universalTime, timeZoneInfoArg);
 
-			var hora = $"{universalTime:dd/MM/yyyy HH:mm} (UniversalTimeNow) {horaArg:dd/MM/yyyy HH:mm:ss.fff tt} (Arg)";
+			DateTime serverTime = DateTime.Now; // current Time
+			DateTime utcTime = serverTime.ToUniversalTime(); // convert it to Utc
+
+
+			var hora = $"{serverTime:dd/MM/yyyy HH:mm} (Server Time) {utcTime:dd/MM/yyyy HH:mm} (UniversalTimeNow) {horaArg:dd/MM/yyyy HH:mm:ss.fff tt} (Arg)";
 			var mensajeConHoraBuenosAires = $"{hora} - {message}";
 
 			Instance.MonitoringLogger.Info(mensajeConHoraBuenosAires);
