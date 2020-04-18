@@ -7,6 +7,7 @@ using LigaSoft.Models;
 using LigaSoft.Models.Attributes.GPRPattern;
 using LigaSoft.Models.Otros;
 using LigaSoft.Models.ViewModels;
+using LigaSoft.Utilidades;
 using LigaSoft.ViewModelMappers;
 
 namespace LigaSoft.Controllers
@@ -95,7 +96,7 @@ namespace LigaSoft.Controllers
 
 		public virtual JsonResult GetForGrid(GijgoGridOpciones options)
 		{
-			var query = ApplyOptionsToQuery(Context.Set<TModel>().AsQueryable(), options, out int total);
+			var query = GijgoGridHelper.ApplyOptionsToQuery(Context.Set<TModel>().AsQueryable(), options, out int total);
 
 			var queryModels = query.ToList();
 
@@ -103,38 +104,5 @@ namespace LigaSoft.Controllers
 
 		    return Json(new { records, total }, JsonRequestBehavior.AllowGet);
 	    }
-
-		public IQueryable<T> ApplyOptionsToQuery<T>(IQueryable<T> query, GijgoGridOpciones options, out int total)
-			where T : class
-		{
-			if (options.filters != null)
-				foreach (var filter in options.filters)
-					query = query.Where($"{filter.field} {filter.@operator} {filter.value}").AsQueryable();
-
-			if (!string.IsNullOrEmpty(options.filterField))
-			{
-				if (options.filterOperator == null)
-					options.filterOperator = "==";
-
-				query = query.Where($"{options.filterField} {options.filterOperator} {options.filterValue}").AsQueryable();
-			}
-
-			if (!string.IsNullOrWhiteSpace(options.searchValue))
-				query = query.Where($"{options.searchField}.Contains(@0)", options.searchValue);
-
-			if (!string.IsNullOrEmpty(options.sortBy) && !string.IsNullOrEmpty(options.direction))
-				query = query.OrderBy(options.direction.Trim().ToLower() == "asc" ? options.sortBy : $"{options.sortBy} desc");
-			else
-				query = query.OrderBy("Id desc");
-
-			total = query.Count();
-			if (options.page.HasValue && options.limit.HasValue)
-			{
-				var start = (options.page.Value - 1) * options.limit.Value;
-				return query.Skip(start).Take(options.limit.Value);
-			}
-
-			return query;
-		}
 	}
 }

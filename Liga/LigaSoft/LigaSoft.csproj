@@ -785,6 +785,7 @@
     <Compile Include="Models\ViewModels\PublicidadVM.cs" />
     <Compile Include="Scheduler\JobScheduler.cs" />
     <Compile Include="Scheduler\SubirBackupAlDriveJob.cs" />
+    <Compile Include="Utilidades\GijgoGridHelper.cs" />
     <Compile Include="Utilidades\LocalPathConsts.cs" />
     <Compile Include="Models\Enums\ZonaTipo.cs" />
     <Compile Include="Models\Enums\TorneoFormato.cs" />
