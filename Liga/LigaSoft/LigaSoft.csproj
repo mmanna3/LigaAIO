@@ -1221,7 +1221,7 @@
     <Content Include="Views\AdministracionDelegados\DelegadosAprobados.cshtml" />
     <Content Include="Views\Account\CerrarSesionExito.cshtml" />
     <Content Include="Views\JugadorFichadoPorDelegado\SeleccionarEquipo.cshtml" />
-    <Content Include="Views\JugadorFichadoPorDelegado\GrillaJugadores.cshtml" />
+    <Content Include="Views\JugadorFichadoPorDelegado\PendientesDeAprobacion.cshtml" />
     <Content Include="Views\JugadorFichadoPorDelegado\Fichar.cshtml" />
     <Content Include="Views\AdministracionJugadoresFichadosPorDelegados\JugadoresPendientesDeAprobacion.cshtml" />
     <Content Include="Views\AdministracionJugadoresFichadosPorDelegados\AprobarRechazar.cshtml" />

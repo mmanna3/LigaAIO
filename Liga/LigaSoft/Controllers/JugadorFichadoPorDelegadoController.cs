@@ -21,9 +21,9 @@ namespace LigaSoft.Controllers
 			_userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(Context));
 		}
 
-		public ActionResult GrillaJugadores(IdDescripcionVM vm)
+		public ActionResult PendientesDeAprobacion(IdDescripcionVM vm)
 		{
-			return View("GrillaJugadores", vm);
+			return View("PendientesDeAprobacion", vm);
 		}
 
 		[Authorize(Roles = Roles.Delegado)]
@@ -76,7 +76,7 @@ namespace LigaSoft.Controllers
 			Context.JugadoresFichadosPorDelegados.Add(model);
 			Context.SaveChanges();
 
-			return RedirectToAction("GrillaJugadores", new IdDescripcionVM
+			return RedirectToAction("PendientesDeAprobacion", new IdDescripcionVM
 			{
 				Descripcion = Context.Equipos.Find(vm.EquipoId).Nombre,
 				Id = vm.EquipoId
@@ -93,7 +93,7 @@ namespace LigaSoft.Controllers
 	    [HttpPost]
 	    public ActionResult SeleccionarEquipo(SeleccionarEquipoVM seleccionarEquipoVM)
 		{
-			return RedirectToAction("GrillaJugadores", new IdDescripcionVM
+			return RedirectToAction("PendientesDeAprobacion", new IdDescripcionVM
 			{
 				Descripcion = Context.Equipos.Find(seleccionarEquipoVM.EquipoId).Nombre,
 				Id = seleccionarEquipoVM.EquipoId

@@ -35,7 +35,7 @@
 	<div class='row form-footer'>
 		<div class='col-sm-offset-6 col-sm-3'>
 			@(Html.YKN().BotonCancelar()
-				.OnClickRedirect("GrillaJugadores", "JugadorFichadoPorDelegado", new Dictionary<string, string> { { "Id", Model.EquipoId.ToString() }, { "Descripcion", Model.Equipo } }))
+				.OnClickRedirect("PendientesDeAprobacion", "JugadorFichadoPorDelegado", new Dictionary<string, string> { { "Id", Model.EquipoId.ToString() }, { "Descripcion", Model.Equipo } }))
 		</div>
 		<div class='col-sm-3'>
 			@Html.YKN().BotonGuardar()
