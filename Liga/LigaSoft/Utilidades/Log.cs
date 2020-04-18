@@ -57,6 +57,7 @@ namespace LigaSoft.Utilidades
 			//var horaUtcYArg = $"{horaUtc:dd/MM/yyyy HH:mm:ss.fff tt} (UTC) - {horaArg:dd/MM/yyyy HH:mm:ss.fff tt} (Arg)";
 			//var mensajeConHoraBuenosAires = $"{horaUtcYArg} - {message}";
 
+			System.Globalization.CultureInfo.CurrentCulture.ClearCachedData();
 			var horaUtcYArg = $"{DateTime.Now:dd/MM/yyyy HH:mm:ss.fff tt} (Hora del servidor) - {currentTimeSpan} (Offset servidor con respecto a UTC) - {currentTimeZone} (Zona del servidor)";
 			var mensajeConHoraBuenosAires = $"{horaUtcYArg} - {message}";
 
