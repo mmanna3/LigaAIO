@@ -33,5 +33,6 @@
 			{
 				action.RedirectParentWithChildWithRowId("Editar", new { parent = "Torneo", parentId = Model.Id, controller = "Categoria", action = "Edit" });
 			})
-			.DataSource($"/Categoria/GetForGrid/?parentId={Model.Id}&sortBy=Orden&direction=asc")
+			.DataSource($"/Categoria/GetForGrid/?parentId={Model.Id}")
+			.DataSort("Orden", "asc")
 )

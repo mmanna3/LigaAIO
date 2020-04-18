@@ -12,7 +12,7 @@ namespace LigaSoft.UIHelpers.Grid
 		private readonly List<GridColumnText<TModel>> _textColumns;
 		private readonly List<GridColumnIcon<TModel>> _iconColumns;
 		private readonly List<GridColumnButton<TModel>> _buttonColumns;
-		private IList<GijgoGridFilter> _dataFilters;
+		private readonly IList<GijgoGridFilter> _dataFilters;
 		private readonly GridComboActionFactory _actions;
 
 		private int _pageLimit = 10;
@@ -21,6 +21,7 @@ namespace LigaSoft.UIHelpers.Grid
 		private string _name = "grid";
 		private readonly HtmlHelper<TModel> _helper;
 		private string _checkbox;
+		private string _dataSortBy = "";
 
 		public GridBuilder(HtmlHelper<TModel> helper)
 		{
@@ -54,6 +55,12 @@ namespace LigaSoft.UIHelpers.Grid
 		{
 			var filter = new GijgoGridFilter(field, value);
 			_dataFilters.Add(filter);
+			return this;
+		}
+
+		public GridBuilder<TModel> DataSort(string sortField, string direction = "desc")
+		{
+			_dataSortBy = $"&sortBy={sortField}&direction={direction}";
 			return this;
 		}
 
@@ -101,7 +108,7 @@ namespace LigaSoft.UIHelpers.Grid
 							grid = $('#{_name}').grid({{
 								uiLibrary: 'bootstrap',
 								primaryKey: '{_primaryKey}',
-								dataSource: '{_dataSource}{FiltersToQueryParams()}',
+								dataSource: '{_dataSource}{FiltersToQueryParams()}{_dataSortBy}',
 								locale: 'es-es',
 								{_checkbox}
 								columns: [{ColumnsJs()}],								

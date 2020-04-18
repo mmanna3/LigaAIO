@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace LigaSoft.Models.Otros
+﻿namespace LigaSoft.Models.Otros
 {
 	//Atributos en minúscula porque matchea parámetros de request hecho por gijgo.grid.js
 	public class GijgoGridOpciones
