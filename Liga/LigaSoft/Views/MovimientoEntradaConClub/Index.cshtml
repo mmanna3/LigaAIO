@@ -62,7 +62,8 @@
 			  action.JavaScriptWithRowId("Anular", "Anular");
 			  action.JavaScriptWithRowId("Pagar monto adeudado", "PagarMontoAdeudado");
 		  })
-		  .DataSource($"/MovimientoEntradaConClub/GetForGrid/?parentId={Model.Id}")
+		  .DataSource("/MovimientoEntradaConClub/GetForGrid")
+		  .ParentId(Model.Id)
 		  .PageLimit(100)
 	)
 	</div>

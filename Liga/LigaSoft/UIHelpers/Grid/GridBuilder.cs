@@ -22,6 +22,7 @@ namespace LigaSoft.UIHelpers.Grid
 		private readonly HtmlHelper<TModel> _helper;
 		private string _checkbox;
 		private string _dataSortBy = "";
+		private string _parentId = "";
 
 		public GridBuilder(HtmlHelper<TModel> helper)
 		{
@@ -48,6 +49,12 @@ namespace LigaSoft.UIHelpers.Grid
 		public GridBuilder<TModel> DataSource(string dataSource)
 		{
 			_dataSource = dataSource;
+			return this;
+		}
+
+		public GridBuilder<TModel> ParentId(int id)
+		{
+			_parentId = $"&parentId={id}";
 			return this;
 		}
 
@@ -108,7 +115,7 @@ namespace LigaSoft.UIHelpers.Grid
 							grid = $('#{_name}').grid({{
 								uiLibrary: 'bootstrap',
 								primaryKey: '{_primaryKey}',
-								dataSource: '{_dataSource}{FiltersToQueryParams()}{_dataSortBy}',
+								dataSource: '{_dataSource}?{FiltersToQueryParams()}{_dataSortBy}{_parentId}',
 								locale: 'es-es',
 								{_checkbox}
 								columns: [{ColumnsJs()}],								
@@ -136,8 +143,7 @@ namespace LigaSoft.UIHelpers.Grid
 					result += $"&filters[{i}].field={_dataFilters[i].field}&filters[{i}].operator={_dataFilters[i].@operator}&filters[{i}].value={_dataFilters[i].value}";
 				}
 
-				var resultStrBuilder = new StringBuilder(result) {[0] = '?'};
-				return resultStrBuilder.ToString();
+				return result;
 			}
 			return result;
 		}

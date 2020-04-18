@@ -40,5 +40,6 @@
 				action.RedirectParentWithChildWithRowId("Partidos postergados/suspendidos", new { parent = "Torneo", parentId = Model.Id, controller = "Zona", action = "PartidosPostergadosOSuspendidos" });
 				action.RedirectWithRowIdAsParent("Sanciones", "Zona", "Sancion", "Index");
 			})
-			.DataSource($"/Torneo/{Model.Id}/Zona/GetForGrid/")
+			.DataSource("/Zona/GetForGrid")
+			.ParentId(Model.Id)
 )

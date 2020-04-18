@@ -49,5 +49,6 @@
 				action.JavaScriptWithRowId("Publicar/Quitar", "PublicarQuitar");
 				action.RedirectWithRowIdAsParent("Jornadas", "Fecha", "Jornada", "Index");
 			})
-			.DataSource($"/Zona/{Model.Id}/Fecha/GetForGrid/")
+			.DataSource("/Fecha/GetForGrid")
+			.ParentId(Model.Id)
 )

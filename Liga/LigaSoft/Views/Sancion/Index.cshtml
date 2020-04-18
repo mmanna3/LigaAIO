@@ -41,7 +41,8 @@
 					action.JavaScriptWithRowId("Restar fecha adeudada", "RestarFechaAdeudada");
 					action.RedirectWithRowId("Editar", "Sancion", "Edit");
 				})
-				.DataSource($"/Zona/{Model.Id}/Sancion/GetForGrid/")
+				.DataSource("/Sancion/GetForGrid")
+				.ParentId(Model.Id)
 )
 
 <script>

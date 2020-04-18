@@ -75,7 +75,8 @@
 			  action.RedirectWithRowId("Auditoría", "Pago", "Auditoria");
 			  action.JavaScriptWithRowId("Anular", "Anular");
 		  })
-		  .DataSource($"/Pago/GetForGrid/?parentId={Model.Id}")
+		  .DataSource("/Pago/GetForGrid")
+		  .ParentId(Model.Id)
 )
 
 <script>

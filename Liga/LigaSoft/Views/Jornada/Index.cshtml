@@ -37,5 +37,6 @@
 		action.RedirectParentWithChildWithRowId("Cargar resultados", new { parent = "Fecha", parentId = Model.Id, controller = "Jornada", action = "CargarPartidos" });
 		action.RedirectParentWithChildWithRowId("Verificar resultados", new { parent = "Fecha", parentId = Model.Id, controller = "Jornada", action = "VerificarResultados" });
 	})
-	.DataSource($"/Fecha/{Model.Id}/Jornada/GetForGrid/")
+	.DataSource("/Jornada/GetForGrid")
+	.ParentId(Model.Id)
 )
