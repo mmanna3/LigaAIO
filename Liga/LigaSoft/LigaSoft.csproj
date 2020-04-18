@@ -799,7 +799,6 @@
     <Compile Include="Models\Attributes\YKNDateTimeAttribute.cs" />
     <Compile Include="Models\Attributes\YKNStringLengthAttribute.cs" />
     <Compile Include="Models\Interfaces\IClassConIdDescripcioncs.cs" />
-    <Compile Include="Models\Otros\GijgoGridOptions.cs" />
     <Compile Include="Models\ViewModels\CargarEscudoVM.cs" />
     <Compile Include="Models\ViewModels\ConceptoInsumoVM.cs" />
     <Compile Include="Models\ViewModels\GoleadoresVM.cs" />

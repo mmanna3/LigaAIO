@@ -9,9 +9,6 @@
 		public string direction { get; set; }
 		public string searchField { get; set; }
 		public string searchValue { get; set; }
-		public string filterField { get; set; }
-		public string filterValue { get; set; }
-		public string filterOperator { get; set; }
 		public GijgoGridFilter[] filters { get; set; }
 	}
 
