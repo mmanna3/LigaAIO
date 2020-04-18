@@ -22,10 +22,11 @@ namespace LigaSoft.Scheduler
 
 				var trigger = TriggerBuilder.Create()
 					.WithIdentity("trigger1", "group1")
-					.WithDailyTimeIntervalSchedule(s => s
-						.WithIntervalInHours(24)
-						.StartingDailyAt(TimeOfDay.HourAndMinuteOfDay(19, 48))
-						.InTimeZone(timeZoneInfoArg)
+					.WithDailyTimeIntervalSchedule
+					(s =>
+						s.WithIntervalInHours(24)
+							.OnEveryDay()
+							.StartingDailyAt(TimeOfDay.HourAndMinuteOfDay(4, 0))
 					)
 					.Build();
 

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using log4net;
 
 namespace LigaSoft.Utilidades
@@ -11,6 +8,7 @@ namespace LigaSoft.Utilidades
 		private static readonly Log Instance = new Log();
 		protected ILog MonitoringLogger;
 		protected static ILog DebugLogger;
+		private static readonly TimeZoneInfo _timeZoneInfoArg = TimeZoneInfo.FindSystemTimeZoneById("Argentina Standard Time");
 
 		private Log()
 		{
@@ -45,11 +43,9 @@ namespace LigaSoft.Utilidades
 		/// </summary>  
 		/// <param name="message">The object message to log</param>  
 		public static void Info(string message)
-		{
-			System.Globalization.CultureInfo.CurrentCulture.ClearCachedData();
-			var timeZoneInfoArg = TimeZoneInfo.FindSystemTimeZoneById("Argentina Standard Time");
-			var horaUtc = DateTime.UtcNow.ToLocalTime().ToUniversalTime();
-			var horaArg = TimeZoneInfo.ConvertTimeFromUtc(horaUtc, timeZoneInfoArg);
+		{			
+			var horaUtc = DateTime.UtcNow;
+			var horaArg = TimeZoneInfo.ConvertTimeFromUtc(horaUtc, _timeZoneInfoArg);
 
 			var horaUtcYArg = $"{horaUtc:dd/MM/yy HH:mm:ss.fff} (UTC) - {horaArg:dd/MM/yyyy HH:mm:ss.fff} (Arg)";
 			var mensajeConHoraBuenosAires = $"{horaUtcYArg} - {message}";		
