@@ -10,5 +10,6 @@ namespace LigaSoft.Models.ViewModels
 		public int EquipoId { get; set; }
 		public List<SelectListItem> EquiposParaCombo { get; set; }
 		public string Club { get; set; }
+		public string AlSeleccionarIrAAction { get; set; }
 	}
 }

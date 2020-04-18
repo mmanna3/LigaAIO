@@ -74,7 +74,8 @@
 				}
 				@if (User.IsInRole(LigaSoft.Utilidades.Roles.Delegado))
 				{
-					@MenuLink("Jugadores pendientes", "SeleccionarEquipo", "JugadorFichadoPorDelegado", null, "fa-user")
+					@MenuLink("Jugadores pendientes", "SeleccionarEquipo", "JugadorFichadoPorDelegado", new { alSeleccionarIrAAction = "PendientesDeAprobacion" }, "fa-user")
+					@MenuLink("Jugadores rechazados", "SeleccionarEquipo", "JugadorFichadoPorDelegado", new { alSeleccionarIrAAction = "Rechazados" }, "fa-user-times")
 				}
 			</ul>
 		</div>

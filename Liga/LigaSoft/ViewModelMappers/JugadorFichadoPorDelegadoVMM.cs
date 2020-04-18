@@ -34,7 +34,8 @@ namespace LigaSoft.ViewModelMappers
 				FechaNacimiento = VMMUtility.ConvertToString(model.FechaNacimiento),
 				Equipo = Context.Equipos.Find(model.EquipoId).Nombre,
 				EquipoId = model.EquipoId,
-				Estado = model.Estado
+				Estado = model.Estado,
+				MotivoDeRechazo = model.MotivoDeRechazo
 		};
 		}
 	}

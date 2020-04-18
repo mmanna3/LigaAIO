@@ -26,6 +26,11 @@ namespace LigaSoft.Controllers
 			return View("PendientesDeAprobacion", vm);
 		}
 
+		public ActionResult Rechazados(IdDescripcionVM vm)
+		{
+			return View("Rechazados", vm);
+		}
+
 		[Authorize(Roles = Roles.Delegado)]
 		public List<SelectListItem> EquiposParaCombo(Club club)
 	    {
@@ -42,14 +47,15 @@ namespace LigaSoft.Controllers
 	    }
 
 		[Authorize(Roles = Roles.Delegado)]
-		public ActionResult SeleccionarEquipo()
+		public ActionResult SeleccionarEquipo(string alSeleccionarIrAAction)
 	    {
 		    var club = ClubDeDelegadoLogueado();
 		    var vm = new SeleccionarEquipoVM
 		    {
 				Club = club.Nombre,
-				EquiposParaCombo = EquiposParaCombo(club)
-		    };
+				EquiposParaCombo = EquiposParaCombo(club),
+			    AlSeleccionarIrAAction = alSeleccionarIrAAction
+			};
 
 		    return View(vm);
 	    }
@@ -93,7 +99,7 @@ namespace LigaSoft.Controllers
 	    [HttpPost]
 	    public ActionResult SeleccionarEquipo(SeleccionarEquipoVM seleccionarEquipoVM)
 		{
-			return RedirectToAction("PendientesDeAprobacion", new IdDescripcionVM
+			return RedirectToAction(seleccionarEquipoVM.AlSeleccionarIrAAction, new IdDescripcionVM
 			{
 				Descripcion = Context.Equipos.Find(seleccionarEquipoVM.EquipoId).Nombre,
 				Id = seleccionarEquipoVM.EquipoId

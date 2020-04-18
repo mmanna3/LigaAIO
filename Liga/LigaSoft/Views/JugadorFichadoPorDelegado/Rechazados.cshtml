@@ -4,21 +4,15 @@
 @model IdDescripcionVM
 
 @section Titulo{
-	Jugadores pendientes. <span class="titulo-detacado"> Equipo: @Model.Descripcion</span>
+	Jugadores rechazados. <span class="titulo-detacado"> Equipo: @Model.Descripcion</span>
 }
 
 @section Subtitulo{
-	Se muestran los jugadores enviados a la administración de la Liga y aún no aprobados.
+	Se muestran los jugadores rechazados por la administración de la Liga. Deberá editarlos y volver a enviarlos.
 }
 
 @section CabeceraGrilla {
 	@(Html.YKN<JugadorFichadoPorDelegadoVM>().Buscador(x => x.DNI))
-
-	@(Html.YKN().Button("Fichar")
-			.PullRight()
-			.Label("Fichar nuevo jugador")
-			.OnClickRedirect("Fichar", "JugadorFichadoPorDelegado", new Dictionary<string, string> { { "equipoId", Model.Id.ToString() } })
-	)
 }
 
 @(Html.YKN<JugadorFichadoPorDelegadoVM>().Grid()
@@ -28,9 +22,11 @@
 			column.AddTextColumn(x => x.Nombre);
 			column.AddTextColumn(x => x.Apellido);
 			column.AddTextColumn(x => x.FechaNacimiento);
+			column.AddTextColumn(x => x.MotivoDeRechazo);
+
 		})
 		.DataSource("/JugadorFichadoPorDelegado/GetForGrid")
-		.DataFilter("Estado", EstadoJugadorFichadoPorDelegado.PendienteDeAprobacion)
+		.DataFilter("Estado", EstadoJugadorFichadoPorDelegado.Rechazado)
 		.DataFilter("EquipoId", Model.Id)
 )
 
