@@ -26,7 +26,8 @@ namespace LigaSoft.Scheduler
 					(s =>
 						s.WithIntervalInHours(24)
 							.OnEveryDay()
-							.StartingDailyAt(TimeOfDay.HourAndMinuteOfDay(4, 0))
+							.StartingDailyAt(TimeOfDay.HourAndMinuteOfDay(5, 0))
+							.InTimeZone(timeZoneInfoArg)
 					)
 					.Build();
 
