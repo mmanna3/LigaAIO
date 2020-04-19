@@ -16,6 +16,7 @@ using LigaSoft.Models.Dominio;
 using LigaSoft.Models.Otros;
 using LigaSoft.Models.ViewModels;
 using LigaSoft.Utilidades;
+using LigaSoft.Utilidades.DiskPersistence;
 using LigaSoft.ViewModelMappers;
 using Newtonsoft.Json;
 
@@ -24,7 +25,14 @@ namespace LigaSoft.Controllers
 	[Authorize(Roles = Roles.CualquierEmpleadoDeLaLiga)]
 	public class JugadorController : ABMController<Jugador, JugadorBaseVM, JugadorVMM>
     {
-	    [HttpPost, ExportModelStateToTempData]
+	    private readonly ImagenesJugadoresDiskPersistence _imagenesJugadoresDiskPersistence;
+
+	    public JugadorController()
+		{
+			_imagenesJugadoresDiskPersistence = new ImagenesJugadoresDiskPersistence(new AppPathsWebApp());
+		}
+
+		[HttpPost, ExportModelStateToTempData]
 	    public override ActionResult Edit(JugadorBaseVM vm)
 	    {
 		    if (!ModelState.IsValid)
@@ -62,9 +70,9 @@ namespace LigaSoft.Controllers
 	    public ActionResult EditFotoWebCam(JugadorBaseVM vm)
 	    {
 		    if (vm.Foto != null)
-			    IODiskUtility.GuardarFotoWebCamDeJugadorEnDisco(vm);
+				_imagenesJugadoresDiskPersistence.GuardarFotoWebCam(vm);
 
-		    return RedirectToAction("Index");
+			return RedirectToAction("Index");
 	    }
 
 		[HttpPost, ExportModelStateToTempData]

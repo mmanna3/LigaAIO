@@ -12,6 +12,7 @@ using LigaSoft.Models.Dominio.Finanzas;
 using LigaSoft.Models.Enums;
 using LigaSoft.Models.ViewModels;
 using LigaSoft.Utilidades;
+using LigaSoft.Utilidades.DiskPersistence;
 using LigaSoft.ViewModelMappers;
 using Microsoft.AspNet.Identity;
 
@@ -21,13 +22,15 @@ namespace LigaSoft.Controllers
 	public class EquipoController : ABMController<Equipo, EquipoVM, EquipoVMM>
     {
 	    private readonly JugadorVMM _jugadorVMM;
-	    private readonly int _valorPorDefectoEnPesosDelConceptoFichaje; 
-
+	    private readonly int _valorPorDefectoEnPesosDelConceptoFichaje;
+	    private readonly ImagenesJugadoresDiskPersistence _imagenesJugadoresDiskPersistence;
 
 		public EquipoController()
 		{
+			_imagenesJugadoresDiskPersistence = new ImagenesJugadoresDiskPersistence(new AppPathsWebApp());
 			_valorPorDefectoEnPesosDelConceptoFichaje = Context.ParametrizacionesGlobales.Select(x => x.ValorPorDefectoEnPesosDelConceptoFichaje).First();
 			_jugadorVMM = new JugadorVMM(Context);
+			
 		}
 
 		public ActionResult ImportarJugadores(int id)
@@ -163,7 +166,7 @@ namespace LigaSoft.Controllers
 			    GenerarMovimientoFichajeImpago(vm.EquipoId, vm.DNI);
 
 		    Context.SaveChanges();
-		    IODiskUtility.GuardarFotoWebCamDeJugadorEnDisco(vm);
+		    _imagenesJugadoresDiskPersistence.GuardarFotoWebCam(vm);
 
 			ModelState.Clear();
 

@@ -877,6 +877,7 @@
     <Compile Include="UIHelpers\Form.cs" />
     <Compile Include="UIHelpers\WidgetFactories\INonTypedWidgetFactory.cs" />
     <Compile Include="UIHelpers\WidgetFactories\YKNNonTypedWidgetFactory.cs" />
+    <Compile Include="Utilidades\DiskPersistence\ImagenesJugadoresDiskPersistence.cs" />
     <Compile Include="Utilidades\IODiskUtility.cs" />
     <Compile Include="Utilidades\ImagenUtility.cs" />
     <Compile Include="Utilidades\Log.cs" />

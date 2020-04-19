@@ -82,7 +82,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Unit\IODiskUtilityTests.cs" />
+    <Compile Include="Unit\ImagenesJugadoresDiskPersistenceTest.cs" />
     <Compile Include="Integration\BaseIntegrationTest.cs" />
     <Compile Include="Integration\DropCreateDatabaseAlwaysAndSeed.cs" />
     <Compile Include="Integration\GetForGridTests.cs" />

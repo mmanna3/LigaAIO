@@ -11,18 +11,11 @@ namespace LigaSoft.Utilidades
 	public class IODiskUtility
 	{
 		private static readonly ApplicationDbContext Context = new ApplicationDbContext();
-		private static readonly AppPathsWebApp Paths = new AppPathsWebApp();
+		private static AppPaths Paths = new AppPathsWebApp();
 
-		public static void GuardarFotoWebCamDeJugadorEnDisco(JugadorBaseVM vm)
+		public IODiskUtility(AppPaths appPaths)
 		{
-			var foto = ImagenUtility.ProcesarImagenDeCamaraWebParaGuardarEnDisco(vm.Foto);
-			var imagePath = $"{Paths.ImagenesJugadoresAbsolute}/{vm.DNI}.jpg";
-
-			if (File.Exists(imagePath))				
-				File.Delete(imagePath);
-
-			Directory.CreateDirectory(Paths.ImagenesJugadoresAbsolute);		
-			foto.Save(imagePath);
+			Paths = appPaths;
 		}
 
 		public static void GuardarFotoDeJugadorDesdeArchivoEnDisco(EditFotoJugadorDesdeArchivoVM vm)
