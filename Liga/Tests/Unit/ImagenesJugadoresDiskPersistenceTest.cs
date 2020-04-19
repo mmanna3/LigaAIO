@@ -37,9 +37,12 @@ namespace Tests.Unit
 
 		private static void EliminarTodosLosArchivosEnLaCarpeta(string path)
 		{
-			var filePaths = Directory.GetFiles(path, "*");
-			foreach (var filePath in filePaths)
-				File.Delete(filePath);
+			if (Directory.Exists(path))
+			{
+				var filePaths = Directory.GetFiles(path, "*");
+				foreach (var filePath in filePaths)
+					File.Delete(filePath);
+			}
 		}
 
 		[Test]
