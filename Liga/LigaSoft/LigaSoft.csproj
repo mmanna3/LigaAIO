@@ -321,6 +321,7 @@
     <Compile Include="Models\ViewModels\UsuarioDelegadoVM.cs" />
     <Compile Include="Models\ViewModels\SeleccionarEquipoVM.cs" />
     <Compile Include="UIHelpers\Autocomplete_Old_Cambiar_PorNuevoAutocompleteFor.cs" />
+    <Compile Include="Utilidades\AppPaths.cs" />
     <Compile Include="Utilidades\Backup\GDriveBackupManager.cs" />
     <Compile Include="Utilidades\Backup\BaseDeDatosGDriveBackupManager.cs" />
     <Compile Include="Utilidades\Backup\ImagenesGDriveBackupManager.cs" />
@@ -789,7 +790,6 @@
     <Compile Include="Scheduler\JobScheduler.cs" />
     <Compile Include="Scheduler\SubirBackupAlDriveJob.cs" />
     <Compile Include="Utilidades\GijgoGridHelper.cs" />
-    <Compile Include="Utilidades\LocalPathConsts.cs" />
     <Compile Include="Models\Enums\ZonaTipo.cs" />
     <Compile Include="Models\Enums\TorneoFormato.cs" />
     <Compile Include="Models\Enums\Mes.cs" />

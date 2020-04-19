@@ -18,7 +18,7 @@ namespace LigaSoft.Scheduler
 			{
 				new ImagenesGDriveBackupManager().GenerarYSubirAlDrive();
 				new BaseDeDatosGDriveBackupManager().GenerarYSubirAlDrive();
-				IODiskUtility.EliminarTodosLosArchivosDeAppData();
+				IODiskUtility.EliminarTodosLosArchivosDeLaCarpetaDondeEstanLosBackups();
 			}
 			catch (Exception e)
 			{

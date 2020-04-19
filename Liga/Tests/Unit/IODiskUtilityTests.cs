@@ -12,10 +12,6 @@ namespace Tests.Unit
 	[TestFixture]
 	public class IODiskUtilityTests : BaseIntegrationTest
 	{
-		private static readonly string CarpetaJugadoresPath = HostingEnvironment.MapPath($"~/{LocalPathConsts.ImagenesJugadores}");
-		private static readonly string CarpetaEscudosPath = HostingEnvironment.MapPath($"~/{LocalPathConsts.ImagenesEscudos}");
-		private static readonly string CarpetaPublicidadesPath = HostingEnvironment.MapPath($"~/{LocalPathConsts.ImagenesPublicidades}");
-
 		//[Test]
 		//public void ActualizarDNIEnFoto()
 		//{

@@ -2,59 +2,56 @@
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Web.Hosting;
 using Ionic.Zip;
 using LigaSoft.Models;
 using LigaSoft.Models.ViewModels;
 
 namespace LigaSoft.Utilidades
 {
-	public static class IODiskUtility
+	public class IODiskUtility
 	{
 		public const string FormatoFechaBackup = "yyyy-MM-dd--HH-mm-ss";
-		private static readonly string CarpetaJugadoresPath = HostingEnvironment.MapPath($"~/{LocalPathConsts.ImagenesJugadores}");
-		private static readonly string CarpetaEscudosPath = HostingEnvironment.MapPath($"~/{LocalPathConsts.ImagenesEscudos}");
-		private static readonly string CarpetaPublicidadesPath = HostingEnvironment.MapPath($"~/{LocalPathConsts.ImagenesPublicidades}");
 
 		private static readonly ApplicationDbContext Context = new ApplicationDbContext();
+		private static readonly AppPathsWebApp Paths = new AppPathsWebApp();
 
 		public static void GuardarFotoWebCamDeJugadorEnDisco(JugadorBaseVM vm)
 		{
 			var foto = ImagenUtility.ProcesarImagenDeCamaraWebParaGuardarEnDisco(vm.Foto);
-			var imagePath = $"{CarpetaJugadoresPath}/{vm.DNI}.jpg";
+			var imagePath = $"{Paths.ImagenesJugadoresAbsolute}/{vm.DNI}.jpg";
 
 			if (File.Exists(imagePath))				
 				File.Delete(imagePath);
 
-			Directory.CreateDirectory(CarpetaJugadoresPath);		
+			Directory.CreateDirectory(Paths.ImagenesJugadoresAbsolute);		
 			foto.Save(imagePath);
 		}
 
 		public static void GuardarFotoDeJugadorDesdeArchivoEnDisco(EditFotoJugadorDesdeArchivoVM vm)
 		{
-			var imagePath = $"{CarpetaJugadoresPath}/{vm.DNI}.jpg";
+			var imagePath = $"{Paths.ImagenesJugadoresAbsolute}/{vm.DNI}.jpg";
 
 			if (File.Exists(imagePath))
 				File.Delete(imagePath);
 
-			Directory.CreateDirectory(CarpetaJugadoresPath);
+			Directory.CreateDirectory(Paths.ImagenesJugadoresAbsolute);
 			vm.Foto.SaveAs(imagePath);
 		}
 
 		public static void GuardarFotoDeEscudoEnDisco(CargarEscudoVM vm)
 		{
-			var imagePath = $"{CarpetaEscudosPath}/{vm.ClubId}.jpg";			
+			var imagePath = $"{Paths.ImagenesEscudosAbsolute}/{vm.ClubId}.jpg";			
 
 			if (File.Exists(imagePath))
 				File.Delete(imagePath);
 
-			Directory.CreateDirectory(CarpetaEscudosPath);
+			Directory.CreateDirectory(Paths.ImagenesEscudosAbsolute);
 			vm.Escudo.SaveAs(imagePath);
 		}
 
 		public static string GetFotoJugadorEnBase64(string dni)
 		{
-			var imagePath = $"{CarpetaJugadoresPath}/{dni}.jpg";
+			var imagePath = $"{Paths.ImagenesJugadoresAbsolute}/{dni}.jpg";
 			using (var stream = new FileStream(imagePath, FileMode.Open))
 				using (var image = Image.FromStream(stream))
 					return ImagenUtility.ImageToBase64(image);
@@ -62,7 +59,7 @@ namespace LigaSoft.Utilidades
 
 		public static void EliminarEscudo(int id)
 		{
-			var imagePath = $"{CarpetaEscudosPath}/{id}.jpg";
+			var imagePath = $"{Paths.ImagenesEscudosAbsolute}/{id}.jpg";
 
 			if (File.Exists(imagePath))
 				File.Delete(imagePath);
@@ -70,8 +67,8 @@ namespace LigaSoft.Utilidades
 
 		public static string EscudoPath(int clubId)
 		{
-			var escudoPathRelativo = $"{LocalPathConsts.ImagenesEscudos}/{clubId}.jpg";
-			var escudoPathAbsoluto = $"{CarpetaEscudosPath}/{clubId}.jpg";
+			var escudoPathRelativo = $"{Paths.ImagenesEscudosRelative}/{clubId}.jpg";
+			var escudoPathAbsoluto = $"{Paths.ImagenesEscudosAbsolute}/{clubId}.jpg";
 			if (File.Exists(escudoPathAbsoluto))
 				return escudoPathRelativo;
 
@@ -80,17 +77,17 @@ namespace LigaSoft.Utilidades
 
 		public static string FotoJugadorPath(string dni)
 		{
-			return $"{LocalPathConsts.ImagenesJugadores}/{dni}.jpg";
+			return $"{Paths.ImagenesJugadoresRelative}/{dni}.jpg";
 		}
 
 		public static void GuardarFotoDeJugadorImportadoEnDisco(string dni, byte[] fotoByteArray)
 		{
-			var imagePath = $"{CarpetaJugadoresPath}/{dni}.jpg";
+			var imagePath = $"{Paths.ImagenesJugadoresAbsolute}/{dni}.jpg";
 
 			if (File.Exists(imagePath))
 				File.Delete(imagePath);
 
-			Directory.CreateDirectory(CarpetaJugadoresPath);
+			Directory.CreateDirectory(Paths.ImagenesJugadoresAbsolute);
 
 			using (var image = Image.FromStream(new MemoryStream(fotoByteArray)))
 			{
@@ -100,7 +97,7 @@ namespace LigaSoft.Utilidades
 
 		public static void EliminarFotoDeJugador(string dni)
 		{
-			var imagePath = $"{CarpetaJugadoresPath}/{dni}.jpg";
+			var imagePath = $"{Paths.ImagenesJugadoresAbsolute}/{dni}.jpg";
 
 			if (File.Exists(imagePath))
 				File.Delete(imagePath);
@@ -108,25 +105,25 @@ namespace LigaSoft.Utilidades
 
 		public static void GuardarFotoDePublicidadEnDisco(PublicidadVM vm)
 		{
-			var imagePath = $"{CarpetaPublicidadesPath}/{vm.Id}.jpg";
+			var imagePath = $"{Paths.ImagenesPublicidadesAbsolute}/{vm.Id}.jpg";
 
 			if (File.Exists(imagePath))
 				File.Delete(imagePath);
 
-			Directory.CreateDirectory(CarpetaPublicidadesPath);
+			Directory.CreateDirectory(Paths.ImagenesPublicidadesAbsolute);
 			vm.ImagenNueva.SaveAs(imagePath);
 		}
 
 		public static string PublicidadImagenPath(int id)
 		{
-			return $"{LocalPathConsts.ImagenesPublicidades}/{id}.jpg";
+			return $"{Paths.ImagenesPublicidadesRelative}/{id}.jpg";
 		}
 
 		// ReSharper disable AssignNullToNotNullAttribute
 		public static string ComprimirImagenesYPonerZipEnAppData()
 		{
-			var imagenesPath = HostingEnvironment.MapPath($"~/{LocalPathConsts.Imagenes}");
-			var backupPath = HostingEnvironment.MapPath($"~/App_Data/Imagenes-{DateTime.Now.ToString(FormatoFechaBackup)}.zip");			
+			var imagenesPath = Paths.ImagenesAbsolute;
+			var backupPath = Paths.BackupAbsoluteOf($"Imagenes-{DateTime.Now.ToString(FormatoFechaBackup)}.zip");
 
 			try
 			{
@@ -182,7 +179,7 @@ namespace LigaSoft.Utilidades
 			else
 				Log.Info($"El backup sin comprimir de la base está en: {bdBackupPathSinComprimir}.");
 
-			var backupBdComprimidoPath = HostingEnvironment.MapPath($"~/App_Data/BaseDeDatos-{DateTime.Now.ToString(FormatoFechaBackup)}.zip");
+			var backupBdComprimidoPath = Paths.BackupAbsoluteOf($"BaseDeDatos-{DateTime.Now.ToString(FormatoFechaBackup)}.zip");
 
 			try
 			{
@@ -204,7 +201,7 @@ namespace LigaSoft.Utilidades
 
 		private static string PathDelUltimoBackupBD()
 		{
-			var backupPaths = Directory.GetFiles(HostingEnvironment.MapPath("~/App_Data/"), "mmmannna3_edefi_prod_*.bak");
+			var backupPaths = Directory.GetFiles(Paths.BackupAbsolute(), "mmmannna3_edefi_prod_*.bak");
 
 			DateTime? fechaDelBackupMasNuevo = null;
 			string pathDelBackupMasNuevo = null;
@@ -224,16 +221,16 @@ namespace LigaSoft.Utilidades
 
 		public static void ActualizarDNIEnFoto(string dniAnterior, string dniNuevo)
 		{
-			var pathAnterior = $"{CarpetaJugadoresPath}/{dniAnterior}.jpg";
-			var pathNuevo = $"{CarpetaJugadoresPath}/{dniNuevo}.jpg";
+			var pathAnterior = $"{Paths.ImagenesJugadoresAbsolute}/{dniAnterior}.jpg";
+			var pathNuevo = $"{Paths.ImagenesJugadoresAbsolute}/{dniNuevo}.jpg";
 
 			if (File.Exists(pathAnterior))
 				File.Move(pathAnterior, pathNuevo);
 		}
 
-		public static void EliminarTodosLosArchivosDeAppData()
+		public static void EliminarTodosLosArchivosDeLaCarpetaDondeEstanLosBackups()
 		{
-			EliminarArchivos(HostingEnvironment.MapPath("~/App_Data/"), "*.*");
+			EliminarArchivos(Paths.BackupAbsolute(), "*.*");
 		}
 	}
 }

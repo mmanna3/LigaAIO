@@ -15,7 +15,7 @@ namespace LigaSoft.Controllers
 
 		    new BaseDeDatosGDriveBackupManager().GenerarYSubirAlDrive();
 
-		    IODiskUtility.EliminarTodosLosArchivosDeAppData();
+		    IODiskUtility.EliminarTodosLosArchivosDeLaCarpetaDondeEstanLosBackups();
 
 		    Log.Info("------------------------------------------------");
 
