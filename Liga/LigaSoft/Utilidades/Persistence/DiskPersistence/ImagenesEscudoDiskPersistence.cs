@@ -1,3 +1,4 @@
+using System.Drawing.Imaging;
 using System.IO;
 using LigaSoft.Models.ViewModels;
 
@@ -10,6 +11,17 @@ namespace LigaSoft.Utilidades.Persistence.DiskPersistence
 		public ImagenesEscudosDiskPersistence(AppPaths appPaths)
 		{
 			Paths = appPaths;
+		}
+
+		public void GuardarEscudoDefault(string escudoBase64)
+		{
+			var escudoDefault = ImagenUtility.ProcesarImagenDeCamaraWebParaGuardarEnDisco(escudoBase64);
+
+			if (File.Exists(Paths.EscudoDefaultFileAbsolute))
+				File.Delete(Paths.EscudoDefaultFileAbsolute);
+
+			Directory.CreateDirectory(Paths.ImagenesEscudosAbsolute);
+			escudoDefault.Save(Paths.EscudoDefaultFileAbsolute, ImageFormat.Jpeg);
 		}
 
 		public void Guardar(CargarEscudoVM vm)
@@ -31,14 +43,14 @@ namespace LigaSoft.Utilidades.Persistence.DiskPersistence
 				File.Delete(imagePath);
 		}
 
-		public string Path(int clubId, string escudoPorDefecto)
+		public string Path(int clubId)
 		{
 			var escudoPathRelativo = $"{Paths.ImagenesEscudosRelative}/{clubId}.jpg";
 			var escudoPathAbsoluto = $"{Paths.ImagenesEscudosAbsolute}/{clubId}.jpg";
 			if (File.Exists(escudoPathAbsoluto))
 				return escudoPathRelativo;
 
-			return ImagenUtility.ProcesarImagenDeBDParaMostrarEnWeb(escudoPorDefecto);
+			return Paths.EscudoDefaultRelative;
 		}
 	}
 }

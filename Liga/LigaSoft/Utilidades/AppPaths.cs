@@ -8,18 +8,22 @@ namespace LigaSoft.Utilidades
 		public string ImagenesJugadoresRelative { get; } = "/Imagenes/Jugadores";
 		public string ImagenesEscudosRelative { get; } = "/Imagenes/Escudos";
 		public string ImagenesPublicidadesRelative { get; } = "/Imagenes/Publicidades";
+		public string EscudoDefaultRelative { get; } = "/Imagenes/Escudos/default.jpg";
 
 		public string ImagenesAbsolute { get; }
 		public string ImagenesJugadoresAbsolute { get; }
 		public string ImagenesPublicidadesAbsolute { get; }
 		public string ImagenesEscudosAbsolute { get; }
+		public string EscudoDefaultFileAbsolute { get; }
 
+		// ReSharper disable VirtualMemberCallInConstructor
 		protected AppPaths()
-		{
+		{			
 			ImagenesAbsolute = GetAbsolutePath(ImagenesRelative);
 			ImagenesJugadoresAbsolute = GetAbsolutePath(ImagenesJugadoresRelative);
 			ImagenesEscudosAbsolute = GetAbsolutePath(ImagenesEscudosRelative);
 			ImagenesPublicidadesAbsolute = GetAbsolutePath(ImagenesPublicidadesRelative);
+			EscudoDefaultFileAbsolute = GetAbsolutePath(EscudoDefaultRelative);
 		}
 
 		protected abstract string GetAbsolutePath(string relativePath);

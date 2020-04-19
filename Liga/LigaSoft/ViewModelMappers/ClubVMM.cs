@@ -63,7 +63,7 @@ namespace LigaSoft.ViewModelMappers
 				Nombre = model.Nombre,
 				Techo = model.TechoBoolToTechoEnum(),
 				Cuota = $"${model.Cuota()}",
-				Escudo = _imagenesEscudosPersistence.Path(model.Id, _escudoDefault)
+				Escudo = _imagenesEscudosPersistence.Path(model.Id)
 			};
 
 			MapConceptoTotales(model, vm);

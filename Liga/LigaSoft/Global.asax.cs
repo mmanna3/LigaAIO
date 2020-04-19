@@ -1,5 +1,6 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.Migrations;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -8,6 +9,8 @@ using System.Web.Routing;
 using LigaSoft.Migrations;
 using LigaSoft.Models;
 using LigaSoft.Scheduler;
+using LigaSoft.Utilidades;
+using LigaSoft.Utilidades.Persistence.DiskPersistence;
 
 namespace LigaSoft
 {
@@ -23,7 +26,14 @@ namespace LigaSoft
 	        log4net.Config.XmlConfigurator.Configure();
 			JobScheduler.Start().GetAwaiter().GetResult();
 	        InicializarLaBaseDeDatos();
-        }
+	        InicializarFileSystem();
+		}
+
+	    private static void InicializarFileSystem()
+	    {
+		    var imagenesEscudosDiskPersistence = new ImagenesEscudosDiskPersistence(new AppPathsWebApp());
+		    imagenesEscudosDiskPersistence.GuardarEscudoDefault(new ApplicationDbContext().ParametrizacionesGlobales.First().EscudoPorDefectoEnBase64);
+		}
 
 	    private static void InicializarLaBaseDeDatos()
 	    {

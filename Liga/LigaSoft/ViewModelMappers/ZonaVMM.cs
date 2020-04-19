@@ -103,7 +103,7 @@ namespace LigaSoft.ViewModelMappers
 		private string EscudoLocal(Jornada jornada)
 		{
 			if (jornada.Local != null)
-				return _imagenesEscudosPersistence.Path(jornada.Local.Club.Id, _escudoDefault);
+				return _imagenesEscudosPersistence.Path(jornada.Local.Club.Id);
 
 			var model = Context.ParametrizacionesGlobales.FirstOrDefault();
 			return ImagenUtility.ProcesarImagenDeBDParaMostrarEnWeb(model.EscudoPorDefectoEnBase64);
@@ -112,7 +112,7 @@ namespace LigaSoft.ViewModelMappers
 		private string EscudoVisitante(Jornada jornada)
 		{
 			if (jornada.Visitante != null)
-				return _imagenesEscudosPersistence.Path(jornada.Visitante.Club.Id, _escudoDefault);
+				return _imagenesEscudosPersistence.Path(jornada.Visitante.Club.Id);
 
 			var model = Context.ParametrizacionesGlobales.FirstOrDefault();
 			return ImagenUtility.ProcesarImagenDeBDParaMostrarEnWeb(model.EscudoPorDefectoEnBase64);
