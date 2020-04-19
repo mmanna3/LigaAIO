@@ -38,48 +38,48 @@ namespace LigaSoft.Controllers
 			return RedirectToAction("Edit", new {vm.Id});
 		}
 
-		public ActionResult DescargarBackupDb()
-		{
-			var vm = new DescargarBackupResultadoVM();
-			var fileNames = System.IO.Directory.GetFiles(Server.MapPath("~/App_Data/"),"*.bak"); //Quizás haya que filtrar por el backup más nuevo
+		//public ActionResult DescargarBackupDb()
+		//{
+		//	var vm = new DescargarBackupResultadoVM();
+		//	var fileNames = System.IO.Directory.GetFiles(Server.MapPath("~/App_Data/"),"*.bak"); //Quizás haya que filtrar por el backup más nuevo
 
-			if (fileNames.Length > 0)
-			{
-				var filePath = fileNames[0];
+		//	if (fileNames.Length > 0)
+		//	{
+		//		var filePath = fileNames[0];
 
-				Response.Clear();
-				Response.ContentType = "application/octet-stream";
-				Response.AppendHeader("Content-Disposition", "filename=" + filePath);
+		//		Response.Clear();
+		//		Response.ContentType = "application/octet-stream";
+		//		Response.AppendHeader("Content-Disposition", "filename=" + filePath);
 
-				Response.TransmitFile(filePath);
+		//		Response.TransmitFile(filePath);
 
-				Response.End();
-				vm.Texto = "Backup generado correctamente.";
-			}
-			else
-			{
-				vm.Texto = "No hay backups disponibles. Los miércoles y domingos se eliminan los backups antiguos. Esperar 24 horas.";
-			}
+		//		Response.End();
+		//		vm.Texto = "Backup generado correctamente.";
+		//	}
+		//	else
+		//	{
+		//		vm.Texto = "No hay backups disponibles. Los miércoles y domingos se eliminan los backups antiguos. Esperar 24 horas.";
+		//	}
 
-			return View("DescargarBackupResultado", vm);
-		}
+		//	return View("DescargarBackupResultado", vm);
+		//}
 
-		public ActionResult DescargarBackupImagenes()
-		{
-			var vm = new DescargarBackupResultadoVM {Texto = "Backup generado correctamente."};
+		//public ActionResult DescargarBackupImagenes()
+		//{
+		//	var vm = new DescargarBackupResultadoVM {Texto = "Backup generado correctamente."};
 
-			var filePath = IODiskUtility.ComprimirImagenesYPonerZipEnCarpetaDeBackups();
+		//	var filePath = IODiskUtility.ComprimirImagenesYPonerZipEnCarpetaDeBackups();
 
-			Response.Clear();
-			Response.ContentType = "application/octet-stream";
-			Response.AppendHeader("Content-Disposition", "filename=" + filePath);
+		//	Response.Clear();
+		//	Response.ContentType = "application/octet-stream";
+		//	Response.AppendHeader("Content-Disposition", "filename=" + filePath);
 
-			Response.TransmitFile(filePath);
+		//	Response.TransmitFile(filePath);
 
-			Response.End();
+		//	Response.End();
 
-			return View("DescargarBackupResultado", vm);
-		}
+		//	return View("DescargarBackupResultado", vm);
+		//}
 
 		private void ValidarCargarEscudo(HttpPostedFileBase imagen)
 		{

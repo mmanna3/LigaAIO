@@ -295,3 +295,4 @@ dist/
 # Tokens de API Google Drive
 /Liga/LigaSoft/Utilidades/Backup/token.json/Google.Apis.Auth.OAuth2.Responses.TokenResponse-user
 /Liga/LigaSoft/Utilidades/Backup/credentials.json
+*.jpg
