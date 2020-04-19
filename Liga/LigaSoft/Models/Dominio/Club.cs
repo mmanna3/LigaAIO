@@ -75,11 +75,6 @@ namespace LigaSoft.Models.Dominio
 		{
 			return Movimientos.Where(x => x.Concepto.Id > 3).Sum(x => x.ImporteAdeudado());
 		}
-
-		public string EscudoPath()
-		{
-			return IODiskUtility.EscudoPath(Id);
-		}
 	}
 
 }

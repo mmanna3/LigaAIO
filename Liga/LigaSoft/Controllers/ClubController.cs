@@ -11,6 +11,8 @@ using LigaSoft.Models.Dominio;
 using LigaSoft.Models.Otros;
 using LigaSoft.Models.ViewModels;
 using LigaSoft.Utilidades;
+using LigaSoft.Utilidades.Persistence;
+using LigaSoft.Utilidades.Persistence.DiskPersistence;
 using LigaSoft.ViewModelMappers;
 
 namespace LigaSoft.Controllers
@@ -19,11 +21,13 @@ namespace LigaSoft.Controllers
 	public class ClubController : ABMController<Club, ClubVM, ClubVMM>
     {
 	    private readonly EquipoVMM _equipoVMM;
+	    private IImagenesEscudosPersistence _imagenesEscudosPersistence;
 
 	    public ClubController()
 	    {
 		    _equipoVMM = new EquipoVMM(Context);
-	    }
+		    _imagenesEscudosPersistence = new ImagenesEscudosDiskPersistence(new AppPathsWebApp());
+		}
 
 		[ImportModelStateFromTempData]
 	    public ActionResult CrearEquipo(int id)
@@ -76,7 +80,7 @@ namespace LigaSoft.Controllers
 	    public ActionResult EliminarEscudo(int id)
 	    {
 		    if (Context.Clubs.Find(id) != null)
-			    IODiskUtility.EliminarEscudo(id);
+			    _imagenesEscudosPersistence.Eliminar(id);
 
 		    return Json(new { success = true }, JsonRequestBehavior.AllowGet);
 	    }
@@ -97,7 +101,7 @@ namespace LigaSoft.Controllers
 			if (!ModelState.IsValid)
 			    return RedirectToAction("CargarEscudo", new { id = vm.ClubId });
 
-			IODiskUtility.GuardarFotoDeEscudoEnDisco(vm);
+			_imagenesEscudosPersistence.Guardar(vm);
 
 			Context.SaveChanges();
 

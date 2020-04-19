@@ -7,13 +7,20 @@ using LigaSoft.Models.Dominio;
 using LigaSoft.Models.Enums;
 using LigaSoft.Models.ViewModels;
 using LigaSoft.Utilidades;
+using LigaSoft.Utilidades.Persistence;
+using LigaSoft.Utilidades.Persistence.DiskPersistence;
 
 namespace LigaSoft.ViewModelMappers
 {
 	public class ZonaVMM : CommonVMM<Zona, ZonaVM>
 	{
+		private readonly IImagenesEscudosPersistence _imagenesEscudosPersistence;
+		private readonly string _escudoDefault;
+
 		public ZonaVMM(ApplicationDbContext context) : base(context)
 		{
+			_imagenesEscudosPersistence = new ImagenesEscudosDiskPersistence(new AppPathsWebApp());
+			_escudoDefault = context.ParametrizacionesGlobales.First().EscudoPorDefectoEnBase64;
 		}
 
 		public override void MapForCreateAndEdit(ZonaVM vm, Zona model)
@@ -96,7 +103,7 @@ namespace LigaSoft.ViewModelMappers
 		private string EscudoLocal(Jornada jornada)
 		{
 			if (jornada.Local != null)
-				return jornada.Local.Club.EscudoPath();
+				return _imagenesEscudosPersistence.Path(jornada.Local.Club.Id, _escudoDefault);
 
 			var model = Context.ParametrizacionesGlobales.FirstOrDefault();
 			return ImagenUtility.ProcesarImagenDeBDParaMostrarEnWeb(model.EscudoPorDefectoEnBase64);
@@ -105,7 +112,7 @@ namespace LigaSoft.ViewModelMappers
 		private string EscudoVisitante(Jornada jornada)
 		{
 			if (jornada.Visitante != null)
-				return jornada.Visitante.Club.EscudoPath();
+				return _imagenesEscudosPersistence.Path(jornada.Visitante.Club.Id, _escudoDefault);
 
 			var model = Context.ParametrizacionesGlobales.FirstOrDefault();
 			return ImagenUtility.ProcesarImagenDeBDParaMostrarEnWeb(model.EscudoPorDefectoEnBase64);

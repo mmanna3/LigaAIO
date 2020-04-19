@@ -5,6 +5,8 @@ using LigaSoft.Models;
 using LigaSoft.Models.Dominio;
 using LigaSoft.Models.ViewModels;
 using LigaSoft.Utilidades;
+using LigaSoft.Utilidades.Persistence;
+using LigaSoft.Utilidades.Persistence.DiskPersistence;
 
 namespace LigaSoft.Builders
 {
@@ -12,10 +14,14 @@ namespace LigaSoft.Builders
 	public abstract class TablaBuilderPadre
 	{
 	    protected readonly ApplicationDbContext Context;
+		private static IImagenesEscudosPersistence _imagenesEscudosPersistence;
+		private static string _escudoDefault;
 
 		protected TablaBuilderPadre(ApplicationDbContext context)
 		{
 			Context = context;
+			_imagenesEscudosPersistence = new ImagenesEscudosDiskPersistence(new AppPathsWebApp());
+			_escudoDefault = context.ParametrizacionesGlobales.First().EscudoPorDefectoEnBase64;
 		}
 
 		public TablasVM Tablas(Zona zona)
@@ -100,7 +106,7 @@ namespace LigaSoft.Builders
 
 			    var renglonDelEquipo = new TablaCategoriaRenglonVM
 			    {
-					Escudo = equipo.Club.EscudoPath(),
+					Escudo = _imagenesEscudosPersistence.Path(equipo.Club.Id, _escudoDefault),
 					EquipoId = equipo.Id,
 					Equipo = equipo.Nombre
 			    };

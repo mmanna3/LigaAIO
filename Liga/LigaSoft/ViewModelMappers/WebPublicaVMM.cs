@@ -8,16 +8,22 @@ using LigaSoft.Models.Dominio;
 using LigaSoft.Models.Enums;
 using LigaSoft.Models.ViewModels;
 using LigaSoft.Utilidades;
+using LigaSoft.Utilidades.Persistence;
+using LigaSoft.Utilidades.Persistence.DiskPersistence;
 
 namespace LigaSoft.ViewModelMappers
 {
 	public class WebPublicaVMM
 	{
 		private readonly ApplicationDbContext _context;
+		private readonly IImagenesEscudosPersistence _imagenesEscudosPersistence;
+		private readonly string _escudoDefault;
 
 		public WebPublicaVMM(ApplicationDbContext context)
 		{
 			_context = context;
+			_imagenesEscudosPersistence = new ImagenesEscudosDiskPersistence(new AppPathsWebApp());
+			_escudoDefault = context.ParametrizacionesGlobales.First().EscudoPorDefectoEnBase64;
 		}
 
 		public PublicIndexVM MapIndex(Zona zona)
@@ -160,7 +166,7 @@ namespace LigaSoft.ViewModelMappers
 				var renglon = new RenglonDatosEquipo
 				{
 					Equipo = equipo.Nombre,
-					Escudo =  equipo.Club.EscudoPath(),
+					Escudo =  _imagenesEscudosPersistence.Path(equipo.Club.Id, _escudoDefault),
 					Direccion = equipo.Club.Direccion,
 					Localidad = equipo.Club.Localidad,					
 					Techo = equipo.Club.TechoBoolToTechoEnum(),
