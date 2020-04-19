@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Web.Hosting;
 using LigaSoft.Models.ViewModels;
-using LigaSoft.Utilidades.DiskPersistence;
+using LigaSoft.Utilidades.Persistence.DiskPersistence;
 using LigaSoft.ViewModelMappers;
 using NUnit.Framework;
 using Tests.Integration;

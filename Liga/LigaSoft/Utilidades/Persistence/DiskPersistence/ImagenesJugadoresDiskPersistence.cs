@@ -2,7 +2,7 @@
 using System.IO;
 using LigaSoft.Models.ViewModels;
 
-namespace LigaSoft.Utilidades.DiskPersistence
+namespace LigaSoft.Utilidades.Persistence.DiskPersistence
 {
 	public class ImagenesJugadoresDiskPersistence : IImagenesJugadoresPersistence
 	{
@@ -82,16 +82,5 @@ namespace LigaSoft.Utilidades.DiskPersistence
 			if (File.Exists(pathAnterior))
 				File.Move(pathAnterior, pathNuevo);
 		}
-	}
-
-	public interface IImagenesJugadoresPersistence
-	{
-		void GuardarFotoWebCam(JugadorBaseVM vm);
-		void GuardarFotoDeJugadorDesdeArchivo(EditFotoJugadorDesdeArchivoVM vm);
-		string GetFotoEnBase64(string dni);
-		void GuardarImagenJugadorImportado(string dni, byte[] fotoByteArray);
-		void Eliminar(string dni);
-		string Path(string dni);
-		void CambiarDNI(string dniAnterior, string dniNuevo);
 	}
 }

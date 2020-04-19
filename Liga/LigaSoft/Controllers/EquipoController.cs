@@ -12,7 +12,7 @@ using LigaSoft.Models.Dominio.Finanzas;
 using LigaSoft.Models.Enums;
 using LigaSoft.Models.ViewModels;
 using LigaSoft.Utilidades;
-using LigaSoft.Utilidades.DiskPersistence;
+using LigaSoft.Utilidades.Persistence.DiskPersistence;
 using LigaSoft.ViewModelMappers;
 using Microsoft.AspNet.Identity;
 

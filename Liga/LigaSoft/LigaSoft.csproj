@@ -789,6 +789,8 @@
     <Compile Include="Models\ViewModels\PublicidadVM.cs" />
     <Compile Include="Scheduler\JobScheduler.cs" />
     <Compile Include="Scheduler\SubirBackupAlDriveJob.cs" />
+    <Compile Include="Utilidades\Persistence\IImagenesJugadoresPersistence.cs" />
+    <Compile Include="Utilidades\Persistence\DiskPersistence\ImagenesEscudoDiskPersistence.cs" />
     <Compile Include="Utilidades\GijgoGridHelper.cs" />
     <Compile Include="Models\Enums\ZonaTipo.cs" />
     <Compile Include="Models\Enums\TorneoFormato.cs" />
@@ -877,7 +879,7 @@
     <Compile Include="UIHelpers\Form.cs" />
     <Compile Include="UIHelpers\WidgetFactories\INonTypedWidgetFactory.cs" />
     <Compile Include="UIHelpers\WidgetFactories\YKNNonTypedWidgetFactory.cs" />
-    <Compile Include="Utilidades\DiskPersistence\ImagenesJugadoresDiskPersistence.cs" />
+    <Compile Include="Utilidades\Persistence\DiskPersistence\ImagenesJugadoresDiskPersistence.cs" />
     <Compile Include="Utilidades\IODiskUtility.cs" />
     <Compile Include="Utilidades\ImagenUtility.cs" />
     <Compile Include="Utilidades\Log.cs" />

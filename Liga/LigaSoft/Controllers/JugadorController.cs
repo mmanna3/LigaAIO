@@ -9,7 +9,7 @@ using LigaSoft.Models.Dominio;
 using LigaSoft.Models.Otros;
 using LigaSoft.Models.ViewModels;
 using LigaSoft.Utilidades;
-using LigaSoft.Utilidades.DiskPersistence;
+using LigaSoft.Utilidades.Persistence.DiskPersistence;
 using LigaSoft.ViewModelMappers;
 using Newtonsoft.Json;
 

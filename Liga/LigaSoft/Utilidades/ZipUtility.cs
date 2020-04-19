@@ -8,7 +8,7 @@ using System.Linq;
 using System.Web.Hosting;
 using Ionic.Zip;
 using LigaSoft.Models.Dominio;
-using LigaSoft.Utilidades.DiskPersistence;
+using LigaSoft.Utilidades.Persistence.DiskPersistence;
 
 namespace LigaSoft.Utilidades
 {
