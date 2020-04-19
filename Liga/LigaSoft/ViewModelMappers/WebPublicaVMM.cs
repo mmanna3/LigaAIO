@@ -17,11 +17,13 @@ namespace LigaSoft.ViewModelMappers
 	{
 		private readonly ApplicationDbContext _context;
 		private readonly IImagenesEscudosPersistence _imagenesEscudosPersistence;
+		private static IImagenesPublicidadPersistence _imagenesPublicidadPersistence;
 
 		public WebPublicaVMM(ApplicationDbContext context)
 		{
 			_context = context;
 			_imagenesEscudosPersistence = new ImagenesEscudosDiskPersistence(new AppPathsWebApp());
+			_imagenesPublicidadPersistence = new ImagenesPublicidadDiskPersistence(new AppPathsWebApp());
 		}
 
 		public PublicIndexVM MapIndex(Zona zona)
@@ -77,13 +79,13 @@ namespace LigaSoft.ViewModelMappers
 
 			vm.Publicidades = new PublicidadesVM
 			{
-				IzquierdaSuperiorPath = pubIzqSup.ImagenPath(),
+				IzquierdaSuperiorPath = _imagenesPublicidadPersistence.Path(pubIzqSup.Id),
 				IzquierdaSuperiorUrl = pubIzqSup.Url,
-				IzquierdaInferiorPath = pubIzqInf.ImagenPath(),
+				IzquierdaInferiorPath = _imagenesPublicidadPersistence.Path(pubIzqInf.Id),				
 				IzquierdaInferiorUrl = pubIzqInf.Url,
-				DerechaSuperiorPath = pubDerSup.ImagenPath(),
+				DerechaSuperiorPath = _imagenesPublicidadPersistence.Path(pubDerSup.Id),
 				DerechaSuperiorUrl = pubDerSup.Url,
-				DerechaInferiorPath = pubDerInf.ImagenPath(),
+				DerechaInferiorPath = _imagenesPublicidadPersistence.Path(pubDerInf.Id),
 				DerechaInferiorUrl = pubDerInf.Url
 			};
 		}

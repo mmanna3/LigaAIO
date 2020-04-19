@@ -4,6 +4,8 @@ using LigaSoft.Models.Attributes.GPRPattern;
 using LigaSoft.Models.Dominio;
 using LigaSoft.Models.ViewModels;
 using LigaSoft.Utilidades;
+using LigaSoft.Utilidades.Persistence;
+using LigaSoft.Utilidades.Persistence.DiskPersistence;
 using LigaSoft.ViewModelMappers;
 
 namespace LigaSoft.Controllers
@@ -11,6 +13,13 @@ namespace LigaSoft.Controllers
 	[Authorize(Roles = Roles.Administrador)]
 	public class PublicidadController : ABMController<Publicidad, PublicidadVM, PublicidadVMM>
 	{
+		private readonly IImagenesPublicidadPersistence _imagenesPublicidadPersistence;
+
+		public PublicidadController()
+		{
+			_imagenesPublicidadPersistence = new ImagenesPublicidadDiskPersistence(new AppPathsWebApp());
+		}
+
 		[HttpPost, ExportModelStateToTempData]
 		public override ActionResult Edit(PublicidadVM vm)
 		{
@@ -23,7 +32,7 @@ namespace LigaSoft.Controllers
 			VMM.MapForEdit(vm, model);
 
 			if (vm.ImagenNueva != null)
-				IODiskUtility.GuardarFotoDePublicidadEnDisco(vm);
+				_imagenesPublicidadPersistence.Guardar(vm);
 
 			Context.SaveChanges();
 

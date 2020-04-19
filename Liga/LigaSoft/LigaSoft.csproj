@@ -789,6 +789,8 @@
     <Compile Include="Models\ViewModels\PublicidadVM.cs" />
     <Compile Include="Scheduler\JobScheduler.cs" />
     <Compile Include="Scheduler\SubirBackupAlDriveJob.cs" />
+    <Compile Include="Utilidades\Persistence\DiskPersistence\ImagenesPublicidadDiskPersistence.cs" />
+    <Compile Include="Utilidades\Persistence\IImagenesPublicidadPersistence.cs" />
     <Compile Include="Utilidades\Persistence\IImagenesEscudosPersistence.cs" />
     <Compile Include="Utilidades\Persistence\IImagenesJugadoresPersistence.cs" />
     <Compile Include="Utilidades\Persistence\DiskPersistence\ImagenesEscudoDiskPersistence.cs" />

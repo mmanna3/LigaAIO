@@ -1,37 +1,16 @@
 ﻿using System;
-using System.Drawing;
 using System.IO;
-using System.Linq;
 using Ionic.Zip;
-using LigaSoft.Models;
-using LigaSoft.Models.ViewModels;
 
 namespace LigaSoft.Utilidades
 {
 	public class IODiskUtility
 	{
-		private static readonly ApplicationDbContext Context = new ApplicationDbContext();
 		private static AppPaths Paths = new AppPathsWebApp();
 
 		public IODiskUtility(AppPaths appPaths)
 		{
 			Paths = appPaths;
-		}
-
-		public static void GuardarFotoDePublicidadEnDisco(PublicidadVM vm)
-		{
-			var imagePath = $"{Paths.ImagenesPublicidadesAbsolute}/{vm.Id}.jpg";
-
-			if (File.Exists(imagePath))
-				File.Delete(imagePath);
-
-			Directory.CreateDirectory(Paths.ImagenesPublicidadesAbsolute);
-			vm.ImagenNueva.SaveAs(imagePath);
-		}
-
-		public static string PublicidadImagenPath(int id)
-		{
-			return $"{Paths.ImagenesPublicidadesRelative}/{id}.jpg";
 		}
 
 		// ReSharper disable AssignNullToNotNullAttribute

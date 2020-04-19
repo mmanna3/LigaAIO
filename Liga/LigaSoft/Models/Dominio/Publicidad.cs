@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using LigaSoft.Models.Enums;
-using LigaSoft.Utilidades;
 
 namespace LigaSoft.Models.Dominio
 {
@@ -17,10 +16,5 @@ namespace LigaSoft.Models.Dominio
 		public string Url { get; set; }
 
 		public PublicidadPosicion Posicion { get; set; }
-
-		public string ImagenPath()
-		{
-			return IODiskUtility.PublicidadImagenPath(Id);
-		}
 	}
 }
