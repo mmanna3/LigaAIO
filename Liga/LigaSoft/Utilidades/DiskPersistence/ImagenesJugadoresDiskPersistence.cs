@@ -73,6 +73,15 @@ namespace LigaSoft.Utilidades.DiskPersistence
 			if (File.Exists(imagePath))
 				File.Delete(imagePath);
 		}
+
+		public void CambiarDNI(string dniAnterior, string dniNuevo)
+		{
+			var pathAnterior = $"{Paths.ImagenesJugadoresAbsolute}/{dniAnterior}.jpg";
+			var pathNuevo = $"{Paths.ImagenesJugadoresAbsolute}/{dniNuevo}.jpg";
+
+			if (File.Exists(pathAnterior))
+				File.Move(pathAnterior, pathNuevo);
+		}
 	}
 
 	public interface IImagenesJugadoresPersistence
@@ -83,5 +92,6 @@ namespace LigaSoft.Utilidades.DiskPersistence
 		void GuardarImagenJugadorImportado(string dni, byte[] fotoByteArray);
 		void Eliminar(string dni);
 		string Path(string dni);
+		void CambiarDNI(string dniAnterior, string dniNuevo);
 	}
 }

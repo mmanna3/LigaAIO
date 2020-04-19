@@ -45,7 +45,7 @@ namespace LigaSoft.Controllers
 		    Context.SaveChanges();
 
 			if (hayQueActualizarDNIEnFoto)
-				IODiskUtility.ActualizarDNIEnFoto(dniAnterior, model.DNI);
+				_imagenesJugadoresDiskPersistence.CambiarDNI(dniAnterior, model.DNI);
 
 			return RedirectToAction("Index");
 		}

@@ -83,5 +83,17 @@ namespace Tests.Unit
 
 			Assert.AreEqual(false, File.Exists(_imagePath));
 		}
+
+		[Test]
+		public void CambiarDNI()
+		{
+			GuardarFotoWebCamCuandoLaFotoNoExiste();
+
+			const string nuevoDni = "22334400";
+			_imagenesJugadoresDiskPersistence.CambiarDNI(DNI, nuevoDni);
+
+			Assert.AreEqual(false, File.Exists(_imagePath));
+			Assert.AreEqual(true, File.Exists($"{_paths.ImagenesJugadoresAbsolute}/{nuevoDni}.jpg"));
+		}
 	}
 }

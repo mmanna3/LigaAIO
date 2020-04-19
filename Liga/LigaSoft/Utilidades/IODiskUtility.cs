@@ -163,15 +163,6 @@ namespace LigaSoft.Utilidades
 			return pathDelBackupMasNuevo;
 		}
 
-		public static void ActualizarDNIEnFoto(string dniAnterior, string dniNuevo)
-		{
-			var pathAnterior = $"{Paths.ImagenesJugadoresAbsolute}/{dniAnterior}.jpg";
-			var pathNuevo = $"{Paths.ImagenesJugadoresAbsolute}/{dniNuevo}.jpg";
-
-			if (File.Exists(pathAnterior))
-				File.Move(pathAnterior, pathNuevo);
-		}
-
 		public static void EliminarTodosLosArchivosDeLaCarpetaDondeEstanLosBackups()
 		{
 			EliminarArchivos(Paths.BackupAbsolute(), "*.*");
