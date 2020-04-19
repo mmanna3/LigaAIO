@@ -44,7 +44,7 @@ namespace LigaSoft.ViewModelMappers
 			return new NoticiaVM
 			{
 				Id = model.Id,
-				Fecha = VMMUtility.ConvertToString(model.Fecha),
+				Fecha = DateTimeUtils.ConvertToString(model.Fecha),
 				Titulo = model.Titulo,
 				Cuerpo = model.Cuerpo,				
 				Visible = model.Visible.ToSiNoString()

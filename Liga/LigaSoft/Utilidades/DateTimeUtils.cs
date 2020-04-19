@@ -2,7 +2,7 @@
 
 namespace LigaSoft.Utilidades
 {
-	public static class VMMUtility
+	public static class DateTimeUtils
 	{
 		private const string FormatoFecha4DigAnio = "dd-MM-yyyy";
 		private const string FormatoFecha2DigAnio = "dd-MM-yy";

@@ -23,7 +23,7 @@ namespace LigaSoft.ViewModelMappers
 		public override void MapForCreateAndEdit(MovimientoEntradaSinClubVM vm, MovimientoEntradaSinClub model)
 		{
 			model.Id = vm.Id;
-			model.Fecha = VMMUtility.ConvertToDateTime(vm.Fecha);
+			model.Fecha = DateTimeUtils.ConvertToDateTime(vm.Fecha);
 			model.Comentario = vm.Comentario;
 			model.Vigente = true;
 			model.Total = Convert.ToInt32(vm.Total);
@@ -48,7 +48,7 @@ namespace LigaSoft.ViewModelMappers
 			return new MovimientoEntradaSinClubVM
 			{
 				Id = model.Id,
-				Fecha = VMMUtility.ConvertToString(model.Fecha),
+				Fecha = DateTimeUtils.ConvertToString(model.Fecha),
 				Comentario = model.Comentario,
 				Alta = $"{model.UsuarioAlta.Email} - {model.FechaAlta}",
 				Anulacion = $"{model.UsuarioAnulacion?.Email} - {model.FechaAnulacion}",

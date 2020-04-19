@@ -29,8 +29,8 @@ namespace LigaSoft.Controllers
 		[ExportModelStateToTempData]
 	    public ActionResult Balance_Informe(RangoVM vm)
 		{
-			var fecIni = VMMUtility.ConvertToDateTime(vm.FechaInicio);
-			var fecFin = VMMUtility.ConvertToDateTime(vm.FechaFin);
+			var fecIni = DateTimeUtils.ConvertToDateTime(vm.FechaInicio);
+			var fecFin = DateTimeUtils.ConvertToDateTime(vm.FechaFin);
 
 			if (FechaEsinvalida(fecIni, fecFin))
 			    return Balance_SeleccionFecha();

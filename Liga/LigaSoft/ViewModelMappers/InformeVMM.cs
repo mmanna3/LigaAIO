@@ -24,8 +24,8 @@ namespace LigaSoft.ViewModelMappers
 
 		public InformeVM Map(RangoVM rango)
 		{
-			var fecIni = VMMUtility.ConvertToDateTime(rango.FechaInicio);
-			var fecFin = VMMUtility.ConvertToDateTime(rango.FechaFin);
+			var fecIni = DateTimeUtils.ConvertToDateTime(rango.FechaInicio);
+			var fecFin = DateTimeUtils.ConvertToDateTime(rango.FechaFin);
 
 			var pagos = _context.Pagos.Where(x => x.Fecha >= fecIni && x.Fecha <= fecFin && x.Vigente);
 

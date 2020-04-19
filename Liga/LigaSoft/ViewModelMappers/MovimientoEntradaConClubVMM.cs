@@ -26,7 +26,7 @@ namespace LigaSoft.ViewModelMappers
 		public override void MapForCreateAndEdit(MovimientoEntradaConClubVM conClubVM, MovimientoEntradaConClub model)
 		{
 			model.Id = conClubVM.Id;
-			model.Fecha = VMMUtility.ConvertToDateTime(conClubVM.Fecha);
+			model.Fecha = DateTimeUtils.ConvertToDateTime(conClubVM.Fecha);
 			model.Club = Context.Clubs.Find(conClubVM.ClubId);
 			model.Concepto = Context.Conceptos.Find(conClubVM.ConceptoId);
 			model.Cantidad = conClubVM.Cantidad;
@@ -55,7 +55,7 @@ namespace LigaSoft.ViewModelMappers
 			var result = new MovimientoEntradaConClubVM
 			{
 				Id = model.Id,
-				Fecha = VMMUtility.ConvertToString(model.Fecha),
+				Fecha = DateTimeUtils.ConvertToString(model.Fecha),
 				Club = model.Club?.Nombre,
 				ClubId = (int)model.ClubId,
 				Concepto = model.Concepto.Descripcion,

@@ -17,7 +17,7 @@ namespace LigaSoft.ViewModelMappers
 			model.Id = vm.Id;
 			model.DNI = vm.DNI;
 			model.Nombre = vm.Nombre;
-			model.FechaNacimiento = VMMUtility.ConvertToDateTime(vm.FechaNacimiento);
+			model.FechaNacimiento = DateTimeUtils.ConvertToDateTime(vm.FechaNacimiento);
 			model.Apellido = vm.Apellido;
 			model.EquipoId = vm.EquipoId;
 			model.Estado = EstadoJugadorFichadoPorDelegado.PendienteDeAprobacion;
@@ -31,7 +31,7 @@ namespace LigaSoft.ViewModelMappers
 				Nombre = model.Nombre,
 				Apellido = model.Apellido,
 				DNI = model.DNI,
-				FechaNacimiento = VMMUtility.ConvertToString(model.FechaNacimiento),
+				FechaNacimiento = DateTimeUtils.ConvertToString(model.FechaNacimiento),
 				Equipo = Context.Equipos.Find(model.EquipoId).Nombre,
 				EquipoId = model.EquipoId,
 				Estado = model.Estado,

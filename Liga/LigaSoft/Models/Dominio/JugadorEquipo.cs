@@ -22,7 +22,7 @@ namespace LigaSoft.Models.Dominio
 
 		public string Descripcion()
 		{
-			return $"DNI: {Jugador.DNI} - {Jugador.Apellido.ToCamelCase()}, {Jugador.Nombre.ToCamelCase()} - Categoría: {Jugador.Categoria()} - Fichado: {VMMUtility.ConvertToString(FechaFichaje)}";
+			return $"DNI: {Jugador.DNI} - {Jugador.Apellido.ToCamelCase()}, {Jugador.Nombre.ToCamelCase()} - Categoría: {Jugador.Categoria()} - Fichado: {DateTimeUtils.ConvertToString(FechaFichaje)}";
 		}
 	}
 }

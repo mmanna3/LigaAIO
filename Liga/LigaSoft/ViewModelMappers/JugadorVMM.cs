@@ -23,7 +23,7 @@ namespace LigaSoft.ViewModelMappers
 			model.Id = vm.Id;
 			model.DNI = vm.DNI;
 			model.Nombre = vm.Nombre;
-			model.FechaNacimiento = VMMUtility.ConvertToDateTime(vm.FechaNacimiento);
+			model.FechaNacimiento = DateTimeUtils.ConvertToDateTime(vm.FechaNacimiento);
 			model.Apellido = vm.Apellido;
 			model.CarnetImpreso = vm.CarnetImpresoBool;
 		}
@@ -44,7 +44,7 @@ namespace LigaSoft.ViewModelMappers
 			model.DNI = vm.DNI;
 			model.Nombre = vm.Nombre;
 			model.Apellido = vm.Apellido;
-			model.FechaNacimiento = VMMUtility.ConvertToDateTime(vm.FechaNacimiento);
+			model.FechaNacimiento = DateTimeUtils.ConvertToDateTime(vm.FechaNacimiento);
 		}
 
 		public JugadorEquipo MapCreate(FicharNuevoJugadorVM vm, Jugador model)
@@ -96,7 +96,7 @@ namespace LigaSoft.ViewModelMappers
 				Nombre = model.Nombre.ToUpper(),
 				Apellido = model.Apellido.ToUpper(),
 				DNI = model.DNI,
-				FechaNacimiento = VMMUtility.ConvertToString(model.FechaNacimiento),
+				FechaNacimiento = DateTimeUtils.ConvertToString(model.FechaNacimiento),
 				Equipo = equipo.Nombre.ToUpper(),
 				Categoria = Categoria(model),				
 				FotoBase64 = IODiskUtility.GetFotoJugadorEnBase64(model.DNI),
@@ -113,7 +113,7 @@ namespace LigaSoft.ViewModelMappers
 		private static string FechaDeVencimientoDelCarnet(JugadorEquipo jugadorEquipo)
 		{
 			var anio = jugadorEquipo.FechaFichaje.Year + jugadorEquipo.Equipo.Torneo.Tipo.ValidezDelCarnetEnAnios - 1;
-			return VMMUtility.ConvertToString(new DateTime(anio, 12, 31));
+			return DateTimeUtils.ConvertToString(new DateTime(anio, 12, 31));
 		}
 
 		private static JugadorBaseVM MapJugadorBase(Jugador model)
@@ -124,7 +124,7 @@ namespace LigaSoft.ViewModelMappers
 				Nombre = model.Nombre,
 				Apellido = model.Apellido,
 				DNI = model.DNI,
-				FechaNacimiento = VMMUtility.ConvertToString(model.FechaNacimiento),
+				FechaNacimiento = DateTimeUtils.ConvertToString(model.FechaNacimiento),
 				CarnetImpresoBool = model.CarnetImpreso,
 				CarnetImpreso = model.CarnetImpreso.ToSiNoString(),
 				Foto = model.FotoPath()
@@ -139,7 +139,7 @@ namespace LigaSoft.ViewModelMappers
 				Nombre = model.Nombre,
 				Apellido = model.Apellido,
 				DNI = model.DNI,
-				FechaNacimiento = VMMUtility.ConvertToString(model.FechaNacimiento)
+				FechaNacimiento = DateTimeUtils.ConvertToString(model.FechaNacimiento)
 			};
 		}
 	}

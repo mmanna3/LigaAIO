@@ -32,7 +32,7 @@ namespace LigaSoft.Controllers
 	    {
 			var fecha = Context.Fechas.Single(x => x.Id == id);		    
 			var vm = FechaVMParaEdicion(fecha);
-		    vm.DiaDeLaFecha = VMMUtility.ConvertToString(fecha.DiaDeLaFecha);
+		    vm.DiaDeLaFecha = DateTimeUtils.ConvertToString(fecha.DiaDeLaFecha);
 
 		    return View(vm);
 	    }

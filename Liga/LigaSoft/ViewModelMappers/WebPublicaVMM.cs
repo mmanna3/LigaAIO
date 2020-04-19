@@ -61,7 +61,7 @@ namespace LigaSoft.ViewModelMappers
 					noticiasAux.Add(noticiaVM);
 				}
 			}
-			vm.Noticias = noticiasAux.OrderByDescending(x => VMMUtility.ConvertToDateTime(x.Fecha)).ToList();
+			vm.Noticias = noticiasAux.OrderByDescending(x => DateTimeUtils.ConvertToDateTime(x.Fecha)).ToList();
 		}
 
 		private static void MapPublicidades(PublicIndexVM vm, IList<Publicidad> publicidades)
@@ -230,7 +230,7 @@ namespace LigaSoft.ViewModelMappers
 				var renglon = new RenglonSanciones
 				{
 					Sancion = sancion.Descripcion,
-					Dia = VMMUtility.ConvertToString(sancion.Dia),
+					Dia = DateTimeUtils.ConvertToString(sancion.Dia),
 					Fecha = sancion.Jornada.Fecha.Numero.ToString(),
 					Local = sancion.Jornada.NombreDelLocal(),
 					Visitante = sancion.Jornada.NombreDelVisitante(),

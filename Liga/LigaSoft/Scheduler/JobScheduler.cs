@@ -33,7 +33,7 @@ namespace LigaSoft.Scheduler
 
 				var horaProximoBackup = await scheduler.ScheduleJob(job, trigger);
 
-				Log.Info($"Hora próximo backup: {horaProximoBackup:dd/MM/yyyy HH:mm} (UTC). {TimeZoneInfo.ConvertTime(horaProximoBackup, timeZoneInfoArg):dd/MM/yyyy HH:mm} (Arg).");
+				Log.Info($"Hora próximo backup: {TimeZoneInfo.ConvertTime(horaProximoBackup, timeZoneInfoArg):dd/MM/yyyy HH:mm} (Arg).");
 			}
 			catch (SchedulerException se)
 			{

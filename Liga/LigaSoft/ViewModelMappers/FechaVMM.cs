@@ -16,7 +16,7 @@ namespace LigaSoft.ViewModelMappers
 
 		public override void MapForCreate(FechaVM vm, Fecha model)
 		{
-			model.DiaDeLaFecha = VMMUtility.ConvertToDateTime(vm.DiaDeLaFecha);
+			model.DiaDeLaFecha = DateTimeUtils.ConvertToDateTime(vm.DiaDeLaFecha);
 			model.ZonaId = vm.ZonaId;			
 			model.Numero = CalcularNumeroDeFecha(vm.ZonaId);
 
@@ -86,7 +86,7 @@ namespace LigaSoft.ViewModelMappers
 		{
 			Context.Partidos.RemoveRange(model.Jornadas.SelectMany(x => x.Partidos));
 			Context.Jornadas.RemoveRange(model.Jornadas);
-			model.DiaDeLaFecha = VMMUtility.ConvertToDateTime(vm.DiaDeLaFecha);
+			model.DiaDeLaFecha = DateTimeUtils.ConvertToDateTime(vm.DiaDeLaFecha);
 			model.Jornadas = new List<Jornada>();
 			MapJornadasForCreateAndEdit(vm, model);
 		}
@@ -95,7 +95,7 @@ namespace LigaSoft.ViewModelMappers
 		{
 			return new FechaDetailsVM
 			{
-				DiaDeLaFecha = VMMUtility.ConvertToString(model.DiaDeLaFecha),
+				DiaDeLaFecha = DateTimeUtils.ConvertToString(model.DiaDeLaFecha),
 				Titulo = model.Descripcion(),
 				Jornadas = model.Jornadas.Select(x => x.Descripcion()),
 				Publicada = model.Publicada.ToSiNoString()
@@ -135,7 +135,7 @@ namespace LigaSoft.ViewModelMappers
 				ZonaId = model.ZonaId,
 				TorneoId = model.Zona.TorneoId,
 				Titulo = model.Descripcion(),
-				DiaDeLaFecha = VMMUtility.ConvertToString(model.DiaDeLaFecha),
+				DiaDeLaFecha = DateTimeUtils.ConvertToString(model.DiaDeLaFecha),
 				Numero = model.Numero
 			};
 		}

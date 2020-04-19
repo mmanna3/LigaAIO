@@ -19,7 +19,7 @@ namespace LigaSoft.ViewModelMappers
 			model.JornadaId = vm.JornadaId;
 			model.CategoriaId = vm.CategoriaId;
 			model.Descripcion = vm.Descripcion;
-			model.Dia = VMMUtility.ConvertToDateTime(vm.Dia);
+			model.Dia = DateTimeUtils.ConvertToDateTime(vm.Dia);
 			model.CantidadFechasQueAdeuda = vm.CantidadFechasQueAdeuda;
 			model.Visible = true;
 		}
@@ -34,7 +34,7 @@ namespace LigaSoft.ViewModelMappers
 				CategoriaId = model.CategoriaId,
 				ZonaId = model.Jornada.Fecha.ZonaId,
 				TorneoId = model.Jornada.Fecha.Zona.TorneoId,
-				Dia = VMMUtility.ConvertToString(model.Dia),
+				Dia = DateTimeUtils.ConvertToString(model.Dia),
 				Fecha = model.Jornada.Fecha.Numero.ToString(),
 				Local = model.Jornada.NombreDelLocal(),
 				Visitante = model.Jornada.NombreDelVisitante(),

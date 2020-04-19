@@ -23,7 +23,7 @@ namespace LigaSoft.ViewModelMappers
 		public override void MapForCreateAndEdit(PagoVM vm, Pago model)
 		{
 			model.Id = vm.Id;
-			model.Fecha = VMMUtility.ConvertToDateTime(vm.Fecha);
+			model.Fecha = DateTimeUtils.ConvertToDateTime(vm.Fecha);
 			model.Importe = Convert.ToInt32(vm.Importe);
 			model.Movimiento = Context.MovimientosEntradaConClub.Find(vm.MovimientoEntradaConClubId);
 			model.Comentario = vm.Comentario;
@@ -49,7 +49,7 @@ namespace LigaSoft.ViewModelMappers
 			return new PagoVM
 			{
 				Id = model.Id,
-				Fecha = VMMUtility.ConvertToString(model.Fecha),
+				Fecha = DateTimeUtils.ConvertToString(model.Fecha),
 				Importe = model.Importe.ToString(),
 				MovimientoEntradaConClubId = model.MovimientoEntradaConClubId,
 				Comentario = model.Comentario,
