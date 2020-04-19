@@ -1,9 +1,7 @@
 ﻿using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Web.Hosting;
 using LigaSoft.Models.ViewModels;
-using LigaSoft.Utilidades;
 using LigaSoft.Utilidades.DiskPersistence;
 using LigaSoft.ViewModelMappers;
 using NUnit.Framework;
@@ -63,30 +61,27 @@ namespace Tests.Unit
 		{
 			GuardarFotoWebCamCuandoLaFotoNoExiste();
 
-			Assert.AreEqual(true, File.Exists(_imagePath));
-
 			_imagenesJugadoresDiskPersistence.GuardarFotoWebCam(_jugadorBaseVm);
 
 			Assert.AreEqual(true, File.Exists(_imagePath));
 		}
-	}
 
-	internal class AppPathsForTest : AppPaths
-	{
-		protected override string GetAbsolutePath(string relativePath)
+		[Test]
+		public void GetFotoEnBase64()
 		{
-			var asemblyPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-			return $"{asemblyPath}{relativePath}";
+			GuardarFotoWebCamCuandoLaFotoNoExiste();
+
+			Assert.IsNotEmpty(_imagenesJugadoresDiskPersistence.GetFotoEnBase64(DNI));
 		}
 
-		public override string BackupAbsoluteOf(string fileNameWithExtension)
+		[Test]
+		public void Eliminar()
 		{
-			throw new System.NotImplementedException();
-		}
+			GuardarFotoWebCamCuandoLaFotoNoExiste();
 
-		public override string BackupAbsolute()
-		{
-			throw new System.NotImplementedException();
+			_imagenesJugadoresDiskPersistence.Eliminar(DNI);
+
+			Assert.AreEqual(false, File.Exists(_imagePath));
 		}
 	}
 }

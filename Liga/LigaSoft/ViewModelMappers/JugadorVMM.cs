@@ -9,13 +9,17 @@ using LigaSoft.Models;
 using LigaSoft.Models.Dominio;
 using LigaSoft.Models.ViewModels;
 using LigaSoft.Utilidades;
+using LigaSoft.Utilidades.DiskPersistence;
 
 namespace LigaSoft.ViewModelMappers
 {
 	public class JugadorVMM : CommonVMM<Jugador, JugadorBaseVM>
 	{
+		private static ImagenesJugadoresDiskPersistence _imagenesJugadoresDiskPersistence;		
+
 		public JugadorVMM(ApplicationDbContext context) : base(context)
 		{
+			_imagenesJugadoresDiskPersistence = new ImagenesJugadoresDiskPersistence(new AppPathsWebApp());
 		}
 
 		public override void MapForCreateAndEdit(JugadorBaseVM vm, Jugador model)
@@ -99,7 +103,7 @@ namespace LigaSoft.ViewModelMappers
 				FechaNacimiento = DateTimeUtils.ConvertToString(model.FechaNacimiento),
 				Equipo = equipo.Nombre.ToUpper(),
 				Categoria = Categoria(model),				
-				FotoBase64 = IODiskUtility.GetFotoJugadorEnBase64(model.DNI),
+				FotoBase64 = _imagenesJugadoresDiskPersistence.GetFotoEnBase64(model.DNI),
 				FechaVencimiento = FechaDeVencimientoDelCarnet(jugadorEquipo),
 				TipoLiga = equipo.Torneo.Tipo.LoQueSeImprimeEnElCarnet.ToUpper()
 			};
@@ -127,7 +131,7 @@ namespace LigaSoft.ViewModelMappers
 				FechaNacimiento = DateTimeUtils.ConvertToString(model.FechaNacimiento),
 				CarnetImpresoBool = model.CarnetImpreso,
 				CarnetImpreso = model.CarnetImpreso.ToSiNoString(),
-				Foto = model.FotoPath()
+				Foto = _imagenesJugadoresDiskPersistence.Path(model.DNI)
 			};
 		}
 

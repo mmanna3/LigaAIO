@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
 using System.Linq;
 using System.Linq.Dynamic;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Web;
-using System.Web.Hosting;
 using System.Web.Mvc;
 using LigaSoft.Models.Attributes.GPRPattern;
 using LigaSoft.Models.Dominio;
@@ -82,7 +75,7 @@ namespace LigaSoft.Controllers
 			if (!ModelState.IsValid)
 				return RedirectToAction("EditFotoDesdeArchivo", new { id = vm.Id });
 
-			IODiskUtility.GuardarFotoDeJugadorDesdeArchivoEnDisco(vm);
+			_imagenesJugadoresDiskPersistence.GuardarFotoDeJugadorDesdeArchivo(vm);
 
 		    return RedirectToAction("Index");
 	    }

@@ -18,17 +18,6 @@ namespace LigaSoft.Utilidades
 			Paths = appPaths;
 		}
 
-		public static void GuardarFotoDeJugadorDesdeArchivoEnDisco(EditFotoJugadorDesdeArchivoVM vm)
-		{
-			var imagePath = $"{Paths.ImagenesJugadoresAbsolute}/{vm.DNI}.jpg";
-
-			if (File.Exists(imagePath))
-				File.Delete(imagePath);
-
-			Directory.CreateDirectory(Paths.ImagenesJugadoresAbsolute);
-			vm.Foto.SaveAs(imagePath);
-		}
-
 		public static void GuardarFotoDeEscudoEnDisco(CargarEscudoVM vm)
 		{
 			var imagePath = $"{Paths.ImagenesEscudosAbsolute}/{vm.ClubId}.jpg";			
@@ -38,14 +27,6 @@ namespace LigaSoft.Utilidades
 
 			Directory.CreateDirectory(Paths.ImagenesEscudosAbsolute);
 			vm.Escudo.SaveAs(imagePath);
-		}
-
-		public static string GetFotoJugadorEnBase64(string dni)
-		{
-			var imagePath = $"{Paths.ImagenesJugadoresAbsolute}/{dni}.jpg";
-			using (var stream = new FileStream(imagePath, FileMode.Open))
-				using (var image = Image.FromStream(stream))
-					return ImagenUtility.ImageToBase64(image);
 		}
 
 		public static void EliminarEscudo(int id)
@@ -64,34 +45,6 @@ namespace LigaSoft.Utilidades
 				return escudoPathRelativo;
 
 			return ImagenUtility.ProcesarImagenDeBDParaMostrarEnWeb(Context.ParametrizacionesGlobales.First().EscudoPorDefectoEnBase64);
-		}
-
-		public static string FotoJugadorPath(string dni)
-		{
-			return $"{Paths.ImagenesJugadoresRelative}/{dni}.jpg";
-		}
-
-		public static void GuardarFotoDeJugadorImportadoEnDisco(string dni, byte[] fotoByteArray)
-		{
-			var imagePath = $"{Paths.ImagenesJugadoresAbsolute}/{dni}.jpg";
-
-			if (File.Exists(imagePath))
-				File.Delete(imagePath);
-
-			Directory.CreateDirectory(Paths.ImagenesJugadoresAbsolute);
-
-			using (var image = Image.FromStream(new MemoryStream(fotoByteArray)))
-			{
-				image.Save(imagePath);
-			}
-		}
-
-		public static void EliminarFotoDeJugador(string dni)
-		{
-			var imagePath = $"{Paths.ImagenesJugadoresAbsolute}/{dni}.jpg";
-
-			if (File.Exists(imagePath))
-				File.Delete(imagePath);
 		}
 
 		public static void GuardarFotoDePublicidadEnDisco(PublicidadVM vm)

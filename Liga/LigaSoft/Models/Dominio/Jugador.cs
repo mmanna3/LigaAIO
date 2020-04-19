@@ -41,10 +41,5 @@ namespace LigaSoft.Models.Dominio
 		{
 			return FechaNacimiento.Year.ToString().Substring(2);
 		}
-
-		public string FotoPath()
-		{
-			return IODiskUtility.FotoJugadorPath(DNI);
-		}
 	}
 }

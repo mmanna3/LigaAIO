@@ -8,11 +8,20 @@ using System.Linq;
 using System.Web.Hosting;
 using Ionic.Zip;
 using LigaSoft.Models.Dominio;
+using LigaSoft.Utilidades.DiskPersistence;
 
 namespace LigaSoft.Utilidades
 {
 	public class ZipUtility
 	{
+		private static ImagenesJugadoresDiskPersistence _imagenesJugadoresDiskPersistence;
+
+		public ZipUtility()
+		{
+			_imagenesJugadoresDiskPersistence = new ImagenesJugadoresDiskPersistence(new AppPathsWebApp());
+		}
+
+
 		public static IEnumerable<Jugador> Importar(Stream inputStream, out List<string> mensajeResultado)
 		{
 			var result = new List<Jugador>();
@@ -64,7 +73,7 @@ namespace LigaSoft.Utilidades
 		private static void GuardarFotoEnDisco(string dni, Dictionary<string, byte[]> fileSystem)
 		{
 			var fotoByteArray = fileSystem.Single(x => x.Key.Contains(dni)).Value;
-			IODiskUtility.GuardarFotoDeJugadorImportadoEnDisco(dni, fotoByteArray);
+			_imagenesJugadoresDiskPersistence.GuardarImagenJugadorImportado(dni, fotoByteArray);
 		}
 
 		private static Dictionary<string, byte[]> Descomprimir(Stream targFileStream)

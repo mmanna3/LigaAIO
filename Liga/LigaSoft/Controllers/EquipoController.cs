@@ -116,7 +116,7 @@ namespace LigaSoft.Controllers
 				}
 				catch (Exception e)
 				{
-					IODiskUtility.EliminarFotoDeJugador(jug.DNI);
+					_imagenesJugadoresDiskPersistence.Eliminar(jug.DNI);
 					var message = e.InnerException?.InnerException == null ? e.Message : e.InnerException.InnerException.Message;
 					resultado.Add($"Error con jugador de DNI '{jug.DNI}': {message}");
 				}
