@@ -42,7 +42,7 @@ namespace LigaSoft.Utilidades
 		/// <param name="message">The object message to log</param>  
 		public static void Info(string message)
 		{			
-			var horaUtcYArg = $"{DateTimeUtils.NowInArgentina}|Arg";
+			var horaUtcYArg = $"{DateTimeUtils.NowInArgentinaWithMiliseconds}|Arg";
 			Instance.MonitoringLogger.Info($"{horaUtcYArg} - {message}");
 		}
 

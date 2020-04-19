@@ -10,8 +10,6 @@ namespace LigaSoft.Utilidades
 {
 	public class IODiskUtility
 	{
-		public const string FormatoFechaBackup = "yyyy-MM-dd--HH-mm-ss";
-
 		private static readonly ApplicationDbContext Context = new ApplicationDbContext();
 		private static readonly AppPathsWebApp Paths = new AppPathsWebApp();
 
@@ -120,10 +118,10 @@ namespace LigaSoft.Utilidades
 		}
 
 		// ReSharper disable AssignNullToNotNullAttribute
-		public static string ComprimirImagenesYPonerZipEnAppData()
+		public static string ComprimirImagenesYPonerZipEnCarpetaDeBackups()
 		{
 			var imagenesPath = Paths.ImagenesAbsolute;
-			var backupPath = Paths.BackupAbsoluteOf($"Imagenes-{DateTime.Now.ToString(FormatoFechaBackup)}.zip");
+			var backupPath = Paths.BackupAbsoluteOf($"Imagenes-{DateTimeUtils.NowInArgentinaBackupFormat}.zip");
 
 			try
 			{
@@ -167,11 +165,11 @@ namespace LigaSoft.Utilidades
 				{
 					Log.Info("El archivo no existía.");
 				}
-					
+
 			}
 		}
 
-		public static string ComprimirUltimoBackupBdYPonerZipEnAppData()
+		public static string ComprimirUltimoBackupBdYPonerZipEnCarpetaDeBackups()
 		{
 			var bdBackupPathSinComprimir = PathDelUltimoBackupBD();
 			if (bdBackupPathSinComprimir == null)
@@ -179,7 +177,7 @@ namespace LigaSoft.Utilidades
 			else
 				Log.Info($"El backup sin comprimir de la base está en: {bdBackupPathSinComprimir}.");
 
-			var backupBdComprimidoPath = Paths.BackupAbsoluteOf($"BaseDeDatos-{DateTime.Now.ToString(FormatoFechaBackup)}.zip");
+			var backupBdComprimidoPath = Paths.BackupAbsoluteOf($"BaseDeDatos-{DateTimeUtils.NowInArgentinaBackupFormat}.zip");
 
 			try
 			{

@@ -57,7 +57,7 @@ namespace LigaSoft.Controllers
 		{
 			var vm = new DescargarBackupResultadoVM {Texto = "Backup generado correctamente."};
 
-			var filePath = IODiskUtility.ComprimirImagenesYPonerZipEnAppData();
+			var filePath = IODiskUtility.ComprimirImagenesYPonerZipEnCarpetaDeBackups();
 
 			Response.Clear();
 			Response.ContentType = "application/octet-stream";
