@@ -15,12 +15,10 @@ namespace LigaSoft.ViewModelMappers
 	public class ZonaVMM : CommonVMM<Zona, ZonaVM>
 	{
 		private readonly IImagenesEscudosPersistence _imagenesEscudosPersistence;
-		private readonly string _escudoDefault;
 
 		public ZonaVMM(ApplicationDbContext context) : base(context)
 		{
 			_imagenesEscudosPersistence = new ImagenesEscudosDiskPersistence(new AppPathsWebApp());
-			_escudoDefault = context.ParametrizacionesGlobales.First().EscudoPorDefectoEnBase64;
 		}
 
 		public override void MapForCreateAndEdit(ZonaVM vm, Zona model)

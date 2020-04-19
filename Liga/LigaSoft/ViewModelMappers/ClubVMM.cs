@@ -11,13 +11,11 @@ namespace LigaSoft.ViewModelMappers
 {
 	public class ClubVMM : CommonVMM<Club, ClubVM>
 	{
-		private readonly IImagenesEscudosPersistence _imagenesEscudosPersistence;
-		private readonly string _escudoDefault;
+		private readonly IImagenesEscudosPersistence _imagenesEscudosPersistence;		
 
 		public ClubVMM(ApplicationDbContext context) : base(context)
 		{
 			_imagenesEscudosPersistence = new ImagenesEscudosDiskPersistence(new AppPathsWebApp());
-			_escudoDefault = context.ParametrizacionesGlobales.First().EscudoPorDefectoEnBase64;
 		}
 
 		public override void MapForCreateAndEdit(ClubVM vm, Club model)

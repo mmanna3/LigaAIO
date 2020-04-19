@@ -21,7 +21,7 @@ namespace LigaSoft.Controllers
 	public class ClubController : ABMController<Club, ClubVM, ClubVMM>
     {
 	    private readonly EquipoVMM _equipoVMM;
-	    private IImagenesEscudosPersistence _imagenesEscudosPersistence;
+	    private readonly IImagenesEscudosPersistence _imagenesEscudosPersistence;
 
 	    public ClubController()
 	    {

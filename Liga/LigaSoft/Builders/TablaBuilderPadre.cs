@@ -15,13 +15,11 @@ namespace LigaSoft.Builders
 	{
 	    protected readonly ApplicationDbContext Context;
 		private static IImagenesEscudosPersistence _imagenesEscudosPersistence;
-		private static string _escudoDefault;
 
 		protected TablaBuilderPadre(ApplicationDbContext context)
 		{
 			Context = context;
 			_imagenesEscudosPersistence = new ImagenesEscudosDiskPersistence(new AppPathsWebApp());
-			_escudoDefault = context.ParametrizacionesGlobales.First().EscudoPorDefectoEnBase64;
 		}
 
 		public TablasVM Tablas(Zona zona)

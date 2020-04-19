@@ -17,13 +17,11 @@ namespace LigaSoft.ViewModelMappers
 	{
 		private readonly ApplicationDbContext _context;
 		private readonly IImagenesEscudosPersistence _imagenesEscudosPersistence;
-		private readonly string _escudoDefault;
 
 		public WebPublicaVMM(ApplicationDbContext context)
 		{
 			_context = context;
 			_imagenesEscudosPersistence = new ImagenesEscudosDiskPersistence(new AppPathsWebApp());
-			_escudoDefault = context.ParametrizacionesGlobales.First().EscudoPorDefectoEnBase64;
 		}
 
 		public PublicIndexVM MapIndex(Zona zona)
