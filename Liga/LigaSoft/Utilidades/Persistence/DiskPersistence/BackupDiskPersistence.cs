@@ -2,19 +2,19 @@
 using System.IO;
 using Ionic.Zip;
 
-namespace LigaSoft.Utilidades
+namespace LigaSoft.Utilidades.Persistence.DiskPersistence
 {
-	public class IODiskUtility
+	public class BackupDiskPersistence : IBackupPersistence
 	{
 		private static AppPaths Paths = new AppPathsWebApp();
 
-		public IODiskUtility(AppPaths appPaths)
+		public BackupDiskPersistence(AppPaths appPaths)
 		{
 			Paths = appPaths;
 		}
 
 		// ReSharper disable AssignNullToNotNullAttribute
-		public static string ComprimirImagenesYPonerZipEnCarpetaDeBackups()
+		public string ComprimirImagenesYPonerZipEnCarpetaDeBackups()
 		{
 			var imagenesPath = Paths.ImagenesAbsolute;
 			var backupPath = Paths.BackupAbsoluteOf($"Imagenes-{DateTimeUtils.NowInArgentinaBackupFormat}.zip");
@@ -35,6 +35,59 @@ namespace LigaSoft.Utilidades
 			}
 
 			return backupPath;
+		}		
+
+		public string ComprimirUltimoBackupBdYPonerZipEnCarpetaDeBackups()
+		{
+			var bdBackupPathSinComprimir = PathDelUltimoBackupBD();
+			if (bdBackupPathSinComprimir == null)
+				YKNExHandler.LoguearYLanzarExcepcion(new Exception(), "No hay backups de base de datos");
+			else
+				Log.Info($"El backup sin comprimir de la base está en: {bdBackupPathSinComprimir}.");
+
+			var backupBdComprimidoPath = Paths.BackupAbsoluteOf($"BaseDeDatos-{DateTimeUtils.NowInArgentinaBackupFormat}.zip");
+
+			try
+			{
+				using (var zip = new ZipFile())
+				{
+					zip.AddFile(bdBackupPathSinComprimir);
+					Log.Info($"Se comprimió correctamente el archivo '{bdBackupPathSinComprimir}'.");
+					zip.Save(backupBdComprimidoPath);
+					Log.Info($"Se guardó el archivo comprimido en '{backupBdComprimidoPath}'.");
+				}
+			}
+			catch (Exception ex)
+			{
+				YKNExHandler.LoguearYLanzarExcepcion(ex, "Error comprimiendo base de datos");
+			}
+
+			return backupBdComprimidoPath;
+		}
+
+		public void EliminarTodosLosArchivosDeLaCarpetaDondeEstanLosBackups()
+		{
+			EliminarArchivos(Paths.BackupAbsolute(), "*.*");
+		}
+
+		private static string PathDelUltimoBackupBD()
+		{
+			var backupPaths = Directory.GetFiles(Paths.BackupAbsolute(), "mmmannna3_edefi_prod_*.bak");
+
+			DateTime? fechaDelBackupMasNuevo = null;
+			string pathDelBackupMasNuevo = null;
+			foreach (var backupPath in backupPaths)
+			{
+				var fechaDeEsteBackup = File.GetCreationTime(backupPath);
+
+				if (fechaDelBackupMasNuevo == null || fechaDeEsteBackup > fechaDelBackupMasNuevo)
+				{
+					fechaDelBackupMasNuevo = fechaDeEsteBackup;
+					pathDelBackupMasNuevo = backupPath;
+				}					
+			}
+
+			return pathDelBackupMasNuevo;
 		}
 
 		private static void EliminarArchivos(string folderPath, string fileSearchPattern)
@@ -63,59 +116,6 @@ namespace LigaSoft.Utilidades
 				}
 
 			}
-		}
-
-		public static string ComprimirUltimoBackupBdYPonerZipEnCarpetaDeBackups()
-		{
-			var bdBackupPathSinComprimir = PathDelUltimoBackupBD();
-			if (bdBackupPathSinComprimir == null)
-				YKNExHandler.LoguearYLanzarExcepcion(new Exception(), "No hay backups de base de datos");
-			else
-				Log.Info($"El backup sin comprimir de la base está en: {bdBackupPathSinComprimir}.");
-
-			var backupBdComprimidoPath = Paths.BackupAbsoluteOf($"BaseDeDatos-{DateTimeUtils.NowInArgentinaBackupFormat}.zip");
-
-			try
-			{
-				using (var zip = new ZipFile())
-				{
-					zip.AddFile(bdBackupPathSinComprimir);
-					Log.Info($"Se comprimió correctamente el archivo '{bdBackupPathSinComprimir}'.");
-					zip.Save(backupBdComprimidoPath);
-					Log.Info($"Se guardó el archivo comprimido en '{backupBdComprimidoPath}'.");
-				}
-			}
-			catch (Exception ex)
-			{
-				YKNExHandler.LoguearYLanzarExcepcion(ex, "Error comprimiendo base de datos");
-			}
-
-			return backupBdComprimidoPath;
-		}
-
-		private static string PathDelUltimoBackupBD()
-		{
-			var backupPaths = Directory.GetFiles(Paths.BackupAbsolute(), "mmmannna3_edefi_prod_*.bak");
-
-			DateTime? fechaDelBackupMasNuevo = null;
-			string pathDelBackupMasNuevo = null;
-			foreach (var backupPath in backupPaths)
-			{
-				var fechaDeEsteBackup = File.GetCreationTime(backupPath);
-
-				if (fechaDelBackupMasNuevo == null || fechaDeEsteBackup > fechaDelBackupMasNuevo)
-				{
-					fechaDelBackupMasNuevo = fechaDeEsteBackup;
-					pathDelBackupMasNuevo = backupPath;
-				}					
-			}
-
-			return pathDelBackupMasNuevo;
-		}
-
-		public static void EliminarTodosLosArchivosDeLaCarpetaDondeEstanLosBackups()
-		{
-			EliminarArchivos(Paths.BackupAbsolute(), "*.*");
 		}
 	}
 }

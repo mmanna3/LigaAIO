@@ -68,7 +68,7 @@ namespace LigaSoft.Controllers
 		//{
 		//	var vm = new DescargarBackupResultadoVM {Texto = "Backup generado correctamente."};
 
-		//	var filePath = IODiskUtility.ComprimirImagenesYPonerZipEnCarpetaDeBackups();
+		//	var filePath = BackupDiskPersistence.ComprimirImagenesYPonerZipEnCarpetaDeBackups();
 
 		//	Response.Clear();
 		//	Response.ContentType = "application/octet-stream";

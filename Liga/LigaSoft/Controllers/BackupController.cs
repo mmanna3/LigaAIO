@@ -1,23 +1,15 @@
 ﻿using System.Web.Mvc;
-using LigaSoft.Utilidades.Backup;
+using LigaSoft.Scheduler;
 using LigaSoft.Utilidades;
 
 namespace LigaSoft.Controllers
 {
 	[Authorize(Roles = Roles.Administrador)]
 	public class BackupController : Controller
-    {
-	    public JsonResult Generar()
+	{
+		public JsonResult Generar()
 	    {
-		    Log.Info("------------------------------------------------");
-
-			new ImagenesGDriveBackupManager().GenerarYSubirAlDrive();
-
-		    new BaseDeDatosGDriveBackupManager().GenerarYSubirAlDrive();
-
-		    IODiskUtility.EliminarTodosLosArchivosDeLaCarpetaDondeEstanLosBackups();
-
-		    Log.Info("------------------------------------------------");
+		    BackupBaseDeDatosYFileSystem.GenerarYSubirADrive();
 
 			return Json("", JsonRequestBehavior.AllowGet);
 		}

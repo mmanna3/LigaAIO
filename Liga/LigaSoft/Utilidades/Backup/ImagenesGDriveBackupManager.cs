@@ -4,7 +4,7 @@
 	{
 		protected override string ComprimirYPonerZipEnAppData()
 		{
-			return IODiskUtility.ComprimirImagenesYPonerZipEnCarpetaDeBackups();
+			return BackupDiskPersistence.ComprimirImagenesYPonerZipEnCarpetaDeBackups();
 		}
 
 		protected override string NombreDelBackupZipeadoSinExtensionNiFecha()

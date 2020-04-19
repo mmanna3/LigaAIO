@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using LigaSoft.Utilidades.Persistence;
+using LigaSoft.Utilidades.Persistence.DiskPersistence;
 
 namespace LigaSoft.Utilidades.Backup
 {
@@ -11,6 +13,13 @@ namespace LigaSoft.Utilidades.Backup
 		protected abstract string ComprimirYPonerZipEnAppData();
 
 		protected abstract string NombreDelBackupZipeadoSinExtensionNiFecha();
+
+		protected readonly IBackupPersistence BackupDiskPersistence;
+
+		protected GDriveBackupManager()
+		{
+			BackupDiskPersistence = new BackupDiskPersistence(new AppPathsWebApp());
+		}
 
 		public virtual void GenerarYSubirAlDrive()
 		{

@@ -15,7 +15,7 @@ namespace LigaSoft.Scheduler
 				var scheduler = await StdSchedulerFactory.GetDefaultScheduler();
 				await scheduler.Start();
 
-				var job = JobBuilder.Create<SubirBackupAlDriveJob>()
+				var job = JobBuilder.Create<JobGenerarBackupYSubirAlDrive>()
 					.WithIdentity("subirBackupAlDrive", "group1")
 					.Build();
 

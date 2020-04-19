@@ -1,24 +1,21 @@
 ﻿using System;
-using System.Threading.Tasks;
 using LigaSoft.Utilidades;
 using LigaSoft.Utilidades.Backup;
-using Quartz;
+using LigaSoft.Utilidades.Persistence.DiskPersistence;
 
 namespace LigaSoft.Scheduler
 {
-	public class SubirBackupAlDriveJob : IJob
-	{
-		#pragma warning disable 1998
-		public async Task Execute(IJobExecutionContext context)
+	public static class BackupBaseDeDatosYFileSystem
+	{		
+		public static void GenerarYSubirADrive()
 		{
 			Log.Info("------------------------------------------------");
-			Log.Info("QUARTZ: Comienza el job SubirBackupAlDrive");
 
 			try
 			{
 				new ImagenesGDriveBackupManager().GenerarYSubirAlDrive();
 				new BaseDeDatosGDriveBackupManager().GenerarYSubirAlDrive();
-				IODiskUtility.EliminarTodosLosArchivosDeLaCarpetaDondeEstanLosBackups();
+				new BackupDiskPersistence(new AppPathsWebApp()).EliminarTodosLosArchivosDeLaCarpetaDondeEstanLosBackups();
 			}
 			catch (Exception e)
 			{
