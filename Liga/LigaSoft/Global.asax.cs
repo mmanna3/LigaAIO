@@ -23,7 +23,6 @@ namespace LigaSoft
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-	        new Preloader().Preload(null);
 			log4net.Config.XmlConfigurator.Configure();
 			JobScheduler.Start().GetAwaiter().GetResult();
 	        InicializarLaBaseDeDatos();
