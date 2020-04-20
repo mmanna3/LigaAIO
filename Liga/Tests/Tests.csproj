@@ -98,6 +98,7 @@
   <ItemGroup>
     <Compile Include="Unit\AppPathsForTest.cs" />
     <Compile Include="Unit\HttpPostedFileRandomJpg.cs" />
+    <Compile Include="Unit\BackupDiskPersistenceTest.cs" />
     <Compile Include="Unit\ImagenesPublicidadDiskPersistenceTest.cs" />
     <Compile Include="Unit\ImagenesEscudosDiskPersistenceTest.cs" />
     <Compile Include="Unit\ImagenesJugadoresDiskPersistenceTest.cs" />

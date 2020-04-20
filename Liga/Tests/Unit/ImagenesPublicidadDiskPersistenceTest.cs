@@ -25,7 +25,7 @@ namespace Tests.Unit
 		[SetUp]
 		public void Initialize()
 		{
-			EliminarTodosLosArchivosEnLaCarpeta(_paths.ImagenesEscudosAbsolute);
+			EliminarTodosLosArchivosEnLaCarpeta(_paths.ImagenesPublicidadesAbsolute);
 		}
 
 		private static void EliminarTodosLosArchivosEnLaCarpeta(string path)

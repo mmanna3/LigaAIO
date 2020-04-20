@@ -14,12 +14,12 @@ namespace Tests.Unit
 
 		public override string BackupAbsoluteOf(string fileNameWithExtension)
 		{
-			throw new System.NotImplementedException();
+			return GetAbsolutePath($"/Backup/{fileNameWithExtension}");
 		}
 
 		public override string BackupAbsolute()
 		{
-			throw new System.NotImplementedException();
+			return GetAbsolutePath("/Backup");
 		}
 	}
 }

@@ -29,6 +29,18 @@ namespace LigaSoft.Utilidades
 		protected abstract string GetAbsolutePath(string relativePath);
 		public abstract string BackupAbsoluteOf(string fileNameWithExtension);
 		public abstract string BackupAbsolute();
+
+		public string BackupImagenes()
+		{
+			var fileName = $"Imagenes-{DateTimeUtils.NowInArgentinaBackupFormat}.zip";
+			return BackupAbsoluteOf(fileName);
+		}
+
+		public string BackupBaseDeDatos()
+		{
+			var fileName = $"BaseDeDatos-{DateTimeUtils.NowInArgentinaBackupFormat}.zip";
+			return BackupAbsoluteOf(fileName);
+		}
 	}
 
 	public class AppPathsWebApp : AppPaths

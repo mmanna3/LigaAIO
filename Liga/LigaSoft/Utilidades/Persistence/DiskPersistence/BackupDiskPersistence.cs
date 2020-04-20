@@ -6,7 +6,7 @@ namespace LigaSoft.Utilidades.Persistence.DiskPersistence
 {
 	public class BackupDiskPersistence : IBackupPersistence
 	{
-		private static AppPaths Paths = new AppPathsWebApp();
+		private static AppPaths Paths;
 
 		public BackupDiskPersistence(AppPaths appPaths)
 		{
@@ -16,15 +16,15 @@ namespace LigaSoft.Utilidades.Persistence.DiskPersistence
 		// ReSharper disable AssignNullToNotNullAttribute
 		public string ComprimirImagenesYPonerZipEnCarpetaDeBackups()
 		{
-			var imagenesPath = Paths.ImagenesAbsolute;
-			var backupPath = Paths.BackupAbsoluteOf($"Imagenes-{DateTimeUtils.NowInArgentinaBackupFormat}.zip");
+			Directory.CreateDirectory(Paths.BackupAbsolute());
+			var backupPath = Paths.BackupImagenes();
 
 			try
 			{
 				using (var zip = new ZipFile())
 				{
-					zip.AddDirectory(imagenesPath);
-					Log.Info($"Se comprimió correctamente la carpeta '{imagenesPath}'.");
+					zip.AddDirectory(Paths.ImagenesAbsolute);
+					Log.Info($"Se comprimió correctamente la carpeta '{Paths.ImagenesAbsolute}'.");
 					zip.Save(backupPath);
 					Log.Info($"Se guardó la carpeta comprimida en '{backupPath}'.");
 				}
@@ -45,7 +45,7 @@ namespace LigaSoft.Utilidades.Persistence.DiskPersistence
 			else
 				Log.Info($"El backup sin comprimir de la base está en: {bdBackupPathSinComprimir}.");
 
-			var backupBdComprimidoPath = Paths.BackupAbsoluteOf($"BaseDeDatos-{DateTimeUtils.NowInArgentinaBackupFormat}.zip");
+			var backupBdComprimidoPath = Paths.BackupBaseDeDatos();
 
 			try
 			{
