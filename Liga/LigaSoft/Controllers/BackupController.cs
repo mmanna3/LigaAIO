@@ -4,7 +4,7 @@ using LigaSoft.Utilidades;
 
 namespace LigaSoft.Controllers
 {
-	[Authorize(Roles = Roles.Administrador)]
+	[AllowAnonymous]
 	public class BackupController : Controller
 	{
 		public JsonResult Generar()
