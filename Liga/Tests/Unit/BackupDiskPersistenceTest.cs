@@ -36,6 +36,7 @@ namespace Tests.Unit
 		[Test]
 		public void ComprimirImagenesYPonerZipEnCarpetaDeBackups()
 		{
+			Directory.CreateDirectory(_paths.ImagenesAbsolute);
 			var backupImagenes = _backupDiskPersistence.ComprimirImagenesYPonerZipEnCarpetaDeBackups();
 
 			Assert.AreEqual(true, File.Exists(backupImagenes));
