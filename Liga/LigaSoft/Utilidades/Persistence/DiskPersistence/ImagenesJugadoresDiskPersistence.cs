@@ -25,7 +25,6 @@ namespace LigaSoft.Utilidades.Persistence.DiskPersistence
 			foto.Save(imagePath);
 		}
 
-		//No testeado
 		public void GuardarFotoDeJugadorDesdeArchivo(EditFotoJugadorDesdeArchivoVM vm)
 		{
 			var imagePath = $"{Paths.ImagenesJugadoresAbsolute}/{vm.DNI}.jpg";

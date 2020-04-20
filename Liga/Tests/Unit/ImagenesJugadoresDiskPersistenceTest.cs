@@ -62,6 +62,21 @@ namespace Tests.Unit
 			Assert.AreEqual(true, File.Exists(_imagePath));
 		}
 
+
+		[Test]
+		public void GuardarFotoDeJugadorDesdeArchivo()
+		{
+			var vm = new EditFotoJugadorDesdeArchivoVM
+			{
+				Foto = new HttpPostedFileRandomJpg(),
+				DNI = DNI
+			};
+
+			_imagenesJugadoresDiskPersistence.GuardarFotoDeJugadorDesdeArchivo(vm);
+
+			Assert.AreEqual(true, File.Exists(_imagePath));
+		}		
+
 		[Test]
 		public void GetFotoEnBase64()
 		{
