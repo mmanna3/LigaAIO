@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using LigaSoft.Models;
 using LigaSoft.Models.Dominio;
@@ -90,6 +91,12 @@ namespace LigaSoft.Controllers
 		}
 
 		public ActionResult Crop()
+		{
+			return View();
+		}
+
+		[HttpPost]
+		public ActionResult Crop(string imagen)
 		{
 			return View();
 		}

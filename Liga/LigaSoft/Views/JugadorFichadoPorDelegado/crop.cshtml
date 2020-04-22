@@ -1,4 +1,5 @@
-﻿@section Titulo {
+﻿@using LigaSoft.ExtensionMethods
+@section Titulo {
 	Fichar Jugador
 }
 
@@ -6,43 +7,51 @@
 <link rel="stylesheet" href="../../Content/pixelarity.css">
 
 
-<input id="file" type="file" >
-<img id="result">
+@using (Html.YKN().Form())
+{
+	<input id="file" type="file">
+	<input type="hidden" id="imagen" name="imagen" value="John"><br>
+	<img id="result">
+	<button type="submit">Submitear</button>
+}
 
 
 <style type="text/css">
-	#result{
+	#result {
 		display: block;
 		position: relative;
 		margin-top: 40px;
 	}
-	.face{
+
+	.face {
 		position: absolute;
 		height: 0px;
 		width: 0px;
-		background-color: transparent;;
+		background-color: transparent;
+		;
 		border: 4px solid rgba(10,10,10,0.5);
 	}
 </style>
 
 <script>
-	$(document).ready(function(){
-		$("#file").change(function(e){
+	$(document).ready(function () {
+		$("#file").change(function (e) {
 			var img = e.target.files[0];
 			$('#pixelarity-side-opt-holder').hide();
 			$('.pixelarity-img-edit-save').text('RECORTAR');
 			$('.pixelarity-img-edit-cancel').text('CANCELAR');
-			if(!pixelarity.open(img, true, function(res, faces){			
+			if (!pixelarity.open(img, true, function (res, faces) {
 				console.log(faces);
 
 				$("#result").attr("src", res);
+				$("#imagen").attr("value", res);
 				$(".face").remove();
 
 				// for(var i = 0; i < faces.length; i++){
 				// 	$("body").append("<div class='face' style='height: "+faces[i].height+"px; width: "+faces[i].width+"px; top: "+($("#result").offset().top + faces[i].y)+"px; left: "+($("#result").offset().left + faces[i].x)+"px;'>");
 				// }
-			
-			}, "jpg", 0.7, true)){
+
+			}, "jpg", 0.7, true)) {
 				alert("Whoops! That is not an image!");
 			}
 
