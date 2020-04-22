@@ -975,6 +975,7 @@
     <Content Include="Content\logo.svg" />
     <Content Include="Content\logo.png" />
     <Content Include="Content\logoConSponsor.png" />
+    <Content Include="Content\pixelarity.css" />
     <Content Include="Content\publico\img\fondo.gif" />
     <Content Include="Content\publico\img\fondo.jpg" />
     <Content Include="Content\publico\img\index-background.png" />
@@ -991,6 +992,7 @@
     <Content Include="Imagenes\publicidad-izquierda.jpg" />
     <Content Include="Parameters.xml" />
     <Content Include="Scripts\jquery.blockUI.js" />
+    <Content Include="Scripts\pixelarity-face.js" />
     <Content Include="WebPublica\config\webpack.config.dev.js" />
     <Content Include="WebPublica\config\webpack.config.prod.js" />
     <Content Include="WebPublica\src\**" />
@@ -1237,6 +1239,7 @@
     <Content Include="Views\AdministracionJugadoresFichadosPorDelegados\JugadoresPendientesDeAprobacion.cshtml" />
     <Content Include="Views\AdministracionJugadoresFichadosPorDelegados\AprobarRechazar.cshtml" />
     <Content Include="Views\JugadorFichadoPorDelegado\Rechazados.cshtml" />
+    <Content Include="Views\JugadorFichadoPorDelegado\crop.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

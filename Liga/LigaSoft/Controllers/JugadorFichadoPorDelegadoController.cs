@@ -89,7 +89,12 @@ namespace LigaSoft.Controllers
 			});
 		}
 
-	    private bool JugadorYaEstaFichado(string dni)
+		public ActionResult Crop()
+		{
+			return View();
+		}
+
+		private bool JugadorYaEstaFichado(string dni)
 	    {
 		    var result = Context.Jugadores.Any(x => x.DNI == dni) || Context.JugadoresFichadosPorDelegados.Any(x => x.DNI == dni);
 			ModelState.AddModelError("", "El jugador ya se encuentra fichado.");
