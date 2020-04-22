@@ -98,6 +98,9 @@ namespace LigaSoft.Controllers
 		[HttpPost]
 		public ActionResult Crop(string imagen)
 		{
+			var bitmap = ImagenUtility.ProcesarFotoJpgBase64ParaGuardarEnDisco(imagen);
+			bitmap.Save("C:\\Imagen.jpg");
+
 			return View();
 		}
 

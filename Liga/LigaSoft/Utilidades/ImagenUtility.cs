@@ -7,6 +7,13 @@ namespace LigaSoft.Utilidades
 {
 	public static class ImagenUtility
 	{
+		public static Bitmap ProcesarFotoJpgBase64ParaGuardarEnDisco(string fotoBase64)
+		{
+			fotoBase64 = fotoBase64.Replace("data:image/jpeg;base64,", string.Empty);	//Le podrías poner QuitarDataUri
+			var fotoCuadrada = HacerFotoCuadrada240X240(fotoBase64);
+			return fotoCuadrada;
+		}
+
 		public static Bitmap ProcesarImagenDeCamaraWebParaGuardarEnDisco(string fotoBase64)
 		{
 			fotoBase64 = fotoBase64.QuitarCabeceraPng(); //TODO: Borrá esto, pero antes chequeá que no rompa nada.
