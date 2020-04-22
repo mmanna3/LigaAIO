@@ -27,11 +27,6 @@ namespace LigaSoft.Utilidades
 				return ImageToBase64(image);
 		}
 
-		public static string ByteArrayToBase64(byte[] foto)
-		{
-			return Convert.ToBase64String(foto);
-		}
-
 		public static string ImageToBase64(Image img)
 		{
 			using (var image = img)
@@ -41,6 +36,12 @@ namespace LigaSoft.Utilidades
 
 				return ByteArrayToBase64(m.ToArray());
 			}
+		}
+
+
+		private static string ByteArrayToBase64(byte[] foto)
+		{
+			return Convert.ToBase64String(foto);
 		}
 
 		private static void EspejarImagen(this Image imagen)

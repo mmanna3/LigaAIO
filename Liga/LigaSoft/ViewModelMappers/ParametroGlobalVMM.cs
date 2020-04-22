@@ -21,7 +21,10 @@ namespace LigaSoft.ViewModelMappers
 			model.ValorPorDefectoEnPesosDelConceptoFichaje = vm.ValorPorDefectoEnPesosDelConceptoFichaje;
 
 			if (vm.EscudoNuevo != null)
+			{
 				model.EscudoPorDefectoEnBase64 = ImagenUtility.StreamToBase64(vm.EscudoNuevo.InputStream);
+				_imagenesEscudosPersistence.GuardarEscudoDefault(model.EscudoPorDefectoEnBase64);
+			}			
 		}
 
 		public override ParametroGlobalVM MapForEditAndDetails(ParametroGlobal model)

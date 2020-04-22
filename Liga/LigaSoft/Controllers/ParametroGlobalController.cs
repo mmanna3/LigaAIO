@@ -4,8 +4,6 @@ using LigaSoft.Models.Attributes.GPRPattern;
 using LigaSoft.Models.Dominio;
 using LigaSoft.Models.ViewModels;
 using LigaSoft.Utilidades;
-using LigaSoft.Utilidades.Persistence;
-using LigaSoft.Utilidades.Persistence.DiskPersistence;
 using LigaSoft.ViewModelMappers;
 
 namespace LigaSoft.Controllers
@@ -13,13 +11,6 @@ namespace LigaSoft.Controllers
 	[Authorize(Roles = Roles.Administrador)]
 	public class ParametroGlobalController : ABMController<ParametroGlobal, ParametroGlobalVM, ParametroGlobalVMM>
 	{
-		private readonly IImagenesEscudosPersistence _imagenesEscudosPersistence;
-
-		public ParametroGlobalController()
-		{
-			_imagenesEscudosPersistence = new ImagenesEscudosDiskPersistence(new AppPathsWebApp());
-		}
-
 		[HttpPost, ExportModelStateToTempData]
 		public override ActionResult Edit(ParametroGlobalVM vm)
 		{
@@ -30,9 +21,7 @@ namespace LigaSoft.Controllers
 			var model = Context.ParametrizacionesGlobales.Find(vm.Id);
 
 			VMM.MapForEdit(vm, model);
-			if (vm.EscudoNuevo != null)
-				_imagenesEscudosPersistence.GuardarEscudoDefault(model.EscudoPorDefectoEnBase64);
-
+			
 			Context.SaveChanges();
 
 			return RedirectToAction("Edit", new {vm.Id});
