@@ -97,6 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Unit\AppPathsForTest.cs" />
+    <Compile Include="Unit\ImagenUtilityTest.cs" />
     <Compile Include="Unit\HttpPostedFileRandomJpg.cs" />
     <Compile Include="Unit\BackupDiskPersistenceTest.cs" />
     <Compile Include="Unit\ImagenesPublicidadDiskPersistenceTest.cs" />

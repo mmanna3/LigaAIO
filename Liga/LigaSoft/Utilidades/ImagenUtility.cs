@@ -7,30 +7,18 @@ namespace LigaSoft.Utilidades
 {
 	public static class ImagenUtility
 	{
-		public static Bitmap ProcesarFotoJpgBase64ParaGuardarEnDisco(string fotoBase64)
+		public static Bitmap ProcesarFotoBase64ParaGuardarEnDisco(string fotoBase64)
 		{
-			fotoBase64 = fotoBase64.Replace("data:image/jpeg;base64,", string.Empty);	//Le podrías poner QuitarDataUri
+			fotoBase64 = QuitarMimeType(fotoBase64);
 			var fotoCuadrada = HacerFotoCuadrada240X240(fotoBase64);
 			return fotoCuadrada;
 		}
 
 		public static Bitmap ProcesarImagenDeCamaraWebParaGuardarEnDisco(string fotoBase64)
 		{
-			fotoBase64 = fotoBase64.QuitarCabeceraPng(); //TODO: Borrá esto, pero antes chequeá que no rompa nada.
-			var fotoCuadrada = HacerFotoCuadrada240X240(fotoBase64);
-			fotoCuadrada.EspejarImagen();   //Porque la imagen viene invertida
-			return fotoCuadrada;
-		}
-
-		public static string ProcesarImagenWebParaGuardarEnBD(string fotoBase64)
-		{
-			fotoBase64 = fotoBase64.QuitarCabeceraPng();
-
-			var fotoCuadrada = HacerFotoCuadrada240X240(fotoBase64);
-
-			fotoCuadrada.EspejarImagen();	//Porque la imagen viene invertida
-
-			return ImageToBase64(fotoCuadrada);
+			var foto = ProcesarFotoBase64ParaGuardarEnDisco(fotoBase64);
+			foto.EspejarImagen();   //Porque la imagen de la webcam viene invertida
+			return foto;
 		}
 
 		public static string ProcesarImagenDeBDParaMostrarEnWeb(string fotoBase64SinCabecera)
@@ -71,11 +59,6 @@ namespace LigaSoft.Utilidades
 			return HacerFotoCuadrada(fotoBmp, 240);			
 		}
 
-		private static string QuitarCabeceraPng(this string value)
-		{
-			return value.Replace("data:image/png;base64,", string.Empty);		
-		}
-
 		private static string AgregarCabeceraPng(string fotoBase64SinCabecera)
 		{
 			return string.Concat("data:image/png;base64,", fotoBase64SinCabecera);
@@ -108,6 +91,15 @@ namespace LigaSoft.Utilidades
 			g.DrawImage(bmp, new Rectangle(0, 0, size, size), new Rectangle(l, t, bmp.Width - l * 2, bmp.Height - t * 2), GraphicsUnit.Pixel);
 
 			return res;
+		}
+
+		private static string QuitarMimeType(string base64)
+		{
+			var i = base64.IndexOf(',');
+			if (i > 0)
+				base64 = base64.Substring(i + 1).Trim();
+
+			return base64;
 		}
 	}
 }
