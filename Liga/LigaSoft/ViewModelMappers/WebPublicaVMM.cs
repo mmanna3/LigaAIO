@@ -166,7 +166,7 @@ namespace LigaSoft.ViewModelMappers
 				var renglon = new RenglonDatosEquipo
 				{
 					Equipo = equipo.Nombre,
-					Escudo =  _imagenesEscudosPersistence.Path(equipo.Club.Id),
+					Escudo =  _imagenesEscudosPersistence.PathRelativo(equipo.Club.Id),
 					Direccion = equipo.Club.Direccion,
 					Localidad = equipo.Club.Localidad,					
 					Techo = equipo.Club.TechoBoolToTechoEnum(),

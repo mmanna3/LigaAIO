@@ -21,11 +21,6 @@ namespace LigaSoft.Utilidades
 			return foto;
 		}
 
-		public static string ProcesarImagenDeBDParaMostrarEnWeb(string fotoBase64SinCabecera)
-		{
-			return AgregarCabeceraPng(fotoBase64SinCabecera);
-		}
-
 		public static string StreamToBase64(Stream stream)
 		{
 			using (var image = Image.FromStream(stream))
@@ -57,11 +52,6 @@ namespace LigaSoft.Utilidades
 		{
 			var fotoBmp = Base64ToImage(fotoBase64);
 			return HacerFotoCuadrada(fotoBmp, 240);			
-		}
-
-		private static string AgregarCabeceraPng(string fotoBase64SinCabecera)
-		{
-			return string.Concat("data:image/png;base64,", fotoBase64SinCabecera);
 		}
 
 		private static Image Base64ToImage(string base64String)

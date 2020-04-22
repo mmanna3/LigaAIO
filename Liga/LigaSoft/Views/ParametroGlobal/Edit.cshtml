@@ -1,5 +1,4 @@
 ﻿@using LigaSoft.ExtensionMethods
-@using LigaSoft.Models.Attributes
 @model LigaSoft.Models.ViewModels.ParametroGlobalVM
 
 @section Titulo{
@@ -21,7 +20,7 @@
 		<div class="col-sm-12">
 			<div><label>Escudo por defecto</label></div>
 			<div><p>Aparecerá al crear un nuevo club o al eliminar un escudo</p></div>
-			<img src="@Model.EscudoActual" alt="Escudo por defecto">
+			<img src="@Model.EscudoActual" alt="Escudo por defecto" width="100">
 			<div style="padding-top: 1em;">@Html.YKN().BrowseFileFor(x => x.EscudoNuevo)</div>
 		</div>
 	</div>

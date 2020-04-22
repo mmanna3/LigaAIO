@@ -101,19 +101,17 @@ namespace LigaSoft.ViewModelMappers
 		private string EscudoLocal(Jornada jornada)
 		{
 			if (jornada.Local != null)
-				return _imagenesEscudosPersistence.Path(jornada.Local.Club.Id);
+				return _imagenesEscudosPersistence.PathRelativo(jornada.Local.Club.Id);
 
-			var model = Context.ParametrizacionesGlobales.FirstOrDefault();
-			return ImagenUtility.ProcesarImagenDeBDParaMostrarEnWeb(model.EscudoPorDefectoEnBase64);
+			return _imagenesEscudosPersistence.PathRelativoDelEscudoDefault();
 		}
 
 		private string EscudoVisitante(Jornada jornada)
 		{
 			if (jornada.Visitante != null)
-				return _imagenesEscudosPersistence.Path(jornada.Visitante.Club.Id);
+				return _imagenesEscudosPersistence.PathRelativo(jornada.Visitante.Club.Id);
 
-			var model = Context.ParametrizacionesGlobales.FirstOrDefault();
-			return ImagenUtility.ProcesarImagenDeBDParaMostrarEnWeb(model.EscudoPorDefectoEnBase64);
+			return _imagenesEscudosPersistence.PathRelativoDelEscudoDefault();
 		}
 
 		public DatosDeEquiposVM MapDatosDeEquipos(Zona zona)

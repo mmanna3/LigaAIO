@@ -66,14 +66,14 @@ namespace Tests.Unit
 		public void SiEscudoNoExisteDevuelvePathDeEscudoDefault()
 		{
 			Assert.AreEqual(false, File.Exists(_escudoPath));
-			Assert.AreEqual(_paths.EscudoDefaultRelative, _imagenesEscudosDiskPersistence.Path(CLUBID));
+			Assert.AreEqual(_paths.EscudoDefaultRelative, _imagenesEscudosDiskPersistence.PathRelativo(CLUBID));
 		}
 
 		[Test]
 		public void SiEscudoExisteDevuelveSuPath()
 		{
 			GuardarEscudoRandomEnDisco(CLUBID);
-			Assert.AreEqual($"{_paths.ImagenesEscudosRelative}/{CLUBID}.jpg", _imagenesEscudosDiskPersistence.Path(CLUBID));
+			Assert.AreEqual($"{_paths.ImagenesEscudosRelative}/{CLUBID}.jpg", _imagenesEscudosDiskPersistence.PathRelativo(CLUBID));
 		}
 
 		private void GuardarEscudoRandomEnDisco(int clubId)

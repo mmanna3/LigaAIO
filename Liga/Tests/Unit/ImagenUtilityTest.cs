@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using LigaSoft.Utilidades;
-using LigaSoft.Utilidades.Persistence.DiskPersistence;
 using NUnit.Framework;
 
 namespace Tests.Unit

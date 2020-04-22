@@ -104,7 +104,7 @@ namespace LigaSoft.Builders
 
 			    var renglonDelEquipo = new TablaCategoriaRenglonVM
 			    {
-					Escudo = _imagenesEscudosPersistence.Path(equipo.Club.Id),
+					Escudo = _imagenesEscudosPersistence.PathRelativo(equipo.Club.Id),
 					EquipoId = equipo.Id,
 					Equipo = equipo.Nombre
 			    };

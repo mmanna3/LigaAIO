@@ -4,7 +4,8 @@ namespace LigaSoft.Utilidades.Persistence
 {
 	public interface IImagenesEscudosPersistence
 	{
-		string Path(int clubId);
+		string PathRelativo(int clubId);
+		string PathRelativoDelEscudoDefault();
 		void Eliminar(int clubId);
 		void Guardar(CargarEscudoVM vm);
 		void GuardarEscudoDefault(string escudoBase64);

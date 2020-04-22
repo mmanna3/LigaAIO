@@ -35,6 +35,11 @@ namespace LigaSoft.Utilidades.Persistence.DiskPersistence
 			vm.Escudo.SaveAs(imagePath);
 		}
 
+		public string PathRelativoDelEscudoDefault()
+		{
+			return Paths.EscudoDefaultRelative;
+		}
+
 		public void Eliminar(int id)
 		{
 			var imagePath = $"{Paths.ImagenesEscudosAbsolute}/{id}.jpg";
@@ -43,7 +48,7 @@ namespace LigaSoft.Utilidades.Persistence.DiskPersistence
 				File.Delete(imagePath);
 		}
 
-		public string Path(int clubId)
+		public string PathRelativo(int clubId)
 		{
 			var escudoPathRelativo = $"{Paths.ImagenesEscudosRelative}/{clubId}.jpg";
 			var escudoPathAbsoluto = $"{Paths.ImagenesEscudosAbsolute}/{clubId}.jpg";
