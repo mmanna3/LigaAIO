@@ -46,12 +46,12 @@ namespace Tests.Unit
 		[Test]
 		public void ImagenCuadradaRotarAHorizontalYComprimir()
 		{
-			//var bytes = Convert.FromBase64String(Constantes.rectanguloVerticalBase64);
-			//var stream = new MemoryStream(bytes);
+			var bytes = Convert.FromBase64String(Constantes.rectanguloVerticalBase64);
+			var stream = new MemoryStream(bytes);
 
-			//var bitMap = ImagenUtility.RotarAHorizontalYComprimir(stream);
+			var image = ImagenUtility.RotarAHorizontalYComprimir(stream);
 
-			//Assert.IsTrue(bitMap.Width > bitMap.Height);
+			Assert.IsTrue(image.Width > image.Height);
 		}
 
 	}

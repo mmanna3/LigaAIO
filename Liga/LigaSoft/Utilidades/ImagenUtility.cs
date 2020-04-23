@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
 
@@ -27,9 +28,16 @@ namespace LigaSoft.Utilidades
 			return Base64ToImage(imagenBase64conMimeType);
 		}
 
-		public static Bitmap RotarAHorizontalYComprimir(Stream stream)
+		public static Image RotarAHorizontalYComprimir(Stream stream)
 		{
-			return new Bitmap(Image.FromStream(stream));
+			var image = Image.FromStream(stream);
+
+			if (EsVertical(image))
+				image.RotateFlip(RotateFlipType.Rotate90FlipXY);
+
+			image = ResizeImageFixedWidth(image, 500);
+
+			return image;
 		}
 
 		public static string StreamToBase64(Stream stream)
@@ -49,6 +57,10 @@ namespace LigaSoft.Utilidades
 			}
 		}
 
+		private static bool EsVertical(Image image)
+		{
+			return image.Width < image.Height;
+		}
 
 		private static string ByteArrayToBase64(byte[] foto)
 		{
@@ -102,6 +114,26 @@ namespace LigaSoft.Utilidades
 				base64 = base64.Substring(i + 1).Trim();
 
 			return base64;
+		}
+
+		public static Image ResizeImageFixedWidth(Image imgToResize, int width)
+		{
+			var sourceWidth = imgToResize.Width;
+			var sourceHeight = imgToResize.Height;
+
+			var nPercent = ((float)width / (float)sourceWidth);
+
+			var destWidth = (int)(sourceWidth * nPercent);
+			var destHeight = (int)(sourceHeight * nPercent);
+
+			var b = new Bitmap(destWidth, destHeight);
+			var g = Graphics.FromImage((Image)b);
+			g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+
+			g.DrawImage(imgToResize, 0, 0, destWidth, destHeight);
+			g.Dispose();
+
+			return (Image)b;
 		}
 	}
 }
