@@ -27,10 +27,11 @@
 			<input type="hidden" id="imagen" name="imagen" value="John"><br>
 			<img id="result">
 			<div class='form-group'>
-				<label class='btn btn-primary' for='FotoCarnet' id="labelFotoCarnet">
+				<label class='btn btn-primary' for='FotoCarnetInput' id="labelFotoCarnet">
 					Seleccionar foto carnet
 				</label>
-				<input id='FotoCarnet' name='FotoCarnet' accept=".jpeg,.jpg" style='display:none' class="form-control" type='file'>
+				<input id='FotoCarnetInput' name='FotoCarnetInput' accept=".jpeg,.jpg" style='display:none' class="form-control" type='file'>
+				<input type="hidden" id="FotoCarnet" name="FotoCarnet" value=""><br>
 			</div>
 		</div>
 	</div>	
@@ -77,7 +78,7 @@
 
 <script>
 	$(document).ready(function () {
-		$("#FotoCarnet").change(function (e) {
+		$("#FotoCarnetInput").change(function (e) {
 			var img = e.target.files[0];
 			$('#pixelarity-side-opt-holder').hide();
 			$('.pixelarity-img-edit-save').text('RECORTAR');

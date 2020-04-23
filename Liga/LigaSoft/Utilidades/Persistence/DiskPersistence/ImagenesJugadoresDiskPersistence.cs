@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.IO;
 using LigaSoft.Models.ViewModels;
 
@@ -50,7 +51,9 @@ namespace LigaSoft.Utilidades.Persistence.DiskPersistence
 				File.Delete(imagePath);
 
 			Directory.CreateDirectory(Paths.ImagenesTemporalesJugadorCarnetAbsolute);
-			vm.FotoCarnet.SaveAs(imagePath);
+
+			var result = ImagenUtility.ProcesarFotoJugadorBase64ParaGuardarEnDisco(vm.FotoCarnet);
+			result.Save(imagePath);
 		}
 
 		private static void GuardarFotoDNIFrenteTemporal(JugadorFichadoPorDelegadoVM vm)
@@ -61,7 +64,7 @@ namespace LigaSoft.Utilidades.Persistence.DiskPersistence
 				File.Delete(imagePath);
 
 			Directory.CreateDirectory(Paths.ImagenesTemporalesJugadorDNIFrenteAbsolute);
-			vm.FotoCarnet.SaveAs(imagePath);
+			vm.FotoDNIFrente.SaveAs(imagePath);
 		}
 
 		public string GetFotoEnBase64(string dni)

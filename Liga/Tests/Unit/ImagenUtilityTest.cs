@@ -36,7 +36,7 @@ namespace Tests.Unit
 		[Test]
 		public void ProcesarFotoJpgBase64ParaGuardarEnDisco()
 		{
-			var bitMap = ImagenUtility.ProcesarFotoBase64ParaGuardarEnDisco(puntoRojoEnBase64ConUriScheme);
+			var bitMap = ImagenUtility.ProcesarFotoJugadorBase64ParaGuardarEnDisco(puntoRojoEnBase64ConUriScheme);
 
 			bitMap.Save(_imagenJpgPath);
 

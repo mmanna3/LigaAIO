@@ -82,7 +82,7 @@ namespace Tests.Unit
 		{
 			var vm = new JugadorFichadoPorDelegadoVM
 			{
-				FotoCarnet = new HttpPostedFileRandomJpg(),
+				FotoCarnet = Constantes.puntoRojoBase64,
 				FotoDNIFrente = new HttpPostedFileRandomJpg(),
 				DNI = DNI
 			};

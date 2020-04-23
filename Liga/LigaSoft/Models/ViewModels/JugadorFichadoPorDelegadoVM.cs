@@ -29,9 +29,9 @@ namespace LigaSoft.Models.ViewModels
 		public string MotivoDeRechazo { get; set; }
 
 		[YKNRequired]
-		public HttpPostedFileBase FotoCarnet { get; set; }
+		public HttpPostedFileBase FotoDNIFrente { get; set; }
 
 		[YKNRequired]
-		public HttpPostedFileBase FotoDNIFrente { get; set; }
+		public string FotoCarnet { get; set; }
 	}
 }
