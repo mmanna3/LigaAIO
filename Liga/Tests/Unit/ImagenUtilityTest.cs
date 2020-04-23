@@ -1,5 +1,7 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.IO;
+using System.Net.Http;
 using LigaSoft.Utilidades;
 using NUnit.Framework;
 
@@ -9,7 +11,6 @@ namespace Tests.Unit
 	public class ImagenUtilityTest
 	{
 		private readonly AppPathsForTest _paths;
-		private const string puntoRojoEnBase64ConUriScheme = "data:image/jpeg;base64, iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==";
 		private readonly string _imagenJpgPath;
 
 		public ImagenUtilityTest()
@@ -35,17 +36,23 @@ namespace Tests.Unit
 		}
 
 		[Test]
-		public void ProcesarFotoJugadorBase64ParaGuardarEnDisco()
+		public void ConvertirABitMapYATamanio240X240()
 		{
-			var bitMap = ImagenUtility.ConvertirABitMapYATamanio240X240(puntoRojoEnBase64ConUriScheme);
-
-			bitMap.Save(_imagenJpgPath);
-
-			Assert.AreEqual(true, File.Exists(_imagenJpgPath));
-
-			var img = Image.FromFile(_imagenJpgPath);
-			Assert.AreEqual(240, img.Width);
-			Assert.AreEqual(240, img.Height);
+			var bitMap = ImagenUtility.ConvertirABitMapYATamanio240X240(Constantes.puntoRojoBase64ConUriDataJpg);
+			Assert.AreEqual(240, bitMap.Width);
+			Assert.AreEqual(240, bitMap.Height);
 		}
+
+		[Test]
+		public void ImagenCuadradaRotarAHorizontalYComprimir()
+		{
+			//var bytes = Convert.FromBase64String(Constantes.rectanguloVerticalBase64);
+			//var stream = new MemoryStream(bytes);
+
+			//var bitMap = ImagenUtility.RotarAHorizontalYComprimir(stream);
+
+			//Assert.IsTrue(bitMap.Width > bitMap.Height);
+		}
+
 	}
 }

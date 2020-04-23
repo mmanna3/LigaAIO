@@ -74,7 +74,8 @@ namespace LigaSoft.Utilidades.Persistence.DiskPersistence
 				File.Delete(imagePath);
 
 			Directory.CreateDirectory(Paths.ImagenesTemporalesJugadorDNIFrenteAbsolute);
-			vm.FotoDNIFrente.SaveAs(imagePath);
+			var result = ImagenUtility.RotarAHorizontalYComprimir(vm.FotoDNIFrente.InputStream);
+			result.Save(imagePath);
 		}
 
 		public string GetFotoEnBase64(string dni)

@@ -27,6 +27,11 @@ namespace LigaSoft.Utilidades
 			return Base64ToImage(imagenBase64conMimeType);
 		}
 
+		public static Bitmap RotarAHorizontalYComprimir(Stream stream)
+		{
+			return new Bitmap(Image.FromStream(stream));
+		}
+
 		public static string StreamToBase64(Stream stream)
 		{
 			using (var image = Image.FromStream(stream))
