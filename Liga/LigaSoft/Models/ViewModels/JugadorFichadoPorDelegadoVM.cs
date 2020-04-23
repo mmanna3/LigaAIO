@@ -33,5 +33,9 @@ namespace LigaSoft.Models.ViewModels
 
 		[YKNRequired]
 		public string FotoCarnet { get; set; }
+
+		public string FotoCarnetRelativePath { get; set; }
+
+		public string FotoDNIFrenteRelativePath { get; set; }
 	}
 }

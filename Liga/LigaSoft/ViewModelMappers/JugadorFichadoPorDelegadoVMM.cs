@@ -3,13 +3,18 @@ using LigaSoft.Models.Dominio;
 using LigaSoft.Models.Enums;
 using LigaSoft.Models.ViewModels;
 using LigaSoft.Utilidades;
+using LigaSoft.Utilidades.Persistence;
+using LigaSoft.Utilidades.Persistence.DiskPersistence;
 
 namespace LigaSoft.ViewModelMappers
 {
 	public class JugadorFichadoPorDelegadoVMM : CommonVMM<JugadorFichadoPorDelegado, JugadorFichadoPorDelegadoVM>
 	{
+		private readonly IImagenesJugadoresPersistence _imagenesJugadoresDiskPersistence;
+
 		public JugadorFichadoPorDelegadoVMM(ApplicationDbContext context) : base(context)
 		{
+			_imagenesJugadoresDiskPersistence = new ImagenesJugadoresDiskPersistence(new AppPathsWebApp());
 		}
 
 		public override void MapForCreateAndEdit(JugadorFichadoPorDelegadoVM vm, JugadorFichadoPorDelegado model)
@@ -35,6 +40,8 @@ namespace LigaSoft.ViewModelMappers
 				Equipo = Context.Equipos.Find(model.EquipoId).Nombre,
 				EquipoId = model.EquipoId,
 				Estado = model.Estado,
+				FotoCarnetRelativePath = _imagenesJugadoresDiskPersistence.PathFotoTemporalCarnet(model.DNI),
+				FotoDNIFrenteRelativePath = _imagenesJugadoresDiskPersistence.PathFotoTemporalDNIFrente(model.DNI),
 				MotivoDeRechazo = model.MotivoDeRechazo
 		};
 		}

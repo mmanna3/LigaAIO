@@ -12,5 +12,7 @@ namespace LigaSoft.Utilidades.Persistence
 		string Path(string dni);
 		void CambiarDNI(string dniAnterior, string dniNuevo);
 		void GuardarFotosTemporalesDeJugadorFichadoPorDelegado(JugadorFichadoPorDelegadoVM vm);
+		string PathFotoTemporalCarnet(string dni);
+		string PathFotoTemporalDNIFrente(string dni);
 	}
 }

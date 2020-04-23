@@ -10,14 +10,17 @@
 
 @Html.YKNNonTyped().ValidationSummary()
 <div class="row">
-	@*<div class="col-sm-6">
-			<img src="@Model.Foto" alt="foto">
-		</div>*@
-	<div class="col-sm-6">
+	<div class="col-sm-4">
 		@Html.YKN().DisplayFor(x => x.DNI)
 		@Html.YKN().DisplayFor(x => x.Nombre)
 		@Html.YKN().DisplayFor(x => x.Apellido)
 		@Html.YKN().DisplayFor(x => x.FechaNacimiento)
+	</div>
+	<div class="col-sm-4">
+		<img src="@Model.FotoCarnetRelativePath" alt="foto">
+	</div>
+	<div class="col-sm-4">
+		<img  src="@Model.FotoDNIFrenteRelativePath" alt="foto">
 	</div>
 </div>
 
@@ -57,3 +60,4 @@
 @{
 	Html.YKN().FooterVolver();
 }
+

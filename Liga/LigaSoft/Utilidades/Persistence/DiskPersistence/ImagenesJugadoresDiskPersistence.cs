@@ -43,6 +43,16 @@ namespace LigaSoft.Utilidades.Persistence.DiskPersistence
 			GuardarFotoDNIFrenteTemporal(vm);
 		}
 
+		public string PathFotoTemporalCarnet(string dni)
+		{
+			return $"{Paths.ImagenesTemporalesJugadorCarnetRelative}/{dni}.jpg";
+		}
+
+		public string PathFotoTemporalDNIFrente(string dni)
+		{
+			return $"{Paths.ImagenesTemporalesJugadorDNIFrenteRelative}/{dni}.jpg";
+		}
+
 		private static void GuardarFotoCarnetTemporal(JugadorFichadoPorDelegadoVM vm)
 		{
 			var imagePath = $"{Paths.ImagenesTemporalesJugadorCarnetAbsolute}/{vm.DNI}.jpg";
