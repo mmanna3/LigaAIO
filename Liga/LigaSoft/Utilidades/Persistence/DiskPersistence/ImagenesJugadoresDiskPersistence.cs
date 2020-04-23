@@ -16,7 +16,7 @@ namespace LigaSoft.Utilidades.Persistence.DiskPersistence
 
 		public void GuardarFotoWebCam(JugadorBaseVM vm)
 		{
-			var foto = ImagenUtility.ProcesarFotoJugadorCamaraWebParaGuardarEnDisco(vm.Foto);
+			var foto = ImagenUtility.ConvertirABitMapYATamanio240X240YEspejar(vm.Foto);
 			var imagePath = $"{Paths.ImagenesJugadoresAbsolute}/{vm.DNI}.jpg";
 
 			if (File.Exists(imagePath))
@@ -62,7 +62,7 @@ namespace LigaSoft.Utilidades.Persistence.DiskPersistence
 
 			Directory.CreateDirectory(Paths.ImagenesTemporalesJugadorCarnetAbsolute);
 
-			var result = ImagenUtility.ProcesarFotoJugadorBase64ParaGuardarEnDisco(vm.FotoCarnet);
+			var result = ImagenUtility.ConvertirABitMapYATamanio240X240(vm.FotoCarnet);
 			result.Save(imagePath);
 		}
 

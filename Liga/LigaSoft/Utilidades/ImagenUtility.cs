@@ -7,17 +7,17 @@ namespace LigaSoft.Utilidades
 {
 	public static class ImagenUtility
 	{
-		public static Bitmap ProcesarFotoJugadorBase64ParaGuardarEnDisco(string fotoBase64)
+		public static Bitmap ConvertirABitMapYATamanio240X240(string fotoBase64)
 		{
 			fotoBase64 = QuitarMimeType(fotoBase64);
 			var fotoCuadrada = HacerFotoCuadrada240X240(fotoBase64);
 			return fotoCuadrada;
 		}
 
-		public static Bitmap ProcesarFotoJugadorCamaraWebParaGuardarEnDisco(string fotoBase64)
+		public static Bitmap ConvertirABitMapYATamanio240X240YEspejar(string fotoBase64)
 		{
-			var result = ProcesarFotoJugadorBase64ParaGuardarEnDisco(fotoBase64);
-			result.EspejarImagen();   //Porque la imagen de la webcam viene invertida
+			var result = ConvertirABitMapYATamanio240X240(fotoBase64);
+			result.EspejarImagen();
 			return result;
 		}
 
