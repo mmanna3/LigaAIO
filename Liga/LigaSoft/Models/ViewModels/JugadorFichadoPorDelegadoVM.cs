@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Web;
 using LigaSoft.Models.Attributes;
 using LigaSoft.Models.Enums;
 
@@ -26,5 +27,11 @@ namespace LigaSoft.Models.ViewModels
 
 		[YKNStringLength(Maximo = 150), Display(Name = "Motivo de rechazo")]
 		public string MotivoDeRechazo { get; set; }
+
+		[YKNRequired]
+		public HttpPostedFileBase FotoCarnet { get; set; }
+
+		[YKNRequired]
+		public HttpPostedFileBase FotoDNIFrente { get; set; }
 	}
 }

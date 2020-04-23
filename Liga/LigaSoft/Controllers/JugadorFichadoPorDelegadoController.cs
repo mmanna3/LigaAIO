@@ -113,7 +113,10 @@ namespace LigaSoft.Controllers
 
 	    [HttpPost]
 	    public ActionResult SeleccionarEquipo(SeleccionarEquipoVM seleccionarEquipoVM)
-		{
+	    {
+		    if (string.IsNullOrEmpty(seleccionarEquipoVM.AlSeleccionarIrAAction))
+			    seleccionarEquipoVM.AlSeleccionarIrAAction = "PendientesDeAprobacion";
+
 			return RedirectToAction(seleccionarEquipoVM.AlSeleccionarIrAAction, new IdDescripcionVM
 			{
 				Descripcion = Context.Equipos.Find(seleccionarEquipoVM.EquipoId).Nombre,

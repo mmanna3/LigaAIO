@@ -48,6 +48,8 @@ namespace LigaSoft.UIHelpers
 									format: 'dd-mm-yyyy',
 									locale: 'es-es'
 								}});
+								
+								$("".gj-datepicker"").css(""width"", ""100%"");
 							}});
 					</script>";
 		}
