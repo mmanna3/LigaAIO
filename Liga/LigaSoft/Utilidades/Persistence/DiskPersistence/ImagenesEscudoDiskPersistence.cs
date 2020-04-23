@@ -15,7 +15,7 @@ namespace LigaSoft.Utilidades.Persistence.DiskPersistence
 
 		public void GuardarEscudoDefault(string escudoBase64)
 		{
-			var escudoDefault = ImagenUtility.ProcesarImagenDeCamaraWebParaGuardarEnDisco(escudoBase64);
+			var escudoDefault = ImagenUtility.ConvertirAImageYQuitarMimeType(escudoBase64);
 
 			if (File.Exists(Paths.EscudoDefaultFileAbsolute))
 				File.Delete(Paths.EscudoDefaultFileAbsolute);

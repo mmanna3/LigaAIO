@@ -14,11 +14,17 @@ namespace LigaSoft.Utilidades
 			return fotoCuadrada;
 		}
 
-		public static Bitmap ProcesarImagenDeCamaraWebParaGuardarEnDisco(string fotoBase64)
+		public static Bitmap ProcesarFotoJugadorCamaraWebParaGuardarEnDisco(string fotoBase64)
 		{
-			var foto = ProcesarFotoJugadorBase64ParaGuardarEnDisco(fotoBase64);
-			foto.EspejarImagen();   //Porque la imagen de la webcam viene invertida
-			return foto;
+			var result = ProcesarFotoJugadorBase64ParaGuardarEnDisco(fotoBase64);
+			result.EspejarImagen();   //Porque la imagen de la webcam viene invertida
+			return result;
+		}
+
+		public static Image ConvertirAImageYQuitarMimeType(string imagenBase64conMimeType)
+		{
+			imagenBase64conMimeType = QuitarMimeType(imagenBase64conMimeType);
+			return Base64ToImage(imagenBase64conMimeType);
 		}
 
 		public static string StreamToBase64(Stream stream)

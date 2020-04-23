@@ -16,7 +16,7 @@ namespace LigaSoft.Utilidades.Persistence.DiskPersistence
 
 		public void GuardarFotoWebCam(JugadorBaseVM vm)
 		{
-			var foto = ImagenUtility.ProcesarImagenDeCamaraWebParaGuardarEnDisco(vm.Foto);
+			var foto = ImagenUtility.ProcesarFotoJugadorCamaraWebParaGuardarEnDisco(vm.Foto);
 			var imagePath = $"{Paths.ImagenesJugadoresAbsolute}/{vm.DNI}.jpg";
 
 			if (File.Exists(imagePath))

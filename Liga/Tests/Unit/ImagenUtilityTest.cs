@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Drawing;
+using System.IO;
 using LigaSoft.Utilidades;
 using NUnit.Framework;
 
@@ -34,13 +35,17 @@ namespace Tests.Unit
 		}
 
 		[Test]
-		public void ProcesarFotoJpgBase64ParaGuardarEnDisco()
+		public void ProcesarFotoJugadorBase64ParaGuardarEnDisco()
 		{
 			var bitMap = ImagenUtility.ProcesarFotoJugadorBase64ParaGuardarEnDisco(puntoRojoEnBase64ConUriScheme);
 
 			bitMap.Save(_imagenJpgPath);
 
 			Assert.AreEqual(true, File.Exists(_imagenJpgPath));
+
+			var img = Image.FromFile(_imagenJpgPath);
+			Assert.AreEqual(240, img.Width);
+			Assert.AreEqual(240, img.Height);
 		}
 	}
 }
