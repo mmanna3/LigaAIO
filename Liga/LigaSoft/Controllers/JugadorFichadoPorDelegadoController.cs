@@ -7,6 +7,8 @@ using LigaSoft.Models.Dominio;
 using LigaSoft.Models.ViewModels;
 using LigaSoft.ViewModelMappers;
 using LigaSoft.Utilidades;
+using LigaSoft.Utilidades.Persistence;
+using LigaSoft.Utilidades.Persistence.DiskPersistence;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -16,9 +18,11 @@ namespace LigaSoft.Controllers
 	public class JugadorFichadoPorDelegadoController : ABMController<JugadorFichadoPorDelegado, JugadorFichadoPorDelegadoVM, JugadorFichadoPorDelegadoVMM>
 	{
 		private readonly UserManager<ApplicationUser> _userManager;
+		private readonly IImagenesJugadoresPersistence _imagenesJugadoresDiskPersistence;
 
 		public JugadorFichadoPorDelegadoController()
 		{
+			_imagenesJugadoresDiskPersistence = new ImagenesJugadoresDiskPersistence(new AppPathsWebApp());
 			_userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(Context));
 		}
 
@@ -82,8 +86,8 @@ namespace LigaSoft.Controllers
 			VMM.MapForCreateAndEdit(vm, model);
 			Context.JugadoresFichadosPorDelegados.Add(model);
 			Context.SaveChanges();
-			
-			
+
+			_imagenesJugadoresDiskPersistence.GuardarFotosTemporalesDeJugadorFichadoPorDelegado(vm);
 
 			return RedirectToAction("PendientesDeAprobacion", new IdDescripcionVM
 			{
