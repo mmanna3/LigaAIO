@@ -82,26 +82,14 @@ namespace LigaSoft.Controllers
 			VMM.MapForCreateAndEdit(vm, model);
 			Context.JugadoresFichadosPorDelegados.Add(model);
 			Context.SaveChanges();
+			
+			
 
 			return RedirectToAction("PendientesDeAprobacion", new IdDescripcionVM
 			{
 				Descripcion = Context.Equipos.Find(vm.EquipoId).Nombre,
 				Id = vm.EquipoId
 			});
-		}
-
-		public ActionResult Crop()
-		{
-			return View();
-		}
-
-		[HttpPost]
-		public ActionResult Crop(string imagen)
-		{
-			var bitmap = ImagenUtility.ProcesarFotoBase64ParaGuardarEnDisco(imagen);
-			bitmap.Save("C:\\Imagen.jpg");
-
-			return View();
 		}
 
 		private bool JugadorYaEstaFichado(string dni)

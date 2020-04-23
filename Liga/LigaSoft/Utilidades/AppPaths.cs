@@ -9,12 +9,16 @@ namespace LigaSoft.Utilidades
 		public string ImagenesEscudosRelative { get; } = "/Imagenes/Escudos";
 		public string ImagenesPublicidadesRelative { get; } = "/Imagenes/Publicidades";
 		public string EscudoDefaultRelative { get; } = "/Imagenes/Escudos/default.jpg";
+		public string ImagenesTemporalesJugadorCarnetRelative { get; } = "/Imagenes/Temporales/Carnet";
+		public string ImagenesTemporalesJugadorDNIFrenteRelative { get; } = "/Imagenes/Temporales/DNIFrente";
 
 		public string ImagenesAbsolute { get; }
 		public string ImagenesJugadoresAbsolute { get; }
 		public string ImagenesPublicidadesAbsolute { get; }
 		public string ImagenesEscudosAbsolute { get; }
 		public string EscudoDefaultFileAbsolute { get; }
+		public string ImagenesTemporalesJugadorCarnetAbsolute { get; set; }
+		public string ImagenesTemporalesJugadorDNIFrenteAbsolute { get; set; }
 
 		// ReSharper disable VirtualMemberCallInConstructor
 		protected AppPaths()
@@ -24,6 +28,8 @@ namespace LigaSoft.Utilidades
 			ImagenesEscudosAbsolute = GetAbsolutePath(ImagenesEscudosRelative);
 			ImagenesPublicidadesAbsolute = GetAbsolutePath(ImagenesPublicidadesRelative);
 			EscudoDefaultFileAbsolute = GetAbsolutePath(EscudoDefaultRelative);
+			ImagenesTemporalesJugadorCarnetAbsolute = GetAbsolutePath(ImagenesTemporalesJugadorCarnetRelative);
+			ImagenesTemporalesJugadorDNIFrenteAbsolute = GetAbsolutePath(ImagenesTemporalesJugadorDNIFrenteRelative);
 		}
 
 		protected abstract string GetAbsolutePath(string relativePath);

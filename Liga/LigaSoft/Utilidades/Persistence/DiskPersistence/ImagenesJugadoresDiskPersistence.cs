@@ -36,6 +36,34 @@ namespace LigaSoft.Utilidades.Persistence.DiskPersistence
 			vm.Foto.SaveAs(imagePath);
 		}
 
+		public void GuardarFotosTemporalesDeJugadorFichadoPorDelegado(JugadorFichadoPorDelegadoVM vm)
+		{
+			GuardarFotoCarnetTemporal(vm);
+			GuardarFotoDNIFrenteTemporal(vm);
+		}
+
+		private static void GuardarFotoCarnetTemporal(JugadorFichadoPorDelegadoVM vm)
+		{
+			var imagePath = $"{Paths.ImagenesTemporalesJugadorCarnetAbsolute}/{vm.DNI}.jpg";
+
+			if (File.Exists(imagePath))
+				File.Delete(imagePath);
+
+			Directory.CreateDirectory(Paths.ImagenesTemporalesJugadorCarnetAbsolute);
+			vm.FotoCarnet.SaveAs(imagePath);
+		}
+
+		private static void GuardarFotoDNIFrenteTemporal(JugadorFichadoPorDelegadoVM vm)
+		{
+			var imagePath = $"{Paths.ImagenesTemporalesJugadorDNIFrenteAbsolute}/{vm.DNI}.jpg";
+
+			if (File.Exists(imagePath))
+				File.Delete(imagePath);
+
+			Directory.CreateDirectory(Paths.ImagenesTemporalesJugadorDNIFrenteAbsolute);
+			vm.FotoCarnet.SaveAs(imagePath);
+		}
+
 		public string GetFotoEnBase64(string dni)
 		{
 			var imagePath = $"{Paths.ImagenesJugadoresAbsolute}/{dni}.jpg";
