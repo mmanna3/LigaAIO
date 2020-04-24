@@ -10,17 +10,17 @@
 
 @Html.YKNNonTyped().ValidationSummary()
 <div class="row">
-	<div class="col-sm-4">
+	<div class="col-sm-3">
 		@Html.YKN().DisplayFor(x => x.DNI)
 		@Html.YKN().DisplayFor(x => x.Nombre)
 		@Html.YKN().DisplayFor(x => x.Apellido)
 		@Html.YKN().DisplayFor(x => x.FechaNacimiento)
 	</div>
-	<div class="col-sm-4">
+	<div class="col-sm-3">
 		<img src="@Model.FotoCarnetRelativePath" alt="foto">
 	</div>
-	<div class="col-sm-4">
-		<img  src="@Model.FotoDNIFrenteRelativePath" alt="foto">
+	<div class="col-sm-6">
+		<img id="fotoDNIFrente" src="@Model.FotoDNIFrenteRelativePath" alt="fotoDNIFrente">
 	</div>
 </div>
 

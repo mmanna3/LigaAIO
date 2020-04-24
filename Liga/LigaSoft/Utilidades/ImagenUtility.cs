@@ -121,19 +121,19 @@ namespace LigaSoft.Utilidades
 			var sourceWidth = imgToResize.Width;
 			var sourceHeight = imgToResize.Height;
 
-			var nPercent = ((float)width / (float)sourceWidth);
+			var nPercent = width / (float)sourceWidth;
 
 			var destWidth = (int)(sourceWidth * nPercent);
 			var destHeight = (int)(sourceHeight * nPercent);
 
 			var b = new Bitmap(destWidth, destHeight);
-			var g = Graphics.FromImage((Image)b);
+			var g = Graphics.FromImage(b);
 			g.InterpolationMode = InterpolationMode.HighQualityBicubic;
 
 			g.DrawImage(imgToResize, 0, 0, destWidth, destHeight);
 			g.Dispose();
 
-			return (Image)b;
+			return b;
 		}
 	}
 }
