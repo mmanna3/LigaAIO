@@ -21,31 +21,3 @@
 		  })
 		  .DataSource("/JugadorFichadoPorDelegado/GetForGrid")
 		  .DataFilter("Estado", EstadoJugadorFichadoPorDelegado.PendienteDeAprobacion))
-
-<script>
-		//function Aprobar(obj) {
-		//	$.blockUI({ message: '<h4> El delegado está siendo aprobado...</h4>' });
-		//	$.ajax({
-		//		url: '/AdministracionDelegados/Aprobar',
-		//		type: "POST",
-		//		data: { id: obj.getAttribute('data-id') },
-		//		success: function() {
-		//			window.location.reload(false);
-		//		},
-		//		complete: function () {
-		//			$.unblockUI();
-		//		}
-		//	});
-		//}
-
-		//function Rechazar(obj) {
-		//	$.ajax({
-		//		url: '/AdministracionDelegados/Rechazar',
-		//		type: "POST",
-		//		data: { id: obj.getAttribute('data-id') },
-		//		success: function() {
-		//			window.location.reload(false);
-		//		}
-		//	});
-		//}
-</script>
