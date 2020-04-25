@@ -33,6 +33,7 @@ namespace LigaSoft.ViewModelMappers
 
 		public override JugadorFichadoPorDelegadoVM MapForEditAndDetails(JugadorFichadoPorDelegado model)
 		{
+			var equipo = Context.Equipos.Find(model.EquipoId);
 			return new JugadorFichadoPorDelegadoVM
 			{
 				Id = model.Id,
@@ -40,7 +41,8 @@ namespace LigaSoft.ViewModelMappers
 				Apellido = model.Apellido,
 				DNI = model.DNI,
 				FechaNacimiento = DateTimeUtils.ConvertToString(model.FechaNacimiento),
-				Equipo = Context.Equipos.Find(model.EquipoId).Nombre,
+				Equipo = equipo.Nombre,
+				Club = equipo.Club.Nombre,
 				EquipoId = model.EquipoId,
 				Estado = model.Estado,
 				FotoCarnetRelativePath = _imagenesJugadoresDiskPersistence.PathFotoTemporalCarnet(model.DNI),

@@ -23,6 +23,8 @@ namespace LigaSoft.Models.ViewModels
 
 		public string Equipo { get; set; }
 
+		public string Club { get; set; }
+
 		public EstadoJugadorFichadoPorDelegado Estado { get; set; }
 
 		[Display(Name = "Motivo de rechazo")]
