@@ -140,7 +140,7 @@ namespace LigaSoft.Controllers
 		}
 
 		[ImportModelStateFromTempData]
-		public override ActionResult Edit(int id)
+		public ActionResult EditarJugadorRechazado(int id)
 		{
 			var model = Context.JugadoresFichadosPorDelegados.Find(id);
 
@@ -150,7 +150,7 @@ namespace LigaSoft.Controllers
 		}
 
 		[HttpPost, ExportModelStateToTempData]
-		public override ActionResult Edit(JugadorFichadoPorDelegadoVM vm)
+		public ActionResult EditarJugadorRechazado(JugadorFichadoPorDelegadoVM vm)
 		{
 			try
 			{

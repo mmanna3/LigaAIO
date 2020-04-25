@@ -27,7 +27,7 @@
 		})
 		.Actions(action =>
 		{
-			action.RedirectWithRowId("Editar", "JugadorFichadoPorDelegado", "Edit");
+			action.RedirectWithRowId("Editar", "JugadorFichadoPorDelegado", "EditarJugadorRechazado");
 		})
 		.DataSource("/JugadorFichadoPorDelegado/GetForGrid")
 		.DataFilter("Estado", EstadoJugadorFichadoPorDelegado.Rechazado)
