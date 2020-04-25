@@ -28,10 +28,8 @@ namespace LigaSoft.Models.ViewModels
 		[YKNStringLength(Maximo = 150), Display(Name = "Motivo de rechazo")]
 		public string MotivoDeRechazo { get; set; }
 
-		[YKNRequired]
 		public HttpPostedFileBase FotoDNIFrente { get; set; }
 
-		[YKNRequired]
 		public string FotoCarnet { get; set; }
 
 		public string FotoCarnetRelativePath { get; set; }

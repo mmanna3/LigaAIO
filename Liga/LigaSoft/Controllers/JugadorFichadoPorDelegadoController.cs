@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using LigaSoft.Models;
+using LigaSoft.Models.Attributes.GPRPattern;
 using LigaSoft.Models.Dominio;
 using LigaSoft.Models.ViewModels;
 using LigaSoft.ViewModelMappers;
@@ -84,15 +86,66 @@ namespace LigaSoft.Controllers
 		[HttpPost]
 	    public ActionResult Fichar(JugadorFichadoPorDelegadoVM vm)
 		{
-			if (!ModelState.IsValid || JugadorYaEstaFichado(vm.DNI))
-				return Fichar(vm.EquipoId);
+			try
+			{
+				if (!ModelState.IsValid || JugadorYaEstaFichado(vm.DNI))	//Tenga todos los campos
+					return Fichar(vm.EquipoId);
 
-			var model = new JugadorFichadoPorDelegado();
-			VMM.MapForCreateAndEdit(vm, model);
-			Context.JugadoresFichadosPorDelegados.Add(model);
-			Context.SaveChanges();
+				var model = new JugadorFichadoPorDelegado();
+				VMM.MapForCreateAndEdit(vm, model);
+				Context.JugadoresFichadosPorDelegados.Add(model);
+				Context.SaveChanges();
 
-			_imagenesJugadoresDiskPersistence.GuardarFotosTemporalesDeJugadorFichadoPorDelegado(vm);
+				_imagenesJugadoresDiskPersistence.GuardarFotosTemporalesDeJugadorFichadoPorDelegado(vm);
+			}
+			catch (Exception e)
+			{
+				YKNExHandler.LoguearYLanzarExcepcion(e, "Error cuando el delegado intenta fichar el jugador");
+			}
+
+			return RedirectToAction("PendientesDeAprobacion", new IdDescripcionVM
+			{
+				Descripcion = Context.Equipos.Find(vm.EquipoId).Nombre,
+				Id = vm.EquipoId
+			});
+		}
+
+		[ImportModelStateFromTempData]
+		public override ActionResult Edit(int id)
+		{
+			var model = Context.JugadoresFichadosPorDelegados.Find(id);
+
+			var vm = VMM.MapForEdit(model);
+
+			return View(vm);
+		}
+
+		[HttpPost, ExportModelStateToTempData]
+		public override ActionResult Edit(JugadorFichadoPorDelegadoVM vm)
+		{
+			try
+			{
+				if (!ModelState.IsValid)
+					return RedirectToAction("Edit");
+
+				var model = Context.JugadoresFichadosPorDelegados.Find(vm.Id);
+
+				VMM.MapForEdit(vm, model);
+
+				Context.SaveChanges();
+
+				_imagenesJugadoresDiskPersistence.GuardarFotosTemporalesDeJugadorFichadoPorDelegado(vm);
+			}
+			catch (Exception e)
+			{
+				YKNExHandler.LoguearYLanzarExcepcion(e, "Error al editar jugador fichado por delegado y rechazado.");
+
+				return RedirectToAction("Rechazados", new IdDescripcionVM
+				{
+					Descripcion = Context.Equipos.Find(vm.EquipoId).Nombre,
+					Id = vm.EquipoId
+				});
+			}
 
 			return RedirectToAction("PendientesDeAprobacion", new IdDescripcionVM
 			{

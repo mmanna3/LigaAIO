@@ -28,6 +28,7 @@ namespace LigaSoft.ViewModelMappers
 			model.Apellido = vm.Apellido;
 			model.EquipoId = vm.EquipoId;
 			model.Estado = EstadoJugadorFichadoPorDelegado.PendienteDeAprobacion;
+			model.MotivoDeRechazo = null;
 		}
 
 		public override JugadorFichadoPorDelegadoVM MapForEditAndDetails(JugadorFichadoPorDelegado model)
