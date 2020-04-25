@@ -17,9 +17,15 @@
 		@Html.YKN().DisplayFor(x => x.FechaNacimiento)
 	</div>
 	<div class="col-sm-3">
+		<div>
+			<label>Foto carnet</label>	
+		</div>		
 		<img src="@Model.FotoCarnetRelativePath" alt="foto">
 	</div>
 	<div class="col-sm-6">
+		<div>
+			<label>Foto DNI Frente</label>	
+		</div>
 		<img id="fotoDNIFrente" src="@Model.FotoDNIFrenteRelativePath" alt="fotoDNIFrente">
 	</div>
 </div>
@@ -71,8 +77,6 @@
 <script>
 	$(document).ready(function () {		
 		$('#Fichar').height($('.form-rechazar').height());
-		$('#Fichar').css('margin-top', '0.3em');
-		$('#Fichar').css('font-size', '1.5em');
 	});	
 </script>
 
@@ -82,7 +86,16 @@
 		padding: 1em;
 	}
 
+	#Fichar {
+		margin-top: 0.3em;
+		font-size:1.5em;
+	}
+
 	.row-forms {
 		padding-top: 5em !important;
+	}
+
+	img {
+		border: 1px solid grey;
 	}
 </style>
