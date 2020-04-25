@@ -14,5 +14,6 @@ namespace LigaSoft.Utilidades.Persistence
 		void GuardarFotosTemporalesDeJugadorFichadoPorDelegado(JugadorFichadoPorDelegadoVM vm);
 		string PathFotoTemporalCarnet(string dni);
 		string PathFotoTemporalDNIFrente(string dni);
+		void FicharJugadorTemporal(string dniJugadorTemporal);
 	}
 }

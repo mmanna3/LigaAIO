@@ -21,9 +21,7 @@
 			column.AddTextColumn(x => x.DNI);
 			column.AddTextColumn(x => x.Nombre);
 			column.AddTextColumn(x => x.Apellido);
-			column.AddTextColumn(x => x.FechaNacimiento);
-			column.AddTextColumn(x => x.MotivoDeRechazo);
-
+			column.AddTextColumn(x => x.FechaNacimiento);			
 		})
 		.DataSource("/JugadorFichadoPorDelegado/GetForGrid")
 		.DataFilter("Estado", EstadoJugadorFichadoPorDelegado.Aprobado)

@@ -53,6 +53,20 @@ namespace LigaSoft.Utilidades.Persistence.DiskPersistence
 			return $"{Paths.ImagenesTemporalesJugadorDNIFrenteRelative}/{dni}.jpg";
 		}
 
+		public void FicharJugadorTemporal(string dni)
+		{
+			var pathTemporal = $"{Paths.ImagenesTemporalesJugadorCarnetAbsolute}/{dni}.jpg";
+			var pathJugadores = $"{Paths.ImagenesJugadoresAbsolute}/{dni}.jpg";
+
+			if (File.Exists(pathTemporal))
+				File.Move(pathTemporal, pathJugadores);
+
+			var pathDNIFrente = $"{Paths.ImagenesTemporalesJugadorDNIFrenteAbsolute}/{dni}.jpg";
+
+			if (File.Exists(pathDNIFrente))
+				File.Delete(pathDNIFrente);
+		}
+
 		private static void GuardarFotoCarnetTemporal(JugadorFichadoPorDelegadoVM vm)
 		{
 			var imagePath = $"{Paths.ImagenesTemporalesJugadorCarnetAbsolute}/{vm.DNI}.jpg";

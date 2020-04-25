@@ -1,4 +1,6 @@
-﻿using LigaSoft.Models;
+﻿using System;
+using System.Collections.Generic;
+using LigaSoft.Models;
 using LigaSoft.Models.Dominio;
 using LigaSoft.Models.Enums;
 using LigaSoft.Models.ViewModels;

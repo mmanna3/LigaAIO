@@ -1,13 +1,17 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.WebPages;
 using LigaSoft.Models;
 using LigaSoft.Models.Attributes.GPRPattern;
+using LigaSoft.Models.Dominio;
 using LigaSoft.Models.Enums;
 using LigaSoft.Models.ViewModels;
 using LigaSoft.Utilidades;
+using LigaSoft.Utilidades.Persistence;
+using LigaSoft.Utilidades.Persistence.DiskPersistence;
 using LigaSoft.ViewModelMappers;
 using Microsoft.AspNet.Identity.Owin;
 
@@ -18,11 +22,15 @@ namespace LigaSoft.Controllers
     {
 	    private readonly ApplicationDbContext _context;
 	    private readonly JugadorFichadoPorDelegadoVMM _jugadorFichadoPorDelegadoVMM;
+	    private readonly IImagenesJugadoresPersistence _imagenesJugadoresDiskPersistence;
+	    private readonly JugadorVMM _jugadorVMM;
 
 	    public AdministracionJugadoresFichadosPorDelegadosController()
 		{			
 			_context = new ApplicationDbContext();
 			_jugadorFichadoPorDelegadoVMM = new JugadorFichadoPorDelegadoVMM(_context);
+			_imagenesJugadoresDiskPersistence = new ImagenesJugadoresDiskPersistence(new AppPathsWebApp());
+			_jugadorVMM = new JugadorVMM(_context);
 		}
 
 	    public ActionResult JugadoresPendientesDeAprobacion()
@@ -32,20 +40,38 @@ namespace LigaSoft.Controllers
 
 		public ActionResult Aprobar(int id)
 		{
-			var jugadoresFichadosPorDelegados = _context.JugadoresFichadosPorDelegados.Single(x => x.Id == id);
+			var jugadorFichadoPorDelegado = _context.JugadoresFichadosPorDelegados.Single(x => x.Id == id);
 
-			//var user = new ApplicationUser { UserName = usuarioDelegado.Email, Email = usuarioDelegado.Email };
-			//var result = await UserManager.CreateAsync(user, usuarioDelegado.Password);
+			try
+			{
+				var jugador = new Jugador();
 
-			//if (result.Succeeded)
-			//{
-			//	await UserManager.AddToRoleAsync(user.Id, Roles.Delegado);
-			//	usuarioDelegado.AspNetUserId = user.Id;
-			//	usuarioDelegado.Aprobado = true;
-			//	_context.SaveChanges();
-			//}
+				var vm = new FicharNuevoJugadorVM
+				{
+					DNI = jugadorFichadoPorDelegado.DNI,
+					Apellido = jugadorFichadoPorDelegado.Apellido,
+					Nombre = jugadorFichadoPorDelegado.Nombre,
+					EquipoId = jugadorFichadoPorDelegado.EquipoId,
+					FechaNacimiento = DateTimeUtils.ConvertToString(jugadorFichadoPorDelegado.FechaNacimiento)
+				};
 
-			return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+				var jugadorEquipo = _jugadorVMM.MapCreate(vm, jugador);
+			
+				_context.JugadorEquipos.Add(jugadorEquipo);
+				jugadorFichadoPorDelegado.Estado = EstadoJugadorFichadoPorDelegado.Aprobado;
+				
+				//GenerarMovimientoFichajeImpago(vm.EquipoId, vm.DNI); Resolvé esto mono
+
+				_context.SaveChanges();
+
+				_imagenesJugadoresDiskPersistence.FicharJugadorTemporal(jugadorFichadoPorDelegado.DNI);
+			}
+			catch (Exception e)
+			{
+				YKNExHandler.LoguearYLanzarExcepcion(e, "Error al fichar jugador temporal");
+			}
+
+			return RedirectToAction("JugadoresPendientesDeAprobacion");
 		}
 
 		[ExportModelStateToTempData, HttpPost]
