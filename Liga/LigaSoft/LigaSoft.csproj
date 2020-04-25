@@ -1240,6 +1240,7 @@
     <Content Include="Views\AdministracionJugadoresFichadosPorDelegados\AprobarRechazar.cshtml" />
     <Content Include="Views\JugadorFichadoPorDelegado\Rechazados.cshtml" />
     <Content Include="Views\JugadorFichadoPorDelegado\Aprobados.cshtml" />
+    <Content Include="Views\JugadorFichadoPorDelegado\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

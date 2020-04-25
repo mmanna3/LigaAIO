@@ -25,6 +25,10 @@
 			column.AddTextColumn(x => x.MotivoDeRechazo);
 
 		})
+		.Actions(action =>
+		{
+			action.RedirectWithRowId("Editar", "JugadorFichadoPorDelegado", "Edit");
+		})
 		.DataSource("/JugadorFichadoPorDelegado/GetForGrid")
 		.DataFilter("Estado", EstadoJugadorFichadoPorDelegado.Rechazado)
 		.DataFilter("EquipoId", Model.Id)
