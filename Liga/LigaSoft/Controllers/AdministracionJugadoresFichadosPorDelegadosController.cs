@@ -82,6 +82,11 @@ namespace LigaSoft.Controllers
 				ModelState.AddModelError("", "Al rechazar, el comentario es requerido");
 				return RedirectToAction("AprobarRechazar", new {id = vm.Id});
 			}
+			if (vm.MotivoDeRechazo.Length > 150)
+			{
+				ModelState.AddModelError("", "El motivo de rechazo no puede tener más de 150 caracteres");
+				return RedirectToAction("AprobarRechazar", new { id = vm.Id });
+			}
 
 			var jugador = _context.JugadoresFichadosPorDelegados.Single(x => x.Id == vm.Id);
 			jugador.MotivoDeRechazo = vm.MotivoDeRechazo;
