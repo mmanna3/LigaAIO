@@ -36,6 +36,11 @@ namespace LigaSoft.Controllers
 			return View("Rechazados", vm);
 		}
 
+		public ActionResult Aprobados(IdDescripcionVM vm)
+		{
+			return View("Aprobados", vm);
+		}
+
 		[Authorize(Roles = Roles.Delegado)]
 		public List<SelectListItem> EquiposParaCombo(Club club)
 	    {
