@@ -8,7 +8,7 @@ using LigaSoft.Utilidades;
 using LigaSoft.Utilidades.Persistence;
 using LigaSoft.Utilidades.Persistence.DiskPersistence;
 
-namespace LigaSoft.Builders
+namespace LigaSoft.BusinessLogic
 {
 	//Probar si los refs son necesarios
 	public abstract class TablaBuilderPadre

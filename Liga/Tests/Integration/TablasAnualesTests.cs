@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using LigaSoft.Builders;
+using LigaSoft.BusinessLogic;
 using LigaSoft.Models.ViewModels;
 using NUnit.Framework;
 

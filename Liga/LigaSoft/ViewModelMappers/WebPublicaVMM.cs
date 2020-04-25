@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using LigaSoft.Builders;
+using LigaSoft.BusinessLogic;
 using LigaSoft.ExtensionMethods;
 using LigaSoft.Models;
 using LigaSoft.Models.Dominio;

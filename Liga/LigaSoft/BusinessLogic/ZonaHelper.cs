@@ -6,7 +6,7 @@ using LigaSoft.Models;
 using LigaSoft.Models.Dominio;
 using LigaSoft.Models.Enums;
 
-namespace LigaSoft.Builders
+namespace LigaSoft.BusinessLogic
 {
     public class ZonaHelper
     {

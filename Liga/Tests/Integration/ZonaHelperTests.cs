@@ -1,9 +1,7 @@
-﻿using System;
-using System.Linq;
-using LigaSoft.Builders;
+﻿using System.Linq;
+using LigaSoft.BusinessLogic;
 using LigaSoft.Models.Dominio;
 using LigaSoft.Models.Enums;
-using LigaSoft.ViewModelMappers;
 using NUnit.Framework;
 
 namespace Tests.Integration

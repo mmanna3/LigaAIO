@@ -327,11 +327,11 @@
     <Compile Include="Utilidades\Backup\BaseDeDatosGDriveBackupManager.cs" />
     <Compile Include="Utilidades\Backup\ImagenesGDriveBackupManager.cs" />
     <Compile Include="Utilidades\Backup\YKNGoogleDriveService.cs" />
-    <Compile Include="Builders\TablaBuilderPadre.cs" />
-    <Compile Include="Builders\TablaDashboardBuilder.cs" />
-    <Compile Include="Builders\TablaAnualWebPublicaBuilder.cs" />
-    <Compile Include="Builders\TablaWebPublicaBuilder.cs" />
-    <Compile Include="Builders\ZonaHelper.cs" />
+    <Compile Include="BusinessLogic\TablaBuilderPadre.cs" />
+    <Compile Include="BusinessLogic\TablaDashboardBuilder.cs" />
+    <Compile Include="BusinessLogic\TablaAnualWebPublicaBuilder.cs" />
+    <Compile Include="BusinessLogic\TablaWebPublicaBuilder.cs" />
+    <Compile Include="BusinessLogic\ZonaHelper.cs" />
     <Compile Include="Controllers\BackupController.cs" />
     <Compile Include="Controllers\PublicidadController.cs" />
     <Compile Include="Migrations\201905272112330_JugadorEquipoFueMigrado.cs" />
@@ -390,7 +390,7 @@
     <Compile Include="Controllers\ClubController.cs" />
     <Compile Include="Controllers\CategoriaController.cs" />
     <Compile Include="Controllers\PublicController.cs" />
-    <Compile Include="Builders\ResumenDeJornadasBuilder.cs" />
+    <Compile Include="BusinessLogic\ResumenDeJornadasBuilder.cs" />
     <Compile Include="Controllers\ZonaController.cs" />
     <Compile Include="Controllers\TorneoController.cs" />
     <Compile Include="Controllers\TorneoTipoController.cs" />

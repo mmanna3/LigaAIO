@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;using LigaSoft.Models;
+﻿using System.Linq;
+using LigaSoft.Models;
 using LigaSoft.Models.Dominio;
 
-namespace LigaSoft.Builders
+namespace LigaSoft.BusinessLogic
 {
     public class TablaWebPublicaBuilder : TablaBuilderPadre
 	{

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using LigaSoft.Builders;
+using LigaSoft.BusinessLogic;
 using LigaSoft.Models.Dominio;
 using LigaSoft.Models.Enums;
 using LigaSoft.Models.ViewModels;
