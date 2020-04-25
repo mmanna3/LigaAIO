@@ -72,7 +72,8 @@ namespace LigaSoft.Controllers
 		    return View(vm);
 	    }
 
-	    public ActionResult Fichar(int equipoId)
+		[ImportModelStateFromTempData]
+		public ActionResult Fichar(int equipoId)
 	    {
 		    var vm = new JugadorFichadoPorDelegadoVM
 		    {
@@ -83,12 +84,13 @@ namespace LigaSoft.Controllers
 			return View(vm);
 	    }
 
-		[HttpPost]
-	    public ActionResult Fichar(JugadorFichadoPorDelegadoVM vm)
+		[HttpPost, ExportModelStateToTempData]
+		public ActionResult Fichar(JugadorFichadoPorDelegadoVM vm)
 		{
 			try
 			{
-				if (!ModelState.IsValid || JugadorYaEstaFichado(vm.DNI))	//Tenga todos los campos
+				ValidarFotos(vm);
+				if (!ModelState.IsValid || JugadorYaEstaFichado(vm.DNI))
 					return Fichar(vm.EquipoId);
 
 				var model = new JugadorFichadoPorDelegado();
@@ -110,6 +112,33 @@ namespace LigaSoft.Controllers
 			});
 		}
 
+		private void ValidarFotos(JugadorFichadoPorDelegadoVM vm)
+		{
+			ValidarFotoCarnet(vm);
+			ValidarFotoDNIFrente(vm);
+		}
+
+		private void ValidarFotoCarnet(JugadorFichadoPorDelegadoVM vm)
+		{
+			if (string.IsNullOrEmpty(vm.FotoCarnet))
+				ModelState.AddModelError("", "Debe seleccionar una foto carnet.");
+		}
+
+		private void ValidarFotoDNIFrente(JugadorFichadoPorDelegadoVM vm)
+		{
+			if (vm.FotoDNIFrente == null || vm.FotoDNIFrente.ContentLength == 0)
+				ModelState.AddModelError("", "Debe seleccionar una foto DNI Frente.");
+			else
+				ValidarExtensionFotoDNIFrente(vm);
+		}
+
+		private void ValidarExtensionFotoDNIFrente(JugadorFichadoPorDelegadoVM vm)
+		{
+			if (!"jpg".Equals(vm.FotoDNIFrente.FileName.Substring(vm.FotoDNIFrente.FileName.Length - 3, 3).ToLower()) &&
+			    !"jpeg".Equals(vm.FotoDNIFrente.FileName.Substring(vm.FotoDNIFrente.FileName.Length - 4, 4).ToLower()))
+				ModelState.AddModelError("", "La foto DNI Frente debe estar en formato JPG o JPEG.");
+		}
+
 		[ImportModelStateFromTempData]
 		public override ActionResult Edit(int id)
 		{
@@ -125,8 +154,10 @@ namespace LigaSoft.Controllers
 		{
 			try
 			{
+				if (vm.FotoDNIFrente != null)
+					ValidarExtensionFotoDNIFrente(vm);
 				if (!ModelState.IsValid)
-					return RedirectToAction("Edit");
+					return RedirectToAction("Edit", vm.Id);
 
 				var model = Context.JugadoresFichadosPorDelegados.Find(vm.Id);
 

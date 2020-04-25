@@ -1,7 +1,7 @@
 ﻿@using LigaSoft.ExtensionMethods
 @model LigaSoft.Models.ViewModels.JugadorFichadoPorDelegadoVM
 @section Titulo{
-	Editar Jugador
+	Editar Jugador rechazado por administración
 }
 @section Subtitulo {
 	Equipo: @Model.Equipo
@@ -17,7 +17,8 @@
 	@Html.HiddenFor(x => x.Id)
 	<div class="row row-motivorechazo">
 		<div class="col-sm-12">
-			<h3>Motivo de rechazo: <span class="motivorechazo">@Model.MotivoDeRechazo</span></h3>
+			<label>Motivo de rechazo</label>
+			<div class="motivorechazo">@Model.MotivoDeRechazo</div>
 		</div>
 	</div>
 	<div class="row">
@@ -81,11 +82,13 @@
 	}
 
 	.motivorechazo {
-		color: red;
+		
 	}
 
 	.row-motivorechazo {
 		margin-bottom: 2em !important;
+		border: 1px solid;
+		padding: 1em !important;
 	}
 </style>
 

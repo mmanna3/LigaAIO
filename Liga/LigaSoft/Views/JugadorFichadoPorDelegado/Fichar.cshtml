@@ -25,7 +25,7 @@
 		</div>	
 		<div class="col-sm-6">
 			<input type="hidden" id="imagen" name="imagen" value="John"><br>
-			<img id="result">
+			<img id="result" src="@Model.FotoCarnetRelativePath">
 			<div class='form-group'>
 				<label class='btn btn-primary' for='FotoCarnetInput' id="labelFotoCarnet">
 					Seleccionar foto carnet
@@ -89,7 +89,7 @@
 				$("#FotoCarnet").attr("value", res);
 
 			}, "jpg", 0.7, true)) {
-				alert("Whoops! That is not an image!");
+				alert("La foto debe estar en formato jpg");
 			}
 
 		});
