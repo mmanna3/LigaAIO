@@ -41,10 +41,10 @@ namespace LigaSoft.UIHelpers
 		public string ScriptString()
 		{
 			return $@"<script>
-						$(function () {{ // will trigger when the document is ready
+						$(function () {{
 								$('#{_expressionId}').datepicker({{
 									uiLibrary: 'bootstrap',
-									value: '{_defaultValue}',
+									value: $('#{_expressionId}').attr('value'),
 									format: 'dd-mm-yyyy',
 									locale: 'es-es'
 								}});
