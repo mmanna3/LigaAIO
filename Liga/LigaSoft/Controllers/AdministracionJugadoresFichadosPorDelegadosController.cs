@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.WebPages;
+using LigaSoft.BusinessLogic;
 using LigaSoft.Models;
 using LigaSoft.Models.Attributes.GPRPattern;
 using LigaSoft.Models.Dominio;
@@ -13,7 +12,6 @@ using LigaSoft.Utilidades;
 using LigaSoft.Utilidades.Persistence;
 using LigaSoft.Utilidades.Persistence.DiskPersistence;
 using LigaSoft.ViewModelMappers;
-using Microsoft.AspNet.Identity.Owin;
 
 namespace LigaSoft.Controllers
 {
@@ -24,6 +22,7 @@ namespace LigaSoft.Controllers
 	    private readonly JugadorFichadoPorDelegadoVMM _jugadorFichadoPorDelegadoVMM;
 	    private readonly IImagenesJugadoresPersistence _imagenesJugadoresDiskPersistence;
 	    private readonly JugadorVMM _jugadorVMM;
+	    private readonly GeneradorDeMovimientos _generadorDeMovimientos;
 
 	    public AdministracionJugadoresFichadosPorDelegadosController()
 		{			
@@ -31,6 +30,7 @@ namespace LigaSoft.Controllers
 			_jugadorFichadoPorDelegadoVMM = new JugadorFichadoPorDelegadoVMM(_context);
 			_imagenesJugadoresDiskPersistence = new ImagenesJugadoresDiskPersistence(new AppPathsWebApp());
 			_jugadorVMM = new JugadorVMM(_context);
+			_generadorDeMovimientos = new GeneradorDeMovimientos(_context);
 		}
 
 	    public ActionResult JugadoresPendientesDeAprobacion()
@@ -59,8 +59,10 @@ namespace LigaSoft.Controllers
 			
 				_context.JugadorEquipos.Add(jugadorEquipo);
 				jugadorFichadoPorDelegado.Estado = EstadoJugadorFichadoPorDelegado.Aprobado;
-				
-				//GenerarMovimientoFichajeImpago(vm.EquipoId, vm.DNI); Resolvé esto mono
+
+				var club = _context.Equipos.Find(vm.EquipoId).Club;
+				var movimiento = _generadorDeMovimientos.GenerarMovimientoFichajeImpago(club, vm.DNI);
+				club.Movimientos.Add(movimiento);
 
 				_context.SaveChanges();
 
