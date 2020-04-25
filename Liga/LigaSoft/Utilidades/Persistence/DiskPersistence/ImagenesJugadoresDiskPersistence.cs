@@ -37,6 +37,7 @@ namespace LigaSoft.Utilidades.Persistence.DiskPersistence
 			vm.Foto.SaveAs(imagePath);
 		}
 
+		//No testeado
 		public void GuardarFotosTemporalesDeJugadorFichadoPorDelegado(JugadorFichadoPorDelegadoVM vm)
 		{
 			GuardarFotoCarnetTemporal(vm);
@@ -53,6 +54,7 @@ namespace LigaSoft.Utilidades.Persistence.DiskPersistence
 			return $"{Paths.ImagenesTemporalesJugadorDNIFrenteRelative}/{dni}.jpg";
 		}
 
+		//No testeado
 		public void FicharJugadorTemporal(string dni)
 		{
 			var pathTemporal = $"{Paths.ImagenesTemporalesJugadorCarnetAbsolute}/{dni}.jpg";
