@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
+using LigaSoft.BusinessLogic;
 using LigaSoft.ExtensionMethods;
 using LigaSoft.Models.Attributes.GPRPattern;
 using LigaSoft.Models.Dominio;
@@ -24,13 +25,14 @@ namespace LigaSoft.Controllers
 	    private readonly JugadorVMM _jugadorVMM;
 	    private readonly int _valorPorDefectoEnPesosDelConceptoFichaje;
 	    private readonly ImagenesJugadoresDiskPersistence _imagenesJugadoresDiskPersistence;
+	    private readonly GeneradorDeMovimientos _generadorDeMovimientos;
 
 		public EquipoController()
 		{
 			_imagenesJugadoresDiskPersistence = new ImagenesJugadoresDiskPersistence(new AppPathsWebApp());
 			_valorPorDefectoEnPesosDelConceptoFichaje = Context.ParametrizacionesGlobales.Select(x => x.ValorPorDefectoEnPesosDelConceptoFichaje).First();
 			_jugadorVMM = new JugadorVMM(Context);
-			
+			_generadorDeMovimientos = new GeneradorDeMovimientos(Context);
 		}
 
 		public ActionResult ImportarJugadores(int id)
@@ -160,13 +162,19 @@ namespace LigaSoft.Controllers
 
 		    Context.JugadorEquipos.Add(jugadorEquipo);
 
-		    if (vm.ElCarnetEstaPago)
-			    GenerarMovimientoFichajeYSuPago(vm.EquipoId, vm.DNI);
-			else
-			    GenerarMovimientoFichajeImpago(vm.EquipoId, vm.DNI);
+		    var club = Context.Equipos.Find(vm.EquipoId).Club;
 
-		    Context.SaveChanges();
-		    _imagenesJugadoresDiskPersistence.GuardarFotoWebCam(vm);
+			MovimientoEntradaConClub movimiento;
+		    if (vm.ElCarnetEstaPago)
+			    movimiento = _generadorDeMovimientos.GenerarMovimientoFichajeYSuPago(club, vm.DNI);
+			else
+			    movimiento = _generadorDeMovimientos.GenerarMovimientoFichajeImpago(club, vm.DNI);
+
+		    club.Movimientos.Add(movimiento);
+
+			Context.SaveChanges();
+
+			_imagenesJugadoresDiskPersistence.GuardarFotoWebCam(vm);
 
 			ModelState.Clear();
 
@@ -175,56 +183,6 @@ namespace LigaSoft.Controllers
 				idDelJugadorRecienFichado = Context.Jugadores.Single(x => x.DNI == vm.DNI).Id;
 
 			return RedirectToAction("FicharNuevoJugador", new {id = vm.EquipoId, idDelJugadorFichadoAnteriormenteParaImprimir = idDelJugadorRecienFichado });
-	    }
-
-	    private void GenerarMovimientoFichajeYSuPago(int equipoId, string dni)
-	    {
-		    var movimiento = GenerarMovimientoFichaje(equipoId, dni);
-		    GenerarPagoDelMovimientoFichaje(dni, movimiento);
-	    }
-
-	    private void GenerarMovimientoFichajeImpago(int equipoId, string dni)
-	    {
-		    GenerarMovimientoFichaje(equipoId, dni);		    
-	    }
-
-		private void GenerarPagoDelMovimientoFichaje(string dni, MovimientoEntradaConClub movimiento)
-	    {
-		    var pago = new Pago
-		    {
-			    Movimiento = movimiento,
-			    Comentario = $"Pago generado automáticamente al fichar al jugador con DNI:{dni}",
-			    Fecha = DateTime.Now,
-			    FechaAlta = DateTime.Now,
-			    Vigente = true,
-			    UsuarioAltaId = System.Web.HttpContext.Current.User.Identity.GetUserId(),
-			    Importe = movimiento.Total
-		    };
-
-		    Context.Pagos.Add(pago);
-	    }
-
-	    private MovimientoEntradaConClub GenerarMovimientoFichaje(int equipoId, string dni)
-	    {
-		    var club = Context.Equipos.Find(equipoId).Club;
-
-		    var movimiento = new MovimientoEntradaConClub
-		    {
-			    ConceptoId = (int)ConceptoTipoEnum.Fichaje,
-			    ClubId = club.Id,
-			    Cantidad = 1,
-			    Comentario = $"Movimiento generado automáticamente al fichar al jugador con DNI:{dni}",
-			    Fecha = DateTime.Now,
-			    FechaAlta = DateTime.Now,
-			    PrecioUnitario = _valorPorDefectoEnPesosDelConceptoFichaje,
-			    Total = _valorPorDefectoEnPesosDelConceptoFichaje,
-			    Vigente = true,
-			    UsuarioAltaId = System.Web.HttpContext.Current.User.Identity.GetUserId()
-		    };
-
-		    club.Movimientos.Add(movimiento);
-
-		    return movimiento;
 	    }
 
 	    private void ValidarFichajeDeNuevoJugador(JugadorBaseVM vm)
