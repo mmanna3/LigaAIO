@@ -49,7 +49,14 @@ namespace LigaSoft.UIHelpers
 									locale: 'es-es'
 								}});
 								
-								$("".gj-datepicker"").css(""width"", ""100%"");
+								$('#{_expressionId}').focusin(function () {{
+									var dataGuid = $('#{_expressionId}').attr('data-guid');
+									if ($(`*[guid=${{dataGuid}}]`).css('display') === 'none') {{
+										$('#{_expressionId}').datepicker().show();
+									}}
+								}});
+
+								$('#{_expressionId}').closest('.gj-datepicker').css(""width"", ""100%"");
 							}});
 					</script>";
 		}
