@@ -95,6 +95,7 @@ namespace LigaSoft.Controllers
 			jugador.Estado = EstadoJugadorFichadoPorDelegado.Rechazado;
 
 			_context.SaveChanges();
+			ModelState.Clear();
 
 			return RedirectToAction("JugadoresPendientesDeAprobacion");
 		}
