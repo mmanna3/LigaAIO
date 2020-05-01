@@ -21,7 +21,7 @@ build:
   parallel: true
   verbosity: minimal
 after_build:
-- ps:  .\build-prod.bat
+- ps: Start-Process build-prod.bat
 
 for:
   -
