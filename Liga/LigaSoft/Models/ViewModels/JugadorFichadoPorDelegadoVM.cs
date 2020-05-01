@@ -16,7 +16,7 @@ namespace LigaSoft.Models.ViewModels
 		[YKNRequired, YKNStringLength(Maximo = 14)]
 		public string Apellido { get; set; }
 
-		[YKNRequired, YKNDateTime, Display(Name= "Fecha nacimiento")]
+		[YKNRequired, YKNDateTime]
 		public string FechaNacimiento { get; set; }
 
 		public int EquipoId { get; set; }

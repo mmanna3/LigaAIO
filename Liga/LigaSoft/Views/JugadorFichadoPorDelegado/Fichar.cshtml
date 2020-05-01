@@ -21,7 +21,8 @@
 			@Html.YKN().EditorFor(x => x.DNI).TabIndex(1)
 			@Html.YKN().EditorFor(x => x.Nombre).TabIndex(2)
 			@Html.YKN().EditorFor(x => x.Apellido).TabIndex(3)
-			@Html.YKN().DatePickerFor(x => x.FechaNacimiento)
+			@Html.Label("Fecha nacimiento")			
+			@Html.YKN().DatePickerFor(x => x.FechaNacimiento).Label("(Formato: dd-mm-aaaa. Ej: 30-10-2008)")
 		</div>	
 		<div class="col-sm-6">
 			<input type="hidden" id="imagen" name="imagen" value="John"><br>
