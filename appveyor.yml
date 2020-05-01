@@ -21,7 +21,7 @@ build:
   parallel: true
   verbosity: minimal
 after_build:
-- ps: Start-Process Liga\LigaSoft\WebPublica\build-prod.bat
+- ps: .\Liga\LigaSoft\WebPublica\npm-install-and-build-prod.ps1
 
 for:
   -
