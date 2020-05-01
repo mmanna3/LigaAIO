@@ -1224,7 +1224,7 @@
     <Content Include="Views\Sancion\Edit.cshtml" />
     <Content Include="Views\ConceptoInsumo\AgregarStock.cshtml" />
     <Content Include="WebPublica\.gitignore" />
-    <Content Include="WebPublica\run-build-prod.bat" />
+    <Content Include="WebPublica\build-prod.bat" />
     <Content Include="Utilidades\Backup\credentials.json.enc" />
     <Content Include="Utilidades\Backup\token.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-user.enc" />
     <Content Include="Utilidades\Backup\credentials.json" />

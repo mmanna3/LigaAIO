@@ -20,6 +20,8 @@ build:
   publish_wap: true
   parallel: true
   verbosity: minimal
+after-build:
+- ps:  .\build-prod.bat
 
 for:
   -
