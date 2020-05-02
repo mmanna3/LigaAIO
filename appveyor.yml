@@ -39,6 +39,8 @@ for:
         secure: y5qjD0roTi22GhH9n7jlIw==
     deploy:
       - provider: WebDeploy
+        remove_files: true
+        skip_dirs: \\App_Data;\\Imagenes
         server: $(deploy_server_prod)
         website: $(deploy_website_prod)
         username: $(deploy_username)
