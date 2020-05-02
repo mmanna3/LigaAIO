@@ -994,9 +994,6 @@
     <Content Include="Parameters.xml" />
     <Content Include="Scripts\jquery.blockUI.js" />
     <Content Include="Scripts\pixelarity-face.js" />
-    <Content Include="WebPublica\config\webpack.config.dev.js" />
-    <Content Include="WebPublica\config\webpack.config.prod.js" />
-    <Content Include="WebPublica\src\**" />
     <Content Include="Scripts\r.js" />
     <Content Include="Imagenes\torneos-banner.jpg" />
     <Content Include="Scripts\require.js" />
@@ -1025,10 +1022,6 @@
     <None Include="Properties\PublishProfiles\edefi - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\Integracion.site FTP.pubxml" />
     <None Include="Properties\PublishProfiles\Integracion.site.pubxml" />
-    <Content Include="WebPublica\.babelrc" />
-    <Content Include="WebPublica\package-lock.json" />
-    <Content Include="WebPublica\package.json" />
-    <Content Include="WebPublica\.vscode\settings.json" />
     <None Include="Properties\PublishProfiles\IntegracionContinuaPublishProfile.pubxml" />
     <None Include="Properties\PublishProfiles\Publish de prueba para FTP.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -1223,7 +1216,6 @@
     <Content Include="Views\Public\Sanciones.cshtml" />
     <Content Include="Views\Sancion\Edit.cshtml" />
     <Content Include="Views\ConceptoInsumo\AgregarStock.cshtml" />
-    <Content Include="WebPublica\.gitignore" />
     <Content Include="Utilidades\Backup\credentials.json.enc" />
     <Content Include="Utilidades\Backup\token.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-user.enc" />
     <Content Include="Utilidades\Backup\credentials.json" />
@@ -1648,10 +1640,6 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <PropertyGroup>
-    <PreBuildEvent>if $(ConfigurationName) == ASPHostPortal_Produccion call $(ProjectDir)WebPublica\run-build-prod.bat
-    </PreBuildEvent>
-  </PropertyGroup>
   <Target Name="ContentsBeforeBuild" AfterTargets="BeforeBuild">
     <ItemGroup>
       <Content Include="WebPublica\dist\**" />
