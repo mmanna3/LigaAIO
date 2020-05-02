@@ -40,7 +40,7 @@ for:
     deploy:
       - provider: WebDeploy
         remove_files: true
-        skip_dirs: \\App_Data;\\Imagenes
+        skip_dirs: \\App_Data;\\Imagenes;\\logs
         server: $(deploy_server_prod)
         website: $(deploy_website_prod)
         username: $(deploy_username)
@@ -61,7 +61,7 @@ for:
     deploy:
       - provider: WebDeploy
         remove_files: true
-        skip_dirs: \\App_Data;\\Imagenes
+        skip_dirs: \\App_Data;\\Imagenes;\\logs
         server: $(deploy_server_test)
         website: $(deploy_website_test)
         username: $(deploy_username)
