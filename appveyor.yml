@@ -15,15 +15,15 @@ install:
 - cmd: appveyor-tools\secure-file -decrypt "Liga\LigaSoft\Utilidades\Backup\credentials.json.enc" -secret %my_secret% -salt %salt_credentialsjson%
 - cmd: appveyor-tools\secure-file -decrypt "Liga\LigaSoft\Utilidades\Backup\token.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-user.enc" -secret %my_secret% -salt %salt_googleapisauth%
 - ps: nuget restore Liga\LigaSoft.sln
+before_build:
+  - cd Liga\LigaSoft\WebPublica
+  - npm install
+  - npm run build-prod
 build:
   project: Liga/LigaSoft.sln
   publish_wap: true
   parallel: true
   verbosity: minimal
-after_build:
-- cd Liga\LigaSoft\WebPublica
-- npm install
-- npm run build-prod
 
 for:
   -
