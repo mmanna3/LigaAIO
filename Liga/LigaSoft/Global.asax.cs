@@ -24,7 +24,7 @@ namespace LigaSoft
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
 			log4net.Config.XmlConfigurator.Configure();
-			JobScheduler.Start().GetAwaiter().GetResult();
+			//JobScheduler.Start().GetAwaiter().GetResult(); TODO: Borrar todo lo relativo a Quartz
 	        InicializarLaBaseDeDatos();
 	        InicializarFileSystem();
 		}
