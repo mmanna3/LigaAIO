@@ -59,7 +59,7 @@ for:
     deploy:
       - provider: WebDeploy
         remove_files: true
-        skip_dirs: \\App_Data
+        skip_dirs: \\App_Data;\\Imagenes
         server: $(deploy_server_test)
         website: $(deploy_website_test)
         username: $(deploy_username)
