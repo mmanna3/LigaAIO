@@ -58,6 +58,8 @@ for:
         secure: tRk9SILuLoHrXUKD2DPjYIRy2DXqtX4C2cRmWipUun4=
     deploy:
       - provider: WebDeploy
+        remove_files: true
+        skip_dirs: \\App_Data
         server: $(deploy_server_test)
         website: $(deploy_website_test)
         username: $(deploy_username)
