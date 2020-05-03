@@ -12,8 +12,8 @@ const TablaJornadas = (props) =>{
                   <th className={styles.cabecera}></th>
                   <th className={styles.cabeceraCentrada}>Esc</th>
                   <th className={styles.cabecera}>Equipo</th>
-                  {props.categorias.map(({ Nombre }) => (
-                    <th className={styles.cabeceraCentrada}>{Nombre}</th>
+                  {props.categorias.map(({Nombre}) => (
+                    <th key={Nombre} className={styles.cabeceraCentrada}>{Nombre}</th>
                   ))}
                   <th className={styles.cabeceraCentrada}>T.P.</th>
                   <th className={styles.cabeceraCentrada}>P.J.</th>
@@ -21,13 +21,13 @@ const TablaJornadas = (props) =>{
                 </tr>
                 </thead>
                 <tbody>
-                  {props.renglones.map(({ JornadaNumero, Escudo, Equipo, ResultadosPorCategorias, PuntosTotales, PartidosJugados, PartidoVerificado }) => (                    
-                    <tr key={JornadaNumero}>
+                  {props.renglones.map(({JornadaNumero, Escudo, Equipo, ResultadosPorCategorias, PuntosTotales, PartidosJugados, PartidoVerificado }) => (                    
+                    <tr key={Equipo}>
                       <td className={styles.celdaIzquierda}>{JornadaNumero}</td>
                       <td className={styles.celdaEscudo}><img width="30px" height="auto" alt="Escudo" src={Escudo} /></td>
                       <td className={styles.celda}>{Equipo}</td>
-                      {ResultadosPorCategorias.map(({ Goles }) => (
-                        <td className={styles.celdaCentrada}>{Goles}</td>
+                      {ResultadosPorCategorias.map(({Orden, Goles}) => (
+                        <td key={Orden} className={styles.celdaCentrada}>{Goles}</td>
                       ))}
                       <td className={styles.celdaCentrada}>{PuntosTotales}</td>
                       <td className={styles.celdaCentrada}>{PartidosJugados}</td>
