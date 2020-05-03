@@ -61,6 +61,7 @@ namespace LigaSoft.Models.ViewModels
 
 		public int JornadaId { get; set; }
 		public int JornadaNumero { get; set; }
+		public string Escudo { get; set; }
 		public int EquipoId { get; set; }
 		public string Equipo { get; set; }
 		public List<ResultadosPorCategoriaVM> ResultadosPorCategorias { get; set; }

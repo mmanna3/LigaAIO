@@ -23,7 +23,7 @@ const TablaJornadas = (props) =>{
                 </thead>
                 <tbody>
                   {props.renglones.map(({JornadaNumero, Escudo, Equipo, ResultadosPorCategorias, PuntosTotales, PartidosJugados, PartidoVerificado }) => (                    
-                    <tr key={Equipo} className={JornadaNumero % 2 == 0 ? styles.fondoGris : styles.fondoBlanco}>
+                    <tr key={Equipo} className={styles.renglon}>
                       <td className={tabla.celdaIzquierda}>{JornadaNumero}</td>
                       <td className={tabla.celdaEscudo}><img width="30px" height="auto" alt="Escudo" src={Escudo} /></td>
                       <td className={tabla.celda}>{Equipo}</td>

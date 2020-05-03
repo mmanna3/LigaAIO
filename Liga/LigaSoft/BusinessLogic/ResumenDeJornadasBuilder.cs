@@ -5,16 +5,21 @@ using LigaSoft.ExtensionMethods;
 using LigaSoft.Models;
 using LigaSoft.Models.Dominio;
 using LigaSoft.Models.ViewModels;
+using LigaSoft.Utilidades;
+using LigaSoft.Utilidades.Persistence;
+using LigaSoft.Utilidades.Persistence.DiskPersistence;
 
 namespace LigaSoft.BusinessLogic
 {
     public class ResumenDeJornadasBuilder
 	{
 	    private readonly ApplicationDbContext _context;
+		private static IImagenesEscudosPersistence _imagenesEscudosPersistence;
 
 		public ResumenDeJornadasBuilder(ApplicationDbContext context)
 		{
 			_context = context;
+			_imagenesEscudosPersistence = new ImagenesEscudosDiskPersistence(new AppPathsWebApp());
 		}
 
 		public ResumenDeJornadasVM Tablas(Zona zona, List<Fecha> fechas)
@@ -32,14 +37,16 @@ namespace LigaSoft.BusinessLogic
 					{
 						JornadaId = jornada.Id,
 						JornadaNumero = jornadasContador,
-						Equipo = jornada.NombreDelLocal()
+						Equipo = jornada.NombreDelLocal(),
+						Escudo = _imagenesEscudosPersistence.PathRelativo(jornada.LocalIdInt()),
 					};
 
 					var renglonVisitante = new JornadasPorFechaRenglonVM
 					{
 						JornadaId = jornada.Id,
 						JornadaNumero = jornadasContador,
-						Equipo = jornada.NombreDelVisitante()
+						Equipo = jornada.NombreDelVisitante(),
+						Escudo = _imagenesEscudosPersistence.PathRelativo(jornada.VisitanteIdInt()),
 					};
 
 					foreach (var partido in jornada.Partidos)

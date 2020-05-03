@@ -1,7 +1,3 @@
-.fondoGris {
-	background-color: darkgrey;
-}
-
-.fondoBlanco {
-	background-color: blanco;
+.renglon:nth-child(even) {
+	border-bottom: 2px solid black;
 }
