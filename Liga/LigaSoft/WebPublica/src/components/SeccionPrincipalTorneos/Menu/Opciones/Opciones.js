@@ -4,10 +4,18 @@ import {useDispatch} from 'react-redux';
 import styles from './Opciones.css';
 import baseStyles from 'GlobalStyle/base.css';
 import bootstrap from 'GlobalStyle/bootstrap.min.css';
+import {useSelector} from 'react-redux';
 
 const Opciones = () =>{
     
   const dispatch = useDispatch();
+  const faseSeleccionada = useSelector(state => state.faseReducer.fase);
+  
+  if (faseSeleccionada == 'Anual') {
+    dispatch(actualizarOpcion("Posiciones"));
+    return <></>;
+  }
+    
 
   return (
     <>
