@@ -3,7 +3,7 @@ import Torneos from './Torneos/Torneos';
 import Zonas from './Zonas/Zonas';
 import Fases from './Fases/Fases';
 import Opciones from './Opciones/Opciones';
-import Posiciones from './Posiciones/Posiciones';
+import OpcionPosiciones from './OpcionPosiciones/OpcionPosiciones';
 import {useSelector} from 'react-redux';
 
 const Menu = () => {
@@ -21,7 +21,7 @@ const Menu = () => {
     else if (!opcionSeleccionada && faseSeleccionada)
       return <Opciones />
     else if (opcionSeleccionada == "Posiciones")
-      return <Posiciones zonaAperturaId={zonaSeleccionada.id} fase={faseSeleccionada}/>
+      return <OpcionPosiciones zonaAperturaId={zonaSeleccionada.id} fase={faseSeleccionada}/>
 }
 
 export default Menu;

@@ -1,9 +1,9 @@
 import React from "react";
 import {fetchDataAndRenderResponse} from "Utils/hooks";
 import TablaPosiciones from "./TablaPosiciones/TablaPosiciones";
-import styles from "./Posiciones.css";
+import styles from "./OpcionPosiciones.css";
 
-const Posiciones = (props) =>{    
+const OpcionPosiciones = (props) =>{    
 
   const render = (data) => {
       const verGoles = data.VerGoles;
@@ -21,4 +21,4 @@ const Posiciones = (props) =>{
     return fetchDataAndRenderResponse("/publico/posiciones?zonaAperturaId="+props.zonaAperturaId+"&fase="+props.fase, render);
 }
 
-export default Posiciones;
+export default OpcionPosiciones;
