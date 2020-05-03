@@ -57,7 +57,7 @@ namespace LigaSoft.Controllers
 				.ToList();
 
 			var result = zonas
-							.Select(x => new { descripcion = $"{x.Nombre}", id = x.Id.ToString() })
+							.Select(x => new { descripcion = $"{x.Nombre}", id = x.Id.ToString(), hayClausura = _zonaHelper.ZonaClausura(x) != null })
 							.ToList();
 
 			return Json(result, JsonRequestBehavior.AllowGet);
