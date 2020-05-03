@@ -7,7 +7,7 @@ const TablaJornadas = (props) =>{
       return (
         <div className={tabla.columnaTabla}>
               <h3 className={tabla.tituloBlancoConSombraNegra}>{props.titulo}</h3>
-              <table className={tabla.tablaPosiciones}>
+              <table className={tabla.tabla}>
                 <thead>
                 <tr>
                   <th className={tabla.cabecera}></th>
