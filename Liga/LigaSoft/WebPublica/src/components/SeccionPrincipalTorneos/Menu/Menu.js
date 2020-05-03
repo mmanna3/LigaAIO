@@ -40,11 +40,11 @@ const Menu = () => {
     function getZonaId(zona, fase) {
       switch (fase) {
         case 'Apertura':
-          return zona.id;
+          return zona.zonaAperturaId;
         case 'Clausura':
           return zona.zonaClausuraId;
         case 'Anual':
-          return zona.id;
+          return zona.zonaAperturaId;
       }
     }
 }

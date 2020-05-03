@@ -59,7 +59,7 @@ namespace LigaSoft.Controllers
 			var result = zonas
 							.Select(x => new {
 											descripcion = $"{x.Nombre}",
-											id = x.Id.ToString(),   //En breve, cambiar a zonaAperturaId
+											zonaAperturaId = x.Id,
 											zonaClausuraId = _zonaHelper.ZonaClausura(x) == null ? (int?) null : _zonaHelper.ZonaClausura(x).Id
 										})
 							.ToList();
