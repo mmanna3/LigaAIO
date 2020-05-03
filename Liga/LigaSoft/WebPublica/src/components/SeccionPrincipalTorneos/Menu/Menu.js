@@ -6,6 +6,7 @@ import Opciones from './Opciones/Opciones';
 import OpcionPosiciones from './OpcionPosiciones/OpcionPosiciones';
 import OpcionJornadas from './OpcionJornadas/OpcionJornadas';
 import OpcionClubes from './OpcionClubes/OpcionClubes';
+import OpcionFixture from './OpcionFixture/OpcionFixture';
 import {useSelector} from 'react-redux';
 
 const Menu = () => {
@@ -28,6 +29,8 @@ const Menu = () => {
       return <OpcionJornadas zonaId={zonaSeleccionada.id}/>
     else if (opcionSeleccionada == "Clubes")
       return <OpcionClubes zonaId={zonaSeleccionada.id}/>
+    else if (opcionSeleccionada == "Fixture")
+      return <OpcionFixture zonaId={zonaSeleccionada.id}/>
     else
       return <div>Error</div>
 }

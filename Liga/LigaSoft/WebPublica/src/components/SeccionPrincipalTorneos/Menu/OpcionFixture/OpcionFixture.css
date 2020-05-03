@@ -1,0 +1,4 @@
+.rowTablas {
+	composes: row from './../../../../assets/styles/bootstrap.min.css';
+	padding-top: 1em;
+}

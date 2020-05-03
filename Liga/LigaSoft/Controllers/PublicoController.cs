@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Web.Hosting;
 using System.Web.Mvc;
@@ -8,6 +9,7 @@ using LigaSoft.Models;
 using LigaSoft.Models.ViewModels;
 using LigaSoft.Utilidades;
 using LigaSoft.Utilidades.Persistence.DiskPersistence;
+using LigaSoft.ViewModelMappers;
 
 namespace LigaSoft.Controllers
 {
@@ -124,7 +126,7 @@ namespace LigaSoft.Controllers
 		{
 			var zona = _context.Zonas.Find(zonaId);
 
-			var result = new DatosDeEquiposVM($"Equipos de la zona {zona.Nombre}");
+			var result = new DatosDeEquiposVM("");
 			var zonaHelper = new ZonaHelper(_context);
 
 			foreach (var equipo in zonaHelper.EquiposDeLaZonaDatosParaLosDatosWebPublica(zona))
@@ -139,6 +141,26 @@ namespace LigaSoft.Controllers
 				};
 
 				result.Renglones.Add(renglon);
+			}
+
+			return Json(result, JsonRequestBehavior.AllowGet);
+		}
+
+		public ActionResult Fixture(int zonaId)
+		{
+			var zona = _context.Zonas.Include(x => x.Fechas).FirstOrDefault(x => x.Id == zonaId);
+			var result = new FixtureVM("");
+
+			if (zona != null)
+			{
+				//Estas dos líneas deberían estar adentro del MapFixture
+				result.ZonaId = zona.Id;
+				result.PublicadoBool = zona.FixturePublicado;
+
+				var zonaVMM = new ZonaVMM(_context);
+
+				if (zona.FixturePublicado)
+					zonaVMM.MapFixture(zona, result);
 			}
 
 			return Json(result, JsonRequestBehavior.AllowGet);
