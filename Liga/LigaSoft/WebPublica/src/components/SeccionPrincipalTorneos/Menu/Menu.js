@@ -13,7 +13,7 @@ const Menu = () => {
     const torneoSeleccionado = useSelector(state => state.torneoReducer.torneo);
     const zonaSeleccionada = useSelector(state => state.zonaReducer.zona);
     const faseSeleccionada = useSelector(state => state.faseReducer.fase);
-    const opcionSeleccionada = useSelector(state => state.opcionReducer.opcion);
+    const opcionSeleccionada = useSelector(state => state.opcionReducer.opcion);    
 
     if (!torneoSeleccionado)
       return <Torneos />
@@ -23,16 +23,30 @@ const Menu = () => {
       return <Fases />
     else if (!opcionSeleccionada && faseSeleccionada)
       return <Opciones />
-    else if (opcionSeleccionada == "Posiciones")
-      return <OpcionPosiciones zonaAperturaId={zonaSeleccionada.id} fase={faseSeleccionada}/>
-    else if (opcionSeleccionada == "Jornadas")
-      return <OpcionJornadas zonaId={zonaSeleccionada.id}/>
-    else if (opcionSeleccionada == "Clubes")
-      return <OpcionClubes zonaId={zonaSeleccionada.id}/>
-    else if (opcionSeleccionada == "Fixture")
-      return <OpcionFixture zonaId={zonaSeleccionada.id}/>
-    else
-      return <div>Error</div>
+    else if (opcionSeleccionada) {
+
+      const zonaSeleccionadaId = getZonaId(zonaSeleccionada, faseSeleccionada);
+
+      if (opcionSeleccionada == "Posiciones")
+        return <OpcionPosiciones zonaAperturaId={zonaSeleccionada.id} fase={faseSeleccionada}/>
+      else if (opcionSeleccionada == "Jornadas")
+        return <OpcionJornadas zonaId={zonaSeleccionadaId}/>
+      else if (opcionSeleccionada == "Clubes")
+        return <OpcionClubes zonaId={zonaSeleccionadaId}/>
+      else if (opcionSeleccionada == "Fixture")
+        return <OpcionFixture zonaId={zonaSeleccionadaId}/>
+    }
+
+    function getZonaId(zona, fase) {
+      switch (fase) {
+        case 'Apertura':
+          return zona.id;
+        case 'Clausura':
+          return zona.zonaClausuraId;
+        case 'Anual':
+          return zona.id;
+      }
+    }
 }
 
 export default Menu;

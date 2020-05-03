@@ -13,10 +13,10 @@ const Zonas = (props) =>{
   const render = (data) => {
       return (
         <div className={bootstrap.row}>
-          {data.map(({ id, descripcion, hayClausura }) => (
+          {data.map(({ id, descripcion, zonaClausuraId }) => (
             <div key={id} className={baseStyles.cajaContainer}> 
               <div className={styles.cajaZona}
-                   onClick={() => dispatch(actualizarZona({"id": id, "descripcion": descripcion, "hayClausura": hayClausura}))}>
+                   onClick={() => dispatch(actualizarZona({"id": id, "descripcion": descripcion, "zonaClausuraId": zonaClausuraId}))}>
                     <div className={baseStyles.textoCaja}>{descripcion}</div>
               </div>
             </div>

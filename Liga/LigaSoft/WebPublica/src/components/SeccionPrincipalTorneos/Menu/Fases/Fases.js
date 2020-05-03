@@ -8,9 +8,9 @@ import bootstrap from 'GlobalStyle/bootstrap.min.css';
 const Fases = () =>{
     
   const dispatch = useDispatch();
-  const hayClausura = useSelector(state => state.zonaReducer.zona).hayClausura;
+  const zona = useSelector(state => state.zonaReducer.zona);
   
-  if (hayClausura) {
+  if (zona.zonaClausuraId != null) {
     return (
       <div className={bootstrap.row}>
           <div className={baseStyles.cajaContainer}> 

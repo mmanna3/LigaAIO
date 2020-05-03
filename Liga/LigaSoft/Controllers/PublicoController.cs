@@ -57,7 +57,11 @@ namespace LigaSoft.Controllers
 				.ToList();
 
 			var result = zonas
-							.Select(x => new { descripcion = $"{x.Nombre}", id = x.Id.ToString(), hayClausura = _zonaHelper.ZonaClausura(x) != null })
+							.Select(x => new {
+											descripcion = $"{x.Nombre}",
+											id = x.Id.ToString(),   //En breve, cambiar a zonaAperturaId
+											zonaClausuraId = _zonaHelper.ZonaClausura(x) == null ? (int?) null : _zonaHelper.ZonaClausura(x).Id
+										})
 							.ToList();
 
 			return Json(result, JsonRequestBehavior.AllowGet);
