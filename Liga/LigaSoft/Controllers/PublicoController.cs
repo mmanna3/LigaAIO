@@ -3,8 +3,11 @@ using System.Linq;
 using System.Web.Hosting;
 using System.Web.Mvc;
 using LigaSoft.BusinessLogic;
+using LigaSoft.ExtensionMethods;
 using LigaSoft.Models;
 using LigaSoft.Models.ViewModels;
+using LigaSoft.Utilidades;
+using LigaSoft.Utilidades.Persistence.DiskPersistence;
 
 namespace LigaSoft.Controllers
 {
@@ -15,6 +18,7 @@ namespace LigaSoft.Controllers
 		private readonly TablaWebPublicaBuilder _tablaWebPublicaBuilder;
 		private readonly TablaAnualWebPublicaBuilder _tablaAnualWebPublicaBuilder;
 		private readonly ZonaHelper _zonaHelper;
+		private readonly ImagenesEscudosDiskPersistence _imagenesEscudosPersistence;
 
 		public PublicoController()
 		{			
@@ -22,6 +26,7 @@ namespace LigaSoft.Controllers
 			_tablaWebPublicaBuilder = new TablaWebPublicaBuilder(_context);
 			_tablaAnualWebPublicaBuilder = new TablaAnualWebPublicaBuilder(_context);
 			_zonaHelper = new ZonaHelper(_context);
+			_imagenesEscudosPersistence = new ImagenesEscudosDiskPersistence(new AppPathsWebApp());
 		}
 
 		public ActionResult Index()
@@ -110,6 +115,30 @@ namespace LigaSoft.Controllers
 				var resumenJornadasHelper = new ResumenDeJornadasBuilder();
 				var fechas = zona.Fechas.Where(x => x.Publicada).ToList();
 				result = resumenJornadasHelper.Tablas(zona, fechas);
+			}
+
+			return Json(result, JsonRequestBehavior.AllowGet);
+		}
+
+		public ActionResult Clubes(int zonaId)
+		{
+			var zona = _context.Zonas.Find(zonaId);
+
+			var result = new DatosDeEquiposVM($"Equipos de la zona {zona.Nombre}");
+			var zonaHelper = new ZonaHelper(_context);
+
+			foreach (var equipo in zonaHelper.EquiposDeLaZonaDatosParaLosDatosWebPublica(zona))
+			{
+				var renglon = new RenglonDatosEquipo
+				{
+					Equipo = equipo.Nombre,
+					Escudo = _imagenesEscudosPersistence.PathRelativo(equipo.Club.Id),
+					Direccion = equipo.Club.Direccion,
+					Localidad = equipo.Club.Localidad,
+					TechoDescripcion = equipo.Club.TechoBoolToTechoEnum().Descripcion(),
+				};
+
+				result.Renglones.Add(renglon);
 			}
 
 			return Json(result, JsonRequestBehavior.AllowGet);

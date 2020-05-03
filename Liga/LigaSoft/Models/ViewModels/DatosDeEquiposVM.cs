@@ -24,6 +24,7 @@ namespace LigaSoft.Models.ViewModels
 		public string Localidad { get; set; }
 		public string Direccion { get; set; }
 		public Techo Techo { get; set; }
+		public string TechoDescripcion { get; set; }
 		public string Delegado1 { get; set; }
 		public string Telefono1 { get; set; }
 		public string Delegado2 { get; set; }

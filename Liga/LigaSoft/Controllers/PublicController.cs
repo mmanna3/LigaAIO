@@ -3,7 +3,6 @@ using System.Linq;
 using System.Web.Mvc;
 using LigaSoft.Models;
 using LigaSoft.Models.Dominio;
-using LigaSoft.Models.Enums;
 using LigaSoft.Models.ViewModels;
 using LigaSoft.ViewModelMappers;
 

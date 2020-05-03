@@ -5,6 +5,7 @@ import Fases from './Fases/Fases';
 import Opciones from './Opciones/Opciones';
 import OpcionPosiciones from './OpcionPosiciones/OpcionPosiciones';
 import OpcionJornadas from './OpcionJornadas/OpcionJornadas';
+import OpcionClubes from './OpcionClubes/OpcionClubes';
 import {useSelector} from 'react-redux';
 
 const Menu = () => {
@@ -25,6 +26,10 @@ const Menu = () => {
       return <OpcionPosiciones zonaAperturaId={zonaSeleccionada.id} fase={faseSeleccionada}/>
     else if (opcionSeleccionada == "Jornadas")
       return <OpcionJornadas zonaId={zonaSeleccionada.id}/>
+    else if (opcionSeleccionada == "Clubes")
+      return <OpcionClubes zonaId={zonaSeleccionada.id}/>
+    else
+      return <div>Error</div>
 }
 
 export default Menu;
