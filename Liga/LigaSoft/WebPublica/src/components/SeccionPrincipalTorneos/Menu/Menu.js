@@ -28,7 +28,7 @@ const Menu = () => {
       const zonaSeleccionadaId = getZonaId(zonaSeleccionada, faseSeleccionada);
 
       if (opcionSeleccionada == "Posiciones")
-        return <OpcionPosiciones zonaAperturaId={zonaSeleccionada.id} fase={faseSeleccionada}/>
+        return <OpcionPosiciones zonaId={zonaSeleccionadaId} esAnual={faseSeleccionada == 'Anual'}/>
       else if (opcionSeleccionada == "Jornadas")
         return <OpcionJornadas zonaId={zonaSeleccionadaId}/>
       else if (opcionSeleccionada == "Clubes")

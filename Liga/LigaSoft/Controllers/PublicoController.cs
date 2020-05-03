@@ -67,46 +67,18 @@ namespace LigaSoft.Controllers
 			return Json(result, JsonRequestBehavior.AllowGet);
 		}
 
-		public ActionResult Posiciones(int zonaAperturaId, string fase)
+		public ActionResult Posiciones(int zonaId)
 		{
-			var metodo = GetType().GetMethod($"Posiciones{fase}");
+			var zona = _context.Zonas.Find(zonaId);
+			var tablas = _tablaWebPublicaBuilder.Tablas(zona);
 
-			return (ActionResult) metodo.Invoke(this, new object[] { zonaAperturaId });
+			return Json(tablas, JsonRequestBehavior.AllowGet);
 		}
 
 		public ActionResult PosicionesAnual(int zonaAperturaId)
 		{
 			var zona = _context.Zonas.Find(zonaAperturaId);		
 			var tablas = _tablaAnualWebPublicaBuilder.Tablas(zona);
-
-			return Json(tablas, JsonRequestBehavior.AllowGet);
-		}
-
-		public ActionResult PosicionesClausura(int zonaAperturaId)
-		{
-			var zonaApertura = _context.Zonas.Find(zonaAperturaId);
-			var tablas = new TablasVM();
-			if (zonaApertura != null)
-			{
-				var zonaClausura = _zonaHelper.ZonaClausura(zonaApertura);
-				tablas = _tablaWebPublicaBuilder.Tablas(zonaClausura);
-			}
-
-			return Json(tablas, JsonRequestBehavior.AllowGet);
-		}
-
-		public ActionResult PosicionesApertura(int zonaAperturaId)
-		{
-			var zona = _context.Zonas.Find(zonaAperturaId);
-			var tablas = _tablaWebPublicaBuilder.Tablas(zona);
-
-			return Json(tablas, JsonRequestBehavior.AllowGet);
-		}
-
-		public ActionResult PosicionesRelampago(int zonaAperturaId)
-		{
-			var zona = _context.Zonas.Find(zonaAperturaId);
-			var tablas = _tablaWebPublicaBuilder.Tablas(zona);
 
 			return Json(tablas, JsonRequestBehavior.AllowGet);
 		}

@@ -18,7 +18,10 @@ const OpcionPosiciones = (props) =>{
       )
     }    
 
-    return fetchDataAndRenderResponse("/publico/posiciones?zonaAperturaId="+props.zonaAperturaId+"&fase="+props.fase, render);
+    if (!props.esAnual)
+      return fetchDataAndRenderResponse("/publico/posiciones?zonaId="+props.zonaId, render);
+    else
+      return fetchDataAndRenderResponse("/publico/posicionesAnual?zonaAperturaId="+props.zonaId, render);
 }
 
 export default OpcionPosiciones;
