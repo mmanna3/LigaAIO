@@ -10,7 +10,15 @@ const Fases = () =>{
   const dispatch = useDispatch();
   const zona = useSelector(state => state.zonaReducer.zona);
   
-  if (zona.zonaClausuraId != null) {
+  if (zona.zonaAperturaId != null && zona.zonaClausuraId == null) {
+    dispatch(actualizarFase("Apertura"));
+    return <></>;
+  }
+  else if (zona.zonaAperturaId == null && zona.zonaClausuraId != null) {
+    dispatch(actualizarFase("Clausura"));
+    return <></>;
+  }  
+  else {
     return (
       <div className={bootstrap.row}>
           <div className={baseStyles.cajaContainer}> 
@@ -30,9 +38,6 @@ const Fases = () =>{
           </div>
       </div>
     )
-  } else {
-      dispatch(actualizarFase("Apertura"));
-      return <></>;      
   }
 }
 

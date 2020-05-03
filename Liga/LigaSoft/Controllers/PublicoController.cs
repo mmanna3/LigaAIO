@@ -1,15 +1,18 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Web.Hosting;
 using System.Web.Mvc;
 using LigaSoft.BusinessLogic;
 using LigaSoft.ExtensionMethods;
+using LigaSoft.Migrations;
 using LigaSoft.Models;
 using LigaSoft.Models.ViewModels;
 using LigaSoft.Utilidades;
 using LigaSoft.Utilidades.Persistence.DiskPersistence;
 using LigaSoft.ViewModelMappers;
+using ZonaTipo = LigaSoft.Models.Enums.ZonaTipo;
 
 namespace LigaSoft.Controllers
 {
@@ -52,17 +55,31 @@ namespace LigaSoft.Controllers
 		public JsonResult Zonas(int torneoId)
 		{
 			var zonas = _context.Zonas
-				.Where(x => x.TorneoId == torneoId)
-				.GroupBy(x => x.Nombre).Select(y => y.FirstOrDefault())
+				.Where(x => x.TorneoId == torneoId)				
 				.ToList();
 
-			var result = zonas
-							.Select(x => new {
-											descripcion = $"{x.Nombre}",
-											zonaAperturaId = x.Id,
-											zonaClausuraId = _zonaHelper.ZonaClausura(x) == null ? (int?) null : _zonaHelper.ZonaClausura(x).Id
-										})
-							.ToList();
+			var result = new List<ZonaFE>();
+
+			foreach (var zona in zonas)
+			{
+				if (result.All(x => x.descripcion != zona.Nombre))
+					result.Add(new ZonaFE {descripcion = zona.Nombre});
+
+				var zonaFE = result.Single(x => x.descripcion == zona.Nombre);
+
+				switch (zona.Tipo)
+				{
+					case ZonaTipo.Apertura:
+						zonaFE.zonaAperturaId = zona.Id;
+						break;
+					case ZonaTipo.Clausura:
+						zonaFE.zonaClausuraId = zona.Id;
+						break;
+					case ZonaTipo.Relampago:
+						zonaFE.zonaRelampagoId = zona.Id;
+						break;
+				}
+			}
 
 			return Json(result, JsonRequestBehavior.AllowGet);
 		}
@@ -140,6 +157,14 @@ namespace LigaSoft.Controllers
 			}
 
 			return Json(result, JsonRequestBehavior.AllowGet);
+		}
+
+		private class ZonaFE
+		{
+			public string descripcion { get; set; }
+			public int? zonaAperturaId { get; set; }
+			public int? zonaClausuraId { get; set; }
+			public int? zonaRelampagoId { get; set; }
 		}
 	}
 }

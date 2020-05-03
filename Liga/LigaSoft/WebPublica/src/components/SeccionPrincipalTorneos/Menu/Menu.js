@@ -45,6 +45,8 @@ const Menu = () => {
           return zona.zonaClausuraId;
         case 'Anual':
           return zona.zonaAperturaId;
+        case 'Relampago':
+          return zona.zonaRelampagoId;
       }
     }
 }
