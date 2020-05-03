@@ -22,7 +22,7 @@ const TablaFixture = (props) =>{
                       <td className={tabla.celdaEscudo}><img width="30px" height="auto" alt="EscudoLocal" src={EscudoLocal} /></td>
                       <td className={tabla.celda}>{Local}</td>
                       <td className={tabla.celdaCentrada}>vs.</td>
-                      <td className={tabla.celda}>{Visitante}</td>
+                      <td className={tabla.celdaAlineadaALaDerecha}>{Visitante}</td>
                       <td className={tabla.celdaEscudo}><img width="30px" height="auto" alt="EscudoVisitante" src={EscudoVisitante} /></td>
                     </tr>
                   ))}

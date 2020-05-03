@@ -10,7 +10,7 @@ const TablaJornadas = (props) =>{
               <table className={tabla.tabla}>
                 <thead>
                 <tr>
-                  <th className={tabla.cabecera}></th>
+                  <th className={tabla.cabeceraIzquierda}></th>
                   <th className={tabla.cabeceraCentrada}>Esc</th>
                   <th className={tabla.cabecera}>Equipo</th>
                   {props.categorias.map(({Nombre}) => (

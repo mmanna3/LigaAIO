@@ -20,7 +20,7 @@
 }
 
 .paddingALaDerecha {
-	padding-right: 0.5em;
+	padding-right: 1em;
 }
 
 .paddingALaIzquierda {
@@ -31,6 +31,11 @@
 .celdaCentrada {
 	composes: celda;
 	composes: textoCentrado;
+}
+
+.celdaAlineadaALaDerecha {
+	composes: celda;
+	text-align: right;
 }
 
 .celdaDerecha {
