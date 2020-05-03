@@ -101,7 +101,7 @@ namespace LigaSoft.Controllers
 	    {
 		    var zona = Context.Zonas.Find(id);
 
-		    var resumenJornadasHelper = new ResumenDeJornadasBuilder(Context);
+		    var resumenJornadasHelper = new ResumenDeJornadasBuilder();
 		    var fechas = zona.Fechas.Where(x => x.Jornadas.Any(y => y.Partidos.Any())).ToList();
 
 			var vm = resumenJornadasHelper.Tablas(zona, fechas);

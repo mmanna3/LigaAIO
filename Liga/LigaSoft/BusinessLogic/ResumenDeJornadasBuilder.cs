@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using LigaSoft.ExtensionMethods;
-using LigaSoft.Models;
 using LigaSoft.Models.Dominio;
 using LigaSoft.Models.ViewModels;
 using LigaSoft.Utilidades;
@@ -13,12 +12,10 @@ namespace LigaSoft.BusinessLogic
 {
     public class ResumenDeJornadasBuilder
 	{
-	    private readonly ApplicationDbContext _context;
 		private static IImagenesEscudosPersistence _imagenesEscudosPersistence;
 
-		public ResumenDeJornadasBuilder(ApplicationDbContext context)
+		public ResumenDeJornadasBuilder()
 		{
-			_context = context;
 			_imagenesEscudosPersistence = new ImagenesEscudosDiskPersistence(new AppPathsWebApp());
 		}
 

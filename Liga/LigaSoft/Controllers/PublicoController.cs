@@ -107,7 +107,7 @@ namespace LigaSoft.Controllers
 
 			if (zona != null)
 			{
-				var resumenJornadasHelper = new ResumenDeJornadasBuilder(_context);
+				var resumenJornadasHelper = new ResumenDeJornadasBuilder();
 				var fechas = zona.Fechas.Where(x => x.Publicada).ToList();
 				result = resumenJornadasHelper.Tablas(zona, fechas);
 			}

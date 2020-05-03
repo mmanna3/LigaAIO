@@ -188,7 +188,7 @@ namespace LigaSoft.ViewModelMappers
 
 		public void MapJornadasWebPublica(Zona zona, PublicIndexVM vm)
 		{
-			var resumenJornadasHelper = new ResumenDeJornadasBuilder(_context);
+			var resumenJornadasHelper = new ResumenDeJornadasBuilder();
 			var fechas = zona.Fechas.Where(x => x.Publicada).ToList();
 			vm.Jornadas = resumenJornadasHelper.Tablas(zona, fechas);
 		}
