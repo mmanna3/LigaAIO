@@ -4,6 +4,7 @@ using System.Web.Hosting;
 using System.Web.Mvc;
 using LigaSoft.BusinessLogic;
 using LigaSoft.Models;
+using LigaSoft.Models.ViewModels;
 
 namespace LigaSoft.Controllers
 {
@@ -73,8 +74,12 @@ namespace LigaSoft.Controllers
 		public ActionResult PosicionesClausura(int zonaAperturaId)
 		{
 			var zonaApertura = _context.Zonas.Find(zonaAperturaId);
-			var zonaClausura = _zonaHelper.ZonaClausura(zonaApertura);
-			var tablas = _tablaWebPublicaBuilder.Tablas(zonaClausura);
+			var tablas = new TablasVM();
+			if (zonaApertura != null)
+			{
+				var zonaClausura = _zonaHelper.ZonaClausura(zonaApertura);
+				tablas = _tablaWebPublicaBuilder.Tablas(zonaClausura);
+			}
 
 			return Json(tablas, JsonRequestBehavior.AllowGet);
 		}

@@ -8,6 +8,7 @@ namespace LigaSoft.Models.ViewModels
 		public TablasVM()
 		{
 			TablasPorCategoria = new List<TablaCategoriaVM>();
+			TablaGeneral = new TablaCategoriaVM();
 		}
 
 		public int ZonaId { get; set; }
