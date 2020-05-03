@@ -6,10 +6,12 @@ import styles from "./OpcionJornadas.css";
 const OpcionJornadas = (props) =>{    
 
   const render = (data) => {
+    const categorias = data.Categorias;
+
       return (
         <div className={styles.rowTablas}>
           {data.JornadasPorFecha.map(({ FechaNumero, Renglones }) => (
-            <TablaJornadas key={FechaNumero} titulo={FechaNumero} renglones={Renglones}/>
+            <TablaJornadas key={FechaNumero} titulo={FechaNumero} renglones={Renglones} categorias={categorias}/>
           ))}
         </div>
       )
