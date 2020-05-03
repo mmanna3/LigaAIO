@@ -103,9 +103,14 @@ namespace LigaSoft.Controllers
 		public ActionResult Jornadas(int zonaId)
 		{
 			var zona = _context.Zonas.Find(zonaId);
-			var resumenJornadasHelper = new ResumenDeJornadasBuilder(_context);
-			var fechas = zona.Fechas.Where(x => x.Publicada).ToList();
-			var result = resumenJornadasHelper.Tablas(zona, fechas);
+			var result = new ResumenDeJornadasVM();
+
+			if (zona != null)
+			{
+				var resumenJornadasHelper = new ResumenDeJornadasBuilder(_context);
+				var fechas = zona.Fechas.Where(x => x.Publicada).ToList();
+				result = resumenJornadasHelper.Tablas(zona, fechas);
+			}
 
 			return Json(result, JsonRequestBehavior.AllowGet);
 		}
