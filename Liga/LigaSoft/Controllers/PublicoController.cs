@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
@@ -8,6 +9,7 @@ using LigaSoft.BusinessLogic;
 using LigaSoft.ExtensionMethods;
 using LigaSoft.Migrations;
 using LigaSoft.Models;
+using LigaSoft.Models.Enums;
 using LigaSoft.Models.ViewModels;
 using LigaSoft.Utilidades;
 using LigaSoft.Utilidades.Persistence.DiskPersistence;
@@ -43,17 +45,19 @@ namespace LigaSoft.Controllers
 
 		public JsonResult Torneos()
 		{
-			var jornadas = _context.Torneos
-				.Where(x => x.Publico)
+			Enum.TryParse(DateTime.Now.Year.ToString(), out Anio corrienteAnio);
+
+			var result = _context.Torneos
+				.Where(x => x.Publico && x.Anio == corrienteAnio)
 				.ToList()
 				.Select(x => new { descripcion = $"{x.Tipo.Descripcion}", id = x.Id.ToString(), formato = x.Tipo.Formato.ToString().ToLower() })
 				.ToList();
 
-			return Json(jornadas, JsonRequestBehavior.AllowGet);
+			return Json(result, JsonRequestBehavior.AllowGet);
 		}
 
 		public JsonResult Zonas(int torneoId)
-		{
+		{		
 			var zonas = _context.Zonas
 				.Where(x => x.TorneoId == torneoId)				
 				.ToList();
