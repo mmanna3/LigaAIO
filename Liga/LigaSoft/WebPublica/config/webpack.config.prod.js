@@ -33,7 +33,7 @@ module.exports = {
         },
       },
       {
-        test: /\.(ttf|woff|woff2|jpg)$/,
+        test: /\.(ttf|woff|woff2|jpg|png)$/,
         use: {
           loader: 'url-loader',
           options: {
