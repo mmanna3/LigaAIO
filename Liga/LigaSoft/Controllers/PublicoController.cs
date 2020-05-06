@@ -48,7 +48,8 @@ namespace LigaSoft.Controllers
 			Enum.TryParse(DateTime.Now.Year.ToString(), out Anio corrienteAnio);
 
 			var result = _context.Torneos
-				.Where(x => x.Publico && x.Anio == corrienteAnio)
+				//.Where(x => x.Publico && x.Anio == corrienteAnio)
+				.Where(x => x.Publico && (x.Anio == corrienteAnio || x.Anio == corrienteAnio -1))	//Sólo para pruebas de Eze en prod
 				.ToList()
 				.Select(x => new { descripcion = $"{x.Tipo.Descripcion}", id = x.Id.ToString(), formato = x.Tipo.Formato.ToString().ToLower() })
 				.ToList();
