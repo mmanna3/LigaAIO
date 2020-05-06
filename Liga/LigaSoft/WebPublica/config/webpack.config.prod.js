@@ -65,6 +65,7 @@ module.exports = {
       GlobalStyle: path.resolve(__dirname, '../src/assets/styles'),
       Store: path.resolve(__dirname, '../src/store'),
       Utils: path.resolve(__dirname, '../src/utils'),
+      Assets: path.resolve(__dirname, '../src/assets'),
     }
   }
 }

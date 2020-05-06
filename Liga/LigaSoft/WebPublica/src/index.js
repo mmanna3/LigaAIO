@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import Home from './components/Home/Home';
 import { Provider } from 'react-redux';
 import store from './store';
 import Navbar from './components/Navbar/Navbar';
@@ -11,7 +11,7 @@ const Application = () => (
     <Provider store={store}>
         <Navbar/>
         <div id="contenido" className={bootstrap.container}>
-            <App />
+            <Home/>
         </div>
     </Provider>
 );

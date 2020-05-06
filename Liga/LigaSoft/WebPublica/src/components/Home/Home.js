@@ -1,18 +1,19 @@
 import React from 'react';
 import BannerHome from 'Components/BannerHome/BannerHome.js';
 import SeccionPrincipalTorneos from 'Components/SeccionPrincipalTorneos/SeccionPrincipalTorneos.js';
+import Footer from 'Components/Footer/Footer';
 import {COLOR} from "Utils/consts";
 import {useSelector} from 'react-redux';
-import './App.css';
-import Footer from 'Components/Footer/Footer';
+import './Home.css';
 
-function App() {
+
+function Home() {
     const seccionPrincipalSeleccionada = useSelector(state => state.seccionPrincipalReducer.seccionPrincipal);
 
     if (!seccionPrincipalSeleccionada)
       return (
         <>
-        <div className="app">
+        <div className="home">
           <BannerHome titulo="Torneos" color={COLOR.ROJO} />
           <BannerHome titulo="Noticias" color={COLOR.VERDE} />
           <BannerHome titulo="Nosotros" color={COLOR.AZUL} />          
@@ -25,4 +26,4 @@ function App() {
     return null;
 }
 
-export default App;
+export default Home;
