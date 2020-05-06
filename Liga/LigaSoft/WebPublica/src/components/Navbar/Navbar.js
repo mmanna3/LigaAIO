@@ -52,7 +52,7 @@ return (
                             <a className={styles.navLink} href="#" onClick={() => actualizarSeccionPrincipalYOcultarMenu("Noticias")}>Noticias</a>
                         </li>
                         <li className={bootstrap['nav-item']}>
-                            <a className={styles.navLink} href="#" onClick={() => actualizarSeccionPrincipalYOcultarMenu("Contacto")}>Contacto</a>
+                            <a className={styles.navLink} href="#" onClick={() => actualizarSeccionPrincipalYOcultarMenu("Nosotros")}>Nosotros</a>
                         </li>
                     </ul>
                 </div>

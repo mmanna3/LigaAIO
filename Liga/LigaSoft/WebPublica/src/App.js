@@ -15,7 +15,7 @@ function App() {
         <div className="app">
           <BannerHome titulo="Torneos" color={COLOR.ROJO} />
           <BannerHome titulo="Noticias" color={COLOR.VERDE} />
-          <BannerHome titulo="Contacto" color={COLOR.AZUL} />          
+          <BannerHome titulo="Nosotros" color={COLOR.AZUL} />          
         </div>
         <Footer/>
         </>
