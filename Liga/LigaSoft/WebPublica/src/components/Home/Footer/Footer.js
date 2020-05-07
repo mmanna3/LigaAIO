@@ -1,9 +1,7 @@
 import React from "react";
 import styles from "./Footer.css";
-import bootstrap from "GlobalStyle/bootstrap.min.css";
 
 const Footer = () => {
-
 
     return (
             <div className={styles.footerContainer}>

@@ -1,3 +1,5 @@
+@value footerHeight_mobile, footerHeight_desktop from './Footer/Footer.css';
+
 @font-face {
 	font-family: 'SegoeUI';
 	font-weight: 400;
@@ -53,8 +55,25 @@ body {
 	width: fit-content;	/* Pero si hay contenido más ancho (por las tablas, por ejemplo), se ajusta */
 }
 
+
+/*Los value de abajo están pisando éstos y no se aplican en mobile*/
+@value navbarHeight_mobile: 60px;
+@value navbarHeight_desktop: 88px;
+
+@value homeHeight_mobile: calc(100vh - navbarHeight_mobile);
+@value homeHeight_desktop: calc(100vh - navbarHeight_desktop);
+
+@value bannersContainerHeight_mobile: calc(max(homeHeight_mobile - footerHeight_mobile, 200px));
+@value bannersContainerHeight_desktop: calc(max(homeHeight_desktop - footerHeight_desktop, 530px));
+
+
 @media (min-width: 576px) {	
-	body {
-		width: 100%;
-	}	
+
+	.home {
+		height: homeHeight;
+	}
+
+	.banners {
+		height: bannersHeight;
+	}
 }

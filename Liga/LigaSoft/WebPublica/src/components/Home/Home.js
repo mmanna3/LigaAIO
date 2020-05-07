@@ -1,10 +1,10 @@
 import React from 'react';
-import BannerHome from 'Components/BannerHome/BannerHome.js';
-import SeccionPrincipalTorneos from 'Components/SeccionPrincipalTorneos/SeccionPrincipalTorneos.js';
-import Footer from 'Components/Footer/Footer';
+import BannerHome from './BannerHome/BannerHome';
+import Footer from './Footer/Footer';
+import SeccionPrincipalTorneos from 'Components/SeccionPrincipalTorneos/SeccionPrincipalTorneos';
 import {COLOR} from "Utils/consts";
 import {useSelector} from 'react-redux';
-import './Home.css';
+import styles from './Home.css';
 
 
 function Home() {
@@ -12,14 +12,14 @@ function Home() {
 
     if (!seccionPrincipalSeleccionada)
       return (
-        <>
-        <div className="home">
-          <BannerHome titulo="Torneos" color={COLOR.ROJO} />
-          <BannerHome titulo="Noticias" color={COLOR.VERDE} />
-          <BannerHome titulo="Nosotros" color={COLOR.AZUL} />          
+        <div className={styles.home}>
+          <div className={styles.banners}>
+            <BannerHome titulo="Torneos" color={COLOR.ROJO} />
+            <BannerHome titulo="Noticias" color={COLOR.VERDE} />
+            <BannerHome titulo="Nosotros" color={COLOR.AZUL} />          
+          </div>
+          <Footer/>
         </div>
-        <Footer/>
-        </>
       )
     else if (seccionPrincipalSeleccionada == "Torneos")
       return <SeccionPrincipalTorneos />
