@@ -5,9 +5,14 @@ const Footer = () => {
 
     return (
             <div className={styles.footerContainer}>
-                <footer className={styles.pageFooter}>
-                            <a href="https://www.facebook.com/ligaedefi/" className={styles.logoFacebook}></a>
-                            <a href="https://twitter.com/ligaedefi" className={styles.logoTwitter}></a>
+                <footer>
+                    <div className={styles.iconosRedesSociales}>
+                        <a href="https://www.facebook.com/ligaedefi/" className={styles.logoFacebook}></a>
+                        <a href="https://twitter.com/ligaedefi" className={styles.logoTwitter}></a>
+                    </div>
+                    <div className={styles.firma}>
+                        dev by YKN
+                    </div>
                 </footer>
             </div>
     );

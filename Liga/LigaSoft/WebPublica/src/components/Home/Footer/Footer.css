@@ -1,16 +1,18 @@
 @value container  from './../../../assets/styles/bootstrap.min.css';
 @value blanco-grisaceo, gris-oscuro from './../../../assets/styles/colors.css';
-@value footerHeight_desktop: 100px;
-@value footerHeight_mobile: 150px;
+@value footerHeight_desktop: 120px;
+@value footerHeight_mobile: 100px;
 
 .footerContainer {
   width: 100%;
+  height: footerHeight_mobile;
+  padding-top: 10px;
 }
 
-.pageFooter{        
-  display:flex;
-  justify-content:center;
-  text-align:center;
+.iconosRedesSociales{        
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
 
 .iconoRedSocial {
@@ -29,6 +31,17 @@
   content: url('../../../assets/imgs/twitter-icon.png');    
 }
 
+.firma {
+  clear: both;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  padding-top: 8px;
+  padding-bottom: 5px;
+  font-size: 13px;  
+}
+
 @media (min-width: 576px) {  
 
   .iconoRedSocial {
@@ -38,7 +51,8 @@
   }
 
   .footerContainer {
-    height: footerHeight;
+    height: footerHeight_desktop;
+    padding-top: 20px;
   }
 }
 
