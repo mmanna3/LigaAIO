@@ -48,6 +48,13 @@
 	}
 
 	.texto {
+		font-size: 40px;
+		letter-spacing: 3px;
+	}
+}
+
+@media (min-width: 1600px) {
+	.texto {
 		font-size: 50px;
 		letter-spacing: 2px;
 	}
