@@ -24,27 +24,27 @@
 	text-transform: uppercase;	
 }
 
-@value desktop_heightIncluyendoPadding: calc(bannersContainerHeight_desktop/3);
-@value mobile_heightIncluyendoPadding: calc(bannersContainerHeight_mobile/3);
+@value heightIncluyendoPadding_desktop: calc(bannersContainerHeight_desktop/3);
+@value heightIncluyendoPadding_mobile: calc(bannersContainerHeight_mobile/3);
 
-@value bannerHeightDesktop: calc(desktop_heightIncluyendoPadding*8/10);
-@value bannerHeightMobile: calc(mobile_heightIncluyendoPadding*7/9);
+@value bannerHeight_desktop: calc(heightIncluyendoPadding_desktop*8/10);
+@value bannerHeight_mobile: calc(heightIncluyendoPadding_mobile*7/9);
 
-@value bannerPaddingDesktop: calc(desktop_heightIncluyendoPadding*1/10);
-@value bannerPaddingMobile: calc(mobile_heightIncluyendoPadding*1/9);
+@value bannerPadding_desktop: calc(heightIncluyendoPadding_desktop*1/10);
+@value bannerPadding_mobile: calc(heightIncluyendoPadding_mobile*1/9);
 
 .banner {
-	height: bannerHeightMobile;
-	margin-bottom: bannerPaddingMobile;
-	margin-top: bannerPaddingMobile;
+	height: bannerHeight_mobile;
+	margin-bottom: bannerPadding_mobile;
+	margin-top: bannerPadding_mobile;
 }
 
 @media (min-width: 576px) {	
 
 	.banner {
-		height: bannerHeightDesktop;
-		margin-bottom: bannerPaddingDesktop;
-		margin-top: bannerPaddingDesktop;
+		height: bannerHeight_desktop;
+		margin-bottom: bannerPadding_desktop;
+		margin-top: bannerPadding_desktop;
 	}
 
 	.texto {
