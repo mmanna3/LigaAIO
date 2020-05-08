@@ -27,10 +27,10 @@
 @value heightIncluyendoPadding_desktop: calc(bannersContainerHeight_desktop/3);
 @value heightIncluyendoPadding_mobile: calc(bannersContainerHeight_mobile/3);
 
-@value bannerHeight_desktop: calc(heightIncluyendoPadding_desktop*8/10);
+@value bannerHeight_desktop: calc(heightIncluyendoPadding_desktop*12/14);
 @value bannerHeight_mobile: calc(heightIncluyendoPadding_mobile*7/9);
 
-@value bannerPadding_desktop: calc(heightIncluyendoPadding_desktop*1/10);
+@value bannerPadding_desktop: calc(heightIncluyendoPadding_desktop*1/14);
 @value bannerPadding_mobile: calc(heightIncluyendoPadding_mobile*1/9);
 
 .banner {
@@ -49,7 +49,7 @@
 
 	.texto {
 		font-size: 43px;
-		letter-spacing: 2px;
+		letter-spacing: 3px;
 	}
 }
 
