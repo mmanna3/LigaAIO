@@ -5,7 +5,7 @@ import styles from './SeccionPrincipalTorneos.css';
 import bootstrap from "GlobalStyle/bootstrap.min.css";
 
 const SeccionPrincipalTorneos = () => {
-    return (<div>
+    return (<div className={styles.seccionPrincipalTorneos}>
                 <div className={bootstrap.row}>
                     <Navegacion/>
                 </div>

@@ -9,7 +9,6 @@
 
 .navbarYkn {
     composes: navbar navbar-expand-sm navbar-dark;
-    margin-bottom: 1em;
     background-color: gris-oscuro !important;
 }
 

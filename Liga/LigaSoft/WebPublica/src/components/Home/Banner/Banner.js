@@ -1,12 +1,12 @@
 import React from "react";
-import styles from "./BannerHome.css";
+import styles from "./Banner.css";
 import bootstrap from "GlobalStyle/bootstrap.min.css";
 import colors from "GlobalStyle/colors.css";
 import {colorToBackgroundGradientClass} from "Utils/helpers";
 import {actualizarSeccionPrincipal} from 'Store/seccion-principal/action';
 import {useDispatch} from 'react-redux';
 
-const BannerHome = (props) => {
+const Banner = (props) => {
 
   const dispatch = useDispatch();
   const backgroundColorClass = colorToBackgroundGradientClass(props.color);
@@ -22,4 +22,4 @@ const BannerHome = (props) => {
       );
 }
 
-export default BannerHome;
+export default Banner;

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import BannerHome from './BannerHome/BannerHome';
+import Banner from './Banner/Banner';
 import Footer from './Footer/Footer';
 import SeccionPrincipalTorneos from 'Components/SeccionPrincipalTorneos/SeccionPrincipalTorneos';
 import {COLOR} from "Utils/consts";
@@ -20,9 +20,9 @@ function Home() {
       return (
         <div className={styles.home}>
           <div className={styles.banners}>
-            <BannerHome titulo="Torneos" color={COLOR.ROJO} />
-            <BannerHome titulo="Noticias" color={COLOR.VERDE} />
-            <BannerHome titulo="Nosotros" color={COLOR.AZUL} />          
+            <Banner titulo="Torneos" color={COLOR.ROJO} />
+            <Banner titulo="Noticias" color={COLOR.VERDE} />
+            <Banner titulo="Nosotros" color={COLOR.AZUL} />          
           </div>
           <Footer/>
         </div>

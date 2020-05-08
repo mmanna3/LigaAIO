@@ -62,6 +62,11 @@ body {
 @value bannersContainerHeight_desktop: calc(max(var(--windowInnerHeight) - navbarHeight_desktop - footerHeight_desktop, 490px));
 
 
+.banners {
+	height: bannersHeight;
+	padding-top: 10px;
+}
+
 @media (min-width: 576px) {	
 
 	.home {
@@ -69,6 +74,6 @@ body {
 	}
 
 	.banners {
-		height: bannersHeight;
+		padding-top: 0;
 	}
 }
