@@ -1,7 +1,7 @@
 @value container  from './../../../assets/styles/bootstrap.min.css';
 @value blanco-grisaceo, gris-oscuro from './../../../assets/styles/colors.css';
 @value footerHeight_desktop: 120px;
-@value footerHeight_mobile: 100px;
+@value footerHeight_mobile: 140px;
 
 .footerContainer {
   width: 100%;

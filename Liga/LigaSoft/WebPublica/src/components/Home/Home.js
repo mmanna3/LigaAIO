@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import BannerHome from './BannerHome/BannerHome';
 import Footer from './Footer/Footer';
 import SeccionPrincipalTorneos from 'Components/SeccionPrincipalTorneos/SeccionPrincipalTorneos';
@@ -8,7 +8,13 @@ import styles from './Home.css';
 
 
 function Home() {
-    const seccionPrincipalSeleccionada = useSelector(state => state.seccionPrincipalReducer.seccionPrincipal);
+  
+  useEffect(() => {
+    let windowInnerHeight = window.innerHeight;
+    document.documentElement.style.setProperty('--windowInnerHeight', `${windowInnerHeight}px`);
+  }, []);
+
+  const seccionPrincipalSeleccionada = useSelector(state => state.seccionPrincipalReducer.seccionPrincipal);
 
     if (!seccionPrincipalSeleccionada)
       return (
