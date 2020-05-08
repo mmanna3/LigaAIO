@@ -21,17 +21,18 @@
 	transform: translate(0, -52%);
 	font-size: 30px;
 	color: #ddd;
-	text-transform: uppercase;	
+	text-transform: uppercase;
+	letter-spacing: 1px;
 }
 
 @value heightIncluyendoPadding_desktop: calc(bannersContainerHeight_desktop/3);
 @value heightIncluyendoPadding_mobile: calc(bannersContainerHeight_mobile/3);
 
 @value bannerHeight_desktop: calc(heightIncluyendoPadding_desktop*12/14);
-@value bannerHeight_mobile: calc(heightIncluyendoPadding_mobile*7/9);
+@value bannerHeight_mobile: calc(heightIncluyendoPadding_mobile*12/14);
 
 @value bannerPadding_desktop: calc(heightIncluyendoPadding_desktop*1/14);
-@value bannerPadding_mobile: calc(heightIncluyendoPadding_mobile*1/9);
+@value bannerPadding_mobile: calc(heightIncluyendoPadding_mobile*1/14);
 
 .banner {
 	height: bannerHeight_mobile;
