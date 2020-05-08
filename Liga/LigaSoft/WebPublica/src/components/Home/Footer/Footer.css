@@ -6,7 +6,7 @@
 .footerContainer {
   width: 100%;
   height: footerHeight_mobile;
-  padding-top: 10px;
+  padding-top: 10px;  
 }
 
 .iconosRedesSociales{        
@@ -16,7 +16,7 @@
 }
 
 .iconoRedSocial {
-  height: 40px;
+  height: 45px;
   margin-right: 5px;
   margin-left: 5px;
 }
@@ -42,6 +42,10 @@
   font-size: 13px;  
 }
 
+footer {
+  margin-top: 25px;
+}
+
 @media (min-width: 576px) {  
 
   .iconoRedSocial {
@@ -53,6 +57,10 @@
   .footerContainer {
     height: footerHeight_desktop;
     padding-top: 20px;
+  }
+
+  footer {
+    margin-top: 0;
   }
 }
 
