@@ -1,0 +1,4 @@
+.cajaTorneo {
+	composes: caja from './../../../../../assets/styles/base.css';
+	composes: backgroundGradienteRojo from './../../../../../assets/styles/colors.css';
+}

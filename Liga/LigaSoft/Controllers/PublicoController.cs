@@ -43,15 +43,42 @@ namespace LigaSoft.Controllers
 			return Redirect("~/WebPublica/dist/" + Path.GetFileName(filePath));
 		}
 
-		public JsonResult Torneos()
+		//public JsonResult Torneos()
+		//{
+		//	Enum.TryParse(DateTime.Now.Year.ToString(), out Anio corrienteAnio);
+
+		//	var result = _context.Torneos
+		//		//.Where(x => x.Publico && x.Anio == corrienteAnio)
+		//		.Where(x => x.Publico && (x.Anio == corrienteAnio || x.Anio == corrienteAnio -1))	//Sólo para pruebas de Eze en prod
+		//		.ToList()
+		//		.Select(x => new { descripcion = $"{x.Tipo.Descripcion}", id = x.Id.ToString(), formato = x.Tipo.Formato.ToString().ToLower() })
+		//		.ToList();
+
+		//	return Json(result, JsonRequestBehavior.AllowGet);
+		//}
+
+		public JsonResult TorneosAperturaClausura()
 		{
 			Enum.TryParse(DateTime.Now.Year.ToString(), out Anio corrienteAnio);
 
 			var result = _context.Torneos
-				//.Where(x => x.Publico && x.Anio == corrienteAnio)
-				.Where(x => x.Publico && (x.Anio == corrienteAnio || x.Anio == corrienteAnio -1))	//Sólo para pruebas de Eze en prod
+				//.Where(x => x.Publico && x.Tipo.Formato == TorneoFormato.AperturaClausura && x.Anio == corrienteAnio)
+				.Where(x => x.Publico && x.Tipo.Formato == TorneoFormato.AperturaClausura && (x.Anio == corrienteAnio || x.Anio == corrienteAnio - 1))  //Sólo para pruebas de Eze en prod
 				.ToList()
-				.Select(x => new { descripcion = $"{x.Tipo.Descripcion}", id = x.Id.ToString(), formato = x.Tipo.Formato.ToString().ToLower() })
+				.Select(x => new { descripcion = $"{x.Tipo.Descripcion}", id = x.Id.ToString(), formato = "aperturaclausura" })
+				.ToList();
+
+			return Json(result, JsonRequestBehavior.AllowGet);
+		}
+
+		public JsonResult TorneosRelampago()
+		{
+			Enum.TryParse(DateTime.Now.Year.ToString(), out Anio corrienteAnio);
+
+			var result = _context.Torneos
+				.Where(x => x.Publico && x.Tipo.Formato == TorneoFormato.Relampago && (x.Anio == corrienteAnio || x.Anio == corrienteAnio - 1))  //Sólo para pruebas de Eze en prod
+				.ToList()
+				.Select(x => new { descripcion = $"{x.Tipo.Descripcion}", id = x.Id.ToString(), formato = "relampago" })
 				.ToList();
 
 			return Json(result, JsonRequestBehavior.AllowGet);

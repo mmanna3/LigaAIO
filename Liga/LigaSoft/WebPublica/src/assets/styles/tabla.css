@@ -2,10 +2,7 @@
 @value blanco-grisaceo, gris-oscuro, blanco from from './colors.css';
 
 .tituloBlancoConSombraNegra {
-	-webkit-text-stroke: 1px black;
-	color: white;
-	text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-	font-weight: 700;
+	composes: tituloBlancoConSombraNegra from './base.css';
 }
 
 .celda {
