@@ -8,7 +8,7 @@ const Footer = () => {
                 <footer>
                     <div className={styles.iconosRedesSociales}>
                         <a href="https://www.facebook.com/ligaedefi/" className={styles.logoFacebook}></a>
-                        <a href="https://twitter.com/ligaedefi" className={styles.logoTwitter}></a>
+                        <a href="https://twitter.com/ligaedefi" className={styles.logoInstagram}></a>
                     </div>
                     <div className={styles.firma}>
                         dev by YKN

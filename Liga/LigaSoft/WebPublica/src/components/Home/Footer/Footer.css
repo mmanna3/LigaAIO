@@ -27,9 +27,9 @@
   content: url('../../../assets/imgs/facebook-icon.png');
 }
 
-.logoTwitter {
+.logoInstagram {
   composes: iconoRedSocial;
-  content: url('../../../assets/imgs/twitter-icon.png');    
+  content: url('../../../assets/imgs/instagram-icon.png');    
 }
 
 .firma {
