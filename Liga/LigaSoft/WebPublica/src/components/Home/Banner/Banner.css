@@ -17,9 +17,9 @@
 	font-weight: 900;
 	position: absolute;
 	top: 50%;
-	left: 5%;
+	left: 7%;
 	transform: translate(0, -52%);
-	font-size: 30px;
+	font-size: calc(heightIncluyendoPadding_mobile*0.19);
 	color: #ddd;
 	text-transform: uppercase;
 	letter-spacing: 1px;
@@ -49,6 +49,7 @@
 	}
 
 	.texto {
+		left: 5%;
 		font-size: 43px;
 		letter-spacing: 3px;
 	}

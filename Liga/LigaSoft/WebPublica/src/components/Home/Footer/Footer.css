@@ -1,12 +1,13 @@
 @value container  from './../../../assets/styles/bootstrap.min.css';
 @value blanco-grisaceo, gris-oscuro from './../../../assets/styles/colors.css';
 @value footerHeight_desktop: 120px;
-@value footerHeight_mobile: 140px;
+@value footerHeight_mobile: calc(var(--windowInnerHeight) * 0.25);
+@value iconosHeight_mobile: calc(var(--windowInnerHeight) * 0.07);
 
 .footerContainer {
   width: 100%;
   height: footerHeight_mobile;
-  padding-top: 10px;  
+  padding-top: 28px;  
 }
 
 .iconosRedesSociales{        
@@ -16,7 +17,7 @@
 }
 
 .iconoRedSocial {
-  height: 50px;
+  height: iconosHeight_mobile;
   margin-right: 5px;
   margin-left: 5px;
 }
