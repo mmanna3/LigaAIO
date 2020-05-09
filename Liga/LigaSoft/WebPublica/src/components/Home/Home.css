@@ -58,8 +58,8 @@ body {
 @value navbarHeight_mobile: 105px;
 @value navbarHeight_desktop: 88px;
 
-@value bannersContainerHeight_mobile: calc(max(var(--windowInnerHeight) - navbarHeight_mobile - footerHeight_mobile, 350px));
-@value bannersContainerHeight_desktop: calc(max(var(--windowInnerHeight) - navbarHeight_desktop - footerHeight_desktop, 490px));
+@value bannersContainerHeight_mobile: calc(var(--windowInnerHeight) - navbarHeight_mobile - footerHeight_mobile);
+@value bannersContainerHeight_desktop: calc(var(--windowInnerHeight) - navbarHeight_desktop - footerHeight_desktop);
 
 
 .banners {

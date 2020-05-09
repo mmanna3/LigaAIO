@@ -10,8 +10,28 @@ import styles from './Home.css';
 function Home() {
   
   useEffect(() => {
-    let windowInnerHeight = window.innerHeight;
-    document.documentElement.style.setProperty('--windowInnerHeight', `${windowInnerHeight}px`);
+    
+    inicializarVariableWindowInnerHeight();
+
+    window.addEventListener('resize', () => {
+      inicializarVariableWindowInnerHeight()
+    });
+
+    function inicializarVariableWindowInnerHeight() {
+      
+      let windowInnerHeight = window.innerHeight;
+      
+      if (window.innerWidth >= 576) { //Es Desktop
+        if (windowInnerHeight < 400)
+          windowInnerHeight = 600;
+      } else {  //Es mobile
+        if (windowInnerHeight < 500)
+          windowInnerHeight = 500;
+      }
+      
+      document.documentElement.style.setProperty('--windowInnerHeight', `${windowInnerHeight}px`);
+    }
+
   }, []);
 
   const seccionPrincipalSeleccionada = useSelector(state => state.seccionPrincipalReducer.seccionPrincipal);
