@@ -1,0 +1,42 @@
+.seccion {
+	padding-top: 1em;
+}
+
+.contenido {
+	background-color: rgba(255,255,255,0.75);
+	text-align: justify;
+	padding-top: 2em;
+	padding-bottom: 1em;
+	padding-right: 3em;
+	padding-left: 2em;
+}
+
+p {
+	font-weight: 700;
+	font-size: 15px;
+}
+
+.titulo {
+	composes: tituloBlancoConSombraNegra from './../../assets/styles/base.css';
+	padding-bottom: 0.5em;
+	padding-top: 0.5em;
+	font-size: 28px;
+}
+
+@media (min-width: 576px) {
+
+	.seccion {
+		padding-top: 1em;
+	}
+
+	.titulo {
+		font-size: 35px;
+	}
+
+	.contenido {
+		padding-top: 3em;
+		padding-bottom: 3em;
+		padding-right: 6em;
+		padding-left: 4em;
+	}
+}
