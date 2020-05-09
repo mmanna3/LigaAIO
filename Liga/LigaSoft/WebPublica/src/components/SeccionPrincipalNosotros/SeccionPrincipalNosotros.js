@@ -40,6 +40,23 @@ const SeccionPrincipalNosotros = () => {
                         Empatía, Resolución, Competitividad, Responsabilidad, Honestidad, Amistad, Participación, Respeto, Humildad, Compromiso y Decisión.
                     </p>
                 </div>
+                <div className={styles.datosContainer}>
+                    <div className={styles.dato}>
+                        <span className={styles.datoClave}>Horarios de atención: </span><span>Lunes a viernes de 17.30Hs a 20.30Hs.</span>                                                
+                    </div>
+                    <div className={styles.dato}>
+                        <span className={styles.datoClave}>Dirección: </span><span>Juan B. Justo 550, Haedo, Bs. As. </span>                        
+                    </div>
+                    <div className={styles.dato}>
+                        <span className={styles.datoClave}>CP: </span><span>1706</span>
+                    </div>
+                    <div className={styles.dato}>
+                        <span className={styles.datoClave}>Teléfono: </span><span>2195-8389</span>
+                    </div>
+                    <div className={styles.dato}>
+                        <a className={styles.datoClave} href="mailto:edefiargentina@hotmail.com">edefiargentina@hotmail.com</a>
+                    </div>
+                </div>
             </div>
     );
 }

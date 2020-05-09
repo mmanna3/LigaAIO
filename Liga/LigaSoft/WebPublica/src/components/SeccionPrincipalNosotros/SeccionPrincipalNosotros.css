@@ -1,19 +1,20 @@
+@value blanco-grisaceo from from './../../assets/styles/colors.css';
+
 .seccion {
 	padding-top: 1em;
 }
 
-.contenido {
-	background-color: rgba(255,255,255,0.75);
-	text-align: justify;
+.padding-cajas {
 	padding-top: 2em;
 	padding-bottom: 1em;
 	padding-right: 3em;
 	padding-left: 2em;
 }
 
-p {
-	font-weight: 700;
-	font-size: 15px;
+.contenido {
+	composes: padding-cajas;
+	background-color: rgba(255,255,255,0.75);
+	text-align: justify;	
 }
 
 .titulo {
@@ -21,6 +22,26 @@ p {
 	padding-bottom: 0.5em;
 	padding-top: 0.5em;
 	font-size: 28px;
+}
+
+p {
+	font-weight: 700;
+	font-size: 15px;
+}
+
+.datosContainer {
+	composes: padding-cajas;
+	margin-top: 2em;		
+	background-color: black;	
+	color: blanco-grisaceo;
+}
+
+.dato {
+	margin-top: 0.5em;	
+}
+
+.datoClave {
+	font-weight: 700;
 }
 
 @media (min-width: 576px) {
@@ -33,7 +54,7 @@ p {
 		font-size: 35px;
 	}
 
-	.contenido {
+	.padding-cajas {
 		padding-top: 3em;
 		padding-bottom: 3em;
 		padding-right: 6em;
