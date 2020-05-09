@@ -1,12 +1,13 @@
 import React from "react";
 import tabla from './../../../../../assets/styles/tabla.css';
+import styles from './TablaFixture.css'
 
 const TablaFixture = (props) =>{    
      
       return (
         <div className={tabla.columnaTabla}>
               <h3 className={tabla.tituloBlancoConSombraNegra}>{props.titulo}</h3>
-              <table className={tabla.tabla}>
+              <table className={styles.tabla}>
                 <thead>
                 <tr>
                   <th className={tabla.cabeceraIzquierda}>{props.titulo}</th>
