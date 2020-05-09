@@ -13,10 +13,10 @@ const OpcionClubes = (props) =>{
               <table className={tabla.tabla}>
                 <thead>
                 <tr>
-                  <th className={tabla.cabeceraIzquierda}></th>
-                  <th className={tabla.cabecera}>Equipo</th>
-                  <th className={tabla.cabecera}>Localidad</th>
-                  <th className={tabla.cabecera}>Dirección</th>
+                  <th className={styles.cabeceraIzquierda}></th>
+                  <th className={styles.cabeceraTexto}>Equipo</th>
+                  <th className={styles.cabeceraTexto}>Localidad</th>
+                  <th className={styles.cabeceraTexto}>Dirección</th>
                   <th className={tabla.cabeceraDerecha}>Techo</th>
                 </tr>
                 </thead>

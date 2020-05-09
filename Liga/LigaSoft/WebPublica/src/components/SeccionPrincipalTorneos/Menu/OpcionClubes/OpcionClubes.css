@@ -6,3 +6,13 @@
 .columnaClubes {
 	composes: col-12 from './../../../../assets/styles/bootstrap.min.css';
 }
+
+.cabeceraIzquierda {
+	composes: cabeceraIzquierda from './../../../../assets/styles/tabla.css';
+	padding-left: 4em;
+}
+
+.cabeceraTexto {
+	composes: cabecera from './../../../../assets/styles/tabla.css';
+	min-width: 150px;
+}
