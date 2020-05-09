@@ -54,6 +54,9 @@ return (
                         <li className={bootstrap['nav-item']}>
                             <a className={styles.navLink} href="#" onClick={() => actualizarSeccionPrincipalYOcultarMenu("Nosotros")}>Nosotros</a>
                         </li>
+                        <li className={bootstrap['nav-item']}>
+                            <a className={styles.navLink} href="/Delegados">Delegados</a>
+                        </li>
                     </ul>
                 </div>
 
