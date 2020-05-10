@@ -35,7 +35,7 @@ namespace LigaSoft.BusinessLogic
 						JornadaId = jornada.Id,
 						JornadaNumero = jornadasContador,
 						Equipo = jornada.NombreDelLocal(),
-						Escudo = _imagenesEscudosPersistence.PathRelativo(jornada.LocalIdInt()),
+						Escudo = _imagenesEscudosPersistence.PathRelativo(jornada.Local?.ClubId ?? -1),
 					};
 
 					var renglonVisitante = new JornadasPorFechaRenglonVM
@@ -43,7 +43,7 @@ namespace LigaSoft.BusinessLogic
 						JornadaId = jornada.Id,
 						JornadaNumero = jornadasContador,
 						Equipo = jornada.NombreDelVisitante(),
-						Escudo = _imagenesEscudosPersistence.PathRelativo(jornada.VisitanteIdInt()),
+						Escudo = _imagenesEscudosPersistence.PathRelativo(jornada.Visitante?.ClubId ?? -1),
 					};
 
 					foreach (var partido in jornada.Partidos)
