@@ -6,9 +6,9 @@ import styles from './Torneos.css'
 
 const Torneos = () => {
   return <div>
-    <h4 className={styles.titulo}>Apertura/Clausura</h4>
+    <h4 className={styles.titulo}>Torneos Anuales</h4>
     <TorneosAperturaClausura/>
-    <h4 className={styles.titulo}>Relámpago</h4>
+    <h4 className={styles.titulo}>Copas</h4>
     <TorneosRelampago/>
   </div>
 }
