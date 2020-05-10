@@ -3,6 +3,7 @@ import Banner from './Banner/Banner';
 import Footer from './Footer/Footer';
 import SeccionPrincipalTorneos from 'Components/SeccionPrincipalTorneos/SeccionPrincipalTorneos';
 import SeccionPrincipalNosotros from 'Components/SeccionPrincipalNosotros/SeccionPrincipalNosotros';
+import SeccionPrincipalNoticias from 'Components/SeccionPrincipalNoticias/SeccionPrincipalNoticias';
 import {COLOR} from "Utils/consts";
 import {useSelector} from 'react-redux';
 import styles from './Home.css';
@@ -50,9 +51,10 @@ function Home() {
       )
     else if (seccionPrincipalSeleccionada == "Torneos")
       return <SeccionPrincipalTorneos />
+    else if (seccionPrincipalSeleccionada == "Noticias")
+      return <SeccionPrincipalNoticias />
     else if (seccionPrincipalSeleccionada == "Nosotros")
       return <SeccionPrincipalNosotros />
-    return null;
 }
 
 export default Home;

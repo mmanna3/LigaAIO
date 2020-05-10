@@ -24,7 +24,6 @@ namespace LigaSoft.Controllers
 		private readonly ApplicationDbContext _context;
 		private readonly TablaWebPublicaBuilder _tablaWebPublicaBuilder;
 		private readonly TablaAnualWebPublicaBuilder _tablaAnualWebPublicaBuilder;
-		private readonly ZonaHelper _zonaHelper;
 		private readonly ImagenesEscudosDiskPersistence _imagenesEscudosPersistence;
 
 		public PublicoController()
@@ -32,7 +31,6 @@ namespace LigaSoft.Controllers
 			_context = new ApplicationDbContext();
 			_tablaWebPublicaBuilder = new TablaWebPublicaBuilder(_context);
 			_tablaAnualWebPublicaBuilder = new TablaAnualWebPublicaBuilder(_context);
-			_zonaHelper = new ZonaHelper(_context);
 			_imagenesEscudosPersistence = new ImagenesEscudosDiskPersistence(new AppPathsWebApp());
 		}
 
@@ -172,6 +170,17 @@ namespace LigaSoft.Controllers
 				if (zona.FixturePublicado)
 					zonaVMM.MapFixture(zona, result);
 			}
+
+			return Json(result, JsonRequestBehavior.AllowGet);
+		}
+
+		public ActionResult Noticias()
+		{
+			var result = _context.Noticias
+							.Where(x => x.Visible)
+							.OrderByDescending(x => x.Fecha)
+							.ToList()
+							.Select(x => new { id = x.Id, titulo = x.Titulo, subtitulo = x.Subtitulo, fecha = $"{x.Fecha:d-M}" });
 
 			return Json(result, JsonRequestBehavior.AllowGet);
 		}

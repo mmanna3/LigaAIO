@@ -1,7 +1,6 @@
 import React from "react";
 import {fetchDataAndRenderResponse} from "Utils/hooks";
 import {actualizarTorneo} from 'Store/torneo/action';
-import {actualizarFase} from 'Store/fase/action';
 import {useDispatch} from 'react-redux';
 import styles from './TorneosAperturaClausura.css';
 import baseStyles from 'GlobalStyle/base.css';
