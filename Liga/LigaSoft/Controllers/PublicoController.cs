@@ -43,27 +43,12 @@ namespace LigaSoft.Controllers
 			return Redirect("~/WebPublica/dist/" + Path.GetFileName(filePath));
 		}
 
-		//public JsonResult Torneos()
-		//{
-		//	Enum.TryParse(DateTime.Now.Year.ToString(), out Anio corrienteAnio);
-
-		//	var result = _context.Torneos
-		//		//.Where(x => x.Publico && x.Anio == corrienteAnio)
-		//		.Where(x => x.Publico && (x.Anio == corrienteAnio || x.Anio == corrienteAnio -1))	//Sólo para pruebas de Eze en prod
-		//		.ToList()
-		//		.Select(x => new { descripcion = $"{x.Tipo.Descripcion}", id = x.Id.ToString(), formato = x.Tipo.Formato.ToString().ToLower() })
-		//		.ToList();
-
-		//	return Json(result, JsonRequestBehavior.AllowGet);
-		//}
-
-		public JsonResult TorneosAperturaClausura()
+		public JsonResult TorneosAperturaClausura(string anio)
 		{
-			Enum.TryParse(DateTime.Now.Year.ToString(), out Anio corrienteAnio);
+			Enum.TryParse(anio, out Anio anioEnum);
 
 			var result = _context.Torneos
-				//.Where(x => x.Publico && x.Tipo.Formato == TorneoFormato.AperturaClausura && x.Anio == corrienteAnio)
-				.Where(x => x.Publico && x.Tipo.Formato == TorneoFormato.AperturaClausura && (x.Anio == corrienteAnio || x.Anio == corrienteAnio - 1))  //Sólo para pruebas de Eze en prod
+				.Where(x => x.Publico && x.Tipo.Formato == TorneoFormato.AperturaClausura && x.Anio == anioEnum)
 				.ToList()
 				.Select(x => new { descripcion = $"{x.Tipo.Descripcion}", id = x.Id.ToString(), formato = "aperturaclausura" })
 				.ToList();
@@ -71,12 +56,12 @@ namespace LigaSoft.Controllers
 			return Json(result, JsonRequestBehavior.AllowGet);
 		}
 
-		public JsonResult TorneosRelampago()
+		public JsonResult TorneosRelampago(string anio)
 		{
-			Enum.TryParse(DateTime.Now.Year.ToString(), out Anio corrienteAnio);
+			Enum.TryParse(anio, out Anio anioEnum);
 
 			var result = _context.Torneos
-				.Where(x => x.Publico && x.Tipo.Formato == TorneoFormato.Relampago && (x.Anio == corrienteAnio || x.Anio == corrienteAnio - 1))  //Sólo para pruebas de Eze en prod
+				.Where(x => x.Publico && x.Tipo.Formato == TorneoFormato.Relampago && x.Anio == anioEnum)
 				.ToList()
 				.Select(x => new { descripcion = $"{x.Tipo.Descripcion}", id = x.Id.ToString(), formato = "relampago" })
 				.ToList();

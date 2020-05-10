@@ -2,3 +2,9 @@
 	composes: caja from './../../../../../assets/styles/base.css';
 	composes: backgroundGradienteRojo from './../../../../../assets/styles/colors.css';
 }
+
+.titulo {
+	composes: tituloBlancoConSombraNegra from './../../../../../assets/styles/base.css';
+	padding-bottom: 0.5em;
+	padding-top: 1em;
+}

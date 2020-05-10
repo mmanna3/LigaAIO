@@ -5,11 +5,15 @@ import styles from './Torneos.css'
 
 
 const Torneos = () => {
+
+  var anioActual = new Date().getFullYear();
+
   return <div>
-    <h4 className={styles.titulo}>Torneos Anuales</h4>
-    <TorneosAperturaClausura/>
-    <h4 className={styles.titulo}>Copas</h4>
-    <TorneosRelampago/>
+    <TorneosAperturaClausura anio={anioActual} />
+    <TorneosRelampago anio={anioActual}/>
+    <div>Anio pasado</div>
+    <TorneosAperturaClausura anio={anioActual-1} />
+    <TorneosRelampago anio={anioActual-1}/>
   </div>
 }
 

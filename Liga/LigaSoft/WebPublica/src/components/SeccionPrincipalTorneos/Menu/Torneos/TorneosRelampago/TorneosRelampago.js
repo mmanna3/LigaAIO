@@ -8,26 +8,34 @@ import baseStyles from 'GlobalStyle/base.css';
 import bootstrap from 'GlobalStyle/bootstrap.min.css';
 
 
-const TorneosRelampago = () => {
+const TorneosRelampago = (props) => {
     
   const dispatch = useDispatch();
 
   const render = (data) => {
+
+    var titulo;
+    if (data.length > 0)
+      titulo = <h4 className={styles.titulo}>Copas</h4>;
+
       return (
-        <div className={bootstrap.row}>
-          {data.map(({ id, descripcion, formato }) => (
-            <div key={id} className={baseStyles.cajaContainer}> 
-              <div className={styles.cajaTorneo}
-                   onClick={() => { dispatch(actualizarTorneo({"id": id, "descripcion": descripcion, "formato": formato })); dispatch(actualizarFase("Relampago"))}}>
-                <div className={baseStyles.textoCaja}>{descripcion}</div>
+        <>
+          {titulo}
+          <div className={bootstrap.row}>
+            {data.map(({ id, descripcion, formato }) => (
+              <div key={id} className={baseStyles.cajaContainer}> 
+                <div className={styles.cajaTorneo}
+                    onClick={() => { dispatch(actualizarTorneo({"id": id, "descripcion": descripcion, "formato": formato })); dispatch(actualizarFase("Relampago"))}}>
+                  <div className={baseStyles.textoCaja}>{descripcion}</div>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </>
       )
     }    
 
-    return fetchDataAndRenderResponse("/publico/TorneosRelampago", render);
+    return fetchDataAndRenderResponse(`/publico/TorneosRelampago?anio=${props.anio}`, render);
 }
 
 export default TorneosRelampago;

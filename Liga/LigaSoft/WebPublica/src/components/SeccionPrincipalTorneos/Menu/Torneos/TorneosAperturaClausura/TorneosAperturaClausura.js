@@ -8,28 +8,34 @@ import baseStyles from 'GlobalStyle/base.css';
 import bootstrap from 'GlobalStyle/bootstrap.min.css';
 
 
-const TorneosAperturaClausura = () => {
+const TorneosAperturaClausura = (props) => {
     
   const dispatch = useDispatch();
 
   const render = (data) => {
-      return (
+    
+    var titulo;
+    if (data.length > 0)
+      titulo = <h4 className={styles.titulo}>Torneos Anuales</h4>;
+    
+    return (
+        <>
+        {titulo}
         <div className={bootstrap.row}>
           {data.map(({ id, descripcion, formato }) => (
             <div key={id} className={baseStyles.cajaContainer}> 
               <div className={styles.cajaTorneo}
-                   onClick={() => { dispatch(actualizarTorneo({"id": id, "descripcion": descripcion, "formato": formato }));
-                                    if (formato==="relampago")
-                                      dispatch(actualizarFase("Relampago"))}}>
+                   onClick={() => { dispatch(actualizarTorneo({"id": id, "descripcion": descripcion, "formato": formato }));}}>
                 <div className={baseStyles.textoCaja}>{descripcion}</div>
               </div>
             </div>
           ))}
         </div>
+        </>
       )
     }    
 
-    return fetchDataAndRenderResponse("/publico/TorneosAperturaClausura", render);
+    return fetchDataAndRenderResponse(`/publico/TorneosAperturaClausura?anio=${props.anio}`, render);
 }
 
 export default TorneosAperturaClausura;
