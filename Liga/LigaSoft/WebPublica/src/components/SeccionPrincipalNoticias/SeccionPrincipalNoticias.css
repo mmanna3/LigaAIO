@@ -1,4 +1,11 @@
-@value blanco-grisaceo from from './../../assets/styles/colors.css';
+@value blanco-grisaceo, verde-edefi, rojo-edefi from from './../../assets/styles/colors.css';
+
+.puntosSuspensivos {
+	display: block;
+	font-weight: 600;
+	color: #0263cc;
+	text-decoration: underline;
+}
 
 .seccion {
 	padding-top: 1em;
@@ -14,14 +21,33 @@
 .contenido {
 	composes: padding-cajas;
 	background-color: rgba(255,255,255,0.75);
-	text-align: justify;	
+	text-align: left;
+	cursor: pointer;
 }
 
+.separador {
+	height: 1em;
+}
+
+
+
 .titulo {
-	composes: tituloBlancoConSombraNegra from './../../assets/styles/base.css';
-	padding-bottom: 0.5em;
-	padding-top: 0.5em;
-	font-size: 28px;
+	padding-bottom: 0.3em;
+	font-size: 20px;
+	font-weight: 700;
+}
+
+.tituloTexto {
+	
+	text-decoration: underline;
+}
+
+.tituloSeparador {
+	color: rojo-edefi;
+}
+
+.tituloFecha{
+	color: verde-edefi;
 }
 
 p {
@@ -46,18 +72,19 @@ p {
 
 @media (min-width: 576px) {
 
-	.seccion {
-		padding-top: 1em;
-	}
-
 	.titulo {
-		font-size: 35px;
+		font-size: 28px;
 	}
 
 	.padding-cajas {
-		padding-top: 3em;
-		padding-bottom: 3em;
+		padding-top: 2em;
+		padding-bottom: 2em;
 		padding-right: 6em;
 		padding-left: 4em;
+	}
+
+	.puntosSuspensivos {
+		display: inline;
+		letter-spacing: 1px;
 	}
 }
