@@ -8,8 +8,8 @@ const Torneos = () => {
 
   var anioActual = new Date().getFullYear();
 
-  const [mostrarTorneosDelAnioPasado, setMostrarTorneosDelAnioPasado] = React.useState(false)
-  const onClick = () => setMostrarTorneosDelAnioPasado(true)
+  const [mostrarTorneosDelAnioPasado, setMostrarTorneosDelAnioPasado] = React.useState(false);
+  const onClick = () => setMostrarTorneosDelAnioPasado(true);
 
   return <div>
     <TorneosAperturaClausura anio={anioActual} />
