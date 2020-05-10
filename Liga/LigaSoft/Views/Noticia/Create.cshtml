@@ -1,20 +1,24 @@
 ﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.Enums
 @model LigaSoft.Models.ViewModels.NoticiaVM
-
 @section Titulo{
 	Nueva noticia
 }
-
 <script src="../../Scripts/nicEdit-latest.js"></script>
 <script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>
 
-@using (Html.YKN().Form())
+@using (Html.YKN().Form(FormSizeEnum.Big))
 {
-	@Html.YKNNonTyped().ValidationSummary()	
+	@Html.YKNNonTyped().ValidationSummary()
 
 	<div class="row">
 		<div class="col-sm-8">
 			@Html.YKN().EditorFor(x => x.Titulo)
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-8">
+			@Html.YKN().EditorFor(x => x.Subtitulo)
 		</div>
 	</div>
 	<div class="row">

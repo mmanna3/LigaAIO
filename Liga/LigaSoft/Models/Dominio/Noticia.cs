@@ -15,6 +15,9 @@ namespace LigaSoft.Models.Dominio
 		[Required, StringLength(60)]
 		public string Titulo { get; set; }
 
+		[Required, StringLength(140)]
+		public string Subtitulo { get; set; }
+
 		[Required, StringLength(4000)]
 		public string Cuerpo { get; set; }
 

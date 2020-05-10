@@ -20,12 +20,14 @@ namespace LigaSoft.ViewModelMappers
 			model.Fecha = DateTime.Now;
 			model.Titulo = vm.Titulo;
 			model.Cuerpo = vm.Cuerpo;
+			model.Subtitulo = vm.Subtitulo;
 			model.Visible = true;
 		}
 
 		public override void MapForEdit(NoticiaVM vm, Noticia model)
 		{
 			model.Titulo = vm.Titulo;
+			model.Subtitulo = vm.Subtitulo;
 			model.Cuerpo = vm.Cuerpo;
 		}
 
@@ -46,6 +48,7 @@ namespace LigaSoft.ViewModelMappers
 				Id = model.Id,
 				Fecha = DateTimeUtils.ConvertToString(model.Fecha),
 				Titulo = model.Titulo,
+				Subtitulo = model.Subtitulo,
 				Cuerpo = model.Cuerpo,				
 				Visible = model.Visible.ToSiNoString()
 			};

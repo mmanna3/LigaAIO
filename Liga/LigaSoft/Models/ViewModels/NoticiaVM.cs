@@ -1,4 +1,5 @@
-﻿using LigaSoft.Models.Attributes;
+﻿using System.ComponentModel.DataAnnotations;
+using LigaSoft.Models.Attributes;
 
 namespace LigaSoft.Models.ViewModels
 {
@@ -8,6 +9,9 @@ namespace LigaSoft.Models.ViewModels
 
 		[YKNRequired, YKNStringLength(Maximo = 60)]
 		public string Titulo { get; set; }
+
+		[YKNRequired, YKNStringLength(Maximo = 140), Display(Name = "Subtítulo")]
+		public string Subtitulo { get; set; }
 
 		[YKNRequired, YKNStringLength(Maximo = 4000)]
 		public string Cuerpo { get; set; }

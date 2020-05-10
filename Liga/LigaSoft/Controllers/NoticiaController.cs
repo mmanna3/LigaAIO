@@ -4,6 +4,7 @@ using LigaSoft.Models.Dominio;
 using LigaSoft.Models.ViewModels;
 using LigaSoft.Utilidades;
 using LigaSoft.ViewModelMappers;
+using Microsoft.Ajax.Utilities;
 
 namespace LigaSoft.Controllers
 {
@@ -14,6 +15,9 @@ namespace LigaSoft.Controllers
 		public ActionResult OcultarMostrar(int id)
 		{
 			var model = Context.Noticias.Find(id);
+
+			if (model.Subtitulo.IsNullOrWhiteSpace())
+				model.Subtitulo = ".";
 
 			model.Visible = !model.Visible;
 

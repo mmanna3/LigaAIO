@@ -308,6 +308,14 @@
     <Compile Include="Migrations\202004160112307_AgregaMotivoDeRechazoAJugadorFichadoPorDelegado.Designer.cs">
       <DependentUpon>202004160112307_AgregaMotivoDeRechazoAJugadorFichadoPorDelegado.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005100519566_AgregaSubtituloANoticia.cs" />
+    <Compile Include="Migrations\202005100519566_AgregaSubtituloANoticia.Designer.cs">
+      <DependentUpon>202005100519566_AgregaSubtituloANoticia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005101752403_OcultaNoticiasSinSubtitulo.cs" />
+    <Compile Include="Migrations\202005101752403_OcultaNoticiasSinSubtitulo.Designer.cs">
+      <DependentUpon>202005101752403_OcultaNoticiasSinSubtitulo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Dominio\JugadorFichadoPorDelegado.cs" />
     <Compile Include="Models\Dominio\UsuarioDelegado.cs" />
     <Compile Include="Models\Dominio\Sancion.cs" />
@@ -1606,6 +1614,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004160112307_AgregaMotivoDeRechazoAJugadorFichadoPorDelegado.resx">
       <DependentUpon>202004160112307_AgregaMotivoDeRechazoAJugadorFichadoPorDelegado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005100519566_AgregaSubtituloANoticia.resx">
+      <DependentUpon>202005100519566_AgregaSubtituloANoticia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005101752403_OcultaNoticiasSinSubtitulo.resx">
+      <DependentUpon>202005101752403_OcultaNoticiasSinSubtitulo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
