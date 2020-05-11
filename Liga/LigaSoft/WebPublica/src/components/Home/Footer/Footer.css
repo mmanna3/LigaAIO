@@ -43,6 +43,11 @@
   font-size: 13px;  
 }
 
+.firma span a {
+  color: white;
+  text-decoration: underline;
+}
+
 footer {
   margin-top: 28px;
 }

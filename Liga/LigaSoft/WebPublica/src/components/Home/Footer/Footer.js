@@ -11,7 +11,7 @@ const Footer = () => {
                         <a href="https://www.instagram.com/liga_edefi/" className={styles.logoInstagram}></a>
                     </div>
                     <div className={styles.firma}>
-                        dev by YKN
+                        <span>dev by&nbsp;</span><span><a href="mailto:ykn.software.com@gmail.com">YKN</a></span>
                     </div>
                 </footer>
             </div>
