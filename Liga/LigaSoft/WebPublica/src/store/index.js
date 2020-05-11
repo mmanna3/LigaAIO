@@ -4,13 +4,15 @@ import torneoReducer from './torneo/reducer';
 import zonaReducer from './zona/reducer';
 import faseReducer from './fase/reducer';
 import opcionReducer from './opcion/reducer';
+import noticiaReducer from './noticia/reducer';
 
 const reducers = combineReducers({
     torneoReducer,
     seccionPrincipalReducer,
     zonaReducer,
     faseReducer,
-    opcionReducer
+    opcionReducer,
+    noticiaReducer
 });
 
 const store = createStore(

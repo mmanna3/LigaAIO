@@ -37,8 +37,9 @@ function Home() {
   }, []);
 
   const seccionPrincipalSeleccionada = useSelector(state => state.seccionPrincipalReducer.seccionPrincipal);
+  const noticiaSeleccionada = useSelector(state => state.noticiaReducer.noticia);
 
-    if (!seccionPrincipalSeleccionada)
+  if (!seccionPrincipalSeleccionada)
       return (
         <div className={styles.home}>
           <div className={styles.banners}>
@@ -54,7 +55,9 @@ function Home() {
     else if (seccionPrincipalSeleccionada == "Noticias")
       return <SeccionPrincipalNoticias />
     else if (seccionPrincipalSeleccionada == "Nosotros")
-      return <SeccionPrincipalNosotros />
+      return <SeccionPrincipalNosotros />    
+    else if (seccionPrincipalSeleccionada == "NoticiaSeleccionada" && noticiaSeleccionada != null)
+      return <div>Soy noticia</div>
 }
 
 export default Home;
