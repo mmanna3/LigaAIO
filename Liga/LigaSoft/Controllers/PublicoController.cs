@@ -185,6 +185,13 @@ namespace LigaSoft.Controllers
 			return Json(result, JsonRequestBehavior.AllowGet);
 		}
 
+		public ActionResult Noticia(int id)
+		{
+			var noticia = _context.Noticias.Find(id);
+			var result = new { id = noticia.Id, titulo = noticia.Titulo, subtitulo = noticia.Subtitulo, fecha = $"{noticia.Fecha:d-M}", cuerpo = noticia.Cuerpo };
+			return Json(result, JsonRequestBehavior.AllowGet);
+		}
+
 		private class ZonaFE
 		{
 			public string descripcion { get; set; }
