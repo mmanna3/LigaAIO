@@ -22,24 +22,24 @@ const Opciones = () =>{
       <div className={bootstrap.row}>
         <div className={styles.cajaContainer}>
           <div onClick={() => dispatch(actualizarOpcion("Posiciones"))} className={styles.cajaOpciones}>
-            <div className={baseStyles.textoCaja}>Posiciones</div>
+            <div className={baseStyles.textoCaja}>Posiciones <span className={styles.iconoPosiciones}><i class="fa fa-star fa-lg"></i></span></div>
           </div>
         </div>
         <div className={styles.cajaContainer}>
           <div onClick={() => dispatch(actualizarOpcion("Fixture"))} className={styles.cajaOpciones}>
-            <div className={baseStyles.textoCaja}>Fixture</div>
+            <div className={baseStyles.textoCaja}>Fixture <span className={styles.iconoPosiciones}><i class="fa fa-trophy fa-lg"></i></span></div>
           </div>
         </div>
       </div>
       <div className={bootstrap.row}>
       <div className={styles.cajaContainer}>
           <div onClick={() => dispatch(actualizarOpcion("Jornadas"))} className={styles.cajaOpciones}>
-            <div className={baseStyles.textoCaja}>Jornadas</div>
+            <div className={baseStyles.textoCaja}>Jornadas <span className={styles.iconoPosiciones}><i class="fa fa-table fa-lg"></i></span></div>
           </div>
         </div>
         <div className={styles.cajaContainer}>
           <div onClick={() => dispatch(actualizarOpcion("Clubes"))} className={styles.cajaOpciones}>
-            <div className={baseStyles.textoCaja}>Clubes</div>
+            <div className={baseStyles.textoCaja}>Clubes <span className={styles.iconoPosiciones}><i class="fa fa-map-marker fa-lg"></i></span></div>
           </div>
         </div>
       </div>

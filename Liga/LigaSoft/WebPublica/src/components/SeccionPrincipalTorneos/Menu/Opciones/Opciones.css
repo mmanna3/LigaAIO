@@ -1,8 +1,14 @@
 .cajaOpciones {
 	composes: caja from './../../../../assets/styles/base.css';
-	composes: backgroundGradienteAzul from './../../../../assets/styles/colors.css';
+	composes: backgroundGradienteAzul from './../../../../assets/styles/colors.css';	
 }
 
 .cajaContainer {
 	composes: col-12 col-md-6 from './../../../../assets/styles/bootstrap.min.css';
+}
+
+.iconoPosiciones {
+	float: right;
+	padding-right: 2em;
+	transform: translate(0, 35%);
 }
