@@ -13,20 +13,15 @@ const NoticiaSeleccionada = () => {
   const render = (data) => {      
     return (
       <div className={styles.seccion}>
-        {data.titulo}
-        {noticiaSeleccionada.subtitulo}
-          {/* <div key={id}>
-              <div className={bootstrap.row}>
-                  <div className={bootstrap['col-md-12']}>                
-                      <div className={styles.contenido}
-                          onClick={() => { dispatch(actualizarSeccionPrincipal("NoticiaSeleccionada")); dispatch(actualizarNoticia({"id": id, "titulo": titulo, "subtitulo": subtitulo, "fecha": fecha }));}}> 
-                          <div className={styles.titulo}><span className={styles.tituloFecha}>{fecha} </span><span className={styles.tituloSeparador}>|</span> <span className={styles.tituloTexto}>{titulo}</span></div>
-                          <div>{subtitulo} <span className={styles.puntosSuspensivos}>...</span></div>                            
-                      </div>
+          <div className={bootstrap.row}>
+              <div className={bootstrap['col-md-12']}>
+                  <div className={styles.contenido}> 
+                      <div className={styles.titulo}><span className={styles.tituloFecha}>{data.fecha} </span><span className={styles.tituloSeparador}>|</span> <span className={styles.tituloTexto}>{data.titulo}</span></div>
+                      <div className={styles.subtitulo}>{data.subtitulo}</div>
+                      <div className={styles.cuerpo} dangerouslySetInnerHTML={{__html: data.cuerpo}}></div>
                   </div>
               </div>
-              <div className={styles.separador}></div>
-          </div> */}
+          </div>
       </div>
     )
   }    

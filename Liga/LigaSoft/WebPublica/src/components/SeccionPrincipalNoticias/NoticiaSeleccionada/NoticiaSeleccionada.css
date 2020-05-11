@@ -1,11 +1,4 @@
-/* @value blanco-grisaceo, verde-edefi, rojo-edefi from from './../../assets/styles/colors.css';
-
-.puntosSuspensivos {
-	display: block;
-	font-weight: 600;
-	color: #0263cc;
-	text-decoration: underline;
-}
+@value blanco-grisaceo, verde-edefi, rojo-edefi from from './../../../assets/styles/colors.css';
 
 .seccion {
 	padding-top: 1em;
@@ -20,16 +13,9 @@
 
 .contenido {
 	composes: padding-cajas;
-	background-color: rgba(255,255,255,0.75);
+	background-color: rgba(255,255,255,0.8);
 	text-align: left;
-	cursor: pointer;
 }
-
-.separador {
-	height: 1em;
-}
-
-
 
 .titulo {
 	padding-bottom: 0.3em;
@@ -37,8 +23,7 @@
 	font-weight: 700;
 }
 
-.tituloTexto {
-	
+.tituloTexto {	
 	text-decoration: underline;
 }
 
@@ -50,24 +35,13 @@
 	color: verde-edefi;
 }
 
-p {
+.subtitulo {
+	padding-top: 1em;
 	font-weight: 700;
-	font-size: 15px;
 }
 
-.datosContainer {
-	composes: padding-cajas;
-	margin-top: 2em;		
-	background-color: black;	
-	color: blanco-grisaceo;
-}
-
-.dato {
-	margin-top: 0.5em;	
-}
-
-.datoClave {
-	font-weight: 700;
+.cuerpo {
+	padding-top: 1em;
 }
 
 @media (min-width: 576px) {
@@ -82,9 +56,4 @@ p {
 		padding-right: 6em;
 		padding-left: 4em;
 	}
-
-	.puntosSuspensivos {
-		display: inline;
-		letter-spacing: 1px;
-	}
-} */
+}
