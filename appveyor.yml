@@ -7,7 +7,7 @@ environment:
   salt_googleapisauth:
     secure: q8SCqn3wbGCGTIwI3f1loXG/uWlbg78FaYmUqpg7xlYYMKy9tWmwME8PddfgmQQhK+XU/jX7HHBgZxI8U6yUWw==
   deploy_username:
-    secure: TjWwAG8m4aq+7xzrsHJqrw==
+    secure: ZumRpgIeGcRgW3H7yXK0bQ==
   deploy_password:
     secure: SFAvHfsz398LTl83QbS5gw==
 install:
@@ -34,7 +34,7 @@ for:
       DefaultConnection-Web.config Connection String:
         secure: rseM20eZh0et+yqC++xeyPmLdQj8i/uFhWogVKy4+oC9yw2DvVp3N03FIG0dKzbWDL7PocHCMSZOhXvUx/nqDQpitqW1yyWmWXofWnPFJlNW2d/lgokexRKvhesMXRQkXHJ9iWl5drfr8N+q5sB3Ch+a+GqNKH23kn7nBVA+zoI=
       deploy_server_prod:
-        secure: 17WII/5TNwwoQkAp6BZ5Gn9z4iObfqt7VleKl6tCWOqMR1hHkp+eQNgvtAa9PU4nJkf1Tc29ZuFkm9KpQ7l3OA==
+        secure: WKFcHMXBFrhnWLgarxvs9pOVG0xeD4uTZXKYgvbNKZp/SOlyrxCYH3Q7SEpjWtvItjQOQ16J+TBtmieZ9J4Y1g==
       deploy_website_prod:
         secure: y5qjD0roTi22GhH9n7jlIw==
     deploy:
