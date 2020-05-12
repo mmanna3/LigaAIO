@@ -22,12 +22,11 @@
 	composes: tituloBlancoConSombraNegra from './../../assets/styles/base.css';
 	padding-bottom: 0.5em;
 	padding-top: 0.5em;
-	font-size: 28px;
+	font-size: 29px;
 }
 
-p {
-	font-weight: 700;
-	font-size: 15px;
+.parrafo {
+	font-size: 16px;
 }
 
 @media (min-width: 576px) {

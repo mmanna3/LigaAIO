@@ -16,7 +16,7 @@ const TorneosRelampago = (props) => {
 
     var titulo;
     if (data.length > 0)
-      titulo = <h4 className={styles.titulo}>Copas</h4>;
+      titulo = <h3 className={styles.titulo}>Copas</h3>;
 
       return (
         <>
