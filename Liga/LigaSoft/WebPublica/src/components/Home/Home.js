@@ -4,6 +4,7 @@ import Footer from './Footer/Footer';
 import SeccionPrincipalTorneos from 'Components/SeccionPrincipalTorneos/SeccionPrincipalTorneos';
 import SeccionPrincipalNosotros from 'Components/SeccionPrincipalNosotros/SeccionPrincipalNosotros';
 import SeccionPrincipalNoticias from 'Components/SeccionPrincipalNoticias/SeccionPrincipalNoticias';
+import SeccionPrincipalContacto from 'Components/SeccionPrincipalContacto/SeccionPrincipalContacto';
 import NoticiaSeleccionada from 'Components/SeccionPrincipalNoticias/NoticiaSeleccionada/NoticiaSeleccionada';
 import {COLOR} from "Utils/consts";
 import {useSelector} from 'react-redux';
@@ -56,7 +57,9 @@ function Home() {
     else if (seccionPrincipalSeleccionada == "Noticias")
       return <SeccionPrincipalNoticias />
     else if (seccionPrincipalSeleccionada == "Nosotros")
-      return <SeccionPrincipalNosotros />    
+      return <SeccionPrincipalNosotros />
+    else if (seccionPrincipalSeleccionada == "Contacto")
+      return <SeccionPrincipalContacto />    
     else if (seccionPrincipalSeleccionada == "NoticiaSeleccionada" && noticiaSeleccionada != null)
       return <NoticiaSeleccionada /> 
 }
