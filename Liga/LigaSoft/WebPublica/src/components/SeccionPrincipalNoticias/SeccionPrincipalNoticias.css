@@ -1,9 +1,9 @@
-@value blanco-grisaceo, verde-edefi, rojo-edefi from from './../../assets/styles/colors.css';
+@value blanco-grisaceo, verde-edefi, rojo-edefi, azul-edefi-texto from from './../../assets/styles/colors.css';
 
 .puntosSuspensivos {
 	display: block;
 	font-weight: 600;
-	color: #0263cc;
+	color: azul-edefi-texto;
 	text-decoration: underline;
 }
 

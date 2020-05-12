@@ -1,5 +1,5 @@
 @value navbar-toggler-icon, navbar, navbar-expand-sm, navbar-dark, nav-link, collapse, navbar-collapse, justify-content-end, show  from './../../assets/styles/bootstrap.min.css';
-@value blanco-grisaceo, gris-oscuro from './../../assets/styles/colors.css';
+@value blanco-grisaceo, gris-oscuro, rojo-edefi, verde-edefi, azul-edefi-texto from './../../assets/styles/colors.css';
 
 /*En mobile, hamburguer blanco*/
 .navbarTogglerIcon {
@@ -15,6 +15,30 @@
 .navLink {
     composes: nav-link;
     color: blanco-grisaceo !important;
+}
+
+.navLinkOnHoverRojo {
+    composes: navLink;
+}
+
+.navLinkOnHoverRojo:hover {
+    color: rojo-edefi !important;
+}
+
+.navLinkOnHoverVerde {
+    composes: navLink;
+}
+
+.navLinkOnHoverVerde:hover {
+    color: verde-edefi !important;
+}
+
+.navLinkOnHoverAzul {
+    composes: navLink;
+}
+
+.navLinkOnHoverAzul:hover {
+    color: azul-edefi-texto !important;
 }
 
 .menuDesplegado {

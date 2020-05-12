@@ -6,6 +6,8 @@
 @value rojo-edefi: rgba(233,48,53,1); /*#e93035*/
 @value azul-edefi: rgba(64,66,149,1); /*#404295*/
 
+@value azul-edefi-texto: #0272eb;
+
 @value blanco-grisaceo: #eee;
 @value blanco: #fff;
 @value gris-oscuro: #101010;

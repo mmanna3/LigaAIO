@@ -43,22 +43,22 @@ return (
                 <div className={menuClass()}>
                     <ul className={bootstrap['navbar-nav']}>
                         <li className={bootstrap['nav-item']}>
-                            <a className={styles.navLink} href="#" onClick={() => actualizarSeccionPrincipalYOcultarMenu("")}>Home</a>
+                            <a className={styles.navLinkOnHoverRojo} href="#" onClick={() => actualizarSeccionPrincipalYOcultarMenu("")}>Home</a>
                         </li>
                         <li className={bootstrap['nav-item']}>
-                            <a className={styles.navLink} href="#" onClick={() => actualizarSeccionPrincipalYOcultarMenu("Torneos")}>Torneos</a>
+                            <a className={styles.navLinkOnHoverVerde} href="#" onClick={() => actualizarSeccionPrincipalYOcultarMenu("Torneos")}>Torneos</a>
                         </li>
                         <li className={bootstrap['nav-item']}>
-                            <a className={styles.navLink} href="#" onClick={() => actualizarSeccionPrincipalYOcultarMenu("Noticias")}>Noticias</a>
+                            <a className={styles.navLinkOnHoverAzul} href="#" onClick={() => actualizarSeccionPrincipalYOcultarMenu("Noticias")}>Noticias</a>
                         </li>
                         <li className={bootstrap['nav-item']}>
-                            <a className={styles.navLink} href="#" onClick={() => actualizarSeccionPrincipalYOcultarMenu("Nosotros")}>Nosotros</a>
+                            <a className={styles.navLinkOnHoverRojo} href="#" onClick={() => actualizarSeccionPrincipalYOcultarMenu("Nosotros")}>Nosotros</a>
                         </li>
                         <li className={bootstrap['nav-item']}>
-                            <a className={styles.navLink} href="#" onClick={() => actualizarSeccionPrincipalYOcultarMenu("Contacto")}>Contacto</a>
+                            <a className={styles.navLinkOnHoverVerde} href="#" onClick={() => actualizarSeccionPrincipalYOcultarMenu("Contacto")}>Contacto</a>
                         </li>
                         <li className={bootstrap['nav-item']}>
-                            <a className={styles.navLink} href="/Delegados" target="_blank">Delegados</a>
+                            <a className={styles.navLinkOnHoverAzul} href="/Delegados" target="_blank">Delegados</a>
                         </li>
                     </ul>
                 </div>
