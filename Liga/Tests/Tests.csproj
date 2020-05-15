@@ -96,7 +96,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Integration\Backup.cs" />
     <Compile Include="Integration\Utilidades\AppPathsForTest.cs" />
     <Compile Include="Integration\Utilidades\Constantes.cs" />
     <Compile Include="Unit\ImagenUtilityTest.cs" />
