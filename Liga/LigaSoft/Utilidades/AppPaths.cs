@@ -11,6 +11,7 @@ namespace LigaSoft.Utilidades
 		public string EscudoDefaultRelative { get; } = "/Imagenes/Escudos/default.jpg";
 		public string ImagenesTemporalesJugadorCarnetRelative { get; } = "/Imagenes/Temporales/Carnet";
 		public string ImagenesTemporalesJugadorDNIFrenteRelative { get; } = "/Imagenes/Temporales/DNIFrente";
+		public string BackupGeneratorExeRelative { get; } = "/Utilidades/Backup/SchemaZen.exe";
 
 		public string ImagenesAbsolute { get; }
 		public string ImagenesJugadoresAbsolute { get; }
@@ -19,6 +20,8 @@ namespace LigaSoft.Utilidades
 		public string EscudoDefaultFileAbsolute { get; }
 		public string ImagenesTemporalesJugadorCarnetAbsolute { get; set; }
 		public string ImagenesTemporalesJugadorDNIFrenteAbsolute { get; set; }
+		public string BackupGeneratorExeAbsolute { get; }
+		public string CarpetaTemporalBackupBaseDeDatosAbsolute { get; }
 
 		// ReSharper disable VirtualMemberCallInConstructor
 		protected AppPaths()
@@ -30,6 +33,8 @@ namespace LigaSoft.Utilidades
 			EscudoDefaultFileAbsolute = GetAbsolutePath(EscudoDefaultRelative);
 			ImagenesTemporalesJugadorCarnetAbsolute = GetAbsolutePath(ImagenesTemporalesJugadorCarnetRelative);
 			ImagenesTemporalesJugadorDNIFrenteAbsolute = GetAbsolutePath(ImagenesTemporalesJugadorDNIFrenteRelative);
+			BackupGeneratorExeAbsolute = GetAbsolutePath(BackupGeneratorExeRelative);
+			CarpetaTemporalBackupBaseDeDatosAbsolute = BackupAbsoluteOf("ZenSchemaBackup");
 		}
 
 		protected abstract string GetAbsolutePath(string relativePath);
@@ -46,7 +51,7 @@ namespace LigaSoft.Utilidades
 		{
 			var fileName = $"BaseDeDatos-{DateTimeUtils.NowInArgentinaBackupFormat}.zip";
 			return BackupAbsoluteOf(fileName);
-		}
+		}		
 	}
 
 	public class AppPathsWebApp : AppPaths

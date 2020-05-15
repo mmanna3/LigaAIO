@@ -1000,7 +1000,7 @@
     <Content Include="Imagenes\publicidad-derecha.jpg" />
     <Content Include="Imagenes\publicidad-izquierda.jpg" />
     <Content Include="Parameters.xml" />
-    <Content Include="SchemaZen.exe" />
+    <Content Include="Utilidades\Backup\SchemaZen.exe" />
     <Content Include="Scripts\jquery.blockUI.js" />
     <Content Include="Scripts\pixelarity-face.js" />
     <Content Include="Scripts\r.js" />
