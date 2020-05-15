@@ -1023,7 +1023,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="generar-backup-basededatos.bat" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
