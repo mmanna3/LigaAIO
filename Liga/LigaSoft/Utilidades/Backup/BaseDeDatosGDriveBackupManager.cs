@@ -4,7 +4,8 @@
 	{
 		protected override string ComprimirYPonerZipEnAppData()
 		{
-			return BackupDiskPersistence.ComprimirUltimoBackupBdYPonerZipEnCarpetaDeBackups();
+			BackupDiskPersistence.GenerarBackupDeBaseDeDatosEnCarpetaTemporal();
+			return BackupDiskPersistence.ComprimirBackupBaseDeDatosYPonerZipEnCarpetaDeBackups();
 		}
 
 		protected override string NombreDelBackupZipeadoSinExtensionNiFecha()

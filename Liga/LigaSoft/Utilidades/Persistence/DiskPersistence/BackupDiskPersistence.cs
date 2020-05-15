@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using Ionic.Zip;
+using LigaSoft.Models;
 
 namespace LigaSoft.Utilidades.Persistence.DiskPersistence
 {
@@ -12,8 +14,7 @@ namespace LigaSoft.Utilidades.Persistence.DiskPersistence
 		{
 			Paths = appPaths;
 		}
-
-		// ReSharper disable AssignNullToNotNullAttribute
+		
 		public string ComprimirImagenesYPonerZipEnCarpetaDeBackups()
 		{
 			Directory.CreateDirectory(Paths.BackupAbsolute());
@@ -35,26 +36,21 @@ namespace LigaSoft.Utilidades.Persistence.DiskPersistence
 			}
 
 			return backupPath;
-		}		
+		}
 
-		public string ComprimirUltimoBackupBdYPonerZipEnCarpetaDeBackups()
+		public string ComprimirBackupBaseDeDatosYPonerZipEnCarpetaDeBackups()
 		{
-			var bdBackupPathSinComprimir = PathDelUltimoBackupBD();
-			if (bdBackupPathSinComprimir == null)
-				YKNExHandler.LoguearYLanzarExcepcion(new Exception(), "No hay backups de base de datos");
-			else
-				Log.Info($"El backup sin comprimir de la base está en: {bdBackupPathSinComprimir}.");
-
-			var backupBdComprimidoPath = Paths.BackupBaseDeDatos();
+			Directory.CreateDirectory(Paths.BackupAbsolute());
+			var backupPath = Paths.BackupBaseDeDatos();
 
 			try
 			{
 				using (var zip = new ZipFile())
 				{
-					zip.AddFile(bdBackupPathSinComprimir);
-					Log.Info($"Se comprimió correctamente el archivo '{bdBackupPathSinComprimir}'.");
-					zip.Save(backupBdComprimidoPath);
-					Log.Info($"Se guardó el archivo comprimido en '{backupBdComprimidoPath}'.");
+					zip.AddDirectory(Paths.CarpetaTemporalBackupBaseDeDatosAbsolute);
+					Log.Info($"Se comprimió correctamente la carpeta '{Paths.CarpetaTemporalBackupBaseDeDatosAbsolute}'.");
+					zip.Save(backupPath);
+					Log.Info($"Se guardó el archivo comprimido en '{backupPath}'.");
 				}
 			}
 			catch (Exception ex)
@@ -62,7 +58,34 @@ namespace LigaSoft.Utilidades.Persistence.DiskPersistence
 				YKNExHandler.LoguearYLanzarExcepcion(ex, "Error comprimiendo base de datos");
 			}
 
-			return backupBdComprimidoPath;
+			return backupPath;
+		}
+
+		public void GenerarBackupDeBaseDeDatosEnCarpetaTemporal()
+		{
+			var backupDirectory = Paths.CarpetaTemporalBackupBaseDeDatosAbsolute;
+			var connectionString = new ApplicationDbContext().Database.Connection.ConnectionString;
+
+			var startInfo = new ProcessStartInfo
+			{
+				CreateNoWindow = false,
+				UseShellExecute = false,
+				FileName = Paths.BackupGeneratorExeAbsolute ?? throw new InvalidOperationException(),
+				WindowStyle = ProcessWindowStyle.Hidden,
+				Arguments = $@"script -c ""{connectionString}"" --dataTablesPattern "".*"" -d  ""{backupDirectory}"" -v -o"
+			};
+
+			try
+			{
+				using (var exeProcess = Process.Start(startInfo))
+				{
+					exeProcess?.WaitForExit();
+				}
+			}
+			catch (Exception ex)
+			{
+				YKNExHandler.LoguearYLanzarExcepcion(ex, "Error generando backup de base de datos.");
+			}
 		}
 
 		public void EliminarTodosLosArchivosDeLaCarpetaDondeEstanLosBackups()

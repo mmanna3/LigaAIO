@@ -3,7 +3,8 @@
 	public interface IBackupPersistence
 	{
 		string ComprimirImagenesYPonerZipEnCarpetaDeBackups();		
-		string ComprimirUltimoBackupBdYPonerZipEnCarpetaDeBackups();
+		string ComprimirBackupBaseDeDatosYPonerZipEnCarpetaDeBackups();
 		void EliminarTodosLosArchivosDeLaCarpetaDondeEstanLosBackups();
+		void GenerarBackupDeBaseDeDatosEnCarpetaTemporal();
 	}
 }

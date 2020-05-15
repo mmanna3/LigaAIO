@@ -45,24 +45,10 @@ namespace Tests.Integration
 		}
 
 		[Test]
-		public void LanzaExcepcionSiNoHayBackupBd()
+		public void ComprimirBackupBaseDeDatosYPonerZipEnCarpetaDeBackups()
 		{
-			Assert.That(() => _backupDiskPersistence.ComprimirUltimoBackupBdYPonerZipEnCarpetaDeBackups(),
-				Throws.Exception
-					.TypeOf<Exception>()
-					.With.Property("Message")
-					.Contains("No hay backups de base de datos"));
-		}
-
-		[Test]
-		public void ComprimirUltimoBackupBdYPonerZipEnCarpetaDeBackups()
-		{
-			var backupBdPath = $"{_paths.BackupAbsolute()}/mmmannna3_edefi_prod_12231.bak";
-
-			var fs = File.Create(backupBdPath);
-			fs.Close();		
-
-			var pathBackupComprimido = _backupDiskPersistence.ComprimirUltimoBackupBdYPonerZipEnCarpetaDeBackups();
+			Directory.CreateDirectory(_paths.CarpetaTemporalBackupBaseDeDatosAbsolute);
+			var pathBackupComprimido = _backupDiskPersistence.ComprimirBackupBaseDeDatosYPonerZipEnCarpetaDeBackups();
 
 			Assert.AreEqual(true, File.Exists(pathBackupComprimido));
 		}
