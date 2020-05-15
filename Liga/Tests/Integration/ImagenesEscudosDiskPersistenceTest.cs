@@ -2,8 +2,10 @@
 using LigaSoft.Models.ViewModels;
 using LigaSoft.Utilidades.Persistence.DiskPersistence;
 using NUnit.Framework;
+using Tests.Integration.Utilidades;
+using Tests.Unit;
 
-namespace Tests.Unit
+namespace Tests.Integration
 {
 	[TestFixture]
 	public class ImagenesEscudosDiskPersistenceTest

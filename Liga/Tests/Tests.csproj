@@ -96,22 +96,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Unit\AppPathsForTest.cs" />
-    <Compile Include="Unit\Constantes.cs" />
+    <Compile Include="Integration\Utilidades\AppPathsForTest.cs" />
+    <Compile Include="Integration\Utilidades\Constantes.cs" />
     <Compile Include="Unit\ImagenUtilityTest.cs" />
-    <Compile Include="Unit\HttpPostedFileRandomJpg.cs" />
-    <Compile Include="Unit\BackupDiskPersistenceTest.cs" />
-    <Compile Include="Unit\ImagenesPublicidadDiskPersistenceTest.cs" />
-    <Compile Include="Unit\ImagenesEscudosDiskPersistenceTest.cs" />
-    <Compile Include="Unit\ImagenesJugadoresDiskPersistenceTest.cs" />
-    <Compile Include="Integration\BaseIntegrationTest.cs" />
-    <Compile Include="Integration\DropCreateDatabaseAlwaysAndSeed.cs" />
-    <Compile Include="Integration\GetForGridTests.cs" />
-    <Compile Include="Integration\ZonaHelperTests.cs" />
-    <Compile Include="Integration\TablasAnualesTests.cs" />
-    <Compile Include="Integration\TablasAperturaTests.cs" />
-    <Compile Include="Integration\TestConfig.cs" />
-    <Compile Include="Integration\InformesTests.cs" />
+    <Compile Include="Integration\Utilidades\HttpPostedFileRandomJpg.cs" />
+    <Compile Include="Integration\BackupDiskPersistenceTest.cs" />
+    <Compile Include="Integration\ImagenesPublicidadDiskPersistenceTest.cs" />
+    <Compile Include="Integration\ImagenesEscudosDiskPersistenceTest.cs" />
+    <Compile Include="Integration\ImagenesJugadoresDiskPersistenceTest.cs" />
+    <Compile Include="Unit\Utilidades\BaseUnitTest.cs" />
+    <Compile Include="Unit\Utilidades\DropCreateDatabaseAlwaysAndSeed.cs" />
+    <Compile Include="Unit\GetForGridTests.cs" />
+    <Compile Include="Unit\ZonaHelperTests.cs" />
+    <Compile Include="Unit\TablasAnualesTests.cs" />
+    <Compile Include="Unit\TablasAperturaTests.cs" />
+    <Compile Include="Unit\Utilidades\TestConfig.cs" />
+    <Compile Include="Unit\InformesTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

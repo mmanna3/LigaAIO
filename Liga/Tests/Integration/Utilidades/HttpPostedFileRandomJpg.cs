@@ -2,7 +2,7 @@
 using System.IO;
 using System.Web;
 
-namespace Tests.Unit
+namespace Tests.Integration.Utilidades
 {
 	internal class HttpPostedFileRandomJpg : HttpPostedFileBase
 	{

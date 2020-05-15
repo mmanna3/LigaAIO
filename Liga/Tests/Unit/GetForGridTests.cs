@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using LigaSoft.Controllers;
 using LigaSoft.ExtensionMethods;
@@ -7,11 +6,12 @@ using LigaSoft.Models.Enums;
 using LigaSoft.Models.Otros;
 using LigaSoft.Models.ViewModels;
 using NUnit.Framework;
+using Tests.Unit.Utilidades;
 
-namespace Tests.Integration
+namespace Tests.Unit
 {
 	[TestFixture]
-	public class GetForGridTests : BaseIntegrationTest
+	public class GetForGridTests : BaseUnitTest
 	{
 	    private readonly ClubController _clubController;
 		private readonly TorneoController _torneoController;

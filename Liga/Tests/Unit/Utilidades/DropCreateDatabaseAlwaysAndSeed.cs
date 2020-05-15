@@ -6,7 +6,7 @@ using LigaSoft.Models;
 using LigaSoft.Models.Dominio;
 using LigaSoft.Models.Enums;
 
-namespace Tests.Integration
+namespace Tests.Unit.Utilidades
 {
 	internal sealed class DropCreateDatabaseAlwaysAndSeed : DropCreateDatabaseAlways<ApplicationDbContext>
 	{

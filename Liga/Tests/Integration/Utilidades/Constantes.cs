@@ -1,4 +1,4 @@
-﻿namespace Tests.Unit
+﻿namespace Tests.Integration.Utilidades
 {
 	public static class Constantes
 	{

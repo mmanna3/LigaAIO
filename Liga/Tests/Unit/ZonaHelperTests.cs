@@ -3,11 +3,12 @@ using LigaSoft.BusinessLogic;
 using LigaSoft.Models.Dominio;
 using LigaSoft.Models.Enums;
 using NUnit.Framework;
+using Tests.Unit.Utilidades;
 
-namespace Tests.Integration
+namespace Tests.Unit
 {
 	[TestFixture]
-	public class ZonaHelperTests : BaseIntegrationTest
+	public class ZonaHelperTests : BaseUnitTest
 	{
 		private readonly ZonaHelper _zonaHelper;
 
@@ -15,20 +16,6 @@ namespace Tests.Integration
 		{
 			_zonaHelper = new ZonaHelper(Context);
 		}
-
-		//[Test]
-		//public void AlIntentarObtenerZonaClausuraDeZonaClausuraDevuelveNull()
-		//{
-		//	var zonaClausura = Context.Zonas.First(x => x.Tipo == ZonaTipo.Clausura);
-		//	Assert.IsNull(zonaClausura);
-		//}
-
-		//[Test]
-		//public void AlIntentarObtenerZonaClausuraDeZonaRelampagoDevuelveNull()
-		//{
-		//	var zonaRelampago = Context.Zonas.First(x => x.Tipo == ZonaTipo.Relampago);
-		//	Assert.IsNull(zonaRelampago);
-		//}
 
 		[Test]
 		public void AlIntentarObtenerZonaClausuraDeZonaAperturaDevuelveZonaClausuraDelTorneoDeMismoNombre()

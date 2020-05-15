@@ -1,12 +1,12 @@
 ﻿using System.Linq;
-using LigaSoft.Models.Dominio;
 using LigaSoft.ViewModelMappers;
 using NUnit.Framework;
+using Tests.Unit.Utilidades;
 
-namespace Tests.Integration
+namespace Tests.Unit
 {
 	[TestFixture]
-	public class InformesTests : BaseIntegrationTest
+	public class InformesTests : BaseUnitTest
 	{
 	    private readonly InformeVMM _vmm;
 

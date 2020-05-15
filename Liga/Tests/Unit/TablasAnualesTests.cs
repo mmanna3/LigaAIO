@@ -2,11 +2,12 @@
 using LigaSoft.BusinessLogic;
 using LigaSoft.Models.ViewModels;
 using NUnit.Framework;
+using Tests.Unit.Utilidades;
 
-namespace Tests.Integration
+namespace Tests.Unit
 {
 	[TestFixture]
-	public class TablasAnualesTests : BaseIntegrationTest
+	public class TablasAnualesTests : BaseUnitTest
 	{
 		private readonly TablaCategoriaVM _tablaCategoriaSegunda;
 		private readonly TablaCategoriaVM _tablaCategoriaPrimera;

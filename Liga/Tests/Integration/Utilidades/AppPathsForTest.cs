@@ -2,7 +2,7 @@
 using System.Reflection;
 using LigaSoft.Utilidades;
 
-namespace Tests.Unit
+namespace Tests.Integration.Utilidades
 {
 	internal class AppPathsForTest : AppPaths
 	{

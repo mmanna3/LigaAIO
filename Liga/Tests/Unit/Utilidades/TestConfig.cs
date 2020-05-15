@@ -2,7 +2,7 @@
 using LigaSoft.Models;
 using NUnit.Framework;
 
-namespace Tests.Integration
+namespace Tests.Unit.Utilidades
 {
 	[SetUpFixture]
 	public class TestConfig

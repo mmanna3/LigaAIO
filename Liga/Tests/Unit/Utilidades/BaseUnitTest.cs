@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using LigaSoft.Models;
 using NUnit.Framework;
-using NUnit.Framework.Internal;
 
-namespace Tests.Integration
+namespace Tests.Unit.Utilidades
 {
-	public class BaseIntegrationTest
+	public class BaseUnitTest
 	{
 		protected ApplicationDbContext Context => TestConfig.Context;
 
-		protected BaseIntegrationTest()
+		protected BaseUnitTest()
 		{
 		}
 
