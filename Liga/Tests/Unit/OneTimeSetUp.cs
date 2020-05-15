@@ -1,11 +1,12 @@
 ﻿using System.Data.Entity;
 using LigaSoft.Models;
 using NUnit.Framework;
+using Tests.Unit.Utilidades;
 
-namespace Tests.Unit.Utilidades
+namespace Tests.Unit
 {
 	[SetUpFixture]
-	public class TestConfig
+	public class OneTimeSetUp
 	{
 		internal static ApplicationDbContext Context = new ApplicationDbContext();
 

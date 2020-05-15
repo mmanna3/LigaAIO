@@ -9,7 +9,7 @@ namespace Tests.Unit.Utilidades
 {
 	public class BaseUnitTest
 	{
-		protected ApplicationDbContext Context => TestConfig.Context;
+		protected ApplicationDbContext Context => OneTimeSetUp.Context;
 
 		protected BaseUnitTest()
 		{

@@ -96,6 +96,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Integration\Backup.cs" />
     <Compile Include="Integration\Utilidades\AppPathsForTest.cs" />
     <Compile Include="Integration\Utilidades\Constantes.cs" />
     <Compile Include="Unit\ImagenUtilityTest.cs" />
@@ -110,7 +111,7 @@
     <Compile Include="Unit\ZonaHelperTests.cs" />
     <Compile Include="Unit\TablasAnualesTests.cs" />
     <Compile Include="Unit\TablasAperturaTests.cs" />
-    <Compile Include="Unit\Utilidades\TestConfig.cs" />
+    <Compile Include="Unit\OneTimeSetUp.cs" />
     <Compile Include="Unit\InformesTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
