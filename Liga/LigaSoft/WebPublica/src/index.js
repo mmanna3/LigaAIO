@@ -6,15 +6,16 @@ import store from './store';
 import Navbar from './components/Navbar/Navbar';
 import bootstrap from "GlobalStyle/bootstrap.min.css";
 
-const Application = () => (
+const Application = () => {
+    history.replaceState({}, null, "/");
 
-    <Provider store={store}>
+    return <Provider store={store}>
         <Navbar/>
         <div id="contenido" className={bootstrap.container}>
             <Home/>
         </div>
     </Provider>
-);
+};
 
 
 ReactDOM.render(<Application />, document.getElementById('contenedor-padre'));

@@ -18,7 +18,7 @@ namespace LigaSoft
 			routes.MapRoute(
 				name: "Default",
 				url: "{controller}/{action}/{id}",
-				defaults: new { controller = "Public", action = "AppInit", id = UrlParameter.Optional }
+				defaults: new { controller = "Publico", action = "Index", id = UrlParameter.Optional }
 			);
 
 			routes.MapRoute(
