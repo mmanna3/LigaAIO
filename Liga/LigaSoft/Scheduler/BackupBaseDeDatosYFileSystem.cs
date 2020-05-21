@@ -19,10 +19,10 @@ namespace LigaSoft.Scheduler
 			}
 			catch (Exception e)
 			{
-				YKNExHandler.LoguearYLanzarExcepcion(e, "Error en el job SubirBackupAlDrive");
+				YKNExHandler.LoguearYLanzarExcepcion(e, "Error subiendo backup al Drive");
 			}
 
-			Log.Info("QUARTZ: Finaliza el job SubirBackupAlDrive");
+			Log.Info("Finaliza la subida de backups al Drive");
 			Log.Info("------------------------------------------------");
 		}
 	}

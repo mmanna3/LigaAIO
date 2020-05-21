@@ -1,6 +1,5 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.Migrations;
-using System.Drawing.Imaging;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -8,7 +7,6 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using LigaSoft.Migrations;
 using LigaSoft.Models;
-using LigaSoft.Scheduler;
 using LigaSoft.Utilidades;
 using LigaSoft.Utilidades.Persistence.DiskPersistence;
 
