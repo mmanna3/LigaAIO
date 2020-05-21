@@ -1,9 +1,7 @@
 ﻿using System;
-using LigaSoft.Utilidades;
-using LigaSoft.Utilidades.Backup;
 using LigaSoft.Utilidades.Persistence.DiskPersistence;
 
-namespace LigaSoft.Scheduler
+namespace LigaSoft.Utilidades.Backup
 {
 	public static class BackupBaseDeDatosYFileSystem
 	{		

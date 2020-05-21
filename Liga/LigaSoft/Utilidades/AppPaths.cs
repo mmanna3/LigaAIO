@@ -11,7 +11,7 @@ namespace LigaSoft.Utilidades
 		public string EscudoDefaultRelative { get; } = "/Imagenes/Escudos/default.jpg";
 		public string ImagenesTemporalesJugadorCarnetRelative { get; } = "/Imagenes/Temporales/Carnet";
 		public string ImagenesTemporalesJugadorDNIFrenteRelative { get; } = "/Imagenes/Temporales/DNIFrente";
-		public string BackupGeneratorExeRelative { get; } = "/Utilidades/Backup/SchemaZen.exe";
+		public string BackupGeneratorExeRelative { get; } = "/Utilidades/Backup/Recursos/SchemaZen.exe";
 
 		public string ImagenesAbsolute { get; }
 		public string ImagenesJugadoresAbsolute { get; }

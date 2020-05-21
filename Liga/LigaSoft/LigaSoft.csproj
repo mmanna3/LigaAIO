@@ -326,7 +326,7 @@
     <Compile Include="Models\ViewModels\SancionVM.cs" />
     <Compile Include="Models\ViewModels\UsuarioDelegadoVM.cs" />
     <Compile Include="Models\ViewModels\SeleccionarEquipoVM.cs" />
-    <Compile Include="Scheduler\BackupBaseDeDatosYFileSystem.cs" />
+    <Compile Include="Utilidades\Backup\BackupBaseDeDatosYFileSystem.cs" />
     <Compile Include="UIHelpers\Autocomplete_Old_Cambiar_PorNuevoAutocompleteFor.cs" />
     <Compile Include="Utilidades\AppPaths.cs" />
     <Compile Include="Utilidades\Backup\GDriveBackupManager.cs" />
@@ -995,7 +995,7 @@
     <Content Include="Imagenes\publicidad-derecha.jpg" />
     <Content Include="Imagenes\publicidad-izquierda.jpg" />
     <Content Include="Parameters.xml" />
-    <Content Include="Utilidades\Backup\SchemaZen.exe" />
+    <Content Include="Utilidades\Backup\Recursos\SchemaZen.exe" />
     <Content Include="Scripts\jquery.blockUI.js" />
     <Content Include="Scripts\pixelarity-face.js" />
     <Content Include="Scripts\r.js" />
@@ -1220,10 +1220,10 @@
     <Content Include="Views\Public\Sanciones.cshtml" />
     <Content Include="Views\Sancion\Edit.cshtml" />
     <Content Include="Views\ConceptoInsumo\AgregarStock.cshtml" />
-    <Content Include="Utilidades\Backup\credentials.json.enc" />
-    <Content Include="Utilidades\Backup\token.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-user.enc" />
-    <Content Include="Utilidades\Backup\credentials.json" />
-    <Content Include="Utilidades\Backup\token.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-user" />
+    <Content Include="Utilidades\Backup\Recursos\credentials.json.enc" />
+    <Content Include="Utilidades\Backup\Recursos\Google.Apis.Auth.OAuth2.Responses.TokenResponse-user.enc" />
+    <Content Include="Utilidades\Backup\Recursos\credentials.json" />
+    <Content Include="Utilidades\Backup\Recursos\Google.Apis.Auth.OAuth2.Responses.TokenResponse-user" />
     <Content Include="Views\UsuarioDelegado\Registro.cshtml" />
     <Content Include="Views\UsuarioDelegado\RegistroExitoso.cshtml" />
     <Content Include="Views\AdministracionDelegados\DelegadosPendientesDeAprobacion.cshtml" />

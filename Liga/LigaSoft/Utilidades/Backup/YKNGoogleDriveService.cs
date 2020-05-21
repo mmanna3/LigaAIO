@@ -15,8 +15,8 @@ namespace LigaSoft.Utilidades.Backup
 	{
 		private static readonly string[] Scopes = { DriveService.Scope.Drive, DriveService.Scope.DriveFile };
 		private const string ApplicationName = "Edefi backup";
-		private static readonly string CredencialesPath = HostingEnvironment.MapPath("~/Utilidades/Backup/credentials.json");
-		private static readonly string TokenPath = HostingEnvironment.MapPath("~/Utilidades/Backup/token.json");
+		private static readonly string CredencialesPath = HostingEnvironment.MapPath("~/Utilidades/Backup/Recursos/credentials.json");
+		private static readonly string TokenPath = HostingEnvironment.MapPath("~/Utilidades/Backup/Recursos");
 		private static DriveService _driveService;		
 
 		public YKNGoogleDriveService()

@@ -93,26 +93,6 @@ namespace LigaSoft.Utilidades.Persistence.DiskPersistence
 			EliminarArchivos(Paths.BackupAbsolute(), "*.*");
 		}
 
-		private static string PathDelUltimoBackupBD()
-		{
-			var backupPaths = Directory.GetFiles(Paths.BackupAbsolute(), "mmmannna3_edefi_prod_*.bak");
-
-			DateTime? fechaDelBackupMasNuevo = null;
-			string pathDelBackupMasNuevo = null;
-			foreach (var backupPath in backupPaths)
-			{
-				var fechaDeEsteBackup = File.GetCreationTime(backupPath);
-
-				if (fechaDelBackupMasNuevo == null || fechaDeEsteBackup > fechaDelBackupMasNuevo)
-				{
-					fechaDelBackupMasNuevo = fechaDeEsteBackup;
-					pathDelBackupMasNuevo = backupPath;
-				}					
-			}
-
-			return pathDelBackupMasNuevo;
-		}
-
 		private static void EliminarArchivos(string folderPath, string fileSearchPattern)
 		{
 			Log.Info($"Se van a eliminar todos los archivos de '{folderPath}' con extensión: '{fileSearchPattern}'.");
