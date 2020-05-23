@@ -53,11 +53,11 @@ for:
         - test
     environment:
       DefaultConnection-Web.config Connection String: 
-        secure: rseM20eZh0et+yqC++xeyPmLdQj8i/uFhWogVKy4+oC9yw2DvVp3N03FIG0dKzbWr4GWz5Srkkne6KvdUQhsxpEUuBzNPEaFIwTzhcpLb+sC+qSsWHwW7vfvCVvJdYbaMGJAMT0J8HxIwZMeG/cmwAsiHSYP6V0UFEtGhN0i5lI=
+        secure: XCd88qxQ5JDVfoGcLQeYQWrGCU6u6B3IXhiH9F16yEkP5FfTLoWEup0h3mer2aJEMQ3v3eNLGNoG1bGa6EE+gF5ivVxkL4ekjni2H+qCAsOJVQasYy1mhFIqoW7nMtp3FJFhhv8SLhi9Z7xF2updx+Qrmy3d57ZRIi3LQ6p2DmI=
       deploy_server_test:
-        secure: 17WII/5TNwwoQkAp6BZ5Gn9z4iObfqt7VleKl6tCWOrZYBuqfL5LyCZL6jHFCts62/0JHvAPxIzFrHdiri2WsA==
+        secure: qbUfDe0ngl5+/7mkQxs8ByxZ6QB93c59/494w4lEpOai3cgh5bDAiRBRYeOt7hQQ7JkG1kD6wV2IigmoKDvZHD4lsSg4IrSwWOWLSPJCyCI=
       deploy_website_test:
-        secure: tRk9SILuLoHrXUKD2DPjYIRy2DXqtX4C2cRmWipUun4=
+        secure: L4aPGohGkV1xWMMxniWVZryvAIvbB4zCKIDM5WvUh9k=
     deploy:
       - provider: WebDeploy
         remove_files: true
