@@ -42,15 +42,13 @@
 
 body {
 	font-family: 'SegoeUI', "Helvetica Neue", Arial;
-	background-image: url('../../assets/imgs/background-1920x1090.jpg');
+	background-image: url('../../assets/imgs/background-576x900.jpg');	
 	background-size: auto;
 	
 	width: 100%;
 	height: 100%;
 	position: absolute;
-}
 
-body {
 	min-width: 100%;	/* Como mínimo ocupa todo el viewport */
 	width: fit-content;	/* Pero si hay contenido más ancho (por las tablas, por ejemplo), se ajusta */
 }
@@ -71,9 +69,13 @@ body {
 
 	.home {
 		height: homeHeight;
-	}
+	}	
 
 	.banners {
 		padding-top: 0;
+	}
+
+	body {
+		background-image: url('../../assets/imgs/background-1920x1090.jpg');
 	}
 }
