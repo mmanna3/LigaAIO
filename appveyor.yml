@@ -40,7 +40,7 @@ for:
     deploy:
       - provider: WebDeploy
         remove_files: true
-        skip_dirs: \\App_Data;\\Imagenes;\\logs
+        skip_dirs: \\App_Data;\\Imagenes;\\logs;\\aspnet_client;
         server: $(deploy_server_prod)
         website: $(deploy_website_prod)
         username: $(deploy_username)
