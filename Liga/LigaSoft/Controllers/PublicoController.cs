@@ -54,6 +54,15 @@ namespace LigaSoft.Controllers
 			return Json(result, JsonRequestBehavior.AllowGet);
 		}
 
+		public JsonResult ObtenerNombreDelEquipo(int equipoId)
+		{
+			var result = _context.Equipos
+				.SingleOrDefault(x => x.Id == equipoId)?
+				.Nombre;
+
+			return Json(result, JsonRequestBehavior.AllowGet);
+		}
+
 		public JsonResult TorneosRelampago(string anio)
 		{
 			Enum.TryParse(anio, out Anio anioEnum);
