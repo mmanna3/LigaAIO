@@ -58,7 +58,7 @@ return (
                             <a className={styles.navLinkOnHoverVerde} href="#" onClick={() => actualizarSeccionPrincipalYOcultarMenu("Contacto")}>Contacto</a>
                         </li>
                         <li className={bootstrap['nav-item']}>
-                            <a className={styles.navLinkOnHoverAzul} href="/Delegados" target="_blank">Delegados</a>
+                            <a className={styles.navLinkOnHoverAzul} href="#" onClick={() => actualizarSeccionPrincipalYOcultarMenu("Fichaje")}>Fichaje</a>
                         </li>
                     </ul>
                 </div>

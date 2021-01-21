@@ -9,6 +9,7 @@ import NoticiaSeleccionada from 'Components/SeccionPrincipalNoticias/NoticiaSele
 import {COLOR} from "Utils/consts";
 import {useSelector} from 'react-redux';
 import styles from './Home.css';
+import SeccionPrincipalFichaje from '../SeccionPrincipalFichaje/SeccionPrincipalFichaje';
 
 
 function Home() {
@@ -59,7 +60,9 @@ function Home() {
     else if (seccionPrincipalSeleccionada == "Nosotros")
       return <SeccionPrincipalNosotros />
     else if (seccionPrincipalSeleccionada == "Contacto")
-      return <SeccionPrincipalContacto />    
+      return <SeccionPrincipalContacto />
+    else if (seccionPrincipalSeleccionada == "Fichaje")
+      return <SeccionPrincipalFichaje />    
     else if (seccionPrincipalSeleccionada == "NoticiaSeleccionada" && noticiaSeleccionada != null)
       return <NoticiaSeleccionada /> 
 }
