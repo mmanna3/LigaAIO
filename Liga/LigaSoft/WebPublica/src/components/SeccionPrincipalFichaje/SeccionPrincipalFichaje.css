@@ -3,6 +3,14 @@
 .seccion {
 	padding-top: 1em;
 	padding-bottom: 2em;
+	max-width: 360px;	
+}
+
+.seccionContainer {
+	display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-flow: column;
 }
 
 .padding-cajas {

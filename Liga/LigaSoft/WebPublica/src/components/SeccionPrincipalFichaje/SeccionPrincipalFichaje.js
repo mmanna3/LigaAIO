@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styles from './SeccionPrincipalFichaje.css';
 import {fetchDataAndRenderResponse} from "Utils/hooks";
 import Input from './Input/Input';
+import bootstrap from "GlobalStyle/bootstrap.min.css";
 
 // const ValidadorDeId = ({id}) =>{    
 
@@ -26,12 +27,14 @@ const SeccionPrincipalFichaje = () => {
     }
     
     return (
-            <div className={styles.seccion}>                
-                <Input 
-                    label={"Código de tu equipo"}
-                    onEnter={validarEquipo}
-                    />
-                {/* <ValidadorDeId id={2} /> */}
+            <div className={styles.seccionContainer}>
+                <div className={styles.seccion}>
+                    <Input 
+                        label={"Código de tu equipo"}
+                        onEnter={validarEquipo}
+                        />
+                    {/* <ValidadorDeId id={2} /> */}
+                </div>
             </div>
     );
 }
