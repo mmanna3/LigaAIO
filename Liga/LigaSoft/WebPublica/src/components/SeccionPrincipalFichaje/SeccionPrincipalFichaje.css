@@ -1,5 +1,6 @@
 @value blanco-grisaceo from from './../../assets/styles/colors.css';
 
+
 .seccion {
 	padding-top: 1em;
 	padding-bottom: 2em;
@@ -14,22 +15,29 @@
 }
 
 .paso {
-	padding-bottom: 2em;
-}
-
-/* .padding-cajas {
+	background-color: rgba(255,255,255,0.8);
+	text-align: left;
 	padding-top: 2em;
 	padding-bottom: 2em;
 	padding-right: 3em;
-	padding-left: 2em;
+	padding-left: 2em;	
 }
 
-.contenido {
-	composes: padding-cajas;
-	background-color: rgba(255,255,255,0.8);
-	text-align: left;	
+.primerPaso {
+	composes: backgroundGradienteAzul from './../../assets/styles/colors.css';
+	composes: paso
 }
 
+.segundoPaso {
+	composes: backgroundGradienteRojo from './../../assets/styles/colors.css';
+	composes: paso
+}
+
+.botonValidar {
+	composes: backgroundGradienteVerde from './../../assets/styles/colors.css';
+}
+
+/*
 .titulo {
 	composes: tituloBlancoConSombraNegra from './../../assets/styles/base.css';
 	padding-bottom: 0.5em;
