@@ -1,30 +1,19 @@
 import React, { useState } from 'react';
 import styles from './SeccionPrincipalFichaje.css';
-import {fetchDataAndRenderResponse} from "Utils/hooks";
 import Input from './Input/Input';
 import bootstrap from "GlobalStyle/bootstrap.min.css";
 import Label from './Label/Label';
 
-// const ValidadorDeId = ({id}) =>{    
-
-//     const render = (data, loading) => {
-  
-//         if (!loading)
-//             return (
-//             <div className={styles.rowTablas}>            
-//                 {data}
-//             </div>
-//             )
-//         else
-//             <div>Error</div>
-//       }    
-  
-//       return fetchDataAndRenderResponse("/publico/ObtenerNombreDelEquipo?equipoId="+id, render);
-//   }
-
 const SeccionPrincipalFichaje = () => {
-    function validarEquipo(id) {
-        console.log(id);
+
+    const [codigoEquipo, setCodigoEquipo] = useState()
+
+    const onCodigoEquipoChange = (id) => {
+        setCodigoEquipo(id)
+    }
+
+    const onValidarClick = () => {
+        console.log(codigoEquipo);
     }
     
     return (
@@ -37,12 +26,12 @@ const SeccionPrincipalFichaje = () => {
                             </div>
                             <div className={bootstrap['col-8']}> 
                                 <Input
-                                    onEnter={validarEquipo}
-                                    type="number"
+                                    onChange={onCodigoEquipoChange}
+                                    type="number"                                    
                                 />
                             </div>
                             <div className={bootstrap['col-4']}> 
-                                <button style={{width: "100%"}}>Validar</button>
+                                <button style={{width: "100%"}} onClick={onValidarClick}>Validar</button>
                             </div>
                         </div>
                         
