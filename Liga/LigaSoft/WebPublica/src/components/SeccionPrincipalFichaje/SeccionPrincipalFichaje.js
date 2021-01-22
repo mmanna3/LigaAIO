@@ -44,10 +44,14 @@ const SeccionPrincipalFichaje = () => {
                                     yaValidoCodigoEquipo &&
                                     (codigoEquipoEsValido ?
                                         <div className={bootstrap['col-12']}>
-                                            Tu equipo es {nombreEquipo}
+                                            <div className={`${bootstrap['alert']} ${bootstrap['alert-success']} ${styles.alertaValidacionEquipo}`}>
+                                                Tu equipo es <strong>{nombreEquipo}</strong>
+                                            </div>
                                         </div> :
                                         <div className={bootstrap['col-12']}>
-                                            El código es incorrecto
+                                            <div className={`${bootstrap['alert']} ${bootstrap['alert-danger']} ${styles.alertaValidacionEquipo}`}>
+                                                El código es incorrecto
+                                            </div>
                                         </div>
                                     )
                                 }
