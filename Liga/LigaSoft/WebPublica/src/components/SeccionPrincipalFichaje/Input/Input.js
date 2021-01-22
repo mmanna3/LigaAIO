@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './Input.css';
 
-const Input = ({onEnter, label}) => {
+const Input = ({onEnter, type = "text"}) => {
 
   const [valor, setValor] = useState("")
 
@@ -12,9 +12,8 @@ const Input = ({onEnter, label}) => {
   }
 
   return (
-      <div>
-        <label className={styles.label}>{label}</label>
-        <input type="text" value={valor} onChange={(e) => setValor(e.target.value)} onKeyDown={handleKeyDown} />
+      <div>        
+        <input type="text" className={styles.input} value={valor} type={type} onChange={(e) => setValor(e.target.value)} onKeyDown={handleKeyDown} />
       </div>
     )
 }
