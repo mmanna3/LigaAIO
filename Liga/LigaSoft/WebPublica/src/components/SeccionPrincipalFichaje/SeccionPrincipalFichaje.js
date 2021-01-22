@@ -1,18 +1,24 @@
 import React, { useState } from 'react';
 import styles from './SeccionPrincipalFichaje.css';
+import {fetchDataAndRenderResponse} from "Utils/hooks";
+import Input from './Input/Input';
 
-const Input = ({onEnter}) => {
+// const ValidadorDeId = ({id}) =>{    
 
-    const [valor, setValor] = useState("")
-
-    const handleKeyDown = (event) => {
-        if (event.key === 'Enter') {
-            onEnter(valor)
-        }
-    }
+//     const render = (data, loading) => {
   
-    return <input type="text" value={valor} onChange={(e) => setValor(e.target.value)} onKeyDown={handleKeyDown} />
-  }
+//         if (!loading)
+//             return (
+//             <div className={styles.rowTablas}>            
+//                 {data}
+//             </div>
+//             )
+//         else
+//             <div>Error</div>
+//       }    
+  
+//       return fetchDataAndRenderResponse("/publico/ObtenerNombreDelEquipo?equipoId="+id, render);
+//   }
 
 const SeccionPrincipalFichaje = () => {
     function validarEquipo(id) {
@@ -20,9 +26,12 @@ const SeccionPrincipalFichaje = () => {
     }
     
     return (
-            <div className={styles.seccion}>
-                <label style={{fontWeight:'bolder'}}>Código de tu equipo</label>
-                <Input onEnter={validarEquipo}/>
+            <div className={styles.seccion}>                
+                <Input 
+                    label={"Código de tu equipo"}
+                    onEnter={validarEquipo}
+                    />
+                {/* <ValidadorDeId id={2} /> */}
             </div>
     );
 }
