@@ -7,13 +7,19 @@ import Label from './Label/Label';
 const SeccionPrincipalFichaje = () => {
 
     const [codigoEquipo, setCodigoEquipo] = useState()
+    const [codigoEquipoEsValido, setCodigoEquipoEsValido] = useState(null)
+    const [nombreEquipo, setNombreEquipo] = useState("")
+    const [yaValidoCodigoEquipo, setYaValidoCodigoEquipo] = useState(false)
 
     const onCodigoEquipoChange = (id) => {
         setCodigoEquipo(id)
     }
 
     const onValidarClick = () => {
-        console.log(codigoEquipo);
+        fetch(`/publico/obtenerNombreDelEquipo?equipoId=${codigoEquipo}`)
+            .then(response => response.json())
+            .then(data => {setNombreEquipo(data); setCodigoEquipoEsValido(true); setYaValidoCodigoEquipo(true)})
+            .catch(() => {setCodigoEquipoEsValido(false); setYaValidoCodigoEquipo(true)})
     }
     
     return (
@@ -33,6 +39,17 @@ const SeccionPrincipalFichaje = () => {
                             <div className={bootstrap['col-4']}> 
                                 <button style={{width: "100%"}} onClick={onValidarClick}>Validar</button>
                             </div>
+                            {
+                                yaValidoCodigoEquipo &&
+                                (codigoEquipoEsValido ?
+                                    <div className={bootstrap['col-12']}>
+                                        Tu equipo es {nombreEquipo}
+                                    </div> :
+                                    <div className={bootstrap['col-12']}>
+                                        El código no pertenece a ningún equipo
+                                    </div>
+                                )
+                            }
                         </div>
                         
 
