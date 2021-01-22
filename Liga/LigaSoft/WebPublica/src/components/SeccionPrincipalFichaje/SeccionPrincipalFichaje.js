@@ -30,22 +30,33 @@ const SeccionPrincipalFichaje = () => {
     return (
             <div className={styles.seccionContainer}>
                 <div className={styles.seccion}>
-                    <div className={bootstrap.row}>
-                        <div className={bootstrap['col-md-12']}> 
-                            <Label texto={"Código de tu equipo"} />
+
+                        <div className={`${bootstrap.row} ${styles.paso}`}>
+                            <div className={bootstrap['col-12']}> 
+                                <Label texto={"Código de tu equipo"} />
+                            </div>
+                            <div className={bootstrap['col-8']}> 
+                                <Input
+                                    onEnter={validarEquipo}
+                                    type="number"
+                                />
+                            </div>
+                            <div className={bootstrap['col-4']}> 
+                                <button style={{width: "100%"}}>Validar</button>
+                            </div>
                         </div>
-                        <div className={bootstrap['col-md-8']}> 
-                            <Input
-                                onEnter={validarEquipo}
-                                type="number"
-                            />
+                        
+
+                        <div className={bootstrap.row}>
+                            <div className={bootstrap['col-12']}> 
+                                <Label texto={"Tu nombre"} />
+                            </div>
+                            <div className={bootstrap['col-12']}> 
+                                <Input />
+                            </div>                        
                         </div>
-                        <div className={bootstrap['col-md-4']}> 
-                            <button style={{width: "100%"}}>Validar</button>
-                        </div>
-                    </div>
-                    
-                    {/* <ValidadorDeId id={2} /> */}
+                        
+                        {/* <ValidadorDeId id={2} /> */}
                 </div>
             </div>
     );

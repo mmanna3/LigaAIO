@@ -13,6 +13,10 @@
     flex-flow: column;
 }
 
+.paso {
+	padding-bottom: 2em;
+}
+
 /* .padding-cajas {
 	padding-top: 2em;
 	padding-bottom: 2em;
