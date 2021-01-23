@@ -1,6 +1,7 @@
 import React, { useState} from 'react';
 import Cropper from 'react-easy-crop'
-import styles from './FotoCarnet.css';
+import Slider from '@material-ui/core/Slider'
+import estilos from './FotoCarnet.css';
 import bootstrap from "GlobalStyle/bootstrap.min.css";
 
 const FotoCarnet = ({}) => {
@@ -20,7 +21,7 @@ const FotoCarnet = ({}) => {
   };
 
   const onCropComplete = (croppedArea, croppedAreaPixels) => {
-    alert("crop completed")
+    // alert("crop completed")
   }
 
   return (
@@ -29,17 +30,30 @@ const FotoCarnet = ({}) => {
               <input type="file" accept="image/*" onChange={onSelectFile} />
               {imagen && 
               (
-                <div className="crop-container">
-                  <Cropper
-                    image={imagen}
-                    crop={crop}                    
-                    aspect={4 / 3}
-                    onCropChange={setCrop}
-                    cropSize={{width: 300, height: 300 }}
-                    // zoom={zoom}
-                    // onZoomChange={zoom => setZoom(zoom)}
-                    onCropComplete={onCropComplete}
-                  />
+                <div className={estilos.contenedorGeneralDeTodo}>
+                  <div className={estilos.cropContainer}>
+                    <Cropper
+                      image={imagen}
+                      crop={crop}                    
+                      aspect={4 / 3}
+                      onCropChange={setCrop}
+                      cropSize={{width: 300, height: 300 }}
+                      zoom={zoom}
+                      onZoomChange={zoom => setZoom(zoom)}
+                      onCropComplete={onCropComplete}
+                    />
+                  </div>
+                  <div className={estilos.controls}>
+                    <Slider
+                      value={zoom}
+                      min={1}
+                      max={3}
+                      step={0.1}
+                      aria-labelledby="Zoom"
+                      onChange={(e, zoom) => setZoom(zoom)}
+                      classes={{ container: estilos.slider }}
+                    />
+                  </div>
                 </div>
               )}
             </div>
