@@ -4,6 +4,7 @@ import Slider from '@material-ui/core/Slider'
 import estilos from './FotoCarnet.css';
 import bootstrap from "GlobalStyle/bootstrap.min.css";
 import obtenerImagenRecortada from './recortarImagen'
+import persona from './chico.png';
 
 const FotoCarnet = ({}) => {
 
@@ -11,7 +12,7 @@ const FotoCarnet = ({}) => {
   const [crop, setCrop] = useState({ x: 0, y: 0 })
   const [zoom, setZoom] = useState(1)
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null)
-  const [imagenRecortada, setImagenRecortada] = useState(null)
+  const [imagenRecortada, setImagenRecortada] = useState(persona)
 
   const onSelectFile = e => {
     if (e.target.files && e.target.files.length > 0) {
@@ -53,6 +54,12 @@ const FotoCarnet = ({}) => {
                 type="file" 
                 accept="image/*"
                 onChange={onSelectFile} />
+              
+                <div className={estilos.contenedorDeImagenRecortada}>
+                  <img src={imagenRecortada} alt="Cropped" className={estilos.imagenRecortada} />
+                </div>
+              
+              
               {imagen && 
               (
                 <div className={estilos.contenedorGeneralDeTodo}>
@@ -62,7 +69,7 @@ const FotoCarnet = ({}) => {
                       crop={crop}                    
                       aspect={4 / 3}
                       onCropChange={setCrop}
-                      cropSize={{width: 300, height: 300 }}
+                      cropSize={{width: 240, height: 240 }}
                       onCropComplete={onCropComplete}
                       zoom={zoom}
                       onZoomChange={zoom => setZoom(zoom)}
@@ -90,12 +97,6 @@ const FotoCarnet = ({}) => {
                         </div>
                       </div>
                   </div>
-                </div>
-              )}
-
-              {imagenRecortada && (
-                <div className={estilos.contenedorDeImagenRecortada}>
-                  <img src={imagenRecortada} alt="Cropped" className={estilos.imagenRecortada} />
                 </div>
               )}
 
