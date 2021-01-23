@@ -1,14 +1,17 @@
-import React, { useState} from 'react';
+import React, { useState, useCallback } from 'react';
 import Cropper from 'react-easy-crop'
 import Slider from '@material-ui/core/Slider'
 import estilos from './FotoCarnet.css';
 import bootstrap from "GlobalStyle/bootstrap.min.css";
+import obtenerImagenRecortada from './recortarImagen'
 
 const FotoCarnet = ({}) => {
 
   const [imagen, setImagen] = useState(null)
   const [crop, setCrop] = useState({ x: 0, y: 0 })
   const [zoom, setZoom] = useState(1)
+  const [croppedAreaPixels, setCroppedAreaPixels] = useState(null)
+  const [imagenRecortada, setImagenRecortada] = useState(null)
 
   const onSelectFile = e => {
     if (e.target.files && e.target.files.length > 0) {
@@ -20,8 +23,23 @@ const FotoCarnet = ({}) => {
     }
   };
 
-  const onAceptarClick = () => {
+  const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
+    setCroppedAreaPixels(croppedAreaPixels)
+  }, [])
 
+  const onAceptarClick = async () => {
+    try {
+      const croppedImage = await obtenerImagenRecortada(
+        imagen,
+        croppedAreaPixels
+      )
+      console.log('imagen bien recortada', { croppedImage })
+      setImagenRecortada(croppedImage)
+    } catch (e) {
+      console.error(e)
+    }
+    
+    setImagen(null);
   }
 
   const onCancelarClick = () => {
@@ -45,6 +63,7 @@ const FotoCarnet = ({}) => {
                       aspect={4 / 3}
                       onCropChange={setCrop}
                       cropSize={{width: 300, height: 300 }}
+                      onCropComplete={onCropComplete}
                       zoom={zoom}
                       onZoomChange={zoom => setZoom(zoom)}
                     />
@@ -73,6 +92,13 @@ const FotoCarnet = ({}) => {
                   </div>
                 </div>
               )}
+
+              {imagenRecortada && (
+                <div className={estilos.contenedorDeImagenRecortada}>
+                  <img src={imagenRecortada} alt="Cropped" className={estilos.imagenRecortada} />
+                </div>
+              )}
+
             </div>
         </div>
     )
