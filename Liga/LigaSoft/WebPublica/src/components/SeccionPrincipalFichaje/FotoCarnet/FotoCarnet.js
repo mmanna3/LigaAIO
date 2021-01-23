@@ -20,10 +20,21 @@ const FotoCarnet = ({}) => {
     }
   };
 
+  const onAceptarClick = () => {
+
+  }
+
+  const onCancelarClick = () => {
+    setImagen(null);
+  }
+
   return (
           <div>
             <div>
-              <input type="file" accept="image/*" onChange={onSelectFile} />
+              <input 
+                type="file" 
+                accept="image/*"
+                onChange={onSelectFile} />
               {imagen && 
               (
                 <div className={estilos.contenedorGeneralDeTodo}>
@@ -52,10 +63,10 @@ const FotoCarnet = ({}) => {
                       <div className={bootstrap.container}>
                         <div className={bootstrap.row}>
                           <div className={bootstrap['offset-2']+" "+bootstrap['col-4']}>
-                              <button className={`${bootstrap.btn} ${bootstrap['btn-success']}`} style={{width: "100%"}}>Aceptar</button>
+                              <button className={`${bootstrap.btn} ${bootstrap['btn-success']}`} style={{width: "100%"}} onClick={onAceptarClick}>Aceptar</button>
                           </div>
                           <div className={bootstrap['col-4']}>
-                              <button className={`${bootstrap.btn} ${bootstrap['btn-danger']}`} style={{width: "100%"}}>Cancelar</button>
+                              <button className={`${bootstrap.btn} ${bootstrap['btn-danger']}`} style={{width: "100%"}} onClick={onCancelarClick}>Cancelar</button>
                           </div>
                         </div>
                       </div>
