@@ -51,7 +51,7 @@ const FotoCarnet = ({}) => {
                       step={0.1}
                       aria-labelledby="Zoom"
                       onChange={(e, zoom) => setZoom(zoom)}
-                      classes={{ container: estilos.slider }}
+                      // classes={{ container: estilos.slider }}
                     />
                   </div>
                 </div>
