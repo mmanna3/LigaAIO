@@ -3,6 +3,7 @@ import styles from './SeccionPrincipalFichaje.css';
 import Input from './Input/Input';
 import bootstrap from "GlobalStyle/bootstrap.min.css";
 import Label from './Label/Label';
+import FotoCarnet from './FotoCarnet/FotoCarnet';
 
 const SeccionPrincipalFichaje = () => {
 
@@ -68,6 +69,8 @@ const SeccionPrincipalFichaje = () => {
                                 </div>                        
                             </div>
                         </div>
+
+                        <FotoCarnet />
 
 
                 </div>
