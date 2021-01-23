@@ -20,10 +20,6 @@ const FotoCarnet = ({}) => {
     }
   };
 
-  const onCropComplete = (croppedArea, croppedAreaPixels) => {
-    // alert("crop completed")
-  }
-
   return (
           <div>
             <div>
@@ -40,10 +36,9 @@ const FotoCarnet = ({}) => {
                       cropSize={{width: 300, height: 300 }}
                       zoom={zoom}
                       onZoomChange={zoom => setZoom(zoom)}
-                      onCropComplete={onCropComplete}
                     />
                   </div>
-                  <div className={estilos.controls}>
+                  <div className={estilos.sliderContainer}>
                     <Slider
                       value={zoom}
                       min={1}
@@ -51,8 +46,19 @@ const FotoCarnet = ({}) => {
                       step={0.1}
                       aria-labelledby="Zoom"
                       onChange={(e, zoom) => setZoom(zoom)}
-                      // classes={{ container: estilos.slider }}
                     />
+                  </div>
+                  <div className={estilos.botonesContainer}>
+                      <div className={bootstrap.container}>
+                        <div className={bootstrap.row}>
+                          <div className={bootstrap['offset-2']+" "+bootstrap['col-4']}>
+                              <button className={`${bootstrap.btn} ${bootstrap['btn-success']}`} style={{width: "100%"}}>Aceptar</button>
+                          </div>
+                          <div className={bootstrap['col-4']}>
+                              <button className={`${bootstrap.btn} ${bootstrap['btn-danger']}`} style={{width: "100%"}}>Cancelar</button>
+                          </div>
+                        </div>
+                      </div>
                   </div>
                 </div>
               )}
