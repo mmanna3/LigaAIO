@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import Cropper from 'react-easy-crop'
 import Slider from '@material-ui/core/Slider'
 import estilos from './FotoCarnet.css';
@@ -15,6 +15,10 @@ const FotoCarnet = ({estiloDelPaso}) => {
   const [zoom, setZoom] = useState(1)
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null)
   const [imagenRecortada, setImagenRecortada] = useState(persona)
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [imagen])
 
   const onSelectFile = e => {
     if (e.target.files && e.target.files.length > 0) {
