@@ -4,6 +4,7 @@ import Slider from '@material-ui/core/Slider'
 import estilos from './FotoCarnet.css';
 import bootstrap from "GlobalStyle/bootstrap.min.css";
 import obtenerImagenRecortada from './recortarImagen'
+import ImageUploader from './ImageUploader'
 import persona from './chico.png';
 import Label from '../Label/Label';
 
@@ -59,10 +60,7 @@ const FotoCarnet = ({estiloDelPaso}) => {
                 <img src={imagenRecortada} alt="Cropped" className={estilos.imagenRecortada} />
               </div>
               
-              <input 
-                type="file" 
-                accept="image/*"
-                onChange={onSelectFile} />
+              <ImageUploader value={imagen} onChange={onSelectFile} />
               
               {imagen && 
               (
