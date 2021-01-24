@@ -70,7 +70,7 @@ const SeccionPrincipalFichaje = () => {
                             </div>
                         </div>
 
-                        <FotoCarnet />
+                        <FotoCarnet estiloDelPaso={styles.tercerPaso} />
 
 
                 </div>

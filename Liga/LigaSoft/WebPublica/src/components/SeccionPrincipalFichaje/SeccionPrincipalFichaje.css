@@ -33,6 +33,11 @@
 	composes: paso
 }
 
+.tercerPaso {
+	composes: backgroundGradienteVerde from './../../assets/styles/colors.css';
+	composes: paso
+}
+
 .botonValidar {
 	composes: backgroundGradienteVerde from './../../assets/styles/colors.css';
 }

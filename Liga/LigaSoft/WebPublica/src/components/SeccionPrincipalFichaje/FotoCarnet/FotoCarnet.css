@@ -1,3 +1,10 @@
+.contenedorGeneral{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .contenedorGeneralDeTodo {
   position: absolute;
   top: 0;
@@ -36,10 +43,13 @@
 .imagenRecortada {
   width: 240px;
   height: 240px;
-  border: 2px solid white;
+  border: 3px solid white;
   border-radius: 10px;
 }
 
-.contenedorDeImagenRecortada {
-  
+.contenedorDeContenidoCentrado {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

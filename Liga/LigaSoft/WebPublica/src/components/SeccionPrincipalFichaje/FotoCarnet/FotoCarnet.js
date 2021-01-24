@@ -5,8 +5,9 @@ import estilos from './FotoCarnet.css';
 import bootstrap from "GlobalStyle/bootstrap.min.css";
 import obtenerImagenRecortada from './recortarImagen'
 import persona from './chico.png';
+import Label from '../Label/Label';
 
-const FotoCarnet = ({}) => {
+const FotoCarnet = ({estiloDelPaso}) => {
 
   const [imagen, setImagen] = useState(null)
   const [crop, setCrop] = useState({ x: 0, y: 0 })
@@ -48,17 +49,20 @@ const FotoCarnet = ({}) => {
   }
 
   return (
-          <div>
-            <div>
+          <div className={estiloDelPaso}>
+            <div className={bootstrap.row}>
+              <div className={bootstrap['col-12']+" "+estilos.contenedorDeContenidoCentrado}> 
+                  <Label texto={"Tu foto"} />
+              </div>                    
+                            
+              <div className={estilos.contenedorDeContenidoCentrado}>
+                <img src={imagenRecortada} alt="Cropped" className={estilos.imagenRecortada} />
+              </div>
+              
               <input 
                 type="file" 
                 accept="image/*"
                 onChange={onSelectFile} />
-              
-                <div className={estilos.contenedorDeImagenRecortada}>
-                  <img src={imagenRecortada} alt="Cropped" className={estilos.imagenRecortada} />
-                </div>
-              
               
               {imagen && 
               (
