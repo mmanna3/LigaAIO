@@ -65,7 +65,7 @@ const FotoCarnet = ({estiloDelPaso, register}) => {
               </div>
               
               <ImageUploader value={imagen} onChange={onSelectFile} />
-              <input name="fotoCarnet" ref={register} style={{display: "none"}} value={imagenRecortada} />
+              <input readOnly name="fotoCarnet" ref={register} style={{display: "none"}} value={imagenRecortada} />
               
               {imagen && 
               (
