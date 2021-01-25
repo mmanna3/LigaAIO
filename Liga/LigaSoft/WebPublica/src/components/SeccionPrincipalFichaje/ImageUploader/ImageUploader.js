@@ -1,5 +1,5 @@
 import React from 'react';
-import estilos from './imageUploader.css';
+import estilos from './ImageUploader.css';
 import bootstrap from "GlobalStyle/bootstrap.min.css";
 
 const ImageUploader = ({ onChange }) => (

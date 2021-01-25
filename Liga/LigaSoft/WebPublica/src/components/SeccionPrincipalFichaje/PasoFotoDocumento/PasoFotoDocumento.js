@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import bootstrap from "GlobalStyle/bootstrap.min.css";
 import Label from '../Label/Label';
 import Input from '../Input/Input';
-import ImageUploader from '../ImageUploader'
+import ImageUploader from '../ImageUploader/ImageUploader'
 
 const PasoFotoDocumento = ({register, estiloDelPaso}) => {
 

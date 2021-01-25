@@ -4,7 +4,7 @@ import Slider from '@material-ui/core/Slider'
 import estilos from './PasoFotoCarnet.css';
 import bootstrap from "GlobalStyle/bootstrap.min.css";
 import obtenerImagenRecortada from './recortarImagen'
-import ImageUploader from '../ImageUploader'
+import ImageUploader from '../ImageUploader/ImageUploader'
 import persona from './chico.png';
 import Label from '../Label/Label';
 
