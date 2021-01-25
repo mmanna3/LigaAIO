@@ -3,6 +3,7 @@ import bootstrap from "GlobalStyle/bootstrap.min.css";
 import Label from '../Label/Label';
 import Input from '../Input/Input';
 import ImageUploader from '../ImageUploader/ImageUploader'
+import estilos from './PasoFotoDocumento.css'
 
 const PasoFotoDocumento = ({register, estiloDelPaso}) => {
 
@@ -24,7 +25,9 @@ const PasoFotoDocumento = ({register, estiloDelPaso}) => {
     <div className={estiloDelPaso}>
       <div className={bootstrap.row}>
         
-        <img readOnly width="200" src={imagenBase64} />
+        <div className={estilos.contenedorDeContenidoCentrado}>
+          <img readOnly width="200" src={imagenBase64} className={estilos.imagenDNIFrente} />
+        </div>                
 
         <input readOnly name="fotoFrenteDNI" ref={register} style={{display: "none"}} value={imagenBase64} />
         <ImageUploader onChange={onSelectFile} />
