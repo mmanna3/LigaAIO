@@ -4,11 +4,12 @@ import Label from '../Label/Label';
 import Input from '../Input/Input';
 import ImageUploader from '../ImageUploader/ImageUploader'
 import estilos from './PasoFotoDocumento.css'
+import dni from './dniFrente.png';
 
 const PasoFotoDocumento = ({register, estiloDelPaso}) => {
 
   const [imagen, setImagen] = useState(null)
-  const [imagenBase64, setImagenBase64] = useState("")  
+  const [imagenBase64, setImagenBase64] = useState(dni)  
 
   const onSelectFile = e => {
     if (e.target.files && e.target.files.length > 0) {
