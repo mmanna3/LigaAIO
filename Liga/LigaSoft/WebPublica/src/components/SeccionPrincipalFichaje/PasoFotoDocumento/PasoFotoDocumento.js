@@ -25,6 +25,9 @@ const PasoFotoDocumento = ({register, estiloDelPaso}) => {
   return (
     <div className={estiloDelPaso}>
       <div className={bootstrap.row}>
+        <div className={bootstrap['col-12']+" "+estilos.contenedorDeContenidoCentrado}> 
+            <Label texto="Foto del frente de tu DNI" />
+        </div>
         
         <div className={estilos.contenedorDeContenidoCentrado}>
           <img readOnly width="200" src={imagenBase64} className={estilos.imagenDNIFrente} />

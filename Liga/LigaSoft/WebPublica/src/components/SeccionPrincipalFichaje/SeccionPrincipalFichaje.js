@@ -52,7 +52,7 @@ const SeccionPrincipalFichaje = () => {
                         
 
                         <PasoFotoCarnet estiloDelPaso={styles.tercerPaso} register={register}/>
-                        <PasoFotoDocumento estiloDelPaso={styles.tercerPaso} register={register}/>
+                        <PasoFotoDocumento estiloDelPaso={styles.primerPaso} register={register}/>
                         
                         <input type="submit" />
                     </form>
