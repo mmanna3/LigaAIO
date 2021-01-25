@@ -1,14 +1,14 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import Cropper from 'react-easy-crop'
 import Slider from '@material-ui/core/Slider'
-import estilos from './FotoCarnet.css';
+import estilos from './PasoFotoCarnet.css';
 import bootstrap from "GlobalStyle/bootstrap.min.css";
 import obtenerImagenRecortada from './recortarImagen'
 import ImageUploader from './ImageUploader'
 import persona from './chico.png';
 import Label from '../Label/Label';
 
-const FotoCarnet = ({estiloDelPaso, register}) => {
+const PasoFotoCarnet = ({estiloDelPaso, register}) => {
 
   const [imagen, setImagen] = useState(null)
   const [crop, setCrop] = useState({ x: 0, y: 0 })
@@ -112,4 +112,4 @@ const FotoCarnet = ({estiloDelPaso, register}) => {
     )
 }
 
-export default FotoCarnet;
+export default PasoFotoCarnet;

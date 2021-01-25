@@ -1,5 +1,5 @@
 import React from 'react';
-import estilos from './FotoCarnet.css';
+import estilos from './PasoFotoCarnet.css';
 import bootstrap from "GlobalStyle/bootstrap.min.css";
 
 const ImageUploader = ({ value, onChange, ...etc }) => (

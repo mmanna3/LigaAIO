@@ -4,7 +4,7 @@ import Input from './Input/Input';
 import PasoInput from './PasoInput/PasoInput';
 import bootstrap from "GlobalStyle/bootstrap.min.css";
 import Label from './Label/Label';
-import FotoCarnet from './FotoCarnet/FotoCarnet';
+import PasoFotoCarnet from './PasoFotoCarnet/PasoFotoCarnet';
 import { useForm } from 'react-hook-form';
 
 const SeccionPrincipalFichaje = () => {
@@ -61,6 +61,7 @@ const SeccionPrincipalFichaje = () => {
                 <div className={styles.seccion}>
                     <form onSubmit={handleSubmit(onSubmit)}>
 
+
                         <div className={`${styles.primerPaso}`}>
                             <div className={`${bootstrap['form-group']} ${bootstrap.row}`}>
                                 <div className={bootstrap['col-12']}> 
@@ -95,12 +96,13 @@ const SeccionPrincipalFichaje = () => {
                             </div>
                         </div>
                         
+                        
                         <PasoInput estiloDelPaso={styles.segundoPaso} register={register} name="nombre" titulo="Tu nombre" />
                         <PasoInput estiloDelPaso={styles.segundoPaso} register={register} name="apellido" titulo="Tu apellido" />
                         <PasoInput estiloDelPaso={styles.segundoPaso} register={register} name="dni" titulo="Tu DNI" />
                         
 
-                        <FotoCarnet estiloDelPaso={styles.tercerPaso} register={register}/>
+                        <PasoFotoCarnet estiloDelPaso={styles.tercerPaso} register={register}/>
                         
                         <input type="submit" />
                     </form>
