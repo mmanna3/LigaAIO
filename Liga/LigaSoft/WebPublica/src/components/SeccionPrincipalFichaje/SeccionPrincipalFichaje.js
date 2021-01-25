@@ -16,7 +16,7 @@ const SeccionPrincipalFichaje = () => {
     const { register, handleSubmit, errors } = useForm(); // initialize the hook
     
     const hacerElPost = async (data) => {
-        const response = await fetch('publico/fichar', {
+        fetch('publico/fichar', {
             method: 'POST',
             mode: 'cors',
             cache: 'no-cache',
@@ -25,13 +25,23 @@ const SeccionPrincipalFichaje = () => {
             redirect: 'follow',
             referrerPolicy: 'no-referrer',
             body: JSON.stringify(data)
-        });
-        
-        return response.json();
+        })
+        .then(res => res.json())
+        .then(res => {
+          if (res.success) {
+            console.log("Posteó piola")
+          }else{
+            console.log("Algún error posteando")
+          }
+        })
+        .catch(function() {
+            console.log("No le pudo pegar al back, capaz está caído");
+        });        
     }
 
     const onSubmit = (data) => {
-      hacerElPost(data)
+        console.log(data);
+        hacerElPost(data)
     };
     
     const onCodigoEquipoChange = (id) => {
@@ -82,16 +92,8 @@ const SeccionPrincipalFichaje = () => {
                             </div>
                         </div>
                         
-                        <div className={styles.segundoPaso}>
-                            <div className={bootstrap.row}>
-                                <div className={bootstrap['col-12']}> 
-                                    <Label texto={"Tu nombre"} />
-                                </div>
-                                <div className={bootstrap['col-12']}> 
-                                    <Input />
-                                </div>                        
-                            </div>
-                        </div>
+                        <Input estiloDelPaso={styles.segundoPaso} register={register} name="nombre" titulo="Tu nombre" />
+                        
 
                         <FotoCarnet estiloDelPaso={styles.tercerPaso} register={register}/>
                         
