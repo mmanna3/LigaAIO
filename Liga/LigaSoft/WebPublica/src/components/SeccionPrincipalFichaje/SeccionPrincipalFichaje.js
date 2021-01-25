@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './SeccionPrincipalFichaje.css';
 import Input from './Input/Input';
+import PasoInput from './PasoInput/PasoInput';
 import bootstrap from "GlobalStyle/bootstrap.min.css";
 import Label from './Label/Label';
 import FotoCarnet from './FotoCarnet/FotoCarnet';
@@ -69,6 +70,8 @@ const SeccionPrincipalFichaje = () => {
                                     <Input
                                         onChange={onCodigoEquipoChange}
                                         type="number"
+                                        register={register} 
+                                        name="codigoEquipo"
                                     />
                                 </div>
                                 <div className={bootstrap['col-6']}> 
@@ -92,7 +95,9 @@ const SeccionPrincipalFichaje = () => {
                             </div>
                         </div>
                         
-                        <Input estiloDelPaso={styles.segundoPaso} register={register} name="nombre" titulo="Tu nombre" />
+                        <PasoInput estiloDelPaso={styles.segundoPaso} register={register} name="nombre" titulo="Tu nombre" />
+                        <PasoInput estiloDelPaso={styles.segundoPaso} register={register} name="apellido" titulo="Tu apellido" />
+                        <PasoInput estiloDelPaso={styles.segundoPaso} register={register} name="dni" titulo="Tu DNI" />
                         
 
                         <FotoCarnet estiloDelPaso={styles.tercerPaso} register={register}/>
