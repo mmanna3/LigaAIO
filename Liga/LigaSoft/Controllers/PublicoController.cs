@@ -12,6 +12,7 @@ using LigaSoft.Models;
 using LigaSoft.Models.Enums;
 using LigaSoft.Models.ViewModels;
 using LigaSoft.Utilidades;
+using LigaSoft.Utilidades.Persistence;
 using LigaSoft.Utilidades.Persistence.DiskPersistence;
 using LigaSoft.ViewModelMappers;
 using ZonaTipo = LigaSoft.Models.Enums.ZonaTipo;
@@ -25,6 +26,7 @@ namespace LigaSoft.Controllers
 		private readonly TablaWebPublicaBuilder _tablaWebPublicaBuilder;
 		private readonly TablaAnualWebPublicaBuilder _tablaAnualWebPublicaBuilder;
 		private readonly ImagenesEscudosDiskPersistence _imagenesEscudosPersistence;
+		private readonly IImagenesJugadoresPersistence _imagenesJugadoresDiskPersistence;
 
 		public PublicoController()
 		{			
@@ -32,6 +34,7 @@ namespace LigaSoft.Controllers
 			_tablaWebPublicaBuilder = new TablaWebPublicaBuilder(_context);
 			_tablaAnualWebPublicaBuilder = new TablaAnualWebPublicaBuilder(_context);
 			_imagenesEscudosPersistence = new ImagenesEscudosDiskPersistence(new AppPathsWebApp());
+			_imagenesJugadoresDiskPersistence = new ImagenesJugadoresDiskPersistence(new AppPathsWebApp());
 		}
 
 		public ActionResult Index()
@@ -74,6 +77,14 @@ namespace LigaSoft.Controllers
 				.ToList();
 
 			return Json(result, JsonRequestBehavior.AllowGet);
+		}
+
+		[HttpPost]
+		public JsonResult Fichar(string fotoCarnet)
+		{
+			//var vm = new JugadorFichadoPorDelegadoVM { FotoCarnet = fotoCarnet, DNI = "12345678" };
+			//_imagenesJugadoresDiskPersistence.GuardarFotoCarnetTemporal(vm);
+			return Json("OK", JsonRequestBehavior.AllowGet);
 		}
 
 		public JsonResult Zonas(int torneoId)

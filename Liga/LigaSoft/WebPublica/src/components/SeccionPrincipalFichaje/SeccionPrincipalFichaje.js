@@ -4,6 +4,7 @@ import Input from './Input/Input';
 import bootstrap from "GlobalStyle/bootstrap.min.css";
 import Label from './Label/Label';
 import FotoCarnet from './FotoCarnet/FotoCarnet';
+import { useForm } from 'react-hook-form';
 
 const SeccionPrincipalFichaje = () => {
 
@@ -12,6 +13,27 @@ const SeccionPrincipalFichaje = () => {
     const [nombreEquipo, setNombreEquipo] = useState("")
     const [yaValidoCodigoEquipo, setYaValidoCodigoEquipo] = useState(false)
 
+    const { register, handleSubmit, errors } = useForm(); // initialize the hook
+    
+    const hacerElPost = async (data) => {
+        const response = await fetch('publico/fichar', {
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            credentials: 'same-origin',
+            headers: {'Content-Type': 'application/json'},
+            redirect: 'follow',
+            referrerPolicy: 'no-referrer',
+            body: JSON.stringify(data)
+        });
+        
+        return response.json();
+    }
+
+    const onSubmit = (data) => {
+      hacerElPost(data)
+    };
+    
     const onCodigoEquipoChange = (id) => {
         setCodigoEquipo(id)
     }
@@ -21,11 +43,12 @@ const SeccionPrincipalFichaje = () => {
             .then(response => response.json())
             .then(data => {setNombreEquipo(data); setCodigoEquipoEsValido(true); setYaValidoCodigoEquipo(true)})
             .catch(() => {setCodigoEquipoEsValido(false); setYaValidoCodigoEquipo(true)})
-    }
-    
+    }    
+
     return (
             <div className={styles.seccionContainer}>
                 <div className={styles.seccion}>
+                    <form onSubmit={handleSubmit(onSubmit)}>
 
                         <div className={`${styles.primerPaso}`}>
                             <div className={`${bootstrap['form-group']} ${bootstrap.row}`}>
@@ -70,9 +93,10 @@ const SeccionPrincipalFichaje = () => {
                             </div>
                         </div>
 
-                        <FotoCarnet estiloDelPaso={styles.tercerPaso} />
-
-
+                        <FotoCarnet estiloDelPaso={styles.tercerPaso} register={register}/>
+                        
+                        <input type="submit" />
+                    </form>
                 </div>
             </div>
     );

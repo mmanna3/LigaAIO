@@ -8,7 +8,7 @@ import ImageUploader from './ImageUploader'
 import persona from './chico.png';
 import Label from '../Label/Label';
 
-const FotoCarnet = ({estiloDelPaso}) => {
+const FotoCarnet = ({estiloDelPaso, register}) => {
 
   const [imagen, setImagen] = useState(null)
   const [crop, setCrop] = useState({ x: 0, y: 0 })
@@ -65,6 +65,7 @@ const FotoCarnet = ({estiloDelPaso}) => {
               </div>
               
               <ImageUploader value={imagen} onChange={onSelectFile} />
+              <input name="fotoCarnet" ref={register} style={{display: "none"}} value={imagenRecortada} />
               
               {imagen && 
               (
