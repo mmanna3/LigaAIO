@@ -4,7 +4,7 @@ import Slider from '@material-ui/core/Slider'
 import estilos from './PasoFotoCarnet.css';
 import bootstrap from "GlobalStyle/bootstrap.min.css";
 import obtenerImagenRecortada from './recortarImagen'
-import ImageUploader from './ImageUploader'
+import ImageUploader from '../ImageUploader'
 import persona from './chico.png';
 import Label from '../Label/Label';
 
@@ -96,10 +96,10 @@ const PasoFotoCarnet = ({estiloDelPaso, register}) => {
                       <div className={bootstrap.container}>
                         <div className={bootstrap.row}>
                           <div className={bootstrap['offset-2']+" "+bootstrap['col-4']}>
-                              <button className={`${bootstrap.btn} ${bootstrap['btn-success']}`} style={{width: "100%"}} onClick={onAceptarClick}>Aceptar</button>
+                              <button type="button" className={`${bootstrap.btn} ${bootstrap['btn-success']}`} style={{width: "100%"}} onClick={onAceptarClick}>Aceptar</button>
                           </div>
                           <div className={bootstrap['col-4']}>
-                              <button className={`${bootstrap.btn} ${bootstrap['btn-danger']}`} style={{width: "100%"}} onClick={onCancelarClick}>Cancelar</button>
+                              <button type="button" className={`${bootstrap.btn} ${bootstrap['btn-danger']}`} style={{width: "100%"}} onClick={onCancelarClick}>Cancelar</button>
                           </div>
                         </div>
                       </div>
