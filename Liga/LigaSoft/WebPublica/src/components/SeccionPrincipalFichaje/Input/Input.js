@@ -12,11 +12,12 @@ const Input = ({onChange = () => {}, name, register, type = "text"}) => {
   }
 
   return (
-          <input type="text"
+          <input
             ref={register}
             name={name}
             className={`${styles.input} ${bootstrap['form-control']}`}
-            value={valor} type={type} 
+            value={valor} 
+            type={type} 
             onChange={handleOnChange}
           />
     )

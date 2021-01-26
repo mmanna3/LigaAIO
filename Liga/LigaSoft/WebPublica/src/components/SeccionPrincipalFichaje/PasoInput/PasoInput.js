@@ -4,7 +4,7 @@ import Label from '../Label/Label';
 import Input from '../Input/Input';
 import Error from '../Error/Error';
 
-const PasoInput = ({titulo, onChange, name, nombre, register, errors, estiloDelPaso}) => {
+const PasoInput = ({titulo, onChange, name, nombre, register, errors, estiloDelPaso, type = "text"}) => {
 
   return (
     <div className={estiloDelPaso}>
@@ -13,10 +13,10 @@ const PasoInput = ({titulo, onChange, name, nombre, register, errors, estiloDelP
             <Label texto={titulo} />
           </div>
           <div className={bootstrap['col-12']}> 
-            <Input type="text"
+            <Input 
+              type={type}
               register={register}
               name={name}
-              type="text"
               onChange={onChange}
             />
           </div>

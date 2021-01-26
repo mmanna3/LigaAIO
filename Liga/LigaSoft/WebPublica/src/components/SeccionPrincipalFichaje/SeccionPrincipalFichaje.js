@@ -64,6 +64,7 @@ const SeccionPrincipalFichaje = () => {
                         <PasoInput  estiloDelPaso={styles.segundoPaso} 
                                     register={register({required: true})} 
                                     errors={errors} 
+                                    type="number"
                                     name="dni" 
                                     nombre="DNI" 
                                     titulo="Tu DNI" />
