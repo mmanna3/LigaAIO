@@ -47,9 +47,9 @@ const SeccionPrincipalFichaje = () => {
                         
                         <PasoCodigoEquipo estiloDelPaso={styles.primerPaso} register={register({required: true})} errors={errors} />
 
-                        <PasoInput estiloDelPaso={styles.segundoPaso} register={register} name="nombre" titulo="Tu nombre" />
-                        <PasoInput estiloDelPaso={styles.segundoPaso} register={register} name="apellido" titulo="Tu apellido" />
-                        <PasoInput estiloDelPaso={styles.segundoPaso} register={register} name="dni" titulo="Tu DNI" />
+                        <PasoInput estiloDelPaso={styles.segundoPaso} register={register({required: true})} errors={errors} name="nombre" titulo="Tu nombre" />
+                        <PasoInput estiloDelPaso={styles.segundoPaso} register={register({required: true})} errors={errors} name="apellido" titulo="Tu apellido" />
+                        <PasoInput estiloDelPaso={styles.segundoPaso} register={register({required: true})} errors={errors} name="dni" titulo="Tu DNI" />
                         
 
                         <PasoFotoCarnet estiloDelPaso={styles.tercerPaso} register={register}/>
