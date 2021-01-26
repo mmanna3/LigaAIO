@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import bootstrap from "GlobalStyle/bootstrap.min.css";
 import Label from '../Label/Label';
-import Input from '../Input/Input';
 import ImageUploader from '../ImageUploader/ImageUploader'
 import estilos from './PasoFotoDocumento.css'
-import dni from './dniFrente.png';
+import imagenDniFrente from './dniFrente.png';
+import imagenDniDorso from './dniDorso.png';
 
-const PasoFotoDocumento = ({register, estiloDelPaso}) => {
+const PasoFotoDocumento = ({register, estiloDelPaso, titulo, errors, name, nombre}) => {
 
-  const [imagen, setImagen] = useState(null)
-  const [imagenBase64, setImagenBase64] = useState(dni)  
+  const imagenDefault = name === 'fotoFrenteDNI' ? imagenDniFrente : imagenDniDorso;
+  //manigga del futuro no me juzgues, había poco tiempo y me pagaban poco
+  
+  const [imagenBase64, setImagenBase64] = useState(imagenDefault)  
 
   const onSelectFile = e => {
     if (e.target.files && e.target.files.length > 0) {
@@ -26,14 +28,14 @@ const PasoFotoDocumento = ({register, estiloDelPaso}) => {
     <div className={estiloDelPaso}>
       <div className={bootstrap.row}>
         <div className={bootstrap['col-12']+" "+estilos.contenedorDeContenidoCentrado}> 
-            <Label texto="Foto del frente de tu DNI" />
+            <Label texto={titulo} />
         </div>
         
         <div className={estilos.contenedorDeContenidoCentrado}>
           <img readOnly width="200" src={imagenBase64} className={estilos.imagenDNIFrente} />
         </div>                
 
-        <input readOnly name="fotoFrenteDNI" ref={register} style={{display: "none"}} value={imagenBase64} />
+        <input readOnly name={name} ref={register} style={{display: "none"}} value={imagenBase64} />
         <ImageUploader onChange={onSelectFile} />
         
 

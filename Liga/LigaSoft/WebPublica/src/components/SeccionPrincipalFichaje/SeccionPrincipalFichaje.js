@@ -70,7 +70,22 @@ const SeccionPrincipalFichaje = () => {
                         
 
                         <PasoFotoCarnet estiloDelPaso={styles.tercerPaso} errors={errors} register={register}/>
-                        <PasoFotoDocumento estiloDelPaso={styles.primerPaso} register={register}/>
+                        
+                        <PasoFotoDocumento  estiloDelPaso={styles.primerPaso} 
+                                            register={register}
+                                            titulo="Foto del frente de tu DNI"
+                                            errors={errors}
+                                            name="fotoFrenteDNI"
+                                            nombre="foto de FRENTE del DNI"
+                                            />
+                        
+                        <PasoFotoDocumento  estiloDelPaso={styles.primerPaso} 
+                                            register={register}
+                                            titulo="Foto de la parte de atrás de tu DNI"
+                                            errors={errors}
+                                            name="fotoDorsoDNI"
+                                            nombre="foto de ATRÁS del DNI"
+                                            />
                         
 
                         <PasoBotonEnviar estiloDelPaso={styles.segundoPaso} />
