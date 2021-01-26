@@ -3,8 +3,9 @@ import bootstrap from "GlobalStyle/bootstrap.min.css";
 import Label from '../Label/Label';
 import Input from '../Input/Input';
 import styles from './PasoCodigoEquipo.css';
+import Error from '../Error/Error'
 
-const PasoCodigoEquipo = ({register, estiloDelPaso}) => {
+const PasoCodigoEquipo = ({register, errors, estiloDelPaso}) => {
 
   const [codigoEquipo, setCodigoEquipo] = useState()
   const [codigoEquipoEsValido, setCodigoEquipoEsValido] = useState(null)
@@ -54,6 +55,7 @@ const PasoCodigoEquipo = ({register, estiloDelPaso}) => {
                   </div>
               )
           }
+          <Error name="codigoEquipo" errors={errors} />
       </div>
   </div>
     )
