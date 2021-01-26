@@ -5,6 +5,7 @@ import PasoCodigoEquipo from './PasoCodigoEquipo/PasoCodigoEquipo';
 import PasoFotoCarnet from './PasoFotoCarnet/PasoFotoCarnet';
 import PasoFotoDocumento from './PasoFotoDocumento/PasoFotoDocumento';
 import { useForm } from 'react-hook-form';
+import PasoBotonEnviar from './PasoBotonEnviar/PasoBotonEnviar';
 
 const SeccionPrincipalFichaje = () => {
 
@@ -54,7 +55,8 @@ const SeccionPrincipalFichaje = () => {
                         <PasoFotoCarnet estiloDelPaso={styles.tercerPaso} register={register}/>
                         <PasoFotoDocumento estiloDelPaso={styles.primerPaso} register={register}/>
                         
-                        <input type="submit" />
+
+                        <PasoBotonEnviar estiloDelPaso={styles.segundoPaso} />
                     </form>
                 </div>
             </div>

@@ -1,0 +1,12 @@
+.contenedorDeContenidoCentrado {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .boton {
+	width: 300px;
+	height: 80px;
+	font-size: 20px;
+  }
