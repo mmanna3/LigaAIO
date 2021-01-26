@@ -55,7 +55,7 @@ const PasoCodigoEquipo = ({register, errors, estiloDelPaso}) => {
                   </div>
               )
           }
-          <Error name="codigoEquipo" errors={errors} />
+          <Error name="codigoEquipo" nombre="código" errors={errors} />
       </div>
   </div>
     )

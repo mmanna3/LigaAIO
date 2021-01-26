@@ -4,7 +4,7 @@ import Label from '../Label/Label';
 import Input from '../Input/Input';
 import Error from '../Error/Error';
 
-const PasoInput = ({titulo, onChange, name, register, errors, estiloDelPaso}) => {
+const PasoInput = ({titulo, onChange, name, nombre, register, errors, estiloDelPaso}) => {
 
   return (
     <div className={estiloDelPaso}>
@@ -20,7 +20,7 @@ const PasoInput = ({titulo, onChange, name, register, errors, estiloDelPaso}) =>
               onChange={onChange}
             />
           </div>
-          <Error name={name} errors={errors} />
+          <Error name={name} errors={errors} nombre={nombre}/>
       </div>
     </div>
     )

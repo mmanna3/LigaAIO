@@ -45,11 +45,28 @@ const SeccionPrincipalFichaje = () => {
                 <div className={styles.seccion}>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         
-                        <PasoCodigoEquipo estiloDelPaso={styles.primerPaso} register={register({required: true})} errors={errors} />
+                        <PasoCodigoEquipo estiloDelPaso={styles.primerPaso} register={register({required: true})} errors={errors}/>
 
-                        <PasoInput estiloDelPaso={styles.segundoPaso} register={register({required: true})} errors={errors} name="nombre" titulo="Tu nombre" />
-                        <PasoInput estiloDelPaso={styles.segundoPaso} register={register({required: true})} errors={errors} name="apellido" titulo="Tu apellido" />
-                        <PasoInput estiloDelPaso={styles.segundoPaso} register={register({required: true})} errors={errors} name="dni" titulo="Tu DNI" />
+                        <PasoInput  estiloDelPaso={styles.segundoPaso} 
+                                    register={register({required: true})} 
+                                    errors={errors} 
+                                    name="nombre" 
+                                    nombre="nombre" 
+                                    titulo="Tu nombre" />
+                        
+                        <PasoInput  estiloDelPaso={styles.segundoPaso} 
+                                    register={register({required: true})} 
+                                    errors={errors} 
+                                    name="apellido" 
+                                    nombre="apellido" 
+                                    titulo="Tu apellido" />
+
+                        <PasoInput  estiloDelPaso={styles.segundoPaso} 
+                                    register={register({required: true})} 
+                                    errors={errors} 
+                                    name="dni" 
+                                    nombre="DNI" 
+                                    titulo="Tu DNI" />
                         
 
                         <PasoFotoCarnet estiloDelPaso={styles.tercerPaso} register={register}/>
