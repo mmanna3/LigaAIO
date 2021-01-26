@@ -69,7 +69,7 @@ const SeccionPrincipalFichaje = () => {
                                     titulo="Tu DNI" />
                         
 
-                        <PasoFotoCarnet estiloDelPaso={styles.tercerPaso} register={register}/>
+                        <PasoFotoCarnet estiloDelPaso={styles.tercerPaso} errors={errors} register={register}/>
                         <PasoFotoDocumento estiloDelPaso={styles.primerPaso} register={register}/>
                         
 

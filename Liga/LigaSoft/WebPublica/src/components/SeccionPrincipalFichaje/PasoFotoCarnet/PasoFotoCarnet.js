@@ -7,8 +7,9 @@ import obtenerImagenRecortada from './recortarImagen'
 import ImageUploader from '../ImageUploader/ImageUploader'
 import persona from './chico.png';
 import Label from '../Label/Label';
+import Error from '../Error/Error';
 
-const PasoFotoCarnet = ({estiloDelPaso, register}) => {
+const PasoFotoCarnet = ({estiloDelPaso, register, errors}) => {
 
   const [imagen, setImagen] = useState(null)
   const [crop, setCrop] = useState({ x: 0, y: 0 })
@@ -65,8 +66,13 @@ const PasoFotoCarnet = ({estiloDelPaso, register}) => {
               </div>
               
               <ImageUploader value={imagen} onChange={onSelectFile} />
-              <input readOnly name="fotoCarnet" ref={register} style={{display: "none"}} value={imagenRecortada} />
-              
+              <input  readOnly 
+                      name="fotoCarnet" 
+                      ref={register({validate: value => value !== persona})}
+                      style={{display: "none"}} value={imagenRecortada} 
+              />
+              <Error name={"fotoCarnet"} errors={errors} nombre="foto"/>
+
               {imagen && 
               (
                 <div className={estilos.contenedorGeneralDeTodo}>
