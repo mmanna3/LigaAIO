@@ -60,6 +60,8 @@ namespace LigaSoft.Utilidades.Persistence.DiskPersistence
 			var pathTemporal = $"{Paths.ImagenesTemporalesJugadorCarnetAbsolute}/{dni}.jpg";
 			var pathJugadores = $"{Paths.ImagenesJugadoresAbsolute}/{dni}.jpg";
 
+			Directory.CreateDirectory(Paths.ImagenesJugadoresAbsolute);
+
 			if (File.Exists(pathTemporal))
 				File.Move(pathTemporal, pathJugadores);
 
