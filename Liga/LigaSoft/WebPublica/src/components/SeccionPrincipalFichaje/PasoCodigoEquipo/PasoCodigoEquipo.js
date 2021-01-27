@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import bootstrap from "GlobalStyle/bootstrap.min.css";
 import Label from '../Label/Label';
 import Input from '../Input/Input';
-import styles from './PasoCodigoEquipo.css';
+import Estilos from './PasoCodigoEquipo.css';
 import Error from '../Error/Error'
 
 const PasoCodigoEquipo = ({register, errors, estiloDelPaso}) => {
@@ -38,18 +38,18 @@ const PasoCodigoEquipo = ({register, errors, estiloDelPaso}) => {
               />
           </div>
           <div className={bootstrap['col-6']}> 
-              <button className={`${bootstrap.btn} ${bootstrap['btn-success']}`} style={{width: "100%"}} onClick={onValidarClick}>Validar</button>
+              <button type="button" className={`${bootstrap.btn} ${bootstrap['btn-success']}`} style={{width: "100%"}} onClick={onValidarClick}>Validar</button>
           </div>
           {
               yaValidoCodigoEquipo &&
               (codigoEquipoEsValido ?
                   <div className={bootstrap['col-12']}>
-                      <div className={`${bootstrap['alert']} ${bootstrap['alert-success']} ${styles.alertaValidacionEquipo}`}>
+                      <div className={`${bootstrap['alert']} ${bootstrap['alert-success']} ${Estilos.alertaValidacionEquipo}`}>
                           Tu equipo es <strong>{nombreEquipo}</strong>
                       </div>
                   </div> :
                   <div className={bootstrap['col-12']}>
-                      <div className={`${bootstrap['alert']} ${bootstrap['alert-danger']} ${styles.alertaValidacionEquipo}`}>
+                      <div className={`${bootstrap['alert']} ${bootstrap['alert-danger']} ${Estilos.alertaValidacionEquipo}`}>
                           El código es incorrecto
                       </div>
                   </div>
