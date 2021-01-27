@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import bootstrap from "GlobalStyle/bootstrap.min.css";
 import Label from '../Label/Label';
 import Input from '../Input/Input';
@@ -7,18 +7,25 @@ import Estilos from './PasoFechaNacimiento.css'
 
 const PasoFechaNacimiento = ({register, errors, estiloDelPaso}) => {
 
-  const [valorCalculado, setValorCalculado] = useState("") 
+  const [valorCalculado, setValorCalculado] = useState("")
+  const [dia, setDia] = useState()
+  const [mes, setMes] = useState()
+  const [anio, setAnio] = useState()
 
+  useEffect(() => {
+    setValorCalculado(`${dia}-${mes}-${anio}`);
+  }, [dia, mes, anio])
+  
   const actualizarDia = (dia) => {
-    console.log(dia)
+    setDia(dia)
   }
 
   const actualizarMes = (mes) => {
-    console.log(mes)
+    setMes(mes)
   }
 
   const actualizarAnio = (anio) => {
-    console.log(anio)
+    setAnio(anio)
   }
 
   return (
