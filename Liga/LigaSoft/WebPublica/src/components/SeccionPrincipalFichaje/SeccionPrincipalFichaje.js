@@ -6,6 +6,7 @@ import PasoFotoCarnet from './PasoFotoCarnet/PasoFotoCarnet';
 import PasoFotoDocumento from './PasoFotoDocumento/PasoFotoDocumento';
 import { useForm } from 'react-hook-form';
 import PasoBotonEnviar from './PasoBotonEnviar/PasoBotonEnviar';
+import PasoFechaNacimiento from './PasoFechaNacimiento/PasoFechaNacimiento';
 
 const SeccionPrincipalFichaje = () => {
 
@@ -69,6 +70,9 @@ const SeccionPrincipalFichaje = () => {
                                     nombre="DNI" 
                                     titulo="Tu DNI" />
                         
+                        <PasoFechaNacimiento  estiloDelPaso={styles.pasoRojo}
+                                              register={register}
+                                              errors={errors} />
 
                         <PasoFotoCarnet estiloDelPaso={styles.pasoVerde} errors={errors} register={register}/>
                         
