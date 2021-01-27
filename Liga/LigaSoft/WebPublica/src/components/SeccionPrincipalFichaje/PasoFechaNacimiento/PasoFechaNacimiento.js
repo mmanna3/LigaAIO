@@ -2,12 +2,11 @@ import React, { useState, useEffect } from 'react';
 import bootstrap from "GlobalStyle/bootstrap.min.css";
 import Label from '../Label/Label';
 import Input from '../Input/Input';
-import Error from '../Error/Error';
 import Estilos from './PasoFechaNacimiento.css'
 
 const PasoFechaNacimiento = ({register, errors, estiloDelPaso}) => {
 
-  const [valorCalculado, setValorCalculado] = useState("")
+  const [valorCalculado, setValorCalculado] = useState()
   const [dia, setDia] = useState()
   const [mes, setMes] = useState()
   const [anio, setAnio] = useState()
@@ -26,6 +25,14 @@ const PasoFechaNacimiento = ({register, errors, estiloDelPaso}) => {
 
   const actualizarAnio = (anio) => {
     setAnio(anio)
+  }
+
+  const validarFecha = date => {
+    console.log(date)
+    var temp = date.split('-');
+    var d = new Date(temp[1] + '-' + temp[0] + '-' + temp[2]);
+    var resultado = (d && (d.getMonth() + 1) == temp[1] && d.getDate() == Number(temp[0]) && d.getFullYear() == Number(temp[2]));
+    return resultado;
   }
 
   return (
@@ -57,12 +64,18 @@ const PasoFechaNacimiento = ({register, errors, estiloDelPaso}) => {
           </div>
           <input 
               style={{display: 'none'}}
-              ref={register({required: true})}
+              ref={register({required: true, validate: validarFecha})}
               name="fechaNacimiento" 
               defaultValue={valorCalculado}
           />
-
-          <Error name="fechaNacimiento" errors={errors} nombre="fecha de nacimiento"/>
+          
+          {errors.fechaNacimiento && 
+            <div className={bootstrap['col-12']}>
+              <div className={`${bootstrap['alert']} ${bootstrap['alert-danger']} ${Estilos.alertaValidacionEquipo}`}>
+                  ¡Ups! Hay un problema con la <strong>fecha</strong>. Revisala.
+              </div>
+            </div>
+        }
       </div>
     </div>
     )
