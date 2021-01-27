@@ -27,7 +27,7 @@ const PasoCodigoEquipo = ({register, errors, estiloDelPaso}) => {
     <div className={`${estiloDelPaso}`}>
       <div className={`${bootstrap['form-group']} ${bootstrap.row}`}>
           <div className={bootstrap['col-12']}> 
-              <Label texto={"Código de tu equipo"} />
+              <Label texto={"Código de tu equipo"} subtitulo="Pedíselo a tu delegado" />
           </div>
           <div className={bootstrap['col-6']}> 
               <Input

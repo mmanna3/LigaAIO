@@ -1,14 +1,21 @@
-/* .label {
-	composes: tituloBlancoConSombraNegra from './../../../assets/styles/base.css';
-	padding-bottom: 0.5em;
-	padding-top: 0.5em;
-	font-size: 26px;
-} */
-
-.label {
+.labelSinSubtitulo {
 	font-weight: 600;
 	text-align: center;
 	font-size: 22px;
 	color: #ddd;
 	margin-bottom: 20px;
+}
+
+.labelConSubtitulo {
+	font-weight: 600;
+	text-align: center;
+	font-size: 22px;
+	color: #ddd;
+	margin-bottom: 0;
+}
+
+.subtitulo {
+	color: #ddd;
+	margin-bottom: 25px;
+	font-size: 14px;
 }
