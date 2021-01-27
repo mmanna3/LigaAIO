@@ -45,23 +45,23 @@ const SeccionPrincipalFichaje = () => {
                 <div className={styles.seccion}>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         
-                        <PasoCodigoEquipo estiloDelPaso={styles.primerPaso} register={register({required: true})} errors={errors}/>
+                        <PasoCodigoEquipo estiloDelPaso={styles.pasoAzul} register={register({required: true})} errors={errors}/>
 
-                        <PasoInput  estiloDelPaso={styles.segundoPaso} 
+                        <PasoInput  estiloDelPaso={styles.pasoRojo} 
                                     register={register({required: true})} 
                                     errors={errors} 
                                     name="nombre" 
                                     nombre="nombre" 
                                     titulo="Tu nombre" />
                         
-                        <PasoInput  estiloDelPaso={styles.segundoPaso} 
+                        <PasoInput  estiloDelPaso={styles.pasoRojo} 
                                     register={register({required: true})} 
                                     errors={errors} 
                                     name="apellido" 
                                     nombre="apellido" 
                                     titulo="Tu apellido" />
 
-                        <PasoInput  estiloDelPaso={styles.segundoPaso} 
+                        <PasoInput  estiloDelPaso={styles.pasoRojo} 
                                     register={register({required: true})} 
                                     errors={errors} 
                                     type="number"
@@ -70,9 +70,9 @@ const SeccionPrincipalFichaje = () => {
                                     titulo="Tu DNI" />
                         
 
-                        <PasoFotoCarnet estiloDelPaso={styles.tercerPaso} errors={errors} register={register}/>
+                        <PasoFotoCarnet estiloDelPaso={styles.pasoVerde} errors={errors} register={register}/>
                         
-                        <PasoFotoDocumento  estiloDelPaso={styles.primerPaso} 
+                        <PasoFotoDocumento  estiloDelPaso={styles.pasoAzul} 
                                             register={register}
                                             titulo="Foto del frente de tu DNI"
                                             errors={errors}
@@ -80,7 +80,7 @@ const SeccionPrincipalFichaje = () => {
                                             nombre="foto de FRENTE del DNI"
                                             />
                         
-                        <PasoFotoDocumento  estiloDelPaso={styles.primerPaso} 
+                        <PasoFotoDocumento  estiloDelPaso={styles.pasoAzul} 
                                             register={register}
                                             titulo="Foto de la parte de atrás de tu DNI"
                                             errors={errors}
@@ -89,7 +89,7 @@ const SeccionPrincipalFichaje = () => {
                                             />
                         
 
-                        <PasoBotonEnviar estiloDelPaso={styles.segundoPaso} />
+                        <PasoBotonEnviar estiloDelPaso={styles.pasoRojo} />
                     </form>
                 </div>
             </div>

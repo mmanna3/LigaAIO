@@ -23,17 +23,17 @@
 	padding-left: 2em;	
 }
 
-.primerPaso {
+.pasoAzul {
 	composes: backgroundGradienteAzul from './../../assets/styles/colors.css';
 	composes: paso
 }
 
-.segundoPaso {
+.pasoRojo {
 	composes: backgroundGradienteRojo from './../../assets/styles/colors.css';
 	composes: paso
 }
 
-.tercerPaso {
+.pasoVerde {
 	composes: backgroundGradienteVerde from './../../assets/styles/colors.css';
 	composes: paso
 }
