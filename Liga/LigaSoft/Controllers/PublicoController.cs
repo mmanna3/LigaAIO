@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
+using System.Web;
 using System.Web.Hosting;
 using System.Web.Mvc;
 using LigaSoft.BusinessLogic;
@@ -15,6 +16,7 @@ using LigaSoft.Utilidades;
 using LigaSoft.Utilidades.Persistence;
 using LigaSoft.Utilidades.Persistence.DiskPersistence;
 using LigaSoft.ViewModelMappers;
+using Newtonsoft.Json;
 using ZonaTipo = LigaSoft.Models.Enums.ZonaTipo;
 
 namespace LigaSoft.Controllers
@@ -80,10 +82,29 @@ namespace LigaSoft.Controllers
 		}
 
 		[HttpPost]
-		public JsonResult Fichar(string apellido)
+		public JsonResult Fichar()
 		{
+
 			//_imagenesJugadoresDiskPersistence.GuardarFotosTemporalesDeJugadorAutofichado(vm);
+			string json;
+			using (var reader = new StreamReader(HttpContext.Request.InputStream))
+			{
+				json = reader.ReadToEnd();
+			}
+			var a = json;
+			var b = JsonConvert.DeserializeObject<JugadorAutofichadoVM>(a);
 			return Json("OK", JsonRequestBehavior.AllowGet);
+		}
+
+		public static T GetModelFromJsonRequest<T>(HttpRequestBase request)
+		{
+			string result = "";
+			using (Stream req = request.InputStream)
+			{
+				req.Seek(0, System.IO.SeekOrigin.Begin);
+				result = new StreamReader(req).ReadToEnd();
+			}
+			return JsonConvert.DeserializeObject<T>(result);
 		}
 
 		//[HttpPost, ExportModelStateToTempData]
