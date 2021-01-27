@@ -19,6 +19,7 @@ const Input = ({onChange = () => {}, name, register, type = "text"}) => {
             value={valor} 
             type={type} 
             onChange={handleOnChange}
+            autoComplete="off"
           />
     )
 }
