@@ -14,6 +14,10 @@
 	margin-bottom: 0;
 }
 
+.centrado {
+	text-align: center;
+}
+
 .subtitulo {
 	color: #ddd;
 	margin-bottom: 25px;

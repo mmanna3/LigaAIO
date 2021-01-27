@@ -29,7 +29,7 @@ const PasoFotoDocumento = ({register, estiloDelPaso, titulo, errors, name, nombr
     <div className={estiloDelPaso}>
       <div className={bootstrap.row}>
         <div className={bootstrap['col-12']+" "+estilos.contenedorDeContenidoCentrado}> 
-            <Label texto={titulo} />
+            <Label texto={titulo} subtitulo="Que se lean bien tus datos" centrado />
         </div>
         
         <div className={estilos.contenedorDeContenidoCentrado}>

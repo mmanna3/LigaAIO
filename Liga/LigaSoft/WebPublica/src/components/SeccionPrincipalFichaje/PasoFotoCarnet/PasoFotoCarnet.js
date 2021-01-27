@@ -58,7 +58,7 @@ const PasoFotoCarnet = ({estiloDelPaso, register, errors}) => {
           <div className={estiloDelPaso}>
             <div className={bootstrap.row}>
               <div className={bootstrap['col-12']+" "+estilos.contenedorDeContenidoCentrado}> 
-                  <Label texto={"Tu foto"} />
+                  <Label texto={"Tu foto"} subtitulo="Tiene que tener fondo liso" centrado={true} />
               </div>                    
                             
               <div className={estilos.contenedorDeContenidoCentrado}>

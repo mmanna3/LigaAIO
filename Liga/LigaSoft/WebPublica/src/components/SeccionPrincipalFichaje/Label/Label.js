@@ -1,10 +1,12 @@
 import React from 'react';
 import styles from './Label.css';
 
-const Label = ({texto, subtitulo}) => {
+const Label = ({texto, subtitulo, centrado}) => {
 
+  const estiloCentrado = centrado ? styles.centrado : "";
+  
   return (
-      <div>
+      <div className={estiloCentrado}>
         {
           subtitulo ?
             (
