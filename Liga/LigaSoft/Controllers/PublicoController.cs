@@ -10,6 +10,7 @@ using LigaSoft.BusinessLogic;
 using LigaSoft.ExtensionMethods;
 using LigaSoft.Migrations;
 using LigaSoft.Models;
+using LigaSoft.Models.Dominio;
 using LigaSoft.Models.Enums;
 using LigaSoft.Models.ViewModels;
 using LigaSoft.Utilidades;
@@ -84,27 +85,49 @@ namespace LigaSoft.Controllers
 		[HttpPost]
 		public JsonResult Fichar()
 		{
+			try
+			{
+				var vm = CastearRequestAJugadorAutofichadoVM();
+				var model = MapearVMaJugadorFichadoPorDelegado(vm);
+				_context.JugadoresFichadosPorDelegados.Add(model);
+				_context.SaveChanges();
 
-			//_imagenesJugadoresDiskPersistence.GuardarFotosTemporalesDeJugadorAutofichado(vm);
+				_imagenesJugadoresDiskPersistence.GuardarFotosTemporalesDeJugadorAutofichado(vm);
+			}
+			catch (Exception e)
+			{
+				YKNExHandler.LoguearYLanzarExcepcion(e, "Error en autofichaje.");
+				return Json("Error", JsonRequestBehavior.AllowGet);
+			}
+
+			return Json("OK", JsonRequestBehavior.AllowGet);
+		}
+
+		private JugadorFichadoPorDelegado MapearVMaJugadorFichadoPorDelegado(JugadorAutofichadoVM vm)
+		{
+			return new JugadorFichadoPorDelegado
+			{
+				Id = vm.Id,
+				DNI = vm.DNI,
+				Nombre = vm.Nombre,
+				FechaNacimiento = DateTimeUtils.ConvertToDateTime(vm.FechaNacimiento),
+				Apellido = vm.Apellido,
+				EquipoId = vm.CodigoEquipo,
+				Estado = EstadoJugadorFichadoPorDelegado.PendienteDeAprobacion,
+				MotivoDeRechazo = null
+			};
+		}
+
+		private JugadorAutofichadoVM CastearRequestAJugadorAutofichadoVM()
+		{
+			//ASP NET no se banca un json tan grande (son 3 fotos en base64)
 			string json;
 			using (var reader = new StreamReader(HttpContext.Request.InputStream))
 			{
 				json = reader.ReadToEnd();
 			}
-			var a = json;
-			var b = JsonConvert.DeserializeObject<JugadorAutofichadoVM>(a);
-			return Json("OK", JsonRequestBehavior.AllowGet);
-		}
 
-		public static T GetModelFromJsonRequest<T>(HttpRequestBase request)
-		{
-			string result = "";
-			using (Stream req = request.InputStream)
-			{
-				req.Seek(0, System.IO.SeekOrigin.Begin);
-				result = new StreamReader(req).ReadToEnd();
-			}
-			return JsonConvert.DeserializeObject<T>(result);
+			return JsonConvert.DeserializeObject<JugadorAutofichadoVM>(json);
 		}
 
 		//[HttpPost, ExportModelStateToTempData]

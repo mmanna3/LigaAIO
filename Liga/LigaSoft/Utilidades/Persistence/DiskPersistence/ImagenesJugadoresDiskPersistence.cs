@@ -71,6 +71,12 @@ namespace LigaSoft.Utilidades.Persistence.DiskPersistence
 				File.Delete(pathDNIFrente);
 		}
 
+		public void GuardarFotosTemporalesDeJugadorAutofichado(JugadorAutofichadoVM vm)
+		{
+			GuardarFotoCarnetTemporal(new JugadorFichadoPorDelegadoVM {DNI = vm.DNI, FotoCarnet = vm.FotoCarnet });
+			//GuardarFotoDNIFrenteTemporal(new JugadorFichadoPorDelegadoVM { DNI = vm.DNI, FotoDNIFrente = vm.FotoDNIFrente });
+		}
+
 		private static void GuardarFotoCarnetTemporal(JugadorFichadoPorDelegadoVM vm)
 		{
 			if (vm.FotoCarnet != null)
