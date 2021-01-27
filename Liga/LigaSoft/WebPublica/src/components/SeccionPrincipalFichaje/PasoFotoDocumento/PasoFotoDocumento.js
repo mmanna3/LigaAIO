@@ -9,7 +9,7 @@ import Error from '../Error/Error';
 
 const PasoFotoDocumento = ({register, estiloDelPaso, titulo, errors, name, nombre}) => {
 
-  const imagenDefault = name === 'fotoFrenteDNI' ? imagenDniFrente : imagenDniDorso;
+  const imagenDefault = name === 'fotoDNIFrente' ? imagenDniFrente : imagenDniDorso;
   //manigga del futuro no me juzgues, había poco tiempo y me pagaban poco
 
   const [imagenBase64, setImagenBase64] = useState(imagenDefault)  

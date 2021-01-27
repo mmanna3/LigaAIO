@@ -80,12 +80,39 @@ namespace LigaSoft.Controllers
 		}
 
 		[HttpPost]
-		public JsonResult Fichar(string fotoCarnet)
+		public JsonResult Fichar(string apellido)
 		{
-			//var vm = new JugadorFichadoPorDelegadoVM { FotoCarnet = fotoCarnet, DNI = "12345678" };
-			//_imagenesJugadoresDiskPersistence.GuardarFotoCarnetTemporal(vm);
+			//_imagenesJugadoresDiskPersistence.GuardarFotosTemporalesDeJugadorAutofichado(vm);
 			return Json("OK", JsonRequestBehavior.AllowGet);
 		}
+
+		//[HttpPost, ExportModelStateToTempData]
+		//public ActionResult Fichar(JugadorFichadoPorDelegadoVM vm)
+		//{
+		//	try
+		//	{
+		//		ValidarFotos(vm);
+		//		if (!ModelState.IsValid || JugadorYaEstaFichado(vm.DNI))
+		//			return Fichar(vm.EquipoId);
+
+		//		var model = new JugadorFichadoPorDelegado();
+		//		VMM.MapForCreateAndEdit(vm, model);
+		//		Context.JugadoresFichadosPorDelegados.Add(model);
+		//		Context.SaveChanges();
+
+		//		_imagenesJugadoresDiskPersistence.GuardarFotosTemporalesDeJugadorFichadoPorDelegado(vm);
+		//	}
+		//	catch (Exception e)
+		//	{
+		//		YKNExHandler.LoguearYLanzarExcepcion(e, "Error cuando el delegado intenta fichar el jugador");
+		//	}
+
+		//	return RedirectToAction("PendientesDeAprobacion", new IdDescripcionVM
+		//	{
+		//		Descripcion = Context.Equipos.Find(vm.EquipoId).Nombre,
+		//		Id = vm.EquipoId
+		//	});
+		//}
 
 		public JsonResult Zonas(int torneoId)
 		{		

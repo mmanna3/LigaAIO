@@ -320,6 +320,7 @@
     <Compile Include="Models\Otros\GijgoGridOptions.cs" />
     <Compile Include="Models\TextValueItem.cs" />
     <Compile Include="Models\ViewModels\ConceptoInsumoAgregarStockVM.cs" />
+    <Compile Include="Models\ViewModels\JugadorAutofichadoVM.cs" />
     <Compile Include="Models\ViewModels\JugadorFichadoPorDelegadoVM.cs" />
     <Compile Include="Models\ViewModels\SancionesWebPublicaVM.cs" />
     <Compile Include="Models\ViewModels\InformePagoCuotasPorMesVM.cs" />

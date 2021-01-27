@@ -80,7 +80,7 @@ const SeccionPrincipalFichaje = () => {
                                             register={register}
                                             titulo="Foto del frente de tu DNI"
                                             errors={errors}
-                                            name="fotoFrenteDNI"
+                                            name="fotoDNIFrente"
                                             nombre="foto de FRENTE del DNI"
                                             />
                         
@@ -88,7 +88,7 @@ const SeccionPrincipalFichaje = () => {
                                             register={register}
                                             titulo="Foto de la parte de atrás de tu DNI"
                                             errors={errors}
-                                            name="fotoDorsoDNI"
+                                            name="fotoDNIDorso"
                                             nombre="foto de ATRÁS del DNI"
                                             />
                         
