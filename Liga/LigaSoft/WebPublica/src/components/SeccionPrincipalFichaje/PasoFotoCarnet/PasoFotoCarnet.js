@@ -16,10 +16,21 @@ const PasoFotoCarnet = ({estiloDelPaso, register, errors}) => {
   const [zoom, setZoom] = useState(1)
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null)
   const [imagenRecortada, setImagenRecortada] = useState(persona)
+  const [posicionDelScrollAntesDeAbrirRecortador, setPosicionDelScrollAntesDeAbrirRecortador] = useState()
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    alAbrirRecortadorScrolearHastaArribaYAlCerrarloVolver(imagen)
   }, [imagen])
+
+  const alAbrirRecortadorScrolearHastaArribaYAlCerrarloVolver = (imagen) => {
+    if (window.pageYOffset != 0)
+      setPosicionDelScrollAntesDeAbrirRecortador(window.pageYOffset);
+
+    if (imagen != null)
+      window.scrollTo(0, 0)
+    else
+      window.scrollTo(0, posicionDelScrollAntesDeAbrirRecortador);
+  }
 
   const onSelectFile = e => {
     if (e.target.files && e.target.files.length > 0) {
@@ -41,7 +52,7 @@ const PasoFotoCarnet = ({estiloDelPaso, register, errors}) => {
         imagen,
         croppedAreaPixels
       )
-      console.log('imagen bien recortada', { croppedImage })
+      
       setImagenRecortada(croppedImage)
     } catch (e) {
       console.error(e)
