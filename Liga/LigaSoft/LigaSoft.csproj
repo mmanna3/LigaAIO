@@ -313,9 +313,15 @@
     <Compile Include="Migrations\202005101752403_OcultaNoticiasSinSubtitulo.Designer.cs">
       <DependentUpon>202005101752403_OcultaNoticiasSinSubtitulo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202101280308076_AgregaJugadorAutofichado.cs" />
+    <Compile Include="Migrations\202101280308076_AgregaJugadorAutofichado.Designer.cs">
+      <DependentUpon>202101280308076_AgregaJugadorAutofichado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Dominio\JugadorAutofichado.cs" />
     <Compile Include="Models\Dominio\JugadorFichadoPorDelegado.cs" />
     <Compile Include="Models\Dominio\UsuarioDelegado.cs" />
     <Compile Include="Models\Dominio\Sancion.cs" />
+    <Compile Include="Models\Enums\EstadoJugadorAutofichado.cs" />
     <Compile Include="Models\Enums\EstadoJugadorFichadoPorDelegado.cs" />
     <Compile Include="Models\Otros\GijgoGridOptions.cs" />
     <Compile Include="Models\TextValueItem.cs" />
@@ -897,6 +903,7 @@
     <Compile Include="Utilidades\DateTimeUtils.cs" />
     <Compile Include="Utilidades\YKNExHandler.cs" />
     <Compile Include="Utilidades\ZipUtility.cs" />
+    <Compile Include="ViewModelMappers\JugadorAutofichadoVMM.cs" />
     <Compile Include="ViewModelMappers\JugadorFichadoPorDelegadoVMM.cs" />
     <Compile Include="ViewModelMappers\UsuarioDelegadoVMM.cs" />
     <Compile Include="ViewModelMappers\GoleadoresWebPublicaBuilder.cs" />
@@ -1617,6 +1624,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005101752403_OcultaNoticiasSinSubtitulo.resx">
       <DependentUpon>202005101752403_OcultaNoticiasSinSubtitulo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101280308076_AgregaJugadorAutofichado.resx">
+      <DependentUpon>202101280308076_AgregaJugadorAutofichado.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using LigaSoft.Models.Attributes;
 using LigaSoft.Models.Enums;
 
@@ -24,7 +25,7 @@ namespace LigaSoft.Models.ViewModels
 
 		public string Club { get; set; }
 
-		public EstadoJugadorFichadoPorDelegado Estado { get; set; }
+		public EstadoJugadorAutofichado Estado { get; set; }
 
 		public string FotoCarnet { get; set; }
 
@@ -37,5 +38,9 @@ namespace LigaSoft.Models.ViewModels
 		public string FotoDNIFrenteRelativePath { get; set; }
 
 		public string FotoDNIDorsoRelativePath { get; set; }
+
+		[Column(TypeName = "VARCHAR")]
+		[MaxLength(150)]
+		public string MotivoDeRechazo { get; set; }
 	}
 }
