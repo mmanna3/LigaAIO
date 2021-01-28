@@ -26,11 +26,6 @@ namespace LigaSoft.Controllers
 			_userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(Context));
 		}
 
-		public ActionResult Aprobados(IdDescripcionVM vm)
-		{
-			return View("Index", vm);
-		}
-
 		[HttpPost, AllowAnonymous]
 		public JsonResult Autofichaje()
 		{

@@ -198,6 +198,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="BusinessLogic\GeneradorDeMovimientos.cs" />
+    <Compile Include="Controllers\AdministracionJugadoresAutofichadosController.cs" />
     <Compile Include="Controllers\AdministracionJugadoresFichadosPorDelegadosController.cs" />
     <Compile Include="Controllers\AdministracionDelegadosController.cs" />
     <Compile Include="Controllers\JugadorAutofichadoController.cs" />
@@ -1246,6 +1247,8 @@
     <Content Include="Views\JugadorFichadoPorDelegado\Rechazados.cshtml" />
     <Content Include="Views\JugadorFichadoPorDelegado\Aprobados.cshtml" />
     <Content Include="Views\JugadorFichadoPorDelegado\EditarJugadorRechazado.cshtml" />
+    <Content Include="Views\AdministracionJugadoresAutofichados\AprobarRechazar.cshtml" />
+    <Content Include="Views\AdministracionJugadoresAutofichados\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

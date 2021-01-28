@@ -69,6 +69,11 @@ namespace LigaSoft.Utilidades.Persistence.DiskPersistence
 
 			if (File.Exists(pathDNIFrente))
 				File.Delete(pathDNIFrente);
+
+			var pathDNIDorso = $"{Paths.ImagenesTemporalesJugadorDNIDorsoAbsolute}/{dni}.jpg";
+
+			if (File.Exists(pathDNIDorso))
+				File.Delete(pathDNIDorso);
 		}
 
 		public void GuardarFotosTemporalesDeJugadorAutofichado(JugadorAutofichadoVM vm)
