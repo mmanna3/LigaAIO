@@ -53,8 +53,8 @@ const SeccionPrincipalFichaje = () => {
         return (
             <div className={bootstrap['row']}>
                 <div className={bootstrap['col-12']}>
-                    <div className={`${bootstrap['alert']} ${bootstrap['alert-success']} ${styles.alertaValidacion}`}>
-                        <strong>¡Tus datos se enviaron correctamente!</strong> Preguntale a tu delegado cómo seguir.
+                    <div className={`${styles.mensajeExitoResultadoDelPost}`}>
+                        <strong>¡Tus datos se enviaron correctamente!</strong> Gracias por ficharte.
                     </div>
                 </div>
             </div>
@@ -63,7 +63,7 @@ const SeccionPrincipalFichaje = () => {
             return (
                 <div className={bootstrap['row']}>
                     <div className={bootstrap['col-12']}>
-                        <div className={`${bootstrap['alert']} ${bootstrap['alert-danger']} ${styles.alertaValidacion}`}>
+                        <div className={`${styles.mensajeErrorResultadoDelPost}`}>
                             ¡Ups! Hubo un <strong>error</strong>. Volvé a intentar más tarde.
                         </div>
                     </div>

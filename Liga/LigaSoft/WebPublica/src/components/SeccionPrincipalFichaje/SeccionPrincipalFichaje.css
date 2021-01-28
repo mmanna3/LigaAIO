@@ -5,6 +5,28 @@
 	margin-bottom: 20px;
 }
 
+.mensajeErrorResultadoDelPost {
+	composes: backgroundGradienteRojo from './../../assets/styles/colors.css';
+	color: #eee;
+	padding: 30px;
+	margin-top: 60px;
+    margin-bottom: 20px;
+    text-align: center;
+	font-size: 24px;
+	border: 1px solid #eee;
+}
+
+.mensajeExitoResultadoDelPost {
+	composes: backgroundGradienteVerde from './../../assets/styles/colors.css';
+	color: #eee;
+	padding: 30px;
+	margin-top: 60px;
+    margin-bottom: 20px;
+    text-align: center;
+	font-size: 24px;
+	border: 1px solid #eee;
+}
+
 .seccion {
 	padding-top: 1em;
 	padding-bottom: 2em;
