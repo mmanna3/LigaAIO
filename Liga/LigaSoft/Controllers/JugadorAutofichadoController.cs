@@ -67,22 +67,12 @@ namespace LigaSoft.Controllers
 
 		public JsonResult GetForGrido(string estado)
 		{
-			IQueryable<JugadorAutofichado> query;
+			estado = estado.Substring(0, 1); //Porque viene con un extraño signo de pregunta al final
 
-			if (estado != "?")
-			{
-				estado = estado.Substring(0, 1); //Porque viene con un extraño signo de pregunta al final
+			var estadoInt = Convert.ToInt32(estado);
 
-				var estadoInt = Convert.ToInt32(estado);
-
-				query = Context.JugadoresaAutofichados.Where(x => (int)x.Estado == estadoInt); estado = estado.Substring(0, 1); //Porque viene con un extraño signo de pregunta al final
-			}
-			else
-			{
-				query = Context.JugadoresaAutofichados;
-			}
-
-
+			var query = Context.JugadoresaAutofichados.Where(x => (int)x.Estado == estadoInt); estado = estado.Substring(0, 1); //Porque viene con un extraño signo de pregunta al final
+			
 			var records = VMM.MapForGrid(query.ToList());
 
 			var cantidad = 0;

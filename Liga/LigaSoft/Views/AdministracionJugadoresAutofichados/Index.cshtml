@@ -8,10 +8,9 @@
 @section CabeceraGrilla {
 
 	<div class="btn-group" role="group">
-		<button type="button" class="btn btn-primary" id="todosBtn" onclick="onTodosClick()">Todos</button>
-		<button type="button" class="btn btn-success" id="insumosBtn" onclick="onPendientesClick()">Pendientes</button>
-		<button type="button" class="btn btn-danger" id="cuotasBtn" onclick="onAprobadosClick()">Aprobados</button>
-		<button type="button" class="btn btn-warning" id="fichajesBtn" onclick="onRechazadosClick()">Rechazados</button>
+		<button type="button" class="btn btn-primary" id="insumosBtn" onclick="onPendientesClick()">Pendientes</button>
+		<button type="button" class="btn btn-success" id="cuotasBtn" onclick="onAprobadosClick()">Aprobados</button>
+		<button type="button" class="btn btn-danger" id="fichajesBtn" onclick="onRechazadosClick()">Rechazados</button>
 	</div>
 
 }
@@ -28,7 +27,7 @@
 	  })
 	  .Actions(action =>
 	  {
-		  action.RedirectWithRowId("Aprobar/Rechazar", "AdministracionJugadoresAutofichados", "AprobarRechazar");
+		  action.RedirectWithRowId("Aprobar/Rechazar", "AdministracionJugadoresAutofichados", "AprobarRechazar", ViewBag.Estado == "1");
 	  })
 	.DataSource("/JugadorAutofichado/GetForGrido?estado="+ViewBag.Estado))
 
@@ -44,9 +43,5 @@
 
 	function onRechazadosClick() {
 		window.location.href = '/AdministracionJugadoresAutofichados/Index?Estado=3';
-	}
-
-	function onTodosClick() {
-		window.location.href = '/AdministracionJugadoresAutofichados';
 	}
 </script>
