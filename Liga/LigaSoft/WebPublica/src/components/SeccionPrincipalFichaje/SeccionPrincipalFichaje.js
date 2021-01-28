@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './SeccionPrincipalFichaje.css';
 import PasoInput from './PasoInput/PasoInput';
 import PasoCodigoEquipo from './PasoCodigoEquipo/PasoCodigoEquipo';
@@ -12,7 +12,9 @@ import bootstrap from "GlobalStyle/bootstrap.min.css";
 const SeccionPrincipalFichaje = () => {
 
     const { register, handleSubmit, errors } = useForm(); // initialize the hook
-    
+    const [mensajeExito, mostrarMensajeExito] = useState(false);
+    const [mensajeErrorServidor, mostrarMensajeErrorServidor] = useState(false);
+
     const hacerElPost = async (data) => {
         fetch('JugadorAutofichado/autofichaje', {
             method: 'POST',
@@ -26,25 +28,43 @@ const SeccionPrincipalFichaje = () => {
         })
         .then(res => res.json())
         .then(res => {
-          if (res.success) {
-            console.log("Posteó piola")
-          }else{
-            console.log("Algún error posteando")
-          }
+            if (res === "OK") 
+                mostrarMensajeExito(true);
+            else
+                mostrarMensajeErrorServidor(true);
         })
         .catch(function() {
-            console.log("No le pudo pegar al back, capaz está caído");
+            mostrarMensajeErrorServidor(true);
         });        
     }
 
     const onSubmit = (data) => {
-        console.log(data);
-        hacerElPost(data)
+        hacerElPost(data)        
     };     
 
     const huboAlgunError = !(Object.keys(errors).length === 0 && errors.constructor === Object)
 
-    return (
+    if (mensajeExito)
+        return (
+            <div className={bootstrap['row']}>
+                <div className={bootstrap['col-12']}>
+                    <div className={`${bootstrap['alert']} ${bootstrap['alert-success']} ${styles.alertaValidacion}`}>
+                        <strong>¡Tus datos se enviaron correctamente!</strong> Preguntale a tu delegado cómo seguir.
+                    </div>
+                </div>
+            </div>
+        )
+    else if (mensajeErrorServidor)
+            return (
+                <div className={bootstrap['row']}>
+                    <div className={bootstrap['col-12']}>
+                        <div className={`${bootstrap['alert']} ${bootstrap['alert-danger']} ${styles.alertaValidacion}`}>
+                            ¡Ups! Hubo un <strong>error</strong>. Volvé a intentar más tarde.
+                        </div>
+                    </div>
+                </div>
+            )
+    else return (
             <div className={styles.seccionContainer}>
                 <div className={styles.seccion}>
                     <form onSubmit={handleSubmit(onSubmit)}>
