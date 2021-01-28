@@ -69,6 +69,13 @@ namespace LigaSoft.Controllers
 			return Json(result, JsonRequestBehavior.AllowGet);
 		}
 
+		public JsonResult ElDniEstaFichado(string dni)
+		{
+			var result = _context.Jugadores.Any(x => x.DNI == dni);
+
+			return Json(result, JsonRequestBehavior.AllowGet);
+		}
+
 		public JsonResult TorneosRelampago(string anio)
 		{
 			Enum.TryParse(anio, out Anio anioEnum);

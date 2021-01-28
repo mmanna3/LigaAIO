@@ -9,6 +9,7 @@ import PasoBotonEnviar from './PasoBotonEnviar/PasoBotonEnviar';
 import PasoFechaNacimiento from './PasoFechaNacimiento/PasoFechaNacimiento';
 import bootstrap from "GlobalStyle/bootstrap.min.css";
 import Spinner from 'Components/Spinner/Spinner.js';
+import PasoDNI from './PasoDNI/PasoDNI';
 
 const SeccionPrincipalFichaje = () => {
 
@@ -102,14 +103,9 @@ const SeccionPrincipalFichaje = () => {
                                     nombre="apellido" 
                                     titulo="Tu apellido" />
 
-                        <PasoInput  estiloDelPaso={styles.pasoRojo} 
+                        <PasoDNI    estiloDelPaso={styles.pasoRojo} 
                                     register={register} 
-                                    errors={errors}
-                                    longMaxima={9} 
-                                    type="number"
-                                    name="dni" 
-                                    nombre="DNI" 
-                                    titulo="Tu DNI" />
+                                    errors={errors} />
                         
                         <PasoFechaNacimiento  estiloDelPaso={styles.pasoRojo}
                                               register={register}
