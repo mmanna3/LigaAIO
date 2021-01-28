@@ -124,8 +124,7 @@ const SeccionPrincipalFichaje = () => {
                                             errors={errors}
                                             name="fotoDNIDorso"
                                             nombre="foto de ATRÁS del DNI"
-                                            />
-                        
+                                            />                        
 
                         <PasoBotonEnviar estiloDelPaso={styles.pasoRojo} />
                     </form>
