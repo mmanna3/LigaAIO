@@ -4,7 +4,7 @@ import Label from '../Label/Label';
 import ImageUploader from '../ImageUploader/ImageUploader'
 import estilos from './PasoFotoDocumento.css'
 import imagenDniFrente from './dniFrente.png';
-import imagenDniDorso from './dniDorso.png';
+import imagenDniDorso from './dniDorso.jpg';
 import Error from '../Error/Error';
 
 const PasoFotoDocumento = ({register, estiloDelPaso, titulo, errors, name, nombre}) => {

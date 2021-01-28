@@ -5,7 +5,7 @@ import estilos from './PasoFotoCarnet.css';
 import bootstrap from "GlobalStyle/bootstrap.min.css";
 import obtenerImagenRecortada from './recortarImagen'
 import ImageUploader from '../ImageUploader/ImageUploader'
-import persona from './chico.png';
+import persona from './chico.jpg';
 import Label from '../Label/Label';
 import Error from '../Error/Error';
 
