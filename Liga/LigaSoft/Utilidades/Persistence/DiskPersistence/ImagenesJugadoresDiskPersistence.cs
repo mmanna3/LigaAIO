@@ -74,7 +74,8 @@ namespace LigaSoft.Utilidades.Persistence.DiskPersistence
 		public void GuardarFotosTemporalesDeJugadorAutofichado(JugadorAutofichadoVM vm)
 		{
 			GuardarFotoCarnetTemporal(new JugadorFichadoPorDelegadoVM {DNI = vm.DNI, FotoCarnet = vm.FotoCarnet });
-			//GuardarFotoDNIFrenteTemporal(new JugadorFichadoPorDelegadoVM { DNI = vm.DNI, FotoDNIFrente = vm.FotoDNIFrente });
+			GuardarFotoDNIFrenteTemporal(vm);
+			GuardarFotoDNIDorsoTemporal(vm);
 		}
 
 		private static void GuardarFotoCarnetTemporal(JugadorFichadoPorDelegadoVM vm)
@@ -89,6 +90,36 @@ namespace LigaSoft.Utilidades.Persistence.DiskPersistence
 				Directory.CreateDirectory(Paths.ImagenesTemporalesJugadorCarnetAbsolute);
 
 				var result = ImagenUtility.ConvertirABitMapYATamanio240X240(vm.FotoCarnet);
+				result.Save(imagePath);
+			}
+		}
+
+		private static void GuardarFotoDNIFrenteTemporal(JugadorAutofichadoVM vm)
+		{
+			if (vm.FotoDNIFrente != null)
+			{
+				var imagePath = $"{Paths.ImagenesTemporalesJugadorDNIFrenteAbsolute}/{vm.DNI}.jpg";
+
+				if (File.Exists(imagePath))
+					File.Delete(imagePath);
+
+				Directory.CreateDirectory(Paths.ImagenesTemporalesJugadorDNIFrenteAbsolute);
+				var result = ImagenUtility.Comprimir(vm.FotoDNIFrente);
+				result.Save(imagePath);
+			}
+		}
+
+		private static void GuardarFotoDNIDorsoTemporal(JugadorAutofichadoVM vm)
+		{
+			if (vm.FotoDNIDorso != null)
+			{
+				var imagePath = $"{Paths.ImagenesTemporalesJugadorDNIDorsoAbsolute}/{vm.DNI}.jpg";
+
+				if (File.Exists(imagePath))
+					File.Delete(imagePath);
+
+				Directory.CreateDirectory(Paths.ImagenesTemporalesJugadorDNIDorsoAbsolute);
+				var result = ImagenUtility.Comprimir(vm.FotoDNIDorso);
 				result.Save(imagePath);
 			}
 		}

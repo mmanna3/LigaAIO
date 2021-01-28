@@ -79,25 +79,27 @@ namespace Tests.Integration
 			Assert.AreEqual(true, File.Exists(_imagePath));
 		}
 
-		//Lo comento porque rompe algo de la fotoDNIFrente mockeada. Con una foto posta, parecería andar bien. Espero poder arreglarlo pronto.
-		//[Test]
-		//public void GuardarFotosTemporalesDeJugadorFichadoPorDelegado()
-		//{
-		//	var vm = new JugadorFichadoPorDelegadoVM
-		//	{
-		//		FotoCarnet = Constantes.puntoRojoBase64,
-		//		FotoDNIFrente = new HttpPostedFileRandomJpg(),
-		//		DNI = DNI
-		//	};
+		[Test]
+		public void GuardarFotosTemporalesDeJugadorAutofichado()
+		{
+			var vm = new JugadorAutofichadoVM
+			{
+				FotoCarnet = Constantes.puntoRojoBase64,
+				FotoDNIFrente = Constantes.puntoRojoBase64,
+				FotoDNIDorso = Constantes.puntoRojoBase64,
+				DNI = DNI
+			};
 
-		//	_imagenesJugadoresDiskPersistence.GuardarFotosTemporalesDeJugadorFichadoPorDelegado(vm);
+			_imagenesJugadoresDiskPersistence.GuardarFotosTemporalesDeJugadorAutofichado(vm);
 
-		//	var pathFotoCarnetTemporal = $"{_paths.ImagenesTemporalesJugadorCarnetAbsolute}/{DNI}.jpg";
-		//	var pathFotoDNIFrenteTemporal = $"{_paths.ImagenesTemporalesJugadorDNIFrenteAbsolute}/{DNI}.jpg";
+			var pathFotoCarnetTemporal = $"{_paths.ImagenesTemporalesJugadorCarnetAbsolute}/{DNI}.jpg";
+			var pathFotoDNIFrenteTemporal = $"{_paths.ImagenesTemporalesJugadorDNIFrenteAbsolute}/{DNI}.jpg";
+			var pathFotoDNIDorsoTemporal = $"{_paths.ImagenesTemporalesJugadorDNIDorsoAbsolute}/{DNI}.jpg";
 
-		//	Assert.AreEqual(true, File.Exists(pathFotoCarnetTemporal));
-		//	Assert.AreEqual(true, File.Exists(pathFotoDNIFrenteTemporal));
-		//}
+			Assert.AreEqual(true, File.Exists(pathFotoCarnetTemporal));
+			Assert.AreEqual(true, File.Exists(pathFotoDNIFrenteTemporal));
+			Assert.AreEqual(true, File.Exists(pathFotoDNIDorsoTemporal));
+		}
 
 		[Test]
 		public void GetFotoEnBase64()
