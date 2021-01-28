@@ -14,7 +14,7 @@ const SeccionPrincipalFichaje = () => {
     const { register, handleSubmit, errors } = useForm(); // initialize the hook
     
     const hacerElPost = async (data) => {
-        fetch('publico/autofichaje', {
+        fetch('JugadorAutofichado/autofichaje', {
             method: 'POST',
             mode: 'cors',
             cache: 'no-cache',

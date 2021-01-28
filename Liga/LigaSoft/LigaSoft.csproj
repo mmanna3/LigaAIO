@@ -200,6 +200,7 @@
     <Compile Include="BusinessLogic\GeneradorDeMovimientos.cs" />
     <Compile Include="Controllers\AdministracionJugadoresFichadosPorDelegadosController.cs" />
     <Compile Include="Controllers\AdministracionDelegadosController.cs" />
+    <Compile Include="Controllers\JugadorAutofichadoController.cs" />
     <Compile Include="Controllers\JugadorFichadoPorDelegadoController.cs" />
     <Compile Include="Controllers\UsuarioDelegadoController.cs" />
     <Compile Include="Controllers\PublicoController.cs" />
