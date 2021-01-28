@@ -54,6 +54,11 @@ namespace LigaSoft.Utilidades.Persistence.DiskPersistence
 			return $"{Paths.ImagenesTemporalesJugadorDNIFrenteRelative}/{dni}.jpg";
 		}
 
+		public string PathFotoTemporalDNIDorso(string dni)
+		{
+			return $"{Paths.ImagenesTemporalesJugadorDNIDorsoRelative}/{dni}.jpg";
+		}
+
 		//No testeado
 		public void FicharJugadorTemporal(string dni)
 		{

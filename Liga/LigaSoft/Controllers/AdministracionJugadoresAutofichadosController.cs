@@ -75,7 +75,7 @@ namespace LigaSoft.Controllers
 				YKNExHandler.LoguearYLanzarExcepcion(e, "Error al fichar jugador temporal");
 			}
 
-			return RedirectToAction("Index");
+			return RedirectToAction("Index", new { Estado = 1 });
 		}
 
 		[ExportModelStateToTempData, HttpPost]
@@ -99,7 +99,7 @@ namespace LigaSoft.Controllers
 			_context.SaveChanges();
 			ModelState.Clear();
 
-			return RedirectToAction("Index");
+			return RedirectToAction("Index", new { Estado = 1 });
 		}
 
 	    [ImportModelStateFromTempData]

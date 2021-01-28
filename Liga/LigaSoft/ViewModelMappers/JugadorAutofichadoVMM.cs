@@ -47,6 +47,7 @@ namespace LigaSoft.ViewModelMappers
 				EstadoDescripcion = model.Estado.Descripcion(),
 				FotoCarnetRelativePath = _imagenesJugadoresDiskPersistence.PathFotoTemporalCarnet(model.DNI),
 				FotoDNIFrenteRelativePath = _imagenesJugadoresDiskPersistence.PathFotoTemporalDNIFrente(model.DNI),
+				FotoDNIDorsoRelativePath = _imagenesJugadoresDiskPersistence.PathFotoTemporalDNIDorso(model.DNI),
 				MotivoDeRechazo = model.MotivoDeRechazo
 		};
 		}

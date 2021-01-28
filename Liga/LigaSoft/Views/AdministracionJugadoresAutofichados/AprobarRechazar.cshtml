@@ -10,23 +10,34 @@
 
 @Html.YKNNonTyped().ValidationSummary()
 <div class="row">
+	<div class="col-sm-6">
+		<div>
+			<label>Foto DNI Frente</label>
+		</div>
+		<img id="fotoDNIFrente" src="@Model.FotoDNIFrenteRelativePath" alt="fotoDNIFrente">
+	</div>	<div class="col-sm-6">
+		<div>
+			<label>Foto DNI Dorso</label>
+		</div>
+		<img id="fotoDNIDorso" src="@Model.FotoDNIDorsoRelativePath" alt="fotoDNIDorso">
+	</div>
+</div>
+<div class="row fila-datos">
 	<div class="col-sm-3">
 		@Html.YKN().DisplayFor(x => x.DNI)
 		@Html.YKN().DisplayFor(x => x.Nombre)
 		@Html.YKN().DisplayFor(x => x.Apellido)
+	</div>
+	<div class="col-sm-3">
 		@Html.YKN().DisplayFor(x => x.FechaNacimiento)
+		@Html.YKN().DisplayFor(x => x.Equipo)
+		@Html.YKN().DisplayFor(x => x.Club)
 	</div>
 	<div class="col-sm-3">
 		<div>
 			<label>Foto carnet</label>	
 		</div>		
 		<img src="@Model.FotoCarnetRelativePath" alt="foto">
-	</div>
-	<div class="col-sm-6">
-		<div>
-			<label>Foto DNI Frente</label>	
-		</div>
-		<img id="fotoDNIFrente" src="@Model.FotoDNIFrenteRelativePath" alt="fotoDNIFrente">
 	</div>
 </div>
 
@@ -96,6 +107,11 @@
 	}
 
 	img {
-		border: 1px solid grey;
+		border: 1px solid #111;
+		border-radius: 15px;
+	}
+
+	.fila-datos {
+		margin-top: 30px !important;
 	}
 </style>
