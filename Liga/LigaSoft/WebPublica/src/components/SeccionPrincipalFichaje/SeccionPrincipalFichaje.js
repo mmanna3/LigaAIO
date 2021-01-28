@@ -7,6 +7,7 @@ import PasoFotoDocumento from './PasoFotoDocumento/PasoFotoDocumento';
 import { useForm } from 'react-hook-form';
 import PasoBotonEnviar from './PasoBotonEnviar/PasoBotonEnviar';
 import PasoFechaNacimiento from './PasoFechaNacimiento/PasoFechaNacimiento';
+import bootstrap from "GlobalStyle/bootstrap.min.css";
 
 const SeccionPrincipalFichaje = () => {
 
@@ -41,11 +42,21 @@ const SeccionPrincipalFichaje = () => {
         hacerElPost(data)
     };     
 
+    const huboAlgunError = !(Object.keys(errors).length === 0 && errors.constructor === Object)
+
     return (
             <div className={styles.seccionContainer}>
                 <div className={styles.seccion}>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         
+                        {huboAlgunError &&
+                            <div className={bootstrap['col-12']}>
+                                <div className={`${bootstrap['alert']} ${bootstrap['alert-danger']} ${styles.alertaValidacion}`}>
+                                    ¡Ups! Hubo algún error. Revisá tus datos y volvé a enviarlos.
+                                </div>
+                            </div>
+                        }
+
                         <PasoCodigoEquipo estiloDelPaso={styles.pasoAzul} register={register} errors={errors}/>
 
                         <PasoInput  estiloDelPaso={styles.pasoRojo} 

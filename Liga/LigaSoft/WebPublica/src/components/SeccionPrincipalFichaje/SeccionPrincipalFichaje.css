@@ -1,5 +1,9 @@
 @value blanco-grisaceo from from './../../assets/styles/colors.css';
 
+.alertaValidacionEquipo {
+	margin-top: 20px;
+	margin-bottom: 0px;
+}
 
 .seccion {
 	padding-top: 1em;
