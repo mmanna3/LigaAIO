@@ -40,7 +40,13 @@
 				}
 				@if (User.IsInRole(LigaSoft.Utilidades.Roles.Administrador) || User.IsInRole(LigaSoft.Utilidades.Roles.SoloPuedeFichar))
 				{
-					@MenuLink("Jugadores", "Index", "Jugador", null, "fa-user")
+					<li class="dropdown">
+						@MenuDesplegable("Jugadores", "fa-user")
+						<ul class="dropdown-menu forAnimate" role="menu">
+							<li><a href="@Url.Action("Index", "Jugador")">Fichados</a></li>
+							<li><a href="@Url.Action("Index", "JugadorAutofichado")">Pendientes</a></li>
+						</ul>
+					</li>
 				}
 				@if (User.IsInRole(LigaSoft.Utilidades.Roles.Administrador))
 				{

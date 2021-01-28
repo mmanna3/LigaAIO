@@ -26,19 +26,9 @@ namespace LigaSoft.Controllers
 			_userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(Context));
 		}
 
-		public ActionResult PendientesDeAprobacion(IdDescripcionVM vm)
-		{
-			return View("PendientesDeAprobacion", vm);
-		}
-
-		public ActionResult Rechazados(IdDescripcionVM vm)
-		{
-			return View("Rechazados", vm);
-		}
-
 		public ActionResult Aprobados(IdDescripcionVM vm)
 		{
-			return View("Aprobados", vm);
+			return View("Index", vm);
 		}
 
 		[HttpPost, AllowAnonymous]
