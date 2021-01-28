@@ -4,7 +4,9 @@ import Label from '../Label/Label';
 import Input from '../Input/Input';
 import Error from '../Error/Error';
 
-const PasoInput = ({titulo, onChange, name, nombre, register, errors, estiloDelPaso, type = "text"}) => {
+const PasoInput = ({titulo, onChange, name, nombre, longMaxima, register, errors, estiloDelPaso, type = "text"}) => {
+  
+  var caracteres = type === "text" ? 'letras' : 'números';
 
   return (
     <div className={estiloDelPaso}>
@@ -15,7 +17,7 @@ const PasoInput = ({titulo, onChange, name, nombre, register, errors, estiloDelP
           <div className={bootstrap['col-12']}> 
             <Input 
               type={type}
-              register={register}
+              register={register({required: true, maxLength: {value: longMaxima, message: `¡Ups! Como máximo son ${longMaxima} ${caracteres}`} })}
               name={name}
               onChange={onChange}
             />

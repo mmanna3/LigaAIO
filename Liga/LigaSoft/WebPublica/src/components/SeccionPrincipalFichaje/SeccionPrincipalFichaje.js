@@ -49,22 +49,25 @@ const SeccionPrincipalFichaje = () => {
                         <PasoCodigoEquipo estiloDelPaso={styles.pasoAzul} register={register({required: true})} errors={errors}/>
 
                         <PasoInput  estiloDelPaso={styles.pasoRojo} 
-                                    register={register({required: true})} 
-                                    errors={errors} 
+                                    register={register} 
+                                    errors={errors}
+                                    longMaxima={14}
                                     name="nombre" 
                                     nombre="nombre" 
                                     titulo="Tu nombre" />
                         
                         <PasoInput  estiloDelPaso={styles.pasoRojo} 
-                                    register={register({required: true})} 
-                                    errors={errors} 
+                                    register={register} 
+                                    errors={errors}
+                                    longMaxima={14} 
                                     name="apellido" 
                                     nombre="apellido" 
                                     titulo="Tu apellido" />
 
                         <PasoInput  estiloDelPaso={styles.pasoRojo} 
-                                    register={register({required: true})} 
-                                    errors={errors} 
+                                    register={register} 
+                                    errors={errors}
+                                    longMaxima={9} 
                                     type="number"
                                     name="dni" 
                                     nombre="DNI" 
