@@ -5,9 +5,19 @@
 	Jugadores autofichados
 }
 
+<div class="col-sm-4">
+	<div class="btn-group" role="group">
+		<button type="button" class="btn btn-primary" id="todosBtn" onclick="onTodosClick()">Todos</button>
+		<button type="button" class="btn btn-success" id="insumosBtn" onclick="onPendientesClick()">Pendientes</button>
+		<button type="button" class="btn btn-danger" id="cuotasBtn" onclick="onAprobadosClick()">Aprobados</button>
+		<button type="button" class="btn btn-warning" id="fichajesBtn" onclick="onRechazadosClick()">Rechazados</button>
+	</div>
+</div>
+
 @(Html.YKN<JugadorAutofichadoVM>().Grid()
 		  .WithColumns(column =>
 		  {
+			  column.AddTextColumn(x => x.EstadoDescripcion);
 			  column.AddTextColumn(x => x.DNI);
 			  column.AddTextColumn(x => x.Nombre);
 			  column.AddTextColumn(x => x.Apellido);
@@ -18,4 +28,4 @@
 		  {
 			  action.RedirectWithRowId("Aprobar/Rechazar", "AdministracionJugadoresAutofichados", "AprobarRechazar");
 		  })
-		  .DataSource("/JugadorAutofichado/GetForGrid"))
+	.DataSource("/JugadorAutofichado/GetForGrid"))

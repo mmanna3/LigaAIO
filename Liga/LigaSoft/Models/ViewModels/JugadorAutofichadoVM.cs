@@ -27,6 +27,9 @@ namespace LigaSoft.Models.ViewModels
 
 		public EstadoJugadorAutofichado Estado { get; set; }
 
+		[Display(Name = "Estado")]
+		public string EstadoDescripcion { get; set; }
+
 		public string FotoCarnet { get; set; }
 
 		public string FotoDNIFrente { get; set; }

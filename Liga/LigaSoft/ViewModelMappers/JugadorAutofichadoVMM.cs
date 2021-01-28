@@ -1,4 +1,5 @@
-﻿using LigaSoft.Models;
+﻿using LigaSoft.ExtensionMethods;
+using LigaSoft.Models;
 using LigaSoft.Models.Dominio;
 using LigaSoft.Models.Enums;
 using LigaSoft.Models.ViewModels;
@@ -43,6 +44,7 @@ namespace LigaSoft.ViewModelMappers
 				Club = equipo.Club.Nombre,
 				CodigoEquipo = model.EquipoId,
 				Estado = model.Estado,
+				EstadoDescripcion = model.Estado.Descripcion(),
 				FotoCarnetRelativePath = _imagenesJugadoresDiskPersistence.PathFotoTemporalCarnet(model.DNI),
 				FotoDNIFrenteRelativePath = _imagenesJugadoresDiskPersistence.PathFotoTemporalDNIFrente(model.DNI),
 				MotivoDeRechazo = model.MotivoDeRechazo
