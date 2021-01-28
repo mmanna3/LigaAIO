@@ -46,7 +46,7 @@ const SeccionPrincipalFichaje = () => {
                 <div className={styles.seccion}>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         
-                        <PasoCodigoEquipo estiloDelPaso={styles.pasoAzul} register={register({required: true})} errors={errors}/>
+                        <PasoCodigoEquipo estiloDelPaso={styles.pasoAzul} register={register} errors={errors}/>
 
                         <PasoInput  estiloDelPaso={styles.pasoRojo} 
                                     register={register} 

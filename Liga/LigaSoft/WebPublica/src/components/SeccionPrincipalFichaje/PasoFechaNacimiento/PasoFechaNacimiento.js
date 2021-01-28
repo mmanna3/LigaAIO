@@ -35,7 +35,6 @@ const PasoFechaNacimiento = ({register, errors, estiloDelPaso}) => {
   }
 
   const validarFecha = date => {
-    console.log(date)
     var temp = date.split('-');
     var d = new Date(temp[1] + '-' + temp[0] + '-' + temp[2]);
     var resultado = (d && (d.getMonth() + 1) == temp[1] && d.getDate() == Number(temp[0]) && d.getFullYear() == Number(temp[2]));

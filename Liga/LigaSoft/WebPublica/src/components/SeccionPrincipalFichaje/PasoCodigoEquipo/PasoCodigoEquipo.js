@@ -14,13 +14,18 @@ const PasoCodigoEquipo = ({register, errors, estiloDelPaso}) => {
   
   const onCodigoEquipoChange = (id) => {
     setCodigoEquipo(id)
+  }  
+
+  const validar = async () => {
+    return fetch(`/publico/obtenerNombreDelEquipo?equipoId=${codigoEquipo}`)
+        .then(response => response.json())
+        .then(data => {setNombreEquipo(data); setCodigoEquipoEsValido(true); setYaValidoCodigoEquipo(true); return true})
+        .catch(() => {setCodigoEquipoEsValido(false); setYaValidoCodigoEquipo(true); return false})
   }
 
-  const onValidarClick = () => {
-      fetch(`/publico/obtenerNombreDelEquipo?equipoId=${codigoEquipo}`)
-          .then(response => response.json())
-          .then(data => {setNombreEquipo(data); setCodigoEquipoEsValido(true); setYaValidoCodigoEquipo(true)})
-          .catch(() => {setCodigoEquipoEsValido(false); setYaValidoCodigoEquipo(true)})
+  const onValidarClick = async () => {
+    var resultado = await validar()
+    return resultado;
   }   
 
   return (
@@ -33,7 +38,7 @@ const PasoCodigoEquipo = ({register, errors, estiloDelPaso}) => {
               <Input
                   onChange={onCodigoEquipoChange}
                   type="number"
-                  register={register} 
+                  register={register({required: true, validate: {asyncValidate: onValidarClick}})} 
                   name="codigoEquipo"
               />
           </div>
@@ -55,7 +60,14 @@ const PasoCodigoEquipo = ({register, errors, estiloDelPaso}) => {
                   </div>
               )
           }
-          <Error name="codigoEquipo" nombre="código" errors={errors} />
+
+        {errors.codigoEquipo && errors.codigoEquipo.type === 'required' &&
+            <div className={bootstrap['col-12']}>
+                <div className={`${bootstrap['alert']} ${bootstrap['alert-danger']} ${Estilos.alertaValidacionEquipo}`}>
+                    ¡Ups! Te olvidaste el código de tu equipo.
+                </div>
+            </div>
+        }
       </div>
   </div>
     )
