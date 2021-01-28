@@ -16,10 +16,16 @@ const PasoFechaNacimiento = ({register, errors, estiloDelPaso}) => {
   }, [dia, mes, anio])
   
   const actualizarDia = (dia) => {
+    if (dia.length === 1)
+      dia = '0' + dia;
+
     setDia(dia)
   }
 
   const actualizarMes = (mes) => {
+    if (mes.length === 1)
+      mes = '0' + mes;
+
     setMes(mes)
   }
 
