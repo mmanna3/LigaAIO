@@ -13,7 +13,7 @@ const SeccionPrincipalFichaje = () => {
     const { register, handleSubmit, errors } = useForm(); // initialize the hook
     
     const hacerElPost = async (data) => {
-        fetch('publico/fichar', {
+        fetch('publico/autofichaje', {
             method: 'POST',
             mode: 'cors',
             cache: 'no-cache',

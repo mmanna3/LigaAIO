@@ -83,7 +83,7 @@ namespace LigaSoft.Controllers
 		}
 
 		[HttpPost]
-		public JsonResult Fichar()
+		public JsonResult Autofichaje()
 		{
 			try
 			{
