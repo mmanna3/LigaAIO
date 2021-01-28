@@ -8,14 +8,17 @@ import { useForm } from 'react-hook-form';
 import PasoBotonEnviar from './PasoBotonEnviar/PasoBotonEnviar';
 import PasoFechaNacimiento from './PasoFechaNacimiento/PasoFechaNacimiento';
 import bootstrap from "GlobalStyle/bootstrap.min.css";
+import Spinner from 'Components/Spinner/Spinner.js';
 
 const SeccionPrincipalFichaje = () => {
 
     const { register, handleSubmit, errors } = useForm(); // initialize the hook
-    const [mensajeExito, mostrarMensajeExito] = useState(false);
-    const [mensajeErrorServidor, mostrarMensajeErrorServidor] = useState(false);
+    const [mensajeExitoVisible, mostrarMensajeExito] = useState(false);
+    const [mensajeErrorServidorVisible, mostrarMensajeErrorServidor] = useState(false);
+    const [spinnerVisible, mostrarSpinner] = useState(false);
 
     const hacerElPost = async (data) => {
+        mostrarSpinner(true);
         fetch('JugadorAutofichado/autofichaje', {
             method: 'POST',
             mode: 'cors',
@@ -28,12 +31,14 @@ const SeccionPrincipalFichaje = () => {
         })
         .then(res => res.json())
         .then(res => {
+            mostrarSpinner(false);
             if (res === "OK") 
                 mostrarMensajeExito(true);
             else
                 mostrarMensajeErrorServidor(true);
         })
         .catch(function() {
+            mostrarSpinner(false);
             mostrarMensajeErrorServidor(true);
         });        
     }
@@ -44,7 +49,7 @@ const SeccionPrincipalFichaje = () => {
 
     const huboAlgunError = !(Object.keys(errors).length === 0 && errors.constructor === Object)
 
-    if (mensajeExito)
+    if (mensajeExitoVisible)
         return (
             <div className={bootstrap['row']}>
                 <div className={bootstrap['col-12']}>
@@ -54,7 +59,7 @@ const SeccionPrincipalFichaje = () => {
                 </div>
             </div>
         )
-    else if (mensajeErrorServidor)
+    else if (mensajeErrorServidorVisible)
             return (
                 <div className={bootstrap['row']}>
                     <div className={bootstrap['col-12']}>
@@ -64,6 +69,8 @@ const SeccionPrincipalFichaje = () => {
                     </div>
                 </div>
             )
+    else if (spinnerVisible)
+            return <Spinner />
     else return (
             <div className={styles.seccionContainer}>
                 <div className={styles.seccion}>
