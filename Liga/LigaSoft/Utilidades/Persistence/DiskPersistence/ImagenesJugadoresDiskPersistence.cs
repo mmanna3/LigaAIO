@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using LigaSoft.Models.ViewModels;
@@ -176,6 +177,12 @@ namespace LigaSoft.Utilidades.Persistence.DiskPersistence
 			{
 				image.Save(imagePath);
 			}
+		}
+
+		public void EliminarLista(IList<string> dnis)
+		{
+			foreach (var dni in dnis)
+				Eliminar(dni);
 		}
 
 		public void Eliminar(string dni)

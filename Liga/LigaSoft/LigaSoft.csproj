@@ -201,6 +201,7 @@
     <Compile Include="Controllers\AdministracionJugadoresAutofichadosController.cs" />
     <Compile Include="Controllers\AdministracionJugadoresFichadosPorDelegadosController.cs" />
     <Compile Include="Controllers\AdministracionDelegadosController.cs" />
+    <Compile Include="Controllers\SudoController.cs" />
     <Compile Include="Controllers\JugadorAutofichadoController.cs" />
     <Compile Include="Controllers\JugadorFichadoPorDelegadoController.cs" />
     <Compile Include="Controllers\UsuarioDelegadoController.cs" />

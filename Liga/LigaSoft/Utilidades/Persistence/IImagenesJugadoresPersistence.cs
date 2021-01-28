@@ -1,4 +1,5 @@
-﻿using LigaSoft.Models.ViewModels;
+﻿using System.Collections.Generic;
+using LigaSoft.Models.ViewModels;
 
 namespace LigaSoft.Utilidades.Persistence
 {
@@ -9,6 +10,7 @@ namespace LigaSoft.Utilidades.Persistence
 		string GetFotoEnBase64(string dni);
 		void GuardarImagenJugadorImportado(string dni, byte[] fotoByteArray);
 		void Eliminar(string dni);
+		void EliminarLista(IList<string> dni);
 		string Path(string dni);
 		void CambiarDNI(string dniAnterior, string dniNuevo);
 		void GuardarFotosTemporalesDeJugadorFichadoPorDelegado(JugadorFichadoPorDelegadoVM vm);
