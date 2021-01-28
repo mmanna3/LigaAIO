@@ -3,6 +3,7 @@ import bootstrap from "GlobalStyle/bootstrap.min.css";
 import Label from '../Label/Label';
 import Input from '../Input/Input';
 import Estilos from './PasoFechaNacimiento.css'
+import Error from '../Error/Error';
 
 const PasoFechaNacimiento = ({register, errors, estiloDelPaso}) => {
 
@@ -38,7 +39,7 @@ const PasoFechaNacimiento = ({register, errors, estiloDelPaso}) => {
     var temp = date.split('-');
     var d = new Date(temp[1] + '-' + temp[0] + '-' + temp[2]);
     var resultado = (d && (d.getMonth() + 1) == temp[1] && d.getDate() == Number(temp[0]) && d.getFullYear() == Number(temp[2]));
-    return resultado;
+    return resultado || '¡Ups! Hay un problema con la fecha. Revisala.';
   }
 
   return (
@@ -74,14 +75,7 @@ const PasoFechaNacimiento = ({register, errors, estiloDelPaso}) => {
               name="fechaNacimiento" 
               defaultValue={valorCalculado}
           />
-          
-          {errors.fechaNacimiento && 
-            <div className={bootstrap['col-12']}>
-              <div className={`${bootstrap['alert']} ${bootstrap['alert-danger']} ${Estilos.alertaValidacionEquipo}`}>
-                  ¡Ups! Hay un problema con la <strong>fecha</strong>. Revisala.
-              </div>
-            </div>
-        }
+          <Error name="fechaNacimiento" errors={errors} nombre="fecha"/>
       </div>
     </div>
     )

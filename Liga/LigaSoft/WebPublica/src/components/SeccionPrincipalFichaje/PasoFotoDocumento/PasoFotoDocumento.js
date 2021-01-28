@@ -36,7 +36,7 @@ const PasoFotoDocumento = ({register, estiloDelPaso, titulo, errors, name, nombr
           <img readOnly width="200" src={imagenBase64} className={estilos.imagenDNIFrente} />
         </div>                
 
-        <input readOnly name={name} ref={register({validate: value => value !== imagenDefault})} style={{display: "none"}} value={imagenBase64} />
+        <input readOnly name={name} ref={register({validate: value => value !== imagenDefault || `¡Ups! Te olvidaste la ${nombre}.`})} style={{display: "none"}} value={imagenBase64} />
         <Error name={name} errors={errors} nombre={nombre}/>
         <ImageUploader onChange={onSelectFile} />
         
