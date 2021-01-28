@@ -1,37 +1,134 @@
 import React, { useState } from 'react';
 import styles from './SeccionPrincipalFichaje.css';
-import {fetchDataAndRenderResponse} from "Utils/hooks";
-import Input from './Input/Input';
-
-// const ValidadorDeId = ({id}) =>{    
-
-//     const render = (data, loading) => {
-  
-//         if (!loading)
-//             return (
-//             <div className={styles.rowTablas}>            
-//                 {data}
-//             </div>
-//             )
-//         else
-//             <div>Error</div>
-//       }    
-  
-//       return fetchDataAndRenderResponse("/publico/ObtenerNombreDelEquipo?equipoId="+id, render);
-//   }
+import PasoInput from './PasoInput/PasoInput';
+import PasoCodigoEquipo from './PasoCodigoEquipo/PasoCodigoEquipo';
+import PasoFotoCarnet from './PasoFotoCarnet/PasoFotoCarnet';
+import PasoFotoDocumento from './PasoFotoDocumento/PasoFotoDocumento';
+import { useForm } from 'react-hook-form';
+import PasoBotonEnviar from './PasoBotonEnviar/PasoBotonEnviar';
+import PasoFechaNacimiento from './PasoFechaNacimiento/PasoFechaNacimiento';
+import bootstrap from "GlobalStyle/bootstrap.min.css";
 
 const SeccionPrincipalFichaje = () => {
-    function validarEquipo(id) {
-        console.log(id);
+
+    const { register, handleSubmit, errors } = useForm(); // initialize the hook
+    const [mensajeExito, mostrarMensajeExito] = useState(false);
+    const [mensajeErrorServidor, mostrarMensajeErrorServidor] = useState(false);
+
+    const hacerElPost = async (data) => {
+        fetch('JugadorAutofichado/autofichaje', {
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            credentials: 'same-origin',
+            headers: {'Content-Type': 'application/json'},
+            redirect: 'follow',
+            referrerPolicy: 'no-referrer',
+            body: JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(res => {
+            if (res === "OK") 
+                mostrarMensajeExito(true);
+            else
+                mostrarMensajeErrorServidor(true);
+        })
+        .catch(function() {
+            mostrarMensajeErrorServidor(true);
+        });        
     }
-    
-    return (
-            <div className={styles.seccion}>                
-                <Input 
-                    label={"Código de tu equipo"}
-                    onEnter={validarEquipo}
-                    />
-                {/* <ValidadorDeId id={2} /> */}
+
+    const onSubmit = (data) => {
+        hacerElPost(data)        
+    };     
+
+    const huboAlgunError = !(Object.keys(errors).length === 0 && errors.constructor === Object)
+
+    if (mensajeExito)
+        return (
+            <div className={bootstrap['row']}>
+                <div className={bootstrap['col-12']}>
+                    <div className={`${bootstrap['alert']} ${bootstrap['alert-success']} ${styles.alertaValidacion}`}>
+                        <strong>¡Tus datos se enviaron correctamente!</strong> Preguntale a tu delegado cómo seguir.
+                    </div>
+                </div>
+            </div>
+        )
+    else if (mensajeErrorServidor)
+            return (
+                <div className={bootstrap['row']}>
+                    <div className={bootstrap['col-12']}>
+                        <div className={`${bootstrap['alert']} ${bootstrap['alert-danger']} ${styles.alertaValidacion}`}>
+                            ¡Ups! Hubo un <strong>error</strong>. Volvé a intentar más tarde.
+                        </div>
+                    </div>
+                </div>
+            )
+    else return (
+            <div className={styles.seccionContainer}>
+                <div className={styles.seccion}>
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        
+                        {huboAlgunError &&
+                            <div className={bootstrap['col-12']}>
+                                <div className={`${bootstrap['alert']} ${bootstrap['alert-danger']} ${styles.alertaValidacion}`}>
+                                    ¡Ups! Hubo algún error. Revisá tus datos y volvé a enviarlos.
+                                </div>
+                            </div>
+                        }
+
+                        <PasoCodigoEquipo estiloDelPaso={styles.pasoAzul} register={register} errors={errors}/>
+
+                        <PasoInput  estiloDelPaso={styles.pasoRojo} 
+                                    register={register} 
+                                    errors={errors}
+                                    longMaxima={14}
+                                    name="nombre" 
+                                    nombre="nombre" 
+                                    titulo="Tu nombre" />
+                        
+                        <PasoInput  estiloDelPaso={styles.pasoRojo} 
+                                    register={register} 
+                                    errors={errors}
+                                    longMaxima={14} 
+                                    name="apellido" 
+                                    nombre="apellido" 
+                                    titulo="Tu apellido" />
+
+                        <PasoInput  estiloDelPaso={styles.pasoRojo} 
+                                    register={register} 
+                                    errors={errors}
+                                    longMaxima={9} 
+                                    type="number"
+                                    name="dni" 
+                                    nombre="DNI" 
+                                    titulo="Tu DNI" />
+                        
+                        <PasoFechaNacimiento  estiloDelPaso={styles.pasoRojo}
+                                              register={register}
+                                              errors={errors} />
+
+                        <PasoFotoCarnet estiloDelPaso={styles.pasoVerde} errors={errors} register={register}/>
+                        
+                        <PasoFotoDocumento  estiloDelPaso={styles.pasoAzul} 
+                                            register={register}
+                                            titulo="Foto del frente de tu DNI"
+                                            errors={errors}
+                                            name="fotoDNIFrente"
+                                            nombre="foto de FRENTE del DNI"
+                                            />
+                        
+                        <PasoFotoDocumento  estiloDelPaso={styles.pasoAzul} 
+                                            register={register}
+                                            titulo="Foto de la parte de atrás de tu DNI"
+                                            errors={errors}
+                                            name="fotoDNIDorso"
+                                            nombre="foto de ATRÁS del DNI"
+                                            />                        
+
+                        <PasoBotonEnviar estiloDelPaso={styles.pasoRojo} />
+                    </form>
+                </div>
             </div>
     );
 }

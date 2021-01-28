@@ -1,23 +1,48 @@
 @value blanco-grisaceo from from './../../assets/styles/colors.css';
 
+.alertaValidacion {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
 .seccion {
 	padding-top: 1em;
 	padding-bottom: 2em;
+	max-width: 360px;	
 }
 
-.padding-cajas {
+.seccionContainer {
+	display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-flow: column;
+}
+
+.paso {
+	background-color: rgba(255,255,255,0.8);
+	text-align: left;
 	padding-top: 2em;
 	padding-bottom: 2em;
 	padding-right: 3em;
-	padding-left: 2em;
+	padding-left: 2em;	
 }
 
-.contenido {
-	composes: padding-cajas;
-	background-color: rgba(255,255,255,0.8);
-	text-align: left;	
+.pasoAzul {
+	composes: backgroundGradienteAzul from './../../assets/styles/colors.css';
+	composes: paso
 }
 
+.pasoRojo {
+	composes: backgroundGradienteRojo from './../../assets/styles/colors.css';
+	composes: paso
+}
+
+.pasoVerde {
+	composes: backgroundGradienteVerde from './../../assets/styles/colors.css';
+	composes: paso
+}
+
+/*
 .titulo {
 	composes: tituloBlancoConSombraNegra from './../../assets/styles/base.css';
 	padding-bottom: 0.5em;
@@ -52,4 +77,4 @@
 		padding-right: 6em;
 		padding-left: 4em;
 	}
-}
+} */

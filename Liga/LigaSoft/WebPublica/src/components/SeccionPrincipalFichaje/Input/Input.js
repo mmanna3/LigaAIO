@@ -1,21 +1,26 @@
 import React, { useState } from 'react';
 import styles from './Input.css';
+import bootstrap from "GlobalStyle/bootstrap.min.css";
 
-const Input = ({onEnter, label}) => {
+const Input = ({onChange = () => {}, name, register, type = "text"}) => {
 
   const [valor, setValor] = useState("")
 
-  const handleKeyDown = (event) => {
-      if (event.key === 'Enter') {
-          onEnter(valor)
-      }
+  const handleOnChange = (e) => {
+    onChange(e.target.value); 
+    setValor(e.target.value);
   }
 
   return (
-      <div>
-        <label className={styles.label}>{label}</label>
-        <input type="text" value={valor} onChange={(e) => setValor(e.target.value)} onKeyDown={handleKeyDown} />
-      </div>
+          <input
+            ref={register}
+            name={name}
+            className={`${styles.input} ${bootstrap['form-control']}`}
+            value={valor} 
+            type={type} 
+            onChange={handleOnChange}
+            autoComplete="off"
+          />
     )
 }
 

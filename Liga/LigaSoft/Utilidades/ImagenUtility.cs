@@ -40,6 +40,12 @@ namespace LigaSoft.Utilidades
 			return image;
 		}
 
+		public static Image Comprimir(string imagenBase64)
+		{
+			var image = ConvertirAImageYQuitarMimeType(imagenBase64);
+			return ResizeImageFixedWidth(image, 500);
+		}
+
 		public static string StreamToBase64(Stream stream)
 		{
 			using (var image = Image.FromStream(stream))
@@ -128,7 +134,7 @@ namespace LigaSoft.Utilidades
 
 			var b = new Bitmap(destWidth, destHeight);
 			var g = Graphics.FromImage(b);
-			g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+			g.InterpolationMode = InterpolationMode.Low;
 
 			g.DrawImage(imgToResize, 0, 0, destWidth, destHeight);
 			g.Dispose();

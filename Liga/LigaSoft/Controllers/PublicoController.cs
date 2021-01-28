@@ -3,17 +3,21 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
+using System.Web;
 using System.Web.Hosting;
 using System.Web.Mvc;
 using LigaSoft.BusinessLogic;
 using LigaSoft.ExtensionMethods;
 using LigaSoft.Migrations;
 using LigaSoft.Models;
+using LigaSoft.Models.Dominio;
 using LigaSoft.Models.Enums;
 using LigaSoft.Models.ViewModels;
 using LigaSoft.Utilidades;
+using LigaSoft.Utilidades.Persistence;
 using LigaSoft.Utilidades.Persistence.DiskPersistence;
 using LigaSoft.ViewModelMappers;
+using Newtonsoft.Json;
 using ZonaTipo = LigaSoft.Models.Enums.ZonaTipo;
 
 namespace LigaSoft.Controllers
@@ -25,6 +29,7 @@ namespace LigaSoft.Controllers
 		private readonly TablaWebPublicaBuilder _tablaWebPublicaBuilder;
 		private readonly TablaAnualWebPublicaBuilder _tablaAnualWebPublicaBuilder;
 		private readonly ImagenesEscudosDiskPersistence _imagenesEscudosPersistence;
+		private readonly IImagenesJugadoresPersistence _imagenesJugadoresDiskPersistence;
 
 		public PublicoController()
 		{			
@@ -32,6 +37,7 @@ namespace LigaSoft.Controllers
 			_tablaWebPublicaBuilder = new TablaWebPublicaBuilder(_context);
 			_tablaAnualWebPublicaBuilder = new TablaAnualWebPublicaBuilder(_context);
 			_imagenesEscudosPersistence = new ImagenesEscudosDiskPersistence(new AppPathsWebApp());
+			_imagenesJugadoresDiskPersistence = new ImagenesJugadoresDiskPersistence(new AppPathsWebApp());
 		}
 
 		public ActionResult Index()

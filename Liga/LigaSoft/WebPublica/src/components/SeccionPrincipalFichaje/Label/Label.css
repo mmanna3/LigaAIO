@@ -1,0 +1,25 @@
+.labelSinSubtitulo {
+	font-weight: 600;
+	text-align: center;
+	font-size: 22px;
+	color: #ddd;
+	margin-bottom: 20px;
+}
+
+.labelConSubtitulo {
+	font-weight: 600;
+	text-align: center;
+	font-size: 22px;
+	color: #ddd;
+	margin-bottom: 0;
+}
+
+.centrado {
+	text-align: center;
+}
+
+.subtitulo {
+	color: #ddd;
+	margin-bottom: 25px;
+	font-size: 14px;
+}

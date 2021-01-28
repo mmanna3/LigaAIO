@@ -11,6 +11,7 @@ namespace LigaSoft.Utilidades
 		public string EscudoDefaultRelative { get; } = "/Imagenes/Escudos/default.jpg";
 		public string ImagenesTemporalesJugadorCarnetRelative { get; } = "/Imagenes/Temporales/Carnet";
 		public string ImagenesTemporalesJugadorDNIFrenteRelative { get; } = "/Imagenes/Temporales/DNIFrente";
+		public string ImagenesTemporalesJugadorDNIDorsoRelative { get; } = "/Imagenes/Temporales/DNIDorso";
 		public string BackupGeneratorExeRelative { get; } = "/Utilidades/Backup/Recursos/SchemaZen.exe";
 
 		public string ImagenesAbsolute { get; }
@@ -20,6 +21,7 @@ namespace LigaSoft.Utilidades
 		public string EscudoDefaultFileAbsolute { get; }
 		public string ImagenesTemporalesJugadorCarnetAbsolute { get; set; }
 		public string ImagenesTemporalesJugadorDNIFrenteAbsolute { get; set; }
+		public string ImagenesTemporalesJugadorDNIDorsoAbsolute { get; set; }
 		public string BackupGeneratorExeAbsolute { get; }
 		public string CarpetaTemporalBackupBaseDeDatosAbsolute { get; }
 
@@ -33,6 +35,7 @@ namespace LigaSoft.Utilidades
 			EscudoDefaultFileAbsolute = GetAbsolutePath(EscudoDefaultRelative);
 			ImagenesTemporalesJugadorCarnetAbsolute = GetAbsolutePath(ImagenesTemporalesJugadorCarnetRelative);
 			ImagenesTemporalesJugadorDNIFrenteAbsolute = GetAbsolutePath(ImagenesTemporalesJugadorDNIFrenteRelative);
+			ImagenesTemporalesJugadorDNIDorsoAbsolute = GetAbsolutePath(ImagenesTemporalesJugadorDNIDorsoRelative);
 			BackupGeneratorExeAbsolute = GetAbsolutePath(BackupGeneratorExeRelative);
 			CarpetaTemporalBackupBaseDeDatosAbsolute = BackupAbsoluteOf("ZenSchemaBackup");
 		}

@@ -1,0 +1,47 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.ViewModels
+
+@section Titulo { 
+	Jugadores autofichados
+}
+
+@section CabeceraGrilla {
+
+	<div class="btn-group" role="group">
+		<button type="button" class="btn btn-primary" id="insumosBtn" onclick="onPendientesClick()">Pendientes</button>
+		<button type="button" class="btn btn-success" id="cuotasBtn" onclick="onAprobadosClick()">Aprobados</button>
+		<button type="button" class="btn btn-danger" id="fichajesBtn" onclick="onRechazadosClick()">Rechazados</button>
+	</div>
+
+}
+
+@(Html.YKN<JugadorAutofichadoVM>().Grid()
+	  .WithColumns(column =>
+	  {
+		  column.AddTextColumn(x => x.EstadoDescripcion);
+		  column.AddTextColumn(x => x.DNI);
+		  column.AddTextColumn(x => x.Nombre);
+		  column.AddTextColumn(x => x.Apellido);
+		  column.AddTextColumn(x => x.Club);
+		  column.AddTextColumn(x => x.Equipo);
+	  })
+	  .Actions(action =>
+	  {
+		  action.RedirectWithRowId("Aprobar/Rechazar", "AdministracionJugadoresAutofichados", "AprobarRechazar", ViewBag.Estado == "1");
+	  })
+	.DataSource("/JugadorAutofichado/GetForGrido?estado="+ViewBag.Estado))
+
+
+<script>
+	function onPendientesClick() {
+		window.location.href = '/AdministracionJugadoresAutofichados/Index?Estado=1';
+	}
+
+	function onAprobadosClick() {
+		window.location.href = '/AdministracionJugadoresAutofichados/Index?Estado=2';
+	}
+
+	function onRechazadosClick() {
+		window.location.href = '/AdministracionJugadoresAutofichados/Index?Estado=3';
+	}
+</script>

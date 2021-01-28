@@ -11,3 +11,8 @@
 .input[type=number] {
   -moz-appearance: textfield;
 }
+
+.alertaValidacionEquipo {
+	margin-top: 20px;
+	margin-bottom: 0px;
+}
