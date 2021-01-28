@@ -7,6 +7,18 @@ import Estilos from './PasoDNI.css'
 
 const PasoDNI = ({register, errors, estiloDelPaso}) => {
   
+  const jugadorYaEstaFichado = async (dni) => {
+    return fetch(`/publico/elDniEstaFichado?dni=${dni}`)
+        .then(response => response.json())
+        .then(data => data)
+        .catch(() => false)
+  }
+
+  const validar = async (dni) => {
+    var resultado = await jugadorYaEstaFichado(dni)
+    return !resultado || "¡Ups! Ya estás fichado. Consultá con tu delegado.";
+  }   
+
   return (
     <div className={estiloDelPaso}>
       <div className={bootstrap.row}>
@@ -16,7 +28,7 @@ const PasoDNI = ({register, errors, estiloDelPaso}) => {
           <div className={bootstrap['col-12']}> 
             <Input 
               type="number"
-              register={register({required: true, maxLength: {value: 9, message: `¡Ups! Como máximo son 9 números`} })}
+              register={register({required: true, maxLength: {value: 9, message: `¡Ups! Como máximo son 9 números`}, validate: {asyncValidate: validar}})}
               name="dni"
               onChange={() => {}}
             />
