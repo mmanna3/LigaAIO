@@ -33,12 +33,13 @@ namespace LigaSoft.Controllers
 			_generadorDeMovimientos = new GeneradorDeMovimientos(_context);
 		}
 
-	    public ActionResult Index()
+	    public ActionResult Index(string estado)
 	    {
-		    return View();
+		    ViewBag.Estado = estado;
+			return View();
 	    }
 
-	    [HttpPost]
+		[HttpPost]
 		public ActionResult Aprobar(int id)
 		{
 			var jugadorAutofichado = _context.JugadoresaAutofichados.Single(x => x.Id == id);

@@ -16,18 +16,37 @@
 
 }
 
-	@(Html.YKN<JugadorAutofichadoVM>().Grid()
-		  .WithColumns(column =>
-		  {
-			  column.AddTextColumn(x => x.EstadoDescripcion);
-			  column.AddTextColumn(x => x.DNI);
-			  column.AddTextColumn(x => x.Nombre);
-			  column.AddTextColumn(x => x.Apellido);
-			  column.AddTextColumn(x => x.Club);
-			  column.AddTextColumn(x => x.Equipo);
-		  })
-		  .Actions(action =>
-		  {
-			  action.RedirectWithRowId("Aprobar/Rechazar", "AdministracionJugadoresAutofichados", "AprobarRechazar");
-		  })
-	.DataSource("/JugadorAutofichado/GetForGrid"))
+@(Html.YKN<JugadorAutofichadoVM>().Grid()
+	  .WithColumns(column =>
+	  {
+		  column.AddTextColumn(x => x.EstadoDescripcion);
+		  column.AddTextColumn(x => x.DNI);
+		  column.AddTextColumn(x => x.Nombre);
+		  column.AddTextColumn(x => x.Apellido);
+		  column.AddTextColumn(x => x.Club);
+		  column.AddTextColumn(x => x.Equipo);
+	  })
+	  .Actions(action =>
+	  {
+		  action.RedirectWithRowId("Aprobar/Rechazar", "AdministracionJugadoresAutofichados", "AprobarRechazar");
+	  })
+	.DataSource("/JugadorAutofichado/GetForGrido?estado="+ViewBag.Estado))
+
+
+<script>
+	function onPendientesClick() {
+		window.location.href = '/AdministracionJugadoresAutofichados/Index?Estado=1';
+	}
+
+	function onAprobadosClick() {
+		window.location.href = '/AdministracionJugadoresAutofichados/Index?Estado=2';
+	}
+
+	function onRechazadosClick() {
+		window.location.href = '/AdministracionJugadoresAutofichados/Index?Estado=3';
+	}
+
+	function onTodosClick() {
+		window.location.href = '/AdministracionJugadoresAutofichados';
+	}
+</script>

@@ -1,8 +1,13 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
+using System.Linq.Dynamic;
+using System.Security.Cryptography.X509Certificates;
 using System.Web.Mvc;
 using LigaSoft.Models;
 using LigaSoft.Models.Dominio;
+using LigaSoft.Models.Enums;
+using LigaSoft.Models.Otros;
 using LigaSoft.Models.ViewModels;
 using LigaSoft.ViewModelMappers;
 using LigaSoft.Utilidades;
@@ -58,6 +63,33 @@ namespace LigaSoft.Controllers
 			}
 
 			return JsonConvert.DeserializeObject<JugadorAutofichadoVM>(json);
+		}
+
+		public JsonResult GetForGrido(string estado)
+		{
+			IQueryable<JugadorAutofichado> query;
+
+			if (estado != "?")
+			{
+				estado = estado.Substring(0, 1); //Porque viene con un extraño signo de pregunta al final
+
+				var estadoInt = Convert.ToInt32(estado);
+
+				query = Context.JugadoresaAutofichados.Where(x => (int)x.Estado == estadoInt); estado = estado.Substring(0, 1); //Porque viene con un extraño signo de pregunta al final
+			}
+			else
+			{
+				query = Context.JugadoresaAutofichados;
+			}
+
+
+			var records = VMM.MapForGrid(query.ToList());
+
+			var cantidad = 0;
+			if (records != null)
+				cantidad = records.Count;
+
+			return Json(new { records, cantidad}, JsonRequestBehavior.AllowGet);
 		}
 	}
 }
