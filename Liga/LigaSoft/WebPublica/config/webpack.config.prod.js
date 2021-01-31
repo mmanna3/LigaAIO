@@ -36,9 +36,6 @@ module.exports = {
         test: /\.(ttf|woff|woff2|jpg|png)$/,
         use: {
           loader: 'url-loader',
-          options: {
-            limit: 8192 // in bytes
-          }
         },
       },
       {
