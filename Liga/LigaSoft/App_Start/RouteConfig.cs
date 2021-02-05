@@ -16,16 +16,16 @@ namespace LigaSoft
 			);
 
 			routes.MapRoute(
-				name: "Default",
-				url: "{controller}/{action}/{id}",
-				defaults: new { controller = "Publico", action = "Index", id = UrlParameter.Optional }
+				name: "ParentWithChild",
+				url: "{parent}/{parentId}/{controller}/{action}/{id}",
+				defaults: new { action = "Index", id = UrlParameter.Optional },
+				constraints: new { parentId = @"\d+" }
 			);
 
 			routes.MapRoute(
-				name: "ParentWithChild",
-				url: "{parent}/{parentId}/{controller}/{action}/{id}",
-				defaults: new { id = UrlParameter.Optional },
-				constraints: new { parentId = @"\d+" }
+				name: "Default",
+				url: "{controller}/{action}/{id}",
+				defaults: new { controller = "Publico", action = "Index", id = UrlParameter.Optional }
 			);
 		}
 	}

@@ -58,7 +58,7 @@ namespace LigaSoft.UIHelpers
 
 		public Button OnClickRedirect(string action, string controller)
 		{
-			_onClick = $"window.location.href = '{_url.Action(action, controller)}';";
+			_onClick = $"window.location.href = '/{controller}/{action}';";
 			return this;
 		}
 

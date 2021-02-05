@@ -17,8 +17,8 @@
 					<li class="dropdown">
 						@MenuDesplegable("Torneos", "fa-trophy")
 						<ul class="dropdown-menu forAnimate" role="menu">
-							<li><a href="@Url.Action("Index","Torneo")">Torneos</a></li>
-							<li><a href="@Url.Action("Index","TorneoTipo")">Tipos</a></li>
+							<li><a href="/Torneo">Torneos</a></li>
+							<li><a href="/TorneoTipo">Tipos</a></li>
 						</ul>
 					</li>
 				}
@@ -29,11 +29,11 @@
 						<ul class="dropdown-menu forAnimate" role="menu">
 							@if (User.IsInRole(LigaSoft.Utilidades.Roles.Administrador))
 							{
-								<li><a href="@Url.Action("Index", "Club")">Clubes</a></li>
+								<li><a href="/Club">Clubes</a></li>
 							}
 							@if (User.IsInRole(LigaSoft.Utilidades.Roles.Administrador) || User.IsInRole(LigaSoft.Utilidades.Roles.SoloPuedeFichar))
 							{
-								<li><a href="@Url.Action("Index", "Equipo")">Equipos</a></li>
+								<li><a href="/Equipo">Equipos</a></li>
 							}
 						</ul>
 					</li>
@@ -43,8 +43,8 @@
 					<li class="dropdown">
 						@MenuDesplegable("Jugadores", "fa-user")
 						<ul class="dropdown-menu forAnimate" role="menu">
-							<li><a href="@Url.Action("Index", "Jugador")">Fichados</a></li>
-							<li><a href="@Url.Action("Index", "AdministracionJugadoresAutofichados", new { Estado = 1 })">Pendientes</a></li>
+							<li><a href="/Jugador">Fichados</a></li>
+							<li><a href="/AdministracionJugadoresAutofichados/Index?Estado=1">Pendientes</a></li>
 						</ul>
 					</li>
 				}
@@ -53,17 +53,17 @@
 					<li class="dropdown">
 						@MenuDesplegable("Finanzas", "fa-briefcase")
 						<ul class="dropdown-menu forAnimate" role="menu">
-							<li><a href="@Url.Action("Index","ConceptoInsumo")">Insumos</a></li>
-							<li><a href="@Url.Action("Index","MovimientoEntradaSinClub")">Ingresos</a></li>
-							<li><a href="@Url.Action("Index","MovimientoSalida")">Egresos</a></li>
+							<li><a href="/ConceptoInsumo/Index">Insumos</a></li>
+							<li><a href="/MovimientoEntradaSinClub/Index">Ingresos</a></li>
+							<li><a href="/MovimientoSalida/Index")">Egresos</a></li>
 						</ul>
 					</li>
 					<li class="dropdown">
 						@MenuDesplegable("Informes", "fa-file")
 						<ul class="dropdown-menu forAnimate" role="menu">
-							<li><a href="@Url.Action("Balance_SeleccionFecha","Informe")">Balance</a></li>
-							<li><a href="@Url.Action("MovimientosImpagos_Informe","Informe")">Movimientos impagos</a></li>
-							<li><a href="@Url.Action("PagoCuotasPorMes_Informe","Informe")">Pago mensual de cuotas</a></li>
+							<li><a href="/Informe/Balance_SeleccionFecha">Balance</a></li>
+							<li><a href="/Informe/MovimientosImpagos_Informe">Movimientos impagos</a></li>
+							<li><a href="/Informe/PagoCuotasPorMes_Informe">Pago mensual de cuotas</a></li>
 						</ul>
 					</li>
 					@MenuLink("Noticias", "Index", "Noticia", null, "fa-newspaper")
