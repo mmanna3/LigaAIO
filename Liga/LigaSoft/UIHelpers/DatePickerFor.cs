@@ -12,6 +12,7 @@ namespace LigaSoft.UIHelpers
 		private readonly Expression<Func<TModel, TProperty>> _expression;
 		private readonly string _expressionId;
 		private string _label;
+		private string _defaultValue = "";
 		private const string DateFormat = "dd-mm-yyyy";
 
 		public DatePickerFor(HtmlHelper<TModel> helper, Expression<Func<TModel, TProperty>> expression)
@@ -43,9 +44,18 @@ namespace LigaSoft.UIHelpers
 		{
 			return $@"<script>
 						$(function () {{
+								
+								function valor() {{									
+									debugger;
+									let valorParaEdicion = $('#{_expressionId}').attr('value');
+									if (valorParaEdicion)
+										return valorParaEdicion;
+									return '{_defaultValue}';
+								}}
+
 								$('#{_expressionId}').datepicker({{
 									uiLibrary: 'bootstrap',
-									value: $('#{_expressionId}').attr('value'),
+									value: valor(),
 									format: '{DateFormat}',
 									locale: 'es-es'
 								}});
@@ -60,6 +70,12 @@ namespace LigaSoft.UIHelpers
 								$('#{_expressionId}').closest('.gj-datepicker').css(""width"", ""100%"");
 							}});
 					</script>";
+		}
+
+		public DatePickerFor<TModel, TProperty> DefaultEsHoy()
+		{
+			_defaultValue = DateTime.Today.ToString("dd-MM-yyyy");
+			return this;
 		}
 	}
 }
