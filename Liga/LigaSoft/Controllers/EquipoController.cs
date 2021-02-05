@@ -199,7 +199,7 @@ namespace LigaSoft.Controllers
 
 	    public List<SelectListItem> TorneosParaCombo()
 	    {
-		    return Context.Torneos.Include(y => y.Tipo).Where(x => x.Publico).ToComboValues();
+		    return Context.Torneos.Include(y => y.Tipo).ToComboValues();
 	    }
 
 	    public List<SelectListItem> DelegadosCombo(int clubId)
