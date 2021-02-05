@@ -66,7 +66,7 @@ namespace LigaSoft.UIHelpers
 		{
 			var parameters = FormatearParametrosParaUrl(paramDictionary);
 
-			_onClick = $"window.location.href = '{_url.Action(action, controller)}{parameters}';";
+			_onClick = $"window.location.href = '/{controller}/{action}{parameters}';";
 			return this;
 		}
 
