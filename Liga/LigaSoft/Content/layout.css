@@ -14,7 +14,12 @@ body, html {
 
 nav.sidebar.navbar {
 	border-radius: 0px;
-	z-index: 0;
+	/* z-index: 0;
+		Lo había puesto en cero, para la pantalla completa 
+		del recorte de la foto del delegado, pero como lo 
+		de delegados no va más y la sidebar se rompe en pantallas chiquitas,
+		lo comento.
+	 */
 }
 
 nav.sidebar, .main {
