@@ -33,7 +33,7 @@ namespace LigaSoft.UIHelpers.Grid
 		public GridComboAction(string label, string parentName, string controller, string method)
 		{
 			_label = label;
-			_dataUrl = $@"data-parent=""/{parentName}/"" data-url=""{_url.Action(method, controller)}/""";
+			_dataUrl = $@"data-parent=""/{parentName}/"" data-url=""/{controller}/{method}/""";
 			_onClick = @"onclick=""redirectToParentDataUrlUsingDataIdAsParam(this)"""; //todo Hacer esto en el event Handler de Jquery			
 		}
 
