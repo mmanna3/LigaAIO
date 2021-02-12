@@ -2,7 +2,6 @@
 using System.Linq.Expressions;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
-using LigaSoft.Utilidades;
 
 namespace LigaSoft.UIHelpers
 {
@@ -46,7 +45,6 @@ namespace LigaSoft.UIHelpers
 						$(function () {{
 								
 								function valor() {{									
-									debugger;
 									let valorParaEdicion = $('#{_expressionId}').attr('value');
 									if (valorParaEdicion)
 										return valorParaEdicion;
@@ -75,6 +73,12 @@ namespace LigaSoft.UIHelpers
 		public DatePickerFor<TModel, TProperty> DefaultEsHoy()
 		{
 			_defaultValue = DateTime.Today.ToString("dd-MM-yyyy");
+			return this;
+		}
+
+		public DatePickerFor<TModel, TProperty> DefaultValue(string valor)
+		{
+			_defaultValue = valor;
 			return this;
 		}
 	}
