@@ -22,24 +22,29 @@ const Opciones = () =>{
       <div className={bootstrap.row}>
         <div className={styles.cajaContainer}>
           <div onClick={() => dispatch(actualizarOpcion("Posiciones"))} className={styles.cajaOpciones}>
-            <div className={baseStyles.textoCaja}>Posiciones <span className={styles.iconoPosiciones}><i class="fa fa-star fa-lg"></i></span></div>
+            <div className={baseStyles.textoCaja}>Posiciones <span className={styles.iconoPosiciones}><i className="fa fa-star fa-lg"></i></span></div>
           </div>
         </div>
         <div className={styles.cajaContainer}>
           <div onClick={() => dispatch(actualizarOpcion("Fixture"))} className={styles.cajaOpciones}>
-            <div className={baseStyles.textoCaja}>Fixture <span className={styles.iconoPosiciones}><i class="fa fa-trophy fa-lg"></i></span></div>
+            <div className={baseStyles.textoCaja}>Fixture <span className={styles.iconoPosiciones}><i className="fa fa-trophy fa-lg"></i></span></div>
           </div>
         </div>
       </div>
       <div className={bootstrap.row}>
       <div className={styles.cajaContainer}>
           <div onClick={() => dispatch(actualizarOpcion("Jornadas"))} className={styles.cajaOpciones}>
-            <div className={baseStyles.textoCaja}>Jornadas <span className={styles.iconoPosiciones}><i class="fa fa-table fa-lg"></i></span></div>
+            <div className={baseStyles.textoCaja}>Jornadas <span className={styles.iconoPosiciones}><i className="fa fa-table fa-lg"></i></span></div>
           </div>
         </div>
         <div className={styles.cajaContainer}>
           <div onClick={() => dispatch(actualizarOpcion("Clubes"))} className={styles.cajaOpciones}>
-            <div className={baseStyles.textoCaja}>Clubes <span className={styles.iconoPosiciones}><i class="fa fa-map-marker fa-lg"></i></span></div>
+            <div className={baseStyles.textoCaja}>Clubes <span className={styles.iconoPosiciones}><i className="fa fa-map-marker fa-lg"></i></span></div>
+          </div>
+        </div>
+        <div className={styles.cajaContainer}>
+          <div onClick={() => dispatch(actualizarOpcion("Sanciones"))} className={styles.cajaOpciones}>
+            <div className={baseStyles.textoCaja}>Sanciones <span className={styles.iconoPosiciones}><i className="fa fa-exclamation fa-lg"></i></span></div>
           </div>
         </div>
       </div>
