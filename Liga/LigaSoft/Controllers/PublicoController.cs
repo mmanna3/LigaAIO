@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
@@ -196,6 +197,38 @@ namespace LigaSoft.Controllers
 			return Json(result, JsonRequestBehavior.AllowGet);
 		}
 
+		public ActionResult Sanciones(int zonaId)
+		{
+			var zona = _context.Zonas.Include(x => x.Torneo).Single(x => x.Id == zonaId);
+
+			if (!zona.Torneo.SancionesHabilitadas)
+				return Json(new ArrayList(), JsonRequestBehavior.AllowGet);
+
+			var result = new List<RenglonSancion>();
+			var sanciones = _context.Sanciones.Where(x => x.Jornada.Fecha.ZonaId == zona.Id && x.Visible).ToList();
+
+			foreach (var sancion in sanciones)
+			{
+				if (sancion.Visible)
+				{
+					var renglon = new RenglonSancion
+					{
+						sancion = sancion.Descripcion,
+						dia = DateTimeUtils.ConvertToString(sancion.Dia),
+						fecha = sancion.Jornada.Fecha.Numero.ToString(),
+						local = sancion.Jornada.NombreDelLocal(),
+						visitante = sancion.Jornada.NombreDelVisitante(),
+						categoria = sancion.Categoria.Nombre,
+						fechasQueAdeuda = sancion.CantidadFechasQueAdeuda
+					};
+
+					result.Add(renglon);
+				}
+			}
+
+			return Json(result, JsonRequestBehavior.AllowGet);
+		}
+
 		public ActionResult Noticias()
 		{
 			var result = _context.Noticias
@@ -221,5 +254,16 @@ namespace LigaSoft.Controllers
 			public int? zonaClausuraId { get; set; }
 			public int? zonaRelampagoId { get; set; }
 		}
+	}
+
+	public class RenglonSancion
+	{
+		public string dia { get; set; }
+		public string fecha { get; set; }
+		public string local { get; set; }
+		public string visitante { get; set; }
+		public string categoria { get; set; }
+		public string sancion { get; set; }
+		public int fechasQueAdeuda { get; set; }
 	}
 }
