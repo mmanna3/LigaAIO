@@ -2,3 +2,7 @@
 	composes: tabla from './../../../../assets/styles/tabla.css';
 	composes: col-12 from './../../../../assets/styles/bootstrap.min.css';
 }
+
+.cabeceraDia {
+	min-width: 100px;
+}

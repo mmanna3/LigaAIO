@@ -13,9 +13,9 @@ const OpcionSanciones = (props) =>{
               <table className={styles.tabla}>
                 <thead>
                 <tr>
-                  <th className={tabla.cabeceraIzquierda}>Día</th>
+                  <th className={`${tabla.cabeceraIzquierda} ${styles.cabeceraDia}`}>Día</th>
                   <th className={tabla.cabeceraCentrada}>Fecha</th>
-                  <th className={tabla.cabeceraCentrada}>Categoría</th>
+                  <th className={tabla.cabeceraCentrada}>Cat.</th>
                   <th className={tabla.cabeceraCentrada}>Local</th>
                   <th className={tabla.cabeceraCentrada}>Visitante</th>
                   <th className={tabla.cabeceraCentrada}>Sanción</th>
