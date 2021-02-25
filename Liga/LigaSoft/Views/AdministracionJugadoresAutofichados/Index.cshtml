@@ -24,6 +24,7 @@
 		  column.AddTextColumn(x => x.Apellido);
 		  column.AddTextColumn(x => x.Club);
 		  column.AddTextColumn(x => x.Equipo);
+		  column.AddTextColumn(x => x.MotivoDeRechazo).Deshabilitar(ViewBag.Estado != "3");
 	  })
 	  .Actions(action =>
 	  {

@@ -8,6 +8,7 @@ namespace LigaSoft.UIHelpers.Grid
 		private string _sortable = "true";
 		private string _propertyName;
 		private string _width = string.Empty;
+		private string _hidden = string.Empty;
 
 
 		public GridColumnText<TModel> Title(string title)
@@ -36,7 +37,13 @@ namespace LigaSoft.UIHelpers.Grid
 
 		public string ToJsColumn()
 		{
-			return $@"{{ {_width} field: '{_propertyName}', sortable: {_sortable}, title: '{_title}'}}";
+			return $@"{{ {_width} {_hidden} field: '{_propertyName}', sortable: {_sortable}, title: '{_title}'}}";
+		}
+
+		public GridColumnText<TModel> Deshabilitar(bool deshabilitar)
+		{
+			_hidden = $"hidden: {deshabilitar.ToJavaScript()},";
+			return this;
 		}
 	}
 }
