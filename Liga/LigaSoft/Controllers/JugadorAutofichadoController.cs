@@ -39,6 +39,9 @@ namespace LigaSoft.Controllers
 				var vm = CastearRequestAJugadorAutofichadoVM();
 				var model = new JugadorAutofichado();
 				VMM.MapForCreateAndEdit(vm, model);
+
+				SiElDNISeHabiaFichadoYEstaRechazadoEliminarElAnterior(model.DNI);
+
 				Context.JugadoresaAutofichados.Add(model);
 				Context.SaveChanges();
 
@@ -51,6 +54,13 @@ namespace LigaSoft.Controllers
 			}
 
 			return Json("OK", JsonRequestBehavior.AllowGet);
+		}
+
+		private void SiElDNISeHabiaFichadoYEstaRechazadoEliminarElAnterior(string dni)
+		{
+			var jugador = Context.JugadoresaAutofichados.SingleOrDefault(x => x.DNI == dni);
+			if (jugador != null)
+				Context.JugadoresaAutofichados.Remove(jugador);
 		}
 
 		private JugadorAutofichadoVM CastearRequestAJugadorAutofichadoVM()
