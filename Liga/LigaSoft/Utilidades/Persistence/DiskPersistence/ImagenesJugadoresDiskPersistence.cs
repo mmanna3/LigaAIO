@@ -67,6 +67,12 @@ namespace LigaSoft.Utilidades.Persistence.DiskPersistence
 			var pathJugadores = $"{Paths.ImagenesJugadoresAbsolute}/{dni}.jpg";
 
 			Directory.CreateDirectory(Paths.ImagenesJugadoresAbsolute);
+			
+			// Si por algo quedó una foto de este jugador en el disco, aunque el jugador no figure fichado
+			// (Quizás porque se borró el jugador pero no la foto)
+			// De más está decir que esto no debería pasar, pero pasó, entonces puse este bonito IF
+			if (File.Exists(pathJugadores))
+				File.Delete(pathJugadores);
 
 			if (File.Exists(pathTemporal))
 				File.Move(pathTemporal, pathJugadores);
