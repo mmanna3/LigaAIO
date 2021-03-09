@@ -90,7 +90,7 @@ const SeccionPrincipalFichaje = () => {
                         <PasoInput  estiloDelPaso={styles.pasoRojo} 
                                     register={register} 
                                     errors={errors}
-                                    longMaxima={14}
+                                    longMaxima={10}
                                     name="nombre" 
                                     nombre="nombre" 
                                     titulo="Tu nombre" />
@@ -98,7 +98,7 @@ const SeccionPrincipalFichaje = () => {
                         <PasoInput  estiloDelPaso={styles.pasoRojo} 
                                     register={register} 
                                     errors={errors}
-                                    longMaxima={14} 
+                                    longMaxima={11} 
                                     name="apellido" 
                                     nombre="apellido" 
                                     titulo="Tu apellido" />
