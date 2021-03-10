@@ -32,7 +32,7 @@ namespace LigaSoft.Controllers
 			return Json("OK", JsonRequestBehavior.AllowGet);
 		}
 
-		private void EliminarJugadoresQueNoEstanFichadosEnNingunEquipo()
+		public JsonResult EliminarJugadoresQueNoEstanFichadosEnNingunEquipo()
 		{
 			var jugadoresHuerfanos = _context.Jugadores.Where(x => x.JugadorEquipo.Count == 0);
 			var dnisDeJugadoresHuerfanos = jugadoresHuerfanos.Select(x => x.DNI).ToList();
@@ -40,6 +40,8 @@ namespace LigaSoft.Controllers
 			_context.SaveChanges();
 
 			_imagenesJugadoresPersistence.EliminarLista(dnisDeJugadoresHuerfanos);
+
+			return Json("OK", JsonRequestBehavior.AllowGet);
 		}
 
 		private void EliminarRelacionEntreJugadorYEquipoDeLosQueTenganElCarnetVencido()
