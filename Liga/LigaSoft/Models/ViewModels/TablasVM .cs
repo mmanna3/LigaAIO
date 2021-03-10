@@ -12,6 +12,7 @@ namespace LigaSoft.Models.ViewModels
 		}
 
 		public int ZonaId { get; set; }
+		public int TorneoId { get; set; }
 		public string Titulo { get; set; }
 		public bool VerGoles { get; set; }
 		public List<TablaCategoriaVM> TablasPorCategoria { get; set; }

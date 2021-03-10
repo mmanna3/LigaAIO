@@ -24,7 +24,7 @@ namespace LigaSoft.BusinessLogic
 
 		public TablasVM Tablas(Zona zona)
 	    {
-		    var vm = new TablasVM { ZonaId = zona.Id, Titulo = $"Tablas de {zona.DescripcionCompleta()}", VerGoles = zona.VerGolesEnTabla };
+		    var vm = new TablasVM { ZonaId = zona.Id, TorneoId = zona.TorneoId, Titulo = $"Tablas de {zona.DescripcionCompleta()}", VerGoles = zona.VerGolesEnTabla };
 
 			if (zona.TieneAlMenosUnaCategoriaUnaFechaYUnEquipo())
 		    {

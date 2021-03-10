@@ -116,7 +116,14 @@
 	</table>
 </div>
 
-<div class="row">
-	@{ Html.YKN().FooterVolver(); }
+<div class='row form-footer'>
+	<div class='col-sm-offset-9 col-sm-3'>
+		@(Html.YKN().Button("Volver")
+			.Color(BootstrapColorEnum.Danger)
+			.FullWidth()
+			.Label("Volver")
+			.OnClickRedirect("ParentWithChild", new { parent = "Torneo", parentId = Model.TorneoId, controller = "Zona", action = "Index" })
+			)
+	</div>
 </div>
 
