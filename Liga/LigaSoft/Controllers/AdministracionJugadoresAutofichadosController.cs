@@ -107,8 +107,9 @@ namespace LigaSoft.Controllers
 	    {
 		    var model = _context.JugadoresaAutofichados.Find(id);
 		    var vm = _jugadorAutofichadoVMM.MapForEditAndDetails(model);
-
-			return View(vm);
+		    ViewBag.Equipo = model.Equipo.Torneo.Descripcion;
+			
+		    return View(vm);
 	    }
 
 	}
