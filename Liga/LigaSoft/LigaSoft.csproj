@@ -329,6 +329,7 @@
     <Compile Include="Models\Otros\GijgoGridOptions.cs" />
     <Compile Include="Models\TextValueItem.cs" />
     <Compile Include="Models\ViewModels\ConceptoInsumoAgregarStockVM.cs" />
+    <Compile Include="Models\ViewModels\ImprimirJugadoresVM.cs" />
     <Compile Include="Models\ViewModels\JugadorAutofichadoVM.cs" />
     <Compile Include="Models\ViewModels\JugadorFichadoPorDelegadoVM.cs" />
     <Compile Include="Models\ViewModels\SancionesWebPublicaVM.cs" />
@@ -845,7 +846,7 @@
     <Compile Include="Models\ViewModels\FicharEnOtroEquipo.cs" />
     <Compile Include="Models\ViewModels\DatosDeEquiposVM.cs" />
     <Compile Include="Models\ViewModels\DelegadoVM.cs" />
-    <Compile Include="Models\ViewModels\ImprimirJugadoresVM.cs" />
+    <Compile Include="Models\ViewModels\PagarCarnetsVM.cs" />
     <Compile Include="Models\ViewModels\TablaCategoriaRenglonVM.cs" />
     <Compile Include="Models\ViewModels\FixtureVM.cs" />
     <Compile Include="Models\ViewModels\ResumenDeJornadasVM.cs" />
@@ -1250,6 +1251,7 @@
     <Content Include="Views\JugadorFichadoPorDelegado\EditarJugadorRechazado.cshtml" />
     <Content Include="Views\AdministracionJugadoresAutofichados\AprobarRechazar.cshtml" />
     <Content Include="Views\AdministracionJugadoresAutofichados\Index.cshtml" />
+    <Content Include="Views\Club\PagarCarnets.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

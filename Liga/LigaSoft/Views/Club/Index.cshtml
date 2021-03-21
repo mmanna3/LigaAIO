@@ -33,6 +33,7 @@
 				action.RedirectWithRowId("Crear equipo", "Club", "CrearEquipo");
 				action.RedirectWithRowId("Delegados", "Club", "IndexDelegados");
 				action.RedirectWithRowIdAsParent("Finanzas", "Club", "MovimientoEntradaConClub", "Index");
+				action.RedirectWithRowId("Pagar carnets adeudados", "Club", "PagarCarnets");
 			})
 			.DataSource("/Club/GetForGrid")
 	  )

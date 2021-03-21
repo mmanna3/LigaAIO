@@ -1,0 +1,41 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.ViewModels
+@model PagarCarnetsVM
+
+@section Titulo {
+	Pago masivo de carnets del club <span class="titulo-detacado">@Model.Club</span>
+}
+
+@section CabeceraGrilla {
+
+	@(Html.YKN().Button("PagarSeleccionados")
+				.Label("Pagar carnets de los jugadores seleccionados")
+				.PullLeft()
+				.OnClick("PagarSeleccionados()")
+	)
+}
+
+@(Html.YKN<MovimientoEntradaConClubVM>().Grid()
+			.Checkbox()
+			.PageLimit(100)
+			.WithColumns(column =>
+			{
+				column.AddTextColumn(x => x.Comentario);
+				column.AddTextColumn(x => x.Deuda);
+			})
+			.DataSource("/MovimientoEntradaConClub/GetFichajesImpagosByClubId")
+			.ParentId(Model.ClubId)
+)
+
+<script>
+	function PagarSeleccionados() {
+		$.ajax({
+			url: '/MovimientoEntradaConClub/PagarMasivamenteMovimientosFichaje',
+			type: "POST",
+			data: { ids: grid.getSelections() },
+			success: function() {
+				window.location.reload(false);
+			}
+		});
+	}
+</script>

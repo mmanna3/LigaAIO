@@ -203,5 +203,14 @@ namespace LigaSoft.Controllers
 
 			return Json(new { records, total }, JsonRequestBehavior.AllowGet);
 	    }
+
+	    public ActionResult PagarCarnets(int id)
+	    {
+		    var club = Context.Clubs.Find(id);
+
+		    var vm = new PagarCarnetsVM { Club = club.Nombre, ClubId = id };
+
+			return View(vm);
+	    }
 	}
 }

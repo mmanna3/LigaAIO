@@ -5,6 +5,7 @@ using LigaSoft.Models;
 using LigaSoft.Models.Attributes.GPRPattern;
 using LigaSoft.Models.Dominio;
 using LigaSoft.Models.Dominio.Finanzas;
+using LigaSoft.Models.Enums;
 using LigaSoft.Models.ViewModels;
 using LigaSoft.ViewModelMappers;
 using Microsoft.AspNet.Identity;
@@ -155,5 +156,49 @@ namespace LigaSoft.Controllers
 
 		    return View(vm);
 	    }
+
+		public ActionResult GetFichajesImpagosByClubId(int parentId)
+		{
+			var query = Context.MovimientosEntradaConClub.Where(x => x.ClubId == parentId && x.Concepto.Id == (int) ConceptoTipoEnum.Fichaje).ToList();
+
+			query = query.Where(x => x.ImporteAdeudado() > 0).ToList();
+
+			var records = VMM.MapForGrid(query);
+
+			var cantidad = 0;
+			if (records != null)
+				cantidad = records.Count;
+
+			return Json(new { records, cantidad }, JsonRequestBehavior.AllowGet);
+		}
+
+		public ActionResult PagarMasivamenteMovimientosFichaje(int[] ids)
+		{
+			if (ids != null)
+			{
+				foreach (var idMovimiento in ids)
+				{
+					var model = Context.MovimientosEntradaConClub.Find(idMovimiento);
+
+					var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(Context));
+
+					var pago = new Pago
+					{
+						Fecha = DateTime.Today,
+						FechaAlta = DateTime.Now,
+						Importe = model.ImporteAdeudado(),
+						MovimientoEntradaConClubId = model.Id,
+						UsuarioAlta = userManager.FindById(System.Web.HttpContext.Current.User.Identity.GetUserId()),
+						Vigente = true
+					};
+
+					Context.Pagos.Add(pago);
+				}
+
+				Context.SaveChanges();
+			}
+
+			return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+		}
 	}
 }
