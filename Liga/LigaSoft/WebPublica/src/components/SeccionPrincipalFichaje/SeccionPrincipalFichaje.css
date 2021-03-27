@@ -1,67 +1,78 @@
 @value blanco-grisaceo from from './../../assets/styles/colors.css';
 
 .alertaValidacion {
-	margin-top: 20px;
-	margin-bottom: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .mensajeErrorResultadoDelPost {
-	composes: backgroundGradienteRojo from './../../assets/styles/colors.css';
-	color: #eee;
-	padding: 30px;
-	margin-top: 60px;
-    margin-bottom: 20px;
-    text-align: center;
-	font-size: 24px;
-	border: 1px solid #eee;
+  composes: backgroundGradienteRojo from "./../../assets/styles/colors.css";
+  color: #eee;
+  padding: 30px;
+  margin-top: 60px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 24px;
+  border: 1px solid #eee;
+}
+
+.mensajeDeshabilitado {
+  composes: backgroundGradienteAzul from "./../../assets/styles/colors.css";
+  color: #eee;
+  padding: 30px;
+  margin-top: 60px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 24px;
+  border: 1px solid #eee;
 }
 
 .mensajeExitoResultadoDelPost {
-	composes: backgroundGradienteVerde from './../../assets/styles/colors.css';
-	color: #eee;
-	padding: 30px;
-	margin-top: 60px;
-    margin-bottom: 20px;
-    text-align: center;
-	font-size: 24px;
-	border: 1px solid #eee;
+  composes: backgroundGradienteVerde from "./../../assets/styles/colors.css";
+  color: #eee;
+  padding: 30px;
+  margin-top: 60px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 24px;
+  border: 1px solid #eee;
 }
 
 .seccion {
-	padding-top: 1em;
-	padding-bottom: 2em;
-	max-width: 360px;	
+  padding-top: 1em;
+  padding-bottom: 2em;
+  max-width: 360px;
 }
 
 .seccionContainer {
-	display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-flow: column;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-flow: column;
 }
 
 .paso {
-	background-color: rgba(255,255,255,0.8);
-	text-align: left;
-	padding-top: 2em;
-	padding-bottom: 2em;
-	padding-right: 3em;
-	padding-left: 2em;	
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: left;
+  padding-top: 2em;
+  padding-bottom: 2em;
+  padding-right: 3em;
+  padding-left: 2em;
 }
 
 .pasoAzul {
-	composes: backgroundGradienteAzul from './../../assets/styles/colors.css';
-	composes: paso
+  composes: backgroundGradienteAzul from "./../../assets/styles/colors.css";
+  composes: paso;
 }
 
 .pasoRojo {
-	composes: backgroundGradienteRojo from './../../assets/styles/colors.css';
-	composes: paso
+  composes: backgroundGradienteRojo from "./../../assets/styles/colors.css";
+  composes: paso;
 }
 
 .pasoVerde {
-	composes: backgroundGradienteVerde from './../../assets/styles/colors.css';
-	composes: paso
+  composes: backgroundGradienteVerde from "./../../assets/styles/colors.css";
+  composes: paso;
 }
 
 /*

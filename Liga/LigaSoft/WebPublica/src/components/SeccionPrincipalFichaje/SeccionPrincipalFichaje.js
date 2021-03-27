@@ -44,13 +44,31 @@ const SeccionPrincipalFichaje = () => {
         });        
     }
 
+    const estaLaSeccionHabilitada = () => {
+        var hoy = new Date();
+        var diaDeHoy = hoy.getDay();
+        if (diaDeHoy == 6 || diaDeHoy == 0 || diaDeHoy == 5) 
+            return false;
+        return true;
+    }
+
     const onSubmit = (data) => {
         hacerElPost(data)        
     };     
 
     const huboAlgunError = !(Object.keys(errors).length === 0 && errors.constructor === Object)
 
-    if (mensajeExitoVisible)
+    if (!estaLaSeccionHabilitada())
+        return (
+            <div className={bootstrap['row']}>
+                <div className={bootstrap['col-12']}>
+                    <div className={`${styles.mensajeDeshabilitado}`}>
+                        El fichaje está <strong>deshabilitado.</strong> Los días habilitados para ficharse son lunes, martes, miércoles y jueves.
+                    </div>
+                </div>
+            </div>
+        )
+    else if (mensajeExitoVisible)
         return (
             <div className={bootstrap['row']}>
                 <div className={bootstrap['col-12']}>
