@@ -29,6 +29,7 @@
 	  .Actions(action =>
 	  {
 		  action.RedirectWithRowId("Aprobar/Rechazar", "AdministracionJugadoresAutofichados", "AprobarRechazar", ViewBag.Estado == "1");
+		  action.RedirectWithRowId("Ver", "AdministracionJugadoresAutofichados", "DetalleRechazado", ViewBag.Estado == "3");
 	  })
 	.DataSource("/JugadorAutofichado/GetForGrido?estado="+ViewBag.Estado))
 

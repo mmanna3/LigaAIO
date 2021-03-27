@@ -44,6 +44,7 @@ namespace LigaSoft.Models.ViewModels
 
 		[Column(TypeName = "VARCHAR")]
 		[MaxLength(150)]
+		[Display(Name = "Motivo de rechazo")]
 		public string MotivoDeRechazo { get; set; }
 	}
 }

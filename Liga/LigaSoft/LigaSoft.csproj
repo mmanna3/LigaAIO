@@ -1252,6 +1252,7 @@
     <Content Include="Views\AdministracionJugadoresAutofichados\AprobarRechazar.cshtml" />
     <Content Include="Views\AdministracionJugadoresAutofichados\Index.cshtml" />
     <Content Include="Views\Club\PagarCarnets.cshtml" />
+    <Content Include="Views\AdministracionJugadoresAutofichados\DetalleRechazado.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

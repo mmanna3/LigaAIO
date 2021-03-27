@@ -39,6 +39,15 @@ namespace LigaSoft.Controllers
 			return View();
 	    }
 
+	    public ActionResult DetalleRechazado(int id)
+	    {
+		    var model = _context.JugadoresaAutofichados.Find(id);
+		    var vm = _jugadorAutofichadoVMM.MapForEditAndDetails(model);
+		    ViewBag.Equipo = model.Equipo.Torneo.Descripcion;
+
+		    return View(vm);
+	    }
+
 		[HttpPost]
 		public ActionResult Aprobar(int id)
 		{
