@@ -45,10 +45,10 @@ const SeccionPrincipalFichaje = () => {
     }
 
     const estaLaSeccionHabilitada = () => {
-        var hoy = new Date();
-        var diaDeHoy = hoy.getDay();
-        if (diaDeHoy == 6 || diaDeHoy == 0 || diaDeHoy == 5) 
-            return false;
+        // var hoy = new Date();
+        // var diaDeHoy = hoy.getDay();
+        // if (diaDeHoy == 6 || diaDeHoy == 0 || diaDeHoy == 5) 
+        //     return false;
         return true;
     }
 
