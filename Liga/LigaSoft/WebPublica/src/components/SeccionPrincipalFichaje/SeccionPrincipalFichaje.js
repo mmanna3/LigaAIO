@@ -45,10 +45,11 @@ const SeccionPrincipalFichaje = () => {
     }
 
     const estaLaSeccionHabilitada = () => {
-        // var hoy = new Date();
-        // var diaDeHoy = hoy.getDay();
-        // if (diaDeHoy == 6 || diaDeHoy == 0 || diaDeHoy == 5) 
-        //     return false;
+        var hoy = new Date();
+        var diaDeHoy = hoy.getDay();
+        var horaActual = hoy.getHours();
+        if (diaDeHoy == 6 || diaDeHoy == 0 || diaDeHoy == 5 || (diaDeHoy == 4 && horaActual >= 20)) 
+            return false;
         return true;
     }
 
@@ -63,7 +64,7 @@ const SeccionPrincipalFichaje = () => {
             <div className={bootstrap['row']}>
                 <div className={bootstrap['col-12']}>
                     <div className={`${styles.mensajeDeshabilitado}`}>
-                        El fichaje está <strong>deshabilitado.</strong> Los días habilitados para ficharse son lunes, martes, miércoles y jueves.
+                        El fichaje está <strong>deshabilitado.</strong> Los días habilitados para ficharse son lunes, martes, miércoles y jueves hasta las 20Hs.
                     </div>
                 </div>
             </div>
