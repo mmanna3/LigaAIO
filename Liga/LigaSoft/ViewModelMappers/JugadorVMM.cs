@@ -79,7 +79,7 @@ namespace LigaSoft.ViewModelMappers
 
 			vm.Equipos = new List<string>();
 
-			var equiposListConBotonImprimir = model.JugadorEquipo.Select(x => x.Equipo.Descripcion() + " " + BotonImprimir(x.JugadorId, x.EquipoId));
+			var equiposListConBotonImprimir = model.JugadorEquipo.Select(x => x.Equipo.Descripcion() + " - FICHADO: " + DateTimeUtils.ConvertToStringDdMmYy(x.FechaFichaje) + " " + BotonImprimir(x.JugadorId, x.EquipoId));
 
 			vm.Equipos.AddRange(equiposListConBotonImprimir);
 

@@ -5,6 +5,7 @@ namespace LigaSoft.Utilidades
 	public static class DateTimeUtils
 	{
 		private const string FormatoFecha4DigAnio = "dd-MM-yyyy";
+		private const string FormatoFecha2DigAnio = "dd-MM-yy";
 		public const string FormatoFechaBackup = "yyyy-MM-dd--HH-mm-ss";
 
 		public static readonly TimeZoneInfo timeZoneInfoArg = TimeZoneInfo.FindSystemTimeZoneById("Argentina Standard Time");
@@ -19,6 +20,11 @@ namespace LigaSoft.Utilidades
 		public static string ConvertToString(DateTime value)
 		{
 			return value.ToString(FormatoFecha4DigAnio);
+		}
+
+		public static string ConvertToStringDdMmYy(DateTime value)
+		{
+			return value.ToString(FormatoFecha2DigAnio);
 		}
 	}
 }
