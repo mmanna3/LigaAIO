@@ -15,7 +15,7 @@
 	)
 }
 
-@(Html.YKN<JugadorBaseVM>().Grid()
+@(Html.YKN<JugadorConFechaFichajeVM>().Grid()
 			.Checkbox()
 			.PageLimit(100)
 			.WithColumns(column =>
@@ -24,6 +24,7 @@
 				column.AddTextColumn(x => x.Nombre);
 				column.AddTextColumn(x => x.Apellido);
 				column.AddTextColumn(x => x.FechaNacimiento);
+				column.AddTextColumn(x => x.FechaFichaje);
 			})
 			.DataSource("/Jugador/GetByEquipoId")
 			.ParentId(Model.EquipoId)

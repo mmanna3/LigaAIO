@@ -73,6 +73,28 @@ namespace LigaSoft.ViewModelMappers
 			return listVM;
 		}
 
+		public IList<JugadorConFechaFichajeVM> MapForImprimirJugadores(IList<JugadorEquipo> jugadoresEquipos)
+		{
+			var listVM = new List<JugadorConFechaFichajeVM>();
+
+			foreach (var model in jugadoresEquipos)
+			{
+				var vm = new JugadorConFechaFichajeVM
+				{
+					Id = model.Jugador.Id,
+					Nombre = model.Jugador.Nombre,
+					Apellido = model.Jugador.Apellido,
+					DNI = model.Jugador.DNI,
+					FechaNacimiento = DateTimeUtils.ConvertToString(model.Jugador.FechaNacimiento),
+					FechaFichaje = DateTimeUtils.ConvertToStringDdMmYy(model.FechaFichaje),
+				};
+
+				listVM.Add(vm);
+			}
+				
+			return listVM;
+		}
+
 		public override JugadorBaseVM MapForEditAndDetails(Jugador model)
 		{
 			var vm = MapJugadorBase(model);

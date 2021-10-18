@@ -160,14 +160,13 @@ namespace LigaSoft.Controllers
 		{
 			var query = Context.JugadorEquipos
 								.Where($"EquipoId == {parentId}")
-								.Select(x => x.Jugador)
 								.AsQueryable();
 
-			query = GijgoGridHelper.ApplyOptionsToQuery(query, options, out int total);
+			//query = GijgoGridHelper.ApplyOptionsToQuery(query, options, out int total);
 
-			var records = VMM.MapForGrid(query.ToList());
+			var records = VMM.MapForImprimirJugadores(query.ToList());
 
-			return Json(new { records, total }, JsonRequestBehavior.AllowGet);
+			return Json(new { records, total = records.Count }, JsonRequestBehavior.AllowGet);
 		}
 
 	    [ImportModelStateFromTempData]
