@@ -1,0 +1,41 @@
+@using LigaSoft.ExtensionMethods
+@model LigaSoft.Models.ViewModels.InformeCantidadDeJugadoresPorTorneoVM
+
+
+@section Titulo {
+	Cantidad de jugadores por torneo del año actual
+}
+
+<div class="row">
+	<div class="col-sm-4">
+
+		<div class="row">
+			<table class="table table-bordered">
+				<thead>
+				<tr>
+					<th scope="col">Torneo</th>
+					<th scope="col">Cantidad</th>
+				</tr>
+				</thead>
+				<tbody>
+					@foreach (var renglon in Model.Renglones)
+					{
+						<tr>
+							<td>@renglon.TorneoTipo</td>
+							<td>@renglon.CantidadDeJugadores</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<style>
+	/*Para que no salga la url del link en la impresión*/
+	a[href]:after {
+		content: initial;
+	}
+</style>
+
+@(Html.YKN().Button("Imprimir").OnClickImprimir())

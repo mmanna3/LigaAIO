@@ -30,8 +30,17 @@ namespace Tests.Unit.Utilidades
 		{
 			var torneo1 = new Torneo
 			{
-				Anio = Anio.A2019,
+				Anio = Anio.A2021,
 				Tipo = context.TorneoTipos.Single(x => x.Descripcion == "Vespertino"),
+				Publico = true
+			};
+
+			var torneoTipoMatutino = new TorneoTipo { Descripcion = "Matutino" };
+			
+			var torneoMatutino2021 = new Torneo
+			{
+				Anio = Anio.A2021,
+				Tipo = torneoTipoMatutino,
 				Publico = true
 			};
 
@@ -101,10 +110,16 @@ namespace Tests.Unit.Utilidades
 				new Equipo { Nombre = "Racing", Club = clubes.Single(x => x.Nombre == "Racing"), Torneo = torneo1, Zona = null},
 				new Equipo { Nombre = "San Lorenzo", Club = clubes.Single(x => x.Nombre == "San Lorenzo"), Torneo = torneo1, Zona = zonaClausuraB},
 				new Equipo { Nombre = "Velez", Club = clubes.Single(x => x.Nombre == "Velez"), Torneo = torneo1, Zona = zonaClausuraB},
-				new Equipo { Nombre = "Huracán", Club = clubes.Single(x => x.Nombre == "Huracán"), Torneo = torneo1, Zona = zonaClausuraB}
+				new Equipo { Nombre = "Huracán", Club = clubes.Single(x => x.Nombre == "Huracán"), Torneo = torneo1, Zona = zonaClausuraB},
+				new Equipo { Nombre = "Huracán Matutino", Club = clubes.Single(x => x.Nombre == "Huracán"), Torneo = torneoMatutino2021},
 			};
 
-						
+			var jugador1 = new Jugador { Nombre = "A", Apellido = "B", DNI = "12345678", FechaNacimiento = DateTime.Today };
+			var jugador2 = new Jugador { Nombre = "Pepe", Apellido = "Céspedes", DNI = "44444", FechaNacimiento = DateTime.Today };
+			var jugadorEquipo = new JugadorEquipo { Jugador = jugador1, Equipo = _equipos.Single(x => x.Nombre == "Boca"), FechaFichaje = DateTime.Today };
+			var jugadorEquipo2 = new JugadorEquipo { Jugador = jugador1, Equipo = _equipos.Single(x => x.Nombre == "Huracán Matutino"), FechaFichaje = DateTime.Today };
+			var jugadorEquipo3 = new JugadorEquipo { Jugador = jugador2, Equipo = _equipos.Single(x => x.Nombre == "Huracán Matutino"), FechaFichaje = DateTime.Today };
+
 			var fechasAperturaZonaA = Generar3Fechas(zonaAperturaA);
 			var jornadasZonaAperturaA = Generar2JornadasPorFechaParaZonaApertura(fechasAperturaZonaA);
 			var partidosCategoriaPrimeraAperturaA = GenerarPartidosDeLaCategoriaPrimeraZonaAperturaA(jornadasZonaAperturaA, categoriaPrimera);
@@ -120,9 +135,11 @@ namespace Tests.Unit.Utilidades
 			var partidosCategoriaPrimeraClausuraB = GenerarPartidosDeLaCategoriaPrimeraZonaClausuraB(jornadasZonaClausuraB, categoriaPrimera);
 			var partidosCategoriaSegundaClausuraB = GenerarPartidosDeLaCategoriaSegundaZonaClausuraB(jornadasZonaClausuraB, categoriaSegunda);
 
+			context.TorneoTipos.Add(torneoTipoMatutino);
 
 			context.Torneos.Add(torneo1);
 			context.Torneos.Add(torneo2);
+			context.Torneos.Add(torneoMatutino2021);
 
 			context.Categorias.Add(categoriaPrimera);
 			context.Categorias.Add(categoriaSegunda);
@@ -134,6 +151,10 @@ namespace Tests.Unit.Utilidades
 
 			context.Clubs.AddRange(clubes);
 			context.Equipos.AddRange(_equipos);
+
+			context.JugadorEquipos.Add(jugadorEquipo);
+			context.JugadorEquipos.Add(jugadorEquipo2);
+			context.JugadorEquipos.Add(jugadorEquipo3);
 
 			context.Fechas.AddRange(fechasAperturaZonaA);
 			context.Fechas.AddRange(fechasClausuraZonaA);

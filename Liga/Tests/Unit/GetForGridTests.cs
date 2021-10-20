@@ -113,7 +113,7 @@ namespace Tests.Unit
 		[Test]
 		public void FiltroPorCampoTipoEnum()
 		{
-			var result = _torneoController.GetForGrid(new GijgoGridOptions { filters = new[] { new GijgoGridFilter("Anio", Anio.A2020) } });
+			var result = _torneoController.GetForGrid(new GijgoGridOptions { filters = new[] { new GijgoGridFilter("Anio", Anio.A2021) } });
 			var torneos = (List<TorneoVM>)result.Data.GetReflectedProperty("records");
 			Assert.AreEqual(1, torneos.Count);
 		}

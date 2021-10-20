@@ -47,6 +47,24 @@ namespace LigaSoft.ViewModelMappers
 			return vm;
 		}
 
+		public InformeCantidadDeJugadoresPorTorneoVM CantidadDeJugadoresPorTorneoMap()
+		{
+			var vm = new InformeCantidadDeJugadoresPorTorneoVM
+			{
+				Renglones = _context.JugadorEquipos
+									.Where(x => (int)x.Equipo.Torneo.Anio == DateTime.Now.Year)
+									.GroupBy(x => x.Equipo.Torneo.Tipo)
+									.Select(x => new InformeJugadoresPorTorneoRenglonVM
+									{
+										TorneoTipo = x.FirstOrDefault().Equipo.Torneo.Tipo.Descripcion,
+										CantidadDeJugadores = x.Count(y => y.JugadorId != 0)
+									})
+									.ToList()
+			};
+
+			return vm;
+		}
+
 		public InformeMovimientosImpagosVM MovimientosImpagosMap()
 		{
 			var movClubs = _context.MovimientosEntradaConClub.Where(x => x.Vigente).ToList().Where(x => x.ImporteAdeudado() > 0).ToList();

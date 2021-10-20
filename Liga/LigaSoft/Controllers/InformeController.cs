@@ -52,6 +52,12 @@ namespace LigaSoft.Controllers
 		    return View(vm);
 	    }
 
+		public ActionResult CantidadDeJugadoresPorTorneo_Informe()
+		{
+			var vm = _vmm.CantidadDeJugadoresPorTorneoMap();
+			return View(vm);
+		}
+
 		private bool FechaEsinvalida(DateTime fechaIni, DateTime fechaFin)
 	    {
 		    if (fechaIni > fechaFin)
