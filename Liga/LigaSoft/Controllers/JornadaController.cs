@@ -71,9 +71,15 @@ namespace LigaSoft.Controllers
 			    if (partido.GolesLocal.ToUpper() == "P" && partido.GolesVisitante.ToUpper() != "P" ||
 			        (partido.GolesVisitante.ToUpper() == "P" && partido.GolesLocal.ToUpper() != "P"))
 			    {
-				    ModelState.AddModelError("", "Para que el partido se suspenda, los resultados de los dos equipos deben ser P.");
+				    ModelState.AddModelError("", "Para que el partido se posterga, los resultados de los dos equipos deben ser P.");
 				    return true;
 			    }
+				if (partido.GolesLocal.ToUpper() == "AR" && partido.GolesVisitante.ToUpper() != "AR" ||
+					(partido.GolesVisitante.ToUpper() == "AR" && partido.GolesLocal.ToUpper() != "AR"))
+				{
+					ModelState.AddModelError("", "Para que el partido quede a resolver, los resultados de los dos equipos deben ser AR.");
+					return true;
+				}
 			}
 		    return false;
 	    }

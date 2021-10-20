@@ -90,6 +90,7 @@ namespace LigaSoft.BusinessLogic
 				{
 					case "S":
 					case "P":
+					case "AR":
 						continue;
 					default:
 						renglonLocal.PartidosJugados++;

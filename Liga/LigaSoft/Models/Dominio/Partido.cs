@@ -17,10 +17,10 @@ namespace LigaSoft.Models.Dominio
 		public int CategoriaId { get; set; }
 		public virtual Categoria Categoria { get; set; }
 
-		[Required, RegularExpression(@"(^[0-9]*$)|(NP)|(S)|(P)")]
+		[Required, RegularExpression(@"(^[0-9]*$)|(NP)|(AR)|(S)|(P)")]
 		public string GolesLocal { get; set; }
 
-		[Required, RegularExpression(@"(^[0-9]*$)|(NP)|(S)|(P)")]
+		[Required, RegularExpression(@"(^[0-9]*$)|(NP)|(AR)|(S)|(P)")]
 		public string GolesVisitante { get; set; }
 
 		public virtual ICollection<Goleador> Goleadores { get; set; }

@@ -18,10 +18,10 @@ namespace LigaSoft.Models.ViewModels
 
 		public string Visitante { get; set; }
 
-		[YKNRequired, Display(Name = "Local"), RegularExpression(@"(^[0-9]*$)|(NP)|(np)|(S)|(s)|(P)|(p)", ErrorMessage = "Sólo números NP, S o P")]		
+		[YKNRequired, Display(Name = "Local"), RegularExpression(@"(^[0-9]*$)|(NP)|(np)|(AR)|(ar)|(S)|(s)|(P)|(p)", ErrorMessage = "Sólo números NP, AR, S o P")]		
 		public string GolesLocal { get; set; }
 
-		[YKNRequired, Display(Name = "Visitante"), RegularExpression(@"(^[0-9]*$)|(NP)|(np)|(S)|(s)|(P)|(p)", ErrorMessage = "Sólo números NP, S o P")]
+		[YKNRequired, Display(Name = "Visitante"), RegularExpression(@"(^[0-9]*$)|(NP)|(np)|(AR)|(ar)|(S)|(s)|(P)|(p)", ErrorMessage = "Sólo números NP, AR, S o P")]
 		public string GolesVisitante { get; set; }
 
 		public IEnumerable<string> Goleadores { get; set; }

@@ -129,7 +129,7 @@ namespace LigaSoft.BusinessLogic
 
 	    protected static void ProcesarPartidoVisitante(ref TablaCategoriaRenglonVM renglon, Partido partido)
 		{
-			if (partido.GolesVisitante == "S" || partido.GolesVisitante == "P")
+			if (partido.GolesVisitante == "S" || partido.GolesVisitante == "P" || partido.GolesVisitante == "AR")
 				return;
 
 			renglon.Pj++;
@@ -142,7 +142,7 @@ namespace LigaSoft.BusinessLogic
 			else
 		    {
 			    var golesLocalInt = 0;
-				if (partido.GolesLocal != "NP" && partido.GolesLocal != "S" && partido.GolesLocal != "P")
+				if (partido.GolesLocal != "NP" && partido.GolesLocal != "S" && partido.GolesLocal != "P" && partido.GolesLocal != "AR")
 					golesLocalInt = Convert.ToInt32(partido.GolesLocal);
 
 				var golesVisitanteInt = Convert.ToInt32(partido.GolesVisitante);
@@ -170,7 +170,7 @@ namespace LigaSoft.BusinessLogic
 
 	    protected static void ProcesarPartidoLocal(ref TablaCategoriaRenglonVM renglon, Partido partido)
 	    {
-		    if (partido.GolesLocal == "S" || partido.GolesLocal == "P")
+		    if (partido.GolesLocal == "S" || partido.GolesLocal == "P" || partido.GolesLocal == "AR")
 			    return;
 
 			renglon.Pj++;
@@ -185,7 +185,7 @@ namespace LigaSoft.BusinessLogic
 			    var golesVisitanteInt = 0;				
 				var golesLocalInt = Convert.ToInt32(partido.GolesLocal);
 
-			    if (partido.GolesVisitante != "NP" && partido.GolesLocal != "S" && partido.GolesLocal != "P")
+			    if (partido.GolesVisitante != "NP" && partido.GolesVisitante != "S" && partido.GolesVisitante != "P" && partido.GolesVisitante != "AR")
 					golesVisitanteInt = Convert.ToInt32(partido.GolesVisitante);
 
 			    renglon.Gf += golesLocalInt;
