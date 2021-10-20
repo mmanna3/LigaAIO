@@ -7,7 +7,9 @@ const SeccionPrincipalContacto = () => {
                 <h3 className={styles.titulo}>Contacto</h3>
                 <div className={styles.contenido}>
                     <div className={styles.dato}>
-                        <span className={styles.clave}>Horarios de atención: </span><span className={styles.valor}>Lunes a viernes de 17.30Hs a 20.30Hs.</span>                                                
+                        <span className={styles.clave}>Horarios de atención: </span>
+                        <span className={styles.valor}>Lunes a jueves de 17.30Hs a 20.30Hs.</span>
+                        <span className={styles.valor}>Viernes de 17.30Hs a 19.30Hs.</span>
                     </div>
                     <div className={styles.dato}>
                         <span className={styles.clave}>Dirección: </span><span className={styles.valor}>Juan B. Justo 550, Haedo. Bs. As. </span>                        
