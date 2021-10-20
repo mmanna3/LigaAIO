@@ -35,7 +35,7 @@ namespace Tests.Unit.Utilidades
 				Publico = true
 			};
 
-			var torneoTipoMatutino = new TorneoTipo { Descripcion = "Matutino" };
+			var torneoTipoMatutino = new TorneoTipo { Descripcion = "Matutino", Formato = TorneoFormato.AperturaClausura };
 			
 			var torneoMatutino2021 = new Torneo
 			{

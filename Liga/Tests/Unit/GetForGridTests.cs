@@ -115,7 +115,7 @@ namespace Tests.Unit
 		{
 			var result = _torneoController.GetForGrid(new GijgoGridOptions { filters = new[] { new GijgoGridFilter("Anio", Anio.A2021) } });
 			var torneos = (List<TorneoVM>)result.Data.GetReflectedProperty("records");
-			Assert.AreEqual(1, torneos.Count);
+			Assert.AreEqual(2, torneos.Count);
 		}
 	}
 }
