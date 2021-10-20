@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using LigaSoft.Models;
-using LigaSoft.Models.Dominio;
 using LigaSoft.Models.Dominio.Finanzas;
 using LigaSoft.Models.ViewModels;
+using LigaSoft.ExtensionMethods;
 
 namespace LigaSoft.ViewModelMappers
 {
@@ -35,7 +35,8 @@ namespace LigaSoft.ViewModelMappers
 				Id = model.Id,
 				Descripcion = model.Descripcion,
 				Precio = model.Precio,
-				Stock = model.Stock
+				Stock = model.Stock,
+				Visible = model.Visible.ToSiNoString()
 			};
 		}
 

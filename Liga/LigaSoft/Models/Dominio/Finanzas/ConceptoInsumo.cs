@@ -12,6 +12,9 @@ namespace LigaSoft.Models.Dominio.Finanzas
 		[Required]
 		public int Stock { get; set; }
 
+		[Required]
+		public bool Visible { get; set; }
+
 		public override string Tipo()
 		{
 			return "Insumo";

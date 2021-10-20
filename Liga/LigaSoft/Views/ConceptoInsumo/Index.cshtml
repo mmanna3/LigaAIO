@@ -21,11 +21,26 @@
 			column.AddTextColumn(x => x.Descripcion);
 			column.AddTextColumn(x => x.Precio);
 			column.AddTextColumn(x => x.Stock);
+			column.AddTextColumn(x => x.Visible);
 		})
 		.Actions(action =>
 		{
 			action.RedirectWithRowId("Editar", "ConceptoInsumo", "Edit");
 			action.RedirectWithRowId("Agregar stock", "ConceptoInsumo", "AgregarStock");
+			action.JavaScriptWithRowId("Mostrar/Ocultar", "MostrarOcultar");
 		})
 		.DataSource("/ConceptoInsumo/GetForGrid")
 	  )
+
+<script>
+	function MostrarOcultar(obj) {
+		$.ajax({
+			url: '/ConceptoInsumo/MostrarOcultar',
+			type: "POST",
+			data: { id: obj.getAttribute('data-id') },
+			success: function () {
+				window.location.reload(false);
+			}
+		});
+	}
+</script>

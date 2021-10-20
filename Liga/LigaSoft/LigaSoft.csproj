@@ -320,6 +320,14 @@
     <Compile Include="Migrations\202101280308076_AgregaJugadorAutofichado.Designer.cs">
       <DependentUpon>202101280308076_AgregaJugadorAutofichado.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202110200402346_AgregaVisibleAInsumo.cs" />
+    <Compile Include="Migrations\202110200402346_AgregaVisibleAInsumo.Designer.cs">
+      <DependentUpon>202110200402346_AgregaVisibleAInsumo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110200403587_SeteaVisiblidadDeTodosLosInsumosEnTrue.cs" />
+    <Compile Include="Migrations\202110200403587_SeteaVisiblidadDeTodosLosInsumosEnTrue.Designer.cs">
+      <DependentUpon>202110200403587_SeteaVisiblidadDeTodosLosInsumosEnTrue.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Dominio\JugadorAutofichado.cs" />
     <Compile Include="Models\Dominio\JugadorFichadoPorDelegado.cs" />
     <Compile Include="Models\Dominio\UsuarioDelegado.cs" />
@@ -1636,6 +1644,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202101280308076_AgregaJugadorAutofichado.resx">
       <DependentUpon>202101280308076_AgregaJugadorAutofichado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110200402346_AgregaVisibleAInsumo.resx">
+      <DependentUpon>202110200402346_AgregaVisibleAInsumo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110200403587_SeteaVisiblidadDeTodosLosInsumosEnTrue.resx">
+      <DependentUpon>202110200403587_SeteaVisiblidadDeTodosLosInsumosEnTrue.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -15,6 +15,9 @@ namespace LigaSoft.Models.ViewModels
 
 		[Display(Name = "Stock")]
 		public int Stock { get; set; }
+
+		[Display(Name = "Visible")]
+		public string Visible { get; set; }
 	}
 
 }

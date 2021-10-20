@@ -39,14 +39,27 @@ namespace LigaSoft.Controllers
 		{
 			var result = Context.ConceptosInsumo
 				.ToList()
+				.Where(x => x.Visible)
 				.Select(c => new IdDescripcionVM
 				{
 					Id = c.Id,
 					Descripcion = $"{c.Descripcion} - Stock: {c.Stock}"
-				})
+				})				
 				.ToList();
 
 			return Json(result, JsonRequestBehavior.AllowGet);
+		}
+
+		[HttpPost]
+		public ActionResult MostrarOcultar(int id)
+		{
+			var model = Context.ConceptosInsumo.Find(id);
+
+			model.Visible = !model.Visible;
+
+			Context.SaveChanges();
+
+			return Json(new { success = true }, JsonRequestBehavior.AllowGet);
 		}
 	}
 }
