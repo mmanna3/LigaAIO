@@ -9,11 +9,27 @@ const OpcionJornadas = (props) =>{
     const categorias = data.Categorias;
 
       return (
-        <div className={styles.rowTablas}>
-          {data.JornadasPorFecha.map(({ FechaNumero, Renglones }) => (
-            <TablaJornadas key={FechaNumero} titulo={FechaNumero} renglones={Renglones} categorias={categorias}/>
-          ))}
-        </div>
+        <>
+          <div className={styles.explicacion}>
+            <span>
+              <strong>NP: </strong>No presentó.
+            </span>
+            <span>
+              <strong>AR: </strong>A resolver.
+            </span>
+              <span>
+                <strong>P: </strong>Postergado.
+              </span>
+              <span>
+                <strong>S: </strong>Suspendido.
+              </span>
+          </div>
+          <div className={styles.rowTablas}>
+            {data.JornadasPorFecha.map(({ FechaNumero, Renglones }) => (
+              <TablaJornadas key={FechaNumero} titulo={FechaNumero} renglones={Renglones} categorias={categorias}/>
+            ))}
+          </div>
+        </>
       )
     }    
 

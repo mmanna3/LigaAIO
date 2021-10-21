@@ -1,4 +1,18 @@
 .rowTablas {
-	composes: row from './../../../../assets/styles/bootstrap.min.css';
-	padding-top: 1em;
+  composes: row from "./../../../../assets/styles/bootstrap.min.css";
+  padding-top: 1em;
+}
+
+.explicacion {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  padding-right: 3em;
+  padding-left: 2em;
+  background-color: rgba(255, 255, 255, 0.8);
+  font-size: 16px;
+  max-width: inherit;
+}
+
+.explicacion span {
+  margin-right: 0.8em;
 }
