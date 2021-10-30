@@ -57,9 +57,9 @@ return (
                         <li className={bootstrap['nav-item']}>
                             <a className={styles.navLinkOnHoverVerde} href="#" onClick={() => actualizarSeccionPrincipalYOcultarMenu("Contacto")}>Contacto</a>
                         </li>
-                        <li className={bootstrap['nav-item']}>
+                        {/* <li className={bootstrap['nav-item']}>
                             <a className={styles.navLinkOnHoverAzul} href="#" onClick={() => actualizarSeccionPrincipalYOcultarMenu("Fichaje")}>Fichaje</a>
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
 
