@@ -13,11 +13,19 @@ namespace LigaSoft.BusinessLogic
 
 			var letras = ObtenerLetras(semillaTransformada);
 
-			var numeroFinal = semillaTransformada.ToString().PadLeft(4, '0');
+			var numeroFinal = semilla.ToString().PadLeft(4, '0');
 
 			return $"{numeroFinal[0]}{letras}{numeroFinal[1]}{numeroFinal[2]}{numeroFinal[3]}";
 		}
 
+		public static int ObtenerSemillaAPartirDeAlfanumerico7Digitos(string alfaNumerico7Digitos)
+		{
+			if (alfaNumerico7Digitos.Length != 7)
+				throw new ArgumentException();
+
+			var numeroString = $"{alfaNumerico7Digitos[0]}{alfaNumerico7Digitos[4]}{alfaNumerico7Digitos[5]}{alfaNumerico7Digitos[6]}";
+			return int.Parse(numeroString);
+		}
 
 		public static string ObtenerLetras(int semilla4Digitos)
 		{
@@ -37,7 +45,7 @@ namespace LigaSoft.BusinessLogic
 			var ultimoDigito4VecesInt = int.Parse(ultimoDigito4Veces);
 
 			return (semilla + ultimoDigito4VecesInt) % 10000;
-		}
+		}		
 
 		public static int ObtenerNumeroEnteroMenorOIgualQue25(int numero)
 		{

@@ -11,19 +11,32 @@ namespace Tests.Unit
 	public class GeneradorDeHashTest
 	{
 		[Test]
+		public void ObtieneSemilla_ApartirDeHash_Correctamente()
+		{
+			var semilla = GeneradorDeHash.ObtenerSemillaAPartirDeAlfanumerico7Digitos("0MTD001");
+			Assert.AreEqual(1, semilla);
+
+			var semilla2 = GeneradorDeHash.ObtenerSemillaAPartirDeAlfanumerico7Digitos("2WJT456");
+			Assert.AreEqual(2456, semilla2);
+
+			var semilla3 = GeneradorDeHash.ObtenerSemillaAPartirDeAlfanumerico7Digitos("8WJT011");
+			Assert.AreEqual(8011, semilla3);
+		}
+		
+		[Test]
 		public void Genera_Correctamente()
 		{
 			var hash = GeneradorDeHash.GenerarAlfanumerico7Digitos(1);
-			Assert.AreEqual("1MTD112", hash);
+			Assert.AreEqual("0MTD001", hash);
 
 			var hash2 = GeneradorDeHash.GenerarAlfanumerico7Digitos(2);
-			Assert.AreEqual("2YBO224", hash2);
+			Assert.AreEqual("0YBO002", hash2);
 
 			var hash22 = GeneradorDeHash.GenerarAlfanumerico7Digitos(22);
-			Assert.AreEqual("2TLE244", hash22);
+			Assert.AreEqual("0TLE022", hash22);
 
 			var hash3 = GeneradorDeHash.GenerarAlfanumerico7Digitos(23);
-			Assert.AreEqual("3GLX356", hash3);
+			Assert.AreEqual("0GLX023", hash3);
 
 			var hash4 = GeneradorDeHash.GenerarAlfanumerico7Digitos(10);
 			Assert.AreEqual("0KAA010", hash4);
@@ -32,7 +45,10 @@ namespace Tests.Unit
 			Assert.AreEqual("0AAA100", hash5);
 
 			var hash6 = GeneradorDeHash.GenerarAlfanumerico7Digitos(2456);
-			Assert.AreEqual("9WJT122", hash6);
+			Assert.AreEqual("2WJT456", hash6);
+
+			var hash8011 = GeneradorDeHash.GenerarAlfanumerico7Digitos(8011);
+			Assert.AreEqual("8WJT011", hash8011);
 		}
 
 		[Test]
