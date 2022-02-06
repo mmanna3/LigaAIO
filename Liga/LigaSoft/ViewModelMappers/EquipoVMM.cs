@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using LigaSoft.BusinessLogic;
 using LigaSoft.Models;
 using LigaSoft.Models.Dominio;
 using LigaSoft.Models.ViewModels;
@@ -79,7 +80,8 @@ namespace LigaSoft.ViewModelMappers
 				Delegado1Id = model.Delegado1Id,
 				Delegado1 = model.Delegado1?.Descripcion,
 				Delegado2Id = model.Delegado2Id,
-				Delegado2 = model.Delegado2?.Descripcion
+				Delegado2 = model.Delegado2?.Descripcion,
+				CodigoUnicoParaFixture = GeneradorDeHash.GenerarAlfanumerico7Digitos(model.Id)
 			};
 		}
 

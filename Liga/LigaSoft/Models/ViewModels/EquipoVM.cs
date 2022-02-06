@@ -25,6 +25,9 @@ namespace LigaSoft.Models.ViewModels
 		[Display(Name = "Zona")]
 		public string Zona { get; set; }
 
+		[Display(Name = "Código para Fixture")]
+		public string CodigoUnicoParaFixture { get; set; }
+
 		public List<SelectListItem> TorneosParaCombo { get; set; }
 
 		public List<SelectListItem> ClubsParaCombo { get; set; }

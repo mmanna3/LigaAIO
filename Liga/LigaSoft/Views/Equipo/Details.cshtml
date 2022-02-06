@@ -8,11 +8,14 @@
 
 @using (Html.YKN().Form())
 {
-	<div class="row">
-		<div class="col-xs-6">
-			@Html.YKN().DisplayFor(x => x.Id)
-		</div>
+<div class="row">
+	<div class="col-xs-6">
+		@Html.YKN().DisplayFor(x => x.Id)
 	</div>
+	<div class="col-xs-6">
+		@Html.YKN().DisplayFor(x => x.CodigoUnicoParaFixture)
+	</div>
+</div>
 	<div class="row">
 		<div class="col-xs-6">
 			@Html.YKN().DisplayFor(x => x.Nombre)
