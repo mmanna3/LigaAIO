@@ -30,7 +30,7 @@ namespace Tests.Unit.Utilidades
 		{
 			var torneo1 = new Torneo
 			{
-				Anio = Anio.A2021,
+				Anio = Anio.A2022,
 				Tipo = context.TorneoTipos.Single(x => x.Descripcion == "Vespertino"),
 				Publico = true
 			};
@@ -39,14 +39,14 @@ namespace Tests.Unit.Utilidades
 			
 			var torneoMatutino2021 = new Torneo
 			{
-				Anio = Anio.A2021,
+				Anio = Anio.A2022,
 				Tipo = torneoTipoMatutino,
 				Publico = true
 			};
 
 			var torneo2 = new Torneo
 			{
-				Anio = Anio.A2020,
+				Anio = Anio.A2021,
 				Tipo = context.TorneoTipos.Single(x => x.Descripcion == "Vespertino"),
 				Publico = true
 			};
