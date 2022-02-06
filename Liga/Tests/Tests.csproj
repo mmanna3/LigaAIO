@@ -98,6 +98,7 @@
   <ItemGroup>
     <Compile Include="Integration\Utilidades\AppPathsForTest.cs" />
     <Compile Include="Integration\Utilidades\Constantes.cs" />
+    <Compile Include="Unit\GeneradorDeHashTest.cs" />
     <Compile Include="Unit\ImagenUtilityTest.cs" />
     <Compile Include="Integration\Utilidades\HttpPostedFileRandomJpg.cs" />
     <Compile Include="Integration\BackupDiskPersistenceTest.cs" />
