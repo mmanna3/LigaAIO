@@ -68,7 +68,6 @@ namespace LigaSoft.Models
     {
         [YKNRequired]
         [Display(Name = "Email")]
-        [EmailAddress(ErrorMessage = "El email no es válido.")]
         public string Email { get; set; }
 
         [YKNRequired]
