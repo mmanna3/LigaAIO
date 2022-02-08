@@ -68,6 +68,7 @@ namespace LigaSoft.Controllers
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
@@ -94,8 +95,7 @@ namespace LigaSoft.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]        
+        [AllowAnonymous]      
         public async Task<JsonResult> LoginDeAppDelegados(LoginAppDelegadosViewModel model)
         {
             if (!ModelState.IsValid)
