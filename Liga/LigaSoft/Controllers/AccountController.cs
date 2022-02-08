@@ -94,7 +94,26 @@ namespace LigaSoft.Controllers
             }
         }
 
-	    [ImportModelStateFromTempData]
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]        
+        public async Task<JsonResult> LoginDeAppDelegados(LoginAppDelegadosViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return Json(new LoginAppDelegadosRespuestaViewModel(false, "Todos los campos son obligatorios"), JsonRequestBehavior.AllowGet);
+
+            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
+            switch (result)
+            {
+                case SignInStatus.Success:
+                    return Json(new LoginAppDelegadosRespuestaViewModel(true), JsonRequestBehavior.AllowGet);
+                case SignInStatus.Failure:
+                default:
+                    return Json(new LoginAppDelegadosRespuestaViewModel(false, "Usuario o contraseña incorrecto."), JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [ImportModelStateFromTempData]
 		public ActionResult CambiarPassword()
 	    {
 		    return View();

@@ -64,6 +64,31 @@ namespace LigaSoft.Models
         public bool RememberMe { get; set; }
     }
 
+    public class LoginAppDelegadosViewModel
+    {
+        [YKNRequired]
+        [Display(Name = "Email")]
+        [EmailAddress(ErrorMessage = "El email no es válido.")]
+        public string Email { get; set; }
+
+        [YKNRequired]
+        [DataType(DataType.Password)]
+        [Display(Name = "Contraseña")]
+        public string Password { get; set; }
+    }
+
+    public class LoginAppDelegadosRespuestaViewModel
+    {
+		public LoginAppDelegadosRespuestaViewModel(bool loginExitoso, string error = "")
+		{
+            LoginExitoso = loginExitoso;
+            Error = error;
+		}
+
+        public bool LoginExitoso { get; set; }
+        public string Error { get; set; }
+    }
+
     public class RegisterViewModel
     {
         [Required]
