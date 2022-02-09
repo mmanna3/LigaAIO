@@ -29,7 +29,7 @@ namespace LigaSoft.BusinessLogic
 			if (!int.TryParse(numeroString, out int numero))
 				throw new Exception("El código no tiene el formato correcto");
 
-			if (letrasQueLlegaron != ObtenerLetras(numero))
+			if (letrasQueLlegaron != ObtenerLetras(TransformarAplicandoAlgoritmo(numero)))
 				throw new Exception("El código es incorrecto");			
 
 			return numero;
