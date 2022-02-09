@@ -1,9 +1,6 @@
 ﻿using System;
-using System.IO;
-using LigaSoft.Utilidades;
 using LigaSoft.BusinessLogic;
 using NUnit.Framework;
-using Tests.Integration.Utilidades;
 
 namespace Tests.Unit
 {
@@ -22,7 +19,17 @@ namespace Tests.Unit
 			var semilla3 = GeneradorDeHash.ObtenerSemillaAPartirDeAlfanumerico7Digitos("8WJT011");
 			Assert.AreEqual(8011, semilla3);
 		}
-		
+
+		[Test]
+		public void ObtieneSemilla_ApartirDeHash_Falla()
+		{
+			Assert.Throws<Exception>(() => GeneradorDeHash.ObtenerSemillaAPartirDeAlfanumerico7Digitos("0MTD001A"), "El código debe ser de 7 dígitos");
+
+			Assert.Throws<Exception>(() => GeneradorDeHash.ObtenerSemillaAPartirDeAlfanumerico7Digitos("0MTD0M1"), "El código no tiene el formato correcto");
+
+			Assert.Throws<Exception>(() => GeneradorDeHash.ObtenerSemillaAPartirDeAlfanumerico7Digitos("0XXX001"), "El código es incorrecto");
+		}
+
 		[Test]
 		public void Genera_Correctamente()
 		{

@@ -21,10 +21,18 @@ namespace LigaSoft.BusinessLogic
 		public static int ObtenerSemillaAPartirDeAlfanumerico7Digitos(string alfaNumerico7Digitos)
 		{
 			if (alfaNumerico7Digitos.Length != 7)
-				throw new ArgumentException();
+				throw new Exception("El código debe ser de 7 dígitos");
 
 			var numeroString = $"{alfaNumerico7Digitos[0]}{alfaNumerico7Digitos[4]}{alfaNumerico7Digitos[5]}{alfaNumerico7Digitos[6]}";
-			return int.Parse(numeroString);
+			var letrasQueLlegaron = $"{alfaNumerico7Digitos[1]}{alfaNumerico7Digitos[2]}{alfaNumerico7Digitos[3]}";
+
+			if (!int.TryParse(numeroString, out int numero))
+				throw new Exception("El código no tiene el formato correcto");
+
+			if (letrasQueLlegaron != ObtenerLetras(numero))
+				throw new Exception("El código es incorrecto");			
+
+			return numero;
 		}
 
 		public static string ObtenerLetras(int semilla4Digitos)

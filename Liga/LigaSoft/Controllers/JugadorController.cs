@@ -164,7 +164,15 @@ namespace LigaSoft.Controllers
 		[AllowAnonymous]
 		public string Getjugadores(string codigoAlfanumerico)
 		{
-			var equipoId = GeneradorDeHash.ObtenerSemillaAPartirDeAlfanumerico7Digitos(codigoAlfanumerico);
+			int equipoId;			
+			try
+			{
+				equipoId = GeneradorDeHash.ObtenerSemillaAPartirDeAlfanumerico7Digitos(codigoAlfanumerico);
+			} catch (Exception e)
+			{
+				return JsonConvert.SerializeObject(new { error = e.Message });
+			}
+
 			var equipo = Context.Equipos.Find(equipoId);
 			var jugadores = Context.JugadorEquipos.Where(x => x.EquipoId == equipoId).Select(x => x.Jugador).ToList();
 
