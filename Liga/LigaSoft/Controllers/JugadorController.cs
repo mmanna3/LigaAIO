@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Linq.Dynamic;
 using System.Web;
 using System.Web.Mvc;
+using LigaSoft.BusinessLogic;
 using LigaSoft.Models.Attributes.GPRPattern;
 using LigaSoft.Models.Dominio;
 using LigaSoft.Models.Otros;
@@ -155,6 +157,26 @@ namespace LigaSoft.Controllers
 
 			return JsonConvert.SerializeObject(vm);
 	    }
+
+		/// <summary>
+		/// Para app delegados
+		/// </summary>
+		[AllowAnonymous]
+		public string Getjugadores(string codigoAlfanumerico)
+		{
+			var equipoId = GeneradorDeHash.ObtenerSemillaAPartirDeAlfanumerico7Digitos(codigoAlfanumerico);
+			var equipo = Context.Equipos.Find(equipoId);
+			var jugadores = Context.JugadorEquipos.Where(x => x.EquipoId == equipoId).Select(x => x.Jugador).ToList();
+
+			var resultado = new List<JugadorCarnetVM>();
+
+			foreach (var jugador in jugadores)
+			{
+				resultado.Add(VMM.MapJugadorParaCarnet(jugador, equipo));
+			}
+					
+			return JsonConvert.SerializeObject(resultado);
+		}
 
 		public JsonResult GetByEquipoId(GijgoGridOptions options, int parentId)
 		{
