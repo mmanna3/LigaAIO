@@ -158,34 +158,6 @@ namespace LigaSoft.Controllers
 			return JsonConvert.SerializeObject(vm);
 	    }
 
-		/// <summary>
-		/// Para app delegados
-		/// </summary>
-		[AllowAnonymous]
-		public string Getjugadores(string codigoAlfanumerico)
-		{
-			int equipoId;			
-			try
-			{
-				equipoId = GeneradorDeHash.ObtenerSemillaAPartirDeAlfanumerico7Digitos(codigoAlfanumerico);
-			} catch (Exception e)
-			{
-				return JsonConvert.SerializeObject(new { error = e.Message });
-			}
-
-			var equipo = Context.Equipos.Find(equipoId);
-			var jugadores = Context.JugadorEquipos.Where(x => x.EquipoId == equipoId).Select(x => x.Jugador).ToList();
-
-			var resultado = new List<JugadorCarnetVM>();
-
-			foreach (var jugador in jugadores)
-			{
-				resultado.Add(VMM.MapJugadorParaCarnet(jugador, equipo));
-			}
-					
-			return JsonConvert.SerializeObject(resultado);
-		}
-
 		public JsonResult GetByEquipoId(GijgoGridOptions options, int parentId)
 		{
 			var query = Context.JugadorEquipos
