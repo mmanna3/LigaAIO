@@ -210,7 +210,6 @@
     <Compile Include="Controllers\PublicoController.cs" />
     <Compile Include="Controllers\SancionController.cs" />
     <Compile Include="ExtensionMethods\ObjectExtension.cs" />
-    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Migrations\201908120158589_SeAgregaSancion.cs" />
     <Compile Include="Migrations\201908120158589_SeAgregaSancion.Designer.cs">
       <DependentUpon>201908120158589_SeAgregaSancion.cs</DependentUpon>
