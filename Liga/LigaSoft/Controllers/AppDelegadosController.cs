@@ -37,7 +37,7 @@ namespace LigaSoft.Controllers
 			}
 
 			var equipo = _context.Equipos.Find(equipoId);
-			var jugadores = _context.JugadorEquipos.Where(x => x.EquipoId == equipoId).Select(x => x.Jugador).ToList();
+			var jugadores = _context.JugadorEquipos.Where(x => x.EquipoId == equipoId).Select(x => x.Jugador).OrderByDescending(x => x.FechaNacimiento).ToList();
 
 			var resultado = new List<JugadorCarnetVM>();
 
