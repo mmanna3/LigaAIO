@@ -24,7 +24,7 @@ namespace LigaSoft.BusinessLogic
 				throw new Exception("El código debe ser de 7 dígitos");
 
 			var numeroString = $"{alfaNumerico7Digitos[3]}{alfaNumerico7Digitos[4]}{alfaNumerico7Digitos[5]}{alfaNumerico7Digitos[6]}";
-			var letrasQueLlegaron = $"{alfaNumerico7Digitos[0]}{alfaNumerico7Digitos[1]}{alfaNumerico7Digitos[2]}";
+			var letrasQueLlegaron = $"{alfaNumerico7Digitos[0]}{alfaNumerico7Digitos[1]}{alfaNumerico7Digitos[2]}".ToUpper();
 
 			if (!int.TryParse(numeroString, out int numero))
 				throw new Exception("El código no tiene el formato correcto");

@@ -21,6 +21,16 @@ namespace Tests.Unit
 		}
 
 		[Test]
+		public void ObtieneSemilla_ApartirDeHash_SoportandoMinusculas()
+		{
+			var semilla = GeneradorDeHash.ObtenerSemillaAPartirDeAlfanumerico7Digitos("mtd0001");
+			Assert.AreEqual(1, semilla);
+
+			var semilla2 = GeneradorDeHash.ObtenerSemillaAPartirDeAlfanumerico7Digitos("WjT2456");
+			Assert.AreEqual(2456, semilla2);
+		}
+
+		[Test]
 		public void ObtieneSemilla_ApartirDeHash_Falla()
 		{
 			Assert.Throws<Exception>(() => GeneradorDeHash.ObtenerSemillaAPartirDeAlfanumerico7Digitos("0MTD001A"), "El código debe ser de 7 dígitos");
