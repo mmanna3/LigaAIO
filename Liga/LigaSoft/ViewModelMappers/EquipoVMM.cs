@@ -81,7 +81,7 @@ namespace LigaSoft.ViewModelMappers
 				Delegado1 = model.Delegado1?.Descripcion,
 				Delegado2Id = model.Delegado2Id,
 				Delegado2 = model.Delegado2?.Descripcion,
-				CodigoUnicoParaFixture = GeneradorDeHash.GenerarAlfanumerico7Digitos(model.Id)
+				CodigoAlfanumerico = GeneradorDeHash.GenerarAlfanumerico7Digitos(model.Id)
 			};
 		}
 
