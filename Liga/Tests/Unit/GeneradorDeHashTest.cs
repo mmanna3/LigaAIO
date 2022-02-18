@@ -10,13 +10,13 @@ namespace Tests.Unit
 		[Test]
 		public void ObtieneSemilla_ApartirDeHash_Correctamente()
 		{
-			var semilla = GeneradorDeHash.ObtenerSemillaAPartirDeAlfanumerico7Digitos("0MTD001");
+			var semilla = GeneradorDeHash.ObtenerSemillaAPartirDeAlfanumerico7Digitos("MTD0001");
 			Assert.AreEqual(1, semilla);
 
-			var semilla2 = GeneradorDeHash.ObtenerSemillaAPartirDeAlfanumerico7Digitos("2WJT456");
+			var semilla2 = GeneradorDeHash.ObtenerSemillaAPartirDeAlfanumerico7Digitos("WJT2456");
 			Assert.AreEqual(2456, semilla2);
 
-			var semilla3 = GeneradorDeHash.ObtenerSemillaAPartirDeAlfanumerico7Digitos("8WJT011");
+			var semilla3 = GeneradorDeHash.ObtenerSemillaAPartirDeAlfanumerico7Digitos("WJT8011");
 			Assert.AreEqual(8011, semilla3);
 		}
 
@@ -25,37 +25,37 @@ namespace Tests.Unit
 		{
 			Assert.Throws<Exception>(() => GeneradorDeHash.ObtenerSemillaAPartirDeAlfanumerico7Digitos("0MTD001A"), "El código debe ser de 7 dígitos");
 
-			Assert.Throws<Exception>(() => GeneradorDeHash.ObtenerSemillaAPartirDeAlfanumerico7Digitos("0MTD0M1"), "El código no tiene el formato correcto");
+			Assert.Throws<Exception>(() => GeneradorDeHash.ObtenerSemillaAPartirDeAlfanumerico7Digitos("MTD00M1"), "El código no tiene el formato correcto");
 
-			Assert.Throws<Exception>(() => GeneradorDeHash.ObtenerSemillaAPartirDeAlfanumerico7Digitos("0XXX001"), "El código es incorrecto");
+			Assert.Throws<Exception>(() => GeneradorDeHash.ObtenerSemillaAPartirDeAlfanumerico7Digitos("XXX0001"), "El código es incorrecto");
 		}
 
 		[Test]
 		public void Genera_Correctamente()
 		{
 			var hash = GeneradorDeHash.GenerarAlfanumerico7Digitos(1);
-			Assert.AreEqual("0MTD001", hash);
+			Assert.AreEqual("MTD0001", hash);
 
 			var hash2 = GeneradorDeHash.GenerarAlfanumerico7Digitos(2);
-			Assert.AreEqual("0YBO002", hash2);
+			Assert.AreEqual("YBO0002", hash2);
 
 			var hash22 = GeneradorDeHash.GenerarAlfanumerico7Digitos(22);
-			Assert.AreEqual("0TLE022", hash22);
+			Assert.AreEqual("TLE0022", hash22);
 
 			var hash3 = GeneradorDeHash.GenerarAlfanumerico7Digitos(23);
-			Assert.AreEqual("0GLX023", hash3);
+			Assert.AreEqual("GLX0023", hash3);
 
 			var hash4 = GeneradorDeHash.GenerarAlfanumerico7Digitos(10);
-			Assert.AreEqual("0KAA010", hash4);
+			Assert.AreEqual("KAA0010", hash4);
 
 			var hash5 = GeneradorDeHash.GenerarAlfanumerico7Digitos(100);
-			Assert.AreEqual("0AAA100", hash5);
+			Assert.AreEqual("AAA0100", hash5);
 
 			var hash6 = GeneradorDeHash.GenerarAlfanumerico7Digitos(2456);
-			Assert.AreEqual("2WJT456", hash6);
+			Assert.AreEqual("WJT2456", hash6);
 
 			var hash8011 = GeneradorDeHash.GenerarAlfanumerico7Digitos(8011);
-			Assert.AreEqual("8WJT011", hash8011);
+			Assert.AreEqual("WJT8011", hash8011);
 		}
 
 		[Test]

@@ -15,7 +15,7 @@ namespace LigaSoft.BusinessLogic
 
 			var numeroFinal = semilla.ToString().PadLeft(4, '0');
 
-			return $"{numeroFinal[0]}{letras}{numeroFinal[1]}{numeroFinal[2]}{numeroFinal[3]}";
+			return $"{letras}{numeroFinal}";
 		}
 
 		public static int ObtenerSemillaAPartirDeAlfanumerico7Digitos(string alfaNumerico7Digitos)
@@ -23,8 +23,8 @@ namespace LigaSoft.BusinessLogic
 			if (alfaNumerico7Digitos.Length != 7)
 				throw new Exception("El código debe ser de 7 dígitos");
 
-			var numeroString = $"{alfaNumerico7Digitos[0]}{alfaNumerico7Digitos[4]}{alfaNumerico7Digitos[5]}{alfaNumerico7Digitos[6]}";
-			var letrasQueLlegaron = $"{alfaNumerico7Digitos[1]}{alfaNumerico7Digitos[2]}{alfaNumerico7Digitos[3]}";
+			var numeroString = $"{alfaNumerico7Digitos[3]}{alfaNumerico7Digitos[4]}{alfaNumerico7Digitos[5]}{alfaNumerico7Digitos[6]}";
+			var letrasQueLlegaron = $"{alfaNumerico7Digitos[0]}{alfaNumerico7Digitos[1]}{alfaNumerico7Digitos[2]}";
 
 			if (!int.TryParse(numeroString, out int numero))
 				throw new Exception("El código no tiene el formato correcto");
