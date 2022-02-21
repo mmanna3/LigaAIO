@@ -51,9 +51,8 @@ namespace LigaSoft.Models
     public class LoginViewModel
     {
         [YKNRequired]
-        [Display(Name = "Email")]
-		[EmailAddress(ErrorMessage = "El email no es válido.")]
-		public string Email { get; set; }
+        [Display(Name = "Usuario")]
+		public string Usuario { get; set; }
 
 	    [YKNRequired]
 	    [DataType(DataType.Password)]
@@ -67,8 +66,8 @@ namespace LigaSoft.Models
     public class LoginAppDelegadosViewModel
     {
         [YKNRequired]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
+        [Display(Name = "Usuario")]
+        public string Usuario { get; set; }
 
         [YKNRequired]
         [DataType(DataType.Password)]

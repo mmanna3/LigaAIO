@@ -69,16 +69,16 @@ namespace LigaSoft.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        public async Task<ActionResult> Login(LoginViewModel vm, string returnUrl)
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return View(vm);
             }
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(vm.Usuario, vm.Password, vm.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -86,11 +86,11 @@ namespace LigaSoft.Controllers
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = vm.RememberMe });
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Usuario o contraseña incorrecto.");
-                    return View(model);
+                    return View(vm);
             }
         }
 
@@ -101,7 +101,7 @@ namespace LigaSoft.Controllers
             if (!ModelState.IsValid)
                 return Json(new LoginAppDelegadosRespuestaViewModel(false, "Todos los campos son obligatorios"), JsonRequestBehavior.AllowGet);
 
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
+            var result = await SignInManager.PasswordSignInAsync(model.Usuario, model.Password, false, false);
             switch (result)
             {
                 case SignInStatus.Success:

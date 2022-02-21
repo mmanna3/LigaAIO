@@ -53,7 +53,7 @@ namespace LigaSoft.Controllers
 		{
 			var usuarioDelegado = _context.UsuariosDelegados.Single(x => x.Id == id);
 
-			var user = new ApplicationUser { UserName = usuarioDelegado.Email, Email = usuarioDelegado.Email };
+			var user = new ApplicationUser { UserName = usuarioDelegado.Usuario, Email = $"{usuarioDelegado.Usuario}@edefi.com.ar" };
 			var result = await UserManager.CreateAsync(user, usuarioDelegado.Password);
 
 			if (result.Succeeded)

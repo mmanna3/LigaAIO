@@ -8,9 +8,9 @@ namespace LigaSoft.Models.ViewModels
 	public class UsuarioDelegadoVM : ViewModelConId
 	{
 		[YKNRequired]
-		[Display(Name = "Email")]
-		[EmailAddress(ErrorMessage = "El email no es válido.")]
-		public string Email { get; set; }
+		[Display(Name = "Usuario")]
+		[StringLength(12, ErrorMessage = "El usuario debe tener entre 6 y 12 caracteres.", MinimumLength = 6)]
+		public string Usuario { get; set; }
 
 		[YKNRequired]
 		[StringLength(100, ErrorMessage = "La contraseña tiene que tener al menos 6 caracteres.", MinimumLength = 6)]

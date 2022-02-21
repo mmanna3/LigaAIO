@@ -28,7 +28,7 @@ namespace LigaSoft.Controllers
 		[HttpPost]
 		public ActionResult Registro(UsuarioDelegadoVM vm)
 	    {
-		    if (!ModelState.IsValid || EmailYaEstaEnUso(vm.Email))
+		    if (!ModelState.IsValid || EmailYaEstaEnUso(vm.Usuario))
 		    {
 			    vm.ClubsParaCombo = ClubsParaCombo();
 				return View(vm);
@@ -44,7 +44,7 @@ namespace LigaSoft.Controllers
 
 	    private bool EmailYaEstaEnUso(string email)
 	    {
-		    if (Context.UsuariosDelegados.Any(x => x.Email == email))
+		    if (Context.UsuariosDelegados.Any(x => x.Usuario == email))
 		    {
 			    ModelState.AddModelError("", "Debe esperar que la organización de la liga habilite su usuario.");
 			    return true;

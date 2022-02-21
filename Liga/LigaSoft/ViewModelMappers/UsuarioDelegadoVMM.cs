@@ -13,7 +13,7 @@ namespace LigaSoft.ViewModelMappers
 
 		public override void MapForCreateAndEdit(UsuarioDelegadoVM vm, UsuarioDelegado model)
 		{
-			model.Email = vm.Email;
+			model.Usuario = vm.Usuario;
 			model.Password = vm.Password;
 			model.ClubId = vm.ClubId;
 			model.Nombre = vm.Nombre;
@@ -25,7 +25,7 @@ namespace LigaSoft.ViewModelMappers
 			return new UsuarioDelegadoVM
 			{
 				Id = model.Id,
-				Email = model.Email,
+				Usuario = model.Usuario,
 				ClubId = model.ClubId,
 				Club = Context.Clubs.Single(x => x.Id == model.ClubId).Nombre,
 				Apellido = model.Apellido,

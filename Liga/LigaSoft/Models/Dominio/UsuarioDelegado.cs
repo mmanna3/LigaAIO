@@ -8,6 +8,10 @@ namespace LigaSoft.Models.Dominio
 		public int Id { get; set; }
 
 		[Column(TypeName = "VARCHAR")]
+		[MaxLength(30)]
+		public string Usuario { get; set; }
+
+		[Column(TypeName = "VARCHAR")]
 		[MaxLength(50)]
 		public string Email { get; set; }
 

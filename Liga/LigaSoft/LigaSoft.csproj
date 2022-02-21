@@ -330,6 +330,14 @@
     <Compile Include="Migrations\202110200403587_SeteaVisiblidadDeTodosLosInsumosEnTrue.Designer.cs">
       <DependentUpon>202110200403587_SeteaVisiblidadDeTodosLosInsumosEnTrue.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202202210331460_AgregaCampoUsuarioAUsuarioDelegado.cs" />
+    <Compile Include="Migrations\202202210331460_AgregaCampoUsuarioAUsuarioDelegado.Designer.cs">
+      <DependentUpon>202202210331460_AgregaCampoUsuarioAUsuarioDelegado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202202210343524_CopiaEmailsEnColumnaUsuario.cs" />
+    <Compile Include="Migrations\202202210343524_CopiaEmailsEnColumnaUsuario.Designer.cs">
+      <DependentUpon>202202210343524_CopiaEmailsEnColumnaUsuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Dominio\JugadorAutofichado.cs" />
     <Compile Include="Models\Dominio\JugadorFichadoPorDelegado.cs" />
     <Compile Include="Models\Dominio\UsuarioDelegado.cs" />
@@ -1655,6 +1663,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202110200403587_SeteaVisiblidadDeTodosLosInsumosEnTrue.resx">
       <DependentUpon>202110200403587_SeteaVisiblidadDeTodosLosInsumosEnTrue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202210331460_AgregaCampoUsuarioAUsuarioDelegado.resx">
+      <DependentUpon>202202210331460_AgregaCampoUsuarioAUsuarioDelegado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202210343524_CopiaEmailsEnColumnaUsuario.resx">
+      <DependentUpon>202202210343524_CopiaEmailsEnColumnaUsuario.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
