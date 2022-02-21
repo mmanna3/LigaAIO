@@ -9,11 +9,11 @@ namespace LigaSoft.Models.ViewModels
 	{
 		[YKNRequired]
 		[Display(Name = "Usuario")]
-		[StringLength(12, ErrorMessage = "El usuario debe tener entre 6 y 12 caracteres.", MinimumLength = 6)]
+		[StringLength(30, ErrorMessage = "El usuario debe tener entre 6 y 30 caracteres.", MinimumLength = 6)]
 		public string Usuario { get; set; }
 
 		[YKNRequired]
-		[StringLength(100, ErrorMessage = "La contraseña tiene que tener al menos 6 caracteres.", MinimumLength = 6)]
+		[StringLength(30, ErrorMessage = "La contraseña tiene que tener al menos 6 caracteres.", MinimumLength = 6)]
 		[DataType(DataType.Password)]
 		[Display(Name = "Contraseña")]
 		public string Password { get; set; }
