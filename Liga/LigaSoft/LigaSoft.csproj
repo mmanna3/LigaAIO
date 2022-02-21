@@ -338,6 +338,10 @@
     <Compile Include="Migrations\202202210343524_CopiaEmailsEnColumnaUsuario.Designer.cs">
       <DependentUpon>202202210343524_CopiaEmailsEnColumnaUsuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202202210406436_AgregaCampoEstaSuspendidoAJugadorEquipo.cs" />
+    <Compile Include="Migrations\202202210406436_AgregaCampoEstaSuspendidoAJugadorEquipo.Designer.cs">
+      <DependentUpon>202202210406436_AgregaCampoEstaSuspendidoAJugadorEquipo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Dominio\JugadorAutofichado.cs" />
     <Compile Include="Models\Dominio\JugadorFichadoPorDelegado.cs" />
     <Compile Include="Models\Dominio\UsuarioDelegado.cs" />
@@ -1669,6 +1673,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202202210343524_CopiaEmailsEnColumnaUsuario.resx">
       <DependentUpon>202202210343524_CopiaEmailsEnColumnaUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202210406436_AgregaCampoEstaSuspendidoAJugadorEquipo.resx">
+      <DependentUpon>202202210406436_AgregaCampoEstaSuspendidoAJugadorEquipo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

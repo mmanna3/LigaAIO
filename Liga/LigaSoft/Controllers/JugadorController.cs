@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Linq.Dynamic;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using LigaSoft.BusinessLogic;
@@ -213,5 +214,17 @@ namespace LigaSoft.Controllers
 
 		    return Json(equiposDeTorneosQueNoEstaJugando, JsonRequestBehavior.AllowGet);
 	    }
+
+		[HttpPost]
+		public ActionResult HabilitarSuspender(int equipoId, int jugadorId)
+		{
+			var jugadorEquipo = Context.JugadorEquipos.Single(x => x.JugadorId == jugadorId && x.EquipoId == equipoId);
+
+			jugadorEquipo.EstaSuspendido = !jugadorEquipo.EstaSuspendido;
+
+			Context.SaveChanges();
+
+			return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+		}
 	}
 }

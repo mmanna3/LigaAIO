@@ -28,3 +28,17 @@
 
 	{ Html.YKN().FooterVolver();}
 }
+
+<script>
+	function habilitarSuspender(equipoId, jugadorId) {
+		debugger;
+		$.ajax({
+			url: '/Jugador/HabilitarSuspender',
+			type: "POST",
+			data: { equipoId: equipoId, jugadorId: jugadorId },
+			success: function() {
+				window.location.reload(false);
+			}
+		});
+	}
+</script>

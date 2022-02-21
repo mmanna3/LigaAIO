@@ -20,6 +20,8 @@ namespace LigaSoft.Models.Dominio
 
 		public bool FueMigrado { get; set; }
 
+		public bool EstaSuspendido { get; set; }
+
 		public string Descripcion()
 		{
 			return $"DNI: {Jugador.DNI} - {Jugador.Apellido.ToCamelCase()}, {Jugador.Nombre.ToCamelCase()} - Categoría: {Jugador.Categoria()} - Fichado: {DateTimeUtils.ConvertToString(FechaFichaje)}";

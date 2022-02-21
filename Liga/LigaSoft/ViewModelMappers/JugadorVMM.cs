@@ -101,9 +101,9 @@ namespace LigaSoft.ViewModelMappers
 
 			vm.Equipos = new List<string>();
 
-			var equiposListConBotonImprimir = model.JugadorEquipo.Select(x => x.Equipo.Descripcion() + " - FICHADO: " + DateTimeUtils.ConvertToStringDdMmYy(x.FechaFichaje) + " " + BotonImprimir(x.JugadorId, x.EquipoId));
+			var equiposListConBotonImprimirYBotonSuspender = model.JugadorEquipo.Select(x => x.Equipo.Descripcion() + " - FICHADO: " + DateTimeUtils.ConvertToStringDdMmYy(x.FechaFichaje) + " " + BotonImprimir(x.JugadorId, x.EquipoId) + BotonSuspenderHabilitar(x.JugadorId, x.EquipoId, x.EstaSuspendido));
 
-			vm.Equipos.AddRange(equiposListConBotonImprimir);
+			vm.Equipos.AddRange(equiposListConBotonImprimirYBotonSuspender);
 
 			return vm;
 		}
@@ -111,6 +111,24 @@ namespace LigaSoft.ViewModelMappers
 		private static string BotonImprimir(int jugadorId, int equipoId)
 		{
 			return $"<a href='PrntCarnet:/{equipoId}/{jugadorId}' class='btn btn-primary btn-sm boton-imprimir'>Imprimir carnet</a>";
+		}
+
+		private static string BotonSuspenderHabilitar(int jugadorId, int equipoId, bool estaSuspendido)
+		{
+			string claseBootstrap;
+			string label;
+			if (estaSuspendido)
+			{
+				claseBootstrap = "btn-danger";
+				label = $"Jugador suspendido. ¿Habilitar?";
+			}
+			else
+			{
+				claseBootstrap = "btn-success";
+				label = $"Jugador habilitado. ¿Suspender?";
+			}
+
+			return $"<button onClick='return habilitarSuspender({equipoId},{jugadorId})' class='btn {claseBootstrap} btn-sm boton-suspenderhabilitar'>{label}</button>";
 		}
 
 		public JugadorCarnetVM MapJugadorParaCarnet(Jugador model, Equipo equipo)
@@ -153,7 +171,7 @@ namespace LigaSoft.ViewModelMappers
 				FechaNacimiento = DateTimeUtils.ConvertToString(model.FechaNacimiento),
 				CarnetImpresoBool = model.CarnetImpreso,
 				CarnetImpreso = model.CarnetImpreso.ToSiNoString(),
-				Foto = _imagenesJugadoresDiskPersistence.Path(model.DNI)
+				Foto = _imagenesJugadoresDiskPersistence.Path(model.DNI)				
 			};
 		}
 
