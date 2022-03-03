@@ -58,7 +58,8 @@ namespace LigaSoft.ViewModelMappers
 				Nombre = model.Nombre,
 				Club = model.Club.Nombre,
 				Torneo = model.Torneo.Descripcion,
-				Zona = model.Zona?.Nombre
+				Zona = model.Zona?.Nombre,
+				BajaLogica = model.BajaLogica
 			};
 		}
 

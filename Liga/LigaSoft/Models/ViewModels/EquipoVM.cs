@@ -51,6 +51,7 @@ namespace LigaSoft.Models.ViewModels
 
 		[Display(Name = "Valor de la cuota")]
 		public int PrecioDeLaCuota { get; set; }
+		public bool BajaLogica { get; set; }
 
 		[Display(Name = "Cantidad de jugadores fichados")]
 		public string CantidadFichados { get; set; }

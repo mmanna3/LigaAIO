@@ -29,4 +29,5 @@
 			action.RedirectWithRowId("Pases", "Equipo", "Pases");
 		})
 		.DataSource("/Equipo/GetForGrid")
+		.DataFilter("BajaLogica", false)
 )
