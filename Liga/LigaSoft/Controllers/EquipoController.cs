@@ -85,7 +85,7 @@ namespace LigaSoft.Controllers
 	    {
 		    var torneoId = Context.Equipos.Find(equipoOrigenId).TorneoId;
 
-			var result = Context.Equipos
+			var result = Context.EquiposActivos()
 			    .Where(x => x.TorneoId == torneoId && x.Id != equipoOrigenId)
 			    .ToList()
 				.Select(c => new IdDescripcionVM

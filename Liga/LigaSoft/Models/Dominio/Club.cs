@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -64,6 +65,11 @@ namespace LigaSoft.Models.Dominio
 		public int DeudaCuotas()
 		{
 			return Movimientos.Where(x => x.Concepto.Id == (int)ConceptoTipoEnum.Cuota).Sum(x => x.ImporteAdeudado());
+		}
+
+		public IEnumerable<Equipo> EquiposActivos()
+		{
+			return Equipos.Where(x => !x.BajaLogica);
 		}
 
 		public int DeudaLibre()

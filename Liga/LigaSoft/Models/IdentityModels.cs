@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using EfEnumToLookup.LookupGenerator;
@@ -73,6 +74,10 @@ namespace LigaSoft.Models
 	    public DbSet<ConceptoFichaje> ConceptosFichaje { get; set; }
 	    public DbSet<ConceptoInsumo> ConceptosInsumo { get; set; }
 	    public DbSet<ConceptoLibre> ConceptosLibre { get; set; }
+		public IQueryable<Equipo> EquiposActivos()
+		{
+			return this.Equipos.Where(x => !x.BajaLogica);
+		}
 
 		public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

@@ -47,7 +47,8 @@ namespace LigaSoft.Controllers
 		public List<SelectListItem> EquiposParaCombo(Club club)
 	    {
 		    return club
-				.Equipos.OrderBy(x => x.Nombre)
+				.EquiposActivos()
+				.OrderBy(x => x.Nombre)
 			    .Select(x => new SelectListItem {Text = $"{x.Nombre} - {x.Torneo.Tipo.Descripcion}", Value = x.Id.ToString()})
 				.ToList();
 	    }

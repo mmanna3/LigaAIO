@@ -202,7 +202,7 @@ namespace LigaSoft.Controllers
 	    {
 		    var torneosQueEstaJugando = Context.JugadorEquipos.Where(x => x.JugadorId == jugadorId).Select(y => y.Equipo.TorneoId);
 
-			var equiposDeTorneosQueNoEstaJugando = Context.Equipos				
+			var equiposDeTorneosQueNoEstaJugando = Context.EquiposActivos()
 				.Where(x => !torneosQueEstaJugando.Contains(x.TorneoId) && x.Nombre.Contains(term))
 			    .ToList()
 			    .Select(c => new IdDescripcionVM
