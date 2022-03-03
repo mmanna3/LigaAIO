@@ -1,11 +1,12 @@
 ﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.Enums
 @model LigaSoft.Models.ViewModels.ClubVM
 
 @section Titulo{
 	Detalles del club
 }
 
-@using (Html.YKN().Form())
+@using (Html.YKN().Form(FormSizeEnum.Big))
 {
 
 	<div class="row">
@@ -16,7 +17,7 @@
 			@Html.YKN().DisplayFor(x => x.Nombre)
 		</div>
 	</div>
-	<br/>
+	<br />
 	<div class="row">
 		<div class="col-sm-6">
 			@Html.YKN().DisplayFor(x => x.Direccion)
@@ -41,6 +42,18 @@
 		</div>
 	</div>
 
-	{Html.YKN().FooterVolver();}
+	{ Html.YKN().FooterVolver(); }
 }
 
+<script>
+	function habilitarODarDeBaja(equipoId) {
+		$.ajax({
+			url: '/Equipo/HabilitarODarDeBaja',
+			type: "POST",
+			data: { equipoId: equipoId },
+			success: function() {
+				window.location.reload(false);
+			}
+		});
+	}
+</script>

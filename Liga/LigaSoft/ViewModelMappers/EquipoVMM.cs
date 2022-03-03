@@ -96,7 +96,25 @@ namespace LigaSoft.ViewModelMappers
 
 		public IEnumerable<string> MapForDisplayMultiline(IEnumerable<Equipo> models)
 		{
-			return models.Select(model => model.Descripcion()).ToList();
+			return models.Select(model => model.Descripcion() + " " + BotonSuspenderHabilitar(model.Id, model.BajaLogica)).ToList();
+		}
+
+		private static string BotonSuspenderHabilitar(int equipoId, bool estaDadoDeBaja)
+		{
+			string claseBootstrap;
+			string label;
+			if (estaDadoDeBaja)
+			{
+				claseBootstrap = "btn-danger";
+				label = $"Equipo dado de baja. ¿Habilitar?";
+			}
+			else
+			{
+				claseBootstrap = "btn-success";
+				label = $"Equipo habilitado. ¿Dar de baja?";
+			}
+
+			return $"<button onClick='return habilitarODarDeBaja({equipoId})' class='btn {claseBootstrap} btn-sm boton-suspenderhabilitar'>{label}</button>";
 		}
 
 		public IEnumerable<string> MapForDisplayMultiline(ICollection<JugadorEquipo> models)

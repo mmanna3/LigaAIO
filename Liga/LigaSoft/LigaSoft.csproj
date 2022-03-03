@@ -342,6 +342,10 @@
     <Compile Include="Migrations\202202210406436_AgregaCampoEstaSuspendidoAJugadorEquipo.Designer.cs">
       <DependentUpon>202202210406436_AgregaCampoEstaSuspendidoAJugadorEquipo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202203030348144_Agrega_bajalogica_enequipos.cs" />
+    <Compile Include="Migrations\202203030348144_Agrega_bajalogica_enequipos.Designer.cs">
+      <DependentUpon>202203030348144_Agrega_bajalogica_enequipos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Dominio\JugadorAutofichado.cs" />
     <Compile Include="Models\Dominio\JugadorFichadoPorDelegado.cs" />
     <Compile Include="Models\Dominio\UsuarioDelegado.cs" />
@@ -1676,6 +1680,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202202210406436_AgregaCampoEstaSuspendidoAJugadorEquipo.resx">
       <DependentUpon>202202210406436_AgregaCampoEstaSuspendidoAJugadorEquipo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203030348144_Agrega_bajalogica_enequipos.resx">
+      <DependentUpon>202203030348144_Agrega_bajalogica_enequipos.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

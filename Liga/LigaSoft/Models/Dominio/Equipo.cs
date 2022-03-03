@@ -36,6 +36,8 @@ namespace LigaSoft.Models.Dominio
 
 		public int ValorDeLaCuota { get; set; }
 
+		public bool BajaLogica { get; set; }
+
 		public string Descripcion()
 		{
 			if (Torneo != null)

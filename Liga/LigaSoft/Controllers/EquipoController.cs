@@ -237,5 +237,17 @@ namespace LigaSoft.Controllers
 
 		    return View(vm);
 	    }
+
+		[HttpPost]
+		public ActionResult HabilitarODarDeBaja(int equipoId)
+		{
+			var equipo = Context.Equipos.Single(x => x.Id == equipoId);
+
+			equipo.BajaLogica = !equipo.BajaLogica;
+
+			Context.SaveChanges();
+
+			return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+		}
 	}
 }
