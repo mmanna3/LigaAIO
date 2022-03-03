@@ -61,8 +61,10 @@ namespace LigaSoft.Controllers
 			return Json(result, JsonRequestBehavior.AllowGet);
 		}
 
-		public JsonResult ObtenerNombreDelEquipo(int equipoId)
+		public JsonResult ObtenerNombreDelEquipo(string codigoAlfanumerico)
 		{
+			var equipoId = GeneradorDeHash.ObtenerSemillaAPartirDeAlfanumerico7Digitos(codigoAlfanumerico);
+
 			var result = _context.Equipos
 				.SingleOrDefault(x => x.Id == equipoId)?
 				.Nombre;

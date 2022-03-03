@@ -19,7 +19,8 @@ namespace LigaSoft.Models.ViewModels
 		[YKNRequired, YKNDateTime]
 		public string FechaNacimiento { get; set; }
 
-		public int CodigoEquipo { get; set; }
+		[YKNRequired]
+		public string CodigoAlfanumerico { get; set; }
 
 		public string Equipo { get; set; }
 

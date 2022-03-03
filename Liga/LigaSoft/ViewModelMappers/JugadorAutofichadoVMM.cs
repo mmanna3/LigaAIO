@@ -1,4 +1,5 @@
-﻿using LigaSoft.ExtensionMethods;
+﻿using LigaSoft.BusinessLogic;
+using LigaSoft.ExtensionMethods;
 using LigaSoft.Models;
 using LigaSoft.Models.Dominio;
 using LigaSoft.Models.Enums;
@@ -6,6 +7,7 @@ using LigaSoft.Models.ViewModels;
 using LigaSoft.Utilidades;
 using LigaSoft.Utilidades.Persistence;
 using LigaSoft.Utilidades.Persistence.DiskPersistence;
+using System;
 
 namespace LigaSoft.ViewModelMappers
 {
@@ -20,12 +22,22 @@ namespace LigaSoft.ViewModelMappers
 
 		public override void MapForCreateAndEdit(JugadorAutofichadoVM vm, JugadorAutofichado model)
 		{
+			int equipoId;
+			try
+			{
+				equipoId = GeneradorDeHash.ObtenerSemillaAPartirDeAlfanumerico7Digitos(vm.CodigoAlfanumerico);
+			}
+			catch (Exception e)
+			{
+				throw e;
+			}
+
 			model.Id = vm.Id;
 			model.DNI = vm.DNI;
 			model.Nombre = vm.Nombre;
 			model.FechaNacimiento = DateTimeUtils.ConvertToDateTime(vm.FechaNacimiento);
 			model.Apellido = vm.Apellido;
-			model.EquipoId = vm.CodigoEquipo;
+			model.EquipoId = equipoId;
 			model.Estado = EstadoJugadorAutofichado.PendienteDeAprobacion;
 			model.MotivoDeRechazo = null;
 		}
@@ -42,7 +54,7 @@ namespace LigaSoft.ViewModelMappers
 				FechaNacimiento = DateTimeUtils.ConvertToString(model.FechaNacimiento),
 				Equipo = equipo.Nombre,
 				Club = equipo.Club.Nombre,
-				CodigoEquipo = model.EquipoId,
+				CodigoAlfanumerico = model.EquipoId.ToString(),
 				Estado = model.Estado,
 				EstadoDescripcion = model.Estado.Descripcion(),
 				FotoCarnetRelativePath = _imagenesJugadoresDiskPersistence.PathFotoTemporalCarnet(model.DNI),

@@ -17,7 +17,7 @@ const PasoCodigoEquipo = ({register, errors, estiloDelPaso}) => {
   }  
 
   const validar = async () => {
-    return fetch(`/publico/obtenerNombreDelEquipo?equipoId=${codigoEquipo}`)
+    return fetch(`/publico/obtenerNombreDelEquipo?codigoAlfanumerico=${codigoEquipo}`)
         .then(response => response.json())
         .then(data => {setNombreEquipo(data); setCodigoEquipoEsValido(true); setYaValidoCodigoEquipo(true); return true})
         .catch(() => {setCodigoEquipoEsValido(false); setYaValidoCodigoEquipo(true); return false})
@@ -37,9 +37,9 @@ const PasoCodigoEquipo = ({register, errors, estiloDelPaso}) => {
           <div className={bootstrap['col-6']}> 
               <Input
                   onChange={onCodigoEquipoChange}
-                  type="number"
+                  type="string"
                   register={register({required: true, validate: {asyncValidate: onValidarClick}})} 
-                  name="codigoEquipo"
+                  name="codigoAlfanumerico"
               />
           </div>
           <div className={bootstrap['col-6']}> 
