@@ -83,7 +83,8 @@ namespace LigaSoft.BusinessLogic
 
 	    private static List<SelectListItem> EquiposDeLaZonaAperturaClausura(Zona zona)
 	    {
-		    return zona?.Equipos
+			return zona?.Equipos
+				.Where(x => !x.BajaLogica)
 			    .ToList()
 				.Select(x => new SelectListItem { Text = $"{x.Id} - {x.Nombre}", Value = x.Id.ToString() })
 			    .ToList();
@@ -92,7 +93,8 @@ namespace LigaSoft.BusinessLogic
 	    private List<TextValueItem> EquiposDelTorneoSinZonaAperturaClausura(Zona zona)
 	    {
 		    return _context.Equipos
-			    .Where(x => x.Torneo.Id == zona.TorneoId && (x.Zona == null || x.Zona.Tipo != zona.Tipo))
+				.Where(x => !x.BajaLogica)
+				.Where(x => x.Torneo.Id == zona.TorneoId && (x.Zona == null || x.Zona.Tipo != zona.Tipo))
 			    .ToList()
 				.Select(x => new TextValueItem { Text = $"{x.Id} - {x.Nombre}", Value = x.Id.ToString() })
 			    .ToList();
