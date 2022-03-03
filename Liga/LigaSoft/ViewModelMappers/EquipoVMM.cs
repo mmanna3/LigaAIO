@@ -114,7 +114,7 @@ namespace LigaSoft.ViewModelMappers
 				label = $"Equipo habilitado. ¿Dar de baja?";
 			}
 
-			return $"<button onClick='return habilitarODarDeBaja({equipoId})' class='btn {claseBootstrap} btn-sm boton-suspenderhabilitar'>{label}</button>";
+			return $"<button onClick='habilitarODarDeBaja({equipoId}); return false;' class='btn {claseBootstrap} btn-sm boton-suspenderhabilitar'>{label}</button>";
 		}
 
 		public IEnumerable<string> MapForDisplayMultiline(ICollection<JugadorEquipo> models)

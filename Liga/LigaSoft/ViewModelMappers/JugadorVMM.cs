@@ -128,7 +128,7 @@ namespace LigaSoft.ViewModelMappers
 				label = $"Jugador habilitado. ¿Suspender?";
 			}
 
-			return $"<button onClick='return habilitarSuspender({equipoId},{jugadorId})' class='btn {claseBootstrap} btn-sm boton-suspenderhabilitar'>{label}</button>";
+			return $"<button onClick='habilitarSuspender({equipoId},{jugadorId}); return false;' class='btn {claseBootstrap} btn-sm boton-suspenderhabilitar'>{label}</button>";
 		}
 
 		public JugadorCarnetVM MapJugadorParaCarnet(Jugador model, Equipo equipo)
