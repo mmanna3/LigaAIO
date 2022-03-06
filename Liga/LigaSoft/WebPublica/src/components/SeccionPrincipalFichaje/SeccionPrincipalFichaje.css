@@ -1,5 +1,16 @@
 @value blanco-grisaceo from from './../../assets/styles/colors.css';
 
+.margenDeArribaDelBoton {
+  margin-top: 1.5em;
+}
+
+.botonFicharOtroJugador {
+  width: 300px;
+  height: 80px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
 .alertaValidacion {
   margin-top: 20px;
   margin-bottom: 20px;

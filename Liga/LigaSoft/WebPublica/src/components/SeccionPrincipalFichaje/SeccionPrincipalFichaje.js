@@ -75,6 +75,9 @@ const SeccionPrincipalFichaje = () => {
                 <div className={bootstrap['col-12']}>
                     <div className={`${styles.mensajeExitoResultadoDelPost}`}>
                         <strong>¡Tus datos se enviaron correctamente!</strong> Gracias por ficharte.
+                        <div className={`${styles.margenDeArribaDelBoton} ${bootstrap['align-items-center']}`}>
+                            <button onClick={() => mostrarMensajeExito(false)} className={`${bootstrap.btn} ${bootstrap['btn-primary']} ${styles.botonFicharOtroJugador}`}>Fichar otro jugador</button>
+                        </div>              
                     </div>
                 </div>
             </div>
