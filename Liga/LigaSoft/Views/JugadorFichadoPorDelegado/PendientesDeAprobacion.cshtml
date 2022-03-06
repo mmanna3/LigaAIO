@@ -14,11 +14,11 @@
 @section CabeceraGrilla {
 	@(Html.YKN<JugadorFichadoPorDelegadoVM>().Buscador(x => x.DNI))
 
-	@(Html.YKN().Button("Fichar")
+	@*@(Html.YKN().Button("Fichar")
 			.PullRight()
 			.Label("Fichar nuevo jugador")
 			.OnClickRedirect("Fichar", "JugadorFichadoPorDelegado", new Dictionary<string, string> { { "equipoId", Model.Id.ToString() } })
-	)
+	)*@
 }
 
 @(Html.YKN<JugadorFichadoPorDelegadoVM>().Grid()
