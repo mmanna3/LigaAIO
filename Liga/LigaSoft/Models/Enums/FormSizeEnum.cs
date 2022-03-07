@@ -4,6 +4,7 @@
 	{
 		Small = 600,
 		Big = 900,
+		VeryBig = 1200,
 		None
 	}
 }

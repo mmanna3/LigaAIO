@@ -13,11 +13,12 @@ using LigaSoft.Utilidades.Persistence;
 using LigaSoft.Utilidades.Persistence.DiskPersistence;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using LigaSoft.BusinessLogic;
 
 namespace LigaSoft.Controllers
 {
 	[Authorize(Roles = Roles.AdmininstradorYDelegado)]
-	public class JugadorFichadoPorDelegadoController : ABMController<JugadorFichadoPorDelegado, JugadorFichadoPorDelegadoVM, JugadorFichadoPorDelegadoVMM>
+	public class JugadorFichadoPorDelegadoController : ABMController<JugadorAutofichado, JugadorAutofichadoVM, JugadorAutofichadoVMM>
 	{
 		private readonly UserManager<ApplicationUser> _userManager;
 		private readonly IImagenesJugadoresPersistence _imagenesJugadoresDiskPersistence;
@@ -73,77 +74,77 @@ namespace LigaSoft.Controllers
 		    return View(vm);
 	    }
 
-		[ImportModelStateFromTempData]
-		public ActionResult Fichar(int equipoId)
-	    {
-		    var vm = new JugadorFichadoPorDelegadoVM
-		    {
-				Equipo = Context.Equipos.Find(equipoId).Nombre,
-				EquipoId = equipoId
-		    };
+		//[ImportModelStateFromTempData]
+		//public ActionResult Fichar(int equipoId)
+	 //   {
+		//    var vm = new JugadorFichadoPorDelegadoVM
+		//    {
+		//		Equipo = Context.Equipos.Find(equipoId).Nombre,
+		//		EquipoId = equipoId
+		//    };
 
-			return View(vm);
-	    }
+		//	return View(vm);
+	 //   }
 
-		[HttpPost, ExportModelStateToTempData]
-		public ActionResult Fichar(JugadorFichadoPorDelegadoVM vm)
+		//[HttpPost, ExportModelStateToTempData]
+		//public ActionResult Fichar(JugadorFichadoPorDelegadoVM vm)
+		//{
+		//	try
+		//	{
+		//		ValidarFotos(vm);
+		//		if (!ModelState.IsValid || JugadorYaEstaFichado(vm.DNI))
+		//			return Fichar(vm.EquipoId);
+
+		//		var model = new JugadorFichadoPorDelegado();
+		//		VMM.MapForCreateAndEdit(vm, model);
+		//		Context.JugadoresFichadosPorDelegados.Add(model);
+		//		Context.SaveChanges();
+
+		//		_imagenesJugadoresDiskPersistence.GuardarFotosTemporalesDeJugadorFichadoPorDelegado(vm);
+		//	}
+		//	catch (Exception e)
+		//	{
+		//		YKNExHandler.LoguearYLanzarExcepcion(e, "Error cuando el delegado intenta fichar el jugador");
+		//	}
+
+		//	return RedirectToAction("PendientesDeAprobacion", new IdDescripcionVM
+		//	{
+		//		Descripcion = Context.Equipos.Find(vm.EquipoId).Nombre,
+		//		Id = vm.EquipoId
+		//	});
+		//}
+
+		//private void ValidarFotos(JugadorAutofichadoVM vm)
+		//{
+		//	ValidarFotoCarnet(vm);
+		//	ValidarFotoDNIFrente(vm);
+		//}
+
+		//private void ValidarFotoCarnet(JugadorAutofichadoVM vm)
+		//{
+		//	if (string.IsNullOrEmpty(vm.FotoCarnet))
+		//		ModelState.AddModelError("", "Debe seleccionar una foto carnet.");
+		//}
+
+		//private void ValidarFotoDNIFrente(JugadorAutofichadoVM vm)
+		//{
+		//	if (vm.FotoDNIFrente == null || vm.FotoDNIFrente.ContentLength == 0)
+		//		ModelState.AddModelError("", "Debe seleccionar una foto DNI Frente.");
+		//	else
+		//		ValidarExtensionFotoDNIFrente(vm);
+		//}
+
+		private void ValidarExtensionFotoDNIFrente(JugadorAutofichadoVM vm)
 		{
-			try
-			{
-				ValidarFotos(vm);
-				if (!ModelState.IsValid || JugadorYaEstaFichado(vm.DNI))
-					return Fichar(vm.EquipoId);
-
-				var model = new JugadorFichadoPorDelegado();
-				VMM.MapForCreateAndEdit(vm, model);
-				Context.JugadoresFichadosPorDelegados.Add(model);
-				Context.SaveChanges();
-
-				_imagenesJugadoresDiskPersistence.GuardarFotosTemporalesDeJugadorFichadoPorDelegado(vm);
-			}
-			catch (Exception e)
-			{
-				YKNExHandler.LoguearYLanzarExcepcion(e, "Error cuando el delegado intenta fichar el jugador");
-			}
-
-			return RedirectToAction("PendientesDeAprobacion", new IdDescripcionVM
-			{
-				Descripcion = Context.Equipos.Find(vm.EquipoId).Nombre,
-				Id = vm.EquipoId
-			});
-		}
-
-		private void ValidarFotos(JugadorFichadoPorDelegadoVM vm)
-		{
-			ValidarFotoCarnet(vm);
-			ValidarFotoDNIFrente(vm);
-		}
-
-		private void ValidarFotoCarnet(JugadorFichadoPorDelegadoVM vm)
-		{
-			if (string.IsNullOrEmpty(vm.FotoCarnet))
-				ModelState.AddModelError("", "Debe seleccionar una foto carnet.");
-		}
-
-		private void ValidarFotoDNIFrente(JugadorFichadoPorDelegadoVM vm)
-		{
-			if (vm.FotoDNIFrente == null || vm.FotoDNIFrente.ContentLength == 0)
-				ModelState.AddModelError("", "Debe seleccionar una foto DNI Frente.");
-			else
-				ValidarExtensionFotoDNIFrente(vm);
-		}
-
-		private void ValidarExtensionFotoDNIFrente(JugadorFichadoPorDelegadoVM vm)
-		{
-			if (!"jpg".Equals(vm.FotoDNIFrente.FileName.Substring(vm.FotoDNIFrente.FileName.Length - 3, 3).ToLower()) &&
-			    !"jpeg".Equals(vm.FotoDNIFrente.FileName.Substring(vm.FotoDNIFrente.FileName.Length - 4, 4).ToLower()))
+			if (!"jpg".Equals(vm.ArchivoDeFotoDNIFrente.FileName.Substring(vm.ArchivoDeFotoDNIFrente.FileName.Length - 3, 3).ToLower()) &&
+			    !"jpeg".Equals(vm.ArchivoDeFotoDNIFrente.FileName.Substring(vm.ArchivoDeFotoDNIFrente.FileName.Length - 4, 4).ToLower()))
 				ModelState.AddModelError("", "La foto DNI Frente debe estar en formato JPG o JPEG.");
 		}
 
 		[ImportModelStateFromTempData]
 		public ActionResult EditarJugadorRechazado(int id)
 		{
-			var model = Context.JugadoresFichadosPorDelegados.Find(id);
+			var model = Context.JugadoresaAutofichados.Find(id);
 
 			var vm = VMM.MapForEdit(model);
 
@@ -151,29 +152,31 @@ namespace LigaSoft.Controllers
 		}
 
 		[HttpPost, ExportModelStateToTempData]
-		public ActionResult EditarJugadorRechazado(JugadorFichadoPorDelegadoVM vm)
+		public ActionResult EditarJugadorRechazado(JugadorAutofichadoVM vm)
 		{
 			try
 			{
-				if (vm.FotoDNIFrente != null)
+				if (vm.ArchivoDeFotoDNIFrente != null)
 					ValidarExtensionFotoDNIFrente(vm);
+
 				if (!ModelState.IsValid)
 					return RedirectToAction("Edit", vm.Id);
 
-				var model = Context.JugadoresFichadosPorDelegados.Find(vm.Id);
+				var model = Context.JugadoresaAutofichados.Find(vm.Id);
 
 				VMM.MapForEdit(vm, model);
 
 				Context.SaveChanges();
 
-				_imagenesJugadoresDiskPersistence.GuardarFotosTemporalesDeJugadorFichadoPorDelegado(vm);
+				_imagenesJugadoresDiskPersistence.GuardarFotosTemporalesDeJugadorAutofichadoSiendoEditado(vm);				
 			}
 			catch (Exception e)
 			{
-				YKNExHandler.LoguearYLanzarExcepcion(e, "Error al editar jugador fichado por delegado y rechazado.");
-
+				YKNExHandler.LoguearYLanzarExcepcion(e, "Error al editar jugador fichado por delegado y rechazado.");				
+				
 				return RedirectToAction("Rechazados", new IdDescripcionVM
 				{
+					
 					Descripcion = Context.Equipos.Find(vm.EquipoId).Nombre,
 					Id = vm.EquipoId
 				});
@@ -188,7 +191,7 @@ namespace LigaSoft.Controllers
 
 		private bool JugadorYaEstaFichado(string dni)
 	    {
-		    var result = Context.Jugadores.Any(x => x.DNI == dni) || Context.JugadoresFichadosPorDelegados.Any(x => x.DNI == dni);
+		    var result = Context.Jugadores.Any(x => x.DNI == dni) || Context.JugadoresaAutofichados.Any(x => x.DNI == dni);
 			ModelState.AddModelError("", "El jugador ya se encuentra fichado.");
 		    return result;
 	    }

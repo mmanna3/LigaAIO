@@ -6,7 +6,7 @@
 	Jugadores pendientes de aprobación
 }
 
-@(Html.YKN<JugadorFichadoPorDelegadoVM>().Grid()
+@(Html.YKN<JugadorAutofichadoVM>().Grid()
 		  .WithColumns(column =>
 		  {
 			  column.AddTextColumn(x => x.DNI);

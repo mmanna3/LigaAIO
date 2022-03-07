@@ -200,7 +200,6 @@
     <Compile Include="BusinessLogic\GeneradorDeHash.cs" />
     <Compile Include="BusinessLogic\GeneradorDeMovimientos.cs" />
     <Compile Include="Controllers\AdministracionJugadoresAutofichadosController.cs" />
-    <Compile Include="Controllers\AdministracionJugadoresFichadosPorDelegadosController.cs" />
     <Compile Include="Controllers\AdministracionDelegadosController.cs" />
     <Compile Include="Controllers\AppDelegadosController.cs" />
     <Compile Include="Controllers\SudoController.cs" />
@@ -346,8 +345,11 @@
     <Compile Include="Migrations\202203030348144_Agrega_bajalogica_enequipos.Designer.cs">
       <DependentUpon>202203030348144_Agrega_bajalogica_enequipos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202203060224039_QuitaJugadoresFichadosPorDelegados.cs" />
+    <Compile Include="Migrations\202203060224039_QuitaJugadoresFichadosPorDelegados.Designer.cs">
+      <DependentUpon>202203060224039_QuitaJugadoresFichadosPorDelegados.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Dominio\JugadorAutofichado.cs" />
-    <Compile Include="Models\Dominio\JugadorFichadoPorDelegado.cs" />
     <Compile Include="Models\Dominio\UsuarioDelegado.cs" />
     <Compile Include="Models\Dominio\Sancion.cs" />
     <Compile Include="Models\Enums\EstadoJugadorAutofichado.cs" />
@@ -360,7 +362,6 @@
     <Compile Include="Models\ViewModels\JugadorAutofichadoVM.cs" />
     <Compile Include="Models\ViewModels\ApiResponseVM.cs" />
     <Compile Include="Models\ViewModels\JugadorConFechaFichajeVM.cs" />
-    <Compile Include="Models\ViewModels\JugadorFichadoPorDelegadoVM.cs" />
     <Compile Include="Models\ViewModels\SancionesWebPublicaVM.cs" />
     <Compile Include="Models\ViewModels\InformePagoCuotasPorMesVM.cs" />
     <Compile Include="Models\ViewModels\SancionVM.cs" />
@@ -937,7 +938,6 @@
     <Compile Include="Utilidades\YKNExHandler.cs" />
     <Compile Include="Utilidades\ZipUtility.cs" />
     <Compile Include="ViewModelMappers\JugadorAutofichadoVMM.cs" />
-    <Compile Include="ViewModelMappers\JugadorFichadoPorDelegadoVMM.cs" />
     <Compile Include="ViewModelMappers\UsuarioDelegadoVMM.cs" />
     <Compile Include="ViewModelMappers\GoleadoresWebPublicaBuilder.cs" />
     <Compile Include="ViewModelMappers\SancionVMM.cs" />
@@ -1283,6 +1283,7 @@
     <Content Include="Views\Club\PagarCarnets.cshtml" />
     <Content Include="Views\AdministracionJugadoresAutofichados\DetalleRechazado.cshtml" />
     <Content Include="Views\Informe\CantidadDeJugadoresPorTorneo_Informe.cshtml" />
+    <Content Include="Views\JugadorFichadoPorDelegado\EditarJugadorRechazado - Copy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1683,6 +1684,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202203030348144_Agrega_bajalogica_enequipos.resx">
       <DependentUpon>202203030348144_Agrega_bajalogica_enequipos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203060224039_QuitaJugadoresFichadosPorDelegados.resx">
+      <DependentUpon>202203060224039_QuitaJugadoresFichadosPorDelegados.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

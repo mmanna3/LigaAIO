@@ -38,12 +38,12 @@ namespace LigaSoft.Utilidades.Persistence.DiskPersistence
 			vm.Foto.SaveAs(imagePath);
 		}
 
-		//No testeado
-		public void GuardarFotosTemporalesDeJugadorFichadoPorDelegado(JugadorFichadoPorDelegadoVM vm)
-		{
-			GuardarFotoCarnetTemporal(vm);
-			GuardarFotoDNIFrenteTemporal(vm);
-		}
+		////No testeado
+		//public void GuardarFotosTemporalesDeJugadorFichadoPorDelegado(JugadorFichadoPorDelegadoVM vm)
+		//{
+		//	GuardarFotoCarnetTemporal(vm);
+		//	GuardarFotoDNIFrenteTemporal(vm);
+		//}
 
 		public string PathFotoTemporalCarnet(string dni)
 		{
@@ -90,12 +90,24 @@ namespace LigaSoft.Utilidades.Persistence.DiskPersistence
 
 		public void GuardarFotosTemporalesDeJugadorAutofichado(JugadorAutofichadoVM vm)
 		{
-			GuardarFotoCarnetTemporal(new JugadorFichadoPorDelegadoVM {DNI = vm.DNI, FotoCarnet = vm.FotoCarnet });
+			GuardarFotoCarnetTemporal(new JugadorAutofichadoVM {DNI = vm.DNI, FotoCarnet = vm.FotoCarnet });
 			GuardarFotoDNIFrenteTemporal(vm);
 			GuardarFotoDNIDorsoTemporal(vm);
 		}
 
-		private static void GuardarFotoCarnetTemporal(JugadorFichadoPorDelegadoVM vm)
+		public void GuardarFotosTemporalesDeJugadorAutofichadoSiendoEditado(JugadorAutofichadoVM vm)
+		{
+			if (vm.FotoCarnet != null)
+				GuardarFotoCarnetTemporal(new JugadorAutofichadoVM { DNI = vm.DNI, FotoCarnet = vm.FotoCarnet });
+			
+			if (vm.FotoDNIFrente != null)
+				GuardarFotoDNIFrenteTemporal(vm);
+
+			if (vm.FotoDNIDorso != null)
+				GuardarFotoDNIDorsoTemporal(vm);
+		}
+
+		private static void GuardarFotoCarnetTemporal(JugadorAutofichadoVM vm)
 		{
 			if (vm.FotoCarnet != null)
 			{
@@ -141,20 +153,20 @@ namespace LigaSoft.Utilidades.Persistence.DiskPersistence
 			}
 		}
 
-		private static void GuardarFotoDNIFrenteTemporal(JugadorFichadoPorDelegadoVM vm)
-		{
-			if (vm.FotoDNIFrente != null)
-			{
-				var imagePath = $"{Paths.ImagenesTemporalesJugadorDNIFrenteAbsolute}/{vm.DNI}.jpg";
+		//private static void GuardarFotoDNIFrenteTemporal(JugadorFichadoPorDelegadoVM vm)
+		//{
+		//	if (vm.FotoDNIFrente != null)
+		//	{
+		//		var imagePath = $"{Paths.ImagenesTemporalesJugadorDNIFrenteAbsolute}/{vm.DNI}.jpg";
 
-				if (File.Exists(imagePath))
-					File.Delete(imagePath);
+		//		if (File.Exists(imagePath))
+		//			File.Delete(imagePath);
 
-				Directory.CreateDirectory(Paths.ImagenesTemporalesJugadorDNIFrenteAbsolute);
-				var result = ImagenUtility.RotarAHorizontalYComprimir(vm.FotoDNIFrente.InputStream);
-				result.Save(imagePath);
-			}
-		}
+		//		Directory.CreateDirectory(Paths.ImagenesTemporalesJugadorDNIFrenteAbsolute);
+		//		var result = ImagenUtility.RotarAHorizontalYComprimir(vm.FotoDNIFrente.InputStream);
+		//		result.Save(imagePath);
+		//	}
+		//}
 
 		public string GetFotoEnBase64(string dni)
 		{

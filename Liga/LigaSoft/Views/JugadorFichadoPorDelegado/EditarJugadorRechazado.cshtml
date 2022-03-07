@@ -1,111 +1,178 @@
 ﻿@using LigaSoft.ExtensionMethods
-@model LigaSoft.Models.ViewModels.JugadorFichadoPorDelegadoVM
+@using LigaSoft.Models.Enums
+@model LigaSoft.Models.ViewModels.JugadorAutofichadoVM
 @section Titulo{
-	Editar Jugador rechazado por administración
+	Detalles del Jugador
 }
 @section Subtitulo {
-	Equipo: @Model.Equipo
+	<strong>Equipo: </strong>@Model.Equipo - <strong>Torneo: </strong>@ViewBag.Equipo
 }
+
+@Html.YKNNonTyped().ValidationSummary()
 
 <script src="../../Scripts/pixelarity-face.js"></script>
 <link rel="stylesheet" href="../../Content/pixelarity.css">
 
-@using (Html.YKN().Form())
+@using (Html.YKN().Form("EditarJugadorRechazado", "JugadorFichadoPorDelegado", FormSizeEnum.VeryBig))
 {
-	@Html.YKNNonTyped().ValidationSummary()
-	@Html.HiddenFor(x => x.EquipoId)
 	@Html.HiddenFor(x => x.Id)
-	<div class="row row-motivorechazo">
-		<div class="col-sm-12">
-			<label>Motivo de rechazo</label>
-			<div class="motivorechazo">@Model.MotivoDeRechazo</div>
+
+	<div class="row">
+		<div class="col-sm-offset-3 col-sm-6">
+			<div class="alert alert-danger alerta" role="alert">				
+				<h4>Motivo de rechazo</h4>
+				<p>@Model.MotivoDeRechazo</p>				
+			</div>
 		</div>
 	</div>
+
 	<div class="row">
 		<div class="col-sm-6">
-			@Html.YKN().EditorFor(x => x.DNI).TabIndex(1)
-			@Html.YKN().EditorFor(x => x.Nombre).TabIndex(2)
-			@Html.YKN().EditorFor(x => x.Apellido).TabIndex(3)
-			@Html.YKN().DatePickerFor(x => x.FechaNacimiento)
-		</div>
+			<div>
+				<label>Foto DNI Frente</label>
+			</div>
+			<img class="imagen-dni" id="fotoDNIFrenteImg" src="@Model.FotoDNIFrenteRelativePath" alt="fotoDNIFrente">
+			<div class='form-group'>
+				<label class='btn btn-primary' for='FotoDNIFrenteInput' id="labelFotoDNIFrente">
+					Seleccionar foto DNI Frente
+				</label>
+				<input id='FotoDNIFrenteInput' name='FotoDNIFrenteInput' accept=".jpeg,.jpg" style='display:none' class="form-control" type='file'>
+				<input type="hidden" id="FotoDNIFrente" name="FotoDNIFrente" value=""><br>
+			</div>
+		</div>	
 		<div class="col-sm-6">
-			<input type="hidden" id="imagen" name="imagen" value="John"><br>
-			<img id="result" src="@Model.FotoCarnetRelativePath">
+			<div>
+				<label>Foto DNI Dorso</label>
+			</div>
+			<img class="imagen-dni" id="fotoDNIDorsoImg" src="@Model.FotoDNIDorsoRelativePath" alt="fotoDNIDorso">
+			<div class='form-group'>
+				<label class='btn btn-primary' for='FotoDNIDorsoInput' id="labelFotoDNIDorso">
+					Seleccionar foto DNI Dorso
+				</label>
+				<input width="800" id='FotoDNIDorsoInput' name='FotoDNIDorsoInput' accept=".jpeg,.jpg" style='display:none' class="form-control" type='file'>
+				<input type="hidden" id="FotoDNIDorso" name="FotoDNIDorso" value=""><br>
+			</div>
+		</div>
+	</div>
+	<div class="row fila-datos">
+		<div class="col-sm-3">
+			@Html.YKN().DisplayFor(x => x.DNI)
+			@Html.YKN().EditorFor(x => x.Nombre)
+			@Html.YKN().EditorFor(x => x.Apellido)
+		</div>
+		<div class="col-sm-3">
+			@Html.HiddenFor(x => x.EquipoId)
+			@Html.HiddenFor(x => x.CodigoAlfanumerico)
+			@Html.YKN().DatePickerFor(x => x.FechaNacimiento)
+			@Html.YKN().DisplayFor(x => x.Equipo)
+			@Html.YKN().DisplayFor(x => x.Club)
+		</div>
+		<div class="col-sm-3">
+			<img id="fotoCarnetImg" src="@Model.FotoCarnetRelativePath">
 			<div class='form-group'>
 				<label class='btn btn-primary' for='FotoCarnetInput' id="labelFotoCarnet">
 					Seleccionar foto carnet
 				</label>
 				<input id='FotoCarnetInput' name='FotoCarnetInput' accept=".jpeg,.jpg" style='display:none' class="form-control" type='file'>
-				<input type="hidden" id="FotoCarnet" name="FotoCarnet" value=""><br>
+				<input type="hidden" id="FotoCarnet" name="FotoCarnet" value="@Model.FotoCarnet"><br>
 			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class='col-sm-6'>
-			@(Html.YKN().UploadFile(x => x.FotoDNIFrente)
-												  .Class("btn-primary width100porciento")
-												  .AcceptedExtension(".jpg,.jpeg")
-												  .Label("Seleccionar foto de DNI (Frente)"))
 		</div>
 	</div>
 
 	<div class='row form-footer'>
 		<div class='col-sm-offset-6 col-sm-3'>
-			@(Html.YKN().BotonCancelar()
-												  .OnClickRedirect("PendientesDeAprobacion", "JugadorFichadoPorDelegado", new Dictionary<string, string> { { "Id", Model.EquipoId.ToString() }, { "Descripcion", Model.Equipo } }))
+			@(Html.YKN()
+				.BotonCancelar()
+				.OnClickRedirect("PendientesDeAprobacion", "JugadorFichadoPorDelegado", new Dictionary<string, string> { { "Id", Model.EquipoId.ToString() }, { "Descripcion", Model.Equipo } }))
 		</div>
 		<div class='col-sm-3'>
-			@Html.YKN().BotonGuardar()
+			<button class="btn btn-success full-width" type="submit">Guardar</button>
 		</div>
 	</div>
+
 }
 
-
-<style type="text/css">
-	#result {
-		display: block;
-		position: relative;
-		width: 240px;
-		height: 240px;
-		border: 0.3px solid #cccccc;
-		border-radius: 4px;
-		background-color: #eee;
+<style>
+	.alerta {
+		text-align: center;
 	}
 
-	#labelFotoCarnet {
-		margin-top: 1em;
-		width: 240px;
+	.alerta h4 {
+		font-weight: bold;
+	}
+	
+	.imagen-dni {
+		max-width: 800px;
+	}
+	
+	.form-rechazar {
+		border: 1px solid grey;
+		padding: 1em;
 	}
 
-	.width100porciento {
-		width: 100%;
+	#Fichar {
+		margin-top: 0.3em;
+		font-size: 1.5em;
 	}
 
-	.row-motivorechazo {
-		margin-bottom: 2em !important;
-		border: 1px solid;
+	.row-forms {
+		padding-top: 5em !important;
+	}
+
+	img {
+		border: 1px solid #111;
+		border-radius: 15px;
+	}
+
+	.fila-datos {
+		margin-top: 30px !important;
+		border: 1px solid black;
+		border-radius: 10px;
 		padding: 1em !important;
 	}
 </style>
 
 <script>
 	$(document).ready(function () {
-		
+		$('#pixelarity-side-opt-holder').hide();
+		$('.pixelarity-img-edit-save').text('RECORTAR');
+		$('.pixelarity-img-edit-cancel').text('CANCELAR');
+
 		$("#FotoCarnetInput").change(function (e) {
-			debugger;
 			var img = e.target.files[0];
-			$('#pixelarity-side-opt-holder').hide();
-			$('.pixelarity-img-edit-save').text('RECORTAR');
-			$('.pixelarity-img-edit-cancel').text('CANCELAR');
 			if (!pixelarity.open(img, true, function (res) {
 
-				$("#result").attr("src", res);
+				$("#fotoCarnetImg").attr("src", res);
 				$("#FotoCarnet").attr("value", res);
 
 			}, "jpg", 0.7, true)) {
-				alert("Whoops! That is not an image!");
+				alert("La foto debe estar en formato jpg");
 			}
 
+		});
+
+		$("#FotoDNIFrenteInput").change(function (e) {
+			var img = e.target.files[0];
+			if (!pixelarity.open(img, false, function (res) {
+
+				$("#fotoDNIFrenteImg").attr("src", res);
+				$("#FotoDNIFrente").attr("value", res);
+
+			}, "jpg", 0.7, true)) {
+				alert("La foto debe estar en formato jpg");
+			}
+		});
+
+		$("#FotoDNIDorsoInput").change(function (e) {
+			var img = e.target.files[0];
+			if (!pixelarity.open(img, false, function (res) {
+
+				$("#fotoDNIDorsoImg").attr("src", res);
+				$("#FotoDNIDorso").attr("value", res);
+
+			}, "jpg", 0.7, true)) {
+				alert("La foto debe estar en formato jpg");
+			}
 		});
 	});
 

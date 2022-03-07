@@ -12,7 +12,7 @@
 }
 
 @section CabeceraGrilla {
-	@(Html.YKN<JugadorFichadoPorDelegadoVM>().Buscador(x => x.DNI))
+	@(Html.YKN<JugadorAutofichadoVM>().Buscador(x => x.DNI))
 
 	@*@(Html.YKN().Button("Fichar")
 			.PullRight()
@@ -21,7 +21,7 @@
 	)*@
 }
 
-@(Html.YKN<JugadorFichadoPorDelegadoVM>().Grid()
+@(Html.YKN<JugadorAutofichadoVM>().Grid()
 		.WithColumns(column =>
 		{
 			column.AddTextColumn(x => x.DNI);

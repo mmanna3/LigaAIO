@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Web;
 using LigaSoft.Models.Attributes;
 using LigaSoft.Models.Enums;
 
@@ -19,8 +20,9 @@ namespace LigaSoft.Models.ViewModels
 		[YKNRequired, YKNDateTime]
 		public string FechaNacimiento { get; set; }
 
-		[YKNRequired]
 		public string CodigoAlfanumerico { get; set; }
+
+		public int EquipoId { get; set; }
 
 		public string Equipo { get; set; }
 
@@ -35,6 +37,9 @@ namespace LigaSoft.Models.ViewModels
 
 		public string FotoDNIFrente { get; set; }
 
+		// Para la edición del delegado
+		public HttpPostedFileBase ArchivoDeFotoDNIFrente { get; set; }
+
 		public string FotoDNIDorso { get; set; }
 
 		public string FotoCarnetRelativePath { get; set; }
@@ -46,6 +51,6 @@ namespace LigaSoft.Models.ViewModels
 		[Column(TypeName = "VARCHAR")]
 		[MaxLength(150)]
 		[Display(Name = "Motivo de rechazo")]
-		public string MotivoDeRechazo { get; set; }
+		public string MotivoDeRechazo { get; set; }				
 	}
 }
