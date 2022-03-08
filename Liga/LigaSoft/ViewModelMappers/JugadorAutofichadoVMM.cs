@@ -45,6 +45,8 @@ namespace LigaSoft.ViewModelMappers
 		public override JugadorAutofichadoVM MapForEditAndDetails(JugadorAutofichado model)
 		{
 			var equipo = Context.Equipos.Find(model.EquipoId);
+			var fechaAntiCache = DateTime.Now.ToString("dd-MM-yy--HH-mm-ss-ff");
+
 			return new JugadorAutofichadoVM
 			{
 				Id = model.Id,
@@ -58,9 +60,9 @@ namespace LigaSoft.ViewModelMappers
 				Club = equipo.Club.Nombre,				
 				Estado = model.Estado,
 				EstadoDescripcion = model.Estado.Descripcion(),
-				FotoCarnetRelativePath = _imagenesJugadoresDiskPersistence.PathFotoTemporalCarnet(model.DNI),
-				FotoDNIFrenteRelativePath = _imagenesJugadoresDiskPersistence.PathFotoTemporalDNIFrente(model.DNI),
-				FotoDNIDorsoRelativePath = _imagenesJugadoresDiskPersistence.PathFotoTemporalDNIDorso(model.DNI),
+				FotoCarnetRelativePath = $"{_imagenesJugadoresDiskPersistence.PathFotoTemporalCarnet(model.DNI)}?{fechaAntiCache}",
+				FotoDNIFrenteRelativePath = $"{_imagenesJugadoresDiskPersistence.PathFotoTemporalDNIFrente(model.DNI)}?{fechaAntiCache}",
+				FotoDNIDorsoRelativePath = $"{_imagenesJugadoresDiskPersistence.PathFotoTemporalDNIDorso(model.DNI)}?{fechaAntiCache}",
 				MotivoDeRechazo = model.MotivoDeRechazo
 		};
 		}
