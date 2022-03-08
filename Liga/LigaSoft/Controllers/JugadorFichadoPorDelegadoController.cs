@@ -164,11 +164,16 @@ namespace LigaSoft.Controllers
 
 				var model = Context.JugadoresaAutofichados.Find(vm.Id);
 
+				var dniAnterior = model.DNI;
+
 				VMM.MapForEdit(vm, model);
 
 				Context.SaveChanges();
 
-				_imagenesJugadoresDiskPersistence.GuardarFotosTemporalesDeJugadorAutofichadoSiendoEditado(vm);				
+				_imagenesJugadoresDiskPersistence.GuardarFotosTemporalesDeJugadorAutofichadoSiendoEditado(vm);
+
+				if (dniAnterior != vm.DNI)
+					_imagenesJugadoresDiskPersistence.RenombrarFotosTemporalesPorCambioDeDNI(dniAnterior, vm.DNI);
 			}
 			catch (Exception e)
 			{

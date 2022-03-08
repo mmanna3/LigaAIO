@@ -19,5 +19,6 @@ namespace LigaSoft.Utilidades.Persistence
 		void FicharJugadorTemporal(string dniJugadorTemporal);
 		void GuardarFotosTemporalesDeJugadorAutofichado(JugadorAutofichadoVM vm);
 		void GuardarFotosTemporalesDeJugadorAutofichadoSiendoEditado(JugadorAutofichadoVM vm);
+		void RenombrarFotosTemporalesPorCambioDeDNI(string dniAnterior, string dNI);
 	}
 }

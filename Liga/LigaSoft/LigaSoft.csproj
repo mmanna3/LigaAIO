@@ -1283,7 +1283,6 @@
     <Content Include="Views\Club\PagarCarnets.cshtml" />
     <Content Include="Views\AdministracionJugadoresAutofichados\DetalleRechazado.cshtml" />
     <Content Include="Views\Informe\CantidadDeJugadoresPorTorneo_Informe.cshtml" />
-    <Content Include="Views\JugadorFichadoPorDelegado\EditarJugadorRechazado - Copy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

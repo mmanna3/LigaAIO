@@ -219,5 +219,21 @@ namespace LigaSoft.Utilidades.Persistence.DiskPersistence
 			if (File.Exists(pathAnterior))
 				File.Move(pathAnterior, pathNuevo);
 		}
+
+		public void RenombrarFotosTemporalesPorCambioDeDNI(string DNIAnterior, string DNINuevo)
+		{
+			RenombrarFotos($"{Paths.ImagenesTemporalesJugadorDNIFrenteAbsolute}/{DNIAnterior}.jpg", $"{Paths.ImagenesTemporalesJugadorDNIFrenteAbsolute}/{DNINuevo}.jpg");
+			RenombrarFotos($"{Paths.ImagenesTemporalesJugadorDNIDorsoAbsolute}/{DNIAnterior}.jpg", $"{Paths.ImagenesTemporalesJugadorDNIDorsoAbsolute}/{DNINuevo}.jpg");
+			RenombrarFotos($"{Paths.ImagenesTemporalesJugadorCarnetAbsolute}/{DNIAnterior}.jpg", $"{Paths.ImagenesTemporalesJugadorCarnetAbsolute}/{DNINuevo}.jpg");
+		}
+
+		private static void RenombrarFotos(string pathAnterior, string pathNuevo)
+		{
+			if (File.Exists(pathNuevo))
+				File.Delete(pathNuevo);
+
+			if (File.Exists(pathAnterior))
+				File.Move(pathAnterior, pathNuevo);
+		}
 	}
 }
