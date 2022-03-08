@@ -10,7 +10,7 @@ namespace LigaSoft.Models.ViewModels
 		[YKNRequired]
 		[Display(Name = "Usuario")]
 		[StringLength(30, ErrorMessage = "El usuario debe tener entre 6 y 30 caracteres.", MinimumLength = 6)]
-		[RegularExpression(@"^[a-z]+$", ErrorMessage = "El usuario solo puede contener letras minúsculas.")]
+		[RegularExpression(@"^[a-z0-9]+$", ErrorMessage = "El usuario solo puede contener letras minúsculas o números.")]
 		public string Usuario { get; set; }
 
 		[YKNRequired]
