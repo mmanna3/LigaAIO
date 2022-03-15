@@ -1,0 +1,48 @@
+﻿@using LigaSoft.ExtensionMethods
+@model LigaSoft.Models.ViewModels.DelegadosPorClubVM
+
+@section Titulo {
+	Delegados por club
+}
+
+<div class="row">
+	<div class="col-sm-8">
+
+		<div class="row">
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th scope="col">Club</th>
+						<th scope="col">Delegado</th>
+						<th scope="col">Usuario</th>						
+						<th scope="col">Estado</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var delegado in Model.Lista)
+					{
+					<tr>
+						<td>@delegado.Club</td>
+						<td>@delegado.Nombre</td>
+						<td>@delegado.Usuario</td>						
+						@if (delegado.Estado == "Aprobado")
+						{
+							<td style='color:green;font-weight: bold'>@delegado.Estado</td>
+						}
+						else if (delegado.Estado == "Pendiente")
+						{
+							<td style='color:darkblue;font-weight: bold'>@delegado.Estado</td>
+						}
+						else if (delegado.Estado == "No tiene")
+						{
+							<td style='color:orangered;font-weight: bold'>@delegado.Estado</td>
+						}
+
+					</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+</div>

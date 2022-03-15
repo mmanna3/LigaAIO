@@ -32,6 +32,7 @@ namespace LigaSoft.Models.Dominio
 
 		public virtual ICollection<Equipo> Equipos { get; set; }
 		public virtual ICollection<Delegado> Delegados { get; set; }
+		public virtual ICollection<UsuarioDelegado> UsuariosDelegados { get; set; }
 		public virtual ICollection<MovimientoEntradaConClub> Movimientos { get; set; }
 		
 		public Techo TechoBoolToTechoEnum()

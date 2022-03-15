@@ -1,10 +1,14 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using LigaSoft.Models;
+using LigaSoft.Models.ViewModels;
 using LigaSoft.Utilidades;
 using Microsoft.AspNet.Identity.Owin;
+using static LigaSoft.Models.ViewModels.DelegadosPorClubVM;
 
 namespace LigaSoft.Controllers
 {
@@ -74,6 +78,35 @@ namespace LigaSoft.Controllers
 			_context.SaveChanges();
 
 			return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+		}
+
+		public ActionResult DelegadosPorClub()
+		{
+			var clubs = _context.Clubs.Include(x => x.UsuariosDelegados).OrderBy(x => x.Nombre).ToList();
+
+			var vm = new DelegadosPorClubVM { Lista = new List<DelegadoPorClubVM>() };
+
+			foreach (var club in clubs)
+			{
+				if (club.Delegados != null && club.UsuariosDelegados.Count > 0)
+				{
+					foreach (var delegado in club.UsuariosDelegados)
+					{
+						vm.Lista.Add(new DelegadoPorClubVM
+						{
+							Club = delegado.Club.Nombre,
+							Estado = delegado.Aprobado ? "Aprobado" : "Pendiente",
+							Nombre = delegado.Nombre + " " + delegado.Apellido,
+							Usuario = delegado.Usuario
+						});
+					}
+				} else
+				{
+					vm.Lista.Add(new DelegadoPorClubVM { Club = club.Nombre, Estado = "No tiene" });
+				}
+			}
+
+			return View(vm);
 		}
 	}
 }

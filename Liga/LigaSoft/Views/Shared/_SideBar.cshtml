@@ -72,8 +72,9 @@
 					<li class="dropdown">
 						@MenuDesplegable("Delegados", "fa-users")
 						<ul class="dropdown-menu forAnimate" role="menu">
-							<li><a href="@Url.Action("DelegadosPendientesDeAprobacion","AdministracionDelegados")">Delegados pendientes</a></li>
-							<li><a href="@Url.Action("DelegadosAprobados","AdministracionDelegados")">Delegados Aprobados</a></li>
+							<li><a href="@Url.Action("DelegadosPendientesDeAprobacion","AdministracionDelegados")">Pendientes</a></li>
+							<li><a href="@Url.Action("DelegadosAprobados","AdministracionDelegados")">Aprobados</a></li>
+							<li><a href="@Url.Action("DelegadosPorClub","AdministracionDelegados")">Por club</a></li>
 							<li><a href="@Url.Action("JugadoresPendientesDeAprobacion","AdministracionJugadoresFichadosPorDelegados")">Jugadores pendientes</a></li>
 						</ul>
 					</li>
