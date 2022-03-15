@@ -45,11 +45,11 @@ const SeccionPrincipalFichaje = () => {
     }
 
     const estaLaSeccionHabilitada = () => {
-        var hoy = new Date();
-        var diaDeHoy = hoy.getDay();
-        var horaActual = hoy.getHours();
-        if (diaDeHoy == 6 || diaDeHoy == 0 || diaDeHoy == 5 || (diaDeHoy == 4 && horaActual >= 20)) 
-            return false;
+        // var hoy = new Date();
+        // var diaDeHoy = hoy.getDay();
+        // var horaActual = hoy.getHours();
+        // if (diaDeHoy == 6 || diaDeHoy == 0 || diaDeHoy == 5 || (diaDeHoy == 4 && horaActual >= 20)) 
+        //     return false;
         return true;
     }
 
