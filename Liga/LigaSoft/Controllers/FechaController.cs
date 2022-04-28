@@ -48,7 +48,7 @@ namespace LigaSoft.Controllers
 			    EquiposDeLaZonaJson = new JavaScriptSerializer().Serialize(equiposDeLaZona),
 			    EquiposDeLaZona = string.Join(" - ", equiposDeLaZona.Select(x => x.Descripcion)),
 			    Titulo = $"Editar fecha {fecha.Numero} de {zona.DescripcionCompleta()}",
-			    CantidadDeJornadas = fecha.Jornadas.Count,			    
+			    CantidadDeJornadas = equiposDeLaZona.Count,
 				LocalesDefault = new List<IdDescripcionVM>(),
 				VisitantesDefault = new List<IdDescripcionVM>(),
 			};
