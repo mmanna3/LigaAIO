@@ -51,7 +51,7 @@ namespace LigaSoft.Controllers
 				else
 					using (var foto = System.Drawing.Image.FromStream(imagen.InputStream))
 						if (foto.Height != 180 || foto.Width != 480)
-							ModelState.AddModelError("", "El tamaño de la imagen debe ser de 480 x 180 px.");
+							ModelState.AddModelError("", "El tamaño de la imagen debe ser de 480 x 140 px.");
 		}
 	}
 }
