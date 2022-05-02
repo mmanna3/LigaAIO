@@ -1,7 +1,9 @@
 ﻿using System.Web;
 using System.Web.Mvc;
+using System.Linq;
 using LigaSoft.Models.Attributes.GPRPattern;
 using LigaSoft.Models.Dominio;
+using LigaSoft.Models.Otros;
 using LigaSoft.Models.ViewModels;
 using LigaSoft.Utilidades;
 using LigaSoft.Utilidades.Persistence;
@@ -10,7 +12,7 @@ using LigaSoft.ViewModelMappers;
 
 namespace LigaSoft.Controllers
 {
-	[Authorize(Roles = Roles.Administrador)]
+	[Authorize(Roles = Roles.CualquierEmpleadoDeLaLiga)]
 	public class PublicidadController : ABMController<Publicidad, PublicidadVM, PublicidadVMM>
 	{
 		private readonly IImagenesPublicidadPersistence _imagenesPublicidadPersistence;
@@ -48,8 +50,8 @@ namespace LigaSoft.Controllers
 					ModelState.AddModelError("", "La imagen debe estar en formato JPG.");
 				else
 					using (var foto = System.Drawing.Image.FromStream(imagen.InputStream))
-						if (foto.Height != 400 || foto.Width != 400)
-							ModelState.AddModelError("", "El tamaño de la imagen debe ser de 100 x 100 px.");
+						if (foto.Height != 180 || foto.Width != 480)
+							ModelState.AddModelError("", "El tamaño de la imagen debe ser de 480 x 180 px.");
 		}
 	}
 }

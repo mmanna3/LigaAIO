@@ -14,7 +14,7 @@ namespace LigaSoft.Models.ViewModels
 	    [Display(Name = "Posición")]
 		public string Posicion { get; set; }
 
-		[Display(Name = "Elegir imagen (Formato JPG y tamaño 400x400px)")]
+		[Display(Name = "Elegir imagen (Formato JPG y tamaño 480x180px)")]
 	    public HttpPostedFileBase ImagenNueva { get; set; }
 	}
 }
