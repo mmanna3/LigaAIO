@@ -13,7 +13,7 @@ const Publicidades = () => {
         <div className={bootstrap.row}>          
             {data.map(({ id, urlDestino, imgSrc, titulo }) => (
               <div className={styles.columna}>
-                <div key={id} className={styles.contenedor}>
+                <div key={id} className={styles.contenedor} alt={titulo} onClick={()=> window.open(urlDestino, "_blank")}>
                   <img className={styles.publicidad} src={imgSrc} width={480} height={180} />
                 </div>
               </div>
