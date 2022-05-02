@@ -14,6 +14,7 @@ using LigaSoft.Utilidades.Persistence.DiskPersistence;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using LigaSoft.BusinessLogic;
+using LigaSoft.Models.Otros;
 
 namespace LigaSoft.Controllers
 {
@@ -41,7 +42,13 @@ namespace LigaSoft.Controllers
 
 		public ActionResult Aprobados(IdDescripcionVM vm)
 		{
-			return View("Aprobados", vm);
+			var equipo = Context.Equipos.Find(vm.Id);
+
+			var equipoVMM = new EquipoVMM(Context);
+
+			var equipoVM = equipoVMM.MapForDetails(equipo);
+
+			return View("Aprobados", equipoVM);
 		}
 
 		[Authorize(Roles = Roles.Delegado)]
@@ -213,5 +220,22 @@ namespace LigaSoft.Controllers
 				Id = seleccionarEquipoVM.EquipoId
 			});
 	    }
+
+		//public virtual JsonResult GetAprobados(string equipoId)
+		//{
+		//	equipoId = equipoId.Substring(0, 1); //Porque viene con un extraño signo de pregunta al final
+
+		//	var query = Context.Equipos.Find(Convert.ToInt32(equipoId));
+
+		//	var query = Context.JugadoresaAutofichados.Where(x => (int)x.Estado == estadoInt); estado = estado.Substring(0, 1);
+
+		//	var records = VMM.MapForGrid(query.ToList());
+
+		//	var cantidad = 0;
+		//	if (records != null)
+		//		cantidad = records.Count;
+
+		//	return Json(new { records, cantidad }, JsonRequestBehavior.AllowGet);
+		//}
 	}
 }

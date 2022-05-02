@@ -1,29 +1,51 @@
 ﻿@using LigaSoft.ExtensionMethods
 @using LigaSoft.Models.Enums
 @using LigaSoft.Models.ViewModels
-@model IdDescripcionVM
+@model EquipoVM
 
 @section Titulo{
-	Jugadores aprobados. <span class="titulo-detacado"> Equipo: @Model.Descripcion</span>
+	Jugadores aprobados
 }
 
 @section Subtitulo{
 	Se muestran los jugadores aprobados por la administración de la Liga.
 }
 
-@section CabeceraGrilla {
-	@(Html.YKN<JugadorAutofichadoVM>().Buscador(x => x.DNI))
+@using (Html.YKN().Form())
+{
+	<div class="row">
+		<div class="col-xs-6">
+			@Html.YKN().DisplayFor(x => x.CodigoAlfanumerico)
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-6">
+			@Html.YKN().DisplayFor(x => x.Nombre)
+		</div>
+		<div class="col-xs-6">
+			@Html.YKN().DisplayFor(x => x.Club)
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-6">
+			@Html.YKN().DisplayFor(x => x.Torneo)
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-6">
+			@Html.YKN().DisplayFor(x => x.CantidadFichados)
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			@Html.YKN().DisplayMultilineFor(x => x.Jugadores)
+		</div>
+	</div>
+
+	<div class="row form-footer">
+		<div class="col-sm-3">
+			@Html.YKN().BotonCancelar()
+		</div>
+	</div>
 }
 
-@(Html.YKN<JugadorAutofichadoVM>().Grid()
-		.WithColumns(column =>
-		{
-			column.AddTextColumn(x => x.DNI);
-			column.AddTextColumn(x => x.Nombre);
-			column.AddTextColumn(x => x.Apellido);
-			column.AddTextColumn(x => x.FechaNacimiento);			
-		})
-		.DataSource("/JugadorFichadoPorDelegado/GetForGrid")
-		.DataFilter("Estado", EstadoJugadorFichadoPorDelegado.Aprobado)
-		.DataFilter("EquipoId", Model.Id)
-)
