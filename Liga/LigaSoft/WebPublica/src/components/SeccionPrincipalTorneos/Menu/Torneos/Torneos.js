@@ -1,6 +1,7 @@
 import React from "react";
 import TorneosAperturaClausura from './TorneosAperturaClausura/TorneosAperturaClausura';
 import TorneosRelampago from './TorneosRelampago/TorneosRelampago';
+import Publicidades from './Publicidades/Publicidades';
 import styles from './Torneos.css'
 
 
@@ -13,14 +14,16 @@ const Torneos = () => {
 
   return <div>
     <TorneosAperturaClausura anio={anioActual} />
+    <Publicidades />
     <TorneosRelampago anio={anioActual}/>
+    
     
     <div>      
       {mostrarTorneosDelAnioPasado ? 
       <>
         <h3 className={styles.anioPasado}>Año {anioActual-1}</h3>
         <TorneosAperturaClausura anio={anioActual-1} />
-        <TorneosRelampago anio={anioActual-1}/>
+        <TorneosRelampago anio={anioActual-1}/>        
       </> : 
       <div className={styles.caja} onClick={onClick}>
         <div className={styles.textoOpcionCentrado}>

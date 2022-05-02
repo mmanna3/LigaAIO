@@ -92,6 +92,18 @@ namespace LigaSoft.Controllers
 			return Json(result, JsonRequestBehavior.AllowGet);
 		}
 
+		public JsonResult Publicidades()
+		{
+			var publicidades = _context.Publicidades
+				.Where(x => x.Posicion == PublicidadPosicion.IzquierdaSuperior || x.Posicion == PublicidadPosicion.DerechaSuperior)
+				.ToList();
+
+			var result = publicidades.Select(x => new { id = x.Id, titulo = $"{x.Titulo}", imgSrc = $"/Imagenes/Publicidades/{x.Id.ToString()}.jpg", urlDestino = $"{x.Url}" })
+				.ToList();
+
+			return Json(result, JsonRequestBehavior.AllowGet);
+		}
+
 		public JsonResult Zonas(int torneoId)
 		{		
 			var zonas = _context.Zonas
