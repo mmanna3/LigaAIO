@@ -249,5 +249,20 @@ namespace LigaSoft.Controllers
 
 			return Json(new { success = true }, JsonRequestBehavior.AllowGet);
 		}
+
+		public ActionResult Carnets(int id)
+		{
+			var equipo = Context.Equipos.Find(id);
+			var jugadores = Context.JugadorEquipos.Where(x => x.EquipoId == id).Select(x => x.Jugador).OrderByDescending(x => x.FechaNacimiento).ToList();
+
+			var resultado = new List<JugadorCarnetVM>();
+
+			foreach (var jugador in jugadores)
+			{
+				resultado.Add(_jugadorVMM.MapJugadorParaCarnet(jugador, equipo));
+			}
+
+			return View(resultado);
+		}
 	}
 }

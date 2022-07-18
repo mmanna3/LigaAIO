@@ -1285,6 +1285,7 @@
     <Content Include="Views\AdministracionJugadoresAutofichados\DetalleRechazado.cshtml" />
     <Content Include="Views\Informe\CantidadDeJugadoresPorTorneo_Informe.cshtml" />
     <Content Include="Views\AdministracionDelegados\DelegadosPorClub.cshtml" />
+    <Content Include="Views\Equipo\Carnets.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

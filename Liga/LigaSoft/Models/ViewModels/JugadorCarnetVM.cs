@@ -12,5 +12,6 @@
 		public string TipoLiga { get; set; }
 		public string Categoria { get; set; }
 		public string FotoBase64 { get; set; }
+		public string FotoPath { get; set; }
 	}
 }

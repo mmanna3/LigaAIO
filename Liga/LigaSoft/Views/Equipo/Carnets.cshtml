@@ -1,0 +1,75 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.Enums
+@model List<LigaSoft.Models.ViewModels.JugadorCarnetVM>
+
+@section Titulo{
+	Carnets
+}
+
+@section Subtitulo{
+	<div class="row">
+		<div class="col-xs-2">
+			@(Html.YKN().Button("Volver")
+				.Color(BootstrapColorEnum.Danger)
+				.Label("Volver")
+				.FullWidth()
+				.OnClickRedirect("Index", "Equipo"))
+		</div>
+		<div class="col-xs-2">
+			@(Html.YKN().Button("Imprimir")
+				  .Color(BootstrapColorEnum.Success)
+				  .FullWidth()
+				  .OnClickImprimir())
+		</div>
+	</div>
+}
+
+@foreach (var carnet in Model)
+{
+
+	<div class="carnet-contenedor">
+		<img class="imagen" src="@carnet.FotoPath" alt="foto" />
+		<div class="datos">
+			<div class="nombre">@carnet.Nombre @carnet.Apellido</div>
+			<div>DNI: @carnet.DNI</div>
+			<div>@carnet.FechaNacimiento</div>
+			<div>@carnet.Equipo</div>
+			<div>@carnet.TipoLiga</div>
+		</div>
+		
+		
+	</div>
+
+
+}
+
+<style>
+	/*Para que no salga la url del link en la impresión*/
+	a[href]:after {
+		content: initial;
+	}
+
+	.carnet-contenedor {
+		width: 400px;
+		height: 200px;
+		border: 2px solid black;
+		border-radius: 20px;
+		padding: 15px;
+		margin-bottom: 10px;
+		display: flex;
+	}
+
+	.imagen {
+		width: 130px;
+		height: 130px;
+	}
+
+	.datos {
+		margin-left: 20px;
+		font-size: 16px;
+	}
+
+	.datos div {
+		margin-bottom: 5px;
+	}
+</style>

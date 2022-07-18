@@ -145,6 +145,7 @@ namespace LigaSoft.ViewModelMappers
 				EstaSuspendido = jugadorEquipo.EstaSuspendido,
 				Categoria = Categoria(model),				
 				FotoBase64 = _imagenesJugadoresDiskPersistence.GetFotoEnBase64(model.DNI),
+				FotoPath = _imagenesJugadoresDiskPersistence.Path(model.DNI),
 				FechaVencimiento = FechaDeVencimientoDelCarnet(jugadorEquipo),
 				TipoLiga = equipo.Torneo.Tipo.LoQueSeImprimeEnElCarnet.ToUpper()
 			};
