@@ -2,6 +2,62 @@
 @using LigaSoft.Models.Enums
 @model List<LigaSoft.Models.ViewModels.JugadorCarnetVM>
 
+<style>
+
+	.contenedor-general {
+		display: grid;
+		grid-template-columns: auto auto;
+	}
+
+	.carnet-contenedor {
+		width: 450px;
+		height: 200px;
+		border: 2px solid black;
+		border-radius: 20px;
+		padding: 15px;
+		margin-bottom: 10px;
+		margin-right: 10px;
+		display: flex;
+	}
+
+	.imagen {
+		width: 130px;
+		height: 130px;
+	}
+
+	.datos {
+		margin-left: 20px;
+		font-size: 16px;
+		font-weight: bold;
+	}
+
+	.verde {
+		color: #01aa59 !important;
+	}
+
+	.rojo {
+		color: #e81f05 !important;
+	}
+
+	.azul {
+		color: #0038ba !important;
+	}
+
+	.datos div {
+		margin-bottom: 5px;
+	}
+
+	.suspendido {
+		background-color: #e81f05 !important;
+		-webkit-print-color-adjust: exact;
+		padding: 5px;
+		padding-left: 10px;
+		padding-right: 10px;
+		border-radius: 5px;
+		color: white !important;
+	}
+</style>
+
 @section Titulo{
 	Carnets
 }
@@ -53,62 +109,3 @@
 	}
 </div>
 
-<style>
-	/*Para que no salga la url del link en la impresión*/
-	a[href]:after {
-		content: initial;
-	}
-
-	.contenedor-general {
-		display: grid;
-		grid-template-columns: auto auto;
-	}
-
-	.carnet-contenedor {
-		flex: 1 1 30%; /*grow | shrink | basis */
-		width: 450px;
-		height: 200px;
-		border: 2px solid black;
-		border-radius: 20px;
-		padding: 15px;
-		margin-bottom: 10px;
-		margin-right: 10px;
-		display: flex;
-	}
-
-	.imagen {
-		width: 130px;
-		height: 130px;
-	}
-
-	.datos {
-		margin-left: 20px;
-		font-size: 16px;
-		font-weight: bold;
-	}
-
-	.verde {
-		color: #01aa59;
-	}
-
-	.rojo {
-		color: #e81f05;
-	}
-
-	.azul {
-		color: #0038ba;
-	}
-
-	.datos div {
-		margin-bottom: 5px;
-	}
-
-	.suspendido {
-		background-color: #e81f05;
-		padding: 5px;
-		padding-left: 10px;
-		padding-right: 10px;
-		border-radius: 5px;
-		color: white;
-	}
-</style>
