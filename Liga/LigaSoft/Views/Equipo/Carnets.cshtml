@@ -24,24 +24,34 @@
 	</div>
 }
 
-@foreach (var carnet in Model)
-{
-
+<div class="contenedor-general">
+	@foreach (var carnet in Model)
+	{
 	<div class="carnet-contenedor">
 		<img class="imagen" src="@carnet.FotoPath" alt="foto" />
 		<div class="datos">
-			<div class="nombre">@carnet.Nombre @carnet.Apellido</div>
-			<div>DNI: @carnet.DNI</div>
-			<div>@carnet.FechaNacimiento</div>
-			<div>@carnet.Equipo</div>
-			<div>@carnet.TipoLiga</div>
+			@if (carnet.EstaSuspendido)
+			{
+				<div class="suspendido">JUGADOR SUSPENDIDO</div>
+				<div class="nombre">@carnet.Nombre @carnet.Apellido</div>
+				<div>DNI: @carnet.DNI</div>
+				<div>@carnet.FechaNacimiento</div>
+				<div>@carnet.Equipo</div>
+				<div>@carnet.TipoLiga</div>
+			}
+			else
+			{
+				<div class="nombre verde">@carnet.Nombre @carnet.Apellido</div>
+				<div class="azul">DNI: @carnet.DNI</div>
+				<div class="azul">@carnet.FechaNacimiento</div>
+				<div class="rojo">@carnet.Equipo</div>
+				<div class="rojo">@carnet.TipoLiga</div>
+			}
+
 		</div>
-		
-		
 	</div>
-
-
-}
+	}
+</div>
 
 <style>
 	/*Para que no salga la url del link en la impresión*/
@@ -49,13 +59,20 @@
 		content: initial;
 	}
 
+	.contenedor-general {
+		display: grid;
+		grid-template-columns: auto auto;
+	}
+
 	.carnet-contenedor {
-		width: 400px;
+		flex: 1 1 30%; /*grow | shrink | basis */
+		width: 450px;
 		height: 200px;
 		border: 2px solid black;
 		border-radius: 20px;
 		padding: 15px;
 		margin-bottom: 10px;
+		margin-right: 10px;
 		display: flex;
 	}
 
@@ -67,9 +84,31 @@
 	.datos {
 		margin-left: 20px;
 		font-size: 16px;
+		font-weight: bold;
+	}
+
+	.verde {
+		color: #01aa59;
+	}
+
+	.rojo {
+		color: #e81f05;
+	}
+
+	.azul {
+		color: #0038ba;
 	}
 
 	.datos div {
 		margin-bottom: 5px;
+	}
+
+	.suspendido {
+		background-color: #e81f05;
+		padding: 5px;
+		padding-left: 10px;
+		padding-right: 10px;
+		border-radius: 5px;
+		color: white;
 	}
 </style>
