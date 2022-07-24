@@ -159,6 +159,9 @@ namespace LigaSoft.UIHelpers
 			_funcionJsParaImprimir = @"	
 			function printContent() {{
 				window.print();
+				setTimeout(function (){
+					console.log('Abrí la impresión.');
+				}, 2000);
 				location.reload();
 			}}";
 
