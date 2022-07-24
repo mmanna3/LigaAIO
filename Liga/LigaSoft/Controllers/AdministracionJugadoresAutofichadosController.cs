@@ -64,10 +64,13 @@ namespace LigaSoft.Controllers
 					Nombre = jugadorAutofichado.Nombre,
 					EquipoId = jugadorAutofichado.EquipoId,
 					FechaNacimiento = DateTimeUtils.ConvertToString(jugadorAutofichado.FechaNacimiento)
+
 				};
 
 				var jugadorEquipo = _jugadorVMM.MapCreate(vm, jugador);
-			
+
+				SuspenderJugadorSiEsFemeninoOFutsal(jugadorEquipo);
+
 				_context.JugadorEquipos.Add(jugadorEquipo);
 				jugadorAutofichado.Estado = EstadoJugadorAutofichado.Aprobado;
 
@@ -85,6 +88,16 @@ namespace LigaSoft.Controllers
 			}
 
 			return RedirectToAction("Index", new { Estado = 1 });
+		}
+
+		private void SuspenderJugadorSiEsFemeninoOFutsal(JugadorEquipo jugadorEquipo)
+		{
+			var torneoDescripcion = jugadorEquipo.Equipo.Torneo.Tipo.Descripcion;
+
+			if (torneoDescripcion.ToUpper().Equals("FEMENINO") || torneoDescripcion.ToUpper().Equals("FUTSAL"))
+			{
+				jugadorEquipo.EstaSuspendido = true;
+			}
 		}
 
 		[ExportModelStateToTempData, HttpPost]
