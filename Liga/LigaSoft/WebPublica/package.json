@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "@material-ui/core": "^4.11.2",
+    "@trendyol-js/react-carousel": "^3.0.0",
     "bootstrap": "^4.4.1",
     "react-easy-crop": "^3.3.1",
     "react-hook-form": "^6.14.2",
@@ -32,7 +33,7 @@
   "scripts": {
     "build-prod": "node_modules/.bin/webpack --config=config/webpack.config.prod.js",
     "start": "node_modules/.bin/webpack-dev-server --config=config/webpack.config.dev.js",
-    "limpiar": "rm package-lock.json && rm -rf node_modules && npm install"
+    "limpiar": "rm yarn.lock && rm -rf node_modules && yarn"
   },
   "keywords": [],
   "author": "",
