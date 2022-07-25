@@ -10,32 +10,32 @@ import {COLOR} from "Utils/consts";
 import {useSelector} from 'react-redux';
 import styles from './Home.css';
 import SeccionPrincipalFichaje from '../SeccionPrincipalFichaje/SeccionPrincipalFichaje';
-
+import NuevoHome from '../NuevoHome/NuevoHome';
 
 function Home() {
   
   useEffect(() => {
     
-    inicializarVariableWindowInnerHeight();
+    // inicializarVariableWindowInnerHeight();
 
-    window.addEventListener('resize', () => {
-      inicializarVariableWindowInnerHeight()
-    });
+    // window.addEventListener('resize', () => {
+    //   inicializarVariableWindowInnerHeight()
+    // });
 
-    function inicializarVariableWindowInnerHeight() {
+    // function inicializarVariableWindowInnerHeight() {
       
-      let windowInnerHeight = window.innerHeight;
+    //   let windowInnerHeight = window.innerHeight;
       
-      if (window.innerWidth >= 576) { //Es Desktop
-        if (windowInnerHeight < 400)
-          windowInnerHeight = 600;
-      } else {  //Es mobile
-        if (windowInnerHeight < 500)
-          windowInnerHeight = 500;
-      }
+    //   if (window.innerWidth >= 576) { //Es Desktop
+    //     if (windowInnerHeight < 400)
+    //       windowInnerHeight = 600;
+    //   } else {  //Es mobile
+    //     if (windowInnerHeight < 500)
+    //       windowInnerHeight = 500;
+    //   }
       
-      document.documentElement.style.setProperty('--windowInnerHeight', `${windowInnerHeight}px`);
-    }
+    //   document.documentElement.style.setProperty('--windowInnerHeight', `${windowInnerHeight}px`);
+    // }
 
   }, []);
 
@@ -44,14 +44,15 @@ function Home() {
 
   if (!seccionPrincipalSeleccionada)
       return (
-        <div className={styles.home}>
-          <div className={styles.banners}>
-            <Banner titulo="Torneos" color={COLOR.ROJO} />
-            <Banner titulo="Noticias" color={COLOR.VERDE} />
-            <Banner titulo="Nosotros" color={COLOR.AZUL} />          
-          </div>
-          <Footer/>
-        </div>
+         <NuevoHome/>
+        // <div className={styles.home}>
+        //   <div className={styles.banners}>
+        //     <Banner titulo="Torneos" color={COLOR.ROJO} />
+        //     <Banner titulo="Noticias" color={COLOR.VERDE} />
+        //     <Banner titulo="Nosotros" color={COLOR.AZUL} />          
+        //   </div>
+        //   <Footer/>
+        // </div>
       )
     else if (seccionPrincipalSeleccionada == "Torneos")
       return <SeccionPrincipalTorneos />

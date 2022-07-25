@@ -11,9 +11,9 @@ const Application = () => {
 
     return <Provider store={store}>
         <Navbar/>
-        <div id="contenido" className={bootstrap.container}>
+        {/* <div id="contenido" className={bootstrap.container}> */}
             <Home/>
-        </div>
+        {/* </div> */}
     </Provider>
 };
 
