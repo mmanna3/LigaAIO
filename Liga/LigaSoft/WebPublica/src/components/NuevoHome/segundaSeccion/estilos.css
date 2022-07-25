@@ -40,7 +40,7 @@
   margin-right: 3rem;
 }
 
-@media (min-width: 576px) { 
+@media (min-width: 992px) { 
   /* 1rem=16px */
 
   .tipoLigaContenedor {
