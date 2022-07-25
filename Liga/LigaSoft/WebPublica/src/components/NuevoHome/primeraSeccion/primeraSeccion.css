@@ -1,0 +1,30 @@
+@value bootstrap: './../../../assets/styles/bootstrap.min.css';
+
+.publicidadContenedor {
+  composes: backgroundGradienteVerde from "./../../../assets/styles/colors.css";
+  margin-top: -30px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* 
+.contenedorFlex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+} */
+
+.noticiasContenedor {
+  composes: backgroundGradienteAzul from "./../../../assets/styles/colors.css";
+  height: 400px;
+}
+
+.publicidad {
+  height: 100px;
+  background-color: white;
+  border-radius: 15px;
+  margin-left: 5rem;
+  margin-right: 5rem;
+}
