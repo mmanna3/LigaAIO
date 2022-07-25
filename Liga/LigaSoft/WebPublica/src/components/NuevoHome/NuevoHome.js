@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import estilos from './NuevoHome.css';
 import bootstrap from './../../assets/styles/bootstrap.min.css'
 import SegundaSeccion from './segundaSeccion/segundaSeccion';
+import TerceraSeccion from './terceraSeccion/terceraSeccion';
 
 const NuevoHome = () => {
 
@@ -17,7 +18,7 @@ const NuevoHome = () => {
             </div>            
         </div>
         <SegundaSeccion/>
-        <div className={estilos.noticiasContenedor}></div>
+        <TerceraSeccion/>
     
     </div>)
 }

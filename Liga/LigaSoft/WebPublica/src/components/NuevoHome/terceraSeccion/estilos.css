@@ -1,0 +1,67 @@
+@value bootstrap: './../../../assets/styles/bootstrap.min.css';
+
+.contenedor {
+  composes: backgroundGradienteAzul from "./../../../assets/styles/colors.css";
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.contenedorImagen {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  padding: 1rem;
+  border-bottom-left-radius: 15px; 
+  border-bottom-right-radius: 15px; 
+}
+
+.carnet {
+  width: 100%;
+}
+
+.texto {
+  background-color: white;
+  border-radius: 15px;
+  border-bottom-left-radius: 0; 
+  border-bottom-right-radius: 0; 
+  padding: 1rem;
+  height: 100%;
+  padding: 1.5rem;  
+}
+
+.texto h2 {
+  font-size: 2rem;
+}
+
+.texto h4 {
+  margin-bottom: 2.5rem;
+}
+
+.texto p {
+  font-weight: normal;
+  font-size: 1.1rem;
+  letter-spacing: 0.6px;
+  margin-right: 1rem;
+}
+
+@media (min-width: 576px) { 
+  /* 1rem=16px */
+  
+  .contenedorImagen {
+    margin-left: 5rem;
+    margin-right: 5rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+  }
+
+  .texto {
+    border-bottom-right-radius: 15px;
+  }
+
+}
