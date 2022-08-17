@@ -94,7 +94,7 @@ namespace LigaSoft.Controllers
 		{
 			var torneoDescripcion = jugadorEquipo.Equipo.Torneo.Tipo.Descripcion;
 
-			if (torneoDescripcion.ToUpper().Equals("FEMENINO") || torneoDescripcion.ToUpper().Equals("FUTSAL"))
+			if (torneoDescripcion.ToUpper().Equals("FUTSAL MAYORES") || torneoDescripcion.ToUpper().Equals("FEMENINO") || torneoDescripcion.ToUpper().Equals("FUTSAL"))
 			{
 				jugadorEquipo.EstaSuspendido = true;
 			}
