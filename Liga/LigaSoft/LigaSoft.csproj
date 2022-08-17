@@ -892,6 +892,7 @@
     <Compile Include="Models\ViewModels\VersusVM.cs" />
     <Compile Include="Models\ViewModels\FechaVM.cs" />
     <Compile Include="Models\ViewModels\PasesVM.cs" />
+    <Compile Include="Models\ViewModels\HabilitacionMasivaVM.cs" />
     <Compile Include="Models\ViewModels\ModificarEquiposVM.cs" />
     <Compile Include="Models\ViewModels\CategoriaVM.cs" />
     <Compile Include="Models\ViewModels\EquipoVM.cs" />
