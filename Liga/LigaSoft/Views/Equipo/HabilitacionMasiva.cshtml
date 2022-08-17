@@ -1,0 +1,44 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.Enums
+@using LigaSoft.Models.ViewModels
+@model HabilitacionMasivaVM
+
+@section Titulo {
+Habilitación masiva <span class="titulo-detacado">@Model.Equipo</span>
+}
+
+@using (Html.YKN().Form(FormSizeEnum.Big))
+{
+
+	@(Html.YKN<JugadorConFechaFichajeVM>().Grid()
+.Checkbox()
+.PageLimit(100)
+.WithColumns(column =>
+{
+column.AddTextColumn(x => x.DNI);
+column.AddTextColumn(x => x.Nombre);
+column.AddTextColumn(x => x.Apellido);
+column.AddTextColumn(x => x.FechaNacimiento);
+column.AddTextColumn(x => x.EstaSuspendido);
+})
+.DataSource("/Jugador/GetByEquipoId")
+.ParentId(Model.EquipoId)
+)
+
+	{ Html.YKN().FooterGuardarCancelar("Habilitar seleccionados"); }
+
+}
+
+<script>
+	$(function () {
+		$('#elForm').on('submit', function (e) {
+			grid.getSelections().forEach(function (jugIdSeleccionado) {
+				var a = document.createElement('input');
+				a.name = "JugadoresSeleccionados";
+				a.type = "hidden";
+				a.value = jugIdSeleccionado;
+				document.getElementById("elForm").appendChild(a);
+			});
+		});
+	});
+</script>

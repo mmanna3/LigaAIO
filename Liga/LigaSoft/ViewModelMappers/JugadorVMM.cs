@@ -87,6 +87,7 @@ namespace LigaSoft.ViewModelMappers
 					DNI = model.Jugador.DNI,
 					FechaNacimiento = DateTimeUtils.ConvertToString(model.Jugador.FechaNacimiento),
 					FechaFichaje = DateTimeUtils.ConvertToStringDdMmYy(model.FechaFichaje),
+					EstaSuspendido = model.EstaSuspendido.ToSiNoString()
 				};
 
 				listVM.Add(vm);

@@ -60,6 +60,15 @@ namespace LigaSoft.Controllers
 		    return View(vm);
 	    }
 
+	    public ActionResult HabilitacionMasiva(int id)
+	    {
+		    var equipo = Context.Equipos.Find(id);
+
+		    var vm = new HabilitacionMasivaVM { Equipo = equipo.Nombre, EquipoId = id };
+
+		    return View(vm);
+	    }
+
 	    [HttpPost]
 		public ActionResult Pases(PasesVM vm)
 	    {

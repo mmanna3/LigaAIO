@@ -6,5 +6,8 @@ namespace LigaSoft.Models.ViewModels
 	{
 		[Display(Name = "Fecha de fichaje")]
 		public string FechaFichaje { get; set; }
+
+		[Display(Name = "Está suspendido")]
+		public bool EstaSuspendido { get; set; }
 	}
 }
