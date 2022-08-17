@@ -1,5 +1,5 @@
 {
-  "name": "LigaSoft",
+  "name": "liga-soft",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -20,7 +20,7 @@
     "css-loader": "^3.4.2",
     "html-webpack-plugin": "^4.0.3",
     "mini-css-extract-plugin": "^0.9.0",
-    "node-sass": "^4.14.0",
+    "node-sass": "^7.0.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-hot-loader": "^4.12.20",
@@ -31,7 +31,8 @@
   },
   "scripts": {
     "build-prod": "node_modules/.bin/webpack --config=config/webpack.config.prod.js",
-    "build-dev": "node_modules/.bin/webpack-dev-server --config=config/webpack.config.dev.js"
+    "start": "node_modules/.bin/webpack-dev-server --config=config/webpack.config.dev.js",
+    "limpiar": "rm package-lock.json && rm -rf node_modules && npm install"
   },
   "keywords": [],
   "author": "",
