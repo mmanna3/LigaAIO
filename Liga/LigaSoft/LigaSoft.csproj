@@ -1199,6 +1199,7 @@
     <Content Include="Views\Jornada\Index.cshtml" />
     <Content Include="Views\Jornada\Details.cshtml" />
     <Content Include="Views\Zona\Tablas.cshtml" />
+    <Content Include="Views\Equipo\HabilitacionMasiva.cshtml" />
     <Content Include="Views\Equipo\Pases.cshtml" />
     <Content Include="Views\Jugador\FicharEnOtroEquipo.cshtml" />
     <Content Include="Views\Zona\Fixture.cshtml" />
