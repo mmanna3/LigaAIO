@@ -69,7 +69,7 @@ namespace LigaSoft.Controllers
 			var equipo = Context.Equipos.Find(vm.EquipoId);
 		    foreach (var jugId in vm.JugadoresSeleccionados)
 		    {
-			    var jugEquipo = Context.Jugador.Single(x => x.EquipoId == vm.EquipoId && x.JugadorId == jugId);
+			    var jugEquipo = Context.Jugadores.Single(x => x.EquipoId == vm.EquipoId && x.JugadorId == jugId);
 			    jugEquipo.EstaSuspendido = false;
 			}			    
 
