@@ -10,6 +10,8 @@ Habilitación masiva <span class="titulo-detacado">@Model.Equipo</span>
 @using (Html.YKN().Form(FormSizeEnum.Big))
 {
 
+	@Html.HiddenFor(x => x.EquipoId)
+
 	@(Html.YKN<JugadorConFechaFichajeVM>().Grid()
 .Checkbox()
 .PageLimit(100)

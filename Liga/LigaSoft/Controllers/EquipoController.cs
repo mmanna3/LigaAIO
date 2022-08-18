@@ -51,20 +51,38 @@ namespace LigaSoft.Controllers
 			return View(vm);
 	    }
 
-	    public ActionResult Pases(int id)
-	    {
-		    var equipo = Context.Equipos.Find(id);
-
-		    var vm = new PasesVM { EquipoOrigen = equipo.Nombre, EquipoOrigenId = id };
-
-		    return View(vm);
-	    }
-
 	    public ActionResult HabilitacionMasiva(int id)
 	    {
 		    var equipo = Context.Equipos.Find(id);
 
 		    var vm = new HabilitacionMasivaVM { Equipo = equipo.Nombre, EquipoId = id };
+
+		    return View(vm);
+	    }
+
+	    [HttpPost]
+		public ActionResult HabilitacionMasiva(HabilitacionMasivaVM vm)
+	    {
+		    if (!ModelState.IsValid)
+			    return RedirectToAction("HabilitacionMasiva", new { id = vm.EquipoId });
+
+			var equipo = Context.Equipos.Find(vm.EquipoId);
+		    foreach (var jugId in vm.JugadoresSeleccionados)
+		    {
+			    var jugEquipo = Context.Jugador.Single(x => x.EquipoId == vm.EquipoId && x.JugadorId == jugId);
+			    jugEquipo.EstaSuspendido = false;
+			}			    
+
+			Context.SaveChanges();
+
+			return RedirectToAction("Index");
+		}
+
+	    public ActionResult Pases(int id)
+	    {
+		    var equipo = Context.Equipos.Find(id);
+
+		    var vm = new PasesVM { EquipoOrigen = equipo.Nombre, EquipoOrigenId = id };
 
 		    return View(vm);
 	    }
