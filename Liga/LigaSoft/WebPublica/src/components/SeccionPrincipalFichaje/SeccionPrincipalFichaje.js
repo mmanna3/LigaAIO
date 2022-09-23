@@ -59,12 +59,14 @@ const SeccionPrincipalFichaje = () => {
 
     const huboAlgunError = !(Object.keys(errors).length === 0 && errors.constructor === Object)
 
-    if (!estaLaSeccionHabilitada())
+    // if (!estaLaSeccionHabilitada())
+    if (true)
         return (
             <div className={bootstrap['row']}>
                 <div className={bootstrap['col-12']}>
                     <div className={`${styles.mensajeDeshabilitado}`}>
-                        El fichaje está <strong>deshabilitado.</strong> Los días habilitados para ficharse son lunes, martes, miércoles y jueves hasta las 20Hs.
+                        {/* El fichaje está <strong>deshabilitado.</strong> Los días habilitados para ficharse son lunes, martes, miércoles y jueves hasta las 20Hs. */}
+                        El fichaje está <strong>deshabilitado</strong>.
                     </div>
                 </div>
             </div>
