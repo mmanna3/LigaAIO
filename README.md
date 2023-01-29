@@ -3,7 +3,8 @@
 - Ejecutar: ngrok http 8080 -host-header="localhost:8080"
 
 # Restaurar backup
-- SchemaZen.exe create --server localhost --database db --scriptDir c:\somedir
+- cd LigaAIO\Liga\LigaSoft\Utilidades\Backup\Recursos
+- ./SchemaZen.exe create --server '(LocalDb)\MSSQLLocalDB' --database edefi-prod-290123 --scriptDir C:\Users\matia\Downloads\BaseDeDatos-2023-01-29
 
 # Compilar web pública para pegarle IIS Express
 - cd WebPublica
