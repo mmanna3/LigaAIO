@@ -30,8 +30,8 @@
     "webpack-dev-server": "^3.10.3"
   },
   "scripts": {
-    "build-prod": "node_modules/.bin/webpack --config=config/webpack.config.prod.js",
-    "start": "node_modules/.bin/webpack-dev-server --config=config/webpack.config.dev.js",
+    "build-prod": "webpack --config=config/webpack.config.prod.js",
+    "start": "webpack-dev-server --config=config/webpack.config.dev.js",
     "limpiar": "rm package-lock.json && rm -rf node_modules && npm install"
   },
   "keywords": [],
