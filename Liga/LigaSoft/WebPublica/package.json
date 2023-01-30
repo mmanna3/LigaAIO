@@ -30,7 +30,7 @@
     "webpack-dev-server": "^3.10.3"
   },
   "scripts": {
-    "build-prod": "webpack --config=config/webpack.config.prod.js",
+    "build-prod": "webpack --openssl-legacy-provider --config=config/webpack.config.prod.js",
     "start": "webpack-dev-server --config=config/webpack.config.dev.js",
     "limpiar": "rm package-lock.json && rm -rf node_modules && npm install"
   },
