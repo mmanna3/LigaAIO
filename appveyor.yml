@@ -11,12 +11,13 @@ environment:
   deploy_password:
     secure: SFAvHfsz398LTl83QbS5gw==
 install:
-- ps: iex ((New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/appveyor/secure-file/master/install.ps1'))
-- cmd: appveyor-tools\secure-file -decrypt "Liga\LigaSoft\Utilidades\Backup\Recursos\credentials.json.enc" -secret %my_secret% -salt %salt_credentialsjson%
-- cmd: appveyor-tools\secure-file -decrypt "Liga\LigaSoft\Utilidades\Backup\Recursos\Google.Apis.Auth.OAuth2.Responses.TokenResponse-user.enc" -secret %my_secret% -salt %salt_googleapisauth%
-- ps: nuget restore Liga\LigaSoft.sln
+  - ps: iex ((New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/appveyor/secure-file/master/install.ps1'))
+  - cmd: appveyor-tools\secure-file -decrypt "Liga\LigaSoft\Utilidades\Backup\Recursos\credentials.json.enc" -secret %my_secret% -salt %salt_credentialsjson%
+  - cmd: appveyor-tools\secure-file -decrypt "Liga\LigaSoft\Utilidades\Backup\Recursos\Google.Apis.Auth.OAuth2.Responses.TokenResponse-user.enc" -secret %my_secret% -salt %salt_googleapisauth%
+  - ps: nuget restore Liga\LigaSoft.sln
 before_build:
   - cd Liga\LigaSoft\WebPublica
+  - node -v
   - npm install
   - npm run build-prod
 build:
@@ -26,8 +27,7 @@ build:
   verbosity: minimal
 
 for:
-  -
-    branches:
+  - branches:
       only:
         - master
     environment:
@@ -47,12 +47,11 @@ for:
         password: $(deploy_password)
         ntlm: false
 
-  -
-    branches:
+  - branches:
       only:
         - test
     environment:
-      DefaultConnection-Web.config Connection String: 
+      DefaultConnection-Web.config Connection String:
         secure: XCd88qxQ5JDVfoGcLQeYQWrGCU6u6B3IXhiH9F16yEkP5FfTLoWEup0h3mer2aJEMQ3v3eNLGNoG1bGa6EE+gF5ivVxkL4ekjni2H+qCAsOJVQasYy1mhFIqoW7nMtp3FJFhhv8SLhi9Z7xF2updx+Qrmy3d57ZRIi3LQ6p2DmI=
       deploy_server_test:
         secure: qbUfDe0ngl5+/7mkQxs8ByxZ6QB93c59/494w4lEpOai3cgh5bDAiRBRYeOt7hQQ7JkG1kD6wV2IigmoKDvZHD4lsSg4IrSwWOWLSPJCyCI=
