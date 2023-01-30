@@ -135,6 +135,7 @@ namespace LigaSoft.ViewModelMappers
 				DNI = model.DNI,
 				FechaNacimiento = DateTimeUtils.ConvertToString(model.FechaNacimiento),
 				Equipo = equipo.Nombre.ToUpper(),
+				Estado = jugadorEquipo.Estado.Descripcion(),
 				EstaSuspendido = jugadorEquipo.EstaSuspendido,
 				Categoria = Categoria(model),				
 				FotoBase64 = _imagenesJugadoresDiskPersistence.GetFotoEnBase64(model.DNI),

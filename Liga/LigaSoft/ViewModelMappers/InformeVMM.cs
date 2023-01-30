@@ -47,12 +47,15 @@ namespace LigaSoft.ViewModelMappers
 			return vm;
 		}
 
-		public InformeCantidadDeJugadoresPorTorneoVM CantidadDeJugadoresPorTorneoMap()
+		public InformeCantidadDeJugadoresPorTorneoVM CantidadDeJugadoresPorTorneoMap(int? anio = null)
 		{
+			if (anio == null)
+				anio = DateTime.Now.Year;
+
 			var vm = new InformeCantidadDeJugadoresPorTorneoVM
 			{
 				Renglones = _context.JugadorEquipos
-									.Where(x => (int)x.Equipo.Torneo.Anio == DateTime.Now.Year)
+									.Where(x => (int)x.Equipo.Torneo.Anio == anio)
 									.GroupBy(x => x.Equipo.Torneo.Tipo)
 									.Select(x => new InformeJugadoresPorTorneoRenglonVM
 									{

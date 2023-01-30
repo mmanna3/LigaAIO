@@ -25,7 +25,7 @@ namespace Tests.Unit
 		[Test]
 		public void InformeCantidadDeJugadoresPorTorneo_DevuelveLaCantidadCorrectaDeJugadoresPorEquipo()
 		{
-			var vm = _vmm.CantidadDeJugadoresPorTorneoMap();
+			var vm = _vmm.CantidadDeJugadoresPorTorneoMap(2022);
 			Assert.AreEqual(1, vm.Renglones.First().CantidadDeJugadores);
 			Assert.AreEqual(2, vm.Renglones.Skip(1).First().CantidadDeJugadores);
 		}

@@ -6,6 +6,7 @@
 		public string Apellido { get; set; }
 		public string DNI { get; set; }
 		public string Equipo { get; set; }
+		public string Estado { get; set; }
 		public bool EstaSuspendido { get; set; }
 		public string FechaNacimiento { get; set; }
 		public string FechaVencimiento { get; set; }
