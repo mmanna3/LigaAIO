@@ -7,6 +7,7 @@ using System.Web;
 using LigaSoft.ExtensionMethods;
 using LigaSoft.Models;
 using LigaSoft.Models.Dominio;
+using LigaSoft.Models.Enums;
 using LigaSoft.Models.ViewModels;
 using LigaSoft.Utilidades;
 using LigaSoft.Utilidades.Persistence.DiskPersistence;
@@ -102,7 +103,7 @@ namespace LigaSoft.ViewModelMappers
 
 			vm.Equipos = new List<string>();
 
-			var equiposListConBotonImprimirYBotonSuspender = model.JugadorEquipo.Select(x => x.Equipo.Descripcion() + " - FICHADO: " + DateTimeUtils.ConvertToStringDdMmYy(x.FechaFichaje) + " " + BotonImprimir(x.JugadorId, x.EquipoId) + BotonSuspenderHabilitar(x.JugadorId, x.EquipoId, x.EstaSuspendido));
+			var equiposListConBotonImprimirYBotonSuspender = model.JugadorEquipo.Select(x => "<li>" + x.Equipo.Descripcion() + " - FICHADO: " + DateTimeUtils.ConvertToStringDdMmYy(x.FechaFichaje) + " " + BotonImprimir(x.JugadorId, x.EquipoId) + CambiarEstadoHtml(x.JugadorId, x.EquipoId, x.Estado) + "</li>");
 
 			vm.Equipos.AddRange(equiposListConBotonImprimirYBotonSuspender);
 
@@ -114,22 +115,13 @@ namespace LigaSoft.ViewModelMappers
 			return $"<a href='PrntCarnet:/{equipoId}/{jugadorId}' class='btn btn-primary btn-sm boton-imprimir'>Imprimir carnet</a>";
 		}
 
-		private static string BotonSuspenderHabilitar(int jugadorId, int equipoId, bool estaSuspendido)
+		private static string CambiarEstadoHtml(int jugadorId, int equipoId, EstadoJugador estado)
 		{
-			string claseBootstrap;
-			string label;
-			if (estaSuspendido)
-			{
-				claseBootstrap = "btn-danger";
-				label = $"Jugador suspendido. ¿Habilitar?";
-			}
-			else
-			{
-				claseBootstrap = "btn-success";
-				label = $"Jugador habilitado. ¿Suspender?";
-			}
-
-			return $"<button onClick='habilitarSuspender({equipoId},{jugadorId}); return false;' class='btn {claseBootstrap} btn-sm boton-suspenderhabilitar'>{label}</button>";
+			return $@" Estado: <select name='estado-eq{equipoId}-jug{jugadorId}' id='estado-eq{equipoId}-jug{jugadorId}' onChange='cambiarEstado({equipoId},{jugadorId}); return false;'>
+							<option value='{(int)EstadoJugador.Activo}' {(estado == EstadoJugador.Activo ? "selected" : "")}>Activo</option>
+							<option value='{(int)EstadoJugador.Suspendido}' {(estado == EstadoJugador.Suspendido ? "selected" : "")}>Suspendido</option>
+							<option value='{(int)EstadoJugador.Inhabilitado}' {(estado == EstadoJugador.Inhabilitado ? "selected" : "")}>Inhabilitado</option>
+						</select> ";
 		}
 
 		public JugadorCarnetVM MapJugadorParaCarnet(Jugador model, Equipo equipo)

@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using LigaSoft.BusinessLogic;
 using LigaSoft.Models.Attributes.GPRPattern;
 using LigaSoft.Models.Dominio;
+using LigaSoft.Models.Enums;
 using LigaSoft.Models.Otros;
 using LigaSoft.Models.ViewModels;
 using LigaSoft.Utilidades;
@@ -191,7 +192,7 @@ namespace LigaSoft.Controllers
 		    var equipo = Context.Equipos.Find(vm.NuevoEquipoId);
 		    var jugador = Context.Jugadores.Find(vm.JugadorId);
 
-		    equipo?.JugadorEquipo.Add(new JugadorEquipo { Equipo = equipo, Jugador = jugador, FechaFichaje = DateTime.Today});
+		    equipo?.JugadorEquipo.Add(new JugadorEquipo { Equipo = equipo, Jugador = jugador, FechaFichaje = DateTime.Today, Estado = EstadoJugador.Activo});
 
 		    Context.SaveChanges();
 
@@ -216,11 +217,11 @@ namespace LigaSoft.Controllers
 	    }
 
 		[HttpPost]
-		public ActionResult HabilitarSuspender(int equipoId, int jugadorId)
+		public ActionResult CambiarEstado(int equipoId, int jugadorId, EstadoJugador estadoId)
 		{
 			var jugadorEquipo = Context.JugadorEquipos.Single(x => x.JugadorId == jugadorId && x.EquipoId == equipoId);
 
-			jugadorEquipo.EstaSuspendido = !jugadorEquipo.EstaSuspendido;
+			jugadorEquipo.Estado = estadoId;
 
 			Context.SaveChanges();
 

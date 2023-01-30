@@ -1,15 +1,16 @@
 ﻿@using LigaSoft.ExtensionMethods
 @using LigaSoft.Utilidades
+@using LigaSoft.Models.Enums
 @model LigaSoft.Models.ViewModels.JugadorBaseVM
 
 @section Titulo{
 	Detalles del Jugador
 }
 
-@using (Html.YKN().Form())
+@using (Html.YKN().Form(FormSizeEnum.VeryBig))
 {
 	<div class="row">
-		<div class="col-sm-6">
+		<div class="col-sm-3">
 			<img src="@Model.Foto" alt="foto">
 		</div>
 		<div class="col-sm-6">
@@ -19,24 +20,33 @@
 			@Html.YKN().DisplayFor(x => x.FechaNacimiento)
 			@*@Html.YKN().DisplayFor(x => x.CarnetImpreso)*@
 		</div>
-	</div>	
-	<div class="row">
+	</div>
+	<div class="row" style="margin-top: 1em;">
 		<div class="col-sm-12">
-			@Html.YKN().DisplayMultilineFor(x => x.Equipos)
+				@Html.YKN().DisplayMultilineFor(x => x.Equipos)
 		</div>
 	</div>
 
-	{ Html.YKN().FooterVolver();}
+	<div class='row form-footer'>
+		<div class='col-sm-offset-9 col-sm-3'>
+			@(Html.YKN().Button("Volver")
+				  .Color(BootstrapColorEnum.Danger)
+				  .FullWidth()
+				  .Label("Volver")
+				  .OnClickRedirect("Index", "Jugador"))
+		</div>
+	</div>
 }
 
 <script>
-	function habilitarSuspender(equipoId, jugadorId) {
-		debugger;
+	function cambiarEstado(equipoId, jugadorId) {
+		const estado = document.getElementById(`estado-eq${equipoId}-jug${jugadorId}`).value;
+		console.log(estado);
 		$.ajax({
-			url: '/Jugador/HabilitarSuspender',
+			url: '/Jugador/CambiarEstado',
 			type: "POST",
-			data: { equipoId: equipoId, jugadorId: jugadorId },
-			success: function() {
+			data: { equipoId: equipoId, jugadorId: jugadorId, estadoId: estado },
+			success: function () {
 				window.location.reload(false);
 			}
 		});
