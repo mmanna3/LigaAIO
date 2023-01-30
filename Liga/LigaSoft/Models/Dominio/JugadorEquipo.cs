@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using LigaSoft.ExtensionMethods;
+using LigaSoft.Models.Enums;
 using LigaSoft.Utilidades;
 
 namespace LigaSoft.Models.Dominio
@@ -21,6 +22,9 @@ namespace LigaSoft.Models.Dominio
 		public bool FueMigrado { get; set; }
 
 		public bool EstaSuspendido { get; set; }
+
+		[Required]
+		public EstadoJugador Estado { get; set; }
 
 		public string Descripcion()
 		{
