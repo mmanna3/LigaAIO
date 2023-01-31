@@ -99,9 +99,9 @@
 	<div class="carnet-contenedor">
 		<img class="imagen" src="@carnet.FotoPath" alt="foto" />
 		<div class="datos">
-			@if (carnet.EstaSuspendido)
-			{
-				<div class="suspendido">JUGADOR SUSPENDIDO</div>
+			@if (carnet.Estado == EstadoJugador.Inhabilitado || carnet.Estado == EstadoJugador.Suspendido)
+			{				
+				<div class="suspendido">JUGADOR @carnet.EstadoDescripcion</div>
 				<div class="nombre">@carnet.Nombre @carnet.Apellido</div>
 				<div>DNI: @carnet.DNI</div>
 				<div>@carnet.FechaNacimiento</div>

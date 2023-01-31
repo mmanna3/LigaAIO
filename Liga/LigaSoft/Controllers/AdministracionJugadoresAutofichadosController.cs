@@ -69,7 +69,7 @@ namespace LigaSoft.Controllers
 
 				var jugadorEquipo = _jugadorVMM.MapCreate(vm, jugador);
 
-				SuspenderJugadorSiEsFemeninoOFutsal(jugadorEquipo);
+				InhabilitarJugadorSiEsFemeninoOFutsal(jugadorEquipo);
 
 				_context.JugadorEquipos.Add(jugadorEquipo);
 				jugadorAutofichado.Estado = EstadoJugadorAutofichado.Aprobado;
@@ -90,13 +90,13 @@ namespace LigaSoft.Controllers
 			return RedirectToAction("Index", new { Estado = 1 });
 		}
 
-		private void SuspenderJugadorSiEsFemeninoOFutsal(JugadorEquipo jugadorEquipo)
+		private void InhabilitarJugadorSiEsFemeninoOFutsal(JugadorEquipo jugadorEquipo)
 		{
 			var torneoDescripcion = jugadorEquipo.Equipo.Torneo.Tipo.Descripcion;
 
 			if (torneoDescripcion.ToUpper().Equals("FUTSAL MAYORES") || torneoDescripcion.ToUpper().Equals("FEMENINO") || torneoDescripcion.ToUpper().Equals("FUTSAL"))
 			{
-				jugadorEquipo.EstaSuspendido = true;
+				jugadorEquipo.Estado = EstadoJugador.Inhabilitado;
 			}
 		}
 

@@ -88,7 +88,7 @@ namespace LigaSoft.ViewModelMappers
 					DNI = model.Jugador.DNI,
 					FechaNacimiento = DateTimeUtils.ConvertToString(model.Jugador.FechaNacimiento),
 					FechaFichaje = DateTimeUtils.ConvertToStringDdMmYy(model.FechaFichaje),
-					EstaSuspendido = model.EstaSuspendido.ToSiNoString()
+					EstadoDescripcion = model.Estado.Descripcion(),
 				};
 
 				listVM.Add(vm);
@@ -135,8 +135,8 @@ namespace LigaSoft.ViewModelMappers
 				DNI = model.DNI,
 				FechaNacimiento = DateTimeUtils.ConvertToString(model.FechaNacimiento),
 				Equipo = equipo.Nombre.ToUpper(),
-				Estado = jugadorEquipo.Estado.Descripcion(),
-				EstaSuspendido = jugadorEquipo.EstaSuspendido,
+				Estado = jugadorEquipo.Estado,
+				EstadoDescripcion = jugadorEquipo.Estado.Descripcion().ToUpper(),
 				Categoria = Categoria(model),				
 				FotoBase64 = _imagenesJugadoresDiskPersistence.GetFotoEnBase64(model.DNI),
 				FotoPath = _imagenesJugadoresDiskPersistence.Path(model.DNI),

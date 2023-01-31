@@ -1,4 +1,6 @@
-﻿namespace LigaSoft.Models.ViewModels
+﻿using LigaSoft.Models.Enums;
+
+namespace LigaSoft.Models.ViewModels
 {
 	public class JugadorCarnetVM
 	{
@@ -6,8 +8,8 @@
 		public string Apellido { get; set; }
 		public string DNI { get; set; }
 		public string Equipo { get; set; }
-		public string Estado { get; set; }
-		public bool EstaSuspendido { get; set; }
+		public EstadoJugador Estado { get; set; }
+		public string EstadoDescripcion { get; set; }
 		public string FechaNacimiento { get; set; }
 		public string FechaVencimiento { get; set; }
 		public string TipoLiga { get; set; }

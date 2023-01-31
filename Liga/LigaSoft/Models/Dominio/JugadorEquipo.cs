@@ -20,7 +20,6 @@ namespace LigaSoft.Models.Dominio
 		public DateTime FechaFichaje { get; set; }
 
 		public bool FueMigrado { get; set; }
-
 		public bool EstaSuspendido { get; set; }
 
 		[Required]

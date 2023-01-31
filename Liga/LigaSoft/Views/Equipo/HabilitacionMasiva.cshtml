@@ -13,21 +13,21 @@ Habilitación masiva <span class="titulo-detacado">@Model.Equipo</span>
 	@Html.HiddenFor(x => x.EquipoId)
 
 	@(Html.YKN<JugadorConFechaFichajeVM>().Grid()
-.Checkbox()
-.PageLimit(100)
-.WithColumns(column =>
-{
-column.AddTextColumn(x => x.DNI);
-column.AddTextColumn(x => x.Nombre);
-column.AddTextColumn(x => x.Apellido);
-column.AddTextColumn(x => x.FechaNacimiento);
-column.AddTextColumn(x => x.EstaSuspendido);
-})
-.DataSource("/Jugador/GetByEquipoId")
-.ParentId(Model.EquipoId)
-)
+		.Checkbox()
+		.PageLimit(100)
+		.WithColumns(column =>
+		{
+		column.AddTextColumn(x => x.DNI);
+		column.AddTextColumn(x => x.Nombre);
+		column.AddTextColumn(x => x.Apellido);
+		column.AddTextColumn(x => x.FechaNacimiento);
+		column.AddTextColumn(x => x.EstadoDescripcion);
+		})
+		.DataSource("/Jugador/GetByEquipoId")
+		.ParentId(Model.EquipoId)
+	)
 
-	{ Html.YKN().FooterGuardarCancelar("Habilitar o deshabilitar"); }
+	{ Html.YKN().FooterGuardarCancelar("Habilitar seleccionados"); }
 
 }
 
