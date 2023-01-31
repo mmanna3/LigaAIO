@@ -354,6 +354,10 @@
     <Compile Include="Migrations\202301300125256_AgregaEstadoAJugadorEquipo.designer.cs">
       <DependentUpon>202301300125256_AgregaEstadoAJugadorEquipo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202301312354289_EliminaEstaSuspendidoYFueMigradoDeJugadorEquipo.cs" />
+    <Compile Include="Migrations\202301312354289_EliminaEstaSuspendidoYFueMigradoDeJugadorEquipo.designer.cs">
+      <DependentUpon>202301312354289_EliminaEstaSuspendidoYFueMigradoDeJugadorEquipo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Dominio\JugadorAutofichado.cs" />
     <Compile Include="Models\Dominio\UsuarioDelegado.cs" />
     <Compile Include="Models\Dominio\Sancion.cs" />
@@ -1700,6 +1704,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202301300125256_AgregaEstadoAJugadorEquipo.resx">
       <DependentUpon>202301300125256_AgregaEstadoAJugadorEquipo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301312354289_EliminaEstaSuspendidoYFueMigradoDeJugadorEquipo.resx">
+      <DependentUpon>202301312354289_EliminaEstaSuspendidoYFueMigradoDeJugadorEquipo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
