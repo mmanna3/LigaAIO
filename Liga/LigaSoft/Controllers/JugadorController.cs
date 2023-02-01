@@ -227,5 +227,18 @@ namespace LigaSoft.Controllers
 
 			return Json(new { success = true }, JsonRequestBehavior.AllowGet);
 		}
+
+		[HttpPost]
+		public ActionResult ActualizarTarjetas(int equipoId, int jugadorId, int tarjetasAmarillas, int tarjetasRojas)
+		{
+			var jugadorEquipo = Context.JugadorEquipos.Single(x => x.JugadorId == jugadorId && x.EquipoId == equipoId);
+
+			jugadorEquipo.TarjetasAmarillas = tarjetasAmarillas;
+			jugadorEquipo.TarjetasRojas = tarjetasRojas;
+
+			Context.SaveChanges();
+
+			return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+		}
 	}
 }

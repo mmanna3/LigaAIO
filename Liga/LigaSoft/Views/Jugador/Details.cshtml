@@ -18,13 +18,55 @@
 			@Html.YKN().DisplayFor(x => x.Nombre)
 			@Html.YKN().DisplayFor(x => x.Apellido)
 			@Html.YKN().DisplayFor(x => x.FechaNacimiento)
-			@*@Html.YKN().DisplayFor(x => x.CarnetImpreso)*@
 		</div>
 	</div>
-	<div class="row" style="margin-top: 1em;">
-		<div class="col-sm-12">
-				@Html.YKN().DisplayMultilineFor(x => x.Equipos)
-		</div>
+	<div style="margin-top: 2em;">
+		<hr />
+		@foreach (var equipo in Model.Equipos)
+		{
+			<div class="row" style="margin-top: 1em;">
+				<div class="col-sm-3">
+					<div>
+						<span class="clave">Equipo:</span> <span class="valor">@equipo.Nombre</span>
+					</div>
+					<div>
+						<span class="clave">Torneo:</span> <span class="valor">@equipo.Torneo</span>
+					</div>
+					<div>
+						<span class="clave">Zona:</span> <span class="valor">@equipo.Zona</span>
+					</div>
+				</div>
+				<div class="col-sm-9">
+					<div>
+						<span class="clave">Estado:</span> <select class="form-control estadoJugador" name='estado-eq@(equipo.EquipoId)-jug@(Model.Id)' id='estado-eq@(equipo.EquipoId)-jug@(Model.Id)' onChange='cambiarEstado(@equipo.EquipoId,@Model.Id); return false;'>
+							<option value='@EstadoJugador.Activo' @(EstadoJugador.Activo.Equals(equipo.Estado) ? "selected" : "")>Activo</option>
+							<option value='@EstadoJugador.Suspendido' @(equipo.Estado == EstadoJugador.Suspendido ? "selected" : "")>Suspendido</option>
+							<option value='@EstadoJugador.Inhabilitado' @(equipo.Estado == EstadoJugador.Inhabilitado ? "selected" : "")>Inhabilitado</option>
+						</select>
+					</div>
+					<div class="renglonTarjetas">
+						<span>
+							<span class="clave">Tarjetas amarillas:</span> <span><input id="amarillas-eq@(equipo.EquipoId)-jug@(Model.Id)" class="valor form-control tarjeta" value="@equipo.TarjetasAmarillas" /></span>
+						</span>
+						<span>
+							<span class="clave">Tarjetas rojas:</span> <span><input id="rojas-eq@(equipo.EquipoId)-jug@(Model.Id)" class="valor form-control tarjeta" value="@equipo.TarjetasRojas" /></span>
+						</span>
+						<span>
+							<button type="button" onclick="actualizarTarjetas(@equipo.EquipoId,@Model.Id); return false;" class='btn btn-success'>Guardar tarjetas</button>
+						</span>
+					</div>
+				</div>
+				<div class="fichajeYBotonImprimir">
+					<div>
+						<div>Fichado el @equipo.FechaFichaje</div>
+					</div>
+					<div class="renglonBotonImprimirCarnet">
+						<a href='PrntCarnet:/@equipo.EquipoId/@Model.Id' class='btn btn-primary'>Imprimir carnet</a>
+					</div>
+				</div>
+				<hr />
+			</div>
+		}
 	</div>
 
 	<div class='row form-footer'>
@@ -51,4 +93,50 @@
 			}
 		});
 	}
+
+	function actualizarTarjetas(equipoId, jugadorId) {
+		const tarjetasAmarillas = document.getElementById(`amarillas-eq${equipoId}-jug${jugadorId}`).value;
+		const tarjetasRojas = document.getElementById(`rojas-eq${equipoId}-jug${jugadorId}`).value;
+		console.log(tarjetasAmarillas);
+		console.log(tarjetasRojas);
+		$.ajax({
+			url: '/Jugador/ActualizarTarjetas',
+			type: "POST",
+			data: { equipoId: equipoId, jugadorId: jugadorId, tarjetasAmarillas: tarjetasAmarillas, tarjetasRojas: tarjetasRojas},
+			success: function () {
+				window.location.reload(false);
+			}
+		});
+	}
 </script>
+
+<style>
+	.clave {
+		font-weight: bold;
+	}
+
+	.tarjeta {
+		display: inline;
+		width: 40px;
+		/*height: 25px;*/
+		/*text-align: center;*/
+	}
+
+	.estadoJugador {
+		display: inline;
+		width: 140px;
+	}
+
+	.renglonTarjetas {
+		margin-top: 5px;
+		margin-bottom: 1em;
+	}
+
+	.renglonBotonImprimirCarnet {
+		margin-top: 10px;
+	}
+
+	.fichajeYBotonImprimir {
+		margin-left: 1em;
+	}
+</style>

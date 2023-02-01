@@ -101,11 +101,26 @@ namespace LigaSoft.ViewModelMappers
 		{
 			var vm = MapJugadorBase(model);
 
-			vm.Equipos = new List<string>();
+			vm.Equipos = new List<EquipoDelJugadorVM>();
 
-			var equiposListConBotonImprimirYBotonSuspender = model.JugadorEquipo.Select(x => "<li>" + x.Equipo.Descripcion() + " - FICHADO: " + DateTimeUtils.ConvertToStringDdMmYy(x.FechaFichaje) + " " + BotonImprimir(x.JugadorId, x.EquipoId) + CambiarEstadoHtml(x.JugadorId, x.EquipoId, x.Estado) + "</li>");
+			//var equiposListConBotonImprimirYBotonSuspender = model.JugadorEquipo.Select(x => "<li>" + x.Equipo.Descripcion() + " - FICHADO: " + DateTimeUtils.ConvertToStringDdMmYy(x.FechaFichaje) + " " + BotonImprimir(x.JugadorId, x.EquipoId) + CambiarEstadoHtml(x.JugadorId, x.EquipoId, x.Estado) + "</li>");
 
-			vm.Equipos.AddRange(equiposListConBotonImprimirYBotonSuspender);
+			foreach (var jugadorEquipo in model.JugadorEquipo)
+			{
+				var equipo = new EquipoDelJugadorVM
+				{
+					EquipoId = jugadorEquipo.Equipo.Id,
+					Nombre = jugadorEquipo.Equipo.Nombre,
+					Torneo = jugadorEquipo.Equipo.Torneo?.Descripcion,
+					Zona = jugadorEquipo.Equipo.Zona?.Nombre,
+					FechaFichaje = DateTimeUtils.ConvertToStringDdMmYy(jugadorEquipo.FechaFichaje),
+					Estado = jugadorEquipo.Estado,
+					TarjetasAmarillas = jugadorEquipo.TarjetasAmarillas,
+					TarjetasRojas = jugadorEquipo.TarjetasRojas,
+				};
+
+				vm.Equipos.Add(equipo);
+			}
 
 			return vm;
 		}
