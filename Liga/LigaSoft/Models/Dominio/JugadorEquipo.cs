@@ -22,6 +22,9 @@ namespace LigaSoft.Models.Dominio
 		[Required]
 		public EstadoJugador Estado { get; set; }
 
+		public int TarjetasAmarillas { get; set; }		
+		public int TarjetasRojas { get; set; }
+
 		public string Descripcion()
 		{
 			return $"DNI: {Jugador.DNI} - {Jugador.Apellido.ToCamelCase()}, {Jugador.Nombre.ToCamelCase()} - Categoría: {Jugador.Categoria()} - Fichado: {DateTimeUtils.ConvertToString(FechaFichaje)}";
