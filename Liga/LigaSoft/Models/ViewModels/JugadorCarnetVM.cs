@@ -10,6 +10,8 @@ namespace LigaSoft.Models.ViewModels
 		public string Equipo { get; set; }
 		public EstadoJugador Estado { get; set; }
 		public string EstadoDescripcion { get; set; }
+		public int TarjetasAmarillas { get; set; }
+		public int TarjetasRojas { get; set; }
 		public string FechaNacimiento { get; set; }
 		public string FechaVencimiento { get; set; }
 		public string TipoLiga { get; set; }

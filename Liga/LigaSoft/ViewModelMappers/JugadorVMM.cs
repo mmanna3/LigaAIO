@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Web;
 using LigaSoft.ExtensionMethods;
 using LigaSoft.Models;
 using LigaSoft.Models.Dominio;
-using LigaSoft.Models.Enums;
 using LigaSoft.Models.ViewModels;
 using LigaSoft.Utilidades;
 using LigaSoft.Utilidades.Persistence.DiskPersistence;
@@ -103,8 +101,6 @@ namespace LigaSoft.ViewModelMappers
 
 			vm.Equipos = new List<EquipoDelJugadorVM>();
 
-			//var equiposListConBotonImprimirYBotonSuspender = model.JugadorEquipo.Select(x => "<li>" + x.Equipo.Descripcion() + " - FICHADO: " + DateTimeUtils.ConvertToStringDdMmYy(x.FechaFichaje) + " " + BotonImprimir(x.JugadorId, x.EquipoId) + CambiarEstadoHtml(x.JugadorId, x.EquipoId, x.Estado) + "</li>");
-
 			foreach (var jugadorEquipo in model.JugadorEquipo)
 			{
 				var equipo = new EquipoDelJugadorVM
@@ -125,20 +121,6 @@ namespace LigaSoft.ViewModelMappers
 			return vm;
 		}
 
-		private static string BotonImprimir(int jugadorId, int equipoId)
-		{
-			return $"<a href='PrntCarnet:/{equipoId}/{jugadorId}' class='btn btn-primary btn-sm boton-imprimir'>Imprimir carnet</a>";
-		}
-
-		private static string CambiarEstadoHtml(int jugadorId, int equipoId, EstadoJugador estado)
-		{
-			return $@" Estado: <select name='estado-eq{equipoId}-jug{jugadorId}' id='estado-eq{equipoId}-jug{jugadorId}' onChange='cambiarEstado({equipoId},{jugadorId}); return false;'>
-							<option value='{(int)EstadoJugador.Activo}' {(estado == EstadoJugador.Activo ? "selected" : "")}>Activo</option>
-							<option value='{(int)EstadoJugador.Suspendido}' {(estado == EstadoJugador.Suspendido ? "selected" : "")}>Suspendido</option>
-							<option value='{(int)EstadoJugador.Inhabilitado}' {(estado == EstadoJugador.Inhabilitado ? "selected" : "")}>Inhabilitado</option>
-						</select> ";
-		}
-
 		public JugadorCarnetVM MapJugadorParaCarnet(Jugador model, Equipo equipo)
 		{
 			var jugadorEquipo = Context.JugadorEquipos.Single(x => x.EquipoId == equipo.Id && x.JugadorId == model.Id);
@@ -156,7 +138,9 @@ namespace LigaSoft.ViewModelMappers
 				FotoBase64 = _imagenesJugadoresDiskPersistence.GetFotoEnBase64(model.DNI),
 				FotoPath = _imagenesJugadoresDiskPersistence.Path(model.DNI),
 				FechaVencimiento = FechaDeVencimientoDelCarnet(jugadorEquipo),
-				TipoLiga = equipo.Torneo.Tipo.LoQueSeImprimeEnElCarnet.ToUpper()
+				TipoLiga = equipo.Torneo.Tipo.LoQueSeImprimeEnElCarnet.ToUpper(),
+				TarjetasAmarillas = jugadorEquipo.TarjetasAmarillas,
+				TarjetasRojas = jugadorEquipo.TarjetasRojas,
 			};
 		}
 
