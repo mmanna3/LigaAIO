@@ -202,6 +202,7 @@
     <Compile Include="BusinessLogic\GeneradorDeMovimientos.cs" />
     <Compile Include="Controllers\AdministracionJugadoresAutofichadosController.cs" />
     <Compile Include="Controllers\AdministracionDelegadosController.cs" />
+    <Compile Include="Controllers\PoliticaDePrivacidadController.cs" />
     <Compile Include="Controllers\AppDelegadosController.cs" />
     <Compile Include="Controllers\SudoController.cs" />
     <Compile Include="Controllers\JugadorAutofichadoController.cs" />
@@ -1302,6 +1303,7 @@
     <Content Include="Views\Informe\CantidadDeJugadoresPorTorneo_Informe.cshtml" />
     <Content Include="Views\AdministracionDelegados\DelegadosPorClub.cshtml" />
     <Content Include="Views\Equipo\Carnets.cshtml" />
+    <Content Include="Views\PoliticaDePrivacidad\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
