@@ -69,7 +69,8 @@ namespace LigaSoft.Controllers
 
 				var jugadorEquipo = _jugadorVMM.MapCreate(vm, jugador);
 
-				InhabilitarJugadorSiEsFemeninoOFutsal(jugadorEquipo);
+				//InhabilitarJugadorSiEsFemeninoOFutsal(jugadorEquipo);
+				jugadorEquipo.Estado = EstadoJugador.Inhabilitado;
 
 				_context.JugadorEquipos.Add(jugadorEquipo);
 				jugadorAutofichado.Estado = EstadoJugadorAutofichado.Aprobado;
@@ -90,15 +91,15 @@ namespace LigaSoft.Controllers
 			return RedirectToAction("Index", new { Estado = 1 });
 		}
 
-		private void InhabilitarJugadorSiEsFemeninoOFutsal(JugadorEquipo jugadorEquipo)
-		{
-			var torneoDescripcion = jugadorEquipo.Equipo.Torneo.Tipo.Descripcion;
+		//private void InhabilitarJugadorSiEsFemeninoOFutsal(JugadorEquipo jugadorEquipo)
+		//{
+		//	var torneoDescripcion = jugadorEquipo.Equipo.Torneo.Tipo.Descripcion;
 
-			if (torneoDescripcion.ToUpper().Equals("FUTSAL MAYORES") || torneoDescripcion.ToUpper().Equals("FEMENINO") || torneoDescripcion.ToUpper().Equals("FUTSAL"))
-			{
-				jugadorEquipo.Estado = EstadoJugador.Inhabilitado;
-			}
-		}
+		//	if (torneoDescripcion.ToUpper().Equals("FUTSAL MAYORES") || torneoDescripcion.ToUpper().Equals("FEMENINO") || torneoDescripcion.ToUpper().Equals("FUTSAL"))
+		//	{
+		//		jugadorEquipo.Estado = EstadoJugador.Inhabilitado;
+		//	}
+		//}
 
 		[ExportModelStateToTempData, HttpPost]
 		public ActionResult Rechazar(JugadorAutofichadoVM vm)
