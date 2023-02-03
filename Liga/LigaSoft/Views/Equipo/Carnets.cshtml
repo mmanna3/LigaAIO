@@ -18,6 +18,7 @@
 		margin-bottom: 10px;
 		margin-right: 10px;
 		display: flex;
+		position: relative
 	}
 
 	.imagen {
@@ -69,6 +70,30 @@
 		width: 450px;
 		height: 200px;
 	}
+
+	.tarjetas {
+		position: absolute;
+		right: 30px;
+		bottom: 95px;
+	}
+
+	.tarjetaAmarilla {
+		width: 10px;
+		height: 15px;
+		background-color: yellow;
+		display: inline-block;
+		border: 1px solid black;
+		margin-left: 2px;
+	}
+
+	.tarjetaRoja {
+		width: 10px;
+		height: 15px;
+		background-color: red;
+		display: inline-block;
+		border: 1px solid black;
+		margin-left: 2px;
+	}
 </style>
 
 @section Titulo{
@@ -100,7 +125,7 @@
 		<img class="imagen" src="@carnet.FotoPath" alt="foto" />
 		<div class="datos">
 			@if (carnet.Estado == EstadoJugador.Inhabilitado || carnet.Estado == EstadoJugador.Suspendido)
-			{				
+			{
 				<div class="suspendido">JUGADOR @carnet.EstadoDescripcion</div>
 				<div class="nombre">@carnet.Nombre @carnet.Apellido</div>
 				<div>DNI: @carnet.DNI</div>
@@ -119,6 +144,24 @@
 		</div>
 		<div class="logo-contenedor">
 			<img class="logo" src="../../Content/logo.svg" alt="EDEFI" />
+		</div>
+		<div class="tarjetas">
+			@if (carnet.TarjetasAmarillas != 0)
+			{
+				<span class="cantidadDeAmarillas">
+					@carnet.TarjetasAmarillas
+				</span>
+				<span class="tarjetaAmarilla"></span>
+			}
+			@if (carnet.TarjetasRojas != 0)
+			{
+				<div>
+					<span class="cantidadDeAmarillas">
+						@carnet.TarjetasRojas
+					</span>
+					<span class="tarjetaRoja"></span>
+				</div>
+			}
 		</div>
 	</div>
 	}
