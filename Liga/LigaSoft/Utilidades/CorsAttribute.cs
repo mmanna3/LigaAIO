@@ -5,7 +5,7 @@ public class AllowCrossSiteAttribute : ActionFilterAttribute
 {
     public override void OnActionExecuting(ActionExecutingContext filterContext)
     {
-        filterContext.RequestContext.HttpContext.Response.AddHeader("Access-Control-Allow-Origin", "http://localhost:5173");
+        filterContext.RequestContext.HttpContext.Response.AddHeader("Access-Control-Allow-Origin", "*");
         filterContext.RequestContext.HttpContext.Response.AddHeader("Access-Control-Allow-Headers", "*");
         filterContext.RequestContext.HttpContext.Response.AddHeader("Access-Control-Allow-Credentials", "true");
 
