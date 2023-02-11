@@ -24,6 +24,7 @@ using ZonaTipo = LigaSoft.Models.Enums.ZonaTipo;
 namespace LigaSoft.Controllers
 {
 	[AllowAnonymous]
+	[AllowCrossSite]
 	public class PublicoController : Controller
 	{
 		private readonly ApplicationDbContext _context;

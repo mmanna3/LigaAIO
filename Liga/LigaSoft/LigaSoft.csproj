@@ -851,6 +851,7 @@
     <Compile Include="Models\ViewModels\EditFotoJugadorDesdeArchivoVM.cs" />
     <Compile Include="Models\ViewModels\PublicidadesVM.cs" />
     <Compile Include="Models\ViewModels\PublicidadVM.cs" />
+    <Compile Include="Utilidades\CorsAttribute.cs" />
     <Compile Include="Utilidades\Persistence\IBackupPersistence.cs" />
     <Compile Include="Utilidades\Persistence\DiskPersistence\ImagenesPublicidadDiskPersistence.cs" />
     <Compile Include="Utilidades\Persistence\IImagenesPublicidadPersistence.cs" />
