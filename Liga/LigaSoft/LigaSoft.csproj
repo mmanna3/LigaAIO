@@ -363,6 +363,10 @@
     <Compile Include="Migrations\202302010000304_AgregaTarjetas.designer.cs">
       <DependentUpon>202302010000304_AgregaTarjetas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202302121624062_AgregaValorDelFichajeEnPesosATorneoTipo.cs" />
+    <Compile Include="Migrations\202302121624062_AgregaValorDelFichajeEnPesosATorneoTipo.designer.cs">
+      <DependentUpon>202302121624062_AgregaValorDelFichajeEnPesosATorneoTipo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Dominio\JugadorAutofichado.cs" />
     <Compile Include="Models\Dominio\UsuarioDelegado.cs" />
     <Compile Include="Models\Dominio\Sancion.cs" />
@@ -1305,6 +1309,7 @@
     <Content Include="Views\AdministracionDelegados\DelegadosPorClub.cshtml" />
     <Content Include="Views\Equipo\Carnets.cshtml" />
     <Content Include="Views\PoliticaDePrivacidad\Index.cshtml" />
+    <Content Include="Views\TorneoTipo\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1717,6 +1722,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202302010000304_AgregaTarjetas.resx">
       <DependentUpon>202302010000304_AgregaTarjetas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302121624062_AgregaValorDelFichajeEnPesosATorneoTipo.resx">
+      <DependentUpon>202302121624062_AgregaValorDelFichajeEnPesosATorneoTipo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

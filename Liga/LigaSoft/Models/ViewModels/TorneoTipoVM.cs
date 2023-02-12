@@ -26,5 +26,8 @@ namespace LigaSoft.Models.ViewModels
 
 		[Display(Name = "Formato")]
 		public string FormatoDesc { get; set; }
+
+		[Display(Name = "Valor del fichaje")]
+		public int ValorDelFichajeEnPesos { get; set; }
 	}
 }

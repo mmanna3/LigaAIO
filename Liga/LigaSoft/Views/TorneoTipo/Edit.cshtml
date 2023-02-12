@@ -3,25 +3,25 @@
 @model LigaSoft.Models.ViewModels.TorneoTipoVM
 
 @section Titulo{
-	Crear tipo de torneo
+	Editar tipo de torneo
 }
 
 @using (Html.YKN().Form())
 {
 	<div class="row">
 		<div class="col-sm-6">
-			@Html.YKN().EditorFor(x => x.Descripcion)
+			@Html.YKN().DisplayFor(x => x.Descripcion)
 		</div>
 		<div class="col-sm-6">
-			@Html.YKN().EditorFor(x => x.ValidezDelCarnetEnAnios)
+			@Html.YKN().DisplayFor(x => x.ValidezDelCarnetEnAnios)
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-sm-6">
-			@Html.YKN().EditorFor(x => x.LoQueSeImprimeEnElCarnet)
+			@Html.YKN().DisplayFor(x => x.LoQueSeImprimeEnElCarnet)
 		</div>
 		<div class="col-sm-6">
-			@(Html.YKN().ComboFor(x => x.Formato).Values<TorneoFormato>())
+			@(Html.YKN().DisplayFor(x => x.FormatoDesc))
 		</div>
 	</div>
 	<div class="row">

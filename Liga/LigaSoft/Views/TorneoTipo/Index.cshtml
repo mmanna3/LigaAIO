@@ -22,6 +22,11 @@
 			column.AddTextColumn(x => x.LoQueSeImprimeEnElCarnet);
 			column.AddTextColumn(x => x.ValidezDelCarnetEnAnios);
 			column.AddTextColumn(x => x.FormatoDesc);
+			column.AddTextColumn(x => x.ValorDelFichajeEnPesos);
+		})
+		.Actions(action =>
+		{
+			action.RedirectWithRowId("Editar", "TorneoTipo", "Edit");
 		})
 		.DataSource("/TorneoTipo/GetForGrid")
 	  )

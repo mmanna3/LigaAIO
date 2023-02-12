@@ -40,7 +40,8 @@ namespace LigaSoft.ViewModelMappers
 				LoQueSeImprimeEnElCarnet = model.LoQueSeImprimeEnElCarnet,
 				ValidezDelCarnetEnAnios = model.ValidezDelCarnetEnAnios,
 				Formato = model.Formato,
-				FormatoDesc = model.Formato.Descripcion()
+				FormatoDesc = model.Formato.Descripcion(),
+				ValorDelFichajeEnPesos = model.ValorDelFichajeEnPesos
 			};
 
 			if (model.Formato.Equals(TorneoFormato.Relampago))

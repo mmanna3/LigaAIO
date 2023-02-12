@@ -1,5 +1,4 @@
-﻿using LigaSoft.ExtensionMethods;
-using LigaSoft.Models.Enums;
+﻿using LigaSoft.Models.Enums;
 using LigaSoft.Models.Interfaces;
 
 namespace LigaSoft.Models.Dominio
@@ -11,5 +10,6 @@ namespace LigaSoft.Models.Dominio
 		public string LoQueSeImprimeEnElCarnet { get; set; }
 		public int ValidezDelCarnetEnAnios { get; set; }
 		public TorneoFormato Formato { get; set; }
+		public int ValorDelFichajeEnPesos { get; set; }
 	}
 }
