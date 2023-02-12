@@ -8,8 +8,6 @@ namespace LigaSoft.Models.Dominio
 	    [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 	    public int Id { get; set; }
 
-		public int ValorPorDefectoEnPesosDelConceptoFichaje { get; set; }
-
         public string EscudoPorDefectoEnBase64 { get; set; }
     }
 }

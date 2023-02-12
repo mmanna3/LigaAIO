@@ -15,7 +15,6 @@ using LigaSoft.Models.ViewModels;
 using LigaSoft.Utilidades;
 using LigaSoft.Utilidades.Persistence.DiskPersistence;
 using LigaSoft.ViewModelMappers;
-using Microsoft.AspNet.Identity;
 
 namespace LigaSoft.Controllers
 {
@@ -23,14 +22,12 @@ namespace LigaSoft.Controllers
 	public class EquipoController : ABMController<Equipo, EquipoVM, EquipoVMM>
     {
 	    private readonly JugadorVMM _jugadorVMM;
-	    private readonly int _valorPorDefectoEnPesosDelConceptoFichaje;
 	    private readonly ImagenesJugadoresDiskPersistence _imagenesJugadoresDiskPersistence;
 	    private readonly GeneradorDeMovimientos _generadorDeMovimientos;
 
 		public EquipoController()
 		{
 			_imagenesJugadoresDiskPersistence = new ImagenesJugadoresDiskPersistence(new AppPathsWebApp());
-			_valorPorDefectoEnPesosDelConceptoFichaje = Context.ParametrizacionesGlobales.Select(x => x.ValorPorDefectoEnPesosDelConceptoFichaje).First();
 			_jugadorVMM = new JugadorVMM(Context);
 			_generadorDeMovimientos = new GeneradorDeMovimientos(Context);
 		}
@@ -169,12 +166,12 @@ namespace LigaSoft.Controllers
 			var vm = new FicharNuevoJugadorVM {
 				EquipoId = id,
 				Equipo = equipo.Nombre,
-				LabelGenerarMovimientoFichaje = $"Se abonaron ${_valorPorDefectoEnPesosDelConceptoFichaje} correspondientes al carnet",
+				LabelGenerarMovimientoFichaje = $"Se abonaron ${equipo.Torneo.Tipo.ValorDelFichajeEnPesos} correspondientes al carnet",
 				IdDelJugadorFichadoAnteriormenteParaImprimir = idDelJugadorFichadoAnteriormenteParaImprimir
 			};
 
 		    return View(vm);
-	    }
+	    } 
 
 	    [HttpPost, ExportModelStateToTempData]
 	    public ActionResult FicharNuevoJugador(FicharNuevoJugadorVM vm)
@@ -189,15 +186,15 @@ namespace LigaSoft.Controllers
 
 		    Context.JugadorEquipos.Add(jugadorEquipo);
 
-		    var club = Context.Equipos.Find(vm.EquipoId).Club;
+		    var equipo = Context.Equipos.Find(vm.EquipoId);
 
 			MovimientoEntradaConClub movimiento;
 		    if (vm.ElCarnetEstaPago)
-			    movimiento = _generadorDeMovimientos.GenerarMovimientoFichajeYSuPago(club, vm.DNI);
+			    movimiento = _generadorDeMovimientos.GenerarMovimientoFichajeYSuPago(equipo, vm.DNI);
 			else
-			    movimiento = _generadorDeMovimientos.GenerarMovimientoFichajeImpago(club, vm.DNI);
+			    movimiento = _generadorDeMovimientos.GenerarMovimientoFichajeImpago(equipo, vm.DNI);
 
-		    club.Movimientos.Add(movimiento);
+			equipo.Club.Movimientos.Add(movimiento);
 
 			Context.SaveChanges();
 

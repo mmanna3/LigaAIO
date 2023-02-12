@@ -75,9 +75,9 @@ namespace LigaSoft.Controllers
 				_context.JugadorEquipos.Add(jugadorEquipo);
 				jugadorAutofichado.Estado = EstadoJugadorAutofichado.Aprobado;
 
-				var club = _context.Equipos.Find(vm.EquipoId).Club;
-				var movimiento = _generadorDeMovimientos.GenerarMovimientoFichajeImpago(club, vm.DNI);
-				club.Movimientos.Add(movimiento);
+				var equipo = _context.Equipos.Find(vm.EquipoId);
+				var movimiento = _generadorDeMovimientos.GenerarMovimientoFichajeImpago(equipo, vm.DNI);
+				equipo.Club.Movimientos.Add(movimiento);
 
 				_context.SaveChanges();
 

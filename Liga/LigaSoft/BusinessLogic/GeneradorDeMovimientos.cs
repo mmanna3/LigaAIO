@@ -12,25 +12,23 @@ namespace LigaSoft.BusinessLogic
 {
 	public class GeneradorDeMovimientos
 	{
-		private readonly int _valorPorDefectoEnPesosDelConceptoFichaje;
 
 		public GeneradorDeMovimientos(ApplicationDbContext context)
 		{
-			_valorPorDefectoEnPesosDelConceptoFichaje = context.ParametrizacionesGlobales.Select(x => x.ValorPorDefectoEnPesosDelConceptoFichaje).First();
 		}
 
-		public MovimientoEntradaConClub GenerarMovimientoFichajeYSuPago(Club club, string dni)
+		public MovimientoEntradaConClub GenerarMovimientoFichajeYSuPago(Equipo equipo, string dni)
 		{
-			var movimiento = GenerarMovimientoFichaje(club, dni);
+			var movimiento = GenerarMovimientoFichaje(equipo, dni);
 			var pago = GenerarPagoDelMovimientoFichaje(dni, movimiento);
 			movimiento.Pagos = new List<Pago>{pago};
 
 			return movimiento;
 		}
 
-		public MovimientoEntradaConClub GenerarMovimientoFichajeImpago(Club club, string dni)
+		public MovimientoEntradaConClub GenerarMovimientoFichajeImpago(Equipo equipo, string dni)
 		{
-			return GenerarMovimientoFichaje(club, dni);
+			return GenerarMovimientoFichaje(equipo, dni);
 		}
 
 		private static Pago GenerarPagoDelMovimientoFichaje(string dni, MovimientoEntradaConClub movimiento)
@@ -47,18 +45,18 @@ namespace LigaSoft.BusinessLogic
 			};
 		}
 
-		private MovimientoEntradaConClub GenerarMovimientoFichaje(Club club, string dni)
+		private MovimientoEntradaConClub GenerarMovimientoFichaje(Equipo equipo, string dni)
 		{			
 			var movimiento = new MovimientoEntradaConClub
 			{
 				ConceptoId = (int)ConceptoTipoEnum.Fichaje,
-				ClubId = club.Id,
+				ClubId = equipo.ClubId,
 				Cantidad = 1,
 				Comentario = $"Movimiento generado automáticamente al fichar al jugador con DNI:{dni}",
 				Fecha = DateTime.Now,
 				FechaAlta = DateTime.Now,
-				PrecioUnitario = _valorPorDefectoEnPesosDelConceptoFichaje,
-				Total = _valorPorDefectoEnPesosDelConceptoFichaje,
+				PrecioUnitario = equipo.Torneo.Tipo.ValorDelFichajeEnPesos,
+				Total = equipo.Torneo.Tipo.ValorDelFichajeEnPesos,
 				Vigente = true,
 				UsuarioAltaId = HttpContext.Current.User.Identity.GetUserId()
 			};			

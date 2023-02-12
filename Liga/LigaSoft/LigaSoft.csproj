@@ -367,6 +367,10 @@
     <Compile Include="Migrations\202302121624062_AgregaValorDelFichajeEnPesosATorneoTipo.designer.cs">
       <DependentUpon>202302121624062_AgregaValorDelFichajeEnPesosATorneoTipo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202302121809160_EliminaValorFichajeDefault.cs" />
+    <Compile Include="Migrations\202302121809160_EliminaValorFichajeDefault.designer.cs">
+      <DependentUpon>202302121809160_EliminaValorFichajeDefault.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Dominio\JugadorAutofichado.cs" />
     <Compile Include="Models\Dominio\UsuarioDelegado.cs" />
     <Compile Include="Models\Dominio\Sancion.cs" />
@@ -1725,6 +1729,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202302121624062_AgregaValorDelFichajeEnPesosATorneoTipo.resx">
       <DependentUpon>202302121624062_AgregaValorDelFichajeEnPesosATorneoTipo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302121809160_EliminaValorFichajeDefault.resx">
+      <DependentUpon>202302121809160_EliminaValorFichajeDefault.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

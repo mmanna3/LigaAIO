@@ -58,7 +58,8 @@ namespace LigaSoft.ViewModelMappers
 			{
 				Equipo = Context.Equipos.Find(vm.EquipoId),
 				Jugador = model,
-				FechaFichaje = DateTime.Today
+				FechaFichaje = DateTime.Today,
+				Estado = Models.Enums.EstadoJugador.Activo
 			};
 		}
 

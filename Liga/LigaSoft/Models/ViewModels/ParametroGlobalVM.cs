@@ -5,9 +5,6 @@ namespace LigaSoft.Models.ViewModels
 {
 	public class ParametroGlobalVM : ViewModelConId
     {
-		[Display(Name = "Valor por defecto en pesos del concepto fichaje")]
-		public int ValorPorDefectoEnPesosDelConceptoFichaje { get; set; }
-
 	    [Display(Name = "Escudo por defecto")]
 		public string EscudoActual { get; set; }
 
