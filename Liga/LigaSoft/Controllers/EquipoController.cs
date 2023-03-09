@@ -96,7 +96,7 @@ namespace LigaSoft.Controllers
 			    var jugEquipoOld = Context.JugadorEquipos.Single(x => x.EquipoId == vm.EquipoOrigenId && x.JugadorId == jugId);				
 			    Context.JugadorEquipos.Remove(jugEquipoOld);
 
-			    var jugEquipoNew = new JugadorEquipo {EquipoId = equipo.Id, JugadorId = jugId, FechaFichaje = jugEquipoOld.FechaFichaje};
+			    var jugEquipoNew = new JugadorEquipo {EquipoId = equipo.Id, Estado = EstadoJugador.Activo, JugadorId = jugId, FechaFichaje = jugEquipoOld.FechaFichaje};
 			    Context.JugadorEquipos.Add(jugEquipoNew);
 			}			    
 
