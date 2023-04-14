@@ -60,7 +60,7 @@ const SeccionPrincipalFichaje = () => {
     const huboAlgunError = !(Object.keys(errors).length === 0 && errors.constructor === Object)
 
     // if (!estaLaSeccionHabilitada())
-    if (false)
+    if (true)
         return (
             <div className={bootstrap['row']}>
                 <div className={bootstrap['col-12']}>
