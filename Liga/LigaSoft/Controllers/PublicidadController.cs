@@ -1,9 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
-using System.Linq;
 using LigaSoft.Models.Attributes.GPRPattern;
 using LigaSoft.Models.Dominio;
-using LigaSoft.Models.Otros;
 using LigaSoft.Models.ViewModels;
 using LigaSoft.Utilidades;
 using LigaSoft.Utilidades.Persistence;
@@ -25,7 +23,7 @@ namespace LigaSoft.Controllers
 		[HttpPost, ExportModelStateToTempData]
 		public override ActionResult Edit(PublicidadVM vm)
 		{
-			ValidarImagen(vm.ImagenNueva);
+			ValidarImagen(vm.ImagenNueva, vm.Titulo);
 			if (!ModelState.IsValid)
 				return RedirectToAction("Edit", new { id = vm.Id });
 
@@ -41,8 +39,19 @@ namespace LigaSoft.Controllers
 			return RedirectToAction("Index");
 		}
 
-		private void ValidarImagen(HttpPostedFileBase imagen)
+		private void ValidarImagen(HttpPostedFileBase imagen, string titulo)
 		{
+			var alto = 0;
+			var ancho = 0;
+			if (titulo == "Desktop"){
+				alto = 180;
+				ancho = 1000;
+			} else if (titulo == "Mobile")
+			{
+				alto = 130;
+				ancho = 300;
+			}
+
 			if (imagen != null)
 				if (imagen.ContentLength == 0)
 					ModelState.AddModelError("", "No se ha seleccionado una imagen.");
@@ -50,8 +59,8 @@ namespace LigaSoft.Controllers
 					ModelState.AddModelError("", "La imagen debe estar en formato JPG.");
 				else
 					using (var foto = System.Drawing.Image.FromStream(imagen.InputStream))
-						if (foto.Height != 140 || foto.Width != 480)
-							ModelState.AddModelError("", "El tamaño de la imagen debe ser de 480 x 140 px.");
+						if (foto.Height != alto || foto.Width != ancho)
+							ModelState.AddModelError("", $"El tamaño de la imagen debe ser de {alto} x {ancho} px.");
 		}
 	}
 }

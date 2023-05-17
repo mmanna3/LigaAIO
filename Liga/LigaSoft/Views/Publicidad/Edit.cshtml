@@ -13,10 +13,8 @@
 
 	<div class="row">
 		<div class="col-sm-6">
-			@Html.YKN().EditorFor(x => x.Titulo)
-		</div>
-		<div class="col-sm-6">
-			@Html.YKN().EditorFor(x => x.Url)
+			@Html.YKN().DisplayFor(x => x.Titulo)
+			@Html.HiddenFor(x => x.Titulo)
 		</div>
 	</div>
 	<div class="row">

@@ -5,19 +5,10 @@
 	Publicidades
 }
 
-@section CabeceraGrilla {
-
-	<div class="alert alert-info" role="alert">
-		<strong>¡ATENCIÓN!</strong> Sólo se tendrán en cuenta las publicidad <strong>Izquierda superior</strong> y <strong>Derecha superior</strong>.
-</div>
-}
-
 @(Html.YKN<PublicidadVM>().Grid()
 			.WithColumns(column =>
 			{
 				column.AddTextColumn(x => x.Titulo);
-				column.AddTextColumn(x => x.Url);
-				column.AddTextColumn(x => x.Posicion);
 			})
 			.Actions(action =>
 			{
