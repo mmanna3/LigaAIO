@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import Label from '../Label/Label';
 import ImageUploader from '../ImageUploader/ImageUploader';
 import estilos from './PasoFotoDocumento.module.css';
-import imagenDniFrente from './dniFrente.png';
-import imagenDniDorso from './dniDorso.jpg';
+import imagenDniFrente from '../../../../assets/images/mobile/dniFrente.png';
+import imagenDniDorso from '../../../../assets/images/mobile/dniDorso.jpg';
 import FormErrorHandler from '../Error/FormErrorHandler';
 import { useFormContext } from 'react-hook-form';
 
