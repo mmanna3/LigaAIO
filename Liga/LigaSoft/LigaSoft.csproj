@@ -1769,6 +1769,8 @@
   <Target Name="ContentsBeforeBuild" AfterTargets="BeforeBuild">
     <ItemGroup>
       <Content Include="WebPublica\dist\**" />
+      <Content Include="NuevaWebPublica\**" />
+      <Content Include="NuevaWebPublica\assets\**" />
     </ItemGroup>
   </Target>
   <Import Project="..\packages\Microsoft.VisualStudio.SlowCheetah.3.2.26\build\Microsoft.VisualStudio.SlowCheetah.targets" Condition="Exists('..\packages\Microsoft.VisualStudio.SlowCheetah.3.2.26\build\Microsoft.VisualStudio.SlowCheetah.targets')" />
