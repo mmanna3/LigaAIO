@@ -23,7 +23,7 @@ before_build:
   - npm run build-prod
   - cd ..\..\..\WebPublica
   - npm install
-  - npx run vite build
+  - npx vite build
   - Copy-Item -Path dist -Destination ..\Liga\LigaSoft\NuevaWebPublica -Recurse
 build:
   project: Liga/LigaSoft.sln
