@@ -24,7 +24,7 @@ before_build:
   - cd ..\..\..\WebPublica
   - npm install
   - npx vite build
-  - Copy-Item -Path dist -Destination ..\Liga\LigaSoft\NuevaWebPublica -Recurse
+  - ps: Copy-Item -Path dist -Destination ..\Liga\LigaSoft\NuevaWebPublica -Recurse
 build:
   project: Liga/LigaSoft.sln
   publish_wap: true
