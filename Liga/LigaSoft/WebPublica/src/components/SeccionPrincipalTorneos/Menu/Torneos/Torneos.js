@@ -14,7 +14,7 @@ const Torneos = () => {
 
   return <div>
     <TorneosAperturaClausura anio={anioActual} />
-    <Publicidades />
+    {/* <Publicidades /> */}
     <TorneosRelampago anio={anioActual}/>
     
     
