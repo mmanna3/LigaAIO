@@ -19,7 +19,7 @@ namespace Tests.Integration
 		{
 			_paths = new AppPathsForTest();
 			_imagenesPublicidadDiskPersistence = new ImagenesPublicidadDiskPersistence(_paths);
-			_publicidadPath = $"{_paths.ImagenesPublicidadesAbsolute}/{PUBLICIDADID}.jpg";
+			_publicidadPath = $"{_paths.ImagenesPublicidadesAbsolute}/{PUBLICIDADID}.avif";
 		}
 
 		[SetUp]
@@ -63,7 +63,7 @@ namespace Tests.Integration
 		public void SiPublicidadExisteDevuelveSuPath()
 		{
 			GuardarPublicidadRandomEnDisco(PUBLICIDADID);
-			Assert.AreEqual($"{_paths.ImagenesPublicidadesRelative}/{PUBLICIDADID}.jpg", _imagenesPublicidadDiskPersistence.Path(PUBLICIDADID));
+			Assert.AreEqual($"{_paths.ImagenesPublicidadesRelative}/{PUBLICIDADID}.avif", _imagenesPublicidadDiskPersistence.Path(PUBLICIDADID));
 		}
 	}
 }

@@ -14,7 +14,7 @@ namespace LigaSoft.Models.ViewModels
 	    [Display(Name = "Posición")]
 		public string Posicion { get; set; }
 
-		[Display(Name = "Elegir imagen (Formato JPG)")]
+		[Display(Name = "Elegir imagen (Formato AVIF)")]
 	    public HttpPostedFileBase ImagenNueva { get; set; }
 	}
 }
