@@ -14,7 +14,7 @@ namespace LigaSoft.Utilidades.Persistence.DiskPersistence
 
 		public void Guardar(PublicidadVM vm)
 		{
-			var imagePath = $"{Paths.ImagenesPublicidadesAbsolute}/{vm.Id}.jpg";
+			var imagePath = $"{Paths.ImagenesPublicidadesAbsolute}/{vm.Id}.avif";
 
 			if (File.Exists(imagePath))
 				File.Delete(imagePath);
@@ -25,7 +25,7 @@ namespace LigaSoft.Utilidades.Persistence.DiskPersistence
 
 		public string Path(int id)
 		{
-			return $"{Paths.ImagenesPublicidadesRelative}/{id}.jpg";
+			return $"{Paths.ImagenesPublicidadesRelative}/{id}.avif";
 		}
 	}
 }
