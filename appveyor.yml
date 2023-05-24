@@ -11,10 +11,20 @@ environment:
   deploy_password:
     secure: SFAvHfsz398LTl83QbS5gw==
 install:
+  - ps: Install-Product node 16
   - ps: iex ((New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/appveyor/secure-file/master/install.ps1'))
   - cmd: appveyor-tools\secure-file -decrypt "Liga\LigaSoft\Utilidades\Backup\Recursos\credentials.json.enc" -secret %my_secret% -salt %salt_credentialsjson%
   - cmd: appveyor-tools\secure-file -decrypt "Liga\LigaSoft\Utilidades\Backup\Recursos\Google.Apis.Auth.OAuth2.Responses.TokenResponse-user.enc" -secret %my_secret% -salt %salt_googleapisauth%
   - ps: nuget restore Liga\LigaSoft.sln
+before_build:
+  - cd Liga\LigaSoft\WebPublica
+  - node -v
+  - npm install
+  - npm run build-prod
+  - cd ..\..\..\WebPublica
+  - npm install
+  - npx vite build
+  - ps: Copy-Item -Path dist -Destination ..\Liga\LigaSoft\NuevaWebPublica -Recurse
 build:
   project: Liga/LigaSoft.sln
   publish_wap: true
