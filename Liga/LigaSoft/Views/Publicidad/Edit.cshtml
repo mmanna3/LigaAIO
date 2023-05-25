@@ -19,9 +19,14 @@
 	</div>
 	<div class="row">
 		<div class="col-sm-12">
+			<img src="@Model.ImagenActualUrl" alt="foto">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
 			@Html.YKN().BrowseFileFor(x => x.ImagenNueva)
 		</div>
-	</div>	
+	</div>
 
 	{ Html.YKN().FooterGuardarCancelar(); }
 }

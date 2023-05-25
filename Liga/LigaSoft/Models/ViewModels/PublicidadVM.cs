@@ -16,5 +16,6 @@ namespace LigaSoft.Models.ViewModels
 
 		[Display(Name = "Elegir imagen (Formato AVIF)")]
 	    public HttpPostedFileBase ImagenNueva { get; set; }
+		public string ImagenActualUrl { get; set; }
 	}
 }
