@@ -47,6 +47,7 @@ namespace LigaSoft.Controllers
 			var webPublicaDistPath = HostingEnvironment.MapPath("~/WebPublica/dist");
 			var filePath = Directory.GetFiles(webPublicaDistPath, "*.html").First();
 			return Redirect("~/WebPublica/dist/" + Path.GetFileName(filePath));
+			//return View(); DESCOMENTAR ESTO CUANDO ANDE EL FICHAJE
 		}
 
 		public JsonResult TorneosAperturaClausura(string anio)
