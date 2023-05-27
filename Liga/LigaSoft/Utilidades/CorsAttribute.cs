@@ -1,21 +1,23 @@
 ﻿using System;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 
 public class AllowCrossSiteAttribute : ActionFilterAttribute
 {
     public override void OnActionExecuting(ActionExecutingContext filterContext)
     {
-        filterContext.RequestContext.HttpContext.Response.AddHeader("Access-Control-Allow-Origin", "*");
-        filterContext.RequestContext.HttpContext.Response.AddHeader("Access-Control-Allow-Methods", "*");
-        filterContext.RequestContext.HttpContext.Response.AddHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-        filterContext.RequestContext.HttpContext.Response.AddHeader("Access-Control-Allow-Credentials", "true");
+        HttpContext.Current.Response.Cache.SetCacheability(HttpCacheability.NoCache);
+        HttpContext.Current.Response.Cache.SetNoStore();
 
-        if (filterContext.HttpContext.Request.HttpMethod == "OPTIONS")
+        filterContext.RequestContext.HttpContext.Response.AppendHeader("Access-Control-Allow-Origin", "*");
+
+        string rqstMethod = HttpContext.Current.Request.Headers["Access-Control-Request-Method"];
+        if (rqstMethod == "OPTIONS" || rqstMethod == "POST")
         {
-            filterContext.HttpContext.Response.Flush();
+            filterContext.RequestContext.HttpContext.Response.AppendHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+            filterContext.RequestContext.HttpContext.Response.AppendHeader("Access-Control-Allow-Headers", "X-Requested-With, Accept, Access-Control-Allow-Origin, Content-Type");
         }
-
         base.OnActionExecuting(filterContext);
     }
 

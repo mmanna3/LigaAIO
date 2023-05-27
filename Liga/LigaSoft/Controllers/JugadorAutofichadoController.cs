@@ -19,7 +19,7 @@ using Newtonsoft.Json;
 
 namespace LigaSoft.Controllers
 {
-	[Authorize(Roles = Roles.Administrador), AllowCrossSite]
+	[Authorize(Roles = Roles.Administrador)]
 	public class JugadorAutofichadoController : ABMController<JugadorAutofichado, JugadorAutofichadoVM, JugadorAutofichadoVMM>
 	{
 		private readonly UserManager<ApplicationUser> _userManager;
