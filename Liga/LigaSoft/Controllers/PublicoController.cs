@@ -43,10 +43,10 @@ namespace LigaSoft.Controllers
 
         public ActionResult Index()
         {
-            var webPublicaDistPath = HostingEnvironment.MapPath("~/WebPublica/dist");
-            var filePath = Directory.GetFiles(webPublicaDistPath, "*.html").First();
-            return Redirect("~/WebPublica/dist/" + Path.GetFileName(filePath));
-            //return View(); DESCOMENTAR ESTO CUANDO ANDE EL FICHAJE
+            //var webPublicaDistPath = HostingEnvironment.MapPath("~/WebPublica/dist");
+            //var filePath = Directory.GetFiles(webPublicaDistPath, "*.html").First();
+            //return Redirect("~/WebPublica/dist/" + Path.GetFileName(filePath));
+            return View();
         }
 
         public JsonResult TorneosAperturaClausura(string anio)
