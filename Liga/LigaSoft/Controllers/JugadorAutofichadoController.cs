@@ -31,7 +31,7 @@ namespace LigaSoft.Controllers
 			_userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(Context));
 		}
 
-		[HttpPost, AllowAnonymous]
+		[HttpPost, AllowAnonymous, AllowCrossSite]
 		public JsonResult Autofichaje()
 		{
 			try
