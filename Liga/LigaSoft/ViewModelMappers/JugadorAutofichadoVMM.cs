@@ -66,5 +66,20 @@ namespace LigaSoft.ViewModelMappers
 				MotivoDeRechazo = model.MotivoDeRechazo
 		};
 		}
+
+		public JugadorAutofichadoBaseVM MapForBaseDetails(JugadorAutofichado model)
+		{
+			return new JugadorAutofichadoBaseVM
+			{
+				Id = model.Id,
+				Nombre = model.Nombre,
+				Apellido = model.Apellido,
+				DNI = model.DNI,
+				FechaNacimiento = DateTimeUtils.ConvertToString(model.FechaNacimiento),
+				Estado = model.Estado,
+				EstadoDescripcion = model.Estado.Descripcion(),
+				MotivoDeRechazo = model.MotivoDeRechazo
+			};
+		}
 	}
 }

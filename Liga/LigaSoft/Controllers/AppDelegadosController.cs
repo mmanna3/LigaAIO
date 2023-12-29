@@ -17,11 +17,13 @@ namespace LigaSoft.Controllers
     {
 		private readonly ApplicationDbContext _context;
 		private readonly JugadorVMM _jugadorVMM;
+		private readonly JugadorAutofichadoVMM _jugadorAutofichadoVMM;
 
 		public AppDelegadosController()
 		{
 			_context = new ApplicationDbContext();
 			_jugadorVMM = new JugadorVMM(_context);
+			_jugadorAutofichadoVMM = new JugadorAutofichadoVMM(_context);
 		}
 
 		[AllowAnonymous]
@@ -46,6 +48,32 @@ namespace LigaSoft.Controllers
 				resultado.Add(_jugadorVMM.MapJugadorParaCarnet(jugador, equipo));
 			}
 					
+			return JsonConvert.SerializeObject(ApiResponseCreator.Exito(resultado));
+		}
+
+		[AllowAnonymous]
+		public string GetJugadoresAutofichadosConEstado(string codigoAlfanumerico) //TODO: Pedir token acá
+		{
+			int equipoId;
+			try
+			{
+				equipoId = GeneradorDeHash.ObtenerSemillaAPartirDeAlfanumerico7Digitos(codigoAlfanumerico);
+			}
+			catch (Exception e)
+			{
+				return JsonConvert.SerializeObject(ApiResponseCreator.Error(e.Message));
+			}
+
+			var equipo = _context.Equipos.Find(equipoId);
+			var jugadores = _context.JugadoresaAutofichados.Where(x => x.EquipoId == equipoId).OrderByDescending(x => x.Estado).ToList();
+
+			var resultado = new List<JugadorAutofichadoBaseVM>();
+
+			foreach (var jugador in jugadores)
+			{
+				resultado.Add(_jugadorAutofichadoVMM.MapForBaseDetails(jugador));
+			}
+
 			return JsonConvert.SerializeObject(ApiResponseCreator.Exito(resultado));
 		}
 	}
