@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LigaSoft.Models.Enums;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -32,6 +33,9 @@ namespace LigaSoft.Models.Dominio.Finanzas
 		public string Comentario { get; set; }
 
 		public bool Vigente { get; set; }
+
+		[Required]
+		public FormaDePago FormaDePago { get; set; }
 	}
 
 }

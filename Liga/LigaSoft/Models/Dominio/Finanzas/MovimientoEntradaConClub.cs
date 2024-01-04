@@ -22,8 +22,6 @@ namespace LigaSoft.Models.Dominio.Finanzas
 		public int ClubId { get; set; }
 		public virtual Club Club { get; set; }
 
-		public FormaDePago FormaDePago { get; set; }
-
 		public int ImportePagado()
 		{
 			return Pagos.Where(x => x.Vigente).Sum(x => x.Importe);
