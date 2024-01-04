@@ -27,6 +27,7 @@ namespace LigaSoft.ViewModelMappers
 			model.Comentario = vm.Comentario;
 			model.Vigente = true;
 			model.Total = Convert.ToInt32(vm.Total);
+			model.FormaDePago = vm.FormaDePago;
 
 			model.FechaAlta = DateTime.Now;
 			var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(_context));
@@ -49,6 +50,8 @@ namespace LigaSoft.ViewModelMappers
 			{
 				Id = model.Id,
 				Fecha = DateTimeUtils.ConvertToString(model.Fecha),
+				FormaDePago = model.FormaDePago,
+				FormaDePagoDescripcion = model.FormaDePago.Descripcion(),
 				Comentario = model.Comentario,
 				Alta = $"{model.UsuarioAlta.Email} - {model.FechaAlta}",
 				Anulacion = $"{model.UsuarioAnulacion?.Email} - {model.FechaAnulacion}",

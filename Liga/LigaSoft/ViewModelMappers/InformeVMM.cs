@@ -44,8 +44,11 @@ namespace LigaSoft.ViewModelMappers
 			vm.Cuotas.Virtual = $"{pagosVirtuales.Where(x => x.Movimiento.Concepto.Id == (int) ConceptoTipoEnum.Cuota).ToList().Sum(x => x.Importe)}";
 			vm.Fichajes.Virtual = $"{pagosVirtuales.Where(x => x.Movimiento.Concepto.Id == (int) ConceptoTipoEnum.Fichaje).ToList().Sum(x => x.Importe)}";
 
-			vm.CajaEdefiIngresos.Efectivo = $"{_context.MovimientosEntradaSinClub.Where(x => x.Fecha >= fecIni && x.Fecha <= fecFin && x.Vigente).ToList().Sum(y => y.Total)}";
-			vm.CajaEdefiEgresos.Efectivo =$"{_context.MovimientosSalida.Where(x => x.Fecha >= fecIni && x.Fecha <= fecFin && x.Vigente).ToList().Sum(y => y.Total)}";
+			vm.CajaEdefiIngresos.Efectivo = $"{_context.MovimientosEntradaSinClub.Where(x => x.Fecha >= fecIni && x.Fecha <= fecFin && x.Vigente && x.FormaDePago == FormaDePago.Efectivo).ToList().Sum(y => y.Total)}";
+			vm.CajaEdefiIngresos.Virtual = $"{_context.MovimientosEntradaSinClub.Where(x => x.Fecha >= fecIni && x.Fecha <= fecFin && x.Vigente && x.FormaDePago == FormaDePago.Virtual).ToList().Sum(y => y.Total)}";
+			
+			vm.CajaEdefiEgresos.Efectivo =$"{_context.MovimientosSalida.Where(x => x.Fecha >= fecIni && x.Fecha <= fecFin && x.Vigente && x.FormaDePago == FormaDePago.Efectivo).ToList().Sum(y => y.Total)}";
+			vm.CajaEdefiEgresos.Virtual =$"{_context.MovimientosSalida.Where(x => x.Fecha >= fecIni && x.Fecha <= fecFin && x.Vigente && x.FormaDePago == FormaDePago.Virtual).ToList().Sum(y => y.Total)}";
 
 			vm.CalcularTotales();
 			vm.Formatear();

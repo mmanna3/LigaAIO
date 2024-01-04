@@ -20,7 +20,10 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-sm-12">
+		<div class="col-sm-4">
+        	@(Html.YKN().DisplayFor(x => x.FormaDePagoDescripcion))
+        </div>
+		<div class="col-sm-8">
 			@Html.YKN().DisplayFor(x => x.Comentario)
 		</div>
 	</div>
