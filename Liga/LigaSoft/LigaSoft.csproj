@@ -375,12 +375,17 @@
     <Compile Include="Migrations\202305251923394_RenombraTitulosDePublicidadesADesktopYBanner.designer.cs">
       <DependentUpon>202305251923394_RenombraTitulosDePublicidadesADesktopYBanner.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202401040301147_AgregaFormaDePagoEnTodosLosMovimientos.cs" />
+    <Compile Include="Migrations\202401040301147_AgregaFormaDePagoEnTodosLosMovimientos.designer.cs">
+      <DependentUpon>202401040301147_AgregaFormaDePagoEnTodosLosMovimientos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Dominio\JugadorAutofichado.cs" />
     <Compile Include="Models\Dominio\UsuarioDelegado.cs" />
     <Compile Include="Models\Dominio\Sancion.cs" />
     <Compile Include="Models\Enums\EstadoJugador.cs" />
     <Compile Include="Models\Enums\EstadoJugadorAutofichado.cs" />
     <Compile Include="Models\Enums\EstadoJugadorFichadoPorDelegado.cs" />
+    <Compile Include="Models\Enums\FormaDePago.cs" />
     <Compile Include="Models\Otros\GijgoGridOptions.cs" />
     <Compile Include="Models\TextValueItem.cs" />
     <Compile Include="Models\ViewModels\ConceptoInsumoAgregarStockVM.cs" />
@@ -1741,6 +1746,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202305251923394_RenombraTitulosDePublicidadesADesktopYBanner.resx">
       <DependentUpon>202305251923394_RenombraTitulosDePublicidadesADesktopYBanner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401040301147_AgregaFormaDePagoEnTodosLosMovimientos.resx">
+      <DependentUpon>202401040301147_AgregaFormaDePagoEnTodosLosMovimientos.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

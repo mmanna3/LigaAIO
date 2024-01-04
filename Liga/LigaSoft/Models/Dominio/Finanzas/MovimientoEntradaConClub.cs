@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using LigaSoft.Models.Enums;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -20,6 +21,8 @@ namespace LigaSoft.Models.Dominio.Finanzas
 
 		public int ClubId { get; set; }
 		public virtual Club Club { get; set; }
+
+		public FormaDePago FormaDePago { get; set; }
 
 		public int ImportePagado()
 		{
