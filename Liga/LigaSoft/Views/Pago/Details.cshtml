@@ -9,15 +9,20 @@
 @using (Html.YKN().Form())
 {
 	<div class="row">
-		<div class="col-sm-4">
+		<div class="col-sm-6">
 			@Html.YKN().DisplayFor(x => x.Fecha)
 		</div>
-		<div class="col-sm-4">
+		<div class="col-sm-6">
 			@Html.YKN().DisplayFor(x => x.Vigente)
 		</div>
-		<div class="col-sm-4">
+	</div>
+	<div class="row">
+		<div class="col-sm-6">
 			@Html.YKN().DisplayFor(x => x.Importe)
 		</div>
+		<div class="col-sm-6">
+        	@Html.YKN().DisplayFor(x => x.FormaDePago)
+        </div>
 	</div>
 	<div class="row">
 		<div class="col-sm-12">

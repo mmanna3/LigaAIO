@@ -28,6 +28,7 @@ namespace LigaSoft.ViewModelMappers
 			model.Movimiento = Context.MovimientosEntradaConClub.Find(vm.MovimientoEntradaConClubId);
 			model.Comentario = vm.Comentario;
 			model.Vigente = true;
+			model.FormaDePago = vm.FormaDePago;
 
 			model.FechaAlta = DateTime.Now;
 			var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(_context));
@@ -57,7 +58,9 @@ namespace LigaSoft.ViewModelMappers
 				SaldoDeudor = $"${model.Movimiento.ImporteAdeudado()}",				
 				Alta = $"{model.UsuarioAlta.Email} - {model.FechaAlta}",
 				Anulacion = $"{model.UsuarioAnulacion?.Email} - {model.FechaAnulacion}",
-				Vigente = model.Vigente.ToSiNoString()
+				Vigente = model.Vigente.ToSiNoString(),
+				FormaDePago = model.FormaDePago,
+				FormaDePagoDescripcion = model.FormaDePago.Descripcion()
 			};
 		}
 

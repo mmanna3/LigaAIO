@@ -14,7 +14,7 @@
 			@Html.YKN().EditorFor(x => x.Nombre)
 		</div>
 		<div class="col-sm-6">
-			@(Html.YKN().ComboFor(x => x.Tipo).Values(Model.TiposDisponibles))
+			@(Html.YKN().ComboFor(x => x.Tipo).Values<FormaDePago>())
 		</div>
 
 		@Html.HiddenFor(x => x.TorneoId)

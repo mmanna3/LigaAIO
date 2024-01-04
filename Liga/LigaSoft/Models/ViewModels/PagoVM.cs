@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using LigaSoft.Models.Attributes;
+using LigaSoft.Models.Enums;
 
 namespace LigaSoft.Models.ViewModels
 {
@@ -28,6 +29,12 @@ namespace LigaSoft.Models.ViewModels
 		public string SaldoDeudor { get; set; }
 
 		public int ClubId { get; set; }
+		
+		[Display(Name = "Forma de pago")]
+		public string FormaDePagoDescripcion { get; set; }
+		
+		[Display(Name = "Forma de pago")]
+		public FormaDePago FormaDePago { get; set; }
 	}
 
 }
