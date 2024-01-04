@@ -27,21 +27,27 @@ namespace LigaSoft.ViewModelMappers
 			var fecIni = DateTimeUtils.ConvertToDateTime(rango.FechaInicio);
 			var fecFin = DateTimeUtils.ConvertToDateTime(rango.FechaFin);
 
-			var pagos = _context.Pagos.Where(x => x.Fecha >= fecIni && x.Fecha <= fecFin && x.Vigente);
+			var pagosEnEfectivo = _context.Pagos.Where(x => x.Fecha >= fecIni && x.Fecha <= fecFin && x.Vigente && x.FormaDePago == FormaDePago.Efectivo);
+			var pagosVirtuales = _context.Pagos.Where(x => x.Fecha >= fecIni && x.Fecha <= fecFin && x.Vigente && x.FormaDePago == FormaDePago.Virtual);
 
 			var vm = new InformeVM();
 
 			vm.FechaInicio = rango.FechaInicio;
 			vm.FechaFin = rango.FechaFin;
-			vm.Insumos = $"{pagos.Where(x => x.Movimiento.Concepto.Id >= 4).ToList().Sum(x => x.Importe)}";
-			vm.Libres = $"{pagos.Where(x => x.Movimiento.Concepto.Id == (int) ConceptoTipoEnum.Libre).ToList().Sum(x => x.Importe)}";
-			vm.Cuotas = $"{pagos.Where(x => x.Movimiento.Concepto.Id == (int) ConceptoTipoEnum.Cuota).ToList().Sum(x => x.Importe)}";
-			vm.Fichajes = $"{pagos.Where(x => x.Movimiento.Concepto.Id == (int) ConceptoTipoEnum.Fichaje).ToList().Sum(x => x.Importe)}";
+			vm.Insumos.Efectivo = $"{pagosEnEfectivo.Where(x => x.Movimiento.Concepto.Id >= 4).ToList().Sum(x => x.Importe)}";
+			vm.Libres.Efectivo = $"{pagosEnEfectivo.Where(x => x.Movimiento.Concepto.Id == (int) ConceptoTipoEnum.Libre).ToList().Sum(x => x.Importe)}";
+			vm.Cuotas.Efectivo = $"{pagosEnEfectivo.Where(x => x.Movimiento.Concepto.Id == (int) ConceptoTipoEnum.Cuota).ToList().Sum(x => x.Importe)}";
+			vm.Fichajes.Efectivo = $"{pagosEnEfectivo.Where(x => x.Movimiento.Concepto.Id == (int) ConceptoTipoEnum.Fichaje).ToList().Sum(x => x.Importe)}";
+			
+			vm.Insumos.Virtual = $"{pagosVirtuales.Where(x => x.Movimiento.Concepto.Id >= 4).ToList().Sum(x => x.Importe)}";
+			vm.Libres.Virtual = $"{pagosVirtuales.Where(x => x.Movimiento.Concepto.Id == (int) ConceptoTipoEnum.Libre).ToList().Sum(x => x.Importe)}";
+			vm.Cuotas.Virtual = $"{pagosVirtuales.Where(x => x.Movimiento.Concepto.Id == (int) ConceptoTipoEnum.Cuota).ToList().Sum(x => x.Importe)}";
+			vm.Fichajes.Virtual = $"{pagosVirtuales.Where(x => x.Movimiento.Concepto.Id == (int) ConceptoTipoEnum.Fichaje).ToList().Sum(x => x.Importe)}";
 
-			vm.CajaEdefiIngresos = $"{_context.MovimientosEntradaSinClub.Where(x => x.Fecha >= fecIni && x.Fecha <= fecFin && x.Vigente).ToList().Sum(y => y.Total)}";
-			vm.CajaEdefiEgresos =$"{_context.MovimientosSalida.Where(x => x.Fecha >= fecIni && x.Fecha <= fecFin && x.Vigente).ToList().Sum(y => y.Total)}";
+			vm.CajaEdefiIngresos.Efectivo = $"{_context.MovimientosEntradaSinClub.Where(x => x.Fecha >= fecIni && x.Fecha <= fecFin && x.Vigente).ToList().Sum(y => y.Total)}";
+			vm.CajaEdefiEgresos.Efectivo =$"{_context.MovimientosSalida.Where(x => x.Fecha >= fecIni && x.Fecha <= fecFin && x.Vigente).ToList().Sum(y => y.Total)}";
 
-			vm.Total = $"{vm.CalcularTotal()}";
+			vm.CalcularTotales();
 			vm.Formatear();
 
 			return vm;

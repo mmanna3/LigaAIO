@@ -18,38 +18,54 @@
 				<thead>
 				<tr>
 					<th scope="col">Concepto</th>
-					<th scope="col">Monto</th>
+					<th scope="col">Efectivo</th>
+					<th scope="col">Virtual</th>
+					<th scope="col">Total</th>
 				</tr>
 				</thead>
 				<tbody>
 
 				<tr>
 					<td>Insumos</td>
-					<td>@Model.Insumos</td>
+					<td>@Model.Insumos.Efectivo</td>
+					<td>@Model.Insumos.Virtual</td>
+					<td>@Model.Insumos.Total</td>
 				</tr>
 				<tr>
 					<td>Fichajes</td>
-					<td>@Model.Fichajes</td>
+					<td>@Model.Fichajes.Efectivo</td>
+					<td>@Model.Fichajes.Virtual</td>
+                    <td>@Model.Fichajes.Total</td>
 				</tr>
 				<tr>
 					<td>Libres</td>
-					<td>@Model.Libres</td>
+					<td>@Model.Libres.Efectivo</td>
+					<td>@Model.Libres.Virtual</td>
+                    <td>@Model.Libres.Total</td>
 				</tr>
 				<tr>
 					<td>Cuotas</td>
-					<td>@Model.Cuotas</td>
+					<td>@Model.Cuotas.Efectivo</td>
+					<td>@Model.Cuotas.Virtual</td>
+                    <td>@Model.Cuotas.Total</td>
 				</tr>
 				<tr>
 					<td>EDEFI Ingresos</td>
-					<td>@Model.CajaEdefiIngresos</td>
+					<td>@Model.CajaEdefiIngresos.Efectivo</td>
+					<td>@Model.CajaEdefiIngresos.Virtual</td>
+                    <td>@Model.CajaEdefiIngresos.Total</td>
 				</tr>
 				<tr>
 					<td>EDEFI Egresos</td>
-					<td style="color: red;">@Model.CajaEdefiEgresos</td>
+					<td style="color: red;">@Model.CajaEdefiEgresos.Efectivo</td>
+					<td style="color: red;">@Model.CajaEdefiEgresos.Virtual</td>
+                    <td style="color: red;">@Model.CajaEdefiEgresos.Total</td>
 				</tr>
 				<tr>
 					<td style="font-weight: bold">Total</td>
-					<td style="font-weight: bold">@Model.Total</td>
+					<td style="font-weight: bold">@Model.Total.Efectivo</td>
+					<td style="font-weight: bold">@Model.Total.Virtual</td>
+                    <td style="font-weight: bold">@Model.Total.Total</td>
 				</tr>
 
 				</tbody>
