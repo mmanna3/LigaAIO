@@ -298,3 +298,5 @@ dist/
 *.jpg
 
 .DS_Store
+
+/Liga/LigaSoft/mono_crash*.json
