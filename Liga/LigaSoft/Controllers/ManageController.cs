@@ -52,9 +52,9 @@ namespace LigaSoft.Controllers
 
         //
         // GET: /Manage/Index
-        public async Task<ActionResult> Index(ManageMessageId? message)
-        {
-	        return RedirectToAction("Login", "Account");
+        // public async Task<ActionResult> Index(ManageMessageId? message)
+        // {
+	       //  return RedirectToAction("Login", "Account");
 
 			//ViewBag.StatusMessage =
    //             message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
@@ -75,7 +75,7 @@ namespace LigaSoft.Controllers
    //             BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
    //         };
    //         return View(model);
-        }
+        // }
 
         //
         // POST: /Manage/RemoveLogin

@@ -1,6 +1,6 @@
 ﻿@using LigaSoft.ExtensionMethods
 @using LigaSoft.Models.Enums
-@model LigaSoft.Models.ViewModels.JugadorFichadoPorDelegadoVM
+@model LigaSoft.Models.ViewModels.JugadorAutofichadoVM
 @section Titulo{
 	Detalles del Jugador
 }
@@ -30,44 +30,44 @@
 	</div>
 </div>
 
-<div class="row row-forms">
-	@using (Html.BeginForm("Rechazar", "AdministracionJugadoresFichadosPorDelegados", null, FormMethod.Post, new { @class = "form-horizontal form-rechazar col-sm-6", role = "form" }))
-	{
-		@Html.HiddenFor(x => x.Id)
-		<div class="row">
-			<div class="col-sm-12">
-				@Html.YKN().TextAreaFor(x => x.MotivoDeRechazo)
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<div class="form-group">
-					@(Html.YKN().Button("Rechazar")
-								  .Color(BootstrapColorEnum.Danger)
-								  .FullWidth()
-								  .Submit()
-					)
-				</div>
-			</div>
-		</div>
-	}
-	
-	@using (Html.BeginForm("Aprobar", "AdministracionJugadoresFichadosPorDelegados", null, FormMethod.Post, new { @class = "form-horizontal form-aprobar col-sm-6", role = "form" }))
-	{
-		@Html.HiddenFor(x => x.Id)
-		<div class="row">
-			<div class="col-sm-12">
-				<div class="form-group">
-					@(Html.YKN().Button("Fichar")
-						  .Color(BootstrapColorEnum.Success)
-						  .FullWidth()
-						  .Submit()
-						  )
-				</div>
-			</div>
-		</div>
-	}
-</div>
+@* <div class="row row-forms"> *@
+@* 	@using (Html.BeginForm("Rechazar", "AdministracionJugadoresFichadosPorDelegados", null, FormMethod.Post, new { @class = "form-horizontal form-rechazar col-sm-6", role = "form" })) *@
+@* 	{ *@
+@* 		@Html.HiddenFor(x => x.Id) *@
+@* 		<div class="row"> *@
+@* 			<div class="col-sm-12"> *@
+@* 				@Html.YKN().TextAreaFor(x => x.MotivoDeRechazo) *@
+@* 			</div> *@
+@* 		</div> *@
+@* 		<div class="row"> *@
+@* 			<div class="col-sm-12"> *@
+@* 				<div class="form-group"> *@
+@* 					@(Html.YKN().Button("Rechazar") *@
+@* 								  .Color(BootstrapColorEnum.Danger) *@
+@* 								  .FullWidth() *@
+@* 								  .Submit() *@
+@* 					) *@
+@* 				</div> *@
+@* 			</div> *@
+@* 		</div> *@
+@* 	} *@
+@* 	 *@
+@* 	@using (Html.BeginForm("Aprobar", "AdministracionJugadoresFichadosPorDelegados", null, FormMethod.Post, new { @class = "form-horizontal form-aprobar col-sm-6", role = "form" })) *@
+@* 	{ *@
+@* 		@Html.HiddenFor(x => x.Id) *@
+@* 		<div class="row"> *@
+@* 			<div class="col-sm-12"> *@
+@* 				<div class="form-group"> *@
+@* 					@(Html.YKN().Button("Fichar") *@
+@* 						  .Color(BootstrapColorEnum.Success) *@
+@* 						  .FullWidth() *@
+@* 						  .Submit() *@
+@* 						  ) *@
+@* 				</div> *@
+@* 			</div> *@
+@* 		</div> *@
+@* 	} *@
+@* </div> *@
 
 
 @{
