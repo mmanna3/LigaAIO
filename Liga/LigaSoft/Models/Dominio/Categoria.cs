@@ -18,6 +18,7 @@ namespace LigaSoft.Models.Dominio
 		[Required, Index("IX_NombreYTorneo", 2, IsUnique = true)]
 		public int TorneoId { get; set; }
 		public virtual Torneo Torneo { get; set; }
+		public string Leyenda { get; set; }
 
 		public virtual ICollection<Partido> Partidos { get; set; }
 	}

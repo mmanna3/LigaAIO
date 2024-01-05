@@ -387,6 +387,10 @@
     <Compile Include="Migrations\202401042121318_AgregaFormaDePagoEnMovimientosSinPagos.designer.cs">
       <DependentUpon>202401042121318_AgregaFormaDePagoEnMovimientosSinPagos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202401052022286_AgregaLeyendaEnCategoria.cs" />
+    <Compile Include="Migrations\202401052022286_AgregaLeyendaEnCategoria.designer.cs">
+      <DependentUpon>202401052022286_AgregaLeyendaEnCategoria.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Dominio\JugadorAutofichado.cs" />
     <Compile Include="Models\Dominio\UsuarioDelegado.cs" />
     <Compile Include="Models\Dominio\Sancion.cs" />
@@ -1763,6 +1767,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202401042121318_AgregaFormaDePagoEnMovimientosSinPagos.resx">
       <DependentUpon>202401042121318_AgregaFormaDePagoEnMovimientosSinPagos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401052022286_AgregaLeyendaEnCategoria.resx">
+      <DependentUpon>202401052022286_AgregaLeyendaEnCategoria.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
