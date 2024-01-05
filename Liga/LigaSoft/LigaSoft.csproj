@@ -391,6 +391,11 @@
     <Compile Include="Migrations\202401052022286_AgregaLeyendaEnCategoria.designer.cs">
       <DependentUpon>202401052022286_AgregaLeyendaEnCategoria.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202401052053263_CreaZonaCategoriaParaLeyendaEnTablas.cs" />
+    <Compile Include="Migrations\202401052053263_CreaZonaCategoriaParaLeyendaEnTablas.designer.cs">
+      <DependentUpon>202401052053263_CreaZonaCategoriaParaLeyendaEnTablas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Dominio\ZonaCategoria.cs" />
     <Compile Include="Models\Dominio\JugadorAutofichado.cs" />
     <Compile Include="Models\Dominio\UsuarioDelegado.cs" />
     <Compile Include="Models\Dominio\Sancion.cs" />
@@ -1770,6 +1775,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202401052022286_AgregaLeyendaEnCategoria.resx">
       <DependentUpon>202401052022286_AgregaLeyendaEnCategoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401052053263_CreaZonaCategoriaParaLeyendaEnTablas.resx">
+      <DependentUpon>202401052053263_CreaZonaCategoriaParaLeyendaEnTablas.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -20,6 +20,7 @@ namespace LigaSoft.Models.Dominio
 
 		public virtual ICollection<Equipo> Equipos { get; set; }
 		public virtual ICollection<Fecha> Fechas { get; set; }
+		public virtual ICollection<ZonaCategoria> ZonaCategorias { get; set; }
 
 		public ZonaTipo	Tipo { get; set; }
 
