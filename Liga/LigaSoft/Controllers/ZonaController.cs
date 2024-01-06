@@ -31,7 +31,15 @@ namespace LigaSoft.Controllers
 		    var categorias = zona.Torneo.Categorias;
 		    var categoriasVM = _categoriaVMM.MapForGrid(categorias.ToList());
 		    
-		    var vm = new AgregarLeyendaVM(id, zona?.Nombre, zona.Torneo.Id, zona.Torneo.Descripcion, categoriasVM);
+		    var categoriasConLeyenda = new List<CategoriaConLeyendaVM>();
+		    foreach (var cat in categorias)
+		    {
+			    var zonaCategoria = Context.ZonaCategorias.SingleOrDefault(x => x.ZonaId == id && x.CategoriaId == cat.Id);
+			    // if (zonaCategoria != null)
+				    categoriasConLeyenda.Add(new CategoriaConLeyendaVM(cat.Id, cat.Nombre, zonaCategoria?.Leyenda));
+		    }
+		    
+		    var vm = new AgregarLeyendaVM(id, zona?.Nombre, zona.Torneo.Id, zona.Torneo.Descripcion, categoriasConLeyenda);
 
 		    return View(vm);
 	    }
@@ -39,14 +47,23 @@ namespace LigaSoft.Controllers
 	    [HttpPost]
 	    public ActionResult AgregarLeyenda(AgregarLeyendaVM vm)
 	    {
-		    var zonaCategoria = new ZonaCategoria
+		    var modeloExistente = Context.ZonaCategorias.SingleOrDefault(x => x.ZonaId == vm.ZonaId && x.CategoriaId == vm.CategoriaId);
+
+		    if (modeloExistente != null)
 		    {
-				ZonaId = vm.ZonaId,
-				CategoriaId = vm.CategoriaId,
-				Leyenda = vm.Leyenda
-		    };
+			    modeloExistente.Leyenda = vm.Leyenda;
+		    }
+		    else
+		    {
+			    var zonaCategoria = new ZonaCategoria
+			    {
+				    ZonaId = vm.ZonaId,
+				    CategoriaId = vm.CategoriaId,
+				    Leyenda = vm.Leyenda
+			    };
+			    Context.ZonaCategorias.Add(zonaCategoria);    
+		    }
 		    
-		    Context.ZonaCategorias.Add(zonaCategoria);
 		    
 		    Context.SaveChanges();
 

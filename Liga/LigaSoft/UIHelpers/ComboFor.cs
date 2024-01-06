@@ -15,7 +15,8 @@ namespace LigaSoft.UIHelpers
 		private readonly Expression<Func<TModel, TProperty>> _expression;
 		private List<SelectListItem> _values;
 		private string _label;
-		private string _classes = string.Empty;		
+		private string _classes = string.Empty;
+		private string _onChangeJsFunc;
 
 		public ComboFor(HtmlHelper<TModel> helper, Expression<Func<TModel, TProperty>> expression)
 		{
@@ -61,13 +62,19 @@ namespace LigaSoft.UIHelpers
 			_classes = classes;
 			return this;
 		}
+		
+		public ComboFor<TModel, TProperty> OnChange(string onChangeJsFunc)
+		{
+			_onChangeJsFunc = onChangeJsFunc;
+			return this;
+		}
 
 		public override string ToHtmlString()
 		{
 			return $@"
 						<div class='form-group'>
 							{LabelTag(_expression, _label)}
-							{_helper.DropDownListFor(_expression, _values, new { @class = $"form-control {_classes}"})}
+							{_helper.DropDownListFor(_expression, _values, new { @class = $"form-control {_classes}", onchange = _onChangeJsFunc})}
 							{MensajeValidacionHtml(_helper, _expression)}
 						</div>
 					";

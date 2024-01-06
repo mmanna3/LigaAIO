@@ -6,4 +6,5 @@ cd LigaSoft && xsp4 --address 0.0.0.0 --port 42000 --nonstop &
 # Espera para asegurarse que el servidor haya arrancado posta
 sleep 2s
 
-open http://0.0.0.0:42000/torneo &
+open -na "Google Chrome" --args --incognito http://0.0.0.0:42000/torneo &
+#open http://0.0.0.0:42000/torneo &
