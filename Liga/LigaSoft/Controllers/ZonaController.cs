@@ -51,6 +51,9 @@ namespace LigaSoft.Controllers
 
 		    if (modeloExistente != null)
 		    {
+			    if (string.IsNullOrEmpty(vm.Leyenda))
+				    vm.Leyenda = "*";
+				    
 			    modeloExistente.Leyenda = vm.Leyenda;
 		    }
 		    else
