@@ -300,3 +300,5 @@ dist/
 .DS_Store
 
 /Liga/LigaSoft/mono_crash*.json
+
+*edefi_log*
