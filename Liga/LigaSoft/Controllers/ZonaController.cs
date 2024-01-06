@@ -13,8 +13,10 @@ namespace LigaSoft.Controllers
 	[Authorize(Roles = Roles.Administrador)]
 	public class ZonaController : ABMControllerWithParent<Zona, ZonaVM, ZonaVMM, Torneo, TorneoVM, TorneoVMM>
     {
+	    private readonly CategoriaVMM _categoriaVMM;
 	    public ZonaController() : base("Torneo","TorneoId")
 	    {
+		    _categoriaVMM = new CategoriaVMM(Context);
 	    }
 
 	    protected override void BeforeReturningCreateView(ZonaVM vm)
@@ -23,6 +25,34 @@ namespace LigaSoft.Controllers
 		    MapTiposDeZonasDisponibles(vm);
 	    }
 
+	    public ActionResult AgregarLeyenda(int parentId, int id)
+	    {
+		    var zona = Context.Zonas.Find(id);
+		    var categorias = zona.Torneo.Categorias;
+		    var categoriasVM = _categoriaVMM.MapForGrid(categorias.ToList());
+		    
+		    var vm = new AgregarLeyendaVM(id, zona?.Nombre, zona.Torneo.Id, zona.Torneo.Descripcion, categoriasVM);
+
+		    return View(vm);
+	    }
+	    
+	    [HttpPost]
+	    public ActionResult AgregarLeyenda(AgregarLeyendaVM vm)
+	    {
+		    var zonaCategoria = new ZonaCategoria
+		    {
+				ZonaId = vm.ZonaId,
+				CategoriaId = vm.CategoriaId,
+				Leyenda = vm.Leyenda
+		    };
+		    
+		    Context.ZonaCategorias.Add(zonaCategoria);
+		    
+		    Context.SaveChanges();
+
+		    return RedirectTo("Index", vm.TorneoId);
+	    }
+	    
 		public ActionResult ModificarEquipos(int parentId, int id)
 		{
 			var zona = Context.Zonas.Find(id);

@@ -39,6 +39,7 @@
 				action.RedirectParentWithChildWithRowId("Datos de equipos", new { parent = "Torneo", parentId = Model.Id, controller = "Zona", action = "DatosDeEquipos" });
 				action.RedirectParentWithChildWithRowId("Partidos postergados/suspendidos", new { parent = "Torneo", parentId = Model.Id, controller = "Zona", action = "PartidosPostergadosOSuspendidos" });
 				action.RedirectWithRowIdAsParent("Sanciones", "Zona", "Sancion", "Index");
+				action.RedirectParentWithChildWithRowId("Agregar leyenda", new { parent = "Torneo", parentId = Model.Id, controller = "Zona", action = "AgregarLeyenda"});
 			})
 			.DataSource("/Zona/GetForGrid")
 			.ParentId(Model.Id)

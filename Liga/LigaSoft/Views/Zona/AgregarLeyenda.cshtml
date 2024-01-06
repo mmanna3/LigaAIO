@@ -1,0 +1,25 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.Enums
+@model LigaSoft.Models.ViewModels.AgregarLeyendaVM
+
+@section titulo{
+	Zona <span class="titulo-detacado">@Model.Zona</span> - @Model.Torneo
+}
+
+@using (Html.YKN().Form(FormSizeEnum.Big))
+{
+	@Html.HiddenFor(x => x.ZonaId)
+	@Html.HiddenFor(x => x.TorneoId)
+	
+	<div class="row">
+		<div class="col-sm-4">
+			@Html.YKN().ComboFor(x => x.CategoriaId).Values(Model.Categorias)
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-6">
+			@Html.YKN().TextAreaFor(x => x.Leyenda)
+		</div>
+	</div>
+	{ Html.YKN().FooterGuardarCancelar(); }
+}
