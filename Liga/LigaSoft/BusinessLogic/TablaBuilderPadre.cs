@@ -29,6 +29,7 @@ namespace LigaSoft.BusinessLogic
 			if (zona.TieneAlMenosUnaCategoriaUnaFechaYUnEquipo())
 		    {
 			    CrearTablaDeCadaCategoria(zona, vm);
+			    AgregarLeyendaSiLaHubiere(zona, vm);
 			    ProcesarPartidosDeCadaEquipo(zona, vm);
 			    OrdenarTablaDeCadaCategoria(vm);
 			    CompletarPosiciones(vm);
@@ -73,6 +74,15 @@ namespace LigaSoft.BusinessLogic
 		    foreach (var cat in zona.Torneo.Categorias)
 			    vm.TablasPorCategoria.Add(new TablaCategoriaVM { CategoriaId = cat.Id, Categoria = cat.Nombre });		    
 		}
+	    
+	    private static void AgregarLeyendaSiLaHubiere(Zona zona, TablasVM vm)
+	    {
+		    foreach (var tabla in vm.TablasPorCategoria)
+		    {
+			    var zonaCategoria = zona.ZonaCategorias.SingleOrDefault(x => x.CategoriaId == tabla.CategoriaId);
+			    tabla.Leyenda = zonaCategoria?.Leyenda;
+		    }
+	    }
 
 		protected void ProcesarPartidosDeCadaEquipo(Zona zona, TablasVM vm)
 		{

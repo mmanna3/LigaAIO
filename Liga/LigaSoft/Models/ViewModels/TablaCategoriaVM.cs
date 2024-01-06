@@ -7,6 +7,7 @@ namespace LigaSoft.Models.ViewModels
 	{
 		public int CategoriaId { get; set; }
 		public string Categoria { get; set; }
+		public string Leyenda { get; set; }
 		public List<TablaCategoriaRenglonVM> Renglones { get; set; }
 
 		public TablaCategoriaVM()
