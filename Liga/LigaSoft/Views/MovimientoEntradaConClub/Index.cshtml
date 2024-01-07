@@ -70,7 +70,8 @@
 </div>
 <script>
 	function reloadGridFiltering(field, operator, value) {
-		grid.reload({ "filters[0].field": field, "filters[0].value": value, "filters[0].operator": operator });
+		// grid.reload({ "filters[0].field": field, "filters[0].value": value, "filters[0].operator": operator });
+		grid.reload({ "filters[0].field": field, "filters[0].value": value, "filters[0].operator": operator, "filters[1].field": "Fecha.Year", "filters[1].value": "DateTime.Today.Year", "filters[1].operator": "=" });
 	}
 
 	function onCuotasClick() {
