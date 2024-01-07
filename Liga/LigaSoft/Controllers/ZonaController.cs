@@ -73,6 +73,61 @@ namespace LigaSoft.Controllers
 		    return RedirectTo("Index", vm.TorneoId);
 	    }
 	    
+	    public ActionResult QuitarPuntos(int parentId, int id)
+	    {
+		    var zona = Context.Zonas.Find(id);
+		    var categoriasModel = zona.Torneo.Categorias;
+
+		    var quitaPorCategoria = categoriasModel.Select(cat => new QuitaPorCategoriaVM(cat.Nombre, cat.Id,0)).ToList();
+
+		    var tuplas = new List<EquipoCategoriaQuitaVM>();
+		    var todosLosEquiposDeLaZona = zona.Equipos.Select(e => new SelectListItem { Text = e.Nombre, Value = e.Id.ToString() }).ToList();
+
+
+		    foreach (var cat in categoriasModel)
+		    {
+			    var equiposConQuitaDePuntos = Context.QuitaDePuntos.Where(x => x.ZonaId == id && x.CategoriaId == cat.Id).ToList();
+			    foreach (var equipo in equiposConQuitaDePuntos) 
+				    tuplas.Add(new EquipoCategoriaQuitaVM(cat.Id, equipo.EquipoId, equipo.CantidadDePuntosDescontados));
+		    }
+
+		    var vm = new QuitaDePuntosVM(id, zona?.Nombre, zona.Torneo.Id, zona.Torneo.Descripcion, quitaPorCategoria, todosLosEquiposDeLaZona, tuplas);
+
+		    return View(vm);
+	    }
+	    
+	    [HttpPost]
+	    public ActionResult QuitarPuntos(QuitaDePuntosVM vm)
+	    {
+		    foreach (var quitaPorCategoria in vm.QuitaPorCategorias)
+		    {
+			    var modeloExistente = Context.QuitaDePuntos.SingleOrDefault(x => x.ZonaId == vm.ZonaId && x.CategoriaId == quitaPorCategoria.CategoriaId && x.EquipoId == vm.EquipoId);
+
+			    if (modeloExistente != null)
+			    {
+				    modeloExistente.CantidadDePuntosDescontados = quitaPorCategoria.QuitaDePuntos;
+			    }
+			    else
+			    {
+				    if (quitaPorCategoria.QuitaDePuntos > 0)
+				    {
+					    var quitaDePuntos = new QuitaDePuntos
+					    {
+						    ZonaId = vm.ZonaId,
+						    CategoriaId = quitaPorCategoria.CategoriaId,
+						    EquipoId = vm.EquipoId,
+						    CantidadDePuntosDescontados = quitaPorCategoria.QuitaDePuntos,
+					    };
+					    Context.QuitaDePuntos.Add(quitaDePuntos); 
+				    }
+			    }
+		    }
+		    
+		    Context.SaveChanges();
+
+		    return RedirectTo("Index", vm.TorneoId);
+	    }
+	    
 		public ActionResult ModificarEquipos(int parentId, int id)
 		{
 			var zona = Context.Zonas.Find(id);

@@ -1,0 +1,75 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.Enums
+@model LigaSoft.Models.ViewModels.QuitaDePuntosVM
+
+@section titulo{
+	Quita de puntos <span class="titulo-detacado">@Model.Zona</span> - @Model.Torneo
+}
+
+@using (Html.YKN().Form(FormSizeEnum.Big))
+{
+	@Html.HiddenFor(x => x.ZonaId)
+	@Html.HiddenFor(x => x.TorneoId)
+	
+	<div class="row">
+		<div class="col-sm-6">
+			@Html.YKN().ComboFor(x => x.EquipoId).Values(Model.Equipos.ToList()).OnChange("OnEquipoChange()")
+		</div>
+	</div>
+	
+	for (var i = 0; i < Model.QuitaPorCategorias.Count; i++)
+	{
+		<div class="row">
+			<div class="col-sm-3">
+				@(Html.HiddenFor(x => x.QuitaPorCategorias[i].CategoriaId))
+				@(Html.YKN().EditorFor(x => x.QuitaPorCategorias[i].CategoriaDesc).Disabled())
+			</div>
+			<div class="col-sm-3">
+				@(Html.YKN().EditorFor(x => x.QuitaPorCategorias[i].QuitaDePuntos))
+			</div>
+		</div>
+	}
+
+	{ Html.YKN().FooterGuardarCancelar(); }
+}
+
+<script>
+	function limpiarTodasLasQuitasDePuntos() {
+		const quitaPorCategorias = @Html.Raw(Json.Encode(@Model.QuitaPorCategorias));
+		
+		for (let i = 0; i < quitaPorCategorias.length; i++) {	
+			$('#QuitaPorCategorias_'+i+'__QuitaDePuntos').val(0);
+		}
+	}
+
+	function OnEquipoChange() {
+		limpiarTodasLasQuitasDePuntos();
+		
+		const equipoId = $('#EquipoId').val();
+		console.log(equipoId);
+		
+		const equiposConQuitaDePuntosEnLaZona = @Html.Raw(Json.Encode(@Model.EquiposConQuitaDePuntos));
+		const quitaPorCategorias = @Html.Raw(Json.Encode(@Model.QuitaPorCategorias));
+		console.log(quitaPorCategorias);
+		console.log(equiposConQuitaDePuntosEnLaZona);
+		
+		const quitasDePuntosDelEquipoSeleccionadoEnLaZona = equiposConQuitaDePuntosEnLaZona.filter(x => x.EquipoId.toString() === equipoId); 
+		console.log('quitasDePuntosDelEquipoSeleccionadoEnLaZona');
+		console.log(quitasDePuntosDelEquipoSeleccionadoEnLaZona);
+		
+		for (let i = 0; i < quitasDePuntosDelEquipoSeleccionadoEnLaZona.length; i++) {	
+			console.log('adentro el for');
+			let cat = quitasDePuntosDelEquipoSeleccionadoEnLaZona[i].CategoriaId;
+			console.log(cat);
+			let index = quitaPorCategorias.findIndex((q) => q.CategoriaId === cat);
+			console.log(index);
+			$('#QuitaPorCategorias_'+index+'__QuitaDePuntos').val(quitasDePuntosDelEquipoSeleccionadoEnLaZona[i].QuitaDePuntos.toString());
+		}
+	}	
+	
+	$(function () {
+		const data = @Html.Raw(Json.Encode(@Model));
+		console.log(data)
+		OnEquipoChange();
+	});
+</script>
