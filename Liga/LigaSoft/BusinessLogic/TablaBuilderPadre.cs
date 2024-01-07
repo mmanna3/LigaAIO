@@ -31,12 +31,28 @@ namespace LigaSoft.BusinessLogic
 			    CrearTablaDeCadaCategoria(zona, vm);
 			    AgregarLeyendaSiLaHubiere(zona, vm);
 			    ProcesarPartidosDeCadaEquipo(zona, vm);
+			    DescontarPuntosSiHayQuitaDePuntos(zona, vm);
 			    OrdenarTablaDeCadaCategoria(vm);
 			    CompletarPosiciones(vm);
 			    LlenarTablaGeneral(vm);
 		    }
 
 		    return vm;
+		}
+
+		private void DescontarPuntosSiHayQuitaDePuntos(Zona zona, TablasVM vm)
+		{
+			foreach (var tabla in vm.TablasPorCategoria)
+				foreach (var renglon in tabla.Renglones)
+				{
+					var quitaDePuntos = 
+						zona.QuitaDePuntos.SingleOrDefault(
+							x => x.EquipoId == renglon.EquipoId &&
+					 		     x.CategoriaId == tabla.CategoriaId);
+					
+					if (quitaDePuntos?.CantidadDePuntosDescontados != null)
+							renglon.Pts -= (int) quitaDePuntos.CantidadDePuntosDescontados;
+				}
 		}
 
 		protected static void LlenarTablaGeneral(TablasVM vm)
