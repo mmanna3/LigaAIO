@@ -395,6 +395,15 @@
     <Compile Include="Migrations\202401052053263_CreaZonaCategoriaParaLeyendaEnTablas.designer.cs">
       <DependentUpon>202401052053263_CreaZonaCategoriaParaLeyendaEnTablas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202401070456277_LaLeyendaNoEsMasRequerida.cs" />
+    <Compile Include="Migrations\202401070456277_LaLeyendaNoEsMasRequerida.designer.cs">
+      <DependentUpon>202401070456277_LaLeyendaNoEsMasRequerida.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202401070510319_CreacionDeQuitaDePuntos.cs" />
+    <Compile Include="Migrations\202401070510319_CreacionDeQuitaDePuntos.designer.cs">
+      <DependentUpon>202401070510319_CreacionDeQuitaDePuntos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Dominio\QuitaDePuntos.cs" />
     <Compile Include="Models\Dominio\ZonaCategoria.cs" />
     <Compile Include="Models\Dominio\JugadorAutofichado.cs" />
     <Compile Include="Models\Dominio\UsuarioDelegado.cs" />
@@ -1782,6 +1791,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202401052053263_CreaZonaCategoriaParaLeyendaEnTablas.resx">
       <DependentUpon>202401052053263_CreaZonaCategoriaParaLeyendaEnTablas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401070456277_LaLeyendaNoEsMasRequerida.resx">
+      <DependentUpon>202401070456277_LaLeyendaNoEsMasRequerida.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401070510319_CreacionDeQuitaDePuntos.resx">
+      <DependentUpon>202401070510319_CreacionDeQuitaDePuntos.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -21,5 +21,6 @@ namespace LigaSoft.Models.Dominio
 
 		public virtual ICollection<Partido> Partidos { get; set; }
 		public virtual ICollection<ZonaCategoria> ZonaCategorias { get; set; }
+		public virtual ICollection<QuitaDePuntos> QuitaDePuntos { get; set; }
 	}
 }

@@ -25,8 +25,8 @@ namespace LigaSoft.Models.Dominio
 		public virtual ICollection<JugadorEquipo> JugadorEquipo { get; set; }
 		public virtual ICollection<Jornada> JornadasDeLocal { get; set; }
 		public virtual ICollection<Jornada> JornadasDeVisitante { get; set; }
-
 		public virtual ICollection<ZonaRelampagoEquipo> ZonaRelampagoEquipo { get; set; }
+		public virtual ICollection<QuitaDePuntos> QuitaDePuntos { get; set; }
 
 		public int? Delegado1Id { get; set; }
 		public virtual Delegado Delegado1 { get; set; }

@@ -17,10 +17,10 @@ namespace LigaSoft.Models.Dominio
 		[Required]
 		public int TorneoId { get; set; }
 		public virtual Torneo Torneo { get; set; }
-
 		public virtual ICollection<Equipo> Equipos { get; set; }
 		public virtual ICollection<Fecha> Fechas { get; set; }
 		public virtual ICollection<ZonaCategoria> ZonaCategorias { get; set; }
+		public virtual ICollection<QuitaDePuntos> QuitaDePuntos { get; set; }
 
 		public ZonaTipo	Tipo { get; set; }
 

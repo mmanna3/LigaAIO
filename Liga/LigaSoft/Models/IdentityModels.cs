@@ -48,8 +48,8 @@ namespace LigaSoft.Models
 	    public DbSet<JugadorEquipo> JugadorEquipos { get; set; }
 	    public DbSet<Zona> Zonas { get; set; }
 	    public DbSet<Categoria> Categorias { get; set; }
-	    
-	    public DbSet<ZonaCategoria> ZonaCategorias { get; set; }
+		public DbSet<QuitaDePuntos> QuitaDePuntos { get; set; }
+		public DbSet<ZonaCategoria> ZonaCategorias { get; set; }
 	    public DbSet<Fecha> Fechas { get; set; }
 	    public DbSet<Jornada> Jornadas { get; set; }
 	    public DbSet<Partido> Partidos { get; set; }
