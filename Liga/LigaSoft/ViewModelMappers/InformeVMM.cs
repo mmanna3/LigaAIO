@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
@@ -79,11 +80,17 @@ namespace LigaSoft.ViewModelMappers
 
 		public InformeMovimientosImpagosVM MovimientosImpagosMap()
 		{
-			var movClubs = _context.MovimientosEntradaConClub.Where(x => x.Vigente).ToList().Where(x => x.ImporteAdeudado() > 0).ToList();
+			var movClubs = _context.MovimientosEntradaConClub
+				.Where(x => x.Vigente && x.Fecha.Year == DateTime.Today.Year)
+				.Include(movimientoEntradaConClub => movimientoEntradaConClub.Club)
+				.Include(movimientoEntradaConClub1 => movimientoEntradaConClub1.Concepto)
+				.ToList()
+				.Where(x => x.ImporteAdeudado() > 0)
+				.ToList();
 
 			var vm = new InformeMovimientosImpagosVM();
 
-			vm.ClubesDeudores = movClubs.Select(x => $"<a href='/Club/{x.ClubId}/MovimientoEntradaConClub/Index/'>{x.Club.Nombre}</a>").Distinct().OrderBy(x => x).ToList();
+			vm.ClubesDeudores = movClubs.Select(x => $"<a href='/Club/{x.ClubId}/MovimientoEntradaConClub/FinanzasDeEsteAnio/'>{x.Club.Nombre}</a>").Distinct().OrderBy(x => x).ToList();
 
 			vm.Insumos = $"{movClubs.Where(x => x.Concepto.Id >= 4).Sum(x => x.ImporteAdeudado())}";
 			vm.Libres = $"{movClubs.Where(x => x.Concepto.Id == (int)ConceptoTipoEnum.Libre).Sum(x => x.ImporteAdeudado())}";
