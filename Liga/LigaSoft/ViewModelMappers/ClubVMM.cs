@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Web.Mvc;
 using LigaSoft.Models;
 using LigaSoft.Models.Dominio;
 using LigaSoft.Models.ViewModels;
@@ -17,7 +18,7 @@ namespace LigaSoft.ViewModelMappers
 		{
 			_imagenesEscudosPersistence = new ImagenesEscudosDiskPersistence(new AppPathsWebApp());
 		}
-
+		
 		public override void MapForCreateAndEdit(ClubVM vm, Club model)
 		{
 			model.Id = vm.Id;
@@ -71,16 +72,39 @@ namespace LigaSoft.ViewModelMappers
 
 			return vm;
 		}
+		
+		public ClubVM MapForMovimientosDeEsteAnio(Club model)
+		{
+			var equipoVMM = new EquipoVMM(Context);
 
-		private static void MapConceptoTotales(Club model, ClubVM vm)
+			var vm = new ClubVM
+			{
+				Id = model.Id,
+				Direccion = model.Direccion,
+				Localidad = model.Localidad,
+				Nombre = model.Nombre,
+				Techo = model.TechoBoolToTechoEnum(),
+				Cuota = $"${model.Cuota()}",
+				Escudo = _imagenesEscudosPersistence.PathRelativo(model.Id)
+			};
+
+			MapConceptoTotales(model, vm, true);
+
+			if (model.Equipos != null)
+				vm.Equipos = equipoVMM.MapForDisplayMultiline(model.Equipos);
+
+			return vm;
+		}
+
+		private static void MapConceptoTotales(Club model, ClubVM vm, bool soloEsteAnio = false)
 		{
 			vm.ConceptoTotales = new ConceptoTotales
 			{
-				DeudaCuotas = $"${model.DeudaCuotas()}",
-				DeudaFichajes = $"${model.DeudaFichajes()}",
-				DeudaInsumos = $"${model.DeudaInsumos()}",
-				DeudaLibres = $"${model.DeudaLibre()}",
-				DeudaTotal = $"${model.DeudaTotal()}"
+				DeudaCuotas = $"${model.DeudaCuotas(soloEsteAnio)}",
+				DeudaFichajes = $"${model.DeudaFichajes(soloEsteAnio)}",
+				DeudaInsumos = $"${model.DeudaInsumos(soloEsteAnio)}",
+				DeudaLibres = $"${model.DeudaLibre(soloEsteAnio)}",
+				DeudaTotal = $"${model.DeudaTotal(soloEsteAnio)}"
 			};
 		}
 

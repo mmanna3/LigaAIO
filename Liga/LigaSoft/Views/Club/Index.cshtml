@@ -32,7 +32,8 @@
 				action.JavaScriptWithRowId("Eliminar escudo", "EliminarEscudo");
 				action.RedirectWithRowId("Crear equipo", "Club", "CrearEquipo");
 				action.RedirectWithRowId("Delegados", "Club", "IndexDelegados");
-				action.RedirectWithRowIdAsParent("Finanzas", "Club", "MovimientoEntradaConClub", "Index");
+				action.RedirectWithRowIdAsParent("Finanzas históricas", "Club", "MovimientoEntradaConClub", "FinanzasHistoricas");
+				action.RedirectWithRowIdAsParent("Finanzas de este año", "Club", "MovimientoEntradaConClub", "FinanzasDeEsteAnio");
 				action.RedirectWithRowId("Pagar carnets adeudados", "Club", "PagarCarnets");
 			})
 			.DataSource("/Club/GetForGrid")

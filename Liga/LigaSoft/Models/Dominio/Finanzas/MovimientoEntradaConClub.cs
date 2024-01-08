@@ -1,4 +1,5 @@
-﻿using LigaSoft.Models.Enums;
+﻿using System;
+using LigaSoft.Models.Enums;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -29,9 +30,10 @@ namespace LigaSoft.Models.Dominio.Finanzas
 
 		public int ImporteAdeudado()
 		{
-			if (Vigente)
-				return Total - Pagos.Where(x => x.Vigente).Sum(x => x.Importe);
-			return 0;
+			if (!Vigente) 
+				return 0;
+			
+			return Total - Pagos.Where(x => x.Vigente).Sum(x => x.Importe);
 		}
 	}
 

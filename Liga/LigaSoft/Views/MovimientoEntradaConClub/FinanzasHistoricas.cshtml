@@ -1,0 +1,124 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.Enums
+@using LigaSoft.Models.ViewModels
+@model ClubVM
+
+@section Titulo {
+	<span class="titulo-detacado">@Model.Nombre: </span>Movimientos históricos 
+}
+
+@section CabeceraGrilla {
+	<div class="col-sm-4">
+		<div class="btn-group" role="group">
+			<button type="button" class="btn btn-primary" id="todosBtn" onclick="onTodosClick()">Todos</button>
+			<button type="button" class="btn btn-success" id="insumosBtn" onclick="onInsumosClick()">Insumos</button>
+			<button type="button" class="btn btn-danger" id="cuotasBtn" onclick="onCuotasClick()">Cuotas</button>
+			<button type="button" class="btn btn-warning" id="fichajesBtn" onclick="onFichajesClick()">Fichajes</button>
+			<button type="button" class="btn btn-info" id="libresBtn" onclick="onLibresClick()">Libres</button>
+		</div>
+	</div>
+	<div class="col-sm-offset-6 col-sm-2">
+		@(Html.YKN().DropdownButton()
+				.FullWidth()
+				.Label("Nuevo movimiento")
+				.AddAction("Insumo", "CreateMovimientoInsumo", "MovimientoEntradaConClub", new Dictionary<string, string> {{"clubId", Model.Id.ToString()}})
+				.AddAction("Cuota", "CreateMovimientoCuota", "MovimientoEntradaConClub", new Dictionary<string, string> {{"clubId", Model.Id.ToString()}})
+				.AddAction("Fichaje", "CreateMovimientoFichaje", "MovimientoEntradaConClub", new Dictionary<string, string> {{"clubId", Model.Id.ToString()}})
+				.AddAction("Libre", "CreateMovimientoLibre", "MovimientoEntradaConClub", new Dictionary<string, string> {{"clubId", Model.Id.ToString()}})
+				)
+	</div>
+}
+<div class="row">
+	<div class="col-sm-12">
+		<div class="saldo">
+			Deuda Insumos: <span style="color: red;">@Model.ConceptoTotales.DeudaInsumos</span>
+			Deuda Cuotas: <span style="color: red;">@Model.ConceptoTotales.DeudaCuotas</span>
+			Deuda Fichajes: <span style="color: red;">@Model.ConceptoTotales.DeudaFichajes</span>
+			Deuda Libres: <span style="color: red;">@Model.ConceptoTotales.DeudaLibres</span>
+			DEUDA TOTAL: <span style="color: red;">@Model.ConceptoTotales.DeudaTotal</span>
+		</div>
+	</div>	
+</div>
+
+
+<div class="row">
+	<div class="col-sm-12">
+	@(Html.YKN<MovimientoEntradaConClubVM>().Grid()
+		  .WithColumns(column =>
+		  {
+			  column.AddTextColumn(x => x.Fecha).Width(100);
+			  column.AddTextColumn(x => x.Concepto);
+			  column.AddTextColumn(x => x.Cantidad).Width(80);
+			  column.AddTextColumn(x => x.PrecioUnitario).Width(120);
+			  column.AddTextColumn(x => x.Total).Width(120);
+			  column.AddTextColumn(x => x.Pagado).Width(120);
+			  column.AddTextColumn(x => x.Deuda).Width(120);
+			  column.AddTextColumn(x => x.Vigente).Width(80);
+		  })
+		  .Actions(action =>
+		  {
+			  action.RedirectWithRowId("Detalle y pagos", "MovimientoEntradaConClub", "Details");
+			  action.RedirectWithRowId("Auditoría", "MovimientoEntradaConClub", "Auditoria");
+			  action.JavaScriptWithRowId("Anular", "Anular");
+			  action.JavaScriptWithRowId("Pagar monto adeudado", "PagarMontoAdeudado");
+		  })
+		  .DataSource("/MovimientoEntradaConClub/GetForGrid")
+		  .ParentId(Model.Id)
+		  .PageLimit(100)
+	)
+	</div>
+</div>
+<script>
+	function reloadGridFiltering(field, operator, value) {
+		grid.reload({ "filters[0].field": field, "filters[0].value": value, "filters[0].operator": operator });
+	}
+
+	function onCuotasClick() {
+		reloadGridFiltering("ConceptoId", "=", "@((int)ConceptoTipoEnum.Cuota)");
+	}
+
+	function onLibresClick() {
+		reloadGridFiltering("ConceptoId", "=", "@((int)ConceptoTipoEnum.Libre)");
+	}
+
+	function onFichajesClick() {
+		reloadGridFiltering("ConceptoId", "=", "@((int)ConceptoTipoEnum.Fichaje)");
+	}
+
+	function onInsumosClick() {
+		reloadGridFiltering("ConceptoId", ">=", "@((int)ConceptoTipoEnum.Insumo)");
+	}
+
+	function onTodosClick() {
+		reloadGridFiltering("true", "=", "true");
+	}
+
+	function Anular(obj) {
+		$.ajax({
+			url: '/MovimientoEntradaConClub/Anular',
+			type: "POST",
+			data: { id: obj.getAttribute('data-id') },
+			success: function () {
+				window.location.reload(false);
+			}
+		});
+	}
+
+	function PagarMontoAdeudado(obj) {
+		$.ajax({
+			url: '/MovimientoEntradaConClub/PagarMontoAdeudado',
+			type: "POST",
+			data: { id: obj.getAttribute('data-id') },
+			success: function () {
+				window.location.reload(false);
+			}
+		});
+	}
+</script>
+
+<style>
+	.saldo {
+		font-size: 16px;
+		font-weight: bold;
+	}
+</style>
