@@ -41,7 +41,8 @@ namespace LigaSoft.BusinessLogic
 				FechaAlta = DateTime.Now,
 				Vigente = true,
 				UsuarioAltaId = HttpContext.Current.User.Identity.GetUserId(),
-				Importe = movimiento.Total
+				Importe = movimiento.Total,
+				FormaDePago = FormaDePago.Efectivo
 			};
 		}
 
