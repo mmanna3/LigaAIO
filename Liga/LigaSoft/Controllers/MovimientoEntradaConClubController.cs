@@ -20,6 +20,22 @@ namespace LigaSoft.Controllers
 	    public MovimientoEntradaConClubController() : base("Club","ClubId")
 	    {			
 	    }
+	    
+	    public ActionResult FinanzasHistoricas(int parentId)
+	    {
+		    var club = Context.Clubs.Find(parentId);
+		    var clubVMM = new ClubVMM(Context);
+		    var vm = clubVMM.MapForDetails(club);
+		    return View(vm);
+	    }
+	    
+	    public virtual ActionResult FinanzasDeEsteAnio(int parentId)
+	    {
+		    var club = Context.Clubs.Find(parentId);
+		    var clubVMM = new ClubVMM(Context);
+		    var vm = clubVMM.MapForMovimientosDeEsteAnio(club);
+		    return View(vm);
+	    }
 
 	    [ImportModelStateFromTempData]
 		public ActionResult CreateMovimientoInsumo(int clubId)

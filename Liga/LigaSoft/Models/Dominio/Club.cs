@@ -53,18 +53,24 @@ namespace LigaSoft.Models.Dominio
 			return Equipos.Sum(x => x.ValorDeLaCuota);
 		}
 
-		public int DeudaTotal()
+		public int DeudaTotal(bool soloEsteAnio = false)
 		{
+			if (soloEsteAnio)
+				return Movimientos.Where(x => x.Fecha.Year == DateTime.Today.Year).Sum(x => x.ImporteAdeudado());
 			return Movimientos.Sum(x => x.ImporteAdeudado());
 		}
 
-		public int DeudaFichajes()
+		public int DeudaFichajes(bool soloEsteAnio = false)
 		{
+			if (soloEsteAnio)
+				return Movimientos.Where(x => x.Concepto.Id == (int)ConceptoTipoEnum.Fichaje && x.Fecha.Year == DateTime.Today.Year).Sum(x => x.ImporteAdeudado());
 			return Movimientos.Where(x => x.Concepto.Id == (int)ConceptoTipoEnum.Fichaje).Sum(x => x.ImporteAdeudado());
 		}
 
-		public int DeudaCuotas()
+		public int DeudaCuotas(bool soloEsteAnio = false)
 		{
+			if (soloEsteAnio)
+				return Movimientos.Where(x => x.Concepto.Id == (int)ConceptoTipoEnum.Cuota && x.Fecha.Year == DateTime.Today.Year).Sum(x => x.ImporteAdeudado());
 			return Movimientos.Where(x => x.Concepto.Id == (int)ConceptoTipoEnum.Cuota).Sum(x => x.ImporteAdeudado());
 		}
 
@@ -73,13 +79,17 @@ namespace LigaSoft.Models.Dominio
 			return Equipos.Where(x => !x.BajaLogica);
 		}
 
-		public int DeudaLibre()
+		public int DeudaLibre(bool soloEsteAnio = false)
 		{
+			if (soloEsteAnio)
+				return Movimientos.Where(x => x.Concepto.Id == (int)ConceptoTipoEnum.Libre && x.Fecha.Year == DateTime.Today.Year).Sum(x => x.ImporteAdeudado());
 			return Movimientos.Where(x => x.Concepto.Id == (int)ConceptoTipoEnum.Libre).Sum(x => x.ImporteAdeudado());
 		}
 
-		public int DeudaInsumos()
+		public int DeudaInsumos(bool soloEsteAnio = false)
 		{
+			if (soloEsteAnio)
+				return Movimientos.Where(x => x.Concepto.Id > 3 && x.Fecha.Year == DateTime.Today.Year).Sum(x => x.ImporteAdeudado());
 			return Movimientos.Where(x => x.Concepto.Id > 3).Sum(x => x.ImporteAdeudado());
 		}
 	}

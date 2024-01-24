@@ -1187,6 +1187,9 @@
     <Content Include="Scripts\nicEdit-latest.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Views\MovimientoEntradaConClub\FinanzasDeEsteAnio.cshtml">
+      <TransformOnBuild>false</TransformOnBuild>
+    </Content>
     <Content Include="Views\Zona\AgregarLeyenda.cshtml">
       <TransformOnBuild>false</TransformOnBuild>
     </Content>
@@ -1287,7 +1290,7 @@
     <Content Include="Views\ConceptoInsumo\Index.cshtml" />
     <Content Include="Views\ConceptoInsumo\Edit.cshtml" />
     <Content Include="Views\MovimientoEntradaConClub\CreateMovimientoInsumo.cshtml" />
-    <Content Include="Views\MovimientoEntradaConClub\Index.cshtml" />
+    <Content Include="Views\MovimientoEntradaConClub\FinanzasHistoricas.cshtml" />
     <Content Include="Views\MovimientoEntradaConClub\CreateMovimientoLibre.cshtml" />
     <Content Include="Views\MovimientoEntradaConClub\CreateMovimientoFichaje.cshtml" />
     <Content Include="Views\MovimientoEntradaConClub\CreateMovimientoCuota.cshtml" />

@@ -4,7 +4,7 @@
 @model ClubVM
 
 @section Titulo {
-	<span class="titulo-detacado">@Model.Nombre: </span>Movimientos 
+	<span class="titulo-detacado">@Model.Nombre: </span>Movimientos del @DateTime.Today.Year
 }
 
 @section CabeceraGrilla {
@@ -70,9 +70,22 @@
 </div>
 <script>
 	function reloadGridFiltering(field, operator, value) {
-		grid.reload({ "filters[0].field": field, "filters[0].value": value, "filters[0].operator": operator });
+		grid.reload({ "filters[0].field": field, "filters[0].value": value, "filters[0].operator": operator, "filters[1].field": "Fecha.Year", "filters[1].value": "DateTime.Today.Year", "filters[1].operator": "=" });
 	}
 
+	// function onAnioChange() {
+	// 	const verSoloLosDeEsteAnio = $('#VerSoloLosDeEsteAnio').val();
+	// 	console.log(verSoloLosDeEsteAnio)
+	//	
+	// 	if (verSoloLosDeEsteAnio === "si") {
+	// 		console.log("onAnioChange siii es 2024");
+	// 		grid.reload({ "filters[0].field": "Fecha.Year", "filters[0].value": "DateTime.Today.Year", "filters[0].operator": "=" });			
+	// 	} else {
+	// 		console.log("onAnioChange no es 2024");		
+	// 		grid.reload({ "filters[0].field": "1", "filters[0].value": "1", "filters[0].operator": "=", "filters[1].field": "1", "filters[1].value": "1", "filters[1].operator": "="});
+	// 	}
+	// }
+	
 	function onCuotasClick() {
 		reloadGridFiltering("ConceptoId", "=", "@((int)ConceptoTipoEnum.Cuota)");
 	}
@@ -114,6 +127,10 @@
 			}
 		});
 	}
+	
+	$(function () {
+		onTodosClick();
+	});
 </script>
 
 <style>
