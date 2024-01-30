@@ -105,7 +105,19 @@ namespace LigaSoft.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return Json(new LoginAppDelegadosRespuestaViewModel(true), JsonRequestBehavior.AllowGet);
+                {
+                    var context = new ApplicationDbContext();
+                    var aspNetUser = context.Users.Single(x => x.UserName == model.Usuario);
+
+                    var usuarioDelegado = context.UsuariosDelegados.SingleOrDefault(x => x.Usuario == aspNetUser.UserName);
+
+                    var resultado = new LoginAppDelegadosRespuestaViewModel(true);
+                    resultado.Usuario = aspNetUser.UserName;
+                    resultado.Club = usuarioDelegado != null ? usuarioDelegado.Club?.Nombre : "";
+                    resultado.ClubId = usuarioDelegado?.ClubId ?? -1;
+                    
+                    return Json(resultado, JsonRequestBehavior.AllowGet);
+                }
                 case SignInStatus.Failure:
                 default:
                     return Json(new LoginAppDelegadosRespuestaViewModel(false, "Usuario o contraseña incorrecto."), JsonRequestBehavior.AllowGet);

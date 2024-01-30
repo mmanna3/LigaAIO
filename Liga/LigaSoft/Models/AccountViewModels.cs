@@ -85,6 +85,12 @@ namespace LigaSoft.Models
 
         public bool LoginExitoso { get; set; }
         public string Error { get; set; }
+        
+        public string Usuario { get; set; }
+        
+        public string Club { get; set; }
+        
+        public int ClubId { get; set; }
     }
 
     public class RegisterViewModel
