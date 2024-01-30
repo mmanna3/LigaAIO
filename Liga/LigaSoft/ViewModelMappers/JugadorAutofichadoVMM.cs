@@ -72,6 +72,7 @@ namespace LigaSoft.ViewModelMappers
 			return new JugadorAutofichadoBaseVM
 			{
 				Id = model.Id,
+				Equipo = model.Equipo.Nombre,
 				Nombre = model.Nombre,
 				Apellido = model.Apellido,
 				DNI = model.DNI,

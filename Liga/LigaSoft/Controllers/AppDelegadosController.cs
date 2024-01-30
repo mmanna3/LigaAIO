@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Linq.Dynamic;
 using System.Web.Mvc;
@@ -52,27 +53,23 @@ namespace LigaSoft.Controllers
 		}
 
 		[AllowAnonymous]
-		public string GetJugadoresAutofichadosConEstado(string codigoAlfanumerico) //TODO: Pedir token acá
+		public string GetJugadoresAutofichadosConEstado(int clubId) //TODO: Pedir token acá
 		{
-			int equipoId;
-			try
-			{
-				equipoId = GeneradorDeHash.ObtenerSemillaAPartirDeAlfanumerico7Digitos(codigoAlfanumerico);
-			}
-			catch (Exception e)
-			{
-				return JsonConvert.SerializeObject(ApiResponseCreator.Error(e.Message));
-			}
+			var club = _context.Clubs.Include(club1 => club1.Equipos).SingleOrDefault(x => x.Id == clubId);
+			if (club == null)
+				return JsonConvert.SerializeObject(ApiResponseCreator.Error("El club no existe"));
 
-			var equipo = _context.Equipos.Find(equipoId);
-			var jugadores = _context.JugadoresaAutofichados.Where(x => x.EquipoId == equipoId).OrderByDescending(x => x.Estado).ToList();
+			var equiposDelClub = club.Equipos.Select(x => x.Id);
+			var jugadores = 
+				_context.JugadoresaAutofichados
+					.Where(x => equiposDelClub.Contains(x.EquipoId))
+					.OrderByDescending(x => x.Estado)
+					.ToList();
 
 			var resultado = new List<JugadorAutofichadoBaseVM>();
 
-			foreach (var jugador in jugadores)
-			{
+			foreach (var jugador in jugadores) 
 				resultado.Add(_jugadorAutofichadoVMM.MapForBaseDetails(jugador));
-			}
 
 			return JsonConvert.SerializeObject(ApiResponseCreator.Exito(resultado));
 		}
