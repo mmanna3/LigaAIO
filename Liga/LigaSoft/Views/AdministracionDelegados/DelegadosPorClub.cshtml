@@ -11,17 +11,18 @@
 		<div class="row">
 			<table class="table table-bordered">
 				<thead>
-					<tr>
-						<th scope="col">Club</th>
-						<th scope="col">Delegado</th>
-						<th scope="col">Usuario</th>						
-						<th scope="col">Estado</th>
-						<th scope="col">Blanqueo pendiente</th>
-					</tr>
+				<tr>
+					<th scope="col">Club</th>
+					<th scope="col">Delegado</th>
+					<th scope="col">Usuario</th>						
+					<th scope="col">Estado</th>
+					<th scope="col">Blanqueo pendiente</th>
+					<th scope="col"></th>
+				</tr>
 				</thead>
 				<tbody>
-					@foreach (var delegado in Model.Lista)
-					{
+				@foreach (var delegado in Model.Lista)
+				{
 					<tr>
 						<td>@delegado.Club</td>
 						<td>@delegado.Nombre</td>
@@ -39,12 +40,28 @@
 							<td style='color:orangered;font-weight: bold'>@delegado.Estado</td>
 						}
 						<td>@delegado.BlanqueoDeClavePendiente</td>	
+						<td>
+							<button type="button" onclick="blanquearClave('@delegado.Usuario'); return false;" class='btn btn-primary'>Blanquear clave</button>
+						</td>	
 
 					</tr>
-					}
+				}
 				</tbody>
 			</table>
 		</div>
 
 	</div>
 </div>
+
+<script>
+	function blanquearClave(usuario) {
+		$.ajax({
+			url: '/AdministracionDelegados/BlanquearClave',
+			type: "POST",
+			data: { usuario: usuario },
+			success: function () {
+				window.location.reload(false);
+			}
+		});
+	}
+</script>

@@ -80,6 +80,17 @@ namespace LigaSoft.Controllers
 
 			return Json(new { success = true }, JsonRequestBehavior.AllowGet);
 		}
+		
+		public ActionResult BlanquearClave(string usuario)
+		{
+			var usuarioDelegado = _context.UsuariosDelegados.Single(x => x.Usuario == usuario);
+			
+			usuarioDelegado.BlanqueoDeClavePendiente = true;
+			
+			_context.SaveChanges();
+
+			return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+		}
 
 		public ActionResult DelegadosPorClub()
 		{
