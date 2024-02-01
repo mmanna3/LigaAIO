@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Web.UI.WebControls;
 using LigaSoft.Models;
 using LigaSoft.Models.Dominio;
 using LigaSoft.Models.Enums;
@@ -14,7 +15,7 @@ namespace LigaSoft.BusinessLogic
 
 		protected override void DescontarPuntosSiHayQuitaDePuntos(Zona zonaApertura, TablasVM vm)
 		{
-			var zonasClausuraDelTorneo = Context.Zonas.SingleOrDefault(x => x.TorneoId == zonaApertura.TorneoId && x.Tipo == ZonaTipo.Clausura);
+			var zonasClausuraDelTorneo = Context.Zonas.SingleOrDefault(x => x.TorneoId == zonaApertura.TorneoId && x.Tipo == ZonaTipo.Clausura && x.Nombre == zonaApertura.Nombre);
 			
 			base.DescontarPuntosSiHayQuitaDePuntos(zonaApertura, vm);
 			if (zonasClausuraDelTorneo != null)

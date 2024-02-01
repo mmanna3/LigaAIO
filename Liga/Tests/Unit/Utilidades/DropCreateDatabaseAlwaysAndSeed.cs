@@ -96,7 +96,7 @@ namespace Tests.Unit.Utilidades
 			{
 				Tipo = ZonaTipo.Clausura,
 				Nombre = "B",
-				Torneo = torneo2,
+				Torneo = torneo1,
 				FixturePublicado = true,
 				VerGolesEnTabla = true
 			};
