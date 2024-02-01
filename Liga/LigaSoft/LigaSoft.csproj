@@ -407,6 +407,10 @@
     <Compile Include="Migrations\202402011629335_AgregaBlanqueoDeClavePendienteEnDelegado.designer.cs">
       <DependentUpon>202402011629335_AgregaBlanqueoDeClavePendienteEnDelegado.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202402011829595_BlanqueoDeClaveVaEnUsuarioDelegado.cs" />
+    <Compile Include="Migrations\202402011829595_BlanqueoDeClaveVaEnUsuarioDelegado.designer.cs">
+      <DependentUpon>202402011829595_BlanqueoDeClaveVaEnUsuarioDelegado.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Dominio\QuitaDePuntos.cs" />
     <Compile Include="Models\Dominio\ZonaCategoria.cs" />
     <Compile Include="Models\Dominio\JugadorAutofichado.cs" />
@@ -1811,6 +1815,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202402011629335_AgregaBlanqueoDeClavePendienteEnDelegado.resx">
       <DependentUpon>202402011629335_AgregaBlanqueoDeClavePendienteEnDelegado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202402011829595_BlanqueoDeClaveVaEnUsuarioDelegado.resx">
+      <DependentUpon>202402011829595_BlanqueoDeClaveVaEnUsuarioDelegado.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

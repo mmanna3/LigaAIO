@@ -27,6 +27,8 @@ namespace LigaSoft.Models.Dominio
 		[MaxLength(50)]
 		public string Apellido { get; set; }
 
+		public bool BlanqueoDeClavePendiente { get; set; }
+
 		[Required]
 		public int ClubId { get; set; }
 		public virtual Club Club { get; set; }
