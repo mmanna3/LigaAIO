@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using LigaSoft.ExtensionMethods;
 using LigaSoft.Models;
 using LigaSoft.Models.ViewModels;
 using LigaSoft.Utilidades;
@@ -97,7 +98,8 @@ namespace LigaSoft.Controllers
 							Club = delegado.Club.Nombre,
 							Estado = delegado.Aprobado ? "Aprobado" : "Pendiente",
 							Nombre = delegado.Nombre + " " + delegado.Apellido,
-							Usuario = delegado.Usuario
+							Usuario = delegado.Usuario,
+							BlanqueoDeClavePendiente = delegado.BlanqueoDeClavePendiente.ToSiNoString()
 						});
 					}
 				} else

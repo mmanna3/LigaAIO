@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace LigaSoft.Models.ViewModels
 {
@@ -14,7 +15,10 @@ namespace LigaSoft.Models.ViewModels
 
 			public string Club { get; set; }
 
-			public string Estado { get; set; }			
+			public string Estado { get; set; }
+			
+			[Display(Name = "Blanqueo pendiente")]
+			public string BlanqueoDeClavePendiente { get; set; }
 		}
 	}
 }
