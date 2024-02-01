@@ -403,6 +403,10 @@
     <Compile Include="Migrations\202401070510319_CreacionDeQuitaDePuntos.designer.cs">
       <DependentUpon>202401070510319_CreacionDeQuitaDePuntos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202402011629335_AgregaBlanqueoDeClavePendienteEnDelegado.cs" />
+    <Compile Include="Migrations\202402011629335_AgregaBlanqueoDeClavePendienteEnDelegado.designer.cs">
+      <DependentUpon>202402011629335_AgregaBlanqueoDeClavePendienteEnDelegado.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Dominio\QuitaDePuntos.cs" />
     <Compile Include="Models\Dominio\ZonaCategoria.cs" />
     <Compile Include="Models\Dominio\JugadorAutofichado.cs" />
@@ -1804,6 +1808,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202401070510319_CreacionDeQuitaDePuntos.resx">
       <DependentUpon>202401070510319_CreacionDeQuitaDePuntos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202402011629335_AgregaBlanqueoDeClavePendienteEnDelegado.resx">
+      <DependentUpon>202402011629335_AgregaBlanqueoDeClavePendienteEnDelegado.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -15,6 +15,8 @@ namespace LigaSoft.Models.Dominio
 		[Required, StringLength(20), RegularExpression(@"^[0-9]*$")]
 		public string Telefono { get; set; }
 
+		public bool BlanqueoDeClavePendiente { get; set; }
+
 		[Required]
 		public int ClubId { get; set; }
 		public virtual Club Club { get; set; }
