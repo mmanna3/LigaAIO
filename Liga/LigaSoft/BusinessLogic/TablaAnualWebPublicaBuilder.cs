@@ -2,6 +2,7 @@
 using LigaSoft.Models;
 using LigaSoft.Models.Dominio;
 using LigaSoft.Models.Enums;
+using LigaSoft.Models.ViewModels;
 
 namespace LigaSoft.BusinessLogic
 {
@@ -11,6 +12,15 @@ namespace LigaSoft.BusinessLogic
 		{
 		}
 
+		protected override void DescontarPuntosSiHayQuitaDePuntos(Zona zonaApertura, TablasVM vm)
+		{
+			var zonasClausuraDelTorneo = Context.Zonas.SingleOrDefault(x => x.TorneoId == zonaApertura.TorneoId && x.Tipo == ZonaTipo.Clausura);
+			
+			base.DescontarPuntosSiHayQuitaDePuntos(zonaApertura, vm);
+			if (zonasClausuraDelTorneo != null)
+				base.DescontarPuntosSiHayQuitaDePuntos(zonasClausuraDelTorneo, vm);
+		}
+		
 		protected override IQueryable<Partido> PartidosDelEquipoEnLaZona(Zona zonaApertura, Equipo equipo)
 		{
 			var zonasClausuraDelTorneo = Context.Zonas.Where(x => x.TorneoId == zonaApertura.TorneoId && x.Tipo == ZonaTipo.Clausura);

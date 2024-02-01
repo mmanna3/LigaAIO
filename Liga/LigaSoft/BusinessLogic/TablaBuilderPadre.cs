@@ -40,7 +40,7 @@ namespace LigaSoft.BusinessLogic
 		    return vm;
 		}
 
-		private void DescontarPuntosSiHayQuitaDePuntos(Zona zona, TablasVM vm)
+		protected virtual void DescontarPuntosSiHayQuitaDePuntos(Zona zona, TablasVM vm)
 		{
 			foreach (var tabla in vm.TablasPorCategoria)
 				foreach (var renglon in tabla.Renglones)
