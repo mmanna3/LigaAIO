@@ -72,13 +72,5 @@ namespace LigaSoft.Controllers
 
 			return JsonConvert.SerializeObject(ApiResponseCreator.Exito(resultado));
 		}
-		
-		[AllowAnonymous]
-		public string PuedeBlanquearClave(string usuario)
-		{
-			var usuarioDelegado = _context.UsuariosDelegados.Single(x => x.Usuario == usuario);
-
-			return JsonConvert.SerializeObject(ApiResponseCreator.Exito(usuarioDelegado.BlanqueoDeClavePendiente));
-		}
 	}
 }

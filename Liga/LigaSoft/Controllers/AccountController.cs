@@ -166,19 +166,19 @@ namespace LigaSoft.Controllers
         {
             var context = new ApplicationDbContext();
 
+            var usuarioDelegado = context.UsuariosDelegados.Single(x => x.Usuario == vm.Usuario);
+
+            if (usuarioDelegado.BlanqueoDeClavePendiente == false)
+                return Json(JsonConvert.SerializeObject(ApiResponseCreator.Error("No está habilitado. Comunicarse con la liga.")), JsonRequestBehavior.AllowGet);
+            
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
             var user = userManager.FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
-            
-            
 
             user.PasswordHash = userManager.PasswordHasher.HashPassword(vm.NuevoPassword);
             var result = await userManager.UpdateAsync(user);
             if (!result.Succeeded)
-            {
-                return Json(JsonConvert.SerializeObject(ApiResponseCreator.Error("Hubo un error al cambiar la contraseña")), JsonRequestBehavior.AllowGet);
-            }
+                return Json(JsonConvert.SerializeObject(ApiResponseCreator.Error("Hubo un error al cambiar la contraseña.")), JsonRequestBehavior.AllowGet);
             
-            var usuarioDelegado = context.UsuariosDelegados.Single(x => x.Usuario == vm.Usuario);
             usuarioDelegado.BlanqueoDeClavePendiente = false;
             await context.SaveChangesAsync();
             
