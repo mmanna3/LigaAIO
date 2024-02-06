@@ -94,7 +94,7 @@ namespace LigaSoft.Controllers
 
 		public ActionResult DelegadosPorClub()
 		{
-			var clubs = _context.Clubs.Include(x => x.UsuariosDelegados).OrderBy(x => x.Nombre).ToList();
+			var clubs = _context.Clubs.Include(x => x.UsuariosDelegados).Include(club => club.Delegados).OrderBy(x => x.Nombre).ToList();
 
 			var vm = new DelegadosPorClubVM { Lista = new List<DelegadoPorClubVM>() };
 

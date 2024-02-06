@@ -12,6 +12,7 @@ using LigaSoft.Models;
 using LigaSoft.Models.Attributes.GPRPattern;
 using LigaSoft.Models.ViewModels;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Newtonsoft.Json;
 
 namespace LigaSoft.Controllers
 {
@@ -160,6 +161,30 @@ namespace LigaSoft.Controllers
 			return RedirectToAction("Index", "Torneo");
 	    }
 
+        [AllowAnonymous, HttpPost]
+        public async Task<JsonResult> CambiarPasswordAppDelegados(CambiarPasswordAppDelegadosVM vm)
+        {
+            var context = new ApplicationDbContext();
+
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            var user = userManager.FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+            
+            
+
+            user.PasswordHash = userManager.PasswordHasher.HashPassword(vm.NuevoPassword);
+            var result = await userManager.UpdateAsync(user);
+            if (!result.Succeeded)
+            {
+                return Json(JsonConvert.SerializeObject(ApiResponseCreator.Error("Hubo un error al cambiar la contraseña")), JsonRequestBehavior.AllowGet);
+            }
+            
+            var usuarioDelegado = context.UsuariosDelegados.Single(x => x.Usuario == vm.Usuario);
+            usuarioDelegado.BlanqueoDeClavePendiente = false;
+            await context.SaveChangesAsync();
+            
+            return Json(JsonConvert.SerializeObject(ApiResponseCreator.Exito("Contraseña actualizada")), JsonRequestBehavior.AllowGet);
+        }
+        
 		//
 		// GET: /Account/VerifyCode
 		[AllowAnonymous]

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Linq.Dynamic;
 using System.Web.Mvc;
 using LigaSoft.BusinessLogic;
 using LigaSoft.Models.ViewModels;
@@ -72,6 +71,14 @@ namespace LigaSoft.Controllers
 				resultado.Add(_jugadorAutofichadoVMM.MapForBaseDetails(jugador));
 
 			return JsonConvert.SerializeObject(ApiResponseCreator.Exito(resultado));
+		}
+		
+		[AllowAnonymous]
+		public string PuedeBlanquearClave(string usuario)
+		{
+			var usuarioDelegado = _context.UsuariosDelegados.Single(x => x.Usuario == usuario);
+
+			return JsonConvert.SerializeObject(ApiResponseCreator.Exito(usuarioDelegado.BlanqueoDeClavePendiente));
 		}
 	}
 }

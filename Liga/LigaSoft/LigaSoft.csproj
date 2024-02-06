@@ -423,6 +423,7 @@
     <Compile Include="Models\Otros\GijgoGridOptions.cs" />
     <Compile Include="Models\TextValueItem.cs" />
     <Compile Include="Models\ViewModels\AgregarLeyendaVM.cs" />
+    <Compile Include="Models\ViewModels\CambiarPasswordAppDelegadosVM.cs" />
     <Compile Include="Models\ViewModels\ConceptoInsumoAgregarStockVM.cs" />
     <Compile Include="Models\ViewModels\ImprimirJugadoresVM.cs" />
     <Compile Include="Models\ViewModels\InformeCantidadDeJugadoresPorTorneoVM.cs" />
