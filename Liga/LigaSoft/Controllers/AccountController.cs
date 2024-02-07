@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -110,7 +111,7 @@ namespace LigaSoft.Controllers
                     var context = new ApplicationDbContext();
                     var aspNetUser = context.Users.Single(x => x.UserName == model.Usuario);
 
-                    var usuarioDelegado = context.UsuariosDelegados.SingleOrDefault(x => x.Usuario == aspNetUser.UserName);
+                    var usuarioDelegado = context.UsuariosDelegados.Include(usuarioDelegado1 => usuarioDelegado1.Club).SingleOrDefault(x => x.Usuario == aspNetUser.UserName);
 
                     var resultado = new LoginAppDelegadosRespuestaViewModel(true);
                     resultado.Usuario = aspNetUser.UserName;
@@ -166,7 +167,10 @@ namespace LigaSoft.Controllers
         {
             var context = new ApplicationDbContext();
 
-            var usuarioDelegado = context.UsuariosDelegados.Single(x => x.Usuario == vm.Usuario);
+            var usuarioDelegado = context.UsuariosDelegados.SingleOrDefault(x => x.Usuario == vm.Usuario);
+            
+            if (usuarioDelegado ==  null)
+                return Json(JsonConvert.SerializeObject(ApiResponseCreator.Error("El usuario no existe.")), JsonRequestBehavior.AllowGet); 
 
             if (usuarioDelegado.BlanqueoDeClavePendiente == false)
                 return Json(JsonConvert.SerializeObject(ApiResponseCreator.Error("No está habilitado. Comunicarse con la liga.")), JsonRequestBehavior.AllowGet);
