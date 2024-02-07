@@ -50,7 +50,7 @@
 				  .PullLeft()
 				  .Color(BootstrapColorEnum.Danger)
 				  .Label("Volver")
-				  .OnClickRedirect("Index", "MovimientoEntradaConClub", new Dictionary<string, string> { { "parentId", Model.ClubId.ToString() } }))
+				  .OnClickRedirect("FinanzasDeEsteAnio", "MovimientoEntradaConClub", new Dictionary<string, string> { { "parentId", Model.ClubId.ToString() } }))
 
 	@if (Model.Vigente == "Sí")
 	{
