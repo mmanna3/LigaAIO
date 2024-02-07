@@ -170,18 +170,18 @@ namespace LigaSoft.Controllers
             var usuarioDelegado = context.UsuariosDelegados.SingleOrDefault(x => x.Usuario == vm.Usuario);
             
             if (usuarioDelegado ==  null)
-                return Json(JsonConvert.SerializeObject(ApiResponseCreator.Error("El usuario no existe.")), JsonRequestBehavior.AllowGet); 
+                return Json(JsonConvert.SerializeObject(ApiResponseCreator.Error("El usuario no existe")), JsonRequestBehavior.AllowGet); 
 
             if (usuarioDelegado.BlanqueoDeClavePendiente == false)
-                return Json(JsonConvert.SerializeObject(ApiResponseCreator.Error("No está habilitado. Comunicarse con la liga.")), JsonRequestBehavior.AllowGet);
+                return Json(JsonConvert.SerializeObject(ApiResponseCreator.Error("No está habilitado, comunicarse con la liga")), JsonRequestBehavior.AllowGet);
             
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-            var user = userManager.FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+            var user = userManager.Users.Single(x => x.UserName == vm.Usuario);
 
             user.PasswordHash = userManager.PasswordHasher.HashPassword(vm.NuevoPassword);
             var result = await userManager.UpdateAsync(user);
             if (!result.Succeeded)
-                return Json(JsonConvert.SerializeObject(ApiResponseCreator.Error("Hubo un error al cambiar la contraseña.")), JsonRequestBehavior.AllowGet);
+                return Json(JsonConvert.SerializeObject(ApiResponseCreator.Error("Hubo un error al cambiar la contraseña")), JsonRequestBehavior.AllowGet);
             
             usuarioDelegado.BlanqueoDeClavePendiente = false;
             await context.SaveChangesAsync();
