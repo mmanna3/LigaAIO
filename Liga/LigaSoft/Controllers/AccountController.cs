@@ -176,8 +176,11 @@ namespace LigaSoft.Controllers
                 return Json(JsonConvert.SerializeObject(ApiResponseCreator.Error("No está habilitado, comunicarse con la liga")), JsonRequestBehavior.AllowGet);
             
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-            var user = userManager.Users.Single(x => x.UserName == vm.Usuario);
+            var user = userManager.Users.SingleOrDefault(x => x.Id == usuarioDelegado.AspNetUserId);
 
+            if (user ==  null)
+                return Json(JsonConvert.SerializeObject(ApiResponseCreator.Error("El usuario no tiene Id")), JsonRequestBehavior.AllowGet);
+            
             user.PasswordHash = userManager.PasswordHasher.HashPassword(vm.NuevoPassword);
             var result = await userManager.UpdateAsync(user);
             if (!result.Succeeded)
