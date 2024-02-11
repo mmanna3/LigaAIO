@@ -111,13 +111,15 @@ namespace LigaSoft.Controllers
                     var context = new ApplicationDbContext();
                     var aspNetUser = context.Users.Single(x => x.UserName == model.Usuario);
 
-                    var usuarioDelegado = context.UsuariosDelegados.Include(usuarioDelegado1 => usuarioDelegado1.Club).SingleOrDefault(x => x.Usuario == aspNetUser.UserName);
+                    var usuarioDelegado = context.UsuariosDelegados.Include(usuarioDelegado1 => usuarioDelegado1.Club).SingleOrDefault(x => x.AspNetUserId == aspNetUser.Id);
 
-                    var resultado = new LoginAppDelegadosRespuestaViewModel(true);
-                    resultado.Usuario = aspNetUser.UserName;
-                    resultado.Club = usuarioDelegado != null ? usuarioDelegado.Club?.Nombre : "";
-                    resultado.ClubId = usuarioDelegado?.ClubId ?? -1;
-                    
+                    var resultado = new LoginAppDelegadosRespuestaViewModel(true)
+                    {
+                        Usuario = aspNetUser.UserName,
+                        Club = usuarioDelegado != null ? usuarioDelegado.Club?.Nombre : "",
+                        ClubId = usuarioDelegado?.ClubId ?? -1
+                    };
+
                     return Json(resultado, JsonRequestBehavior.AllowGet);
                 }
                 case SignInStatus.Failure:
