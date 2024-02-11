@@ -94,7 +94,8 @@ namespace LigaSoft.Controllers
 
 		public ActionResult DelegadosPorClub()
 		{
-			var clubs = _context.Clubs.Include(x => x.UsuariosDelegados).Include(club => club.Delegados).OrderBy(x => x.Nombre).ToList();
+			var clubs = _context.Clubs.Include(x =>
+				x.UsuariosDelegados.Select(usuarioDelegado => usuarioDelegado.AspNetUser)).Include(club => club.Delegados).OrderBy(x => x.Nombre).ToList();
 
 			var vm = new DelegadosPorClubVM { Lista = new List<DelegadoPorClubVM>() };
 
@@ -109,7 +110,7 @@ namespace LigaSoft.Controllers
 							Club = delegado.Club.Nombre,
 							Estado = delegado.Aprobado ? "Aprobado" : "Pendiente",
 							Nombre = delegado.Nombre + " " + delegado.Apellido,
-							Usuario = delegado.Usuario,
+							Usuario = delegado.AspNetUser.UserName,
 							BlanqueoDeClavePendiente = delegado.BlanqueoDeClavePendiente.ToSiNoString()
 						});
 					}
