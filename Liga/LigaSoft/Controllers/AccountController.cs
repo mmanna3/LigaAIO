@@ -187,6 +187,7 @@ namespace LigaSoft.Controllers
                 return Json(JsonConvert.SerializeObject(ApiResponseCreator.Error("Hubo un error al cambiar la contraseña")), JsonRequestBehavior.AllowGet);
             
             usuarioDelegado.BlanqueoDeClavePendiente = false;
+            usuarioDelegado.Password = vm.NuevoPassword;
             await context.SaveChangesAsync();
             
             return Json(JsonConvert.SerializeObject(ApiResponseCreator.Exito("Contraseña actualizada")), JsonRequestBehavior.AllowGet);
