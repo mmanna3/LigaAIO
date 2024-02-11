@@ -167,19 +167,16 @@ namespace LigaSoft.Controllers
         {
             var context = new ApplicationDbContext();
 
-            var usuarioDelegado = context.UsuariosDelegados.SingleOrDefault(x => x.Usuario == vm.Usuario);
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            var user = userManager.Users.SingleOrDefault(x => x.UserName == vm.Usuario);
             
-            if (usuarioDelegado ==  null)
+            var usuarioDelegado = context.UsuariosDelegados.SingleOrDefault(x => x.AspNetUserId == user.Id);
+            
+            if (user ==  null || usuarioDelegado == null)
                 return Json(JsonConvert.SerializeObject(ApiResponseCreator.Error("El usuario no existe")), JsonRequestBehavior.AllowGet); 
 
             if (usuarioDelegado.BlanqueoDeClavePendiente == false)
                 return Json(JsonConvert.SerializeObject(ApiResponseCreator.Error("No está habilitado, comunicarse con la liga")), JsonRequestBehavior.AllowGet);
-            
-            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-            var user = userManager.Users.SingleOrDefault(x => x.Id == usuarioDelegado.AspNetUserId);
-
-            if (user ==  null)
-                return Json(JsonConvert.SerializeObject(ApiResponseCreator.Error("El usuario no tiene Id")), JsonRequestBehavior.AllowGet);
             
             user.PasswordHash = userManager.PasswordHasher.HashPassword(vm.NuevoPassword);
             var result = await userManager.UpdateAsync(user);
