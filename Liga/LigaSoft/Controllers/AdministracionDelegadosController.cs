@@ -83,9 +83,10 @@ namespace LigaSoft.Controllers
 		
 		public ActionResult BlanquearClave(string usuario)
 		{
-			var usuarioDelegado = _context.UsuariosDelegados.Single(x => x.Usuario == usuario);
-			
-			usuarioDelegado.BlanqueoDeClavePendiente = true;
+			var appUser = _context.Users.Single(x => x.UserName == usuario);
+			var usuarioDelegado = _context.UsuariosDelegados.SingleOrDefault(x => x.AspNetUserId == appUser.Id);
+			if (usuarioDelegado != null)
+				usuarioDelegado.BlanqueoDeClavePendiente = true;
 			
 			_context.SaveChanges();
 
