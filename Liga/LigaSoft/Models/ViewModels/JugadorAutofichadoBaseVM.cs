@@ -31,5 +31,7 @@ namespace LigaSoft.Models.ViewModels
 		public string MotivoDeRechazo { get; set; }
 		
 		public string Equipo { get; set; }
+		
+		public string Torneo { get; set; }
 	}
 }

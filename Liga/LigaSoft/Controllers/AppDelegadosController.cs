@@ -63,6 +63,7 @@ namespace LigaSoft.Controllers
 				_context.JugadoresaAutofichados
 					.Where(x => equiposDelClub.Contains(x.EquipoId))
 					.OrderByDescending(x => x.Estado)
+					.ThenByDescending(x => x.Equipo.Nombre)
 					.ToList();
 
 			var resultado = new List<JugadorAutofichadoBaseVM>();

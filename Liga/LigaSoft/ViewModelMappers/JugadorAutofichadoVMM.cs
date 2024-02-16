@@ -79,7 +79,8 @@ namespace LigaSoft.ViewModelMappers
 				FechaNacimiento = DateTimeUtils.ConvertToString(model.FechaNacimiento),
 				Estado = model.Estado,
 				EstadoDescripcion = model.Estado.Descripcion(),
-				MotivoDeRechazo = model.MotivoDeRechazo
+				MotivoDeRechazo = model.MotivoDeRechazo,
+				Torneo = model.Equipo.Torneo.Tipo.Descripcion,
 			};
 		}
 	}
