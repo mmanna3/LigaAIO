@@ -19,6 +19,7 @@ namespace LigaSoft.Models.Dominio
 		[StringLength(255)]
 		public string Leyenda { get; set; }
 
+		[Required, Index("IX_ZonaYCategoria", 3, IsUnique = true)]
 		public bool EsAnual { get; set; }
 	}
 }

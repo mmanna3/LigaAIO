@@ -79,8 +79,9 @@ namespace LigaSoft.Controllers
 			    {
 				    ZonaId = vm.ZonaId,
 				    CategoriaId = vm.CategoriaId,
-				    Leyenda = vm.Leyenda
-			    };
+				    Leyenda = vm.Leyenda,
+					EsAnual = false
+				};
 			    Context.ZonaCategorias.Add(zonaCategoria);    
 		    }
 		    

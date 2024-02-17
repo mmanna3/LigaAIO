@@ -415,6 +415,10 @@
     <Compile Include="Migrations\202402170039362_AgregaBooleanoEsAnualAZonaCategoria.designer.cs">
       <DependentUpon>202402170039362_AgregaBooleanoEsAnualAZonaCategoria.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202402170234584_ActualizaIndiceEnZonaCategoria.cs" />
+    <Compile Include="Migrations\202402170234584_ActualizaIndiceEnZonaCategoria.designer.cs">
+      <DependentUpon>202402170234584_ActualizaIndiceEnZonaCategoria.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Dominio\QuitaDePuntos.cs" />
     <Compile Include="Models\Dominio\ZonaCategoria.cs" />
     <Compile Include="Models\Dominio\JugadorAutofichado.cs" />
@@ -1829,6 +1833,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202402170039362_AgregaBooleanoEsAnualAZonaCategoria.resx">
       <DependentUpon>202402170039362_AgregaBooleanoEsAnualAZonaCategoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202402170234584_ActualizaIndiceEnZonaCategoria.resx">
+      <DependentUpon>202402170234584_ActualizaIndiceEnZonaCategoria.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
