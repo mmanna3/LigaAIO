@@ -91,7 +91,7 @@ namespace LigaSoft.BusinessLogic
 			    vm.TablasPorCategoria.Add(new TablaCategoriaVM { CategoriaId = cat.Id, Categoria = cat.Nombre });		    
 		}
 	    
-	    private static void AgregarLeyendaSiLaHubiere(Zona zona, TablasVM vm)
+	    protected virtual void AgregarLeyendaSiLaHubiere(Zona zona, TablasVM vm)
 	    {
 		    foreach (var tabla in vm.TablasPorCategoria)
 		    {

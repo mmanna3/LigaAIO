@@ -44,6 +44,23 @@ namespace LigaSoft.Controllers
 		    return View(vm);
 	    }
 	    
+	    public ActionResult AgregarLeyendaAnual(int parentId, int id)
+	    {
+		    var zona = Context.Zonas.Find(id);
+		    var categorias = zona.Torneo.Categorias;
+		    
+		    var categoriasConLeyenda = new List<CategoriaConLeyendaVM>();
+		    foreach (var cat in categorias)
+		    {
+			    var zonaCategoria = Context.ZonaCategorias.SingleOrDefault(x => x.ZonaId == id && x.CategoriaId == cat.Id && x.EsAnual == true);
+			    categoriasConLeyenda.Add(new CategoriaConLeyendaVM(cat.Id, cat.Nombre, zonaCategoria?.Leyenda));
+		    }
+		    
+		    var vm = new AgregarLeyendaVM(id, zona?.Nombre, zona.Torneo.Id, zona.Torneo.Descripcion, categoriasConLeyenda);
+
+		    return View(vm);
+	    }
+	    
 	    [HttpPost]
 	    public ActionResult AgregarLeyenda(AgregarLeyendaVM vm)
 	    {
@@ -63,6 +80,36 @@ namespace LigaSoft.Controllers
 				    ZonaId = vm.ZonaId,
 				    CategoriaId = vm.CategoriaId,
 				    Leyenda = vm.Leyenda
+			    };
+			    Context.ZonaCategorias.Add(zonaCategoria);    
+		    }
+		    
+		    
+		    Context.SaveChanges();
+
+		    return RedirectTo("Index", vm.TorneoId);
+	    }
+	    
+	    [HttpPost]
+	    public ActionResult AgregarLeyendaAnual(AgregarLeyendaVM vm)
+	    {
+		    var modeloExistente = Context.ZonaCategorias.SingleOrDefault(x => x.ZonaId == vm.ZonaId && x.CategoriaId == vm.CategoriaId && x.EsAnual == true);
+
+		    if (modeloExistente != null)
+		    {
+			    if (vm.Leyenda == null)
+				    vm.Leyenda = "";
+				    
+			    modeloExistente.Leyenda = vm.Leyenda;
+		    }
+		    else
+		    {
+			    var zonaCategoria = new ZonaCategoria
+			    {
+				    ZonaId = vm.ZonaId,
+				    CategoriaId = vm.CategoriaId,
+				    Leyenda = vm.Leyenda,
+				    EsAnual = true
 			    };
 			    Context.ZonaCategorias.Add(zonaCategoria);    
 		    }

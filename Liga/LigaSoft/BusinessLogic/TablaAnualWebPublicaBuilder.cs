@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Data.Entity;
+using System.Linq;
 using System.Web.UI.WebControls;
 using LigaSoft.Models;
 using LigaSoft.Models.Dominio;
@@ -11,6 +12,28 @@ namespace LigaSoft.BusinessLogic
 	{
 		public TablaAnualWebPublicaBuilder(ApplicationDbContext context) : base(context)
 		{
+		}
+		
+		protected override void AgregarLeyendaSiLaHubiere(Zona zona, TablasVM vm)
+		{
+			var zonaTipoABuscar = zona.Tipo == ZonaTipo.Apertura ? ZonaTipo.Clausura : ZonaTipo.Apertura;
+			
+			var laOtraZona = Context.Zonas.Include(zona1 => zona1.ZonaCategorias).SingleOrDefault(x => x.TorneoId == zona.TorneoId && x.Tipo == zonaTipoABuscar && x.Nombre == zona.Nombre);	
+			
+			foreach (var tabla in vm.TablasPorCategoria)
+			{
+				var zonaCategoria = zona.ZonaCategorias.SingleOrDefault(x => x.CategoriaId == tabla.CategoriaId);
+				tabla.Leyenda = zonaCategoria?.Leyenda;
+
+				if (laOtraZona != null)
+				{
+					var zonaCategoriaDeLaOtraZona = laOtraZona.ZonaCategorias.SingleOrDefault(x => x.CategoriaId == tabla.CategoriaId);
+					if (tabla.Leyenda == null)
+						tabla.Leyenda = zonaCategoriaDeLaOtraZona?.Leyenda;
+					else
+						tabla.Leyenda += "\n"+zonaCategoriaDeLaOtraZona?.Leyenda;
+				}
+			}
 		}
 
 		protected override void DescontarPuntosSiHayQuitaDePuntos(Zona zonaApertura, TablasVM vm)

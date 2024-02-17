@@ -1,0 +1,45 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.Enums
+@model LigaSoft.Models.ViewModels.AgregarLeyendaVM
+
+@section titulo{
+	Zona <span class="titulo-detacado">@Model.Zona</span> - Anual - @Model.Torneo
+}
+
+@using (Html.YKN().Form(FormSizeEnum.Big))
+{
+	@Html.HiddenFor(x => x.ZonaId)
+	@Html.HiddenFor(x => x.TorneoId)
+	
+	<div class="row">
+		<div class="col-sm-4">
+			@Html.YKN().ComboFor(x => x.CategoriaId).Values(Model.Categorias.ToList()).OnChange("OnCategoriaChange()")
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-6">
+			@Html.YKN().TextAreaFor(x => x.Leyenda)
+		</div>
+	</div>
+	{ Html.YKN().FooterGuardarCancelar(); }
+}
+
+<script>
+	function OnCategoriaChange(obj) {			
+		const data = @Html.Raw(Json.Encode(@Model));
+		const categoriaId = $('#CategoriaId').val();
+		
+		const categoriaConLeyenda = data.CategoriasConLeyenda.find((e) => e.Id == categoriaId)
+		
+		let leyenda = '';
+		if (categoriaConLeyenda.Leyenda !== null)
+			leyenda = categoriaConLeyenda.Leyenda;
+		
+		$('#Leyenda').val(leyenda);
+			
+	}	
+	
+	$(function () {
+		OnCategoriaChange();
+	});
+</script>

@@ -1206,6 +1206,9 @@
     <Content Include="Views\Zona\AgregarLeyenda.cshtml">
       <TransformOnBuild>false</TransformOnBuild>
     </Content>
+    <Content Include="Views\Zona\AgregarLeyendaAnual.cshtml">
+      <TransformOnBuild>false</TransformOnBuild>
+    </Content>
     <Content Include="Views\Zona\QuitarPuntos.cshtml">
       <TransformOnBuild>false</TransformOnBuild>
     </Content>

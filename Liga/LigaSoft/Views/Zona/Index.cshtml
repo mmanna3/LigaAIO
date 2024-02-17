@@ -40,6 +40,7 @@
 				action.RedirectParentWithChildWithRowId("Partidos postergados/suspendidos", new { parent = "Torneo", parentId = Model.Id, controller = "Zona", action = "PartidosPostergadosOSuspendidos" });
 				action.RedirectWithRowIdAsParent("Sanciones", "Zona", "Sancion", "Index");
 				action.RedirectParentWithChildWithRowId("Agregar leyenda", new { parent = "Torneo", parentId = Model.Id, controller = "Zona", action = "AgregarLeyenda"});
+				action.RedirectParentWithChildWithRowId("Agregar leyenda en Tabla Anual", new { parent = "Torneo", parentId = Model.Id, controller = "Zona", action = "AgregarLeyendaAnual"});
 				action.RedirectParentWithChildWithRowId("Quitar puntos", new { parent = "Torneo", parentId = Model.Id, controller = "Zona", action = "QuitarPuntos"});
 			})
 			.DataSource("/Zona/GetForGrid")
