@@ -34,7 +34,7 @@ namespace LigaSoft.Controllers
 		    var categoriasConLeyenda = new List<CategoriaConLeyendaVM>();
 		    foreach (var cat in categorias)
 		    {
-			    var zonaCategoria = Context.ZonaCategorias.SingleOrDefault(x => x.ZonaId == id && x.CategoriaId == cat.Id);
+			    var zonaCategoria = Context.ZonaCategorias.SingleOrDefault(x => x.ZonaId == id && x.CategoriaId == cat.Id && x.EsAnual == false);
 			    // if (zonaCategoria != null)
 				    categoriasConLeyenda.Add(new CategoriaConLeyendaVM(cat.Id, cat.Nombre, zonaCategoria?.Leyenda));
 		    }
