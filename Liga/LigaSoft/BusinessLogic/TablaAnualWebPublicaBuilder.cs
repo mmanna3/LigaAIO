@@ -22,12 +22,12 @@ namespace LigaSoft.BusinessLogic
 			
 			foreach (var tabla in vm.TablasPorCategoria)
 			{
-				var zonaCategoria = zona.ZonaCategorias.SingleOrDefault(x => x.CategoriaId == tabla.CategoriaId);
+				var zonaCategoria = zona.ZonaCategorias.SingleOrDefault(x => x.CategoriaId == tabla.CategoriaId && x.EsAnual);
 				tabla.Leyenda = zonaCategoria?.Leyenda;
 
 				if (laOtraZona != null)
 				{
-					var zonaCategoriaDeLaOtraZona = laOtraZona.ZonaCategorias.SingleOrDefault(x => x.CategoriaId == tabla.CategoriaId);
+					var zonaCategoriaDeLaOtraZona = laOtraZona.ZonaCategorias.SingleOrDefault(x => x.CategoriaId == tabla.CategoriaId && x.EsAnual);
 					if (tabla.Leyenda == null)
 						tabla.Leyenda = zonaCategoriaDeLaOtraZona?.Leyenda;
 					else
