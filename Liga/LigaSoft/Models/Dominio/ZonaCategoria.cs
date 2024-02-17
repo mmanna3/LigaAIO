@@ -18,5 +18,7 @@ namespace LigaSoft.Models.Dominio
 
 		[StringLength(255)]
 		public string Leyenda { get; set; }
+
+		public bool EsAnual { get; set; }
 	}
 }

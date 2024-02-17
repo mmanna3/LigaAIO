@@ -411,6 +411,10 @@
     <Compile Include="Migrations\202402011829595_BlanqueoDeClaveVaEnUsuarioDelegado.designer.cs">
       <DependentUpon>202402011829595_BlanqueoDeClaveVaEnUsuarioDelegado.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202402170039362_AgregaBooleanoEsAnualAZonaCategoria.cs" />
+    <Compile Include="Migrations\202402170039362_AgregaBooleanoEsAnualAZonaCategoria.designer.cs">
+      <DependentUpon>202402170039362_AgregaBooleanoEsAnualAZonaCategoria.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Dominio\QuitaDePuntos.cs" />
     <Compile Include="Models\Dominio\ZonaCategoria.cs" />
     <Compile Include="Models\Dominio\JugadorAutofichado.cs" />
@@ -1819,6 +1823,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202402011829595_BlanqueoDeClaveVaEnUsuarioDelegado.resx">
       <DependentUpon>202402011829595_BlanqueoDeClaveVaEnUsuarioDelegado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202402170039362_AgregaBooleanoEsAnualAZonaCategoria.resx">
+      <DependentUpon>202402170039362_AgregaBooleanoEsAnualAZonaCategoria.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
