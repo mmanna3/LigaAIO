@@ -64,7 +64,7 @@ namespace LigaSoft.Controllers
 	    [HttpPost]
 	    public ActionResult AgregarLeyenda(AgregarLeyendaVM vm)
 	    {
-		    var modeloExistente = Context.ZonaCategorias.SingleOrDefault(x => x.ZonaId == vm.ZonaId && x.CategoriaId == vm.CategoriaId);
+		    var modeloExistente = Context.ZonaCategorias.SingleOrDefault(x => x.ZonaId == vm.ZonaId && x.CategoriaId == vm.CategoriaId && x.EsAnual == false);
 
 		    if (modeloExistente != null)
 		    {
