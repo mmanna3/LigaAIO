@@ -202,6 +202,7 @@
     <Compile Include="BusinessLogic\GeneradorDeMovimientos.cs" />
     <Compile Include="Controllers\AdministracionJugadoresAutofichadosController.cs" />
     <Compile Include="Controllers\AdministracionDelegadosController.cs" />
+    <Compile Include="Controllers\JugadorSancionadoDePorVidaController.cs" />
     <Compile Include="Controllers\PoliticaDePrivacidadController.cs" />
     <Compile Include="Controllers\AppDelegadosController.cs" />
     <Compile Include="Controllers\SudoController.cs" />
@@ -419,6 +420,19 @@
     <Compile Include="Migrations\202402170234584_ActualizaIndiceEnZonaCategoria.designer.cs">
       <DependentUpon>202402170234584_ActualizaIndiceEnZonaCategoria.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202402272249508_AgregaJugadoresSancionadosDePorVida.cs" />
+    <Compile Include="Migrations\202402272249508_AgregaJugadoresSancionadosDePorVida.Designer.cs">
+      <DependentUpon>202402272249508_AgregaJugadoresSancionadosDePorVida.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202402272256433_CambiaLeyendaPorMotivo.cs" />
+    <Compile Include="Migrations\202402272256433_CambiaLeyendaPorMotivo.Designer.cs">
+      <DependentUpon>202402272256433_CambiaLeyendaPorMotivo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202402272308046_AgregaDNIEnJugadoresSancionadosDePorVida.cs" />
+    <Compile Include="Migrations\202402272308046_AgregaDNIEnJugadoresSancionadosDePorVida.Designer.cs">
+      <DependentUpon>202402272308046_AgregaDNIEnJugadoresSancionadosDePorVida.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Dominio\JugadorSancionadoDePorVida.cs" />
     <Compile Include="Models\Dominio\QuitaDePuntos.cs" />
     <Compile Include="Models\Dominio\ZonaCategoria.cs" />
     <Compile Include="Models\Dominio\JugadorAutofichado.cs" />
@@ -440,6 +454,7 @@
     <Compile Include="Models\ViewModels\JugadorAutofichadoVM.cs" />
     <Compile Include="Models\ViewModels\ApiResponseVM.cs" />
     <Compile Include="Models\ViewModels\JugadorConFechaFichajeVM.cs" />
+    <Compile Include="Models\ViewModels\JugadorSancionadoDePorVidaVM.cs" />
     <Compile Include="Models\ViewModels\QuitaDePuntosVM.cs" />
     <Compile Include="Models\ViewModels\SancionesWebPublicaVM.cs" />
     <Compile Include="Models\ViewModels\InformePagoCuotasPorMesVM.cs" />
@@ -1019,6 +1034,7 @@
     <Compile Include="Utilidades\YKNExHandler.cs" />
     <Compile Include="Utilidades\ZipUtility.cs" />
     <Compile Include="ViewModelMappers\JugadorAutofichadoVMM.cs" />
+    <Compile Include="ViewModelMappers\JugadorSancionadoDePorVidaVMM.cs" />
     <Compile Include="ViewModelMappers\UsuarioDelegadoVMM.cs" />
     <Compile Include="ViewModelMappers\GoleadoresWebPublicaBuilder.cs" />
     <Compile Include="ViewModelMappers\SancionVMM.cs" />
@@ -1382,6 +1398,8 @@
     <Content Include="Views\PoliticaDePrivacidad\Index.cshtml" />
     <Content Include="Views\TorneoTipo\Edit.cshtml" />
     <Content Include="Views\Publico\Index.cshtml" />
+    <Content Include="Views\JugadorSancionadoDePorVida\Index.cshtml" />
+    <Content Include="Views\JugadorSancionadoDePorVida\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1836,6 +1854,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202402170234584_ActualizaIndiceEnZonaCategoria.resx">
       <DependentUpon>202402170234584_ActualizaIndiceEnZonaCategoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202402272249508_AgregaJugadoresSancionadosDePorVida.resx">
+      <DependentUpon>202402272249508_AgregaJugadoresSancionadosDePorVida.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202402272256433_CambiaLeyendaPorMotivo.resx">
+      <DependentUpon>202402272256433_CambiaLeyendaPorMotivo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202402272308046_AgregaDNIEnJugadoresSancionadosDePorVida.resx">
+      <DependentUpon>202402272308046_AgregaDNIEnJugadoresSancionadosDePorVida.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

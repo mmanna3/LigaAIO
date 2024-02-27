@@ -35,8 +35,11 @@ namespace LigaSoft.Controllers
 		public JsonResult Autofichaje()
 		{
 			try
-			{
+			{							
 				var vm = CastearRequestAJugadorAutofichadoVM();
+				if (ElJugadorEstaSuspendidoDePorVida(vm.DNI))
+					return Json("El jugador está suspendido.", JsonRequestBehavior.AllowGet);
+
 				var model = new JugadorAutofichado();
 				VMM.MapForCreateAndEdit(vm, model);
 
@@ -61,6 +64,12 @@ namespace LigaSoft.Controllers
 			var jugador = Context.JugadoresaAutofichados.SingleOrDefault(x => x.DNI == dni);
 			if (jugador != null)
 				Context.JugadoresaAutofichados.Remove(jugador);
+		}
+
+		private bool ElJugadorEstaSuspendidoDePorVida(string dni)
+		{
+			var jugador = Context.JugadoresSancionadosDePorVida.SingleOrDefault(x => x.DNI == dni);
+			return jugador != null;
 		}
 
 		private JugadorAutofichadoVM CastearRequestAJugadorAutofichadoVM()

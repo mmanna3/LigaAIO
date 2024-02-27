@@ -1,0 +1,32 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.Enums
+@model LigaSoft.Models.ViewModels.JugadorSancionadoDePorVidaVM
+@section Titulo{
+	Nuevo jugador sancionado de por vida
+}
+
+@using (Html.YKN().Form(FormSizeEnum.Small))
+{
+	@Html.YKNNonTyped().ValidationSummary()
+
+	<div class="row">
+		<div class="col-sm-6">
+			@Html.YKN().EditorFor(x => x.DNI)
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-6">
+			@Html.YKN().EditorFor(x => x.Nombre)
+		</div>
+		<div class="col-sm-6">
+			@Html.YKN().EditorFor(x => x.Apellido)
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-8">
+			@Html.YKN().TextAreaFor(x => x.Motivo)
+		</div>
+	</div>
+
+	{ Html.YKN().FooterGuardarCancelar(); }
+}

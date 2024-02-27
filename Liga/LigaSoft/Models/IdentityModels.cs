@@ -76,6 +76,8 @@ namespace LigaSoft.Models
 	    public DbSet<ConceptoFichaje> ConceptosFichaje { get; set; }
 	    public DbSet<ConceptoInsumo> ConceptosInsumo { get; set; }
 	    public DbSet<ConceptoLibre> ConceptosLibre { get; set; }
+		public DbSet<JugadorSancionadoDePorVida> JugadoresSancionadosDePorVida { get; set; }
+
 		public IQueryable<Equipo> EquiposActivos()
 		{
 			return this.Equipos.Where(x => !x.BajaLogica);

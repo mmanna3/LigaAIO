@@ -1,0 +1,46 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.ViewModels
+
+@section Titulo {
+	Jugadores sancionados de por vida
+}
+
+@section Subtitulo {
+	Estos jugadores no podrán ficharse por la web
+}
+
+@section CabeceraGrilla {
+
+	@(Html.YKN().Button("Crear")
+		  .PullRight()
+		  .Label("Cargar nuevo")
+		  .OnClickRedirect("Create", "JugadorSancionadoDePorVida"))
+}
+
+@(Html.YKN<JugadorSancionadoDePorVidaVM>().Grid()
+			.WithColumns(column =>
+			{
+				column.AddTextColumn(x => x.DNI);
+				column.AddTextColumn(x => x.Nombre);
+				column.AddTextColumn(x => x.Apellido);
+				column.AddTextColumn(x => x.Motivo);
+			})
+			.Actions(action =>
+			{
+				action.JavaScriptWithRowId("Eliminar", "Eliminar");
+			})
+			.DataSource("/JugadorSancionadoDePorVida/GetForGrid")
+)
+
+<script>
+	function Eliminar(obj) {
+		$.ajax({
+			url: '/JugadorSancionadoDePorVida/Eliminar',
+			type: "POST",
+			data: { id: obj.getAttribute('data-id') },
+			success: function() {
+				window.location.reload(false);
+			}
+		});
+	}
+</script>
