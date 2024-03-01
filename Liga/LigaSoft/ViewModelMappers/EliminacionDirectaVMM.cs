@@ -39,15 +39,21 @@ namespace LigaSoft.ViewModelMappers
 			switch (fase)
 			{
 				case FaseDeEliminacionDirectaEnum.Octavos:
-					//patidos = CompletarPartidosOctavos(partidos);
-					//patidos = CompletarPartidosCuartos(partidos);
-					//patidos = CompletarPartidosSemifinal(partidos);
-					//patidos = CompletarPartidosFinal(partidos);
+					foreach (var categoria in partidos)
+					{
+						CompletarPartidosPorFase(categoria, FaseDeEliminacionDirectaEnum.Octavos);
+						CompletarPartidosPorFase(categoria, FaseDeEliminacionDirectaEnum.Cuartos);
+						CompletarPartidosPorFase(categoria, FaseDeEliminacionDirectaEnum.Semifinal);
+						CompletarPartidosPorFase(categoria, FaseDeEliminacionDirectaEnum.Final);
+					}
 					break;
 				case FaseDeEliminacionDirectaEnum.Cuartos:
-					//patidos = CompletarPartidosCuartos(partidos);
-					//patidos = CompletarPartidosSemifinal(partidos);
-					//patidos = CompletarPartidosFinal(partidos);
+					foreach (var categoria in partidos)
+					{
+						CompletarPartidosPorFase(categoria, FaseDeEliminacionDirectaEnum.Cuartos);
+						CompletarPartidosPorFase(categoria, FaseDeEliminacionDirectaEnum.Semifinal);
+						CompletarPartidosPorFase(categoria, FaseDeEliminacionDirectaEnum.Final);
+					}
 					break;
 				case FaseDeEliminacionDirectaEnum.Semifinal:
 					foreach (var categoria in partidos)

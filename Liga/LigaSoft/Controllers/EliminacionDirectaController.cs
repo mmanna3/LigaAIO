@@ -21,6 +21,7 @@ namespace LigaSoft.Controllers
 			VMM = new EliminacionDirectaVMM();
 		}
 
+		[ImportModelStateFromTempData]
 		public ActionResult Llaves(int id)
 		{
 			var torneo = Context.Torneos.SingleOrDefault(x => x.Id == id);
@@ -32,13 +33,6 @@ namespace LigaSoft.Controllers
 
 			var partidos = Context.PartidosDeEliminacionDirecta.Where(x => x.TorneoId == id).ToList();
 
-			// Quizás acá podría completar los partidos que no estén, no?
-			// Cosa de que le llegue equipo null y resultado 0 (o resultado null), no sé pa mañna
-			// Capaz es mejor primero ARRANCAR CON LA VISTA (a ver qué datos le vienen mejor)
-			// Porque si puede postear sin problemas este mismo VM sería un tremendísimo fiestón
-			// Pero claramente tengo mis dudas
-			// En teoría, dice que se puede
-			// https://stackoverflow.com/questions/68388855/binding-a-nested-object-in-asp-net-mvc-razor
 			var partidosVM = VMM.MapPartidos(partidos);
 
 			partidosVM = VMM.CompletarCategorias(torneo.Categorias.ToList(), partidosVM);
@@ -102,6 +96,28 @@ namespace LigaSoft.Controllers
 			return RedirectToAction("Llaves", new { id = torneo.Id });
 		}
 
+		[HttpPost, ExportModelStateToTempData]
+		public ActionResult Eliminar(int torneoId, string palabraDeSeguridad)
+		{
+			if (palabraDeSeguridad.ToUpper() != "LLAVE")
+			{
+				ModelState.AddModelError("", "La palabra de seguridad es incorrecta");
+				return RedirectToAction("Llaves", new { id = torneoId});
+			}
+				
+			var torneo = Context.Torneos.Find(torneoId);
+			torneo.LlaveDeEliminacionDirecta = null;
+
+			var equipos = Context.EquiposEliminacionDirecta.Where(x => x.TorneoId == torneoId);
+			Context.EquiposEliminacionDirecta.RemoveRange(equipos);
+
+			var partidos = Context.PartidosDeEliminacionDirecta.Where(x => x.TorneoId == torneoId);
+			Context.PartidosDeEliminacionDirecta.RemoveRange(partidos);
+
+			Context.SaveChanges();
+
+			return RedirectToAction("AppInit", "Torneo");
+		}
 
 	}
 }

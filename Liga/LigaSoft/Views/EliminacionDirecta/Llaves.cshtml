@@ -5,6 +5,10 @@
 	Llave de eliminación directa
 }
 
+@section Subtitulo{
+	@Model.Torneo - Tipo de llave: @Model.TipoDeLlave
+}
+
 @using (Html.YKN().Form(FormSizeEnum.VeryBig))
 {
 	@Html.YKNNonTyped().ValidationSummary()
@@ -12,61 +16,32 @@
 	@Html.HiddenFor(x => x.TorneoId)
 
 	<div class="row">
-		<div class="col-sm-6">
-			@(Html.YKN().ComboFor(x => x.TipoDeLlave)
-				.Values<FaseDeEliminacionDirectaEnum>()
-				.OnChange("onFaseChanged()")
-				.Label("Fases"))
+		<div class="col-sm-3">
+			@Html.YKN().Button("Eliminar llave").Color(BootstrapColorEnum.Warning).OnClick("MostrarConfirmacionDeEliminacion()")
+		</div>
+		<div class="col-sm-7" style="display: none" id="eliminar-confirmacion">
+			Escribir LLAVE para eliminar <input type="text" id="palabra-de-seguridad" />
+			@Html.YKN().Button("Confirmar eliminación de la llave").Color(BootstrapColorEnum.Danger).OnClick("Eliminar()")
 		</div>
 	</div>
 
-	//for (int i = 0; i < cantidadDePartidos; i++)
-	{
 
-	}
-
-	@*<div class="row">
-			<div class="col-sm-6">
-				@Html.YKN().EditorFor(x => x.Nombre)
-			</div>
-			<div class="col-sm-6">
-				@Html.YKN().EditorFor(x => x.Apellido)
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-8">
-				@Html.YKN().TextAreaFor(x => x.Motivo)
-			</div>
-		</div>*@
-
-	{ Html.YKN().FooterGuardarCancelar(); }
+	// Hacer el cancelar bien para que vuelva a torneo, no a Configurar si venís de ahí 
 }
 
 <script>
-	//$(document).ready(function () {
-	var cantidadDePartidos = 0;
-	function onFaseChanged(value) {
-		var tipoDeLlave = document.getElementById("TipoDeLlave");
-
-		const cantidadDePartidosPorTipoDeLlave = {
-			Final: 1,
-			Semifinal: 2,
-			Cuartos: 4,
-			Octavos: 8
-		};
-
-		cantidadDePartidos = cantidadDePartidosPorTipoDeLlave[tipoDeLlave.value];
+	function MostrarConfirmacionDeEliminacion(obj) {
+		$('div#eliminar-confirmacion').show();
 	}
 
-	//$(function () {
-	//	$('#elForm').on('submit', function (e) {
-	//		grid.getSelections().forEach(function (jugIdSeleccionado) {
-	//			var a = document.createElement('input');
-	//			a.name = "JugadoresSeleccionados";
-	//			a.type = "hidden";
-	//			a.value = jugIdSeleccionado;
-	//			document.getElementById("elForm").appendChild(a);
-	//		});
-	//	});
-	//});
+	function Eliminar(obj) {
+		$.ajax({
+			url: '/EliminacionDirecta/Eliminar',
+			type: "POST",
+			data: { torneoId: document.getElementById("TorneoId").value, palabraDeSeguridad: document.getElementById("palabra-de-seguridad").value },
+			success: function () {
+				window.location.reload(false);
+			}
+		});
+	}
 </script>
