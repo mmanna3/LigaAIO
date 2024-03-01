@@ -203,6 +203,7 @@
     <Compile Include="Controllers\AdministracionJugadoresAutofichadosController.cs" />
     <Compile Include="Controllers\AdministracionDelegadosController.cs" />
     <Compile Include="Controllers\JugadorSancionadoDePorVidaController.cs" />
+    <Compile Include="Controllers\EliminacionDirectaController.cs" />
     <Compile Include="Controllers\PoliticaDePrivacidadController.cs" />
     <Compile Include="Controllers\AppDelegadosController.cs" />
     <Compile Include="Controllers\SudoController.cs" />
@@ -432,7 +433,17 @@
     <Compile Include="Migrations\202402272308046_AgregaDNIEnJugadoresSancionadosDePorVida.Designer.cs">
       <DependentUpon>202402272308046_AgregaDNIEnJugadoresSancionadosDePorVida.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202402290003227_AgregaPartidosDeEliminacionDirecta.cs" />
+    <Compile Include="Migrations\202402290003227_AgregaPartidosDeEliminacionDirecta.Designer.cs">
+      <DependentUpon>202402290003227_AgregaPartidosDeEliminacionDirecta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403010458291_AgregaEquiposDeEliminacionDirecta.cs" />
+    <Compile Include="Migrations\202403010458291_AgregaEquiposDeEliminacionDirecta.Designer.cs">
+      <DependentUpon>202403010458291_AgregaEquiposDeEliminacionDirecta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Dominio\JugadorSancionadoDePorVida.cs" />
+    <Compile Include="Models\Dominio\EquipoEliminacionDirecta.cs" />
+    <Compile Include="Models\Dominio\PartidoEliminacionDirecta.cs" />
     <Compile Include="Models\Dominio\QuitaDePuntos.cs" />
     <Compile Include="Models\Dominio\ZonaCategoria.cs" />
     <Compile Include="Models\Dominio\JugadorAutofichado.cs" />
@@ -442,11 +453,14 @@
     <Compile Include="Models\Enums\EstadoJugadorAutofichado.cs" />
     <Compile Include="Models\Enums\EstadoJugadorFichadoPorDelegado.cs" />
     <Compile Include="Models\Enums\FormaDePago.cs" />
+    <Compile Include="Models\Enums\FaseDeEliminacionDirectaEnum.cs" />
     <Compile Include="Models\Otros\GijgoGridOptions.cs" />
     <Compile Include="Models\TextValueItem.cs" />
     <Compile Include="Models\ViewModels\AgregarLeyendaVM.cs" />
     <Compile Include="Models\ViewModels\CambiarPasswordAppDelegadosVM.cs" />
     <Compile Include="Models\ViewModels\ConceptoInsumoAgregarStockVM.cs" />
+    <Compile Include="Models\ViewModels\EliminacionDirectaConfiguracionVM.cs" />
+    <Compile Include="Models\ViewModels\EliminacionDirectaVM.cs" />
     <Compile Include="Models\ViewModels\ImprimirJugadoresVM.cs" />
     <Compile Include="Models\ViewModels\InformeCantidadDeJugadoresPorTorneoVM.cs" />
     <Compile Include="Models\ViewModels\DelegadosPorClubVM.cs" />
@@ -1033,6 +1047,7 @@
     <Compile Include="Utilidades\DateTimeUtils.cs" />
     <Compile Include="Utilidades\YKNExHandler.cs" />
     <Compile Include="Utilidades\ZipUtility.cs" />
+    <Compile Include="ViewModelMappers\EliminacionDirectaVMM.cs" />
     <Compile Include="ViewModelMappers\JugadorAutofichadoVMM.cs" />
     <Compile Include="ViewModelMappers\JugadorSancionadoDePorVidaVMM.cs" />
     <Compile Include="ViewModelMappers\UsuarioDelegadoVMM.cs" />
@@ -1400,6 +1415,8 @@
     <Content Include="Views\Publico\Index.cshtml" />
     <Content Include="Views\JugadorSancionadoDePorVida\Index.cshtml" />
     <Content Include="Views\JugadorSancionadoDePorVida\Create.cshtml" />
+    <Content Include="Views\EliminacionDirecta\Llaves.cshtml" />
+    <Content Include="Views\EliminacionDirecta\Configurar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1863,6 +1880,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202402272308046_AgregaDNIEnJugadoresSancionadosDePorVida.resx">
       <DependentUpon>202402272308046_AgregaDNIEnJugadoresSancionadosDePorVida.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202402290003227_AgregaPartidosDeEliminacionDirecta.resx">
+      <DependentUpon>202402290003227_AgregaPartidosDeEliminacionDirecta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403010458291_AgregaEquiposDeEliminacionDirecta.resx">
+      <DependentUpon>202403010458291_AgregaEquiposDeEliminacionDirecta.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

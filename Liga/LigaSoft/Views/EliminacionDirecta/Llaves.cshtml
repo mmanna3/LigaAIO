@@ -1,0 +1,72 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.Enums
+@model LigaSoft.Models.ViewModels.EliminacionDirectaVM
+@section Titulo{
+	Llave de eliminación directa
+}
+
+@using (Html.YKN().Form(FormSizeEnum.VeryBig))
+{
+	@Html.YKNNonTyped().ValidationSummary()
+
+	@Html.HiddenFor(x => x.TorneoId)
+
+	<div class="row">
+		<div class="col-sm-6">
+			@(Html.YKN().ComboFor(x => x.TipoDeLlave)
+				.Values<FaseDeEliminacionDirectaEnum>()
+				.OnChange("onFaseChanged()")
+				.Label("Fases"))
+		</div>
+	</div>
+
+	//for (int i = 0; i < cantidadDePartidos; i++)
+	{
+
+	}
+
+	@*<div class="row">
+			<div class="col-sm-6">
+				@Html.YKN().EditorFor(x => x.Nombre)
+			</div>
+			<div class="col-sm-6">
+				@Html.YKN().EditorFor(x => x.Apellido)
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-8">
+				@Html.YKN().TextAreaFor(x => x.Motivo)
+			</div>
+		</div>*@
+
+	{ Html.YKN().FooterGuardarCancelar(); }
+}
+
+<script>
+	//$(document).ready(function () {
+	var cantidadDePartidos = 0;
+	function onFaseChanged(value) {
+		var tipoDeLlave = document.getElementById("TipoDeLlave");
+
+		const cantidadDePartidosPorTipoDeLlave = {
+			Final: 1,
+			Semifinal: 2,
+			Cuartos: 4,
+			Octavos: 8
+		};
+
+		cantidadDePartidos = cantidadDePartidosPorTipoDeLlave[tipoDeLlave.value];
+	}
+
+	//$(function () {
+	//	$('#elForm').on('submit', function (e) {
+	//		grid.getSelections().forEach(function (jugIdSeleccionado) {
+	//			var a = document.createElement('input');
+	//			a.name = "JugadoresSeleccionados";
+	//			a.type = "hidden";
+	//			a.value = jugIdSeleccionado;
+	//			document.getElementById("elForm").appendChild(a);
+	//		});
+	//	});
+	//});
+</script>

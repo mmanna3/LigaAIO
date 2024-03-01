@@ -30,6 +30,7 @@
 			  action.RedirectWithRowId("Finalizar torneo", "Torneo", "Finalizar");
 			  action.RedirectWithRowIdAsParent("Zonas", "Torneo", "Zona", "Index");
 			  action.RedirectWithRowIdAsParent("Categorías", "Torneo", "Categoria", "Index");
+			  action.RedirectWithRowId("Llave de eliminación directa", "EliminacionDirecta", "Llaves");
 			  action.JavaScriptWithRowId("Publicar/Ocultar sanciones", "PublicarOcultarSanciones");
 		  })
 		.DataSource("/Torneo/GetForGrid")

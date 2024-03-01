@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics;
 using LigaSoft.ExtensionMethods;
 using LigaSoft.Models.Enums;
 using LigaSoft.Models.Interfaces;
@@ -28,6 +29,8 @@ namespace LigaSoft.Models.Dominio
 
 		public bool Publico { get; set; }
 		public bool SancionesHabilitadas { get; set; }
+
+		public FaseDeEliminacionDirectaEnum? LlaveDeEliminacionDirecta { get; set; }
 
 		public virtual ICollection<Equipo> Equipos { get; set; }
 		public virtual ICollection<Zona> Zonas { get; set; }

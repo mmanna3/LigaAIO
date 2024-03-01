@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.CodeDom;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
@@ -77,6 +78,8 @@ namespace LigaSoft.Models
 	    public DbSet<ConceptoInsumo> ConceptosInsumo { get; set; }
 	    public DbSet<ConceptoLibre> ConceptosLibre { get; set; }
 		public DbSet<JugadorSancionadoDePorVida> JugadoresSancionadosDePorVida { get; set; }
+		public DbSet<PartidoEliminacionDirecta> PartidosDeEliminacionDirecta { get; set; }
+		public DbSet<EquipoEliminacionDirecta> EquiposEliminacionDirecta { get; set; }
 
 		public IQueryable<Equipo> EquiposActivos()
 		{
