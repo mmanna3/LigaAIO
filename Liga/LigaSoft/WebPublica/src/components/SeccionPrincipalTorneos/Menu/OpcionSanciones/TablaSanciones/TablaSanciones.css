@@ -1,4 +1,0 @@
-.tabla {
-	composes: tabla from './../../../../../assets/styles/tabla.css';
-	min-width: 369px;
-}

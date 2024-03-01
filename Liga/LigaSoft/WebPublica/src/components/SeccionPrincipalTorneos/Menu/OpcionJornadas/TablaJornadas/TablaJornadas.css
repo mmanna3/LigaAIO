@@ -1,8 +1,0 @@
-.renglon:nth-child(even) {
-	border-bottom: 2px solid black;
-}
-
-.cabeceraIzquierda {
-	composes: cabeceraIzquierda from './../../../../../assets/styles/tabla.css';
-	padding-right: 1em;
-}
