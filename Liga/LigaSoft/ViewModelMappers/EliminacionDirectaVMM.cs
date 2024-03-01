@@ -1,4 +1,6 @@
-﻿using LigaSoft.Models.Dominio;
+﻿using LigaSoft.Migrations;
+using LigaSoft.Models.Dominio;
+using LigaSoft.Models.Enums;
 using LigaSoft.Models.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -32,6 +34,54 @@ namespace LigaSoft.ViewModelMappers
 			return result;
         }
 
+		public List<PartidosPorCategoriaVM> CompletarPartidosDeTodasLasFases(FaseDeEliminacionDirectaEnum fase, IList<PartidosPorCategoriaVM> partidos)
+		{
+			switch (fase)
+			{
+				case FaseDeEliminacionDirectaEnum.Octavos:
+					//patidos = CompletarPartidosOctavos(partidos);
+					//patidos = CompletarPartidosCuartos(partidos);
+					//patidos = CompletarPartidosSemifinal(partidos);
+					//patidos = CompletarPartidosFinal(partidos);
+					break;
+				case FaseDeEliminacionDirectaEnum.Cuartos:
+					//patidos = CompletarPartidosCuartos(partidos);
+					//patidos = CompletarPartidosSemifinal(partidos);
+					//patidos = CompletarPartidosFinal(partidos);
+					break;
+				case FaseDeEliminacionDirectaEnum.Semifinal:
+					foreach (var categoria in partidos)
+					{
+						CompletarPartidosPorFase(categoria, FaseDeEliminacionDirectaEnum.Semifinal);
+						CompletarPartidosPorFase(categoria, FaseDeEliminacionDirectaEnum.Final);
+					}
+					break;
+				case FaseDeEliminacionDirectaEnum.Final:
+					foreach (var categoria in partidos)
+					{
+						CompletarPartidosPorFase(categoria, FaseDeEliminacionDirectaEnum.Final);
+					}
+					break;
+				default:
+					break;
+			}
+
+			return (List<PartidosPorCategoriaVM>)partidos;
+		}
+
+		private static void CompletarPartidosPorFase(PartidosPorCategoriaVM categoria, FaseDeEliminacionDirectaEnum fase)
+		{
+			var cantidad = categoria.PartidosEliminacionDirecta.Where(x => x.Fase == fase).Count();
+			while (cantidad < ((int)fase/2))
+			{
+				categoria.PartidosEliminacionDirecta.Add(new PartidoEliminacionDirectaVM
+				{
+					Fase = fase,
+				});
+				cantidad++;
+			}
+		}
+
 		private IList<PartidoEliminacionDirectaVM> MapPartido(IGrouping<int, PartidoEliminacionDirecta> partidos)
 		{
 			var vmList = new List<PartidoEliminacionDirectaVM>();
@@ -53,6 +103,17 @@ namespace LigaSoft.ViewModelMappers
 			}
 
 			return vmList;
+		}
+
+		public IList<PartidosPorCategoriaVM> CompletarCategorias(List<Categoria> categorias, IList<PartidosPorCategoriaVM> partidosPorCategoria)
+		{
+			foreach (var cat in categorias)
+			{
+				var categoriaConPartidos = partidosPorCategoria.SingleOrDefault(x => x.CategoriaId == cat.Id);
+				if (categoriaConPartidos == null)
+					partidosPorCategoria.Add(new PartidosPorCategoriaVM(cat.Id, cat.Nombre, new List<PartidoEliminacionDirectaVM>()));
+			}
+			return partidosPorCategoria;
 		}
 	}
 }

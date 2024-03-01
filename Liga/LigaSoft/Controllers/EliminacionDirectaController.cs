@@ -27,17 +27,27 @@ namespace LigaSoft.Controllers
 
 			if (torneo.LlaveDeEliminacionDirecta == null)
 				return RedirectToAction("Configurar", new { id });
-				
+			
 			var equipos = Context.EquiposEliminacionDirecta.Where(x => x.TorneoId == id).ToList();
 
-			return View(); //Va a tirar error, pero necesito comitear
-			//var partidos = Context.PartidosDeEliminacionDirecta.Where(x => x.TorneoId == id).ToList();
+			var partidos = Context.PartidosDeEliminacionDirecta.Where(x => x.TorneoId == id).ToList();
 
-			//var partidosVM = VMM.MapPartidos(partidos);
+			// Quizás acá podría completar los partidos que no estén, no?
+			// Cosa de que le llegue equipo null y resultado 0 (o resultado null), no sé pa mañna
+			// Capaz es mejor primero ARRANCAR CON LA VISTA (a ver qué datos le vienen mejor)
+			// Porque si puede postear sin problemas este mismo VM sería un tremendísimo fiestón
+			// Pero claramente tengo mis dudas
+			// En teoría, dice que se puede
+			// https://stackoverflow.com/questions/68388855/binding-a-nested-object-in-asp-net-mvc-razor
+			var partidosVM = VMM.MapPartidos(partidos);
 
-			//var vm = new EliminacionDirectaVM(torneo.Id, torneo.LlaveDeEliminacionDirecta, partidosVM);
+			partidosVM = VMM.CompletarCategorias(torneo.Categorias.ToList(), partidosVM);
 
-			//return View(vm);
+			partidosVM = VMM.CompletarPartidosDeTodasLasFases((FaseDeEliminacionDirectaEnum)torneo.LlaveDeEliminacionDirecta, partidosVM);
+
+			var vm = new EliminacionDirectaVM(torneo.Id, torneo.Descripcion, (FaseDeEliminacionDirectaEnum)torneo.LlaveDeEliminacionDirecta, partidosVM);
+
+			return View(vm);
 		}
 
 		[HttpPost]

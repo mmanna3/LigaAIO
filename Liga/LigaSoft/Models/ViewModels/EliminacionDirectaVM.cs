@@ -7,13 +7,15 @@ namespace LigaSoft.Models.ViewModels
 	public class EliminacionDirectaVM
 	{
 		public int TorneoId { get; set; }
+		public string Torneo { get; set; }
 
-		public FaseDeEliminacionDirectaEnum? TipoDeLlave { get; set; }
+		public FaseDeEliminacionDirectaEnum TipoDeLlave { get; set; }
 
 		public IList<PartidosPorCategoriaVM> PartidosPorCategoria { get; set; }
 
-		public EliminacionDirectaVM(int torneoId, FaseDeEliminacionDirectaEnum? tipoDeLlave, IList<PartidosPorCategoriaVM> partidos) {
+		public EliminacionDirectaVM(int torneoId, string torneo, FaseDeEliminacionDirectaEnum tipoDeLlave, IList<PartidosPorCategoriaVM> partidos) {
 			TorneoId = torneoId;
+			Torneo = torneo;
 			TipoDeLlave = tipoDeLlave;
 			PartidosPorCategoria = partidos;
 		}
@@ -21,9 +23,9 @@ namespace LigaSoft.Models.ViewModels
 
 	public class PartidosPorCategoriaVM
 	{
-		private int CategoriaId { get; set; }
-		private string Categoria { get; set; }
-		private IList<PartidoEliminacionDirectaVM> PartidosEliminacionDirecta { get; set; }
+		public int CategoriaId { get; set; }
+		public string Categoria { get; set; }
+		public IList<PartidoEliminacionDirectaVM> PartidosEliminacionDirecta { get; set; }
 
 		public PartidosPorCategoriaVM(int categoriaId, string categoria, IList<PartidoEliminacionDirectaVM> partidosEliminacionDirecta)
 		{
