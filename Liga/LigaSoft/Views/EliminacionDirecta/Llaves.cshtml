@@ -15,7 +15,7 @@
 
 	@Html.HiddenFor(x => x.TorneoId)
 
-	<div class="row">
+	<div class="row fila-eliminar">
 		<div class="col-sm-3">
 			@Html.YKN().Button("Eliminar llave").Color(BootstrapColorEnum.Warning).OnClick("MostrarConfirmacionDeEliminacion()")
 		</div>
@@ -34,16 +34,19 @@
 
 		<div style="margin-top: 20px; font-weight: bold; font-size: 16px;"> Categoría: @(Model.PartidosPorCategoria[c].Categoria) </div>
 		var fase = Model.TipoDeLlave;
-		for (int i = 0; i < Model.PartidosPorCategoria[c].PartidosEliminacionDirecta.Count; i++)
+		<div class="contenedor-categoria">
+		@for (int i = 0; i < Model.PartidosPorCategoria[c].PartidosEliminacionDirecta.Count; i++)
 		{
-			<div style="margin-top: 20px">
+			
 
 				@Html.HiddenFor(x => x.PartidosPorCategoria[c].PartidosEliminacionDirecta[i].Fase)
+				@Html.HiddenFor(x => x.PartidosPorCategoria[c].PartidosEliminacionDirecta[i].Orden)
 
-				@if (fase != Model.PartidosPorCategoria[c].PartidosEliminacionDirecta[i].Fase || i == 0)
+				if (Model.PartidosPorCategoria[c].PartidosEliminacionDirecta[i].Orden == 0)
 				{
 					fase = Model.PartidosPorCategoria[c].PartidosEliminacionDirecta[i].Fase;
-					<p> @(fase)</p>
+					@Html.Raw("<div class='columna-fase'>")
+					<p class="fase"> @(fase)</p>
 				}
 
 				<div class="contenedor-partido">
@@ -51,50 +54,57 @@
 					<div class="contenedor-equipo-resultado">
 						<div class="contenedor-equipo">
 							@(Html.YKN()
-									.Autocomplete($"{c}{i}Local")
-									.JsonSource(Model.Equipos)
-									.HiddenId($"PartidosPorCategoria[{c}].PartidosEliminacionDirecta[{i}].LocalId")
-									)
+												.Autocomplete($"{c}{i}Local")
+												.JsonSource(Model.Equipos)
+												.HiddenId($"PartidosPorCategoria[{c}].PartidosEliminacionDirecta[{i}].LocalId")
+												)
 						</div>
 						@(Html.YKN()
-								.EditorFor(x => x.PartidosPorCategoria[c].PartidosEliminacionDirecta[i].GolesLocal)
-								.Classes("goles")
-								.NoLabel()
-								)
+											.EditorFor(x => x.PartidosPorCategoria[c].PartidosEliminacionDirecta[i].GolesLocal)
+											.Classes("goles")
+											.NoLabel()
+											)
 						<p class="parentesis-penales">(</p>
 						@(Html.YKN()
-								.EditorFor(x => x.PartidosPorCategoria[c].PartidosEliminacionDirecta[i].PenalesLocal)
-								.Classes("goles")
-								.NoLabel()
-							)
+											.EditorFor(x => x.PartidosPorCategoria[c].PartidosEliminacionDirecta[i].PenalesLocal)
+											.Classes("goles")
+											.NoLabel()
+										)
 						<p class="parentesis-penales">)</p>
 					</div>
 					<div class="contenedor-equipo-resultado">
 						<div class="contenedor-equipo">
 							@(Html.YKN()
-								.Autocomplete($"{c}{i}Visitante")
-								.JsonSource(Model.Equipos)
-								.HiddenId($"PartidosPorCategoria[{c}].PartidosEliminacionDirecta[{i}].VisitanteId")
-							)
+											.Autocomplete($"{c}{i}Visitante")
+											.JsonSource(Model.Equipos)
+											.HiddenId($"PartidosPorCategoria[{c}].PartidosEliminacionDirecta[{i}].VisitanteId")
+										)
 						</div>
 						@(Html.YKN()
-								.EditorFor(x => x.PartidosPorCategoria[c].PartidosEliminacionDirecta[i].GolesVisitante)
-								//.EditorFor(x => x.PartidosPorCategoria[c].PartidosEliminacionDirecta[i].VisitanteId)
-								.Classes("goles")
-								.NoLabel()
-							)
+											.EditorFor(x => x.PartidosPorCategoria[c].PartidosEliminacionDirecta[i].GolesVisitante)
+											//.EditorFor(x => x.PartidosPorCategoria[c].PartidosEliminacionDirecta[i].VisitanteId)
+											.Classes("goles")
+											.NoLabel()
+										)
 						<p class="parentesis-penales">(</p>
 						@(Html.YKN()
-								.EditorFor(x => x.PartidosPorCategoria[c].PartidosEliminacionDirecta[i].PenalesVisitante)
-								.Classes("goles")
-								.NoLabel()
-							)
+											.EditorFor(x => x.PartidosPorCategoria[c].PartidosEliminacionDirecta[i].PenalesVisitante)
+											.Classes("goles")
+											.NoLabel()
+										)
 						<p class="parentesis-penales">)</p>
 					</div>
 
 				</div>
-			</div>
+
+				if (Model.PartidosPorCategoria[c].PartidosEliminacionDirecta[i].Orden == ((int)Model.PartidosPorCategoria[c].PartidosEliminacionDirecta[i].Fase) / 2 -1)
+				{
+					@Html.Raw("</div>")
+				}
+
+			
 		}
+		</div>
 	}
 
 
@@ -130,6 +140,27 @@
 
 	.contenedor-equipo-resultado {
 		display: flex;
+	}
+
+	.columna-fase {
+		/*display: flex;*/
+	}
+
+	.contenedor-categoria {
+		margin-top: 20px;
+		display: grid;
+		grid-auto-flow: column;
+		align-items: center;
+	}
+
+	.fase {
+		margin-left: 120px;
+		font-weight: bold;
+	}
+
+	.fila-eliminar {
+		margin-left: -16px !important;
+		margin-bottom: 10px !important; 
 	}
 </style>
 

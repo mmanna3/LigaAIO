@@ -37,5 +37,6 @@ namespace LigaSoft.Models.Dominio
 		public int? PenalesLocal { get; set; }
 
 		public int? PenalesVisitante { get; set; }
+		public int Orden { get; internal set; }
 	}
 }

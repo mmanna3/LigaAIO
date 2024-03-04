@@ -55,6 +55,7 @@ namespace LigaSoft.Models.ViewModels
 	public class PartidoEliminacionDirectaVM
 	{
 		public FaseDeEliminacionDirectaEnum Fase { get; set; }
+		public int Orden { get; set; }
 
 		public string Local { get; set; }
 		public int LocalId { get; set; }

@@ -441,6 +441,10 @@
     <Compile Include="Migrations\202403010458291_AgregaEquiposDeEliminacionDirecta.Designer.cs">
       <DependentUpon>202403010458291_AgregaEquiposDeEliminacionDirecta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202403041620221_AgregaOrdenEnPartidosDeEliminacionDirecta.cs" />
+    <Compile Include="Migrations\202403041620221_AgregaOrdenEnPartidosDeEliminacionDirecta.Designer.cs">
+      <DependentUpon>202403041620221_AgregaOrdenEnPartidosDeEliminacionDirecta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Dominio\JugadorSancionadoDePorVida.cs" />
     <Compile Include="Models\Dominio\EquipoEliminacionDirecta.cs" />
     <Compile Include="Models\Dominio\PartidoEliminacionDirecta.cs" />
@@ -1886,6 +1890,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202403010458291_AgregaEquiposDeEliminacionDirecta.resx">
       <DependentUpon>202403010458291_AgregaEquiposDeEliminacionDirecta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403041620221_AgregaOrdenEnPartidosDeEliminacionDirecta.resx">
+      <DependentUpon>202403041620221_AgregaOrdenEnPartidosDeEliminacionDirecta.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

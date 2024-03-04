@@ -78,13 +78,16 @@ namespace LigaSoft.ViewModelMappers
 		private static void CompletarPartidosPorFase(PartidosPorCategoriaVM categoria, FaseDeEliminacionDirectaEnum fase)
 		{
 			var cantidad = categoria.PartidosEliminacionDirecta.Where(x => x.Fase == fase).Count();
+			int orden = 0;
 			while (cantidad < ((int)fase/2))
 			{
 				categoria.PartidosEliminacionDirecta.Add(new PartidoEliminacionDirectaVM
 				{
 					Fase = fase,
+					Orden = orden,
 				});
 				cantidad++;
+				orden++;
 			}
 		}
 
@@ -103,6 +106,7 @@ namespace LigaSoft.ViewModelMappers
 					GolesVisitante = partido.GolesVisitante,
 					PenalesLocal = partido.PenalesLocal,
 					PenalesVisitante = partido.PenalesVisitante,
+					Orden = partido.Orden
 				};
 				
 				vmList.Add(vm);
