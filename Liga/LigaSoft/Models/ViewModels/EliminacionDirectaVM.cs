@@ -58,10 +58,10 @@ namespace LigaSoft.Models.ViewModels
 		public int Orden { get; set; }
 
 		public string Local { get; set; }
-		public int LocalId { get; set; }
+		public int?	 LocalId { get; set; }
 
 		public string Visitante { get; set; }
-		public int VisitanteId { get; set; }
+		public int? VisitanteId { get; set; }
 
 		[RegularExpression(@"(^[0-9]*$)|(NP)|(AR)|(S)|(P)")]
 		public string GolesLocal { get; set; }

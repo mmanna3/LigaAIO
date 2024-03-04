@@ -96,7 +96,12 @@ namespace LigaSoft.ViewModelMappers
 			var vmList = new List<PartidoEliminacionDirectaVM>();
 
 			foreach (var partido in partidos)
-			{
+			{					
+				if (partido.Local == null)
+					partido.Local = new Equipo { Nombre = "LIBRE"};
+				else if (partido.Visitante == null)
+					partido.Visitante = new Equipo { Nombre = "LIBRE"};
+				
 				var vm = new PartidoEliminacionDirectaVM
 				{
 					Fase = partido.Fase,

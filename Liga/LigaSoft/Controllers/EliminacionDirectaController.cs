@@ -64,8 +64,49 @@ namespace LigaSoft.Controllers
 		public ActionResult Llaves(EliminacionDirectaVM vm)
 		{
 			var torneo = Context.Torneos.SingleOrDefault(x => x.Id == vm.TorneoId);
+			
+			foreach (var categoria in vm.PartidosPorCategoria)
+            {
+				foreach (var partidoVM in categoria.PartidosEliminacionDirecta)
+				{
+					if (partidoVM.LocalId == -1)
+						partidoVM.LocalId = null;
+					else if (partidoVM.VisitanteId == -1)
+						partidoVM.VisitanteId = null;
 
-			return RedirectToAction("Llaves", new { id = torneo.Id });
+					var partidoExistente = Context.PartidosDeEliminacionDirecta.SingleOrDefault(x => x.Orden == partidoVM.Orden);
+
+					if (partidoExistente != null)
+					{
+						partidoExistente.LocalId = partidoVM.LocalId;
+						partidoExistente.VisitanteId = partidoVM.VisitanteId;
+						partidoExistente.GolesLocal = partidoVM.GolesLocal;
+						partidoExistente.GolesVisitante = partidoVM.GolesVisitante;
+						partidoExistente.PenalesLocal = partidoVM.PenalesLocal;
+						partidoExistente.PenalesVisitante = partidoVM.PenalesVisitante;
+					} 
+					else {
+						var nuevoPartido = new PartidoEliminacionDirecta
+						{
+							TorneoId = vm.TorneoId,
+							CategoriaId = categoria.CategoriaId,
+							Fase = partidoVM.Fase,
+							Orden = partidoVM.Orden,
+							LocalId = partidoVM.LocalId,
+							VisitanteId = partidoVM.VisitanteId,
+							GolesLocal = partidoVM.GolesLocal,
+							GolesVisitante = partidoVM.GolesVisitante,
+							PenalesLocal = partidoVM.PenalesLocal,
+							PenalesVisitante = partidoVM.PenalesVisitante,
+						};
+						Context.PartidosDeEliminacionDirecta.Add(nuevoPartido);
+					}
+				}    
+            }
+
+			Context.SaveChanges();
+
+            return RedirectToAction("AppInit", "Torneo");
 		}
 
 		[ImportModelStateFromTempData]
