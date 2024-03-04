@@ -59,7 +59,7 @@
 												.Default(
 													new LigaSoft.Models.ViewModels.IdDescripcionVM
 													{
-														Id = (int)Model.PartidosPorCategoria[c].PartidosEliminacionDirecta[i].LocalId,
+														Id = Model.PartidosPorCategoria[c].PartidosEliminacionDirecta[i].LocalId ?? 0,
 														Descripcion = Model.PartidosPorCategoria[c].PartidosEliminacionDirecta[i].Local
 													})
 												.HiddenId($"PartidosPorCategoria[{c}].PartidosEliminacionDirecta[{i}].LocalId")
@@ -86,7 +86,7 @@
 											.Default(
 												new LigaSoft.Models.ViewModels.IdDescripcionVM
 												{
-													Id = (int)Model.PartidosPorCategoria[c].PartidosEliminacionDirecta[i].VisitanteId,
+													Id = Model.PartidosPorCategoria[c].PartidosEliminacionDirecta[i].VisitanteId ?? 0,
 													Descripcion = Model.PartidosPorCategoria[c].PartidosEliminacionDirecta[i].Visitante
 												})
 											.HiddenId($"PartidosPorCategoria[{c}].PartidosEliminacionDirecta[{i}].VisitanteId")
