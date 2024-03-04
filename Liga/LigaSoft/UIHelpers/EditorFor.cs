@@ -10,6 +10,7 @@ namespace LigaSoft.UIHelpers
 		private readonly HtmlHelper<TModel> _helper;
 		private readonly Expression<Func<TModel, TProperty>> _expression;
 		private string _label;
+		private bool _noLabel = false;
 		private string _classes = string.Empty;
 		private int _tabIndex;
 		private string _onChangeJsFunc = "";
@@ -27,6 +28,12 @@ namespace LigaSoft.UIHelpers
 			return this;
 		}
 
+		public EditorFor<TModel, TProperty> NoLabel()
+		{
+			_noLabel = true;
+			return this;
+		}
+
 		public EditorFor<TModel, TProperty> Classes(string classes)
 		{
 			_classes = classes;
@@ -35,8 +42,13 @@ namespace LigaSoft.UIHelpers
 
 		public override string ToHtmlString()
 		{
-			return $@"<div class='form-group'>
-						{LabelTag(_expression, _label)}
+			var label = "";
+			if (!_noLabel)
+				label = LabelTag(_expression, _label);
+
+
+			return $@"<div class='form-group'>				
+						{label}
 						{_helper.EditorFor(_expression, new { htmlAttributes = new { @class = $"form-control {_classes}", autocomplete = "off", tabindex = _tabIndex, onchange = _onChangeJsFunc } }).ToHtmlString()}
 						{MensajeValidacionHtml(_helper, _expression)}
 					</div>";

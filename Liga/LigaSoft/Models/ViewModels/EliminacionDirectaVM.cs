@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web.Script.Serialization;
 using LigaSoft.Models.Enums;
 
 namespace LigaSoft.Models.ViewModels
@@ -8,16 +10,29 @@ namespace LigaSoft.Models.ViewModels
 	{
 		public int TorneoId { get; set; }
 		public string Torneo { get; set; }
+		public string Equipos { get; set; }
+		public string LeyendaEquiposDisponibles { get; set; }
 
 		public FaseDeEliminacionDirectaEnum TipoDeLlave { get; set; }
 
 		public IList<PartidosPorCategoriaVM> PartidosPorCategoria { get; set; }
 
-		public EliminacionDirectaVM(int torneoId, string torneo, FaseDeEliminacionDirectaEnum tipoDeLlave, IList<PartidosPorCategoriaVM> partidos) {
+		public EliminacionDirectaVM() { }
+
+		public EliminacionDirectaVM(int torneoId, string torneo, FaseDeEliminacionDirectaEnum tipoDeLlave, IList<PartidosPorCategoriaVM> partidos, List<IdDescripcionVM> equipos) {
 			TorneoId = torneoId;
 			Torneo = torneo;
 			TipoDeLlave = tipoDeLlave;
 			PartidosPorCategoria = partidos;
+			Equipos = new JavaScriptSerializer().Serialize(equipos);
+			LeyendaEquiposDisponibles = ObtenerLeyendaEquiposDisponibles(equipos);
+		}
+
+		public string ObtenerLeyendaEquiposDisponibles(List<IdDescripcionVM> equipos)
+		{
+			var eq = equipos.Select(x => $"{x.Descripcion}-");
+			var union = string.Concat(eq);
+			return union.Remove(union.Length - 1);
 		}
 	}
 
@@ -26,6 +41,8 @@ namespace LigaSoft.Models.ViewModels
 		public int CategoriaId { get; set; }
 		public string Categoria { get; set; }
 		public IList<PartidoEliminacionDirectaVM> PartidosEliminacionDirecta { get; set; }
+
+		public PartidosPorCategoriaVM() { }
 
 		public PartidosPorCategoriaVM(int categoriaId, string categoria, IList<PartidoEliminacionDirectaVM> partidosEliminacionDirecta)
 		{

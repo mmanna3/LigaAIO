@@ -25,9 +25,113 @@
 		</div>
 	</div>
 
+	<div class="row">
+		<span>Los equipos son: @Model.LeyendaEquiposDisponibles</span>		
+	</div>
+	for (int c = 0; c < Model.PartidosPorCategoria.Count; c++)
+	{
+		@Html.HiddenFor(x => x.PartidosPorCategoria[c].CategoriaId)
 
-	// Hacer el cancelar bien para que vuelva a torneo, no a Configurar si venís de ahí 
+		<div style="margin-top: 20px; font-weight: bold; font-size: 16px;"> Categoría: @(Model.PartidosPorCategoria[c].Categoria) </div>
+		var fase = Model.TipoDeLlave;
+		for (int i = 0; i < Model.PartidosPorCategoria[c].PartidosEliminacionDirecta.Count; i++)
+		{
+			<div style="margin-top: 20px">
+
+				@Html.HiddenFor(x => x.PartidosPorCategoria[c].PartidosEliminacionDirecta[i].Fase)
+
+				@if (fase != Model.PartidosPorCategoria[c].PartidosEliminacionDirecta[i].Fase || i == 0)
+				{
+					fase = Model.PartidosPorCategoria[c].PartidosEliminacionDirecta[i].Fase;
+					<p> @(fase)</p>
+				}
+
+				<div class="contenedor-partido">
+
+					<div class="contenedor-equipo-resultado">
+						<div class="contenedor-equipo">
+							@(Html.YKN()
+									.Autocomplete($"{c}{i}Local")
+									.JsonSource(Model.Equipos)
+									.HiddenId($"PartidosPorCategoria[{c}].PartidosEliminacionDirecta[{i}].LocalId")
+									)
+						</div>
+						@(Html.YKN()
+								.EditorFor(x => x.PartidosPorCategoria[c].PartidosEliminacionDirecta[i].GolesLocal)
+								.Classes("goles")
+								.NoLabel()
+								)
+						<p class="parentesis-penales">(</p>
+						@(Html.YKN()
+								.EditorFor(x => x.PartidosPorCategoria[c].PartidosEliminacionDirecta[i].PenalesLocal)
+								.Classes("goles")
+								.NoLabel()
+							)
+						<p class="parentesis-penales">)</p>
+					</div>
+					<div class="contenedor-equipo-resultado">
+						<div class="contenedor-equipo">
+							@(Html.YKN()
+								.Autocomplete($"{c}{i}Visitante")
+								.JsonSource(Model.Equipos)
+								.HiddenId($"PartidosPorCategoria[{c}].PartidosEliminacionDirecta[{i}].VisitanteId")
+							)
+						</div>
+						@(Html.YKN()
+								.EditorFor(x => x.PartidosPorCategoria[c].PartidosEliminacionDirecta[i].GolesVisitante)
+								//.EditorFor(x => x.PartidosPorCategoria[c].PartidosEliminacionDirecta[i].VisitanteId)
+								.Classes("goles")
+								.NoLabel()
+							)
+						<p class="parentesis-penales">(</p>
+						@(Html.YKN()
+								.EditorFor(x => x.PartidosPorCategoria[c].PartidosEliminacionDirecta[i].PenalesVisitante)
+								.Classes("goles")
+								.NoLabel()
+							)
+						<p class="parentesis-penales">)</p>
+					</div>
+
+				</div>
+			</div>
+		}
+	}
+
+
+	// Hacer el cancelar bien para que vuelva a torneo, no a Configurar si venís de ahí
+	{ Html.YKN().FooterGuardarCancelar(); }
 }
+
+<style>
+	input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	/* Firefox */
+	input[type=number] {
+		-moz-appearance: textfield;
+	}
+
+	.contenedor-equipo {
+		width: 200px;
+	}
+
+	.goles {
+		width: 44px;
+	}
+
+	.parentesis-penales {
+		margin-left: 2px;
+		margin-right: 2px;
+		margin-top: 4px;
+	}
+
+	.contenedor-equipo-resultado {
+		display: flex;
+	}
+</style>
 
 <script>
 	function MostrarConfirmacionDeEliminacion(obj) {

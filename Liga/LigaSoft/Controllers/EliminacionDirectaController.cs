@@ -7,6 +7,8 @@ using LigaSoft.Models;
 using LigaSoft.Models.Dominio;
 using LigaSoft.Models.Enums;
 using LigaSoft.Models.Attributes.GPRPattern;
+using System.Data.Entity;
+using System.Collections.Generic;
 
 namespace LigaSoft.Controllers
 {
@@ -28,8 +30,8 @@ namespace LigaSoft.Controllers
 
 			if (torneo.LlaveDeEliminacionDirecta == null)
 				return RedirectToAction("Configurar", new { id });
-			
-			var equipos = Context.EquiposEliminacionDirecta.Where(x => x.TorneoId == id).ToList();
+
+			var equipos = ObtenerEquiposParaLlaves(id);
 
 			var partidos = Context.PartidosDeEliminacionDirecta.Where(x => x.TorneoId == id).ToList();
 
@@ -39,18 +41,31 @@ namespace LigaSoft.Controllers
 
 			partidosVM = VMM.CompletarPartidosDeTodasLasFases((FaseDeEliminacionDirectaEnum)torneo.LlaveDeEliminacionDirecta, partidosVM);
 
-			var vm = new EliminacionDirectaVM(torneo.Id, torneo.Descripcion, (FaseDeEliminacionDirectaEnum)torneo.LlaveDeEliminacionDirecta, partidosVM);
+			var vm = new EliminacionDirectaVM(torneo.Id, torneo.Descripcion, (FaseDeEliminacionDirectaEnum)torneo.LlaveDeEliminacionDirecta, partidosVM, equipos);
 
 			return View(vm);
 		}
 
-		[HttpPost]
+		private List<IdDescripcionVM> ObtenerEquiposParaLlaves(int torneoId)
+		{
+			var equiposEliminacionDirecta = Context.EquiposEliminacionDirecta.Where(x => x.TorneoId == torneoId).Select(x => x.EquipoId).ToList();
+
+			var equipos = Context.Equipos
+				.Where(x => equiposEliminacionDirecta.Contains(x.Id))
+				.ToList()
+				.Select(x => new IdDescripcionVM { Descripcion = $"{x.Nombre}", Id = x.Id }).ToList();
+			if (equipos.Count % 2 != 0)
+				equipos.Add(new IdDescripcionVM { Descripcion = $"LIBRE", Id = -1 });
+
+			return equipos;
+		}
+
+		[HttpPost, ExportModelStateToTempData]
 		public ActionResult Llaves(EliminacionDirectaVM vm)
 		{
 			var torneo = Context.Torneos.SingleOrDefault(x => x.Id == vm.TorneoId);
 
-
-			return View();
+			return RedirectToAction("Llaves", new { id = torneo.Id });
 		}
 
 		[ImportModelStateFromTempData]
