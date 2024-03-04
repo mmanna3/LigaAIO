@@ -98,15 +98,17 @@ namespace LigaSoft.ViewModelMappers
 			foreach (var partido in partidos)
 			{					
 				if (partido.Local == null)
-					partido.Local = new Equipo { Nombre = "LIBRE"};
+					partido.Local = new Equipo { Nombre = "LIBRE", Id = -1};
 				else if (partido.Visitante == null)
-					partido.Visitante = new Equipo { Nombre = "LIBRE"};
+					partido.Visitante = new Equipo { Nombre = "LIBRE", Id = -1};
 				
 				var vm = new PartidoEliminacionDirectaVM
 				{
 					Fase = partido.Fase,
 					Local = partido.Local.Nombre,
 					Visitante = partido.Visitante.Nombre,
+					LocalId = partido.Local.Id,
+					VisitanteId = partido.Visitante.Id,
 					GolesLocal = partido.GolesLocal,
 					GolesVisitante = partido.GolesVisitante,
 					PenalesLocal = partido.PenalesLocal,

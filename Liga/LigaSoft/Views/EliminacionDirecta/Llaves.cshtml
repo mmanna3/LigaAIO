@@ -56,6 +56,12 @@
 							@(Html.YKN()
 												.Autocomplete($"{c}{i}Local")
 												.JsonSource(Model.Equipos)
+												.Default(
+													new LigaSoft.Models.ViewModels.IdDescripcionVM
+													{
+														Id = (int)Model.PartidosPorCategoria[c].PartidosEliminacionDirecta[i].LocalId,
+														Descripcion = Model.PartidosPorCategoria[c].PartidosEliminacionDirecta[i].Local
+													})
 												.HiddenId($"PartidosPorCategoria[{c}].PartidosEliminacionDirecta[{i}].LocalId")
 												)
 						</div>
@@ -77,6 +83,12 @@
 							@(Html.YKN()
 											.Autocomplete($"{c}{i}Visitante")
 											.JsonSource(Model.Equipos)
+											.Default(
+												new LigaSoft.Models.ViewModels.IdDescripcionVM
+												{
+													Id = (int)Model.PartidosPorCategoria[c].PartidosEliminacionDirecta[i].VisitanteId,
+													Descripcion = Model.PartidosPorCategoria[c].PartidosEliminacionDirecta[i].Visitante
+												})
 											.HiddenId($"PartidosPorCategoria[{c}].PartidosEliminacionDirecta[{i}].VisitanteId")
 										)
 						</div>

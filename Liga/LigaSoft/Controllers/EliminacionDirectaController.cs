@@ -74,7 +74,13 @@ namespace LigaSoft.Controllers
 					else if (partidoVM.VisitanteId == -1)
 						partidoVM.VisitanteId = null;
 
-					var partidoExistente = Context.PartidosDeEliminacionDirecta.SingleOrDefault(x => x.Orden == partidoVM.Orden);
+					var partidoExistente = 
+						Context.PartidosDeEliminacionDirecta.SingleOrDefault(x => 
+							x.TorneoId == vm.TorneoId && 
+							x.CategoriaId == categoria.CategoriaId && 
+							x.Orden == partidoVM.Orden && 
+							x.Fase == partidoVM.Fase
+						);
 
 					if (partidoExistente != null)
 					{
