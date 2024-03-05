@@ -154,7 +154,8 @@ namespace LigaSoft.Controllers
 			    Importe = model.ImporteAdeudado(),
 			    MovimientoEntradaConClubId = model.Id,
 			    UsuarioAlta = userManager.FindById(System.Web.HttpContext.Current.User.Identity.GetUserId()),
-			    Vigente = true
+			    Vigente = true,
+				FormaDePago = FormaDePago.Efectivo
 		    };
 
 		    Context.Pagos.Add(pago);
