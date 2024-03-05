@@ -155,7 +155,7 @@ namespace LigaSoft.ViewModelMappers
 
 			var partidosVM = MapPartidos(partidos);
 
-			partidosVM = CompletarCategorias(torneo.Categorias.ToList(), partidosVM);
+			partidosVM = CompletarCategorias(torneo.Categorias.OrderBy(x => x.Orden).ToList(), partidosVM);
 
 			partidosVM = CompletarPartidosDeTodasLasFases((FaseDeEliminacionDirectaEnum)torneo.LlaveDeEliminacionDirecta, partidosVM);
 
