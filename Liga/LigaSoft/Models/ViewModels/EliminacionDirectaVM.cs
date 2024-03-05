@@ -43,15 +43,18 @@ namespace LigaSoft.Models.ViewModels
 	public class PartidosPorCategoriaVM
 	{
 		public int CategoriaId { get; set; }
-		public string Categoria { get; set; }
+		public string Categoria { get; set; }		
+		public int CategoriaOrden { get; set; }
+
 		public IList<PartidoEliminacionDirectaVM> PartidosEliminacionDirecta { get; set; }
 
 		public PartidosPorCategoriaVM() { }
 
-		public PartidosPorCategoriaVM(int categoriaId, string categoria, IList<PartidoEliminacionDirectaVM> partidosEliminacionDirecta)
+		public PartidosPorCategoriaVM(int categoriaId, string categoria, int orden, IList<PartidoEliminacionDirectaVM> partidosEliminacionDirecta)
 		{
 			CategoriaId = categoriaId;
 			Categoria = categoria;
+			CategoriaOrden = orden;
 			PartidosEliminacionDirecta = partidosEliminacionDirecta.OrderByDescending(x => x.Fase).ThenBy(x => x.Orden).ToList();
 		}
 	}

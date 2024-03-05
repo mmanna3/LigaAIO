@@ -33,7 +33,8 @@ namespace LigaSoft.ViewModelMappers
             {
 				var partidosPorCategoriaVM = new PartidosPorCategoriaVM(
 					partidosDeCadaCategoria.Key, 
-					partidosDeCadaCategoria.First().Categoria.Nombre, 
+					partidosDeCadaCategoria.First().Categoria.Nombre,
+					partidosDeCadaCategoria.First().Categoria.Orden,
 					MapPartido(partidosDeCadaCategoria)
 				);
 				result.Add(partidosPorCategoriaVM);
@@ -144,9 +145,10 @@ namespace LigaSoft.ViewModelMappers
 			{
 				var categoriaConPartidos = partidosPorCategoria.SingleOrDefault(x => x.CategoriaId == cat.Id);
 				if (categoriaConPartidos == null)
-					partidosPorCategoria.Add(new PartidosPorCategoriaVM(cat.Id, cat.Nombre, new List<PartidoEliminacionDirectaVM>()));
+					partidosPorCategoria.Add(new PartidosPorCategoriaVM(cat.Id, cat.Nombre, cat.Orden, new List<PartidoEliminacionDirectaVM>()));
 			}
-			return partidosPorCategoria;
+
+			return partidosPorCategoria.OrderBy(x => x.CategoriaOrden).ToList();			
 		}
 
 		public IList<PartidosPorCategoriaVM> ObtenerPartidosVMParaLlaves(Torneo torneo)
