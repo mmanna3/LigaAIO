@@ -28,8 +28,27 @@
 	@Html.HiddenFor(x => x.TorneoId)
 
 	<div class="row">
-		<span>Los equipos son: @Model.LeyendaEquiposDisponibles</span>
+		@(Html.YKN().Button("MostrarOcultarEquipos")
+				.Label("Ver equipos disponibles")				
+				.PullLeft()
+				.Color(BootstrapColorEnum.Primary)
+				.OnClick("mostrarOcultarEquipos()"))
 	</div>
+	<div class="row" id="equipos-disponibles" style="display: none">
+		<div style="display: grid; grid-auto-flow: column;">
+			@foreach (var item in Model.EquiposPorTorneo)
+			{
+				<div>
+					<div style="font-weight: bold">@item.Torneo</div>
+					@foreach (var equipo in item.Equipos)
+					{
+						<div>@equipo</div>
+					}
+				</div>
+			}
+		</div>
+	</div>
+
 	for (int c = 0; c < Model.PartidosPorCategoria.Count; c++)
 	{
 		@Html.HiddenFor(x => x.PartidosPorCategoria[c].CategoriaId)
@@ -204,6 +223,14 @@
 </style>
 
 <script>
+	function mostrarOcultarEquipos(obj) {
+		if ($('div#equipos-disponibles').is(":visible")) {
+			$('div#equipos-disponibles').hide();
+		} else {
+			$('div#equipos-disponibles').show();
+		}		
+	}
+
 	function MostrarConfirmacionDeEliminacion(obj) {
 		$('div#eliminar-confirmacion').show();
 	}

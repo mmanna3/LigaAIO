@@ -32,24 +32,52 @@ namespace LigaSoft.Controllers
 			if (torneo.LlaveDeEliminacionDirecta == null)
 				return RedirectToAction("Configurar", new { id });
 
-			var equipos = ObtenerEquiposParaLlaves(id);			
+			var equipos = ObtenerEquiposParaLlaves();
+			var equiposPorTorneo = ObtenerEquiposAgrupadosPorTorneo();
 			var partidosVM = VMM.ObtenerPartidosVMParaLlaves(torneo);
 
-			var vm = new EliminacionDirectaVM(torneo.Id, torneo.Descripcion, (FaseDeEliminacionDirectaEnum)torneo.LlaveDeEliminacionDirecta, torneo.LlaveEliminacionDirectaPublicada, partidosVM, equipos);
+			var vm = new EliminacionDirectaVM(torneo.Id, torneo.Descripcion, (FaseDeEliminacionDirectaEnum)torneo.LlaveDeEliminacionDirecta, torneo.LlaveEliminacionDirectaPublicada, partidosVM, equipos, equiposPorTorneo);
 
 			return View(vm);
 		}
 
-		private List<IdDescripcionVM> ObtenerEquiposParaLlaves(int torneoId)
+		private List<EquiposPorTorneoVM> ObtenerEquiposAgrupadosPorTorneo()
 		{
-			var equiposEliminacionDirecta = Context.EquiposEliminacionDirecta.Where(x => x.TorneoId == torneoId).Select(x => x.EquipoId).ToList();
-
 			var equipos = Context.Equipos
-				.Where(x => equiposEliminacionDirecta.Contains(x.Id))
+				.Where(x => !x.BajaLogica)
+				.GroupBy(x => x.TorneoId);
+
+			var result = new List<EquiposPorTorneoVM>();
+
+			var torneos = Context.Torneos.Include(x => x.Tipo).ToList();
+
+			foreach (var group in equipos)
+			{
+				var torneoId = group.Key;
+				var torneo = torneos.SingleOrDefault(x => x.Id == torneoId);
+				string torneoDescripcion = "Sin torneo";
+				if (torneo != null)
+					torneoDescripcion = torneo.Descripcion;
+
+				var equiposPorTorneo = new EquiposPorTorneoVM
+				{
+					Torneo = torneoDescripcion,
+					Equipos = group.Select(x => $"{x.Id} - {x.Nombre}").ToList()
+				};
+				result.Add(equiposPorTorneo);
+			}
+				
+			return result;
+		}
+
+		private List<IdDescripcionVM> ObtenerEquiposParaLlaves()
+		{
+			var equipos = Context.Equipos
+				.Where(x => !x.BajaLogica)
 				.ToList()
-				.Select(x => new IdDescripcionVM { Descripcion = $"{x.Nombre}", Id = x.Id }).ToList();
-			if (equipos.Count % 2 != 0)
-				equipos.Add(new IdDescripcionVM { Descripcion = $"LIBRE", Id = -1 });
+				.Select(x => new IdDescripcionVM { Descripcion = $"{x.Id} - {x.Nombre}", Id = x.Id }).ToList();
+
+			equipos.Add(new IdDescripcionVM { Descripcion = $"LIBRE", Id = -1 });
 
 			return equipos;
 		}
@@ -159,27 +187,12 @@ namespace LigaSoft.Controllers
 		[HttpPost, ExportModelStateToTempData]
 		public ActionResult Configurar(EliminacionDirectaConfiguracionVM vm)
 		{
-			var torneo = Context.Torneos.SingleOrDefault(x => x.Id == vm.TorneoId);
-			var equiposDeLaLlave = vm.EquiposDeLaLlaveResult.ToList().Where(x => x != 0);
-
-			if (equiposDeLaLlave.Count() != ((int)vm.TipoDeLlave) && equiposDeLaLlave.Count() != ((int)vm.TipoDeLlave) - 1)
-			{
-				ModelState.AddModelError("", "La cantidad de equipos no coincide con la fase seleccionada");
+			if (!ModelState.IsValid)
 				return RedirectToAction("Configurar");
-			}
 
-			var hayDuplicados = equiposDeLaLlave.GroupBy(x => x).Any(g => g.Count() > 1);
-			if (hayDuplicados)
-			{
-				ModelState.AddModelError("", "Hay equipos duplicados");
-				return RedirectToAction("Configurar");
-			}
-
+			var torneo = Context.Torneos.SingleOrDefault(x => x.Id == vm.TorneoId);			
 			torneo.LlaveDeEliminacionDirecta = vm.TipoDeLlave;
 			torneo.LlaveEliminacionDirectaNombre = vm.LlaveEliminacionDirectaNombre;
-
-			foreach (var equipo in equiposDeLaLlave)
-				Context.EquiposEliminacionDirecta.Add(new EquipoEliminacionDirecta { EquipoId = equipo, TorneoId = torneo.Id });
 
 			Context.SaveChanges();
 

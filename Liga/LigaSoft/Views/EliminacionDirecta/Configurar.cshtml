@@ -6,13 +6,9 @@
 	Llave de eliminación directa del torneo <span class="titulo-detacado">@Model.Torneo</span>
 }
 
-@section subtitulo{
-	Si dejás un espacio vacío, se toma como que hay un equipo libre
-}
-
 @Html.YKNNonTyped().ValidationSummary()
 
-@using (Html.YKN().Form(FormSizeEnum.VeryBig))
+@using (Html.YKN().Form(FormSizeEnum.Big))
 {
 	@*@Html.YKNNonTyped().ValidationSummary()*@
 
@@ -31,74 +27,8 @@
 		</div>
 	</div>
 
-	<div id="final" style="display: none">
-		@{
-			for (int i = 0; i < 2; i++)
-			{
-				<div class="row">
-					<div class="col-sm-8" style="padding-bottom: 10px;">
-						@(Html.YKN()
-							.Autocomplete($"EquiposDeLaLlaveResult{i}")
-							.JsonSource(Model.TodosLosEquipos)
-							.HiddenId($"EquiposDeLaLlaveResult[{i}]")
-						)
-					</div>
-				</div>
-			}}
-	</div>
-
-	<div id="semifinal" style="display: none">
-		@{
-			for (int i = 2; i < 4; i++)
-			{
-				<div class="row">
-					<div class="col-sm-8" style="padding-bottom: 10px;">
-						@(Html.YKN()
-							.Autocomplete($"EquiposDeLaLlaveResult{i}")
-							.JsonSource(Model.TodosLosEquipos)
-							.HiddenId($"EquiposDeLaLlaveResult[{i}]")
-						)
-					</div>
-				</div>
-			}}
-	</div>
-
-	<div id="cuartos" style="display: none">
-		@{
-			for (int i = 4; i < 8; i++)
-			{
-				<div class="row">
-					<div class="col-sm-8" style="padding-bottom: 10px;">
-						@(Html.YKN()
-							.Autocomplete($"EquiposDeLaLlaveResult{i}")
-							.JsonSource(Model.TodosLosEquipos)
-							.HiddenId($"EquiposDeLaLlaveResult[{i}]")
-						)
-					</div>
-				</div>
-			}}
-	</div>
-
-	<div id="octavos" style="display: none">
-		@{
-			for (int i = 8; i < 16; i++)
-			{
-				<div class="row">
-					<div class="col-sm-8" style="padding-bottom: 10px;">
-						@(Html.YKN()
-							.Autocomplete($"EquiposDeLaLlaveResult{i}")
-							.JsonSource(Model.TodosLosEquipos)
-							.HiddenId($"EquiposDeLaLlaveResult[{i}]")
-						)
-					</div>
-				</div>
-			}}
-	</div>
-
-
-
-	<div class="row">
-		<div class="col-sm-offset-6 col-sm-3">
+	<div class="row" style="margin-top: 30px;">
+		<div class="col-sm-offset-2 col-sm-3">
 			@(Html.YKN().Button("Volver")
 			  .Color(BootstrapColorEnum.Danger)
 			  .FullWidth()
@@ -112,58 +42,3 @@
 		</div>
 	</div>
 }
-
-<script>
-
-	$(document).ready(function () {
-		onFaseChanged();
-	});
-
-	function onFaseChanged(value) {
-		var tipoDeLlave = document.getElementById("TipoDeLlave");
-
-		switch (tipoDeLlave.value) {
-			case "Final": {
-				$('div#final').show();
-				$('div#semifinal').hide();
-				$('div#cuartos').hide();
-				$('div#octavos').hide();
-				break;
-			}
-			case "Semifinal": {
-				$('div#final').show();
-				$('div#semifinal').show();
-				$('div#cuartos').hide();
-				$('div#octavos').hide();
-				break;
-			}
-			case "Cuartos": {
-				$('div#final').show();
-				$('div#semifinal').show();
-				$('div#cuartos').show();
-				$('div#octavos').hide();
-				break;
-			}
-			case "Octavos": {
-				$('div#final').show();
-				$('div#semifinal').show();
-				$('div#cuartos').show();
-				$('div#octavos').show();
-				break;
-			}
-			default:
-				break;
-		}
-
-		//const cantidadDePartidosPorTipoDeLlave = {
-		//	Final: 1,
-		//	Semifinal: 2,
-		//	Cuartos: 4,
-		//	Octavos: 8
-		//};
-
-		//cantidadDePartidos = cantidadDePartidosPorTipoDeLlave[tipoDeLlave.value];
-		//console.log(cantidadDePartidos);
-		//$('div#equipos').show();
-	}
-</script>
