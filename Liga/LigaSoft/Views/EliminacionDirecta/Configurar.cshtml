@@ -93,7 +93,20 @@
 
 
 
-	{ Html.YKN().FooterGuardarCancelar(); }
+	<div class="row">
+		<div class="col-sm-offset-6 col-sm-3">
+			@(Html.YKN().Button("Volver")
+			  .Color(BootstrapColorEnum.Danger)
+			  .FullWidth()
+			  .OnClickRedirect("Index", "Torneo"))
+		</div>
+		<div class="col-sm-3">
+			@(Html.YKN().Button("Guardar")
+			  .Color(BootstrapColorEnum.Success)
+			  .FullWidth()
+			  .Submit())
+		</div>
+	</div>
 }
 
 <script>

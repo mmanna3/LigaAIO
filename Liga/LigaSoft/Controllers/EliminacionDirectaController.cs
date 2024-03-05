@@ -95,32 +95,6 @@ namespace LigaSoft.Controllers
 			return false;
 		}
 
-		private bool HayFasesIncompletas(EliminacionDirectaVM vm)
-		{
-			foreach (var categoria in vm.PartidosPorCategoria)
-			{
-				return	ValidarQueLaFaseNoEsteIncompleta(categoria.PartidosEliminacionDirecta.Where(x => x.Fase == FaseDeEliminacionDirectaEnum.Octavos), FaseDeEliminacionDirectaEnum.Octavos) ||
-						ValidarQueLaFaseNoEsteIncompleta(categoria.PartidosEliminacionDirecta.Where(x => x.Fase == FaseDeEliminacionDirectaEnum.Cuartos), FaseDeEliminacionDirectaEnum.Cuartos) ||
-						ValidarQueLaFaseNoEsteIncompleta(categoria.PartidosEliminacionDirecta.Where(x => x.Fase == FaseDeEliminacionDirectaEnum.Semifinal), FaseDeEliminacionDirectaEnum.Semifinal) ||
-						ValidarQueLaFaseNoEsteIncompleta(categoria.PartidosEliminacionDirecta.Where(x => x.Fase == FaseDeEliminacionDirectaEnum.Final), FaseDeEliminacionDirectaEnum.Final);
-			}
-
-			return false;
-		}
-
-		private bool ValidarQueLaFaseNoEsteIncompleta(IEnumerable<PartidoEliminacionDirectaVM> partidos, FaseDeEliminacionDirectaEnum fase)
-		{
-			var hayAlMenosUnPartidoConDatosIncompletos = partidos.Any(x => x.GolesLocal == "0" || x.GolesVisitante == "0" || x.LocalId == null || x.VisitanteId == null);
-			var hayAlMenosUnPartidoConDatosCompletos = partidos.Any(x => x.GolesLocal != null && x.GolesVisitante != null && x.LocalId != null && x.VisitanteId != null);
-
-			if (hayAlMenosUnPartidoConDatosIncompletos && hayAlMenosUnPartidoConDatosCompletos)
-			{
-				ModelState.AddModelError("", $"Hay partidos incompletos en la fase {fase}");
-				return true;
-			}
-			return false;
-		}
-
 		private void GuardarLlaves(EliminacionDirectaVM vm)
 		{
 			foreach (var categoria in vm.PartidosPorCategoria)

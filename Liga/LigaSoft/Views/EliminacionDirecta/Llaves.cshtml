@@ -15,18 +15,8 @@
 
 	@Html.HiddenFor(x => x.TorneoId)
 
-	<div class="row fila-eliminar">
-		<div class="col-sm-3">
-			@Html.YKN().Button("Eliminar llave").Color(BootstrapColorEnum.Warning).OnClick("MostrarConfirmacionDeEliminacion()")
-		</div>
-		<div class="col-sm-7" style="display: none" id="eliminar-confirmacion">
-			Escribir LLAVE para eliminar <input type="text" id="palabra-de-seguridad" />
-			@Html.YKN().Button("Confirmar eliminación de la llave").Color(BootstrapColorEnum.Danger).OnClick("Eliminar()")
-		</div>
-	</div>
-
 	<div class="row">
-		<span>Los equipos son: @Model.LeyendaEquiposDisponibles</span>		
+		<span>Los equipos son: @Model.LeyendaEquiposDisponibles</span>
 	</div>
 	for (int c = 0; c < Model.PartidosPorCategoria.Count; c++)
 	{
@@ -36,9 +26,9 @@
 		<div style="margin-top: 20px; font-weight: bold; font-size: 16px;"> Categoría: @(Model.PartidosPorCategoria[c].Categoria) </div>
 		var fase = Model.TipoDeLlave;
 		<div class="contenedor-categoria">
-		@for (int i = 0; i < Model.PartidosPorCategoria[c].PartidosEliminacionDirecta.Count; i++)
-		{
-			
+			@for (int i = 0; i < Model.PartidosPorCategoria[c].PartidosEliminacionDirecta.Count; i++)
+			{
+
 
 				@Html.HiddenFor(x => x.PartidosPorCategoria[c].PartidosEliminacionDirecta[i].Fase)
 				@Html.HiddenFor(x => x.PartidosPorCategoria[c].PartidosEliminacionDirecta[i].Orden)
@@ -110,19 +100,42 @@
 
 				</div>
 
-				if (Model.PartidosPorCategoria[c].PartidosEliminacionDirecta[i].Orden == ((int)Model.PartidosPorCategoria[c].PartidosEliminacionDirecta[i].Fase) / 2 -1)
+				if (Model.PartidosPorCategoria[c].PartidosEliminacionDirecta[i].Orden == ((int)Model.PartidosPorCategoria[c].PartidosEliminacionDirecta[i].Fase) / 2 - 1)
 				{
 					@Html.Raw("</div>")
 				}
 
-			
-		}
+
+			}
 		</div>
 	}
 
-
-	// Hacer el cancelar bien para que vuelva a torneo, no a Configurar si venís de ahí
-	{ Html.YKN().FooterGuardarCancelar(); }
+	<div class="row fila-eliminar">
+		<div class="col-sm-3">
+			@(Html.YKN().Button("Eliminar llave")
+				.FullWidth()
+				.Color(BootstrapColorEnum.Warning)
+				.OnClick("MostrarConfirmacionDeEliminacion()"))
+		</div>
+		<div class="col-sm-offset-3 col-sm-3">
+			@(Html.YKN().Button("Volver")
+			  .Color(BootstrapColorEnum.Danger)
+			  .FullWidth()
+			  .OnClickRedirect("Index", "Torneo"))
+		</div>
+		<div class="col-sm-3">
+			@(Html.YKN().Button("Guardar")
+			  .Color(BootstrapColorEnum.Success)
+			  .FullWidth()
+			  .Submit())
+		</div>
+	</div>
+	<div class="row fila-eliminar">
+		<div class="col-sm-7" style="display: none" id="eliminar-confirmacion">
+			Escribir LLAVE para eliminar <input type="text" id="palabra-de-seguridad" />
+			@Html.YKN().Button("Confirmar eliminación de la llave").Color(BootstrapColorEnum.Danger).OnClick("Eliminar()")
+		</div>
+	</div>
 }
 
 <style>
@@ -173,7 +186,8 @@
 
 	.fila-eliminar {
 		margin-left: -16px !important;
-		margin-bottom: 10px !important; 
+		margin-top: 10px !important;
+		margin-bottom: 10px !important;
 	}
 </style>
 
