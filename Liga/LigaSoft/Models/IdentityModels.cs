@@ -79,7 +79,6 @@ namespace LigaSoft.Models
 	    public DbSet<ConceptoLibre> ConceptosLibre { get; set; }
 		public DbSet<JugadorSancionadoDePorVida> JugadoresSancionadosDePorVida { get; set; }
 		public DbSet<PartidoEliminacionDirecta> PartidosDeEliminacionDirecta { get; set; }
-		public DbSet<EquipoEliminacionDirecta> EquiposEliminacionDirecta { get; set; }
 
 		public IQueryable<Equipo> EquiposActivos()
 		{

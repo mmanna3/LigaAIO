@@ -29,10 +29,10 @@ namespace LigaSoft.Models.Dominio
 		public virtual Equipo Visitante { get; set; }
 		public int? VisitanteId { get; set; }
 
-		[Required, RegularExpression(@"(^[0-9]*$)|(NP)|(AR)|(S)|(P)")]
+		[RegularExpression(@"(^[0-9]*$)|(NP)|(AR)|(S)|(P)")]
 		public string GolesLocal { get; set; }
 
-		[Required, RegularExpression(@"(^[0-9]*$)|(NP)|(AR)|(S)|(P)")]
+		[RegularExpression(@"(^[0-9]*$)|(NP)|(AR)|(S)|(P)")]
 		public string GolesVisitante { get; set; }
 
 		public int? PenalesLocal { get; set; }

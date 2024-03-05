@@ -45,7 +45,8 @@ namespace LigaSoft.Controllers
 		{
 			var equipos = Context.Equipos
 				.Where(x => !x.BajaLogica)
-				.GroupBy(x => x.TorneoId);
+				.GroupBy(x => x.TorneoId)
+				.OrderByDescending(group => (int)group.FirstOrDefault().Torneo.Anio);
 
 			var result = new List<EquiposPorTorneoVM>();
 
@@ -87,12 +88,12 @@ namespace LigaSoft.Controllers
 		{
 			var torneo = Context.Torneos.SingleOrDefault(x => x.Id == vm.TorneoId);
 
-			if (!ModelState.IsValid || HayPartidosSinEquipoOResultado(vm))
+			if (!ModelState.IsValid)
 				return RedirectToAction("Llaves");
 
 			GuardarLlaves(vm);
 
-			return RedirectToAction("AppInit", "Torneo");
+			return RedirectToAction("Llaves", new { id = torneo.Id });
 		}
 
 		private bool HayPartidosSinEquipoOResultado(EliminacionDirectaVM vm)
@@ -122,7 +123,7 @@ namespace LigaSoft.Controllers
 			{
 				foreach (var partidoVM in categoria.PartidosEliminacionDirecta)
 				{
-					if (partidoVM.GolesLocal == null || partidoVM.GolesVisitante == null || partidoVM.LocalId == null || partidoVM.VisitanteId == null)
+					if (partidoVM.LocalId == 0 || partidoVM.VisitanteId == 0)
 						continue;
 					
 					if (partidoVM.LocalId == -1)
@@ -210,9 +211,6 @@ namespace LigaSoft.Controllers
 				
 			var torneo = Context.Torneos.Find(torneoId);
 			torneo.LlaveDeEliminacionDirecta = null;
-
-			var equipos = Context.EquiposEliminacionDirecta.Where(x => x.TorneoId == torneoId);
-			Context.EquiposEliminacionDirecta.RemoveRange(equipos);
 
 			var partidos = Context.PartidosDeEliminacionDirecta.Where(x => x.TorneoId == torneoId);
 			Context.PartidosDeEliminacionDirecta.RemoveRange(partidos);
