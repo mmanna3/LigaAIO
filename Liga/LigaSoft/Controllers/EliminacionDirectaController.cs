@@ -21,7 +21,7 @@ namespace LigaSoft.Controllers
 		public EliminacionDirectaController()
 		{
 			Context = new ApplicationDbContext();
-			VMM = new EliminacionDirectaVMM();
+			VMM = new EliminacionDirectaVMM(Context);
 		}
 
 		[ImportModelStateFromTempData]
@@ -32,15 +32,8 @@ namespace LigaSoft.Controllers
 			if (torneo.LlaveDeEliminacionDirecta == null)
 				return RedirectToAction("Configurar", new { id });
 
-			var equipos = ObtenerEquiposParaLlaves(id);
-
-			var partidos = Context.PartidosDeEliminacionDirecta.Where(x => x.TorneoId == id).ToList();
-
-			var partidosVM = VMM.MapPartidos(partidos);
-
-			partidosVM = VMM.CompletarCategorias(torneo.Categorias.ToList(), partidosVM);
-
-			partidosVM = VMM.CompletarPartidosDeTodasLasFases((FaseDeEliminacionDirectaEnum)torneo.LlaveDeEliminacionDirecta, partidosVM);
+			var equipos = ObtenerEquiposParaLlaves(id);			
+			var partidosVM = VMM.ObtenerPartidosVMParaLlaves(torneo);
 
 			var vm = new EliminacionDirectaVM(torneo.Id, torneo.Descripcion, (FaseDeEliminacionDirectaEnum)torneo.LlaveDeEliminacionDirecta, partidosVM, equipos);
 

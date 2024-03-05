@@ -19,6 +19,7 @@ using LigaSoft.Utilidades.Persistence;
 using LigaSoft.Utilidades.Persistence.DiskPersistence;
 using LigaSoft.ViewModelMappers;
 using Newtonsoft.Json;
+using static LigaSoft.Controllers.PartidosEliminacionDirectaPorCategoriaDTO;
 using ZonaTipo = LigaSoft.Models.Enums.ZonaTipo;
 
 namespace LigaSoft.Controllers
@@ -262,6 +263,71 @@ namespace LigaSoft.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult LlaveEliminatoria(int torneoId)
+        {
+            //var partidos = _context.PartidosDeEliminacionDirecta
+            //                .Include(x => x.Categoria)
+            //                .Include(x => x.Local)
+            //                .Include(x => x.Visitante)
+            //                .Where(x => x.TorneoId == torneoId)
+            //                .ToList();
+
+            var torneo = _context.Torneos.Find(torneoId);
+
+            var VMM = new EliminacionDirectaVMM(_context);
+
+            var partidos = VMM.ObtenerPartidosVMParaLlaves(torneo);
+
+            var partidosOrdenadosPorCategoria = partidos.GroupBy(x => x.CategoriaId);
+
+            var result = new List<PartidosEliminacionDirectaPorCategoriaDTO>();
+
+            foreach (var categoria in partidos)
+            {
+				var partidosDeLaCategoria = new PartidosEliminacionDirectaPorCategoriaDTO
+                {
+                    categoria = categoria.Categoria,
+                    partidos = MapPartidosPorFase(categoria.PartidosEliminacionDirecta)
+                };
+				result.Add(partidosDeLaCategoria);
+            }
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        private List<PartidosEliminacionDirectaPorFaseDTO> MapPartidosPorFase(IList<PartidoEliminacionDirectaVM> partidos)
+		{
+			var result = new List<PartidosEliminacionDirectaPorFaseDTO>();
+
+            var partidosAgrupadosPorFase = partidos.GroupBy(x => x.Fase);
+            
+            foreach (var fase in partidosAgrupadosPorFase)
+            {
+                var partidosPorFase = new PartidosEliminacionDirectaPorFaseDTO { 
+                    fase = fase.First().Fase.ToString(),
+                    partidos = new List<PartidosEliminacionDirectaDTO>()
+                };
+
+                foreach (var partido in fase)
+                {
+                    var partidoDTO = new PartidosEliminacionDirectaDTO
+                    {
+                         orden = partido.Orden,
+                         local = partido.Local ?? "",
+                         visitante = partido.Visitante ?? "",
+                         golesLocal = partido.GolesLocal ?? "",
+                         golesVisitante = partido.GolesVisitante ?? "",
+                         penalesLocal = partido.PenalesLocal.ToString(),
+                         penalesVisitante = partido.PenalesVisitante.ToString(),
+                    };
+                    partidosPorFase.partidos.Add(partidoDTO);
+                }
+                result.Add(partidosPorFase);
+            }
+
+			return result;
+		}
+
         private class ZonaFE
         {
             public string descripcion { get; set; }
@@ -280,5 +346,28 @@ namespace LigaSoft.Controllers
         public string categoria { get; set; }
         public string sancion { get; set; }
         public int fechasQueAdeuda { get; set; }
+    }
+
+    public class PartidosEliminacionDirectaPorCategoriaDTO
+    {
+        public string categoria { get; set; }        
+        public List<PartidosEliminacionDirectaPorFaseDTO> partidos { get; set; }
+
+        public class PartidosEliminacionDirectaPorFaseDTO
+        {
+            public string fase { get; set; }            
+            public List<PartidosEliminacionDirectaDTO> partidos { get; set; }
+        }
+
+        public class PartidosEliminacionDirectaDTO
+        {
+            public int orden { get; set; } 
+            public string local { get; set; }        
+            public string visitante { get; set; }        
+            public string golesLocal { get; set; }        
+            public string golesVisitante { get; set; }        
+            public string penalesLocal { get; set; }                
+            public string penalesVisitante { get; set; } 
+        }
     }
 }

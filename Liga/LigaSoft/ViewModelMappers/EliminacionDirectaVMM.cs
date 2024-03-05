@@ -1,4 +1,5 @@
 ﻿using LigaSoft.Migrations;
+using LigaSoft.Models;
 using LigaSoft.Models.Dominio;
 using LigaSoft.Models.Enums;
 using LigaSoft.Models.ViewModels;
@@ -11,8 +12,10 @@ namespace LigaSoft.ViewModelMappers
 {
 	public class EliminacionDirectaVMM
 	{
-		public EliminacionDirectaVMM()
+		private readonly ApplicationDbContext Context;
+		public EliminacionDirectaVMM(ApplicationDbContext context)
 		{
+			Context = context;
 		}
 
 		public IList<PartidosPorCategoriaVM> MapPartidos(List<PartidoEliminacionDirecta> partidos)
@@ -137,6 +140,19 @@ namespace LigaSoft.ViewModelMappers
 					partidosPorCategoria.Add(new PartidosPorCategoriaVM(cat.Id, cat.Nombre, new List<PartidoEliminacionDirectaVM>()));
 			}
 			return partidosPorCategoria;
+		}
+
+		public IList<PartidosPorCategoriaVM> ObtenerPartidosVMParaLlaves(Torneo torneo)
+		{
+			var partidos = Context.PartidosDeEliminacionDirecta.Where(x => x.TorneoId == torneo.Id).ToList();
+
+			var partidosVM = MapPartidos(partidos);
+
+			partidosVM = CompletarCategorias(torneo.Categorias.ToList(), partidosVM);
+
+			partidosVM = CompletarPartidosDeTodasLasFases((FaseDeEliminacionDirectaEnum)torneo.LlaveDeEliminacionDirecta, partidosVM);
+
+			return partidosVM;
 		}
 	}
 }
