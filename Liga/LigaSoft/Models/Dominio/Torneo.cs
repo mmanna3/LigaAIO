@@ -35,6 +35,7 @@ namespace LigaSoft.Models.Dominio
 		public virtual ICollection<Equipo> Equipos { get; set; }
 		public virtual ICollection<Zona> Zonas { get; set; }
 		public virtual ICollection<Categoria> Categorias { get; set; }
+		public bool LlaveEliminacionDirectaPublicada { get; set; }
 
 		private string DescripcionParaCombo()
 		{

@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web.ModelBinding;
 using System.Web.Script.Serialization;
+using LigaSoft.ExtensionMethods;
 using LigaSoft.Models.Enums;
 
 namespace LigaSoft.Models.ViewModels
@@ -13,17 +14,19 @@ namespace LigaSoft.Models.ViewModels
 		public string Torneo { get; set; }
 		public string Equipos { get; set; }
 		public string LeyendaEquiposDisponibles { get; set; }
-
 		public FaseDeEliminacionDirectaEnum TipoDeLlave { get; set; }
+
+		public string LlaveEliminacionDirectaPublicada;
 
 		public IList<PartidosPorCategoriaVM> PartidosPorCategoria { get; set; }
 
 		public EliminacionDirectaVM() { }
 
-		public EliminacionDirectaVM(int torneoId, string torneo, FaseDeEliminacionDirectaEnum tipoDeLlave, IList<PartidosPorCategoriaVM> partidos, List<IdDescripcionVM> equipos) {
+		public EliminacionDirectaVM(int torneoId, string torneo, FaseDeEliminacionDirectaEnum tipoDeLlave, bool llaveEliminacionDirectaPublicada, IList<PartidosPorCategoriaVM> partidos, List<IdDescripcionVM> equipos) {
 			TorneoId = torneoId;
 			Torneo = torneo;
 			TipoDeLlave = tipoDeLlave;
+			LlaveEliminacionDirectaPublicada = llaveEliminacionDirectaPublicada.ToSiNoString();
 			PartidosPorCategoria = partidos;
 			Equipos = new JavaScriptSerializer().Serialize(equipos);
 			LeyendaEquiposDisponibles = ObtenerLeyendaEquiposDisponibles(equipos);

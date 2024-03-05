@@ -265,14 +265,10 @@ namespace LigaSoft.Controllers
 
         public ActionResult LlaveEliminatoria(int torneoId)
         {
-            //var partidos = _context.PartidosDeEliminacionDirecta
-            //                .Include(x => x.Categoria)
-            //                .Include(x => x.Local)
-            //                .Include(x => x.Visitante)
-            //                .Where(x => x.TorneoId == torneoId)
-            //                .ToList();
-
             var torneo = _context.Torneos.Find(torneoId);
+
+            if (torneo.LlaveEliminacionDirectaPublicada == false || torneo.LlaveDeEliminacionDirecta == null)
+                return Json("", JsonRequestBehavior.AllowGet);
 
             var VMM = new EliminacionDirectaVMM(_context);
 

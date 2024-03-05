@@ -35,7 +35,7 @@ namespace LigaSoft.Controllers
 			var equipos = ObtenerEquiposParaLlaves(id);			
 			var partidosVM = VMM.ObtenerPartidosVMParaLlaves(torneo);
 
-			var vm = new EliminacionDirectaVM(torneo.Id, torneo.Descripcion, (FaseDeEliminacionDirectaEnum)torneo.LlaveDeEliminacionDirecta, partidosVM, equipos);
+			var vm = new EliminacionDirectaVM(torneo.Id, torneo.Descripcion, (FaseDeEliminacionDirectaEnum)torneo.LlaveDeEliminacionDirecta, torneo.LlaveEliminacionDirectaPublicada, partidosVM, equipos);
 
 			return View(vm);
 		}
@@ -207,6 +207,18 @@ namespace LigaSoft.Controllers
 
 			return RedirectToAction("AppInit", "Torneo");
 		}
+
+		[HttpPost]
+	    public ActionResult MostrarOcultarEnWebPublica(int id)
+	    {
+		    var torneo = Context.Torneos.Find(id);
+
+		    torneo.LlaveEliminacionDirectaPublicada = !torneo.LlaveEliminacionDirectaPublicada;
+
+		    Context.SaveChanges();
+
+		    return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+	    }
 
 	}
 }

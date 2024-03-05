@@ -9,6 +9,18 @@
 	@Model.Torneo - Tipo de llave: @Model.TipoDeLlave
 }
 
+@section CabeceraGrilla{
+	@(Html.YKN().Button("MostrarOcultar")
+				  .Label("Mostrar/Ocultar en web pública")
+				  .PullLeft()
+				  .Color(BootstrapColorEnum.Primary)
+				  .OnClick("mostrarOcultar()"))
+
+	<div style="margin-top: 5px;">
+		Visible en web pública: @Model.LlaveEliminacionDirectaPublicada
+	</div>
+}
+
 @using (Html.YKN().Form(FormSizeEnum.VeryBig))
 {
 	@Html.YKNNonTyped().ValidationSummary()
@@ -194,6 +206,18 @@
 <script>
 	function MostrarConfirmacionDeEliminacion(obj) {
 		$('div#eliminar-confirmacion').show();
+	}
+
+	function mostrarOcultar() {
+		console.log('aaa')
+		$.ajax({
+			url: '/EliminacionDirecta/MostrarOcultarEnWebPublica',
+			type: "POST",
+			data: { id: document.getElementById("TorneoId").value },
+			success: function () {
+				window.location.reload(false);
+			}
+		});
 	}
 
 	function Eliminar(obj) {
