@@ -9,6 +9,7 @@ using LigaSoft.Models.Enums;
 using LigaSoft.Models.Attributes.GPRPattern;
 using System.Data.Entity;
 using System.Collections.Generic;
+using System;
 
 namespace LigaSoft.Controllers
 {
@@ -64,21 +65,81 @@ namespace LigaSoft.Controllers
 		public ActionResult Llaves(EliminacionDirectaVM vm)
 		{
 			var torneo = Context.Torneos.SingleOrDefault(x => x.Id == vm.TorneoId);
-			
+
+			if (!ModelState.IsValid || HayPartidosSinEquipoOResultado(vm))
+				return RedirectToAction("Llaves");
+
+			GuardarLlaves(vm);
+
+			return RedirectToAction("AppInit", "Torneo");
+		}
+
+		private bool HayPartidosSinEquipoOResultado(EliminacionDirectaVM vm)
+		{
 			foreach (var categoria in vm.PartidosPorCategoria)
-            {
+			{
+                foreach (var partido in categoria.PartidosEliminacionDirecta)
+                {
+                    var noTieneNingunDatoCargado = partido.GolesLocal == null && partido.GolesVisitante == null && partido.LocalId == 0 && partido.VisitanteId == 0;
+					var tieneTodosLosDatoCargados = partido.GolesLocal != null && partido.GolesVisitante != null && partido.LocalId != null && partido.VisitanteId != null;
+					if (noTieneNingunDatoCargado || tieneTodosLosDatoCargados)
+						continue;
+					else
+					{
+						ModelState.AddModelError("", $"Categoría '{categoria.Categoria}': El partido nro {partido.Orden + 1} de la fase '{partido.Fase}' tiene datos incompletos.");
+						return true;
+					}
+                }
+            }
+
+			return false;
+		}
+
+		private bool HayFasesIncompletas(EliminacionDirectaVM vm)
+		{
+			foreach (var categoria in vm.PartidosPorCategoria)
+			{
+				return	ValidarQueLaFaseNoEsteIncompleta(categoria.PartidosEliminacionDirecta.Where(x => x.Fase == FaseDeEliminacionDirectaEnum.Octavos), FaseDeEliminacionDirectaEnum.Octavos) ||
+						ValidarQueLaFaseNoEsteIncompleta(categoria.PartidosEliminacionDirecta.Where(x => x.Fase == FaseDeEliminacionDirectaEnum.Cuartos), FaseDeEliminacionDirectaEnum.Cuartos) ||
+						ValidarQueLaFaseNoEsteIncompleta(categoria.PartidosEliminacionDirecta.Where(x => x.Fase == FaseDeEliminacionDirectaEnum.Semifinal), FaseDeEliminacionDirectaEnum.Semifinal) ||
+						ValidarQueLaFaseNoEsteIncompleta(categoria.PartidosEliminacionDirecta.Where(x => x.Fase == FaseDeEliminacionDirectaEnum.Final), FaseDeEliminacionDirectaEnum.Final);
+			}
+
+			return false;
+		}
+
+		private bool ValidarQueLaFaseNoEsteIncompleta(IEnumerable<PartidoEliminacionDirectaVM> partidos, FaseDeEliminacionDirectaEnum fase)
+		{
+			var hayAlMenosUnPartidoConDatosIncompletos = partidos.Any(x => x.GolesLocal == "0" || x.GolesVisitante == "0" || x.LocalId == null || x.VisitanteId == null);
+			var hayAlMenosUnPartidoConDatosCompletos = partidos.Any(x => x.GolesLocal != null && x.GolesVisitante != null && x.LocalId != null && x.VisitanteId != null);
+
+			if (hayAlMenosUnPartidoConDatosIncompletos && hayAlMenosUnPartidoConDatosCompletos)
+			{
+				ModelState.AddModelError("", $"Hay partidos incompletos en la fase {fase}");
+				return true;
+			}
+			return false;
+		}
+
+		private void GuardarLlaves(EliminacionDirectaVM vm)
+		{
+			foreach (var categoria in vm.PartidosPorCategoria)
+			{
 				foreach (var partidoVM in categoria.PartidosEliminacionDirecta)
 				{
+					if (partidoVM.GolesLocal == null || partidoVM.GolesVisitante == null || partidoVM.LocalId == null || partidoVM.VisitanteId == null)
+						continue;
+					
 					if (partidoVM.LocalId == -1)
 						partidoVM.LocalId = null;
 					else if (partidoVM.VisitanteId == -1)
 						partidoVM.VisitanteId = null;
 
-					var partidoExistente = 
-						Context.PartidosDeEliminacionDirecta.SingleOrDefault(x => 
-							x.TorneoId == vm.TorneoId && 
-							x.CategoriaId == categoria.CategoriaId && 
-							x.Orden == partidoVM.Orden && 
+					var partidoExistente =
+						Context.PartidosDeEliminacionDirecta.SingleOrDefault(x =>
+							x.TorneoId == vm.TorneoId &&
+							x.CategoriaId == categoria.CategoriaId &&
+							x.Orden == partidoVM.Orden &&
 							x.Fase == partidoVM.Fase
 						);
 
@@ -90,8 +151,9 @@ namespace LigaSoft.Controllers
 						partidoExistente.GolesVisitante = partidoVM.GolesVisitante;
 						partidoExistente.PenalesLocal = partidoVM.PenalesLocal;
 						partidoExistente.PenalesVisitante = partidoVM.PenalesVisitante;
-					} 
-					else {
+					}
+					else
+					{
 						var nuevoPartido = new PartidoEliminacionDirecta
 						{
 							TorneoId = vm.TorneoId,
@@ -107,12 +169,10 @@ namespace LigaSoft.Controllers
 						};
 						Context.PartidosDeEliminacionDirecta.Add(nuevoPartido);
 					}
-				}    
-            }
+				}
+			}
 
 			Context.SaveChanges();
-
-            return RedirectToAction("AppInit", "Torneo");
 		}
 
 		[ImportModelStateFromTempData]

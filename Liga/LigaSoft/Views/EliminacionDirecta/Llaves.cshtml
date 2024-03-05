@@ -31,6 +31,7 @@
 	for (int c = 0; c < Model.PartidosPorCategoria.Count; c++)
 	{
 		@Html.HiddenFor(x => x.PartidosPorCategoria[c].CategoriaId)
+		@Html.HiddenFor(x => x.PartidosPorCategoria[c].Categoria)
 
 		<div style="margin-top: 20px; font-weight: bold; font-size: 16px;"> Categoría: @(Model.PartidosPorCategoria[c].Categoria) </div>
 		var fase = Model.TipoDeLlave;

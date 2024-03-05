@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Web.ModelBinding;
 using System.Web.Script.Serialization;
 using LigaSoft.Models.Enums;
 
@@ -48,7 +49,7 @@ namespace LigaSoft.Models.ViewModels
 		{
 			CategoriaId = categoriaId;
 			Categoria = categoria;
-			PartidosEliminacionDirecta = partidosEliminacionDirecta;
+			PartidosEliminacionDirecta = partidosEliminacionDirecta.OrderByDescending(x => x.Fase).ThenBy(x => x.Orden).ToList();
 		}
 	}
 
@@ -63,10 +64,10 @@ namespace LigaSoft.Models.ViewModels
 		public string Visitante { get; set; }
 		public int? VisitanteId { get; set; }
 
-		[RegularExpression(@"(^[0-9]*$)|(NP)|(AR)|(S)|(P)")]
+		[RegularExpression(@"(^[0-9]*$)|(NP)|(AR)|(S)|(P)", ErrorMessage = "Formato incorrecto")]
 		public string GolesLocal { get; set; }
 
-		[RegularExpression(@"(^[0-9]*$)|(NP)|(AR)|(S)|(P)")]
+		[RegularExpression(@"(^[0-9]*$)|(NP)|(AR)|(S)|(P)", ErrorMessage = "Formato incorrecto")]
 		public string GolesVisitante { get; set; }
 
 		public int? PenalesLocal { get; set; }

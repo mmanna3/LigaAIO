@@ -45,6 +45,7 @@ namespace LigaSoft.ViewModelMappers
 						CompletarPartidosPorFase(categoria, FaseDeEliminacionDirectaEnum.Cuartos);
 						CompletarPartidosPorFase(categoria, FaseDeEliminacionDirectaEnum.Semifinal);
 						CompletarPartidosPorFase(categoria, FaseDeEliminacionDirectaEnum.Final);
+						categoria.PartidosEliminacionDirecta = 				categoria.PartidosEliminacionDirecta.OrderByDescending(x => x.Fase).ThenBy(x => x.Orden).ToList();
 					}
 					break;
 				case FaseDeEliminacionDirectaEnum.Cuartos:
@@ -53,6 +54,7 @@ namespace LigaSoft.ViewModelMappers
 						CompletarPartidosPorFase(categoria, FaseDeEliminacionDirectaEnum.Cuartos);
 						CompletarPartidosPorFase(categoria, FaseDeEliminacionDirectaEnum.Semifinal);
 						CompletarPartidosPorFase(categoria, FaseDeEliminacionDirectaEnum.Final);
+						categoria.PartidosEliminacionDirecta = 				categoria.PartidosEliminacionDirecta.OrderByDescending(x => x.Fase).ThenBy(x => x.Orden).ToList();
 					}
 					break;
 				case FaseDeEliminacionDirectaEnum.Semifinal:
@@ -60,12 +62,14 @@ namespace LigaSoft.ViewModelMappers
 					{
 						CompletarPartidosPorFase(categoria, FaseDeEliminacionDirectaEnum.Semifinal);
 						CompletarPartidosPorFase(categoria, FaseDeEliminacionDirectaEnum.Final);
+						categoria.PartidosEliminacionDirecta = 				categoria.PartidosEliminacionDirecta.OrderByDescending(x => x.Fase).ThenBy(x => x.Orden).ToList();
 					}
 					break;
 				case FaseDeEliminacionDirectaEnum.Final:
 					foreach (var categoria in partidos)
 					{
 						CompletarPartidosPorFase(categoria, FaseDeEliminacionDirectaEnum.Final);
+						categoria.PartidosEliminacionDirecta = 				categoria.PartidosEliminacionDirecta.OrderByDescending(x => x.Fase).ThenBy(x => x.Orden).ToList();
 					}
 					break;
 				default:
@@ -77,18 +81,20 @@ namespace LigaSoft.ViewModelMappers
 
 		private static void CompletarPartidosPorFase(PartidosPorCategoriaVM categoria, FaseDeEliminacionDirectaEnum fase)
 		{
-			var cantidad = categoria.PartidosEliminacionDirecta.Where(x => x.Fase == fase).Count();
-			int orden = 0;
-			while (cantidad < ((int)fase/2))
-			{
-				categoria.PartidosEliminacionDirecta.Add(new PartidoEliminacionDirectaVM
-				{
-					Fase = fase,
-					Orden = orden,
-				});
-				cantidad++;
-				orden++;
-			}
+			var partidosDeLaFase = categoria.PartidosEliminacionDirecta
+				.Where(x => x.Fase == fase);
+
+            for (int i = 0; i < ((int)fase/2); i++)
+            {
+                var partidoConEsteOrden = partidosDeLaFase.SingleOrDefault(x => x.Orden == i);
+
+				if (partidoConEsteOrden == null)
+					categoria.PartidosEliminacionDirecta.Add(new PartidoEliminacionDirectaVM
+					{
+						Fase = fase,
+						Orden = i,
+					});
+            }			
 		}
 
 		private IList<PartidoEliminacionDirectaVM> MapPartido(IGrouping<int, PartidoEliminacionDirecta> partidos)
