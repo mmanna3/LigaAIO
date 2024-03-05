@@ -3,6 +3,9 @@ using LigaSoft.Models;
 using LigaSoft.Models.Dominio;
 using LigaSoft.Models.Enums;
 using LigaSoft.Models.ViewModels;
+using LigaSoft.Utilidades;
+using LigaSoft.Utilidades.Persistence;
+using LigaSoft.Utilidades.Persistence.DiskPersistence;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +16,11 @@ namespace LigaSoft.ViewModelMappers
 	public class EliminacionDirectaVMM
 	{
 		private readonly ApplicationDbContext Context;
+		private static IImagenesEscudosPersistence _imagenesEscudosPersistence;
 		public EliminacionDirectaVMM(ApplicationDbContext context)
 		{
 			Context = context;
+			_imagenesEscudosPersistence = new ImagenesEscudosDiskPersistence(new AppPathsWebApp());
 		}
 
 		public IList<PartidosPorCategoriaVM> MapPartidos(List<PartidoEliminacionDirecta> partidos)
@@ -114,6 +119,8 @@ namespace LigaSoft.ViewModelMappers
 				var vm = new PartidoEliminacionDirectaVM
 				{
 					Fase = partido.Fase,
+					LocalEscudoPath = _imagenesEscudosPersistence.PathRelativo(partido.Local.ClubId),
+					VisitanteEscudoPath = _imagenesEscudosPersistence.PathRelativo(partido.Visitante.ClubId),
 					Local = partido.Local.Nombre,
 					Visitante = partido.Visitante.Nombre,
 					LocalId = partido.Local.Id,

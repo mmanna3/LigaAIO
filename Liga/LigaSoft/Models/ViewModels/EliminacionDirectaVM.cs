@@ -60,10 +60,12 @@ namespace LigaSoft.Models.ViewModels
 	{
 		public FaseDeEliminacionDirectaEnum Fase { get; set; }
 		public int Orden { get; set; }
-
+		
+		public string LocalEscudoPath { get; set; }
 		public string Local { get; set; }
 		public int?	 LocalId { get; set; }
 
+		public string VisitanteEscudoPath { get; set; }
 		public string Visitante { get; set; }
 		public int? VisitanteId { get; set; }
 

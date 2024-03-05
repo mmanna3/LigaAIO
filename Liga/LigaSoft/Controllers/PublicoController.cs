@@ -320,6 +320,8 @@ namespace LigaSoft.Controllers
                     var partidoDTO = new PartidosEliminacionDirectaDTO
                     {
                          orden = partido.Orden,
+                         escudoLocal = partido.LocalEscudoPath,
+                         escudoVisitante = partido.VisitanteEscudoPath,
                          local = partido.Local ?? "",
                          visitante = partido.Visitante ?? "",
                          golesLocal = partido.GolesLocal ?? "",
@@ -369,6 +371,8 @@ namespace LigaSoft.Controllers
         public class PartidosEliminacionDirectaDTO
         {
             public int orden { get; set; } 
+            public string escudoLocal { get; set; }
+            public string escudoVisitante { get; set; }
             public string local { get; set; }        
             public string visitante { get; set; }        
             public string golesLocal { get; set; }        
