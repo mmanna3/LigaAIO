@@ -176,6 +176,7 @@ namespace LigaSoft.Controllers
 			}
 
 			torneo.LlaveDeEliminacionDirecta = vm.TipoDeLlave;
+			torneo.LlaveEliminacionDirectaNombre = vm.LlaveEliminacionDirectaNombre;
 
 			foreach (var equipo in equiposDeLaLlave)
 				Context.EquiposEliminacionDirecta.Add(new EquipoEliminacionDirecta { EquipoId = equipo, TorneoId = torneo.Id });

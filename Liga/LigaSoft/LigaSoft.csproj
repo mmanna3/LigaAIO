@@ -457,6 +457,10 @@
     <Compile Include="Migrations\202403050205327_AgregaLlaveEliminacionDirectaPublicadaEnTorneo.Designer.cs">
       <DependentUpon>202403050205327_AgregaLlaveEliminacionDirectaPublicadaEnTorneo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202403050340080_AgregaLlaveEliminacionDirectaNombre.cs" />
+    <Compile Include="Migrations\202403050340080_AgregaLlaveEliminacionDirectaNombre.Designer.cs">
+      <DependentUpon>202403050340080_AgregaLlaveEliminacionDirectaNombre.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Dominio\JugadorSancionadoDePorVida.cs" />
     <Compile Include="Models\Dominio\EquipoEliminacionDirecta.cs" />
     <Compile Include="Models\Dominio\PartidoEliminacionDirecta.cs" />
@@ -1914,6 +1918,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202403050205327_AgregaLlaveEliminacionDirectaPublicadaEnTorneo.resx">
       <DependentUpon>202403050205327_AgregaLlaveEliminacionDirectaPublicadaEnTorneo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403050340080_AgregaLlaveEliminacionDirectaNombre.resx">
+      <DependentUpon>202403050340080_AgregaLlaveEliminacionDirectaNombre.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

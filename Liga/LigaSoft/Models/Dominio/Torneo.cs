@@ -29,14 +29,13 @@ namespace LigaSoft.Models.Dominio
 
 		public bool Publico { get; set; }
 		public bool SancionesHabilitadas { get; set; }
-
-		public FaseDeEliminacionDirectaEnum? LlaveDeEliminacionDirecta { get; set; }
-
 		public virtual ICollection<Equipo> Equipos { get; set; }
 		public virtual ICollection<Zona> Zonas { get; set; }
 		public virtual ICollection<Categoria> Categorias { get; set; }
-		public bool LlaveEliminacionDirectaPublicada { get; set; }
 
+		public FaseDeEliminacionDirectaEnum? LlaveDeEliminacionDirecta { get; set; }
+		public bool LlaveEliminacionDirectaPublicada { get; set; }
+		public string LlaveEliminacionDirectaNombre { get; set; }
 		private string DescripcionParaCombo()
 		{
 			return $"{Tipo.Descripcion} {Anio.Descripcion()}";

@@ -263,6 +263,17 @@ namespace LigaSoft.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult TieneLlaveEliminatoria(int torneoId)
+        {
+            var torneo = _context.Torneos.Find(torneoId);
+                
+            var result = "";
+            if (torneo.LlaveEliminacionDirectaPublicada && torneo.LlaveDeEliminacionDirecta != null)
+                result = torneo.LlaveEliminacionDirectaNombre;
+            
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult LlaveEliminatoria(int torneoId)
         {
             var torneo = _context.Torneos.Find(torneoId);
