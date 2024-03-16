@@ -9,7 +9,7 @@ using LigaSoft.Utilidades;
 
 namespace LigaSoft.Controllers
 {
-	[Authorize(Roles = Roles.AdmininstradorYDelegado)]
+	[Authorize(Roles = Roles.Administrador)]
 	public class UsuarioDelegadoController : ABMController<UsuarioDelegado, UsuarioDelegadoVM, UsuarioDelegadoVMM>
     {
 		[AllowAnonymous]

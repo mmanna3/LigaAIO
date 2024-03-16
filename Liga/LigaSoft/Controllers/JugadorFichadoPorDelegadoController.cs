@@ -50,8 +50,7 @@ namespace LigaSoft.Controllers
 
 			return View("Aprobados", equipoVM);
 		}
-
-		[Authorize(Roles = Roles.Delegado)]
+		
 		public List<SelectListItem> EquiposParaCombo(Club club)
 	    {
 		    return club
@@ -66,8 +65,7 @@ namespace LigaSoft.Controllers
 		    var aspNetUser = _userManager.FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
 		    return Context.UsuariosDelegados.Single(x => x.AspNetUserId == aspNetUser.Id).Club;
 	    }
-
-		[Authorize(Roles = Roles.Delegado)]
+	    
 		public ActionResult SeleccionarEquipo(string alSeleccionarIrAAction)
 	    {
 		    var club = ClubDeDelegadoLogueado();
