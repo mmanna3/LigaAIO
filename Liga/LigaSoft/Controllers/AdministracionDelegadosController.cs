@@ -106,14 +106,15 @@ namespace LigaSoft.Controllers
 				{
 					foreach (var delegado in club.UsuariosDelegados)
 					{
-						vm.Lista.Add(new DelegadoPorClubVM
-						{
-							Club = delegado.Club.Nombre,
-							Estado = delegado.Aprobado ? "Aprobado" : "Pendiente",
-							Nombre = delegado.Nombre + " " + delegado.Apellido,
-							Usuario = delegado.AspNetUser.UserName,
-							BlanqueoDeClavePendiente = delegado.BlanqueoDeClavePendiente.ToSiNoString()
-						});
+						if (delegado.AspNetUser != null)						
+							vm.Lista.Add(new DelegadoPorClubVM
+							{
+								Club = delegado.Club.Nombre,
+								Estado = delegado.Aprobado ? "Aprobado" : "Pendiente",
+								Nombre = delegado.Nombre + " " + delegado.Apellido,
+								Usuario = delegado.AspNetUser.UserName,
+								BlanqueoDeClavePendiente = delegado.BlanqueoDeClavePendiente.ToSiNoString()
+							});
 					}
 				} else
 				{
