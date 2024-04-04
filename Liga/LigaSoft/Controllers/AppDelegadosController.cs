@@ -25,6 +25,16 @@ namespace LigaSoft.Controllers
 			_jugadorVMM = new JugadorVMM(_context);
 			_jugadorAutofichadoVMM = new JugadorAutofichadoVMM(_context);
 		}
+		
+		// protected override void OnActionExecuted(ActionExecutedContext filterContext)
+		// {
+		// 	if (filterContext.Exception != null)
+		// 	{
+		// 		Log.Error("Excepción no controlada en AppDelegadosController: " + filterContext.Exception.Message +
+		// 		          ". Stack trace: " + filterContext.Exception.StackTrace, 
+		// 			filterContext.Exception);
+		// 	}
+		// }
 
 		[AllowAnonymous]
 		public string Getjugadores(string codigoAlfanumerico) //TODO: Pedir token acá

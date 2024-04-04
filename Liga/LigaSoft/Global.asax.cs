@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
@@ -45,6 +46,12 @@ namespace LigaSoft
 			var dbMigrator = new DbMigrator(new Configuration());
 			if (dbMigrator.GetPendingMigrations().Any())
 				dbMigrator.Update();
+	    }
+	    
+	    protected void Application_Error(object sender, EventArgs e)
+	    {
+		    var ex = Server.GetLastError();
+		    Log.Error("Caught in Global.asax. StatusCode: " + Response.StatusCode, ex);
 	    }
     }
 }
