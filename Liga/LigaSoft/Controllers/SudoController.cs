@@ -2,8 +2,6 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.IO;
-using System.Security.Cryptography.X509Certificates;
 using System.Web.Mvc;
 using LigaSoft.Models;
 using LigaSoft.Utilidades;
@@ -32,6 +30,27 @@ namespace LigaSoft.Controllers
 			return Json("OK", JsonRequestBehavior.AllowGet);
 		}
 
+		public JsonResult ListarJugadoresSinFoto()
+		{
+			var todosLosJugadores = _context.Jugadores;
+			var dnisDeJugadoresHuerfanos = todosLosJugadores.Select(x => x.DNI);
+			
+			var result = new List<string>();
+			foreach (var dni in dnisDeJugadoresHuerfanos)
+			{
+				try
+				{
+					_imagenesJugadoresPersistence.GetFotoEnBase64(dni);
+				}
+				catch (Exception e)
+				{
+					result.Add(dni);
+				}
+			}
+
+			return Json(result, JsonRequestBehavior.AllowGet);
+		}
+		
 		public JsonResult EliminarJugadoresQueNoEstanFichadosEnNingunEquipo()
 		{
 			var jugadoresHuerfanos = _context.Jugadores.Where(x => x.JugadorEquipo.Count == 0);

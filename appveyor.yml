@@ -37,7 +37,7 @@ for:
         - master
     environment:
       DefaultConnection-Web.config Connection String:
-        secure: XCd88qxQ5JDVfoGcLQeYQWrGCU6u6B3IXhiH9F16yEkP5FfTLoWEup0h3mer2aJEKz0030+/xGMv8e9mE4EoPT+Xqo5GNGdYL1S/7lx8bTIHAxf+aPyKE35b1VU7JlIl7sYvWF1FPa27TsSVCe4muQ==
+        secure: iLkhyWGv+XGwaRvBRwM2u5UzDL0x/pDVblSoT2n/uNXmJg4rwDX4tnytI8H43OtgdFTBe1bG1gogOwpqaYn8iAJrfje34VofjySOl21MMyksai0/vngfOKZMw14TUEA8TOSYjUhzJ6i4E9nIE17cDw==
       deploy_server_prod:
         secure: WKFcHMXBFrhnWLgarxvs9pOVG0xeD4uTZXKYgvbNKZp/SOlyrxCYH3Q7SEpjWtvItjQOQ16J+TBtmieZ9J4Y1g==
       deploy_website_prod:
