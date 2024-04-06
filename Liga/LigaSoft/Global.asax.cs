@@ -51,7 +51,7 @@ namespace LigaSoft
 	    protected void Application_Error(object sender, EventArgs e)
 	    {
 		    var ex = Server.GetLastError();
-		    Log.Error("Caught in Global.asax. StatusCode: " + Response.StatusCode, ex);
+		    Log.Error("Error capturado en Global.asax. StatusCode: " + ((HttpException)ex).GetHttpCode(), ex);
 	    }
     }
 }
