@@ -16,6 +16,7 @@ namespace LigaSoft.Controllers
 			var model = Context.TorneoTipos.Find(viewModel.Id);
 
 			model.ValorDelFichajeEnPesos = viewModel.ValorDelFichajeEnPesos;
+			model.Descripcion = viewModel.Descripcion;
 
 			Context.SaveChanges();
 
