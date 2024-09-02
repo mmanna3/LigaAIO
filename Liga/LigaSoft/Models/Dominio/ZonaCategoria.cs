@@ -16,7 +16,7 @@ namespace LigaSoft.Models.Dominio
 		public int CategoriaId { get; set; }
 		public virtual Categoria Categoria { get; set; }
 
-		[StringLength(255)]
+		[StringLength(2000)]
 		public string Leyenda { get; set; }
 
 		[Required, Index("IX_ZonaYCategoria", 3, IsUnique = true)]

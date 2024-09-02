@@ -465,6 +465,10 @@
     <Compile Include="Migrations\202403051845107_EliminaEquiposEliminacionDirectaPorqueSePuedenSeleccionarTodosYGolesNoEsMasRequerido.Designer.cs">
       <DependentUpon>202403051845107_EliminaEquiposEliminacionDirectaPorqueSePuedenSeleccionarTodosYGolesNoEsMasRequerido.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202409020127285_LeyendasMasLargasPermitidas.cs" />
+    <Compile Include="Migrations\202409020127285_LeyendasMasLargasPermitidas.Designer.cs">
+      <DependentUpon>202409020127285_LeyendasMasLargasPermitidas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Dominio\JugadorSancionadoDePorVida.cs" />
     <Compile Include="Models\Dominio\PartidoEliminacionDirecta.cs" />
     <Compile Include="Models\Dominio\QuitaDePuntos.cs" />
@@ -1927,6 +1931,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202403051845107_EliminaEquiposEliminacionDirectaPorqueSePuedenSeleccionarTodosYGolesNoEsMasRequerido.resx">
       <DependentUpon>202403051845107_EliminaEquiposEliminacionDirectaPorqueSePuedenSeleccionarTodosYGolesNoEsMasRequerido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202409020127285_LeyendasMasLargasPermitidas.resx">
+      <DependentUpon>202409020127285_LeyendasMasLargasPermitidas.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
