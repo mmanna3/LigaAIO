@@ -55,8 +55,8 @@ namespace LigaSoft.Controllers
 			if (imagen != null)
 				if (imagen.ContentLength == 0)
 					ModelState.AddModelError("", "No se ha seleccionado una imagen.");
-				else if (!"avif".Equals(imagen.FileName.Substring(imagen.FileName.Length - 4, 4).ToLower()))
-					ModelState.AddModelError("", "La imagen debe estar en formato AVIF.");
+				else if (!"jpg".Equals(imagen.FileName.Substring(imagen.FileName.Length - 3, 3).ToLower()))
+					ModelState.AddModelError("", "La imagen debe estar en formato JPG.");
 				else
 					using (var foto = System.Drawing.Image.FromStream(imagen.InputStream))
 						if (foto.Height != alto || foto.Width != ancho)

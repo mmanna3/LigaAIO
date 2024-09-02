@@ -18,6 +18,22 @@
 		</div>
 	</div>
 	<div class="row">
+		<div class="col-sm-6">
+			@if (Model.Titulo == "Desktop")
+			{
+				<div>
+					Tamaño: 180px x 1000px
+				</div>
+			}
+			else
+			{
+				<div>
+					Tamaño: 130px x 300px
+				</div>
+			}
+		</div>
+	</div>
+	<div class="row">
 		<div class="col-sm-12">
 			<img src="@Model.ImagenActualUrl" alt="foto">
 		</div>
