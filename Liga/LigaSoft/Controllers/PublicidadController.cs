@@ -48,19 +48,21 @@ namespace LigaSoft.Controllers
 				ancho = 1000;
 			} else if (titulo == "Mobile")
 			{
-				alto = 130;
-				ancho = 300;
+				alto = 254;
+				ancho = 500;
 			}
 
-			if (imagen != null)
-				if (imagen.ContentLength == 0)
-					ModelState.AddModelError("", "No se ha seleccionado una imagen.");
-				else if (!"jpg".Equals(imagen.FileName.Substring(imagen.FileName.Length - 3, 3).ToLower()))
-					ModelState.AddModelError("", "La imagen debe estar en formato JPG.");
-				else
-					using (var foto = System.Drawing.Image.FromStream(imagen.InputStream))
-						if (foto.Height != alto || foto.Width != ancho)
-							ModelState.AddModelError("", $"El tamaño de la imagen debe ser de {alto} x {ancho} px.");
+			if (imagen == null) 
+				return;
+			
+			if (imagen.ContentLength == 0)
+				ModelState.AddModelError("", "No se ha seleccionado una imagen.");
+			else if (!"jpg".Equals(imagen.FileName.Substring(imagen.FileName.Length - 3, 3).ToLower()))
+				ModelState.AddModelError("", "La imagen debe estar en formato JPG.");
+			else
+				using (var foto = System.Drawing.Image.FromStream(imagen.InputStream))
+					if (foto.Height != alto || foto.Width != ancho)
+						ModelState.AddModelError("", $"El tamaño de la imagen debe ser de {ancho} x {alto} px.");
 		}
 	}
 }
