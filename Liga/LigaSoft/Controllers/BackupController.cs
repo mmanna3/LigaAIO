@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using System.Threading.Tasks;
+using System.Web.Helpers;
+using System.Web.Mvc;
 using LigaSoft.Utilidades.Backup;
 
 namespace LigaSoft.Controllers
@@ -6,9 +8,9 @@ namespace LigaSoft.Controllers
 	[AllowAnonymous]
 	public class BackupController : Controller
 	{
-		public JsonResult Generar()
+		public async Task<JsonResult> Generar()
 	    {
-		    BackupBaseDeDatosYFileSystem.GenerarYSubirADrive();
+		    await BackupBaseDeDatosYFileSystem.GenerarYSubirADrive();
 
 			return Json("", JsonRequestBehavior.AllowGet);
 		}

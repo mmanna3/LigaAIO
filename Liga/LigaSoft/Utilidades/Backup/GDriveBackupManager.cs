@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using LigaSoft.Utilidades.Persistence;
 using LigaSoft.Utilidades.Persistence.DiskPersistence;
 
@@ -21,7 +22,7 @@ namespace LigaSoft.Utilidades.Backup
 			BackupDiskPersistence = new BackupDiskPersistence(new AppPathsWebApp());
 		}
 
-		public virtual void GenerarYSubirAlDrive()
+		public virtual async Task GenerarYSubirAlDrive()
 		{
 			var nombreBackup = NombreDelBackupZipeadoSinExtensionNiFecha();
 			try
@@ -32,7 +33,7 @@ namespace LigaSoft.Utilidades.Backup
 
 				EliminarDelDriveBackupMasAntiguoSiHayMasDe3(NombreDelBackupZipeadoSinExtensionNiFecha(), ".zip");
 
-				SubirAlDrive(backupPath);
+				await SubirAlDrive(backupPath);
 
 				Log.Info($"Finaliza la generación del backup de '{nombreBackup}'.");
 			}
@@ -42,12 +43,12 @@ namespace LigaSoft.Utilidades.Backup
 			}
 		}
 
-		protected static void SubirAlDrive(string filePath)
+		protected static async Task SubirAlDrive(string filePath)
 		{
 			var fileName = Path.GetFileName(filePath);
 			try
 			{
-				YKNDriveService.SubirArchivo(filePath, fileName, "application/octet-stream");
+				await YKNDriveService.SubirArchivoAsync(filePath, fileName, "application/octet-stream");
 				Log.Info($"Se subió al Drive el archivo '{fileName}'");
 			}
 			catch (Exception e)

@@ -1,18 +1,19 @@
 ﻿using System;
+using System.Threading.Tasks;
 using LigaSoft.Utilidades.Persistence.DiskPersistence;
 
 namespace LigaSoft.Utilidades.Backup
 {
 	public static class BackupBaseDeDatosYFileSystem
 	{		
-		public static void GenerarYSubirADrive()
+		public static async Task GenerarYSubirADrive()
 		{
 			Log.Info("------------------------------------------------");
 
 			try
 			{
-				new ImagenesGDriveBackupManager().GenerarYSubirAlDrive();
-				new BaseDeDatosGDriveBackupManager().GenerarYSubirAlDrive();
+				await new ImagenesGDriveBackupManager().GenerarYSubirAlDrive();
+				await new BaseDeDatosGDriveBackupManager().GenerarYSubirAlDrive();
 				new BackupDiskPersistence(new AppPathsWebApp()).EliminarTodosLosArchivosDeLaCarpetaDondeEstanLosBackups();
 			}
 			catch (Exception e)

@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Web.Hosting;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Drive.v3;
 using Google.Apis.Services;
+using Google.Apis.Upload;
 using Google.Apis.Util.Store;
 using File = Google.Apis.Drive.v3.Data.File;
 
@@ -66,6 +68,35 @@ namespace LigaSoft.Utilidades.Backup
 
 			if (file.Id == null)
 				throw new Exception("Google Drive: Error al intentar subir el archivo");
+		}
+		
+		public async Task SubirArchivoAsync(string filePath, string fileName, string mimeType)
+		{
+			var fileMetadata = new File { Name = fileName };
+			var request = _driveService.Files.Create(fileMetadata, new FileStream(filePath, FileMode.Open), mimeType);
+			request.Fields = "id";
+			request.ChunkSize = 256 * 1024; // Tamaño de cada fragmento
+
+			try
+			{
+				await request.UploadAsync();
+			}
+			catch (Google.GoogleApiException ex)
+			{
+				// Manejar diferentes tipos de errores
+				if (ex.Error.Code == 403)
+				{
+					throw new Exception("Acceso denegado. Verifica tus permisos.");
+				}
+				else if (ex.Error.Code == 404)
+				{
+					throw new Exception("Archivo o carpeta no encontrado.");
+				}
+				else
+				{
+					throw new Exception("Error desconocido: " + ex.Message);
+				}
+			}
 		}
 
 		public void DeleteFile(string fileId)
