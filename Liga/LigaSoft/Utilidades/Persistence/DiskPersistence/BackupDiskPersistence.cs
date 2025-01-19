@@ -24,6 +24,7 @@ namespace LigaSoft.Utilidades.Persistence.DiskPersistence
 			{
 				using (var zip = new ZipFile())
 				{
+					zip.UseZip64WhenSaving = Zip64Option.Always;
 					zip.AddDirectory(Paths.ImagenesAbsolute);
 					Log.Info($"Se comprimió correctamente la carpeta '{Paths.ImagenesAbsolute}'.");
 					zip.Save(backupPath);
