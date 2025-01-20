@@ -9,7 +9,6 @@ Habilitación masiva <span class="titulo-detacado">@Model.Equipo</span>
 
 @using (Html.YKN().Form(FormSizeEnum.Big))
 {
-
 	@Html.HiddenFor(x => x.EquipoId)
 
 	@(Html.YKN<JugadorConFechaFichajeVM>().Grid()
@@ -27,7 +26,17 @@ Habilitación masiva <span class="titulo-detacado">@Model.Equipo</span>
 		.ParentId(Model.EquipoId)
 	)
 
-	{ Html.YKN().FooterGuardarCancelar("Habilitar seleccionados"); }
+	
+	
+	<div class='row' style="padding-top: 1em;">
+		<div class="col-sm-offset-6 col-sm-6">
+			@(Html.YKN().ComboFor(x => x.NuevoEstado)
+            		.Label("Nuevo estado")
+            		.Values<EstadoJugador>())					
+		</div>
+	</div>
+	
+	{ Html.YKN().FooterGuardarCancelar("Cambiar estado"); }
 
 }
 

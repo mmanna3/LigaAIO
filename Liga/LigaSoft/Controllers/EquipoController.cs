@@ -62,12 +62,11 @@ namespace LigaSoft.Controllers
 	    {
 		    if (!ModelState.IsValid)
 			    return RedirectToAction("HabilitacionMasiva", new { id = vm.EquipoId });
-
-			var equipo = Context.Equipos.Find(vm.EquipoId);
+		    
 		    foreach (var jugId in vm.JugadoresSeleccionados)
 		    {
 			    var jugEquipo = Context.JugadorEquipos.Single(x => x.EquipoId == vm.EquipoId && x.JugadorId == jugId);
-			    jugEquipo.Estado = EstadoJugador.Activo;
+			    jugEquipo.Estado = vm.NuevoEstado;
 			}
 
 			Context.SaveChanges();
