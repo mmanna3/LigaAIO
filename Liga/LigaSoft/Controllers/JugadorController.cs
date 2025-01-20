@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Linq.Dynamic;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using LigaSoft.BusinessLogic;
+using LigaSoft.Models;
 using LigaSoft.Models.Attributes.GPRPattern;
 using LigaSoft.Models.Dominio;
 using LigaSoft.Models.Enums;
@@ -106,6 +108,46 @@ namespace LigaSoft.Controllers
 					    ModelState.AddModelError("", "El tamaño del escudo debe ser de 240 x 240 px.");
 	    }
 
+	    [ImportModelStateFromTempData]
+	    public ActionResult DeshabilitarPorTorneo()
+	    {
+		    var vm = new DeshabilitarJugadoresPorTorneoVM
+		    {
+			    TorneoTipos = new List<TextValueItem>()
+		    };
+
+		    var torneoTipos = Context.TorneoTipos.Select(x => new TextValueItem
+		    {
+			    Text = x.Descripcion,
+			    Value = x.Id.ToString()
+		    });
+		    
+		    vm.TorneoTipos.AddRange(torneoTipos);
+
+		    return View(vm);
+	    }
+	    
+	    [HttpPost, ExportModelStateToTempData]
+	    public ActionResult DeshabilitarPorTorneo(DeshabilitarJugadoresPorTorneoVM vm)
+	    {
+		    if (!ModelState.IsValid)
+			    return RedirectToAction("DeshabilitarPorTorneo");
+		    
+		    var jugadoresADeshabilitar = Context.JugadorEquipos
+													.Include(x => x.Equipo.Torneo.Tipo)
+													.Where(x => x.Equipo.Torneo.Tipo.Id == vm.TorneoTipoId)
+													.ToList();
+
+		    foreach (var jug in jugadoresADeshabilitar)
+		    {
+			    jug.Estado = EstadoJugador.Inhabilitado;
+		    }
+
+		    Context.SaveChanges();
+
+		    return RedirectToAction("Index");
+	    }
+	    
 		[ImportModelStateFromTempData]
 	    public ActionResult EliminarJugadorDeUnEquipo(int id)
 	    {

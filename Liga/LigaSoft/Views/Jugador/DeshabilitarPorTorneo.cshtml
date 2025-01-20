@@ -1,0 +1,25 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.ViewModels
+@model DeshabilitarJugadoresPorTorneoVM
+
+@section Titulo{
+    Deshabilitar por torneo
+}
+
+@section Subtitulo {
+	Al guardar, se marcarán como "inhabilitados" todos los jugadores del tipo de torneo seleccionado
+}
+
+@using (Html.YKN().Form())
+{
+    <div class="row">
+        <div class="col-sm-12">
+            @(Html.YKN().AutocompleteFor(x => x.TorneoTipoId)
+                .Label("Tipo de torneo")
+                .Values(Model.TorneoTipos)
+            )
+        </div>
+    </div>
+
+    { Html.YKN().FooterGuardarCancelar(); }
+}
