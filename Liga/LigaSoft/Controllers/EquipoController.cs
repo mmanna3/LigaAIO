@@ -71,7 +71,7 @@ namespace LigaSoft.Controllers
 
 			Context.SaveChanges();
 
-			return RedirectToAction("Index");
+			return RedirectToAction("HabilitacionMasiva", new { id = vm.EquipoId });
 		}
 
 	    public ActionResult Pases(int id)
