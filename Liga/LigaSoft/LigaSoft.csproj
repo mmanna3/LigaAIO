@@ -489,6 +489,7 @@
     <Compile Include="Models\ViewModels\DeshabilitarJugadorPorTorneoVMcs.cs" />
     <Compile Include="Models\ViewModels\EliminacionDirectaConfiguracionVM.cs" />
     <Compile Include="Models\ViewModels\EliminacionDirectaVM.cs" />
+    <Compile Include="Models\ViewModels\EliminarJugadoresVM.cs" />
     <Compile Include="Models\ViewModels\ImprimirJugadoresVM.cs" />
     <Compile Include="Models\ViewModels\InformeCantidadDeJugadoresPorTorneoVM.cs" />
     <Compile Include="Models\ViewModels\DelegadosPorClubVM.cs" />
@@ -1264,6 +1265,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Views\Jugador\DeshabilitarPorTorneo.cshtml">
+      <TransformOnBuild>false</TransformOnBuild>
+    </Content>
+    <Content Include="Views\Jugador\EliminarJugadores.cshtml">
       <TransformOnBuild>false</TransformOnBuild>
     </Content>
     <Content Include="Views\MovimientoEntradaConClub\FinanzasDeEsteAnio.cshtml">

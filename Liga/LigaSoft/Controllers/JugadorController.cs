@@ -109,6 +109,69 @@ namespace LigaSoft.Controllers
 	    }
 
 	    [ImportModelStateFromTempData]
+	    public ActionResult EliminarJugadores(string mensaje = null)
+	    {
+		    var vm = new EliminarJugadoresVM
+		    {
+			    ResultadoEliminacionAnterior = mensaje
+		    };
+		    
+		    return View(vm);
+	    }
+	    
+	    [HttpPost, ExportModelStateToTempData]
+	    public ActionResult EliminarJugadores(EliminarJugadoresVM vm)
+	    {
+		    if (!ModelState.IsValid)
+			    return RedirectToAction("EliminarJugadores", new { mensaje = "El modelo no es válido"});
+
+		    IQueryable<Jugador> jugadores;
+		    IQueryable<JugadorEquipo> jugadoresEquipos;
+		    var mensaje = "";
+		    switch (vm.Opcion)
+		    {
+			    case "anio-de-fichaje":
+				    jugadoresEquipos = Context.JugadorEquipos.Where(x => x.FechaFichaje.Year == vm.Valor);
+				    Context.JugadorEquipos.RemoveRange(jugadoresEquipos);
+				    jugadores = jugadoresEquipos.Select(x => x.Jugador);
+				    Context.Jugadores.RemoveRange(jugadores);
+				    mensaje = $"Se eliminaron correctamente {jugadores.Count()} jugadores fichados en el año {vm.Valor}";
+				    break;
+        
+			    case "anio-de-nacimiento":
+				    jugadores = Context.Jugadores.Where(x => x.FechaNacimiento.Year == vm.Valor);
+				    Context.Jugadores.RemoveRange(jugadores);
+				    jugadoresEquipos = jugadores.SelectMany(x => x.JugadorEquipo);
+				    Context.JugadorEquipos.RemoveRange(jugadoresEquipos);
+				    mensaje = $"Se eliminaron correctamente {jugadores.Count()} jugadores nacidos en el año {vm.Valor}";
+				    break;
+        
+			    case "dni":
+				    var jugador = Context.Jugadores.Include(jugador1 => jugador1.JugadorEquipo).SingleOrDefault(x => x.DNI == vm.Valor.ToString());
+				    
+				    if (jugador != null)
+				    {
+					    Context.JugadorEquipos.RemoveRange(jugador.JugadorEquipo);
+					    Context.Jugadores.Remove(jugador);
+					    mensaje = $"Se eliminó correctamente el jugador de DNI {vm.Valor}";    
+				    }
+				    else
+				    {
+					    mensaje = $"No se encontró el jugador de DNI {vm.Valor}";
+				    }
+				    
+				    break;
+        
+			    default:
+				    return RedirectToAction("EliminarJugadores", new { mensaje = "Valor de opción erróneo"});	    
+		    }
+
+		    Context.SaveChanges();
+
+		    return RedirectToAction("EliminarJugadores", new { mensaje });
+	    }
+	    
+	    [ImportModelStateFromTempData]
 	    public ActionResult DeshabilitarPorTorneo()
 	    {
 		    var vm = new DeshabilitarJugadoresPorTorneoVM

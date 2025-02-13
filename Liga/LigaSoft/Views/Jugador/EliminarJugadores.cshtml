@@ -1,0 +1,44 @@
+﻿@using LigaSoft.ExtensionMethods
+@using LigaSoft.Models.ViewModels
+@model EliminarJugadoresVM
+
+@section Titulo{
+    Eliminar jugadores
+}
+
+@section Subtitulo {
+	Esta acción es irreversible.
+}
+
+@if (!string.IsNullOrEmpty(Model.ResultadoEliminacionAnterior))
+{
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="alert alert-info">
+                @Model.ResultadoEliminacionAnterior
+            </div>
+        </div>
+    </div>
+}
+
+@using (Html.YKN().Form())
+{
+    <div class="row">
+        <div class="col-sm-6">
+            @(Html.YKN().ComboFor(x => x.Opcion)
+                .Values(new List<SelectListItem>
+                    {
+                        new SelectListItem{Value = "anio-de-fichaje", Text = "Año de fichaje"},
+                        new SelectListItem{Value = "anio-de-nacimiento", Text = "Año de nacimiento"},
+                        new SelectListItem{Value = "dni", Text = "DNI"}
+                    }
+                )
+            )
+        </div>
+        <div class="col-sm-6">
+            @(Html.YKN().EditorFor(x => x.Valor))
+        </div>
+    </div>
+
+    { Html.YKN().FooterGuardarCancelar(); }
+}
