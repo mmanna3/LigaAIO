@@ -5,18 +5,18 @@
 <style>
 	.contenedor-general {
 		display: grid;
-		grid-template-columns: repeat(2, 1fr);
+		grid-template-columns: repeat(3, 1fr);
 		gap: 0;
-		width: calc(210mm - 30mm);
-		margin: 15mm auto;
+		width: calc(210mm - 20mm);
+		margin: 10mm auto;
 	}
 
 	.carnet-contenedor {
-		width: calc((210mm - 30mm) / 2);
-		height: calc((297mm - 30mm) / 2);
+		width: calc((210mm - 20mm) / 3);
+		height: calc((297mm - 20mm) / 2);
 		border: none;
 		border-radius: 0;
-		padding: 8mm 10mm 12mm 10mm;
+		padding: 6mm 7mm 8mm 7mm;
 		background: #01582e;
 		display: flex;
 		flex-direction: column;
@@ -30,7 +30,7 @@
 	@@media print {
 		@@page {
 			size: A4;
-			margin: 15mm;
+			margin: 10mm;
 		}
 
 		body {
@@ -38,7 +38,7 @@
 		}
 
 		.contenedor-general {
-			width: calc(210mm - 30mm);
+			width: calc(210mm - 20mm);
 			margin: 0;
 		}
 
@@ -87,15 +87,15 @@
 	}
 
 	.titulo {
-		font-size: 6mm;
+		font-size: 5mm;
 		font-weight: bold;
-		margin-bottom: 2mm;
+		margin-bottom: 1.5mm;
 		color: white;
 		line-height: 1;
 	}
 
 	.subtitulo {
-		font-size: 4mm;
+		font-size: 3.5mm;
 		color: rgba(255, 255, 255, 0.8);
 		font-weight: normal;
 		line-height: 1;
@@ -122,9 +122,9 @@
 	}
 
 	.imagen {
-		width: 45mm;
-		height: 45mm;
-		border-radius: 5px;
+		width: 35mm;
+		height: 35mm;
+		border-radius: 4px;
 		object-fit: cover;
 		border: 2px solid rgba(255, 255, 255, 0.2);
 	}
@@ -153,14 +153,14 @@
 
 	.campo-label {
 		color: rgba(255, 255, 255, 0.7);
-		font-size: 4mm;
+		font-size: 3.5mm;
 		line-height: 1.2;
 	}
 
 	.campo-valor {
 		color: white;
 		font-weight: 500;
-		font-size: 4.5mm;
+		font-size: 3.8mm;
 		line-height: 1.2;
 		text-align: right;
 	}
@@ -168,19 +168,19 @@
 	.suspendido {
 		background-color: #e81f05;
 		color: white;
-		padding: 2mm;
+		padding: 1.5mm;
 		border-radius: 2mm;
 		text-align: center;
-		margin-bottom: 4mm;
+		margin-bottom: 3mm;
 		font-weight: bold;
 		letter-spacing: 0.5mm;
-		font-size: 3.5mm;
+		font-size: 3mm;
 		position: relative;
 		z-index: 1;
 	}
 
 	.logo {
-		width: 50mm;
+		width: 40mm;
 		position: absolute;
 		right: -5mm;
 		bottom: -5mm;
@@ -190,16 +190,16 @@
 
 	.tarjetas {
 		position: absolute;
-		right: 10mm;
-		top: 10mm;
+		right: 7mm;
+		top: 7mm;
 		display: flex;
-		gap: 2mm;
+		gap: 1.5mm;
 		z-index: 1;
 	}
 
 	.tarjetaAmarilla, .tarjetaRoja {
-		width: 3mm;
-		height: 4.5mm;
+		width: 2.5mm;
+		height: 4mm;
 		display: inline-block;
 		border: 0.5px solid rgba(255, 255, 255, 0.3);
 		box-shadow: 0 1px 2px rgba(0,0,0,0.2);
@@ -215,7 +215,7 @@
 
 	.cantidadDeAmarillas {
 		font-weight: bold;
-		font-size: 3.5mm;
+		font-size: 3mm;
 		margin-right: 1mm;
 		color: white;
 	}

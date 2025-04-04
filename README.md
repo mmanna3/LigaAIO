@@ -13,7 +13,7 @@
 `docker pull mcr.microsoft.com/azure-sql-edge`
 
 3- Creamos el contenedor
-`docker run --cap-add SYS_PTRACE -e 'ACCEPT_EULA=1' -e 'MSSQL_SA_PASSWORD=Pas$word!39' -p 1433:1433 --name fichajes-localhost -d mcr.microsoft.com/azure-sql-edge`
+`docker run --cap-add SYS_PTRACE -e 'ACCEPT_EULA=1' -e 'MSSQL_SA_PASSWORD=Pas$word!39' -p 1433:1433 --name edefi-localhost -d mcr.microsoft.com/azure-sql-edge`
 
 ### Conectarse desde DataGrip
 

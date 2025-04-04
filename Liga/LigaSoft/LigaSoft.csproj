@@ -504,9 +504,9 @@
     <Compile Include="Models\ViewModels\SancionVM.cs" />
     <Compile Include="Models\ViewModels\UsuarioDelegadoVM.cs" />
     <Compile Include="Models\ViewModels\SeleccionarEquipoVM.cs" />
+    <Compile Include="Utilidades\AppPaths.cs" />
     <Compile Include="Utilidades\Backup\BackupBaseDeDatosYFileSystem.cs" />
     <Compile Include="UIHelpers\Autocomplete_Old_Cambiar_PorNuevoAutocompleteFor.cs" />
-    <Compile Include="Utilidades\AppPaths.cs" />
     <Compile Include="Utilidades\Backup\GDriveBackupManager.cs" />
     <Compile Include="Utilidades\Backup\BaseDeDatosGDriveBackupManager.cs" />
     <Compile Include="Utilidades\Backup\ImagenesGDriveBackupManager.cs" />
@@ -973,6 +973,7 @@
     <Compile Include="Models\ViewModels\PublicidadesVM.cs" />
     <Compile Include="Models\ViewModels\PublicidadVM.cs" />
     <Compile Include="Utilidades\CorsAttribute.cs" />
+    <Compile Include="Utilidades\ImagenUtility.cs" />
     <Compile Include="Utilidades\Persistence\IBackupPersistence.cs" />
     <Compile Include="Utilidades\Persistence\DiskPersistence\ImagenesPublicidadDiskPersistence.cs" />
     <Compile Include="Utilidades\Persistence\IImagenesPublicidadPersistence.cs" />
@@ -1070,7 +1071,6 @@
     <Compile Include="UIHelpers\WidgetFactories\YKNNonTypedWidgetFactory.cs" />
     <Compile Include="Utilidades\Persistence\DiskPersistence\ImagenesJugadoresDiskPersistence.cs" />
     <Compile Include="Utilidades\Persistence\DiskPersistence\BackupDiskPersistence.cs" />
-    <Compile Include="Utilidades\ImagenUtility.cs" />
     <Compile Include="Utilidades\Log.cs" />
     <Compile Include="Utilidades\Roles.cs" />
     <Compile Include="Utilidades\DateTimeUtils.cs" />
