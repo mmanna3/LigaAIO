@@ -128,18 +128,18 @@ namespace LigaSoft.ViewModelMappers
 
 			return new JugadorCarnetVM
 			{
-				Nombre = model.Nombre.ToUpper(),
-				Apellido = model.Apellido.ToUpper(),
+				Nombre = model.Nombre,
+				Apellido = model.Apellido,
 				DNI = model.DNI,
 				FechaNacimiento = DateTimeUtils.ConvertToString(model.FechaNacimiento),
-				Equipo = equipo.Nombre.ToUpper(),
+				Equipo = equipo.Nombre,
 				Estado = jugadorEquipo.Estado,
 				EstadoDescripcion = jugadorEquipo.Estado.Descripcion().ToUpper(),
 				Categoria = Categoria(model),				
 				FotoBase64 = _imagenesJugadoresDiskPersistence.GetFotoEnBase64(model.DNI),
 				FotoPath = _imagenesJugadoresDiskPersistence.Path(model.DNI),
 				FechaVencimiento = FechaDeVencimientoDelCarnet(jugadorEquipo),
-				TipoLiga = equipo.Torneo.Tipo.LoQueSeImprimeEnElCarnet.ToUpper(),
+				TipoLiga = equipo.Torneo.Tipo.LoQueSeImprimeEnElCarnet,
 				TarjetasAmarillas = jugadorEquipo.TarjetasAmarillas,
 				TarjetasRojas = jugadorEquipo.TarjetasRojas,
 			};

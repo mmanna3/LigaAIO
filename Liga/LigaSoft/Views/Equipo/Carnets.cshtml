@@ -3,96 +3,189 @@
 @model List<LigaSoft.Models.ViewModels.JugadorCarnetVM>
 
 <style>
-
 	.contenedor-general {
 		display: grid;
-		grid-template-columns: auto auto;
+		grid-template-columns: auto auto auto;
+		gap: 20px;
+		padding: 20px;
 	}
 
 	.carnet-contenedor {
-		width: 450px;
-		height: 200px;
-		border: 2px solid black;
+		width: 300px;
+		height: 600px;
+		border: none;
 		border-radius: 20px;
-		padding: 15px;
-		margin-bottom: 10px;
-		margin-right: 10px;
+		padding: 25px;
+		background: #01582e;
+		box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 		display: flex;
-		position: relative
+		flex-direction: column;
+		position: relative;
+		overflow: hidden;
+		-webkit-print-color-adjust: exact;
+		print-color-adjust: exact;
+	}
+
+	@@media print {
+		.carnet-contenedor {
+			break-inside: avoid;
+			background: #01582e !important;
+			-webkit-print-color-adjust: exact !important;
+			print-color-adjust: exact !important;
+		}
+
+		.titulo {
+			color: white !important;
+		}
+
+		.subtitulo {
+			color: rgba(255, 255, 255, 0.8) !important;
+		}
+
+		.campo-label {
+			color: rgba(255, 255, 255, 0.7) !important;
+		}
+
+		.campo-valor {
+			color: white !important;
+		}
+
+		.cantidadDeAmarillas {
+			color: white !important;
+		}
+
+		.divisor {
+			border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+		}
+
+		.campo {
+			border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+		}
+	}
+
+	.header {
+		text-align: center;		
+		position: relative;
+		z-index: 1;
+	}
+
+	.titulo {
+		font-size: 24px;
+		font-weight: bold;
+		margin-bottom: 5px;
+		color: white;
+	}
+
+	.subtitulo {
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.8);
+		font-weight: normal;
+	}
+
+	.divisor {
+		width: 100%;
+		height: 2px;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.1);		
+		margin: 15px 0;
+		position: relative;
+		z-index: 1;
+	}
+
+	.imagen-container {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		margin-bottom: 25px;
+		position: relative;
+		z-index: 1;
 	}
 
 	.imagen {
-		width: 130px;
-		height: 130px;
+		width: 200px;
+		height: 200px;
+		border-radius: 10px;
+		object-fit: cover;
+		border: 3px solid rgba(255, 255, 255, 0.2);
 	}
 
 	.datos {
-		margin-left: 20px;
+		width: 100%;
+		margin-bottom: 20px;
+		position: relative;
+		z-index: 1;
+	}
+
+	.campo {
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 18px;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+		padding-bottom: 8px;
+	}
+
+	.campo-label {
+		color: rgba(255, 255, 255, 0.7);
 		font-size: 16px;
-		font-weight: bold;
 	}
 
-	.verde {
-		color: #01aa59 !important;
-	}
-
-	.rojo {
-		color: #e81f05 !important;
-	}
-
-	.azul {
-		color: #0038ba !important;
-	}
-
-	.datos div {
-		margin-bottom: 5px;
+	.campo-valor {
+		color: white;
+		font-weight: 500;
+		font-size: 16px;
 	}
 
 	.suspendido {
-		background-color: #e81f05 !important;
-		-webkit-print-color-adjust: exact;
-		padding: 5px;
-		padding-left: 10px;
-		padding-right: 10px;
+		background-color: #e81f05;
+		color: white;
+		padding: 8px;
 		border-radius: 5px;
-		color: white !important;
+		text-align: center;
+		margin-bottom: 15px;
+		font-weight: bold;
+		letter-spacing: 1px;
+		position: relative;
+		z-index: 1;
 	}
 
 	.logo {
-		width: 70px;
+		width: 200px;
 		position: absolute;
-		left: 354px;
-		bottom: 25px;
-	}
-
-	.logo-contenedor {
-		position: absolute;
-		width: 450px;
-		height: 200px;
+		right: -25px;
+		bottom: -25px;
+		opacity: 0.1;
+		transform: rotate(-15deg);
 	}
 
 	.tarjetas {
 		position: absolute;
-		right: 30px;
-		bottom: 95px;
+		right: 20px;
+		top: 20px;
+		display: flex;
+		gap: 5px;
+		z-index: 1;
+	}
+
+	.tarjetaAmarilla, .tarjetaRoja {
+		width: 12px;
+		height: 18px;
+		display: inline-block;
+		border: 1px solid rgba(255, 255, 255, 0.3);
+		box-shadow: 0 1px 2px rgba(0,0,0,0.2);
 	}
 
 	.tarjetaAmarilla {
-		width: 10px;
-		height: 15px;
-		background-color: yellow;
-		display: inline-block;
-		border: 1px solid black;
-		margin-left: 2px;
+		background-color: #ffd700;
 	}
 
 	.tarjetaRoja {
-		width: 10px;
-		height: 15px;
-		background-color: red;
-		display: inline-block;
-		border: 1px solid black;
-		margin-left: 2px;
+		background-color: #e81f05;
+	}
+
+	.cantidadDeAmarillas {
+		font-weight: bold;
+		font-size: 14px;
+		margin-right: 3px;
+		color: white;
 	}
 </style>
 
@@ -122,43 +215,59 @@
 	@foreach (var carnet in Model)
 	{
 	<div class="carnet-contenedor">
-		<img class="imagen" src="@carnet.FotoPath" alt="foto" />
+		<div class="header">
+			<div class="titulo">@carnet.Equipo</div>
+			<div class="subtitulo">@carnet.TipoLiga</div>
+		</div>
+		
+		<div class="divisor"></div>
+
+		<div class="imagen-container">
+			<img class="imagen" src="@carnet.FotoPath" alt="foto" />
+		</div>
+
 		<div class="datos">
 			@if (carnet.Estado == EstadoJugador.Inhabilitado || carnet.Estado == EstadoJugador.Suspendido)
 			{
-				<div class="suspendido">JUGADOR @carnet.EstadoDescripcion</div>
-				<div class="nombre">@carnet.Nombre @carnet.Apellido</div>
-				<div>DNI: @carnet.DNI</div>
-				<div>@carnet.FechaNacimiento</div>
-				<div>@carnet.Equipo</div>
-				<div>@carnet.TipoLiga</div>
+				<div class="suspendido">@carnet.EstadoDescripcion</div>
 			}
-			else
-			{
-				<div class="nombre verde">@carnet.Nombre @carnet.Apellido</div>
-				<div class="azul">DNI: @carnet.DNI</div>
-				<div class="azul">@carnet.FechaNacimiento</div>
-				<div class="rojo">@carnet.Equipo</div>
-				<div class="rojo">@carnet.TipoLiga</div>
-			}
+			
+			<div class="campo">
+				<span class="campo-label">DNI:</span>
+				<span class="campo-valor">@carnet.DNI</span>
+			</div>
+			<div class="campo">
+				<span class="campo-label">Nombre:</span>
+				<span class="campo-valor">@carnet.Nombre</span>
+			</div>
+			<div class="campo">
+				<span class="campo-label">Apellido:</span>
+				<span class="campo-valor">@carnet.Apellido</span>
+			</div>
+			<div class="campo">
+				<span class="campo-label">Fecha Nac:</span>
+				<span class="campo-valor">@carnet.FechaNacimiento</span>
+			</div>
+			<div class="campo">
+				<span class="campo-label">Categoría:</span>
+				<span class="campo-valor">Cat @carnet.FechaNacimiento.Substring(carnet.FechaNacimiento.Length - 4)</span>
+			</div>
 		</div>
-		<div class="logo-contenedor">
-			<img class="logo" src="../../Content/logo.svg" alt="EDEFI" />
-		</div>
+
+		<img class="logo" src="../../Content/logo.svg" alt="EDEFI" />
+		
 		<div class="tarjetas">
 			@if (carnet.TarjetasAmarillas != 0)
 			{
-				<span class="cantidadDeAmarillas">
-					@carnet.TarjetasAmarillas
-				</span>
-				<span class="tarjetaAmarilla"></span>
+				<div>
+					<span class="cantidadDeAmarillas">@carnet.TarjetasAmarillas</span>
+					<span class="tarjetaAmarilla"></span>
+				</div>
 			}
 			@if (carnet.TarjetasRojas != 0)
 			{
 				<div>
-					<span class="cantidadDeAmarillas">
-						@carnet.TarjetasRojas
-					</span>
+					<span class="cantidadDeAmarillas">@carnet.TarjetasRojas</span>
 					<span class="tarjetaRoja"></span>
 				</div>
 			}
