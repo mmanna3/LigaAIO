@@ -86,6 +86,14 @@
 		.campo {
 			border-bottom: 1px solid rgba(1, 88, 46, 0.1) !important;
 		}
+
+		.azul {
+			color: #007bff !important;
+		}
+
+		.rojo {
+			color: #e81f05 !important;
+		}
 	}
 
 	.header {
@@ -99,13 +107,11 @@
 		font-size: 5mm;
 		font-weight: bold;
 		margin-bottom: 1mm;
-		color: #01582e;
 		line-height: 1;
 	}
 
 	.subtitulo {
 		font-size: 3.5mm;
-		color: rgba(1, 88, 46, 0.8);
 		font-weight: normal;
 		line-height: 1;
 		margin-bottom: 0;
@@ -161,17 +167,39 @@
 	}
 
 	.campo-label {
-		color: rgba(1, 88, 46, 0.7);
 		font-size: 4mm;
 		line-height: 1.2;
 	}
 
 	.campo-valor {
-		color: #01582e;
 		font-weight: 500;
 		font-size: 4.2mm;
 		line-height: 1.2;
 		text-align: right;
+	}
+
+	.dni {
+		font-size: 4.5mm;
+	}
+
+	.negrita {
+		font-weight: bold;
+	}
+
+	.verde {
+		color: #01582e;
+	}
+
+	.rojo {
+		color: #e81f05;
+	}
+
+	.azul {
+		color: #007bff;
+	}
+
+	.negro {
+		color: #222;
 	}
 
 	.suspendido {
@@ -280,8 +308,8 @@
 	{
 	<div class="carnet-contenedor">
 		<div class="header">
-			<div class="titulo">@carnet.Equipo</div>
-			<div class="subtitulo">@carnet.TipoLiga</div>
+			<div class="titulo verde">@carnet.Equipo</div>
+			<div class="subtitulo verde">@carnet.TipoLiga</div>
 		</div>
 		
 		
@@ -297,24 +325,24 @@
 			}
 			
 			<div class="campo">
-				<span class="campo-label">DNI:</span>
-				<span class="campo-valor">@carnet.DNI</span>
+				<span class="campo-label verde">DNI:</span>
+				<span class="campo-valor verde dni negrita">@carnet.DNI</span>
 			</div>
 			<div class="campo">
-				<span class="campo-label">Nombre:</span>
-				<span class="campo-valor">@carnet.Nombre</span>
+				<span class="campo-label azul">Nombre:</span>
+				<span class="campo-valor azul negrita">@carnet.Nombre</span>
 			</div>
 			<div class="campo">
-				<span class="campo-label">Apellido:</span>
-				<span class="campo-valor">@carnet.Apellido</span>
+				<span class="campo-label azul">Apellido:</span>
+				<span class="campo-valor azul negrita">@carnet.Apellido</span>
 			</div>
 			<div class="campo">
-				<span class="campo-label">Fecha Nac:</span>
-				<span class="campo-valor">@carnet.FechaNacimiento</span>
+				<span class="campo-label rojo">Fecha Nac:</span>
+				<span class="campo-valor rojo">@carnet.FechaNacimiento</span>
 			</div>
 			<div class="campo">
-				<span class="campo-label">Categoría:</span>
-				<span class="campo-valor">Cat @carnet.FechaNacimiento.Substring(carnet.FechaNacimiento.Length - 4)</span>
+				<span class="campo-label rojo">Categoría:</span>
+				<span class="campo-valor rojo">Cat @carnet.FechaNacimiento.Substring(carnet.FechaNacimiento.Length - 4)</span>
 			</div>
 		</div>
 
