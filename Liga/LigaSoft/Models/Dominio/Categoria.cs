@@ -12,6 +12,10 @@ namespace LigaSoft.Models.Dominio
 		[Required]
 		public int Orden { get; set; }
 
+		public int? AnioNacimientoDesde { get; set; }
+
+		public int? AnioNacimientoHasta { get; set; }
+
 		[Required, StringLength(18), Index("IX_NombreYTorneo", 1, IsUnique = true)]
 		public string Nombre { get; set; }
 

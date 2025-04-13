@@ -469,6 +469,10 @@
     <Compile Include="Migrations\202409020127285_LeyendasMasLargasPermitidas.Designer.cs">
       <DependentUpon>202409020127285_LeyendasMasLargasPermitidas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202504132255037_AgregaAniosDesdeHastaEnCategorias.cs" />
+    <Compile Include="Migrations\202504132255037_AgregaAniosDesdeHastaEnCategorias.Designer.cs">
+      <DependentUpon>202504132255037_AgregaAniosDesdeHastaEnCategorias.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Dominio\JugadorSancionadoDePorVida.cs" />
     <Compile Include="Models\Dominio\PartidoEliminacionDirecta.cs" />
     <Compile Include="Models\Dominio\QuitaDePuntos.cs" />
@@ -1942,6 +1946,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202409020127285_LeyendasMasLargasPermitidas.resx">
       <DependentUpon>202409020127285_LeyendasMasLargasPermitidas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202504132255037_AgregaAniosDesdeHastaEnCategorias.resx">
+      <DependentUpon>202504132255037_AgregaAniosDesdeHastaEnCategorias.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
