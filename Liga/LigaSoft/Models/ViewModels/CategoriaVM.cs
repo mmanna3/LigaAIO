@@ -1,4 +1,5 @@
-﻿using LigaSoft.Models.Attributes;
+﻿using System.ComponentModel.DataAnnotations;
+using LigaSoft.Models.Attributes;
 
 namespace LigaSoft.Models.ViewModels
 {
@@ -10,5 +11,11 @@ namespace LigaSoft.Models.ViewModels
 
 		public int TorneoId { get; set; }
 		public string Torneo { get; set; }
+		
+		[Display(Name = "Año desde")]
+		public int? AnioNacimientoDesde { get; set; }
+		
+		[Display(Name = "Año hasta")]
+		public int? AnioNacimientoHasta { get; set; }
 	}
 }

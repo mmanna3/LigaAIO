@@ -17,6 +17,8 @@ namespace LigaSoft.ViewModelMappers
 			model.Nombre = vm.Nombre;
 			model.Orden = vm.Orden;
 			model.Torneo = Context.Torneos.Find(vm.TorneoId);
+			model.AnioNacimientoDesde = vm.AnioNacimientoDesde;
+			model.AnioNacimientoHasta = vm.AnioNacimientoHasta;
 		}
 
 		public override IList<CategoriaVM> MapForGrid(IList<Categoria> modelList)
@@ -37,7 +39,9 @@ namespace LigaSoft.ViewModelMappers
 				Nombre = model.Nombre,
 				Orden = model.Orden,
 				TorneoId = model.TorneoId,
-				Torneo = model.Torneo.Descripcion
+				Torneo = model.Torneo.Descripcion,
+				AnioNacimientoDesde = model.AnioNacimientoDesde,
+				AnioNacimientoHasta = model.AnioNacimientoHasta
 			};
 		}
 	}

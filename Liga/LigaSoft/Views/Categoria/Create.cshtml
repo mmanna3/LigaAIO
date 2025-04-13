@@ -16,6 +16,14 @@
 		</div>		
 		@Html.HiddenFor(x => x.TorneoId)
 	</div>
+	<div class="row">
+		<div class="col-sm-6">
+			@Html.YKN().EditorFor(x => x.AnioNacimientoDesde)
+		</div>
+		<div class="col-sm-6">
+			@Html.YKN().EditorFor(x => x.AnioNacimientoHasta)
+		</div>
+	</div>
 
 	{Html.YKN().FooterGuardarCancelar();}
 }
