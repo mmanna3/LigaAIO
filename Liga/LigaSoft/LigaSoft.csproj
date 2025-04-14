@@ -502,6 +502,7 @@
     <Compile Include="Models\ViewModels\ApiResponseVM.cs" />
     <Compile Include="Models\ViewModels\JugadorConFechaFichajeVM.cs" />
     <Compile Include="Models\ViewModels\JugadorSancionadoDePorVidaVM.cs" />
+    <Compile Include="Models\ViewModels\PlanillaDeJuegoVM.cs" />
     <Compile Include="Models\ViewModels\QuitaDePuntosVM.cs" />
     <Compile Include="Models\ViewModels\SancionesWebPublicaVM.cs" />
     <Compile Include="Models\ViewModels\InformePagoCuotasPorMesVM.cs" />

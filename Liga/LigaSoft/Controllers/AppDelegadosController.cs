@@ -60,6 +60,43 @@ namespace LigaSoft.Controllers
 					
 			return JsonConvert.SerializeObject(ApiResponseCreator.Exito(resultado));
 		}
+		
+		[AllowAnonymous]
+		public string GetPlanillas(string codigoAlfanumerico) //TODO: Pedir token acá
+		{
+			int equipoId;
+			try
+			{
+				equipoId = GeneradorDeHash.ObtenerSemillaAPartirDeAlfanumerico7Digitos(codigoAlfanumerico);
+			} catch (Exception e)
+			{
+				return JsonConvert.SerializeObject(ApiResponseCreator.Error(e.Message));
+			}
+
+			var equipo = _context.Equipos.Find(equipoId);
+
+			var categorias = _context.Categorias.Where(x => x.TorneoId == equipo.TorneoId);
+			
+			var jugadores = _context.JugadorEquipos.Where(x => x.EquipoId == equipoId).Select(x => x.Jugador).ToList();
+
+			var resultado = new PlanillaDeJuegoVM
+			{
+				Planillas = new List<PlanillaDeJuegoPorCategoriaVM>(),
+				Equipo = equipo.Nombre,
+				Torneo = equipo.Torneo.Tipo.Descripcion
+			};
+
+			foreach (var categoria in categorias)
+			{
+				resultado.Planillas.Add(new PlanillaDeJuegoPorCategoriaVM
+				{
+					Categoria = categoria.Nombre,
+					Jugadores = null
+				});
+			}
+					
+			return JsonConvert.SerializeObject(ApiResponseCreator.Exito(resultado));
+		}
 
 		[AllowAnonymous]
 		public string GetJugadoresAutofichadosConEstado(int clubId) //TODO: Pedir token acá
