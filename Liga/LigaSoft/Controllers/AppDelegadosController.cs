@@ -110,7 +110,7 @@ namespace LigaSoft.Controllers
 				new JugadorParaPlanillaVM
 				{
 					DNI = x.Jugador.DNI,
-					Nombre = x.Jugador.Nombre,
+					Nombre = x.Jugador.Apellido + " " + x.Jugador.Nombre,
 					Estado = x.Estado.Descripcion()
 				}).ToList();
 		}
