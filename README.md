@@ -20,6 +20,10 @@
 Conectarse desde DataGrip copiando esto en el campo url
 `jdbc:sqlserver://localhost:1433;databaseName=edefi_dev;user=sa;password=Pas$word!39;encrypt=false;trustServerCertificate=true`
 
+### Default connection en web.config MAC
+
+<add name="DefaultConnection" connectionString="Data Source=localhost,1433;Initial Catalog=mmmannna3_edefi_dev;User ID=sa;Password=Pas$word!39;Encrypt=False;TrustServerCertificate=True;" providerName="System.Data.SqlClient" />
+
 # WINDOWS
 
 ## Subir localhost a internet
