@@ -77,9 +77,9 @@ namespace LigaSoft.Controllers
 
 			var equipo = _context.Equipos.Find(equipoId);
 
-			var categorias = _context.Categorias.Where(x => x.TorneoId == equipo.TorneoId);
+			var categorias = _context.Categorias.Where(x => x.TorneoId == equipo.TorneoId).ToList();
 			
-			var jugadores = _context.JugadorEquipos.Where(x => x.EquipoId == equipoId);
+			var jugadores = _context.JugadorEquipos.Where(x => x.EquipoId == equipoId).ToList();
 
 			var resultado = new PlanillaDeJuegoVM
 			{
@@ -95,19 +95,16 @@ namespace LigaSoft.Controllers
 					Categoria = categoria.Nombre,
 					Jugadores = MapearJugadores(jugadores, categoria)
 				});
-				
-				
 			}
 					
 			return JsonConvert.SerializeObject(ApiResponseCreator.Exito(resultado));
 		}
 
-		public IList<JugadorParaPlanillaVM> MapearJugadores(IQueryable<JugadorEquipo> jugadores, Categoria categoria)
+		public IList<JugadorParaPlanillaVM> MapearJugadores(IList<JugadorEquipo> jugadores, Categoria categoria)
 		{
 			var resultado = jugadores.Where(x =>
 				x.Jugador.FechaNacimiento.Year >= categoria.AnioNacimientoDesde &&
 				x.Jugador.FechaNacimiento.Year <= categoria.AnioNacimientoHasta).ToList();
-			
 			
 			return resultado.Select(x =>
 				new JugadorParaPlanillaVM
