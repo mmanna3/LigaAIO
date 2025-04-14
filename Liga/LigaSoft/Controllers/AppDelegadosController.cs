@@ -9,6 +9,7 @@ using LigaSoft.Utilidades;
 using LigaSoft.ViewModelMappers;
 using Newtonsoft.Json;
 using LigaSoft.Models;
+using LigaSoft.Models.Dominio;
 
 namespace LigaSoft.Controllers
 {
@@ -91,13 +92,25 @@ namespace LigaSoft.Controllers
 				resultado.Planillas.Add(new PlanillaDeJuegoPorCategoriaVM
 				{
 					Categoria = categoria.Nombre,
-					Jugadores = null
+					Jugadores = MapearJugadores(jugadores.Where(x => x.FechaNacimiento.Year >= categoria.AnioNacimientoDesde && x.FechaNacimiento.Year <= categoria.AnioNacimientoHasta))
 				});
+				
+				
 			}
 					
 			return JsonConvert.SerializeObject(ApiResponseCreator.Exito(resultado));
 		}
 
+		public IList<JugadorParaPlanillaVM> MapearJugadores(IEnumerable<Jugador> jugadores)
+		{
+			return jugadores.Select(x =>
+				new JugadorParaPlanillaVM
+				{
+					DNI = x.DNI,
+					Nombre = x.Nombre
+				}).ToList();
+		}
+		
 		[AllowAnonymous]
 		public string GetJugadoresAutofichadosConEstado(int clubId) //TODO: Pedir token acá
 		{
