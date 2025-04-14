@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using LigaSoft.BusinessLogic;
+using LigaSoft.ExtensionMethods;
 using LigaSoft.Models.ViewModels;
 using LigaSoft.Utilidades;
 using LigaSoft.ViewModelMappers;
@@ -78,7 +79,7 @@ namespace LigaSoft.Controllers
 
 			var categorias = _context.Categorias.Where(x => x.TorneoId == equipo.TorneoId);
 			
-			var jugadores = _context.JugadorEquipos.Where(x => x.EquipoId == equipoId).Select(x => x.Jugador).ToList();
+			var jugadores = _context.JugadorEquipos.Where(x => x.EquipoId == equipoId);
 
 			var resultado = new PlanillaDeJuegoVM
 			{
@@ -92,7 +93,7 @@ namespace LigaSoft.Controllers
 				resultado.Planillas.Add(new PlanillaDeJuegoPorCategoriaVM
 				{
 					Categoria = categoria.Nombre,
-					Jugadores = MapearJugadores(jugadores.Where(x => x.FechaNacimiento.Year >= categoria.AnioNacimientoDesde && x.FechaNacimiento.Year <= categoria.AnioNacimientoHasta))
+					Jugadores = MapearJugadores(jugadores, categoria)
 				});
 				
 				
@@ -101,13 +102,19 @@ namespace LigaSoft.Controllers
 			return JsonConvert.SerializeObject(ApiResponseCreator.Exito(resultado));
 		}
 
-		public IList<JugadorParaPlanillaVM> MapearJugadores(IEnumerable<Jugador> jugadores)
+		public IList<JugadorParaPlanillaVM> MapearJugadores(IQueryable<JugadorEquipo> jugadores, Categoria categoria)
 		{
-			return jugadores.Select(x =>
+			var resultado = jugadores.Where(x =>
+				x.Jugador.FechaNacimiento.Year >= categoria.AnioNacimientoDesde &&
+				x.Jugador.FechaNacimiento.Year <= categoria.AnioNacimientoHasta);
+			
+			
+			return resultado.Select(x =>
 				new JugadorParaPlanillaVM
 				{
-					DNI = x.DNI,
-					Nombre = x.Nombre
+					DNI = x.Jugador.DNI,
+					Nombre = x.Jugador.Nombre,
+					Estado = x.Estado.Descripcion()
 				}).ToList();
 		}
 		

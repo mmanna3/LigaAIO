@@ -20,5 +20,6 @@ namespace LigaSoft.Models.ViewModels
 	{
 		public string DNI { get; set; }
 		public string Nombre { get; set; }
+		public string Estado { get; set; }
 	}
 }
