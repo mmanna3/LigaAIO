@@ -106,7 +106,7 @@ namespace LigaSoft.Controllers
 		{
 			var resultado = jugadores.Where(x =>
 				x.Jugador.FechaNacimiento.Year >= categoria.AnioNacimientoDesde &&
-				x.Jugador.FechaNacimiento.Year <= categoria.AnioNacimientoHasta);
+				x.Jugador.FechaNacimiento.Year <= categoria.AnioNacimientoHasta).ToList();
 			
 			
 			return resultado.Select(x =>
