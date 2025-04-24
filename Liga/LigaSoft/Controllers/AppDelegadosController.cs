@@ -11,6 +11,7 @@ using LigaSoft.ViewModelMappers;
 using Newtonsoft.Json;
 using LigaSoft.Models;
 using LigaSoft.Models.Dominio;
+using LigaSoft.Models.Enums;
 
 namespace LigaSoft.Controllers
 {
@@ -79,7 +80,10 @@ namespace LigaSoft.Controllers
 
 			var categorias = _context.Categorias.Where(x => x.TorneoId == equipo.TorneoId).ToList();
 			
-			var jugadores = _context.JugadorEquipos.Where(x => x.EquipoId == equipoId).ToList();
+			var jugadores = _context
+								.JugadorEquipos
+								.Where(x => x.EquipoId == equipoId && x.Estado != EstadoJugador.Inhabilitado)
+								.ToList();
 
 			var resultado = new PlanillaDeJuegoVM
 			{
