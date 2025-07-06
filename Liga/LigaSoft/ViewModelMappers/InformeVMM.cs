@@ -70,7 +70,8 @@ namespace LigaSoft.ViewModelMappers
 									.Select(x => new InformeJugadoresPorTorneoRenglonVM
 									{
 										TorneoTipo = x.FirstOrDefault().Equipo.Torneo.Tipo.Descripcion,
-										CantidadDeJugadores = x.Count(y => y.JugadorId != 0)
+										CantidadDeJugadores = x.Count(y => y.JugadorId != 0),
+										CantidadDeJugadoresActivos = x.Count(y => y.JugadorId != 0 && y.Estado == EstadoJugador.Activo),
 									})
 									.ToList()
 			};

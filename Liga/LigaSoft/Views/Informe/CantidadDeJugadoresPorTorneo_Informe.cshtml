@@ -3,7 +3,7 @@
 
 
 @section Titulo {
-	Cantidad de jugadores por torneo del año actual
+	Cantidad de jugadores por torneo del aï¿½o actual
 }
 
 <div class="row">
@@ -14,7 +14,8 @@
 				<thead>
 				<tr>
 					<th scope="col">Torneo</th>
-					<th scope="col">Cantidad</th>
+					<th scope="col">Total</th>
+					<th scope="col">Activos</th>
 				</tr>
 				</thead>
 				<tbody>
@@ -23,6 +24,7 @@
 						<tr>
 							<td>@renglon.TorneoTipo</td>
 							<td>@renglon.CantidadDeJugadores</td>
+							<td>@renglon.CantidadDeJugadoresActivos</td>
 						</tr>
 					}
 				</tbody>
@@ -32,7 +34,7 @@
 </div>
 
 <style>
-	/*Para que no salga la url del link en la impresión*/
+	/*Para que no salga la url del link en la impresiï¿½n*/
 	a[href]:after {
 		content: initial;
 	}

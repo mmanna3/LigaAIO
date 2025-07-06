@@ -16,5 +16,6 @@ namespace LigaSoft.Models.ViewModels
 	{
 		public string TorneoTipo { get; set; }
 		public int CantidadDeJugadores { get; set; }
+		public int CantidadDeJugadoresActivos { get; set; }
 	}
 }
