@@ -3,7 +3,7 @@
 
 
 @section Titulo {
-	Cantidad de jugadores por torneo del a�o actual
+	Cantidad de jugadores por torneo del año actual
 }
 
 <div class="row">
@@ -27,6 +27,11 @@
 							<td>@renglon.CantidadDeJugadoresActivos</td>
 						</tr>
 					}
+					<tr>
+                    	<td></td>
+                    	<td>@Model.CantidadTotalDeJugadores</td>
+                    	<td>@Model.CantidadTotalDeJugadoresActivos</td>
+                    </tr>
 				</tbody>
 			</table>
 		</div>

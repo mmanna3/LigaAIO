@@ -76,6 +76,9 @@ namespace LigaSoft.ViewModelMappers
 									.ToList()
 			};
 
+			vm.CantidadTotalDeJugadores = vm.Renglones.Sum(x => x.CantidadDeJugadores);
+			vm.CantidadTotalDeJugadoresActivos = vm.Renglones.Sum(x => x.CantidadDeJugadoresActivos);
+
 			return vm;
 		}
 

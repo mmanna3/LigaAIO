@@ -10,6 +10,8 @@ namespace LigaSoft.Models.ViewModels
 		}
 
 		public List<InformeJugadoresPorTorneoRenglonVM> Renglones { get; set; }
+		public int CantidadTotalDeJugadores { get; set; }
+		public int CantidadTotalDeJugadoresActivos { get; set; }
 	}
 
 	public class InformeJugadoresPorTorneoRenglonVM
