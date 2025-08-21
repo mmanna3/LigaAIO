@@ -56,8 +56,8 @@ namespace LigaSoft.ViewModelMappers
 			{
 				Id = model.Id,
 				Nombre = model.Nombre,
-				Club = model.Club.Nombre,
-				Torneo = model.Torneo.Descripcion,
+				Club = model.Club?.Nombre,
+				Torneo = model.Torneo?.Descripcion,
 				Zona = model.Zona?.Nombre,
 				BajaLogica = model.BajaLogica
 			};
@@ -70,9 +70,9 @@ namespace LigaSoft.ViewModelMappers
 				Id = model.Id,
 				Nombre = model.Nombre,
 				ClubId = model.ClubId,
-				Club = model.Club.Nombre,
-				TorneoId = model.Torneo.Id,
-				Torneo = model.Torneo.Descripcion,
+				Club = model.Club?.Nombre,
+				TorneoId = model.Torneo?.Id ?? 0,
+				Torneo = model.Torneo?.Descripcion,
 				Zona = model.Zona?.Nombre,
 				CantidadFichados = model.CantidadFichados(),
 				Jugadores = MapForDisplayMultiline(model.JugadorEquipo),
