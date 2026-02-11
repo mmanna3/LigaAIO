@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Drawing;
@@ -131,18 +131,30 @@ namespace LigaSoft.Controllers
 		    switch (vm.Opcion)
 		    {
 			    case "anio-de-fichaje":
-				    jugadoresEquipos = Context.JugadorEquipos.Where(x => x.FechaFichaje.Year == vm.Valor);
-				    Context.JugadorEquipos.RemoveRange(jugadoresEquipos);
-				    jugadores = jugadoresEquipos.Select(x => x.Jugador);
-				    Context.Jugadores.RemoveRange(jugadores);
-				    mensaje = $"Se eliminaron correctamente {jugadores.Count()} jugadores fichados en el año {vm.Valor}";
+				    var jugadoresEquiposDelAnio = Context.JugadorEquipos.Where(x => x.FechaFichaje.Year == vm.Valor).ToList();
+				    // Jugadores que SOLO tienen fichajes de este año → se eliminan por completo
+				    // Jugadores que también tienen fichajes de otros años → solo se desvinculan del equipo 2024
+				    var idsJugadoresAEliminarPorCompleto = jugadoresEquiposDelAnio
+					    .Select(x => x.JugadorId)
+					    .Distinct()
+					    .Where(jugadorId => !Context.JugadorEquipos.Any(je => je.JugadorId == jugadorId && je.FechaFichaje.Year != vm.Valor))
+					    .ToList();
+				    var cantidadJugadoresEliminados = idsJugadoresAEliminarPorCompleto.Count;
+				    var totalJugadoresConFichajeEnAnio = jugadoresEquiposDelAnio.Select(x => x.JugadorId).Distinct().Count();
+				    var cantidadDesvinculaciones = totalJugadoresConFichajeEnAnio - cantidadJugadoresEliminados;
+				    Context.JugadorEquipos.RemoveRange(jugadoresEquiposDelAnio);
+				    var jugadoresAEliminar = Context.Jugadores.Where(j => idsJugadoresAEliminarPorCompleto.Contains(j.Id));
+				    Context.Jugadores.RemoveRange(jugadoresAEliminar);
+				    mensaje = cantidadDesvinculaciones > 0
+					    ? $"Se eliminaron {cantidadJugadoresEliminados} jugadores y se desvincularon {cantidadDesvinculaciones} jugadores de sus equipos del año {vm.Valor}."
+					    : $"Se eliminaron correctamente {cantidadJugadoresEliminados} jugadores fichados en el año {vm.Valor}.";
 				    break;
         
 			    case "anio-de-nacimiento":
 				    jugadores = Context.Jugadores.Where(x => x.FechaNacimiento.Year == vm.Valor);
-				    Context.Jugadores.RemoveRange(jugadores);
 				    jugadoresEquipos = jugadores.SelectMany(x => x.JugadorEquipo);
 				    Context.JugadorEquipos.RemoveRange(jugadoresEquipos);
+				    Context.Jugadores.RemoveRange(jugadores);
 				    mensaje = $"Se eliminaron correctamente {jugadores.Count()} jugadores nacidos en el año {vm.Valor}";
 				    break;
         
