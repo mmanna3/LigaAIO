@@ -20,5 +20,7 @@ namespace LigaSoft.Models.Enums
 		A2024 = 2024,
 		[Display(Name = "2025")]
 		A2025 = 2025
+		[Display(Name = "2026")]
+		A2026 = 2026
 	}
 }
